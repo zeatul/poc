@@ -2,8 +2,19 @@ package com.hawk.utility;
 
 public class StringTools {
 	
+	private static ThreadLocal<StringBuilder> threadLocalStringBuilder = new ThreadLocal<StringBuilder>(){
+		
+		protected StringBuilder initialValue() {return new StringBuilder();};
+	};
+	
+	public static  StringBuilder getThreadSafeStringBuilder(){
+		StringBuilder sb = threadLocalStringBuilder.get();
+		sb.delete(0, sb.length());
+		return sb;
+	}
+	
 	public static String to36Char(long x){
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = getThreadSafeStringBuilder();
 		to36Char(x,sb);
 		return sb.reverse().toString();
 	}

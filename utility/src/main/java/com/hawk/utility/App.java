@@ -1,5 +1,10 @@
 package com.hawk.utility;
 
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
@@ -67,5 +72,10 @@ public class App
         System.out.println(Super.class.isAssignableFrom(Sub.class));
         
         NoClassDefFoundError x;
+        
+        ExecutorService s = Executors.newCachedThreadPool();
+        
+        CompletionService<Long> completionService = new ExecutorCompletionService<Long>(s);
+        completionService.take();
     }
 }
