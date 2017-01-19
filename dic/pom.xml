@@ -17,6 +17,14 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- project -->
+		<dependency>
+			<groupId>com.hawk</groupId>
+			<artifactId>utility</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -40,6 +48,13 @@
 			<version>${logback.version}</version>
 		</dependency>
 
+		<!-- xml -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
 		<!-- H2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -47,31 +62,6 @@
 			<version>1.4.192</version>
 		</dependency>
 
-		<!-- cglib -->
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>3.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-jmh</artifactId>
-			<version>3.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-sample</artifactId>
-			<version>3.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-integration-test</artifactId>
-			<version>3.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>3.2.4</version>
-		</dependency>
+
 	</dependencies>
 </project>

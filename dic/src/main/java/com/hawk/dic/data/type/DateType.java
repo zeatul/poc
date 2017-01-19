@@ -1,7 +1,7 @@
 package com.hawk.dic.data.type;
 
 /**
- * 日期
+ * 日期类型
  * @author pzhang1
  *
  */

@@ -7,4 +7,29 @@ package com.hawk.dic.data.type;
  */
 public class EnumStringType extends EnumType<String>{
 
+	public Integer getMinLength() {
+		return minLength;
+	}
+
+	public void setMinLength(Integer minLength) {
+		this.minLength = minLength;
+	}
+
+	public Integer getMaxLength() {
+		return maxLength;
+	}
+
+	public void setMaxLength(Integer maxLength) {
+		this.maxLength = maxLength;
+	}
+
+	/**
+	 * 最大长度
+	 */
+	private Integer maxLength ;
+	
+	/**
+	 * 最小长度
+	 */
+	private Integer minLength ;
 }

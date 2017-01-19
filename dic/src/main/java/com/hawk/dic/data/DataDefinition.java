@@ -2,22 +2,21 @@ package com.hawk.dic.data;
 
 import com.hawk.dic.data.type.DataType;
 
+/**
+ * 数据定义
+ * 名称
+ * 类型
+ * 描述
+ * @author pzhang1
+ *
+ */
 public class DataDefinition {
 	
 	/**
-	 * id,唯一
-	 */
-	private String id;
-	
-	/**
-	 * 名称,唯一
+	 * 名称,唯一,按照数据库命名规则（小写,下划线分割）
 	 */
 	private String name;
-	
-	/**
-	 * 格式,日期类型数据,可能需要格式
-	 */
-	private String pattern;
+
 
 	/**
 	 * 类型

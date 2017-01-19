@@ -1,8 +1,8 @@
-package com.hawk.dic.database;
+package com.hawk.dic.entity;
 
 import com.hawk.dic.data.DataDefinition;
 
-public class Column {
+public class Field {	
 
 	public DataDefinition getDataDefinition() {
 		return dataDefinition;
@@ -13,5 +13,6 @@ public class Column {
 	}
 
 	private DataDefinition dataDefinition;
+	
 
 }

@@ -7,6 +7,14 @@ package com.hawk.dic.data.type;
  */
 public class StringType implements DataType{
 	
+	public String getRegex() {
+		return regex;
+	}
+
+	public void setRegex(String regex) {
+		this.regex = regex;
+	}
+
 	public Integer getMaxLength() {
 		return maxLength;
 	}
@@ -33,5 +41,10 @@ public class StringType implements DataType{
 	 * 最小长度
 	 */
 	private Integer minLength ;
+	
+	/**
+	 * 正则
+	 */
+	private String regex;
 
 }

@@ -6,22 +6,6 @@ package com.hawk.dic.data.type;
  *
  */
 public interface DataType {
-	
-//	public static enum Type{
-//		String,
-//		Integer,
-//		Long,
-//		Date,
-//		Number;
-//	}
-//	
-//	private Type type;
-//	
-//	private boolean fixed = false;
-//
-//	private Integer maxLength;
-//	
-//	private 
-	
+
 
 }
