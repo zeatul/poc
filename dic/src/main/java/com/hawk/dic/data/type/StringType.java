@@ -46,5 +46,10 @@ public class StringType implements DataType{
 	 * 正则
 	 */
 	private String regex;
+	
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.String;
+	}
 
 }

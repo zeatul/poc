@@ -59,5 +59,10 @@ public class NumberType implements DataType {
 	 * 最大值
 	 */
 	private BigDecimal max;
+	
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.Number;
+	}
 
 }

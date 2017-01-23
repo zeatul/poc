@@ -5,7 +5,7 @@ package com.hawk.dic.data.type;
  * @author pzhang1
  *
  */
-public class EnumStringType extends EnumType<String>{
+public class EnumStringType extends EnumType<String,String>{
 
 	public Integer getMinLength() {
 		return minLength;
@@ -32,4 +32,9 @@ public class EnumStringType extends EnumType<String>{
 	 * 最小长度
 	 */
 	private Integer minLength ;
+	
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.EnumString;
+	}
 }

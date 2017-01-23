@@ -7,4 +7,9 @@ package com.hawk.dic.data.type;
  */
 public class DateType implements DataType{
 
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.Date;
+	}
+
 }

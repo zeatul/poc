@@ -27,4 +27,9 @@ public class LongType implements DataType {
 	private Long min;
 
 	private Long max;
+	
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.Long;
+	}
 }

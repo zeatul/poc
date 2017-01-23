@@ -5,7 +5,7 @@ package com.hawk.dic.data.type;
  * @author pzhang1
  *
  */
-public class EnumIntegerType extends EnumType<Integer> {
+public class EnumIntegerType extends EnumType<Integer,String> {
 
 	public Integer getMin() {
 		return min;
@@ -26,4 +26,9 @@ public class EnumIntegerType extends EnumType<Integer> {
 	private Integer min;
 	
 	private Integer max;
+
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.EnumInteger;
+	}
 }

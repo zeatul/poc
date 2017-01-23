@@ -26,5 +26,10 @@ public class IntegerType implements DataType{
 	private Integer min;
 	
 	private Integer max;
+	
+	@Override
+	public EnumDataType getType() {
+		return DataType.EnumDataType.Integer;
+	}
 
 }

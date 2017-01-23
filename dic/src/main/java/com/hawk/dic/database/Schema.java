@@ -4,14 +4,16 @@ import java.util.List;
 
 public class Schema {
 	
-	public List<Table> getTableList() {
-		return tableList;
+	
+
+	public List<Application> getApplicationList() {
+		return applicationList;
 	}
 
-	public void setTableList(List<Table> tableList) {
-		this.tableList = tableList;
+	public void setApplicationList(List<Application> applicationList) {
+		this.applicationList = applicationList;
 	}
 
-	private List<Table> tableList; 
+	private List<Application> applicationList; 
 
 }

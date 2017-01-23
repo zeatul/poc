@@ -2,6 +2,11 @@ package com.hawk.dic.database;
 
 import com.hawk.dic.data.DataDefinition;
 
+/**
+ * 
+ * @author pzhang1
+ *
+ */
 public class Column {
 
 	public DataDefinition getDataDefinition() {

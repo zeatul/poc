@@ -18,6 +18,7 @@ public class DomainTools {
 	public static  <T> T copy(Object source , Class<T> clazz) throws Exception{
 		T target = clazz.newInstance();
 		copy(source,target);
+		
 		return target;
 	}
 	
