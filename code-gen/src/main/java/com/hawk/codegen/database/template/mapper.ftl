@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ${className}Mapper  {
 
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	${className}Domain load(<#list key as field>@Param("${field.fieldName}")${field.filedType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
 	</#if>
 	
@@ -22,8 +22,8 @@ public interface ${className}Mapper  {
 	
 	int insert(${className}Domain ${className?uncap_first}Domain);
 	
-	<#if (key?? && key?size>0)>
-	int delete(<#list key as field>@Param("${field.fieldName}")${field.filedType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
+	<#if (keyList?? && keyList?size>0)>
+	int delete(<#list keyList as field>@Param("${field.fieldName}")${field.filedType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
 	</#if>
 	
 	int deleteDynamic(Map<String,Object> params);

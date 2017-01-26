@@ -5,14 +5,14 @@
 <mapper namespace="${packageName}.mapper.${className}Mapper">
 
 	<sql id="columns">
-		<#list fields as field>
+		<#list fieldList as field>
 		${field.columnName} as "${field.fieldName}" <#if field_has_next>,</#if>
 		</#list>
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
-		<#list fields as field>		   
+		<#list fieldList as field>		   
 			<if test="${field.fieldName} != null"> AND ${field.columnName} = ${r"#"}{${field.fieldName}}  </if>
 		</#list>
 		</trim>	
@@ -20,7 +20,7 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-		<#list fields as field>
+		<#list fieldList as field>
 			AND ${field.columnName} = ${r"#"}{old_${field.fieldName}}
 		</#list>
 		</trim>
@@ -28,35 +28,31 @@
 	
 	<sql id="update">
 		<set>
-		<#list fields as field> 
-			<#if field.columnName != "id">
+		<#list fieldList as field> 
 			${field.columnName} = ${r"#"}{${field.fieldName}},
-			</#if>
 		</#list>
 		</set>
 	</sql>
 	
 	<sql id="updateWithoutNull">
 		<set>
-		<#list fields as field> 
-			<#if field.columnName != "id">
-				<if test="${field.fieldName} != null">${field.columnName} = ${r"#"}{${field.fieldName}},</if>
-			</#if>
+		<#list fieldList as field> 
+			<if test="${field.fieldName} != null">${field.columnName} = ${r"#"}{${field.fieldName}},</if>
 		</#list>
 		</set>
 	</sql>
 	
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-		<#list key as field>
+		<#list pkFieldList as field>
 			AND ${field.columnName} = ${r"#"}{${field.fieldName}}
 		</#list>
 		</trim>
 	</sql>
 	</#if>
 	
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	<select id="load"  resultType="${className}Domain">
 		SELECT 
 		<include refid="columns" />
@@ -83,18 +79,18 @@
 	
 	<insert id="insert"  parameterType="${className}Domain">
 		INSERT INTO ${tableName} (			
-			<#list fields as field>
-				${field.columnName}<#if field_index < columnsLength-1 >,</#if>				
+			<#list fieldList as field>
+				${field.columnName}<#if field_has_next >,</#if>				
 			</#list>
 		)		
 		VALUES (	
-		<#list fields as field>
-			${r"#"}{${field.fieldName}}<#if field_index < columnsLength-1 >,</#if>
+		<#list fieldList as field>
+			${r"#"}{${field.fieldName}}<#if field_has_next >,</#if>
 		</#list>	
 		) 
 	</insert>
 	
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	<delete id="delete" >
 		DELETE FROM ${tableName}
 		<include refid="pkwhere" />	
@@ -106,7 +102,7 @@
 		<include refid="where" />
 	</delete>
 
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	<update id="update" parameterType="${className}Domain">
 		UPDATE ${tableName}	
 		<include refid="update" />
@@ -114,7 +110,7 @@
 	</update>
 	</#if>
 	
-	<#if (key?? && key?size>0)>
+	<#if (keyList?? && keyList?size>0)>
 	<update id="updateWithoutNull" parameterType="${className}Domain">
 		UPDATE ${tableName}
 		<include refid="updateWithoutNull"/>
