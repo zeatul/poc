@@ -18,6 +18,11 @@ public interface ${className}Mapper  {
 	
 	List<${className}Domain> loadDynamic(Map<String,Object> params);
 	
+	/**
+	 * 需要传入分页参数
+	 */
+	List<${className}Domain> loadDynamicPaging(Map<String,Object> params);
+	
 	int count(Map<String,Object> params);
 	
 	int insert(${className}Domain ${className?uncap_first}Domain);

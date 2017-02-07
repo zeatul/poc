@@ -7,6 +7,18 @@ package com.hawk.codegen.database.meta;
  */
 public class Field {
 	
+	public String getFieldJdbcType() {
+		return fieldJdbcType;
+	}
+	public void setFieldJdbcType(String fieldJdbcType) {
+		this.fieldJdbcType = fieldJdbcType;
+	}
+	public String getDbtype() {
+		return dbtype;
+	}
+	public void setDbtype(String dbtype) {
+		this.dbtype = dbtype;
+	}
 	public String getFieldName() {
 		return fieldName;
 	}
@@ -39,10 +51,12 @@ public class Field {
 	private String fieldName;	
 	private String fieldType;
 	private String fieldDesc;
+	private String fieldJdbcType;
 	
 	/**
 	 * db
 	 */
 	private String columnName;
+	private String dbtype;
 
 }

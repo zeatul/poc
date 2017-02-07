@@ -9,7 +9,7 @@ import java.util.Map;
 import com.hawk.codegen.database.meta.Column;
 import com.hawk.codegen.database.meta.Table;
 
-public class OrableDatabaseParser extends DatabaseParser {
+public class OracleDatabaseParser extends DatabaseParser {
 
 	@Override
 	protected void parseTableComment(Connection conn, Table table) throws Exception {

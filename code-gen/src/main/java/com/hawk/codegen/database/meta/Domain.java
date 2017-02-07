@@ -1,5 +1,6 @@
 package com.hawk.codegen.database.meta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,11 +8,7 @@ import java.util.List;
  * @author pzhang1
  *
  */
-public class Domain {
-	
-
-
-	
+public class Domain {	
 
 	public List<Field> getKeyList() {
 		return keyList;
@@ -72,15 +69,15 @@ public class Domain {
 	/**
 	 * java
 	 */
-	private List<Field> fieldList;	
+	private List<Field> fieldList = new ArrayList<Field>();	
 	private String className;
-	private List<String> importList; //class import的类
+	private List<String> importList = new ArrayList<String>(); //class import的类
 	private String packageName; //class所在的package
 	private String desc;
 	/**
 	 * db
 	 */
 	private String tableName; //class 对应的表名
-	private List<Field> keyList; //主键
+	private List<Field> keyList = new ArrayList<Field>(); //主键
 
 }
