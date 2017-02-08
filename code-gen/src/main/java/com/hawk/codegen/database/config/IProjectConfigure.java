@@ -15,5 +15,11 @@ public interface IProjectConfigure {
 	 * @return 返回项目所在的根目录，不包括src/main/java ，为空则根据projectName计算出来，否则用
 	 */
 	public String getProjectRootDirectory();
+	
+	/**
+	 * 项目与code-gen的相对位置，0 表示平级
+	 * @return
+	 */
+	public int getRelative();
 
 }

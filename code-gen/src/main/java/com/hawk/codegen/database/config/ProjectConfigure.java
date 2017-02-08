@@ -5,8 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.hawk.codegen.utils.ProjectTools;
+
 public class ProjectConfigure implements IProjectConfigure {
 	
+	public int getRelative() {
+		return relative;
+	}
+
+	public void setRelative(int relative) {
+		this.relative = relative;
+	}
+
 	public void setSubPackage(String subPackage) {
 		this.subPackage = subPackage;
 	}
@@ -46,6 +56,7 @@ public class ProjectConfigure implements IProjectConfigure {
 	private String rootPackage;
 	private String subPackage;
 	private String projectRootDirectory;
+	private int relative ;
 	
 	
 	private ProjectConfigure(){
@@ -63,10 +74,19 @@ public class ProjectConfigure implements IProjectConfigure {
 		
 		try {
 			props.load(in);
-			projectConfigure.setProjectName(props.getProperty("projectName"));
+			String projectName =props.getProperty("projectName");
+			projectConfigure.setProjectName(projectName);
+			int relative = Integer.parseInt(props.getProperty("relative", "0"));
+			projectConfigure.setRelative(relative);
 			projectConfigure.setRootPackage(props.getProperty("rootPackage"));
 			projectConfigure.setSubPackage(props.getProperty("subPackage"));
-			projectConfigure.setProjectRootDirectory(props.getProperty("projectRootDirectory"));
+			String projectRootDirectory = props.getProperty("projectRootDirectory");
+			if (projectRootDirectory == null || projectRootDirectory.trim().length() == 0){
+				projectRootDirectory = ProjectTools.computeProjectRootDirectory(projectName, relative);
+			}
+				
+			projectConfigure.setProjectRootDirectory(projectRootDirectory);
+			
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
