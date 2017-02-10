@@ -78,7 +78,7 @@ public class DatabaseConfigure implements IDatabaseConfigure{
 			databaseConfigure.setPassword(props.getProperty("password"));
 			databaseConfigure.setSchema(props.getProperty("schema"));
 			databaseConfigure.setFilter(props.getProperty("filter"));
-			databaseConfigure.setDialect(EnumDialect.valueOf(props.getProperty("dialect")));
+			databaseConfigure.setDialect(EnumDialect.parse(props.getProperty("dialect")));
 			
 		} catch (IOException e) {
 			throw new RuntimeException(e);

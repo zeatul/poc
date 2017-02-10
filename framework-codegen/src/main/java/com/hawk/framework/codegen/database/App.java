@@ -49,9 +49,9 @@ public class App {
 			domainList.add(domain);
 		}
 
-		writeDomain(domainList, projectConfigure);
-		writeMapper(domainList, projectConfigure);
-		writeSqlMapper(domainList, projectConfigure, databaseConfigure.getDialect());
+//		writeDomain(domainList, projectConfigure);
+//		writeMapper(domainList, projectConfigure);
+//		writeSqlMapper(domainList, projectConfigure, databaseConfigure.getDialect());
 	}
 
 	/**

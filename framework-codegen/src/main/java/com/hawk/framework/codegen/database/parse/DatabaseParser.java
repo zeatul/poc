@@ -97,23 +97,36 @@ public abstract class DatabaseParser implements IDatabaseParser {
 		try {
 			DatabaseMetaData dm = conn.getMetaData();
 			String[] types = { "TABLE", "VIEW" };
-			ResultSet tablsRs = dm.getTables(null, dbConfig.getSchema(), dbConfig.getFilter(), types);
+			ResultSet tableRs = dm.getTables(null, dbConfig.getSchema(), dbConfig.getFilter(), types);
 
-			while (tablsRs.next()) {
+			while (tableRs.next()) {
 				Table table = new Table();
 				database.getTableList().add(table);
 				/**
 				 * 取表的基本信息
 				 */
-				table.setName(tablsRs.getString("TABLE_NAME"));
-				table.setComment(tablsRs.getString("REMARKS"));
-				table.setSchema(tablsRs.getString("TABLE_SCHEM"));
+				table.setName(tableRs.getString("TABLE_NAME"));
+				table.setComment(tableRs.getString("REMARKS"));
+				table.setSchema(dbConfig.getSchema());
+				
+				System.out.println("-------------table-------------");
+				int max = tableRs.getMetaData().getColumnCount();
+				for (int i=1; i<=max; i++){
+					System.out.println(tableRs.getMetaData().getColumnName(i)+":"+tableRs.getString(tableRs.getMetaData().getColumnName(i)));
+				}
+				
 				/**
 				 * 取表的索引
 				 */
 				ResultSet indexRs = dm.getIndexInfo(null, table.getSchema(), table.getName(), false, false);
 				while (indexRs.next()) {
 
+				}
+				
+				System.out.println("-------------index-------------");
+				max = indexRs.getMetaData().getColumnCount();
+				for (int i=1; i<=max; i++){
+					System.out.println(indexRs.getMetaData().getColumnName(i)+":"+indexRs.getString(indexRs.getMetaData().getColumnName(i)));
 				}
 				indexRs.close();
 
@@ -126,6 +139,12 @@ public abstract class DatabaseParser implements IDatabaseParser {
 					String pkColumnName = pkRs.getString("COLUMN_NAME");
 					pkColumnNameSet.add(pkColumnName);
 				}
+				
+				System.out.println("-------------pk-------------");
+				max = pkRs.getMetaData().getColumnCount();
+				for (int i=1; i<=max; i++){
+					System.out.println(pkRs.getMetaData().getColumnName(i)+":"+pkRs.getString(pkRs.getMetaData().getColumnName(i)));
+				}
 				pkRs.close();
 
 				/**
@@ -135,7 +154,7 @@ public abstract class DatabaseParser implements IDatabaseParser {
 				while (columnRs.next()) {
 					Column column = new Column();
 					table.getColumnList().add(column);
-					column.setComment(columnRs.getString("COLUMN_NAME"));
+					column.setComment(columnRs.getString("COLUMN_NAME")); 
 					column.setType(columnRs.getString("TYPE_NAME"));
 					column.setNullable(1 == columnRs.getInt("NULLABLE"));
 					column.setName(columnRs.getString("COLUMN_NAME"));
@@ -145,9 +164,14 @@ public abstract class DatabaseParser implements IDatabaseParser {
 					}
 
 				}
+				System.out.println("-------------column-------------");
+				max = columnRs.getMetaData().getColumnCount();
+				for (int i=1; i<=max; i++){
+					System.out.println(columnRs.getMetaData().getColumnName(i));
+				}
 				columnRs.close();
 			}
-			tablsRs.close();
+			tableRs.close();
 		} finally {
 			if (conn != null) {
 				try {
