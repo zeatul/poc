@@ -49,7 +49,7 @@ public class App {
 			domainList.add(domain);
 		}
 
-//		writeDomain(domainList, projectConfigure);
+		writeDomain(domainList, projectConfigure);
 //		writeMapper(domainList, projectConfigure);
 //		writeSqlMapper(domainList, projectConfigure, databaseConfigure.getDialect());
 	}
@@ -65,7 +65,7 @@ public class App {
 	private static void writeDomain(List<Domain> domainList, IProjectConfigure projectConfigure) throws IOException, Exception {
 
 		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("templates/domain.ftl");
+		Template template = cfg.getTemplate("template/domain.ftl");
 
 		String directory = ProjectTools.computeProjectSourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "domain");
@@ -94,7 +94,7 @@ public class App {
 	 */
 	private static void writeMapper(List<Domain> domainList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("templates/mapper.ftl");
+		Template template = cfg.getTemplate("template/mapper.ftl");
 
 		String directory = ProjectTools.computeProjectSourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "mapper");
@@ -122,7 +122,7 @@ public class App {
 	 */
 	private static void writeSqlMapper(List<Domain> domainList, IProjectConfigure projectConfigure, EnumDialect dialect) throws Exception {
 		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("templates/mybatis_" + dialect.getValue() + ".ftl");
+		Template template = cfg.getTemplate("template/mybatis_" + dialect.getValue() + ".ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "mapper");
 		ProjectTools.clearDirectory(directory, "Mapper.xml");

@@ -85,6 +85,11 @@ public class ProjectTools {
 		
 		
 		if (subDir != null && subDir.trim().length() != 0){
+			String spliter = File.separator;
+			if (spliter.equals("\\")){
+				spliter = "\\\\";
+			}
+				
 			String[] strArray = subDir.split(File.separator);
 			for(String str : strArray){
 				sb.append(File.separator).append(str);

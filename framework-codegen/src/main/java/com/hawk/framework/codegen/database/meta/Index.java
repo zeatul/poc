@@ -33,5 +33,7 @@ public class Index {
 	
 	private boolean unique = false;
 	private boolean pk = false;
+	
+	
 
 }

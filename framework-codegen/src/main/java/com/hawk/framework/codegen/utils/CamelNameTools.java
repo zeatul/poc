@@ -27,7 +27,7 @@ public class CamelNameTools {
 		String[] strArray = srcStr.split(spliter);
 		for (int i=start ; i<strArray.length; i++){
 			String str = strArray[i].toLowerCase();
-			className = className +str;
+			className = className +capFirst(str);
 		}
 		if (!capFirst){
 			className = uncapFirst(className);
