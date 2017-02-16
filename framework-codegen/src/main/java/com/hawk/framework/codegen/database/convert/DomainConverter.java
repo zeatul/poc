@@ -11,6 +11,7 @@ import com.hawk.framework.codegen.database.meta.Domain;
 import com.hawk.framework.codegen.database.meta.Field;
 import com.hawk.framework.codegen.database.meta.Index;
 import com.hawk.framework.codegen.database.meta.Table;
+import com.hawk.framework.codegen.utils.BooleanTools;
 import com.hawk.framework.codegen.utils.CamelNameTools;
 
 public class DomainConverter implements IDomainConverter{
@@ -57,11 +58,18 @@ public class DomainConverter implements IDomainConverter{
 			field.setFieldDesc(column.getComment());
 			field.setFieldName(fieldName);
 			
-			String dbType = column.getType();
-			field.setDbtype(dbType);
+			String dbType = column.getDataType();
+			field.setDbType(dbType);
 			field.setFieldType(typeConverter.convertFromDbToJava(dbType));
 			field.setFieldJdbcType(typeConverter.convertFromDbToJdbc(dbType));
 			fieldTypeSet.add(field.getFieldType());
+			field.setCharMaxLength(column.getCharMaxLength());
+			field.setColumnType(column.getColumnType());
+			field.setDatetimePrecision(column.getDatetimePrecision());
+			field.setNullable(column.getNullable());
+			field.setNumericPrecision(column.getNumericPrecision());
+			field.setNumericScale(column.getNumericScale());
+			field.setPk(column.getPk());
 		}
 		
 		/**
@@ -81,7 +89,7 @@ public class DomainConverter implements IDomainConverter{
 		 */
 		List<Index> indexList = table.getIndexList();
 		for (Index index : indexList){
-			if (index.isPk()){ 
+			if (BooleanTools.parse(index.getPk())){ 
 				List<Field> keyList =  domain.getKeyList();
 				Map<String,Field> map = new HashMap<String,Field>();
 				for (Field field : fieldList){

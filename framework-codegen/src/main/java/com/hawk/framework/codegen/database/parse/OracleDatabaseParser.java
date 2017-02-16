@@ -12,7 +12,7 @@ import com.hawk.framework.codegen.database.meta.Table;
 public class OracleDatabaseParser extends DatabaseParser {
 
 	@Override
-	protected void parseTableComment(Connection conn, Table table) throws Exception {
+	protected void parseTable(Connection conn, Table table) throws Exception {
 		String comment = "";
 		String sql = "select table_name,comments from user_tab_comments where table_name=?";
 		PreparedStatement ps = null;
@@ -35,7 +35,7 @@ public class OracleDatabaseParser extends DatabaseParser {
 	}
 
 	@Override
-	protected void parseColumnComment(Connection conn, Table table) throws Exception {
+	protected void parseColumn(Connection conn, Table table) throws Exception {
 		String sql = "select column_name,comments from user_col_comments where table_name=?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -61,6 +61,12 @@ public class OracleDatabaseParser extends DatabaseParser {
 
 			}
 		}
+	}
+
+	@Override
+	protected void parseIndex(Connection conn, Table table) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

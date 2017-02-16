@@ -90,7 +90,7 @@ public class ProjectTools {
 				spliter = "\\\\";
 			}
 				
-			String[] strArray = subDir.split(File.separator);
+			String[] strArray = subDir.split(spliter);
 			for(String str : strArray){
 				sb.append(File.separator).append(str);
 			}

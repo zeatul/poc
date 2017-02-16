@@ -6,6 +6,14 @@ public class Index {
 	
 	
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public List<Column> getColumnList() {
 		return columnList;
 	}
@@ -15,5 +23,8 @@ public class Index {
 	}
 
 	private List<Column> columnList;
+	
+	
+	private String name;
 
 }

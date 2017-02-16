@@ -37,6 +37,7 @@ public class MysqlTypeConverter extends TypeConverter {
 		jdbcTypeMap.put("int", "numeric");
 		jdbcTypeMap.put("int identity", "numeric");
 		jdbcTypeMap.put("datetime", "timestamp");
+		jdbcTypeMap.put("timestamp", "timestamp");
 		jdbcTypeMap.put("varchar", "varchar");
 		jdbcTypeMap.put("char", "varchar");
 		jdbcTypeMap.put("nvarchar", "varchar");

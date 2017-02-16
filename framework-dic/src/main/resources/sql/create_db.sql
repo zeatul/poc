@@ -36,6 +36,12 @@ drop index UI_DT_1 on t_dic_table;
 
 drop table if exists t_dic_table;
 
+drop index i_test_2 on t_dic_test;
+
+drop index ui_test_1 on t_dic_test;
+
+drop table if exists t_dic_test;
+
 /*==============================================================*/
 /* Table: t_dic_application                                     */
 /*==============================================================*/
@@ -124,6 +130,8 @@ create table t_dic_data_definition
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_dic_data_definition comment '数据字典定义';
 
 /*==============================================================*/
 /* Index: ui_dd_1                                               */
@@ -276,4 +284,40 @@ alter table t_dic_table comment '表对象';
 create unique index UI_DT_1 on t_dic_table
 (
    object_label
+);
+
+/*==============================================================*/
+/* Table: t_dic_test                                            */
+/*==============================================================*/
+create table t_dic_test
+(
+   col1                 varchar(50) not null comment 'col1',
+   col2                 varchar(50) not null comment 'col2',
+   col3                 timestamp(3) not null,
+   col4                 numeric(10,5) not null,
+   col5                 decimal(10,5),
+   primary key (col1, col2)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_dic_test comment '测试表的元数据使用';
+
+/*==============================================================*/
+/* Index: ui_test_1                                             */
+/*==============================================================*/
+create unique index ui_test_1 on t_dic_test
+(
+   col2,
+   col3,
+   col4
+);
+
+/*==============================================================*/
+/* Index: i_test_2                                              */
+/*==============================================================*/
+create index i_test_2 on t_dic_test
+(
+   col3,
+   col4,
+   col5
 );
