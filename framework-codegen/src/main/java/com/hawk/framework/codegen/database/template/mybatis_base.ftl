@@ -39,7 +39,7 @@
 	<#if (keyList?? && keyList?size>0)>
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-		<#list pkFieldList as field>
+		<#list keyList as field>
 			AND ${field.columnName} = ${r"#"}{${field.fieldName}}
 		</#list>
 		</trim>
@@ -64,10 +64,18 @@
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
-		SELECT count(*) 
+		SELECT count(1) 
 		FROM ${tableName}
 		<include refid="where" />
 	</select>
+	
+	<#if (keyList?? && keyList?size>0)>
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM ${tableName}
+		<include refid="pkwhere" />		
+	</select>
+	</#if>
 	
 	<insert id="insert"  parameterType="${className}Domain">
 		INSERT INTO ${tableName} (			
@@ -115,6 +123,4 @@
 		<include refid="update" />
 		<include refid="where_old" />
 	</update>
-	
-	
 	

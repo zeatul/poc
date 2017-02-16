@@ -20,25 +20,25 @@ public class ${className}Domain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	<#list fieldList as field>
-	/*${field.desc} ${field.columnName}*/
-	private ${field.filedType} ${field.fieldName};
+	/*${field.fieldDesc} ${field.columnName}*/
+	private ${field.fieldType} ${field.fieldName};
 	
 	</#list>
 	
 	<#list fieldList as field>
 	/**
 	 * 
-	 * @return ${field.desc} ${field.columnName}
+	 * @return ${field.fieldDesc} ${field.columnName}
 	 */
-	public ${field.filedType} get${field.fieldName?cap_first}(){
+	public ${field.fieldType} get${field.fieldName?cap_first}(){
 		return ${field.fieldName};
 	}
 	
 	/**
 	 * 
-	 * @param ${field.fieldName} ${field.desc} ${field.columnName}
+	 * @param ${field.fieldName} ${field.fieldDesc} ${field.columnName}
 	 */	
-	public void set${field.fieldName?cap_first} (${field.filedType} ${field.fieldName}) {
+	public void set${field.fieldName?cap_first} (${field.fieldType} ${field.fieldName}) {
 		this.${field.fieldName} = ${field.fieldName};
 	}
 	

@@ -55,7 +55,7 @@ create table t_dic_application
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table t_dic_application comment '应用';
+alter table t_dic_application comment '应用,一个应用一个package,对应很多表.';
 
 /*==============================================================*/
 /* Index: ui_d_a_1                                              */

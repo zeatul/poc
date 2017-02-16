@@ -1,41 +1,37 @@
-package ${packageName}.mapper;
+package com.hawk.framework.dic.mapper;
 import java.util.List;
 import java.util.Map;
-import ${packageName}.domain.${className}Domain;
+import com.hawk.framework.dic.domain.PairDomain;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * table = ${tableName}
- * desc = ${desc}
+ * table = t_dic_pair
+ * desc = 对值(Map<Key,Value>
  * 
  * @author Gen
  */
-public interface ${className}Mapper  {
+public interface PairMapper  {
 
-	<#if (keyList?? && keyList?size>0)>
 	/**
 	 * 根据主键加载记录
-	 <#list keyList as field>
-	 * @param ${field.fieldName} ${field.fieldDesc}
-	 </#list>
+	 * @param dataDefinitionObjectId 字典对象id
 	 * @return 查询到的记录
 	 */
-	${className}Domain load(<#list keyList as field>@Param("${field.fieldName}")${field.fieldType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
-	</#if>
+	PairDomain load(@Param("dataDefinitionObjectId")String dataDefinitionObjectId );
 	
 	/**
 	 * 动态条件加载记录
 	 * @param params 查询条件
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<${className}Domain> loadDynamic(Map<String,Object> params);
+	List<PairDomain> loadDynamic(Map<String,Object> params);
 	
 	/**
 	 * 需要传入分页参数，请使用对应的工具类注入分页参数
 	 * @param params
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<${className}Domain> loadDynamicPaging(Map<String,Object> params);
+	List<PairDomain> loadDynamicPaging(Map<String,Object> params);
 	
 	/**
 	 * 计算符合条件的记录数
@@ -44,35 +40,27 @@ public interface ${className}Mapper  {
 	 */
 	int count(Map<String,Object> params);
 	
-	<#if (keyList?? && keyList?size>0)>
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 <#list keyList as field>
-	 * @param ${field.fieldName} ${field.fieldDesc}
-	 </#list>
+	 * @param dataDefinitionObjectId 字典对象id
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(<#list keyList as field>@Param("${field.fieldName}")${field.fieldType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
-	</#if>
+	int countByPK(@Param("dataDefinitionObjectId")String dataDefinitionObjectId );
 	
 	
 	/**
 	 * 插入记录
-	 * @param ${className}Domain ${desc}
+	 * @param PairDomain 对值(Map<Key,Value>
 	 * @return 插入的记录数
 	 */
-	int insert(${className}Domain ${className?uncap_first}Domain);
+	int insert(PairDomain pairDomain);
 	
-	<#if (keyList?? && keyList?size>0)>
 	/**
 	 * 根据主键删除记录
-	 <#list keyList as field>
-	 * @param ${field.fieldName} ${field.fieldDesc}
-	 </#list>
+	 * @param dataDefinitionObjectId 字典对象id
 	 * @return 删除的记录数
 	 */
-	int delete(<#list keyList as field>@Param("${field.fieldName}")${field.fieldType} ${field.fieldName}<#if field_has_next>,</#if> </#list>);
-	</#if>
+	int delete(@Param("dataDefinitionObjectId")String dataDefinitionObjectId );
 	
 	/**
 	 * 动态删除记录
@@ -83,17 +71,17 @@ public interface ${className}Mapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param ${className}Domain ${desc}
+	 * @param PairDomain 对值(Map<Key,Value>
 	 * @return 更新的记录数
 	 */
-	int update(${className}Domain ${className?uncap_first}Domain);
+	int update(PairDomain pairDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param ${className}Domain ${desc}
+	 * @param PairDomain 对值(Map<Key,Value>
 	 * @return 更新的记录数
 	 */
-	int updateWithoutNull(${className}Domain ${className?uncap_first}Domain);
+	int updateWithoutNull(PairDomain pairDomain);
 	
 	/**
 	 * 更新,要跟新的字段使用字段名，更新条件使用old_字段名，用来适配某些批量更新记录的情况

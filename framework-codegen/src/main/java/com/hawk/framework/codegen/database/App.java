@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.hawk.framework.codegen.database.config.DatabaseConfigure;
@@ -31,27 +32,57 @@ public class App {
 		cfg.setClassForTemplateLoading(App.class, "");
 	}
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args)  {
+		
+		try {
+			run();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+
+		System.exit(0);
+	}
+	
+	private static void run() throws Throwable{
 		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build();
 		IProjectConfigure projectConfigure = ProjectConfigure.build();
 
 		IDatabaseParser dbParser = DatabaseParserFactory.build(databaseConfigure);
 
+		Date stdt = new Date();
 		Database database = dbParser.parse();
+		Date endt = new Date();
+		System.out.println(
+				"Success parse database , find " + database.getTableList().size() + " tables, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
 
 		IDomainConverter domianConverter = DomainConverterFactory.build(databaseConfigure.getDialect());
 
 		String packageName = projectConfigure.getRootPackage() + "." + projectConfigure.getSubPackage();
 		List<Domain> domainList = new ArrayList<Domain>();
+		stdt = new Date();
 		for (Table table : database.getTableList()) {
 			Domain domain = domianConverter.convert(table);
 			domain.setPackageName(packageName);
 			domainList.add(domain);
 		}
+		endt = new Date();
+		System.out.println("Convert table tod domain cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
 
+		stdt = new Date();
 		writeDomain(domainList, projectConfigure);
-//		writeMapper(domainList, projectConfigure);
-//		writeSqlMapper(domainList, projectConfigure, databaseConfigure.getDialect());
+		endt = new Date();
+		System.out.println("Success to generate domain.java file, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
+
+		stdt = new Date();
+		writeMapper(domainList, projectConfigure);
+		endt = new Date();
+		System.out.println("Success to generate mapper.java file, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
+
+		stdt = new Date();
+		writeSqlMapper(domainList, projectConfigure, databaseConfigure.getDialect());
+		endt = new Date();
+		System.out.println("Success to generate sql mapper.xml file, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
+
 	}
 
 	/**

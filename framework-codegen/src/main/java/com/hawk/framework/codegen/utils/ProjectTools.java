@@ -14,16 +14,16 @@ public class ProjectTools {
 		if (!file.exists()){
 			throw new RuntimeException("the directory "+directory+ " doesn't exist");
 		}
-		if (file.isDirectory()){
+		if (!file.isDirectory()){
 			throw new RuntimeException("the directory "+directory+ " is not a directory");
 		}
-		if (file.isDirectory()) {
-			String[] f = file.list();
-			for (String str : f) {
-				if (str.toLowerCase().endsWith(filter.toLowerCase())){
-					File f1 = new File(file + File.separator + str);
-					f1.delete();
-				}
+
+		String[] f = file.list();
+		for (String str : f) {
+			if (str.toLowerCase().endsWith(filter.toLowerCase())){
+				File f1 = new File(file + File.separator + str);
+				if (!f1.delete())
+					throw new RuntimeException("Failed to delete file = " + f1.getAbsolutePath());
 			}
 		}
 
@@ -96,9 +96,7 @@ public class ProjectTools {
 			}
 		}
 		
-		sb.append("src").append(File.separator);
-		sb.append("main").append(File.separator);
-		sb.append("resources");
+		
 		
 		for (String packageName : packages){
 			String[] strArray = packageName.split("\\.");

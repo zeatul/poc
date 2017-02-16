@@ -4,8 +4,7 @@
 
 <mapper namespace="${packageName}.mapper.${className}Mapper">
 
-	<#include "mybatis_base.html">
-	
+	<#include "mybatis_base.ftl">
 	
 	<select id="loadDynamicPaging" parameterType="hashmap" resultType="${className}Domain">
 		SELECT 		

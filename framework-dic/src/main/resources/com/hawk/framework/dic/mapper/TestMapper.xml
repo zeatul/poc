@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.framework.dic.mapper.TestMapper">
+
+	<sql id="columns">
+				col1 AS "col1" ,
+		col2 AS "col2" ,
+		col3 AS "col3" ,
+		col4 AS "col4" ,
+		col5 AS "col5" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="col1 != null"> AND col1 = #{col1}  </if>
+			<if test="col2 != null"> AND col2 = #{col2}  </if>
+			<if test="col3 != null"> AND col3 = #{col3}  </if>
+			<if test="col4 != null"> AND col4 = #{col4}  </if>
+			<if test="col5 != null"> AND col5 = #{col5}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND col1 = #{old_col1}
+			AND col2 = #{old_col2}
+			AND col3 = #{old_col3}
+			AND col4 = #{old_col4}
+			AND col5 = #{old_col5}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			col1 = #{col1},
+			col2 = #{col2},
+			col3 = #{col3},
+			col4 = #{col4},
+			col5 = #{col5},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="col1 != null">col1 = #{col1},</if>
+			<if test="col2 != null">col2 = #{col2},</if>
+			<if test="col3 != null">col3 = #{col3},</if>
+			<if test="col4 != null">col4 = #{col4},</if>
+			<if test="col5 != null">col5 = #{col5},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND col1 = #{col1}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="TestDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_dic_test
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="TestDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_test
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_dic_test
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_dic_test
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="TestDomain">
+		INSERT INTO t_dic_test (			
+				col1,				
+				col2,				
+				col3,				
+				col4,				
+				col5				
+		)		
+		VALUES (	
+			#{col1},
+			#{col2},
+			#{col3},
+			#{col4},
+			#{col5}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_dic_test
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_dic_test
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="TestDomain">
+		UPDATE t_dic_test	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="TestDomain">
+		UPDATE t_dic_test
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_dic_test	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="TestDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_test
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>
