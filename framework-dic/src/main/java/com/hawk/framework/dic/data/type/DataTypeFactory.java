@@ -15,8 +15,8 @@ public class DataTypeFactory {
 			return new LongType();
 		else if (type == EnumDataType.Integer)
 			return new IntegerType();
-		else if (type == EnumDataType.Number)
-			return new NumberType();
+		else if (type == EnumDataType.Numeric)
+			return new NumericType();
 		else if (type == EnumDataType.String)
 			return new StringType();
 		else

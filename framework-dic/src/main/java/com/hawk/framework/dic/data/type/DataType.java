@@ -13,7 +13,7 @@ public interface DataType {
 		
 		Integer(10),
 		Long(20),
-		Number(30),
+		Numeric(30),
 		String(40),
 		Date(50),
 		EnumString(60),

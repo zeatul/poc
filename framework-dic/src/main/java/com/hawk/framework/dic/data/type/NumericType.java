@@ -7,23 +7,27 @@ import java.math.BigDecimal;
  * @author pzhang1
  *
  */
-public class NumberType implements DataType {
+public class NumericType implements DataType {
 	
-	public Integer getS() {
-		return s;
+	
+
+	public Integer getPrecision() {
+		return precision;
 	}
 
-	public void setS(Integer s) {
-		this.s = s;
+	public void setPrecision(Integer precision) {
+		this.precision = precision;
 	}
 
-	public Integer getP() {
-		return p;
+	public Integer getScale() {
+		return scale;
 	}
 
-	public void setP(Integer p) {
-		this.p = p;
+	public void setScale(Integer scale) {
+		this.scale = scale;
 	}
+
+	
 
 	public BigDecimal getMin() {
 		return min;
@@ -44,11 +48,11 @@ public class NumberType implements DataType {
 	/**
 	 * 整个精度
 	 */
-	private Integer s;
+	private Integer precision;
 	/**
 	 * 小数精度
 	 */
-	private Integer p;
+	private Integer scale;
 	
 	/**
 	 * 最小值
@@ -62,7 +66,7 @@ public class NumberType implements DataType {
 	
 	@Override
 	public EnumDataType getType() {
-		return DataType.EnumDataType.Number;
+		return DataType.EnumDataType.Numeric;
 	}
 
 }

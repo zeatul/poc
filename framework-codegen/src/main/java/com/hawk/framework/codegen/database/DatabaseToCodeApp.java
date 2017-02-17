@@ -25,11 +25,16 @@ import com.hawk.framework.codegen.utils.ProjectTools;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-public class App {
+/**
+ * 解析数据库，生成对应的domain，sqlmap,mapper
+ * @author pzhang1
+ *
+ */
+public class DatabaseToCodeApp {
 
 	private static Configuration cfg = new Configuration();
 	static {
-		cfg.setClassForTemplateLoading(App.class, "");
+		cfg.setClassForTemplateLoading(DatabaseToCodeApp.class, "");
 	}
 
 	public static void main(String[] args)  {

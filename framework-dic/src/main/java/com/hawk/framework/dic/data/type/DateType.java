@@ -7,9 +7,19 @@ package com.hawk.framework.dic.data.type;
  */
 public class DateType implements DataType{
 
+	public int getPrecision() {
+		return precision;
+	}
+
+	public void setPrecision(int precision) {
+		this.precision = precision;
+	}
+
 	@Override
 	public EnumDataType getType() {
 		return DataType.EnumDataType.Date;
 	}
+	
+	private int precision;
 
 }

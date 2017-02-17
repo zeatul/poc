@@ -6,7 +6,7 @@ import com.hawk.framework.dic.data.type.EnumIntegerType;
 import com.hawk.framework.dic.data.type.EnumStringType;
 import com.hawk.framework.dic.data.type.IntegerType;
 import com.hawk.framework.dic.data.type.LongType;
-import com.hawk.framework.dic.data.type.NumberType;
+import com.hawk.framework.dic.data.type.NumericType;
 import com.hawk.framework.dic.data.type.StringType;
 import com.hawk.framework.dic.database.converter.TypeConverter;
 import com.hawk.framework.utility.StringTools;
@@ -32,9 +32,9 @@ public class MysqlTypeConverter implements TypeConverter{
 			return StringTools.concat("varchar(",e.getMaxLength(),")");
 		}else if (dataType instanceof EnumIntegerType){
 			return "integer";
-		}else if (dataType instanceof NumberType){
-			NumberType n = (NumberType)dataType; 
-			return StringTools.concat("decimal(",n.getS(),",",n.getP(),")");
+		}else if (dataType instanceof NumericType){
+			NumericType n = (NumericType)dataType; 
+			return StringTools.concat("decimal(",n.getPrecision(),",",n.getScale(),")");
 		}else if (dataType instanceof DateType){
 			return "timestamp(3) null";
 		}else{
