@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * table = t_dic_test
- * desc = 测试表的元数据使用
+ * desc = 测试表的元数据使用,包括字段类型，索引，外键
  * 
  * @author Gen
  */
@@ -50,7 +50,7 @@ public interface TestMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param TestDomain 测试表的元数据使用
+	 * @param TestDomain 测试表的元数据使用,包括字段类型，索引，外键
 	 * @return 插入的记录数
 	 */
 	int insert(TestDomain testDomain);
@@ -71,14 +71,14 @@ public interface TestMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param TestDomain 测试表的元数据使用
+	 * @param TestDomain 测试表的元数据使用,包括字段类型，索引，外键
 	 * @return 更新的记录数
 	 */
 	int update(TestDomain testDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param TestDomain 测试表的元数据使用
+	 * @param TestDomain 测试表的元数据使用,包括字段类型，索引，外键
 	 * @return 更新的记录数
 	 */
 	int updateWithoutNull(TestDomain testDomain);

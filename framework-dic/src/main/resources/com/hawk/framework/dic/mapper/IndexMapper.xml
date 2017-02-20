@@ -8,7 +8,7 @@
 				object_id AS "objectId" ,
 		table_object_id AS "tableObjectId" ,
 		object_label AS "objectLabel" ,
-		cname AS "cname" ,
+		object_name AS "objectName" ,
 		description AS "description" ,
 		is_unique AS "isUnique" ,
 		is_pk AS "isPk" 
@@ -19,7 +19,7 @@
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="tableObjectId != null"> AND table_object_id = #{tableObjectId}  </if>
 			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
-			<if test="cname != null"> AND cname = #{cname}  </if>
+			<if test="objectName != null"> AND object_name = #{objectName}  </if>
 			<if test="description != null"> AND description = #{description}  </if>
 			<if test="isUnique != null"> AND is_unique = #{isUnique}  </if>
 			<if test="isPk != null"> AND is_pk = #{isPk}  </if>
@@ -31,7 +31,7 @@
 			AND object_id = #{old_objectId}
 			AND table_object_id = #{old_tableObjectId}
 			AND object_label = #{old_objectLabel}
-			AND cname = #{old_cname}
+			AND object_name = #{old_objectName}
 			AND description = #{old_description}
 			AND is_unique = #{old_isUnique}
 			AND is_pk = #{old_isPk}
@@ -43,7 +43,7 @@
 			object_id = #{objectId},
 			table_object_id = #{tableObjectId},
 			object_label = #{objectLabel},
-			cname = #{cname},
+			object_name = #{objectName},
 			description = #{description},
 			is_unique = #{isUnique},
 			is_pk = #{isPk},
@@ -55,7 +55,7 @@
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="tableObjectId != null">table_object_id = #{tableObjectId},</if>
 			<if test="objectLabel != null">object_label = #{objectLabel},</if>
-			<if test="cname != null">cname = #{cname},</if>
+			<if test="objectName != null">object_name = #{objectName},</if>
 			<if test="description != null">description = #{description},</if>
 			<if test="isUnique != null">is_unique = #{isUnique},</if>
 			<if test="isPk != null">is_pk = #{isPk},</if>
@@ -100,7 +100,7 @@
 				object_id,				
 				table_object_id,				
 				object_label,				
-				cname,				
+				object_name,				
 				description,				
 				is_unique,				
 				is_pk				
@@ -109,7 +109,7 @@
 			#{objectId},
 			#{tableObjectId},
 			#{objectLabel},
-			#{cname},
+			#{objectName},
 			#{description},
 			#{isUnique},
 			#{isPk}

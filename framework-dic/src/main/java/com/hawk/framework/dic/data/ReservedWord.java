@@ -18,5 +18,9 @@ public class ReservedWord {
 		reserveldWordList.add("stdt");
 		reserveldWordList.add("endt");
 		reserveldWordList.add("version");
+		reserveldWordList.add("objectId");
+		reserveldWordList.add("objectLabel");
+		reserveldWordList.add("label");
+		reserveldWordList.add("objectName");
 	}
 }

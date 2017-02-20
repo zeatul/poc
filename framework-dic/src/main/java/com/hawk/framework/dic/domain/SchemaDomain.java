@@ -20,8 +20,8 @@ public class SchemaDomain implements Serializable {
 	/*标签 object_label*/
 	private String objectLabel;
 	
-	/*中文名 cname*/
-	private String cname;
+	/*名称 object_name*/
+	private String objectName;
 	
 	/*描述 description*/
 	private String description;
@@ -61,18 +61,18 @@ public class SchemaDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 中文名 cname
+	 * @return 名称 object_name
 	 */
-	public String getCname(){
-		return cname;
+	public String getObjectName(){
+		return objectName;
 	}
 	
 	/**
 	 * 
-	 * @param cname 中文名 cname
+	 * @param objectName 名称 object_name
 	 */	
-	public void setCname (String cname) {
-		this.cname = cname;
+	public void setObjectName (String objectName) {
+		this.objectName = objectName;
 	}
 	
 	/**

@@ -8,7 +8,9 @@
 	<name>Hawk Framework Parent</name>
 	<modules>
 		<module>../framework-utility</module>
-		<!-- <module>../framework-dic</module> <module>../framework-codegen</module> <module>../framework-webapi</module> -->
+		<module>../framework-dic</module>
+		<module>../framework-codegen</module>
+		<module>../framework-webapi</module>
 	</modules>
 
 	<!-- <profiles> <profile> <id>dev</id> <build> <filters> <filter>../taw-parent/taw-user-service/taw_user_service_dev.properties</filter> <filter>../taw-parent/taw-scene-service/taw_scene_service_dev.properties</filter> 
@@ -56,7 +58,7 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<!-- H2  inmemroy database -->
+			<!-- H2 inmemroy database -->
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>

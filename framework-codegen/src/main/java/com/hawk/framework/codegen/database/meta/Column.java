@@ -2,6 +2,12 @@ package com.hawk.framework.codegen.database.meta;
 
 public class Column {
 	
+	public int getCharMinLength() {
+		return charMinLength;
+	}
+	public void setCharMinLength(int charMinLength) {
+		this.charMinLength = charMinLength;
+	}
 	public int getNumericScale() {
 		return numericScale;
 	}
@@ -77,6 +83,7 @@ public class Column {
 	 */
 	private int pk = 0;
 	private int charMaxLength;
+	private int charMinLength;
 	private int numericPrecision;
 	private int numericScale;
 	private int datetimePrecision;

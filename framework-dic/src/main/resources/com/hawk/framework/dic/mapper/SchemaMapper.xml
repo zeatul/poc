@@ -7,7 +7,7 @@
 	<sql id="columns">
 				object_id AS "objectId" ,
 		object_label AS "objectLabel" ,
-		cname AS "cname" ,
+		object_name AS "objectName" ,
 		description AS "description" 
 	</sql>
 	
@@ -15,7 +15,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
-			<if test="cname != null"> AND cname = #{cname}  </if>
+			<if test="objectName != null"> AND object_name = #{objectName}  </if>
 			<if test="description != null"> AND description = #{description}  </if>
 		</trim>	
 	</sql>
@@ -24,7 +24,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND object_id = #{old_objectId}
 			AND object_label = #{old_objectLabel}
-			AND cname = #{old_cname}
+			AND object_name = #{old_objectName}
 			AND description = #{old_description}
 		</trim>
 	</sql>
@@ -33,7 +33,7 @@
 		<set>
 			object_id = #{objectId},
 			object_label = #{objectLabel},
-			cname = #{cname},
+			object_name = #{objectName},
 			description = #{description},
 		</set>
 	</sql>
@@ -42,7 +42,7 @@
 		<set>
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="objectLabel != null">object_label = #{objectLabel},</if>
-			<if test="cname != null">cname = #{cname},</if>
+			<if test="objectName != null">object_name = #{objectName},</if>
 			<if test="description != null">description = #{description},</if>
 		</set>
 	</sql>
@@ -84,13 +84,13 @@
 		INSERT INTO t_dic_schema (			
 				object_id,				
 				object_label,				
-				cname,				
+				object_name,				
 				description				
 		)		
 		VALUES (	
 			#{objectId},
 			#{objectLabel},
-			#{cname},
+			#{objectName},
 			#{description}
 		) 
 	</insert>

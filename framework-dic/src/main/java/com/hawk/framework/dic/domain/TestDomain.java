@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 
 /**
- * 测试表的元数据使用
+ * 测试表的元数据使用,包括字段类型，索引，外键
  * The class is mapped to the table t_dic_test
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 

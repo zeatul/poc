@@ -10,12 +10,19 @@
 		data_type AS "dataType" ,
 		object_label AS "objectLabel" ,
 		description AS "description" ,
-		cname AS "cname" ,
+		object_name AS "objectName" ,
+		display_name AS "displayName" ,
 		regex AS "regex" ,
-		max_length AS "maxLength" ,
-		min_length AS "minLength" ,
+		char_max_length AS "charMaxLength" ,
+		char_min_length AS "charMinLength" ,
 		max_value AS "maxValue" ,
-		min_value AS "minValue" 
+		min_value AS "minValue" ,
+		datetime_precision AS "datetimePrecision" ,
+		numeric_precision AS "numericPrecision" ,
+		numeric_scale AS "numericScale" ,
+		is_enum AS "isEnum" ,
+		enum_key AS "enumKey" ,
+		enum_value AS "enumValue" 
 	</sql>
 	
 	<sql id="where">
@@ -25,12 +32,19 @@
 			<if test="dataType != null"> AND data_type = #{dataType}  </if>
 			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
 			<if test="description != null"> AND description = #{description}  </if>
-			<if test="cname != null"> AND cname = #{cname}  </if>
+			<if test="objectName != null"> AND object_name = #{objectName}  </if>
+			<if test="displayName != null"> AND display_name = #{displayName}  </if>
 			<if test="regex != null"> AND regex = #{regex}  </if>
-			<if test="maxLength != null"> AND max_length = #{maxLength}  </if>
-			<if test="minLength != null"> AND min_length = #{minLength}  </if>
+			<if test="charMaxLength != null"> AND char_max_length = #{charMaxLength}  </if>
+			<if test="charMinLength != null"> AND char_min_length = #{charMinLength}  </if>
 			<if test="maxValue != null"> AND max_value = #{maxValue}  </if>
 			<if test="minValue != null"> AND min_value = #{minValue}  </if>
+			<if test="datetimePrecision != null"> AND datetime_precision = #{datetimePrecision}  </if>
+			<if test="numericPrecision != null"> AND numeric_precision = #{numericPrecision}  </if>
+			<if test="numericScale != null"> AND numeric_scale = #{numericScale}  </if>
+			<if test="isEnum != null"> AND is_enum = #{isEnum}  </if>
+			<if test="enumKey != null"> AND enum_key = #{enumKey}  </if>
+			<if test="enumValue != null"> AND enum_value = #{enumValue}  </if>
 		</trim>	
 	</sql>
 	
@@ -41,12 +55,19 @@
 			AND data_type = #{old_dataType}
 			AND object_label = #{old_objectLabel}
 			AND description = #{old_description}
-			AND cname = #{old_cname}
+			AND object_name = #{old_objectName}
+			AND display_name = #{old_displayName}
 			AND regex = #{old_regex}
-			AND max_length = #{old_maxLength}
-			AND min_length = #{old_minLength}
+			AND char_max_length = #{old_charMaxLength}
+			AND char_min_length = #{old_charMinLength}
 			AND max_value = #{old_maxValue}
 			AND min_value = #{old_minValue}
+			AND datetime_precision = #{old_datetimePrecision}
+			AND numeric_precision = #{old_numericPrecision}
+			AND numeric_scale = #{old_numericScale}
+			AND is_enum = #{old_isEnum}
+			AND enum_key = #{old_enumKey}
+			AND enum_value = #{old_enumValue}
 		</trim>
 	</sql>
 	
@@ -57,12 +78,19 @@
 			data_type = #{dataType},
 			object_label = #{objectLabel},
 			description = #{description},
-			cname = #{cname},
+			object_name = #{objectName},
+			display_name = #{displayName},
 			regex = #{regex},
-			max_length = #{maxLength},
-			min_length = #{minLength},
+			char_max_length = #{charMaxLength},
+			char_min_length = #{charMinLength},
 			max_value = #{maxValue},
 			min_value = #{minValue},
+			datetime_precision = #{datetimePrecision},
+			numeric_precision = #{numericPrecision},
+			numeric_scale = #{numericScale},
+			is_enum = #{isEnum},
+			enum_key = #{enumKey},
+			enum_value = #{enumValue},
 		</set>
 	</sql>
 	
@@ -73,12 +101,19 @@
 			<if test="dataType != null">data_type = #{dataType},</if>
 			<if test="objectLabel != null">object_label = #{objectLabel},</if>
 			<if test="description != null">description = #{description},</if>
-			<if test="cname != null">cname = #{cname},</if>
+			<if test="objectName != null">object_name = #{objectName},</if>
+			<if test="displayName != null">display_name = #{displayName},</if>
 			<if test="regex != null">regex = #{regex},</if>
-			<if test="maxLength != null">max_length = #{maxLength},</if>
-			<if test="minLength != null">min_length = #{minLength},</if>
+			<if test="charMaxLength != null">char_max_length = #{charMaxLength},</if>
+			<if test="charMinLength != null">char_min_length = #{charMinLength},</if>
 			<if test="maxValue != null">max_value = #{maxValue},</if>
 			<if test="minValue != null">min_value = #{minValue},</if>
+			<if test="datetimePrecision != null">datetime_precision = #{datetimePrecision},</if>
+			<if test="numericPrecision != null">numeric_precision = #{numericPrecision},</if>
+			<if test="numericScale != null">numeric_scale = #{numericScale},</if>
+			<if test="isEnum != null">is_enum = #{isEnum},</if>
+			<if test="enumKey != null">enum_key = #{enumKey},</if>
+			<if test="enumValue != null">enum_value = #{enumValue},</if>
 		</set>
 	</sql>
 	
@@ -122,12 +157,19 @@
 				data_type,				
 				object_label,				
 				description,				
-				cname,				
+				object_name,				
+				display_name,				
 				regex,				
-				max_length,				
-				min_length,				
+				char_max_length,				
+				char_min_length,				
 				max_value,				
-				min_value				
+				min_value,				
+				datetime_precision,				
+				numeric_precision,				
+				numeric_scale,				
+				is_enum,				
+				enum_key,				
+				enum_value				
 		)		
 		VALUES (	
 			#{objectId},
@@ -135,12 +177,19 @@
 			#{dataType},
 			#{objectLabel},
 			#{description},
-			#{cname},
+			#{objectName},
+			#{displayName},
 			#{regex},
-			#{maxLength},
-			#{minLength},
+			#{charMaxLength},
+			#{charMinLength},
 			#{maxValue},
-			#{minValue}
+			#{minValue},
+			#{datetimePrecision},
+			#{numericPrecision},
+			#{numericScale},
+			#{isEnum},
+			#{enumKey},
+			#{enumValue}
 		) 
 	</insert>
 	

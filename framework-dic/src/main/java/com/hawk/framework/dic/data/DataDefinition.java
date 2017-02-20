@@ -1,7 +1,5 @@
 package com.hawk.framework.dic.data;
 
-import com.hawk.framework.dic.data.type.DataType;
-
 /**
  * 数据定义
  * 名称
@@ -12,8 +10,6 @@ import com.hawk.framework.dic.data.type.DataType;
  */
 public class DataDefinition {
 	
-	
-
 	public Integer getUseType() {
 		return useType;
 	}
@@ -30,28 +26,38 @@ public class DataDefinition {
 		this.objectId = objectId;
 	}
 
-	public String getName() {
-		return name;
-	}
+	
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public DataType getDataType() {
+	public EnumDataType getDataType() {
 		return dataType;
 	}
 
-	public void setDataType(DataType dataType) {
+	public void setDataType(EnumDataType dataType) {
 		this.dataType = dataType;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getObjectLabel() {
+		return objectLabel;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setObjectLabel(String objectLabel) {
+		this.objectLabel = objectLabel;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getObjectName() {
+		return objectName;
+	}
+
+	public void setObjectName(String objectName) {
+		this.objectName = objectName;
 	}
 
 	public String getDisplayName() {
@@ -62,34 +68,191 @@ public class DataDefinition {
 		this.displayName = displayName;
 	}
 
-	/**
-	 * 名称,唯一,按照数据库命名规则（小写,下划线分割）
-	 */
-	private String name;
+	public String getRegex() {
+		return regex;
+	}
+
+	public void setRegex(String regex) {
+		this.regex = regex;
+	}
+
+	public Integer getCharMaxLength() {
+		return charMaxLength;
+	}
+
+	public void setCharMaxLength(Integer charMaxLength) {
+		this.charMaxLength = charMaxLength;
+	}
+
+	public Integer getCharMinLength() {
+		return charMinLength;
+	}
+
+	public void setCharMinLength(Integer charMinLength) {
+		this.charMinLength = charMinLength;
+	}
+
+	public String getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(String maxValue) {
+		this.maxValue = maxValue;
+	}
+
+	public String getMinValue() {
+		return minValue;
+	}
+
+	public void setMinValue(String minValue) {
+		this.minValue = minValue;
+	}
+
+	public Integer getDatetimePrecision() {
+		return datetimePrecision;
+	}
+
+	public void setDatetimePrecision(Integer datetimePrecision) {
+		this.datetimePrecision = datetimePrecision;
+	}
+
+	public Integer getNumericPrecision() {
+		return numericPrecision;
+	}
+
+	public void setNumericPrecision(Integer numericPrecision) {
+		this.numericPrecision = numericPrecision;
+	}
+
+	public Integer getNumericScale() {
+		return numericScale;
+	}
+
+	public void setNumericScale(Integer numericScale) {
+		this.numericScale = numericScale;
+	}
+
+	public Integer getIsEnum() {
+		return isEnum;
+	}
+
+	public void setIsEnum(Integer isEnum) {
+		this.isEnum = isEnum;
+	}
+
+	public String getEnumKey() {
+		return enumKey;
+	}
+
+	public void setEnumKey(String enumKey) {
+		this.enumKey = enumKey;
+	}
+
+	public String getEnumValue() {
+		return enumValue;
+	}
+
+	public void setEnumValue(String enumValue) {
+		this.enumValue = enumValue;
+	}
 
 	/**
-	 * 类型
+	 * 对象ID
 	 */
-	private DataType dataType;
+	private String objectId;
 	
 	/**
-	 * 描述，需要支持多语言？
+	 * 用途，业务或技术
 	 */
-	private String desc;
+	private Integer useType;
 	
 	/**
-	 * 显示名称，需要支持多语言
+	 * 数据类型
+	 */
+	private EnumDataType dataType;
+	
+
+	/**
+	 * 对象标签
+	 */
+	private String objectLabel;
+	
+
+	/**
+	 * 对象描述
+	 */
+	private String description;
+	
+
+	/**
+	 * 对象名称
+	 */
+	private String objectName;
+	
+	
+	/**
+	 * 对象显示名称
 	 */
 	private String displayName;
 	
+
 	/**
-	 * 唯一标识
+	 * 正则表达式
 	 */
-	private String objectId;	
+	private String regex;
+	
+
+	/**
+	 * 字符串的最大长度
+	 */
+	private Integer charMaxLength;
+	
+
+	/**
+	 * 字符串的最小长度
+	 */
+	private Integer charMinLength;
+	
+
+	/**
+	 * 最大值
+	 */
+	private String maxValue;
+	
+
+	/**
+	 * 最小值
+	 */
+	private String minValue;
 	
 	/**
-	 * 用途类型 , 0:技术数据;1:业务数据
+	 * 时间精度
 	 */
-	private Integer useType;
+	private Integer datetimePrecision;
+	
+	/**
+	 * 数据精度
+	 */
+	private Integer numericPrecision;
+	
+	/**
+	 * 数据小数精度
+	 */
+	private Integer numericScale;
+	
+	/**
+	 * 是否是枚举
+	 */
+	private Integer isEnum = 0;
+	
+	/**
+	 * 枚举值
+	 */
+	private String enumKey;
+	
+	/**
+	 * 枚举显示值
+	 */
+	private String enumValue;
 
 }
