@@ -16,7 +16,7 @@
 
 
 	<dependencies>
-	
+
 		<!-- project -->
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
@@ -35,11 +35,7 @@
 		</dependency>
 
 		<!-- database -->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>jdbc</artifactId>
-			<version>4.0</version>
-		</dependency>
+		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>jdbc</artifactId> <version>4.0</version> </dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -77,6 +73,26 @@
 			<artifactId>freemarker</artifactId>
 		</dependency>
 
+		<!-- xml -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>xpp3</groupId>
+			<artifactId>xpp3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>xmlpull</groupId>
+			<artifactId>xmlpull</artifactId>
+		</dependency>
 
 
 	</dependencies>
