@@ -10,7 +10,6 @@
 		<module>../framework-utility</module>
 		<module>../framework-dic</module>
 		<module>../framework-codegen</module>
-		<module>../framework-webapi</module>
 	</modules>
 
 	<!-- <profiles> <profile> <id>dev</id> <build> <filters> <filter>../taw-parent/taw-user-service/taw_user_service_dev.properties</filter> <filter>../taw-parent/taw-scene-service/taw_scene_service_dev.properties</filter> 

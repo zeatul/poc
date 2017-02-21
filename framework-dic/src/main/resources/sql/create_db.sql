@@ -93,7 +93,10 @@ create table t_dic_column
    object_id            varchar(50) not null comment '对象ID',
    table_object_id      varchar(50) not null comment '表对象ID',
    data_definition_object_id varchar(50) not null comment '引用的数据类型ID',
-   column_order         integer comment ' 字段在表的序号',
+   column_order         integer comment '字段在表的序号',
+   nullable             integer comment '可否为空1/0)',
+   is_pk                integer comment '是否为主键(1/0)',
+   columnt_name         varchar(50) comment '数据库字段名（为空，则用数据字典名）',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -129,9 +132,9 @@ create table t_dic_data_definition
    datetime_precision   int comment '时间精度',
    numeric_precision    int comment '数据精度',
    numeric_scale        int comment '数据小数精度',
-   is_enum              int comment '是否枚举',
+   is_enum              int comment '是否枚举(yes/no)',
    enum_key             varchar(500) comment '枚举值',
-   enum_value           varchar(2000) comment '枚举值',
+   enum_value           varchar(2000) comment '枚举显示值',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -284,9 +287,9 @@ create table t_dic_test
 (
    col1                 varchar(50) not null comment 'col1',
    col2                 varchar(50) not null comment 'col2',
-   col3                 timestamp(3) not null,
-   col4                 numeric(10,5) not null,
-   col5                 decimal(10,5),
+   col3                 timestamp(3) not null comment 'col3',
+   col4                 numeric(10,5) not null comment 'col4',
+   col5                 decimal(10,5) comment 'col5',
    primary key (col1, col2)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

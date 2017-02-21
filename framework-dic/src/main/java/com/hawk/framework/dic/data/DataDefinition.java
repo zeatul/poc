@@ -10,11 +10,13 @@ package com.hawk.framework.dic.data;
  */
 public class DataDefinition {
 	
-	public Integer getUseType() {
+	
+
+	public String getUseType() {
 		return useType;
 	}
 
-	public void setUseType(Integer useType) {
+	public void setUseType(String useType) {
 		this.useType = useType;
 	}
 
@@ -164,7 +166,7 @@ public class DataDefinition {
 	/**
 	 * 用途，业务或技术
 	 */
-	private Integer useType;
+	private String useType;
 	
 	/**
 	 * 数据类型

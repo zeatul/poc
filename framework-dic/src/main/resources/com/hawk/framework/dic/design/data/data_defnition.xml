@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataDefinitions>
+	<dataDefinition objectId="7f57c0c3-119f-4ac7-94af-3e2578ecbd42">
+		<objectLabel>col5</objectLabel>
+		<objectName>col5</objectName>
+		<useType>technology</useType>
+		<dataType>numeric</dataType>
+		<numericPrecision>10</numericPrecision>
+		<numericScale>5</numericScale>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="b55fe980-444d-449e-9809-a04d2afa9ac6">
+		<objectLabel>col4</objectLabel>
+		<objectName>col4</objectName>
+		<useType>technology</useType>
+		<dataType>numeric</dataType>
+		<numericPrecision>10</numericPrecision>
+		<numericScale>5</numericScale>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="6bbb0532-0944-47dc-913c-381025c6c9d3">
+		<objectLabel>col1</objectLabel>
+		<objectName>col1</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="f9991070-7e57-4d84-9e75-6ec33124cda9">
+		<objectLabel>col3</objectLabel>
+		<objectName>col3</objectName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="2d2f0c05-b5ea-48f1-93d3-705c0573d303">
+		<objectLabel>col2</objectLabel>
+		<objectName>col2</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="dc855011-bf7e-4ce1-be32-09bd570224b1">
+		<objectLabel>char_min_length</objectLabel>
+		<objectName>最小长度</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="db068583-6ca5-4855-a08b-e3975e06bded">
+		<objectLabel>enum_key</objectLabel>
+		<objectName>枚举值</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>500</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="da4f85a3-35f0-4136-9942-4c153af7dbc4">
+		<objectLabel>is_pk</objectLabel>
+		<objectName>是主键</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="38ac57ed-6d99-412d-9c75-f2d42632dcce">
+		<objectLabel>order</objectLabel>
+		<objectName>字段在表的序号</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="649467dd-d8b6-4100-9ac5-f4ee5736e2c0">
+		<objectLabel>data_type</objectLabel>
+		<objectName>数据类型</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="9f37a1cc-79b8-47a9-9a0b-fb650f5b8110">
+		<objectLabel>description</objectLabel>
+		<objectName>对象描述</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="83320a53-c6ae-4679-a509-fd9d998c48df">
+		<objectLabel>datetime_precision</objectLabel>
+		<objectName>时间精度</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="79f31745-d899-419c-bb72-0a01dc23bb0d">
+		<objectLabel>columnt_name</objectLabel>
+		<objectName>数据库字段名（为空，则用数据字典名）</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="3569f3d5-6aa5-4f93-876d-54f0fc0924b4">
+		<objectLabel>is_unique</objectLabel>
+		<objectName>是唯一索引</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="ac3e7b29-a8e9-4cc5-ad24-14844d72e30f">
+		<objectLabel>enum_value</objectLabel>
+		<objectName>枚举显示值</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>2,000</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="d7f61a72-60c1-45ad-88d0-9b1ff294006e">
+		<objectLabel>regex</objectLabel>
+		<objectName>正则</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="54352751-1623-46eb-b1e0-0f62a0f03b53">
+		<objectLabel>object_id</objectLabel>
+		<objectName>对象ID</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="1b6f47de-be4c-4982-96c4-c0b6e5fcbf2b">
+		<objectLabel>use_type</objectLabel>
+		<objectName>用途类型</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="75b0a8d4-781d-4c25-a227-5a0b8115f57c">
+		<objectLabel>nullable</objectLabel>
+		<objectName>可否为空1/0)</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="f4b25a19-5cdc-4fcb-bb02-f6c620eeadd0">
+		<objectLabel>display_name</objectLabel>
+		<objectName>显示名称</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="0658b0a1-2f46-4985-83bb-47e3527936e0">
+		<objectLabel>numeric_precision</objectLabel>
+		<objectName>数据精度</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="365841a4-d932-449b-8473-126d0772fa5c">
+		<objectLabel>char_max_length</objectLabel>
+		<objectName>最大长度</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="9e91d829-358f-4cfe-938a-03688b349fed">
+		<objectLabel>is_enum</objectLabel>
+		<objectName>是否枚举(yes/no)</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="a335fe9c-894f-49d0-b490-3eb94fae8265">
+		<objectLabel>object_name</objectLabel>
+		<objectName>名称</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="6fc491b2-ffc5-4642-94bf-6294ca68db2b">
+		<objectLabel>max_value</objectLabel>
+		<objectName>最大值</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="dd2e650b-8d2a-43cf-90da-7df8df4dc4bf">
+		<objectLabel>numeric_scale</objectLabel>
+		<objectName>数据小数精度</objectName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="22af2ee1-9027-4945-b263-88355fa45a76">
+		<objectLabel>object_label</objectLabel>
+		<objectName>标签</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+	<dataDefinition objectId="7b7a5b23-0d9d-45e1-b388-57fab1c3af18">
+		<objectLabel>min_value</objectLabel>
+		<objectName>最小值</objectName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isEnum>no</isEnum>
+	</dataDefinition>
+</dataDefinitions>

@@ -1,12 +1,14 @@
 package com.hawk.framework.codegen.database;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import com.hawk.framework.codegen.database.config.DatabaseConfigure;
@@ -15,22 +17,18 @@ import com.hawk.framework.codegen.database.config.IDatabaseConfigure;
 import com.hawk.framework.codegen.database.config.IDbToDicConfigure;
 import com.hawk.framework.codegen.database.config.IProjectConfigure;
 import com.hawk.framework.codegen.database.config.ProjectConfigure;
-import com.hawk.framework.codegen.database.convert.DomainConverterFactory;
-import com.hawk.framework.codegen.database.convert.IDomainConverter;
 import com.hawk.framework.codegen.database.convert.ITypeConverter;
 import com.hawk.framework.codegen.database.convert.TypeConverterFactory;
 import com.hawk.framework.codegen.database.meta.Column;
 import com.hawk.framework.codegen.database.meta.Database;
-import com.hawk.framework.codegen.database.meta.Domain;
 import com.hawk.framework.codegen.database.meta.Table;
 import com.hawk.framework.codegen.database.parse.DatabaseParserFactory;
 import com.hawk.framework.codegen.database.parse.IDatabaseParser;
-import com.hawk.framework.codegen.utils.JsonTools;
+import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.data.DataDefinition;
 import com.hawk.framework.dic.data.EnumDataType;
-import com.hawk.framework.dic.database.converter.TypeConverter;
-
 import freemarker.template.Configuration;
+import freemarker.template.Template;
 
 /**
  * 将数据库映射成数据字典
@@ -75,7 +73,7 @@ public class DatabaseToDicApp {
 		 * 生成数据字典定义，描述每个字段
 		 */
 		IDbToDicConfigure dbToDicConfigure = DbToDicConfigure.build();
-		writeDataDefinition(database,dbToDicConfigure);
+		writeDataDefinition(database,projectConfigure,dbToDicConfigure,typeConverter);
 		
 		/**
 		 * 生成数据库定义
@@ -101,25 +99,92 @@ public class DatabaseToDicApp {
 		def.setObjectLabel(column.getName());
 		def.setObjectName(column.getComment());
 		def.setRegex(null);
-		def.setUseType(0);
+		def.setUseType("technology");
 		return def;
 	}
 	
-	private static void writeDataDefinition(Database database,IDbToDicConfigure dbToDicConfigure,ITypeConverter typeConverter){
-		Map<String,DataDefinition>	map = new HashMap<String,DataDefinition>();			
+	private static void writeDataDefinition(Database database,IProjectConfigure projectConfigure,IDbToDicConfigure dbToDicConfigure,ITypeConverter typeConverter) throws Exception{
+		Map<String,DataDefinition> defNameMap = new HashMap<String,DataDefinition>();
+		List<com.hawk.framework.dic.database.Table> dicTableList = new ArrayList<com.hawk.framework.dic.database.Table>();
 		for (Table table : database.getTableList()){
+			com.hawk.framework.dic.database.Table dicTable = new com.hawk.framework.dic.database.Table();
+			dicTable.setName(table.getName());
+			dicTable.setType("normal");
+			dicTable.setComment(table.getComment());
+			dicTableList.add(dicTable);
+			List<com.hawk.framework.dic.database.Column> dicColumnList = new ArrayList<com.hawk.framework.dic.database.Column>();
+			dicTable.setCloumnList(dicColumnList);
 			for (Column column: table.getColumnList()){
 				String columnName = column.getName();
 				String defName= dbToDicConfigure.computeDataDefinitionName(columnName);
+				DataDefinition def = null;
+				/**
+				 * defName不为空,表示这个字段的定义是公用的,需要从map里取
+				 */
 				if (defName != null && defName.trim().length() > 0){
-					DataDefinition def = map.get(defName);
+					def = defNameMap.get(defName);					
 					if (def == null){
 						def = convert(column,typeConverter);
-						map.put(defName,def);
+						def.setObjectLabel(defName);
+						defNameMap.put(defName,def);
 					}
 				}
+				else{
+					def = convert(column,typeConverter);
+					defNameMap.put(def.getObjectLabel(), def);
+				}
+				com.hawk.framework.dic.database.Column dicColumn = new com.hawk.framework.dic.database.Column();
+				dicColumnList.add(dicColumn);
+				dicColumn.setDataDefinition(def);
+				dicColumn.setNullable(column.getNullable());
+				dicColumn.setPk(column.getPk());
+				dicColumn.setObjectId(UUID.randomUUID().toString());
+				dicColumn.setName(column.getName());
 			}
 		}
-		XStream xstream;
+		
+		/**
+		 * 输出所有的数据字典定义为一个文件
+		 */
+		Map<String,List<DataDefinition>> root = new HashMap<String,List<DataDefinition>>();
+		Iterator<DataDefinition> it = defNameMap.values().iterator();
+		List<DataDefinition> list = new ArrayList<DataDefinition>();
+		while(it.hasNext()){
+			list.add(it.next());
+		}
+		root.put("dataDefnitionList", list);
+		/* 获取或创建模板 */
+		Template template = cfg.getTemplate("template/dic_data_defnition.ftl");
+		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
+				projectConfigure.getSubPackage(), "design.data");
+		ProjectTools.clearDirectory(directory, "data_defnition.xml");
+		String filePath = directory + File.separator + "data_defnition.xml";
+		if (new File(filePath).exists())
+			throw new RuntimeException("Exists file = " + filePath);
+
+		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
+		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
+		template.process(root, out);
+		out.flush();
+		out.close();
+		
+		/**
+		 * 每个表为一个文件
+		 */
+		/* 获取或创建模板 */
+		template = cfg.getTemplate("template/dic_table.ftl");
+		directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
+				projectConfigure.getSubPackage(), "design.database");
+		ProjectTools.clearDirectory(directory, ".table.xml");
+		for (com.hawk.framework.dic.database.Table dicTable : dicTableList){
+			filePath = directory + File.separator+dicTable.getName() + ".table.xml";
+			if (new File(filePath).exists())
+				throw new RuntimeException("Exists file = " + filePath);
+			fileOutputStream = new FileOutputStream(filePath, false);
+			out = new OutputStreamWriter(fileOutputStream, "UTF-8");
+			template.process(dicTable, out);
+			out.flush();
+			out.close();
+		}
 	}
 }

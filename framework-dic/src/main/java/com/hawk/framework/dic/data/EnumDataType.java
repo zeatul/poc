@@ -28,6 +28,8 @@ public enum EnumDataType {
 	
 	public static EnumDataType parse(String type){
 		EnumDataType[] types =  EnumDataType.values();
+		if (type.equalsIgnoreCase("bigdecimal"))
+			type = "numeric";
 		for (EnumDataType t : types){
 			if (t.getValue().equalsIgnoreCase(type))
 				return t;

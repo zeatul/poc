@@ -5,6 +5,14 @@ import java.util.List;
 
 public class Table {
 	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -43,9 +51,11 @@ public class Table {
 	
 	private String name;
 	
+	private String comment;
+	
 	/**
 	 * 表类型(普通表,树表)
 	 */
-	private String type; 
+	private String type = "normal"; 
 
 }
