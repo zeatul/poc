@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_fk_map</name>
-</tables>
+<table>
+	<code>t_dic_fk_map</code>
+	<comment>外键字段匹配</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>b8d65e41-0d38-4e6f-8909-e12dc88ec5a2</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>fk_object_id</code>
+			<name>外键对象ID</name>
+			<comment>外键对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>9feac335-debb-47b8-9d5f-73f3c418f45d</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>parent_column_object_id</code>
+			<name>主表字段对象ID</name>
+			<comment>主表字段对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>f7cc2de9-5bfe-46ba-b75c-7584f647db8d</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>child_column_object_id</code>
+			<name>主表字段对象ID</name>
+			<comment>主表字段对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+</table>

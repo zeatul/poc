@@ -6,18 +6,19 @@ import java.util.List;
 public class Table {
 	
 	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public String getSchema() {
 		return schema;
 	}
 	public void setSchema(String schema) {
 		this.schema = schema;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getComment() {
 		return comment;
 	}
@@ -36,7 +37,7 @@ public class Table {
 	public void setIndexList(List<Index> indexList) {
 		this.indexList = indexList;
 	}
-	private String name;
+	private String code;
 	private String comment;
 	private String schema;
 	private List<Column> columnList = new ArrayList<Column>();

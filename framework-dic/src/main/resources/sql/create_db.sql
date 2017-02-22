@@ -46,9 +46,9 @@ drop table if exists t_dic_test;
 create table t_dic_application
 (
    object_id            varchar(50) not null comment '对象ID',
-   object_label         varchar(50) comment '标签',
-   object_name          varchar(50) comment '名称',
-   description          varchar(50) comment '对象描述',
+   object_code          varchar(50) comment '应用编码',
+   object_name          varchar(50) comment '应用名称',
+   object_comment       varchar(50) comment '应用描述',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,7 +60,7 @@ alter table t_dic_application comment '应用,一个应用一个package,对应�
 /*==============================================================*/
 create unique index ui_d_a_1 on t_dic_application
 (
-   object_label
+   object_code
 );
 
 /*==============================================================*/
@@ -93,10 +93,12 @@ create table t_dic_column
    object_id            varchar(50) not null comment '对象ID',
    table_object_id      varchar(50) not null comment '表对象ID',
    data_definition_object_id varchar(50) not null comment '引用的数据类型ID',
-   column_order         integer comment '字段在表的序号',
-   nullable             integer comment '可否为空1/0)',
+   object_code          varchar(50) comment '数据库字段编码（为空，则用数据字典名）',
+   object_name          varchar(50) comment '数据库字段名称',
+   object_comment       varchar(50) comment '数据库字段描述',
+   object_order         integer comment '数据库字段在表的序号',
+   nullable             integer comment '可否为空(1/0)',
    is_pk                integer comment '是否为主键(1/0)',
-   columnt_name         varchar(50) comment '数据库字段名（为空，则用数据字典名）',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -120,10 +122,10 @@ create table t_dic_data_definition
    object_id            varchar(50) not null comment '对象ID',
    use_type             int comment '用途类型',
    data_type            varchar(50) comment '数据类型',
-   object_label         varchar(50) comment '标签',
-   description          varchar(2000) comment '描述',
+   object_code          varchar(50) comment '标签',
    object_name          varchar(50) comment '中文名',
-   display_name         varchar(50) comment '显示名称',
+   object_comment       varchar(2000) comment '描述',
+   object_display_name  varchar(50) comment '显示名称',
    regex                varchar(50) comment '正则',
    char_max_length      int comment '最大长度',
    char_min_length      int comment '最小长度',
@@ -146,7 +148,7 @@ alter table t_dic_data_definition comment '数据字典定义';
 /*==============================================================*/
 create unique index ui_dd_1 on t_dic_data_definition
 (
-   object_label
+   object_code
 );
 
 /*==============================================================*/
@@ -155,9 +157,9 @@ create unique index ui_dd_1 on t_dic_data_definition
 create table t_dic_fk
 (
    object_id            varchar(50) not null comment '主键对象ID',
-   object_label         varchar(50) comment '标签',
-   object_name          varchar(50) comment '名称',
-   description          varchar(50) comment '外键描述',
+   object_code          varchar(50) comment '外键编码',
+   object_name          varchar(50) comment '外键名称',
+   object_comment       varchar(50) comment '外键描述',
    parent_table_object_id varchar(50) comment '主表对象ID',
    child_table_object_id varchar(50) comment '子表对象ID',
    primary key (object_id)
@@ -196,9 +198,9 @@ create table t_dic_index
 (
    object_id            varchar(50) not null comment '对象ID',
    table_object_id      varchar(50) comment '表对象ID',
-   object_label         varchar(50) comment '标签',
-   object_name          varchar(50) comment '名称',
-   description          varchar(50) comment '描述',
+   object_code          varchar(50) comment '索引编码',
+   object_name          varchar(50) comment '索引名称',
+   object_comment       varchar(50) comment '索引描述',
    is_unique            int comment '是唯一索引',
    is_pk                int comment '是主键',
    primary key (object_id)
@@ -212,7 +214,7 @@ alter table t_dic_index comment '索引';
 /*==============================================================*/
 create unique index ui_di_1 on t_dic_index
 (
-   object_label
+   object_code
 );
 
 /*==============================================================*/
@@ -222,7 +224,7 @@ create table t_dic_index_column
 (
    index_object_id      varchar(50) not null comment '索引对象ID',
    column_object_id     varchar(50) not null comment '表字段对象ID',
-   column_order         integer comment '字段在索引的序号',
+   object_order         integer comment '字段在索引的序号',
    primary key (index_object_id, column_object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -235,9 +237,9 @@ alter table t_dic_index_column comment '索引字段';
 create table t_dic_schema
 (
    object_id            varchar(50) not null comment '主键ID',
-   object_label         varchar(50) comment '标签',
-   object_name          varchar(50) comment '名称',
-   description          varchar(50) comment '描述',
+   object_label         varchar(50) comment '数据库编码',
+   object_name          varchar(50) comment '数据库名称',
+   object_comment       varchar(50) comment '数据库描述',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -263,9 +265,10 @@ alter table t_dic_schema_application comment 'schema拥有的应用';
 create table t_dic_table
 (
    object_id            varchar(50) not null comment '对象ID',
-   object_label         varchar(50) not null comment '标签',
-   object_name          varchar(50) comment '名称',
-   description          varchar(50) comment '描述',
+   object_code          varchar(50) not null comment '表的编码',
+   object_name          varchar(50) comment '表的名称',
+   object_comment       varchar(50) comment '表的描述',
+   object_type          varchar(50) comment '表的类型',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -277,7 +280,7 @@ alter table t_dic_table comment '表对象';
 /*==============================================================*/
 create unique index UI_DT_1 on t_dic_table
 (
-   object_label
+   object_code
 );
 
 /*==============================================================*/

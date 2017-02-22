@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 应用拥有的表
- * The class is mapped to the table t_dic_application_table
+ * The class is mapped to the table t_dic_application_table 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,10 +14,14 @@ public class ApplicationTableDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*应用对象ID application_object_id*/
+	/**
+	 * 应用对象ID application_object_id
+	 */
 	private String applicationObjectId;
 	
-	/*表对象ID table_object_id*/
+	/**
+	 * 表对象ID table_object_id
+	 */
 	private String tableObjectId;
 	
 	

@@ -7,16 +7,16 @@
 	<!-- 禁止系统使用自增主键 -->
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="${className}">
-		INSERT INTO ${tableName} (			
+		INSERT INTO ${tableCode} (			
 			<#list fields as field>
-				<#if field.columnName != "id">
-					${field.columnName}<#if field_index < columnsLength-1 >,</#if>
+				<#if field.columnCode != "id">
+					${field.columnCode}<#if field_index < columnsLength-1 >,</#if>
 				</#if>				
 			</#list>
 		)		
 		VALUES (	
 		<#list fields as field>
-			<#if field.columnName != "id">
+			<#if field.columnCode != "id">
 				${r"#"}{${field.fieldName}}<#if field_index < columnsLength-1 >,</#if>
 			</#if>
 		</#list>	

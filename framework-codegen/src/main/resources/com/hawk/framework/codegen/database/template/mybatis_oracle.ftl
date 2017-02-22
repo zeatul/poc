@@ -17,9 +17,9 @@
 				<otherwise>
 					ROWNUM AS "row_paging_no"
 				</otherwise>
-				,${tableName}.*
+				,${tableCode}.*
 			</choose>
-			FROM ${tableName}
+			FROM ${tableCode}
 			<include refid="where" />
 		}
 		<if test="_maxNo != null">row_paging_no &lt; ${r"#"}{_maxNo}</if>

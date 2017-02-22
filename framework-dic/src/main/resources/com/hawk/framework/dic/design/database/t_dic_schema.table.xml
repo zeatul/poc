@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_schema</name>
-</tables>
+<table>
+	<code>t_dic_schema</code>
+	<comment>schema代表一个库，一个库可以有很多应用</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>a29ed381-299c-426f-880d-af7ad7444ff0</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>主键ID</name>
+			<comment>主键ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>2f963452-5fa6-4c21-af71-e39a752b3bf7</objectId>
+			<dataDefinition>
+				<objectId>001ffd01-73a0-4279-8efd-5e17b0edd0bd</objectId>
+			</dataDefinition>
+			<code>object_label</code>
+			<name>数据库编码</name>
+			<comment>数据库编码</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>c3ee1e0c-85ac-49ae-a279-12bf03843127</objectId>
+			<dataDefinition>
+				<objectId>48d9a495-e7cc-4bd7-a55c-45f71c749425</objectId>
+			</dataDefinition>
+			<code>object_name</code>
+			<name>数据库名称</name>
+			<comment>数据库名称</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>8b2f6550-23f7-45cb-8617-157efadd5139</objectId>
+			<dataDefinition>
+				<objectId>cf19561d-a299-4b49-b08e-2124f43737e8</objectId>
+			</dataDefinition>
+			<code>object_comment</code>
+			<name>数据库描述</name>
+			<comment>数据库描述</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+	</columns>
+</table>

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 外键字段匹配
- * The class is mapped to the table t_dic_fk_map
+ * The class is mapped to the table t_dic_fk_map 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,13 +14,19 @@ public class FkMapDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*外键对象ID fk_object_id*/
+	/**
+	 * 外键对象ID fk_object_id
+	 */
 	private String fkObjectId;
 	
-	/*主表字段对象ID parent_column_object_id*/
+	/**
+	 * 主表字段对象ID parent_column_object_id
+	 */
 	private String parentColumnObjectId;
 	
-	/*主表字段对象ID child_column_object_id*/
+	/**
+	 * 主表字段对象ID child_column_object_id
+	 */
 	private String childColumnObjectId;
 	
 	

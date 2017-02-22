@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 外键对象
- * The class is mapped to the table t_dic_fk
+ * The class is mapped to the table t_dic_fk 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,22 +14,34 @@ public class FkDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*主键对象ID object_id*/
+	/**
+	 * 主键对象ID object_id
+	 */
 	private String objectId;
 	
-	/*标签 object_label*/
-	private String objectLabel;
+	/**
+	 * 外键编码 object_code
+	 */
+	private String objectCode;
 	
-	/*名称 object_name*/
+	/**
+	 * 外键名称 object_name
+	 */
 	private String objectName;
 	
-	/*外键描述 description*/
-	private String description;
+	/**
+	 * 外键描述 object_comment
+	 */
+	private String objectComment;
 	
-	/*主表对象ID parent_table_object_id*/
+	/**
+	 * 主表对象ID parent_table_object_id
+	 */
 	private String parentTableObjectId;
 	
-	/*子表对象ID child_table_object_id*/
+	/**
+	 * 子表对象ID child_table_object_id
+	 */
 	private String childTableObjectId;
 	
 	
@@ -51,23 +63,23 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_label
+	 * @return 外键编码 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 标签 object_label
+	 * @param objectCode 外键编码 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**
 	 * 
-	 * @return 名称 object_name
+	 * @return 外键名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -75,7 +87,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 名称 object_name
+	 * @param objectName 外键名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -83,18 +95,18 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 外键描述 description
+	 * @return 外键描述 object_comment
 	 */
-	public String getDescription(){
-		return description;
+	public String getObjectComment(){
+		return objectComment;
 	}
 	
 	/**
 	 * 
-	 * @param description 外键描述 description
+	 * @param objectComment 外键描述 object_comment
 	 */	
-	public void setDescription (String description) {
-		this.description = description;
+	public void setObjectComment (String objectComment) {
+		this.objectComment = objectComment;
 	}
 	
 	/**

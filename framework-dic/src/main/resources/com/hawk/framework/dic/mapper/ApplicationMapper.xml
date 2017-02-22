@@ -4,46 +4,46 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.ApplicationMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				object_id AS "objectId" ,
-		object_label AS "objectLabel" ,
+		object_code AS "objectCode" ,
 		object_name AS "objectName" ,
-		description AS "description" 
+		object_comment AS "objectComment" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
-			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
+			<if test="objectCode != null"> AND object_code = #{objectCode}  </if>
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
-			<if test="description != null"> AND description = #{description}  </if>
+			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 		</trim>	
 	</sql>
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND object_id = #{old_objectId}
-			AND object_label = #{old_objectLabel}
+			AND object_code = #{old_objectCode}
 			AND object_name = #{old_objectName}
-			AND description = #{old_description}
+			AND object_comment = #{old_objectComment}
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			object_id = #{objectId},
-			object_label = #{objectLabel},
+			object_code = #{objectCode},
 			object_name = #{objectName},
-			description = #{description},
+			object_comment = #{objectComment},
 		</set>
 	</sql>
 	
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="objectId != null">object_id = #{objectId},</if>
-			<if test="objectLabel != null">object_label = #{objectLabel},</if>
+			<if test="objectCode != null">object_code = #{objectCode},</if>
 			<if test="objectName != null">object_name = #{objectName},</if>
-			<if test="description != null">description = #{description},</if>
+			<if test="objectComment != null">object_comment = #{objectComment},</if>
 		</set>
 	</sql>
 	
@@ -83,15 +83,15 @@
 	<insert id="insert"  parameterType="ApplicationDomain">
 		INSERT INTO t_dic_application (			
 				object_id,				
-				object_label,				
+				object_code,				
 				object_name,				
-				description				
+				object_comment				
 		)		
 		VALUES (	
 			#{objectId},
-			#{objectLabel},
+			#{objectCode},
 			#{objectName},
-			#{description}
+			#{objectComment}
 		) 
 	</insert>
 	

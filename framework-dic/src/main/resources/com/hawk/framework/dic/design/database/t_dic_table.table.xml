@@ -1,4 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_table</name>
-</tables>
+<table>
+	<code>t_dic_table</code>
+	<comment>表对象</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>7f2aff67-150e-4573-a3dc-075f8625d47c</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>对象ID</name>
+			<comment>对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>12384eff-8d66-40a3-a81f-21be458a1853</objectId>
+			<dataDefinition>
+				<objectId>c3371346-dcc1-4edc-8718-9fbfbd5c551a</objectId>
+			</dataDefinition>
+			<code>object_code</code>
+			<name>表的编码</name>
+			<comment>表的编码</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>ae2060ae-4e9a-41ea-bd2e-eea3891ba05c</objectId>
+			<dataDefinition>
+				<objectId>5dc6381f-d410-40e8-a70c-389bb4ab04b7</objectId>
+			</dataDefinition>
+			<code>object_name</code>
+			<name>表的名称</name>
+			<comment>表的名称</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>9764d1ad-c09c-42cd-947d-47a13cd1d41d</objectId>
+			<dataDefinition>
+				<objectId>e62e4b32-4b98-425e-82ea-2aaf249ab395</objectId>
+			</dataDefinition>
+			<code>object_comment</code>
+			<name>表的描述</name>
+			<comment>表的描述</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>f1d3e394-faea-40d9-a79f-b40ea7a8331d</objectId>
+			<dataDefinition>
+				<objectId>d7fcce38-5c39-47ab-9c1b-10150af7da35</objectId>
+			</dataDefinition>
+			<code>object_type</code>
+			<name>表的类型</name>
+			<comment>表的类型</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+	</columns>
+</table>

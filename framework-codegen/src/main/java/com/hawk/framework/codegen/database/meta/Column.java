@@ -2,6 +2,18 @@ package com.hawk.framework.codegen.database.meta;
 
 public class Column {
 	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public int getIsPk() {
+		return isPk;
+	}
+	public void setIsPk(int isPk) {
+		this.isPk = isPk;
+	}
 	public int getCharMinLength() {
 		return charMinLength;
 	}
@@ -19,12 +31,6 @@ public class Column {
 	}
 	public void setNullable(int nullable) {
 		this.nullable = nullable;
-	}
-	public int getPk() {
-		return pk;
-	}
-	public void setPk(int pk) {
-		this.pk = pk;
 	}
 	public String getDataType() {
 		return dataType;
@@ -58,12 +64,7 @@ public class Column {
 		this.columnType = columnType;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	
 	public String getComment() {
 		return comment;
@@ -71,7 +72,7 @@ public class Column {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	private String name;
+	private String code;
 	private String dataType;
 	private String comment;
 	/**
@@ -81,7 +82,7 @@ public class Column {
 	/**
 	 * 0=false,1=true
 	 */
-	private int pk = 0;
+	private int isPk = 0;
 	private int charMaxLength;
 	private int charMinLength;
 	private int numericPrecision;

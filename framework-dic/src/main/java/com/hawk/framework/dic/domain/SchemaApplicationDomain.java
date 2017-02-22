@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * schema拥有的应用
- * The class is mapped to the table t_dic_schema_application
+ * The class is mapped to the table t_dic_schema_application 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,10 +14,14 @@ public class SchemaApplicationDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/* application_object_id*/
+	/**
+	 *  application_object_id
+	 */
 	private String applicationObjectId;
 	
-	/* schema_object_id*/
+	/**
+	 *  schema_object_id
+	 */
 	private String schemaObjectId;
 	
 	

@@ -16,10 +16,10 @@ import com.hawk.framework.codegen.utils.CamelNameTools;
 
 public class DomainConverter implements IDomainConverter{
 	
-	private String tableNameSpliter = "_";
-	private int tableNameStartIndex = 2;
-	private String columnNameSpliter = "_";
-	private int columnNameStartIndex = 0;
+	private String tableCodeSpliter = "_";
+	private int tableCodeStartIndex = 2;
+	private String columnCodeSpliter = "_";
+	private int columnCodeStartIndex = 0;
 	
 	private ITypeConverter typeConverter;
 	
@@ -38,9 +38,9 @@ public class DomainConverter implements IDomainConverter{
 		/**
 		 * table to domain
 		 */
-		String tableName = table.getName();
-		String className = CamelNameTools.camelName(tableName, tableNameSpliter, tableNameStartIndex, true);		
-		domain.setTableName(tableName);
+		String tableCode = table.getCode();
+		String className = CamelNameTools.camelName(tableCode, tableCodeSpliter, tableCodeStartIndex, true);		
+		domain.setTableCode(tableCode);
 		domain.setClassName(className);
 		domain.setDesc(table.getComment());
 		
@@ -52,9 +52,9 @@ public class DomainConverter implements IDomainConverter{
 		for (Column column : table.getColumnList()){
 			Field field = new Field();
 			fieldList.add(field);
-			String columnName = column.getName();
-			String fieldName = CamelNameTools.camelName(columnName, columnNameSpliter, columnNameStartIndex, false);	
-			field.setColumnName(columnName);
+			String columnCode = column.getCode();
+			String fieldName = CamelNameTools.camelName(columnCode, columnCodeSpliter, columnCodeStartIndex, false);	
+			field.setColumnCode(columnCode);
 			field.setFieldDesc(column.getComment());
 			field.setFieldName(fieldName);
 			
@@ -69,7 +69,7 @@ public class DomainConverter implements IDomainConverter{
 			field.setNullable(column.getNullable());
 			field.setNumericPrecision(column.getNumericPrecision());
 			field.setNumericScale(column.getNumericScale());
-			field.setPk(column.getPk());
+			field.setIsPk(column.getIsPk());
 		}
 		
 		/**
@@ -93,10 +93,10 @@ public class DomainConverter implements IDomainConverter{
 				List<Field> keyList =  domain.getKeyList();
 				Map<String,Field> map = new HashMap<String,Field>();
 				for (Field field : fieldList){
-					map.put(field.getColumnName(), field);
+					map.put(field.getColumnCode(), field);
 				}
 				for (Column column : index.getColumnList()){
-					Field field = map.get(column.getName());
+					Field field = map.get(column.getCode());
 					if (field == null)
 						throw new RuntimeException("the index's column is illegal ,can't be found in the fieldList");
 					keyList.add(field);

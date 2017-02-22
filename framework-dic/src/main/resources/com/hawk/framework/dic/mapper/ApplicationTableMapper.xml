@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.ApplicationTableMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				application_object_id AS "applicationObjectId" ,
 		table_object_id AS "tableObjectId" 
 	</sql>

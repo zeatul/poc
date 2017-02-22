@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_application</name>
-</tables>
+<table>
+	<code>t_dic_application</code>
+	<comment>应用,一个应用一个package,对应很多表.</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>06853be7-e399-474e-ad72-33be9dadd9fe</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>对象ID</name>
+			<comment>对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>7da81321-6e97-49bc-aee8-90d3a14e9932</objectId>
+			<dataDefinition>
+				<objectId>3e983a76-bc99-45e9-9b84-33c61b66d34b</objectId>
+			</dataDefinition>
+			<code>object_code</code>
+			<name>应用编码</name>
+			<comment>应用编码</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>cc91dc3c-1982-453f-bf28-74e59d722e04</objectId>
+			<dataDefinition>
+				<objectId>86d71f38-6d34-40ee-9ae8-46fa2b22a117</objectId>
+			</dataDefinition>
+			<code>object_name</code>
+			<name>应用名称</name>
+			<comment>应用名称</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>0560247a-7a27-4528-ba53-4d01f317e758</objectId>
+			<dataDefinition>
+				<objectId>c820840b-eb05-4174-bc13-626c149a61c9</objectId>
+			</dataDefinition>
+			<code>object_comment</code>
+			<name>应用描述</name>
+			<comment>应用描述</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+	</columns>
+</table>

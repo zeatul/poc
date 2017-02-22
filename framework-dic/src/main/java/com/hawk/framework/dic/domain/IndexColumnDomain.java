@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 索引字段
- * The class is mapped to the table t_dic_index_column
+ * The class is mapped to the table t_dic_index_column 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,14 +14,20 @@ public class IndexColumnDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*索引对象ID index_object_id*/
+	/**
+	 * 索引对象ID index_object_id
+	 */
 	private String indexObjectId;
 	
-	/*表字段对象ID column_object_id*/
+	/**
+	 * 表字段对象ID column_object_id
+	 */
 	private String columnObjectId;
 	
-	/*字段在索引的序号 column_order*/
-	private Integer columnOrder;
+	/**
+	 * 字段在索引的序号 object_order
+	 */
+	private Integer objectOrder;
 	
 	
 	/**
@@ -58,18 +64,18 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 字段在索引的序号 column_order
+	 * @return 字段在索引的序号 object_order
 	 */
-	public Integer getColumnOrder(){
-		return columnOrder;
+	public Integer getObjectOrder(){
+		return objectOrder;
 	}
 	
 	/**
 	 * 
-	 * @param columnOrder 字段在索引的序号 column_order
+	 * @param objectOrder 字段在索引的序号 object_order
 	 */	
-	public void setColumnOrder (Integer columnOrder) {
-		this.columnOrder = columnOrder;
+	public void setObjectOrder (Integer objectOrder) {
+		this.objectOrder = objectOrder;
 	}
 	
 

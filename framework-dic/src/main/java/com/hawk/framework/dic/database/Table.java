@@ -5,6 +5,22 @@ import java.util.List;
 
 public class Table {
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public List<Column> getColumnList() {
+		return columnList;
+	}
+
+	public void setColumnList(List<Column> columnList) {
+		this.columnList = columnList;
+	}
+
 	public String getComment() {
 		return comment;
 	}
@@ -29,13 +45,7 @@ public class Table {
 		this.name = name;
 	}
 
-	public List<Column> getCloumnList() {
-		return cloumnList;
-	}
-
-	public void setCloumnList(List<Column> cloumnList) {
-		this.cloumnList = cloumnList;
-	}
+	
 
 	public List<Index> getIndexList() {
 		return indexList;
@@ -45,11 +55,13 @@ public class Table {
 		this.indexList = indexList;
 	}
 
-	private List<Column> cloumnList;
+	private List<Column> columnList;
 	
 	private List<Index> indexList;
 	
 	private String name;
+	
+	private String code;
 	
 	private String comment;
 	

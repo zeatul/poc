@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 数据字典定义
- * The class is mapped to the table t_dic_data_definition
+ * The class is mapped to the table t_dic_data_definition 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,58 +14,94 @@ public class DataDefinitionDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*对象ID object_id*/
+	/**
+	 * 对象ID object_id
+	 */
 	private String objectId;
 	
-	/*用途类型 use_type*/
+	/**
+	 * 用途类型 use_type
+	 */
 	private Integer useType;
 	
-	/*数据类型 data_type*/
+	/**
+	 * 数据类型 data_type
+	 */
 	private String dataType;
 	
-	/*标签 object_label*/
-	private String objectLabel;
+	/**
+	 * 标签 object_code
+	 */
+	private String objectCode;
 	
-	/*描述 description*/
-	private String description;
-	
-	/*中文名 object_name*/
+	/**
+	 * 中文名 object_name
+	 */
 	private String objectName;
 	
-	/*显示名称 display_name*/
-	private String displayName;
+	/**
+	 * 描述 object_comment
+	 */
+	private String objectComment;
 	
-	/*正则 regex*/
+	/**
+	 * 显示名称 object_display_name
+	 */
+	private String objectDisplayName;
+	
+	/**
+	 * 正则 regex
+	 */
 	private String regex;
 	
-	/*最大长度 char_max_length*/
+	/**
+	 * 最大长度 char_max_length
+	 */
 	private Integer charMaxLength;
 	
-	/*最小长度 char_min_length*/
+	/**
+	 * 最小长度 char_min_length
+	 */
 	private Integer charMinLength;
 	
-	/*最大值 max_value*/
+	/**
+	 * 最大值 max_value
+	 */
 	private String maxValue;
 	
-	/*最小值 min_value*/
+	/**
+	 * 最小值 min_value
+	 */
 	private String minValue;
 	
-	/*时间精度 datetime_precision*/
+	/**
+	 * 时间精度 datetime_precision
+	 */
 	private Integer datetimePrecision;
 	
-	/*数据精度 numeric_precision*/
+	/**
+	 * 数据精度 numeric_precision
+	 */
 	private Integer numericPrecision;
 	
-	/*数据小数精度 numeric_scale*/
+	/**
+	 * 数据小数精度 numeric_scale
+	 */
 	private Integer numericScale;
 	
-	/*是否枚举 is_enum*/
+	/**
+	 * 是否枚举(yes/no) is_enum
+	 */
 	private Integer isEnum;
 	
-	/*枚举值 enum_key*/
+	/**
+	 * 枚举值 enum_key
+	 */
 	private String enumKey;
 	
-	/*枚举值 enum_value*/
+	/**
+	 * 枚举显示值 enum_value
+	 */
 	private String enumValue;
 	
 	
@@ -119,34 +155,18 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_label
+	 * @return 标签 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 标签 object_label
+	 * @param objectCode 标签 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
-	}
-	
-	/**
-	 * 
-	 * @return 描述 description
-	 */
-	public String getDescription(){
-		return description;
-	}
-	
-	/**
-	 * 
-	 * @param description 描述 description
-	 */	
-	public void setDescription (String description) {
-		this.description = description;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**
@@ -167,18 +187,34 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 显示名称 display_name
+	 * @return 描述 object_comment
 	 */
-	public String getDisplayName(){
-		return displayName;
+	public String getObjectComment(){
+		return objectComment;
 	}
 	
 	/**
 	 * 
-	 * @param displayName 显示名称 display_name
+	 * @param objectComment 描述 object_comment
 	 */	
-	public void setDisplayName (String displayName) {
-		this.displayName = displayName;
+	public void setObjectComment (String objectComment) {
+		this.objectComment = objectComment;
+	}
+	
+	/**
+	 * 
+	 * @return 显示名称 object_display_name
+	 */
+	public String getObjectDisplayName(){
+		return objectDisplayName;
+	}
+	
+	/**
+	 * 
+	 * @param objectDisplayName 显示名称 object_display_name
+	 */	
+	public void setObjectDisplayName (String objectDisplayName) {
+		this.objectDisplayName = objectDisplayName;
 	}
 	
 	/**
@@ -311,7 +347,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是否枚举 is_enum
+	 * @return 是否枚举(yes/no) is_enum
 	 */
 	public Integer getIsEnum(){
 		return isEnum;
@@ -319,7 +355,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param isEnum 是否枚举 is_enum
+	 * @param isEnum 是否枚举(yes/no) is_enum
 	 */	
 	public void setIsEnum (Integer isEnum) {
 		this.isEnum = isEnum;
@@ -343,7 +379,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 枚举值 enum_value
+	 * @return 枚举显示值 enum_value
 	 */
 	public String getEnumValue(){
 		return enumValue;
@@ -351,7 +387,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param enumValue 枚举值 enum_value
+	 * @param enumValue 枚举显示值 enum_value
 	 */	
 	public void setEnumValue (String enumValue) {
 		this.enumValue = enumValue;

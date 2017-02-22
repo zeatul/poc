@@ -10,6 +10,14 @@ import java.util.List;
  */
 public class Domain {	
 
+	public String getTableCode() {
+		return tableCode;
+	}
+
+	public void setTableCode(String tableCode) {
+		this.tableCode = tableCode;
+	}
+
 	public List<Field> getKeyList() {
 		return keyList;
 	}
@@ -58,13 +66,7 @@ public class Domain {
 		this.className = className;
 	}
 
-	public String getTableName() {
-		return tableName;
-	}
-
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
+	
 
 	/**
 	 * java
@@ -77,7 +79,7 @@ public class Domain {
 	/**
 	 * db
 	 */
-	private String tableName; //class 对应的表名
+	private String tableCode; //class 对应的表名
 	private List<Field> keyList = new ArrayList<Field>(); //主键
 
 }

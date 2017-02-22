@@ -11,7 +11,7 @@ import ${importItem};
 
 /**
  * ${desc}
- * The class is mapped to the table ${tableName}
+ * The class is mapped to the table ${tableCode} 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -20,7 +20,9 @@ public class ${className}Domain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	<#list fieldList as field>
-	/*${field.fieldDesc} ${field.columnName}*/
+	/**
+	 * ${field.fieldDesc} ${field.columnCode}
+	 */
 	private ${field.fieldType} ${field.fieldName};
 	
 	</#list>
@@ -28,7 +30,7 @@ public class ${className}Domain implements Serializable {
 	<#list fieldList as field>
 	/**
 	 * 
-	 * @return ${field.fieldDesc} ${field.columnName}
+	 * @return ${field.fieldDesc} ${field.columnCode}
 	 */
 	public ${field.fieldType} get${field.fieldName?cap_first}(){
 		return ${field.fieldName};
@@ -36,7 +38,7 @@ public class ${className}Domain implements Serializable {
 	
 	/**
 	 * 
-	 * @param ${field.fieldName} ${field.fieldDesc} ${field.columnName}
+	 * @param ${field.fieldName} ${field.fieldDesc} ${field.columnCode}
 	 */	
 	public void set${field.fieldName?cap_first} (${field.fieldType} ${field.fieldName}) {
 		this.${field.fieldName} = ${field.fieldName};

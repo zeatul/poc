@@ -4,11 +4,11 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.FkMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				object_id AS "objectId" ,
-		object_label AS "objectLabel" ,
+		object_code AS "objectCode" ,
 		object_name AS "objectName" ,
-		description AS "description" ,
+		object_comment AS "objectComment" ,
 		parent_table_object_id AS "parentTableObjectId" ,
 		child_table_object_id AS "childTableObjectId" 
 	</sql>
@@ -16,9 +16,9 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
-			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
+			<if test="objectCode != null"> AND object_code = #{objectCode}  </if>
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
-			<if test="description != null"> AND description = #{description}  </if>
+			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 			<if test="parentTableObjectId != null"> AND parent_table_object_id = #{parentTableObjectId}  </if>
 			<if test="childTableObjectId != null"> AND child_table_object_id = #{childTableObjectId}  </if>
 		</trim>	
@@ -27,9 +27,9 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND object_id = #{old_objectId}
-			AND object_label = #{old_objectLabel}
+			AND object_code = #{old_objectCode}
 			AND object_name = #{old_objectName}
-			AND description = #{old_description}
+			AND object_comment = #{old_objectComment}
 			AND parent_table_object_id = #{old_parentTableObjectId}
 			AND child_table_object_id = #{old_childTableObjectId}
 		</trim>
@@ -38,9 +38,9 @@
 	<sql id="update">
 		<set>
 			object_id = #{objectId},
-			object_label = #{objectLabel},
+			object_code = #{objectCode},
 			object_name = #{objectName},
-			description = #{description},
+			object_comment = #{objectComment},
 			parent_table_object_id = #{parentTableObjectId},
 			child_table_object_id = #{childTableObjectId},
 		</set>
@@ -49,9 +49,9 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="objectId != null">object_id = #{objectId},</if>
-			<if test="objectLabel != null">object_label = #{objectLabel},</if>
+			<if test="objectCode != null">object_code = #{objectCode},</if>
 			<if test="objectName != null">object_name = #{objectName},</if>
-			<if test="description != null">description = #{description},</if>
+			<if test="objectComment != null">object_comment = #{objectComment},</if>
 			<if test="parentTableObjectId != null">parent_table_object_id = #{parentTableObjectId},</if>
 			<if test="childTableObjectId != null">child_table_object_id = #{childTableObjectId},</if>
 		</set>
@@ -93,17 +93,17 @@
 	<insert id="insert"  parameterType="FkDomain">
 		INSERT INTO t_dic_fk (			
 				object_id,				
-				object_label,				
+				object_code,				
 				object_name,				
-				description,				
+				object_comment,				
 				parent_table_object_id,				
 				child_table_object_id				
 		)		
 		VALUES (	
 			#{objectId},
-			#{objectLabel},
+			#{objectCode},
 			#{objectName},
-			#{description},
+			#{objectComment},
 			#{parentTableObjectId},
 			#{childTableObjectId}
 		) 

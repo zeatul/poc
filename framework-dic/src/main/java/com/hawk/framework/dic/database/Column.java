@@ -9,6 +9,30 @@ import com.hawk.framework.dic.data.DataDefinition;
  */
 public class Column {
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public int getIsPk() {
+		return isPk;
+	}
+
+	public void setIsPk(int isPk) {
+		this.isPk = isPk;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,13 +57,7 @@ public class Column {
 		this.nullable = nullable;
 	}
 
-	public int getPk() {
-		return pk;
-	}
-
-	public void setPk(int pk) {
-		this.pk = pk;
-	}
+	
 
 	public DataDefinition getDataDefinition() {
 		return dataDefinition;
@@ -58,13 +76,23 @@ public class Column {
 	/**
 	 * 0=false,1=true
 	 */
-	private int pk = 0;
+	private int isPk = 0;
 	
 	private String objectId;
 	
 	/**
-	 * 数据库字段名
+	 * 数据库字段名,如果为空，则取dataDefinition的objectName
 	 */
 	private String name;
+	
+	/**
+	 * 数据库字段名,如果为空，则取dataDefinition的objectCode
+	 */
+	private String code;
+	
+	/**
+	 * 数据库字段描述,如果为空，则取dataDefinition的objectComment
+	 */
+	private String comment;
 
 }

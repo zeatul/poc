@@ -10,15 +10,7 @@ package com.hawk.framework.dic.data;
  */
 public class DataDefinition {
 	
-	
 
-	public String getUseType() {
-		return useType;
-	}
-
-	public void setUseType(String useType) {
-		this.useType = useType;
-	}
 
 	public String getObjectId() {
 		return objectId;
@@ -28,7 +20,13 @@ public class DataDefinition {
 		this.objectId = objectId;
 	}
 
-	
+	public String getUseType() {
+		return useType;
+	}
+
+	public void setUseType(String useType) {
+		this.useType = useType;
+	}
 
 	public EnumDataType getDataType() {
 		return dataType;
@@ -38,20 +36,20 @@ public class DataDefinition {
 		this.dataType = dataType;
 	}
 
-	public String getObjectLabel() {
-		return objectLabel;
+	public String getObjectCode() {
+		return objectCode;
 	}
 
-	public void setObjectLabel(String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode(String objectCode) {
+		this.objectCode = objectCode;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getObjectComment() {
+		return objectComment;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setObjectComment(String objectComment) {
+		this.objectComment = objectComment;
 	}
 
 	public String getObjectName() {
@@ -62,12 +60,12 @@ public class DataDefinition {
 		this.objectName = objectName;
 	}
 
-	public String getDisplayName() {
-		return displayName;
+	public String getObjectDisplayName() {
+		return objectDisplayName;
 	}
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setObjectDisplayName(String objectDisplayName) {
+		this.objectDisplayName = objectDisplayName;
 	}
 
 	public String getRegex() {
@@ -175,15 +173,15 @@ public class DataDefinition {
 	
 
 	/**
-	 * 对象标签
+	 * 对象编码
 	 */
-	private String objectLabel;
+	private String objectCode;
 	
 
 	/**
 	 * 对象描述
 	 */
-	private String description;
+	private String objectComment;
 	
 
 	/**
@@ -195,7 +193,7 @@ public class DataDefinition {
 	/**
 	 * 对象显示名称
 	 */
-	private String displayName;
+	private String objectDisplayName;
 	
 
 	/**

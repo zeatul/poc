@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.FkMapMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				fk_object_id AS "fkObjectId" ,
 		parent_column_object_id AS "parentColumnObjectId" ,
 		child_column_object_id AS "childColumnObjectId" 

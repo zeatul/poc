@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 索引
- * The class is mapped to the table t_dic_index
+ * The class is mapped to the table t_dic_index 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,25 +14,39 @@ public class IndexDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*对象ID object_id*/
+	/**
+	 * 对象ID object_id
+	 */
 	private String objectId;
 	
-	/*表对象ID table_object_id*/
+	/**
+	 * 表对象ID table_object_id
+	 */
 	private String tableObjectId;
 	
-	/*标签 object_label*/
-	private String objectLabel;
+	/**
+	 * 索引编码 object_code
+	 */
+	private String objectCode;
 	
-	/*名称 object_name*/
+	/**
+	 * 索引名称 object_name
+	 */
 	private String objectName;
 	
-	/*描述 description*/
-	private String description;
+	/**
+	 * 索引描述 object_comment
+	 */
+	private String objectComment;
 	
-	/*是唯一索引 is_unique*/
+	/**
+	 * 是唯一索引 is_unique
+	 */
 	private Integer isUnique;
 	
-	/*是主键 is_pk*/
+	/**
+	 * 是主键 is_pk
+	 */
 	private Integer isPk;
 	
 	
@@ -70,23 +84,23 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_label
+	 * @return 索引编码 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 标签 object_label
+	 * @param objectCode 索引编码 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**
 	 * 
-	 * @return 名称 object_name
+	 * @return 索引名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -94,7 +108,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 名称 object_name
+	 * @param objectName 索引名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -102,18 +116,18 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 描述 description
+	 * @return 索引描述 object_comment
 	 */
-	public String getDescription(){
-		return description;
+	public String getObjectComment(){
+		return objectComment;
 	}
 	
 	/**
 	 * 
-	 * @param description 描述 description
+	 * @param objectComment 索引描述 object_comment
 	 */	
-	public void setDescription (String description) {
-		this.description = description;
+	public void setObjectComment (String objectComment) {
+		this.objectComment = objectComment;
 	}
 	
 	/**

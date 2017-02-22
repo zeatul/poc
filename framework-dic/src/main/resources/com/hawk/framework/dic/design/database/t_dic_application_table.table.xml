@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_application_table</name>
-</tables>
+<table>
+	<code>t_dic_application_table</code>
+	<comment>应用拥有的表</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>009c7d34-c1b0-419a-9519-8129deaf5393</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>application_object_id</code>
+			<name>应用对象ID</name>
+			<comment>应用对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<objectId>ddd07f0b-e5e2-4126-b86e-880dcf58608c</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>table_object_id</code>
+			<name>表对象ID</name>
+			<comment>表对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+	</columns>
+</table>

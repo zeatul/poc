@@ -22,7 +22,7 @@ public class MysqlDatabaseParser extends DatabaseParser {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, table.getSchema());
-			ps.setString(2, table.getName());
+			ps.setString(2, table.getCode());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				table.setComment(rs.getString("table_comment"));
@@ -47,14 +47,14 @@ public class MysqlDatabaseParser extends DatabaseParser {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, table.getSchema());
-			ps.setString(2, table.getName());
+			ps.setString(2, table.getCode());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				Column column= new Column();
 				table.getColumnList().add(column);
-				column.setName(rs.getString("column_name"));
+				column.setCode(rs.getString("column_name"));
 				column.setNullable("yes".equalsIgnoreCase(rs.getString("is_nullable"))?1:0);
-				column.setPk("pri".equalsIgnoreCase(rs.getString("column_key"))?1:0);
+				column.setIsPk("pri".equalsIgnoreCase(rs.getString("column_key"))?1:0);
 				column.setDataType(rs.getString("data_type"));
 				column.setComment(rs.getString("column_comment"));
 				column.setColumnType(rs.getString("column_type"));
@@ -82,25 +82,25 @@ public class MysqlDatabaseParser extends DatabaseParser {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, table.getSchema());
-			ps.setString(2, table.getName());
+			ps.setString(2, table.getCode());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				String indexName = rs.getString("constraint_name");
 				String columnName = rs.getString("column_name");
 				Index index = indexMap.get("indexName");
 				Column column = columnMap.get(columnName);
-				int pk = "primary".equalsIgnoreCase(indexName)?1:0;
+				int isPk = "primary".equalsIgnoreCase(indexName)?1:0;
 				if (column == null)
 					throw new RuntimeException("unknown index column = "+columnName);
 				if (index == null){
 					index = new Index();
-					index.setName(indexName);
+					index.setCode(indexName);
 					indexMap.put(indexName, index);
-					index.setUnique(1);
-					index.setPk(pk);
+					index.setIsUnique(1);
+					index.setIsPk(isPk);
 					table.getIndexList().add(index);
 				}
-				column.setPk(pk);
+				column.setIsPk(isPk);
 				index.getColumnList().add(column);				
 				
 			}

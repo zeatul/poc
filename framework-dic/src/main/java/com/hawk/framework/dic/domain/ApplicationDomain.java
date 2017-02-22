@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 应用,一个应用一个package,对应很多表.
- * The class is mapped to the table t_dic_application
+ * The class is mapped to the table t_dic_application 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,17 +14,25 @@ public class ApplicationDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*对象ID object_id*/
+	/**
+	 * 对象ID object_id
+	 */
 	private String objectId;
 	
-	/*标签 object_label*/
-	private String objectLabel;
+	/**
+	 * 应用编码 object_code
+	 */
+	private String objectCode;
 	
-	/*名称 object_name*/
+	/**
+	 * 应用名称 object_name
+	 */
 	private String objectName;
 	
-	/*对象描述 description*/
-	private String description;
+	/**
+	 * 应用描述 object_comment
+	 */
+	private String objectComment;
 	
 	
 	/**
@@ -45,23 +53,23 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_label
+	 * @return 应用编码 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 标签 object_label
+	 * @param objectCode 应用编码 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**
 	 * 
-	 * @return 名称 object_name
+	 * @return 应用名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -69,7 +77,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 名称 object_name
+	 * @param objectName 应用名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -77,18 +85,18 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 对象描述 description
+	 * @return 应用描述 object_comment
 	 */
-	public String getDescription(){
-		return description;
+	public String getObjectComment(){
+		return objectComment;
 	}
 	
 	/**
 	 * 
-	 * @param description 对象描述 description
+	 * @param objectComment 应用描述 object_comment
 	 */	
-	public void setDescription (String description) {
-		this.description = description;
+	public void setObjectComment (String objectComment) {
+		this.objectComment = objectComment;
 	}
 	
 

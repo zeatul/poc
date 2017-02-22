@@ -5,31 +5,29 @@ import java.util.List;
 
 public class Index {
 	
-	public int getUnique() {
-		return unique;
+	public int getIsUnique() {
+		return isUnique;
 	}
 
-	public void setUnique(int unique) {
-		this.unique = unique;
+	public void setIsUnique(int isUnique) {
+		this.isUnique = isUnique;
 	}
 
-	public int getPk() {
-		return pk;
+	public int getIsPk() {
+		return isPk;
 	}
 
-	public void setPk(int pk) {
-		this.pk = pk;
+	public void setIsPk(int isPk) {
+		this.isPk = isPk;
 	}
 
-	public String getName() {
-		return name;
+	public String getCode() {
+		return code;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCode(String code) {
+		this.code = code;
 	}
-
-	
 
 	public List<Column> getColumnList() {
 		return columnList;
@@ -41,10 +39,10 @@ public class Index {
 
 	private List<Column> columnList = new ArrayList<Column>();
 	
-	private int unique = 0;
-	private int pk = 0;
+	private int isUnique = 0;
+	private int isPk = 0;
 	
-	private String name;
+	private String code;
 	
 	
 

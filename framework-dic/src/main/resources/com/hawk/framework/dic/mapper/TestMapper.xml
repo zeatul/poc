@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.TestMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				col1 AS "col1" ,
 		col2 AS "col2" ,
 		col3 AS "col3" ,

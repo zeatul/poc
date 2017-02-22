@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 表对象
- * The class is mapped to the table t_dic_table
+ * The class is mapped to the table t_dic_table 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
@@ -14,17 +14,30 @@ public class TableDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
-	/*对象ID object_id*/
+	/**
+	 * 对象ID object_id
+	 */
 	private String objectId;
 	
-	/*标签 object_label*/
-	private String objectLabel;
+	/**
+	 * 表的编码 object_code
+	 */
+	private String objectCode;
 	
-	/*名称 object_name*/
+	/**
+	 * 表的名称 object_name
+	 */
 	private String objectName;
 	
-	/*描述 description*/
-	private String description;
+	/**
+	 * 表的描述 object_comment
+	 */
+	private String objectComment;
+	
+	/**
+	 * 表的类型 object_type
+	 */
+	private String objectType;
 	
 	
 	/**
@@ -45,23 +58,23 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_label
+	 * @return 表的编码 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 标签 object_label
+	 * @param objectCode 表的编码 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**
 	 * 
-	 * @return 名称 object_name
+	 * @return 表的名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -69,7 +82,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 名称 object_name
+	 * @param objectName 表的名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -77,18 +90,34 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 描述 description
+	 * @return 表的描述 object_comment
 	 */
-	public String getDescription(){
-		return description;
+	public String getObjectComment(){
+		return objectComment;
 	}
 	
 	/**
 	 * 
-	 * @param description 描述 description
+	 * @param objectComment 表的描述 object_comment
 	 */	
-	public void setDescription (String description) {
-		this.description = description;
+	public void setObjectComment (String objectComment) {
+		this.objectComment = objectComment;
+	}
+	
+	/**
+	 * 
+	 * @return 表的类型 object_type
+	 */
+	public String getObjectType(){
+		return objectType;
+	}
+	
+	/**
+	 * 
+	 * @param objectType 表的类型 object_type
+	 */	
+	public void setObjectType (String objectType) {
+		this.objectType = objectType;
 	}
 	
 

@@ -100,7 +100,7 @@ public abstract class DatabaseParser implements IDatabaseParser {
 				/**
 				 * 取表的基本信息
 				 */
-				table.setName(tableRs.getString("TABLE_NAME"));
+				table.setCode(tableRs.getString("TABLE_NAME"));
 				table.setSchema(dbConfig.getSchema());
 
 //				/**

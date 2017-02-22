@@ -4,6 +4,30 @@ import java.util.List;
 
 public class ForeignKey {
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public List<ColumnPair> getColumnPairList() {
 		return columnPairList;
 	}
@@ -50,5 +74,9 @@ public class ForeignKey {
 	private Table childTable;
 	
 	private List<ColumnPair> columnPairList ;
+	
+	private String code;
+	private String name;
+	private String comment;
 
 }

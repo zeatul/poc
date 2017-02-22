@@ -5,7 +5,7 @@ import ${packageName}.domain.${className}Domain;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * table = ${tableName}
+ * table = ${tableCode}
  * desc = ${desc}
  * 
  * @author Gen

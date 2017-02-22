@@ -1,13 +1,13 @@
-	<sql id="columns">
+	<sql id="columns">	
 		<#list fieldList as field>
-		${field.columnName} AS "${field.fieldName}" <#if field_has_next>,</#if>
+		${field.columnCode} AS "${field.fieldName}" <#if field_has_next>,</#if>
 		</#list>
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 		<#list fieldList as field>		   
-			<if test="${field.fieldName} != null"> AND ${field.columnName} = ${r"#"}{${field.fieldName}}  </if>
+			<if test="${field.fieldName} != null"> AND ${field.columnCode} = ${r"#"}{${field.fieldName}}  </if>
 		</#list>
 		</trim>	
 	</sql>
@@ -15,7 +15,7 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 		<#list fieldList as field>
-			AND ${field.columnName} = ${r"#"}{old_${field.fieldName}}
+			AND ${field.columnCode} = ${r"#"}{old_${field.fieldName}}
 		</#list>
 		</trim>
 	</sql>
@@ -23,7 +23,7 @@
 	<sql id="update">
 		<set>
 		<#list fieldList as field> 
-			${field.columnName} = ${r"#"}{${field.fieldName}},
+			${field.columnCode} = ${r"#"}{${field.fieldName}},
 		</#list>
 		</set>
 	</sql>
@@ -31,7 +31,7 @@
 	<sql id="updateWithoutNull">
 		<set>
 		<#list fieldList as field> 
-			<if test="${field.fieldName} != null">${field.columnName} = ${r"#"}{${field.fieldName}},</if>
+			<if test="${field.fieldName} != null">${field.columnCode} = ${r"#"}{${field.fieldName}},</if>
 		</#list>
 		</set>
 	</sql>
@@ -40,7 +40,7 @@
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
 		<#list keyList as field>
-			AND ${field.columnName} = ${r"#"}{${field.fieldName}}
+			AND ${field.columnCode} = ${r"#"}{${field.fieldName}}
 		</#list>
 		</trim>
 	</sql>
@@ -50,7 +50,7 @@
 	<select id="load"  resultType="${className}Domain">
 		SELECT 
 		<include refid="columns" />
-		FROM ${tableName}
+		FROM ${tableCode}
 		<include refid="pkwhere" />		
 	</select>
 	</#if>
@@ -58,29 +58,29 @@
 	<select id="loadDynamic" parameterType="hashmap" resultType="${className}Domain">
 		SELECT 		
 		<include refid="columns" />
-		FROM ${tableName}
+		FROM ${tableCode}
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${r"$"}{_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM ${tableName}
+		FROM ${tableCode}
 		<include refid="where" />
 	</select>
 	
 	<#if (keyList?? && keyList?size>0)>
 	<select id="countByPK"  resultType="integer">
 		SELECT count(1) 
-		FROM ${tableName}
+		FROM ${tableCode}
 		<include refid="pkwhere" />		
 	</select>
 	</#if>
 	
 	<insert id="insert"  parameterType="${className}Domain">
-		INSERT INTO ${tableName} (			
+		INSERT INTO ${tableCode} (			
 			<#list fieldList as field>
-				${field.columnName}<#if field_has_next >,</#if>				
+				${field.columnCode}<#if field_has_next >,</#if>				
 			</#list>
 		)		
 		VALUES (	
@@ -92,19 +92,19 @@
 	
 	<#if (keyList?? && keyList?size>0)>
 	<delete id="delete" >
-		DELETE FROM ${tableName}
+		DELETE FROM ${tableCode}
 		<include refid="pkwhere" />	
 	</delete>
 	</#if>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM ${tableName}
+		DELETE FROM ${tableCode}
 		<include refid="where" />
 	</delete>
 
 	<#if (keyList?? && keyList?size>0)>
 	<update id="update" parameterType="${className}Domain">
-		UPDATE ${tableName}	
+		UPDATE ${tableCode}	
 		<include refid="update" />
 		<include refid="pkwhere" />	
 	</update>
@@ -112,14 +112,14 @@
 	
 	<#if (keyList?? && keyList?size>0)>
 	<update id="updateWithoutNull" parameterType="${className}Domain">
-		UPDATE ${tableName}
+		UPDATE ${tableCode}
 		<include refid="updateWithoutNull"/>
 		<include refid="pkwhere" />	
 	</update>
 	</#if>
 	
 	<update id="updateDynamic" parameterType="hashmap">
-		UPDATE ${tableName}	
+		UPDATE ${tableCode}	
 		<include refid="update" />
 		<include refid="where_old" />
 	</update>

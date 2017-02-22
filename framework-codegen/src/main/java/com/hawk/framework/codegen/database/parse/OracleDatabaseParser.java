@@ -19,7 +19,7 @@ public class OracleDatabaseParser extends DatabaseParser {
 		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, table.getName());
+			ps.setString(1, table.getCode());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				comment = rs.getString("comments");
@@ -42,7 +42,7 @@ public class OracleDatabaseParser extends DatabaseParser {
 		Map<String,String> map = new HashMap<String,String>();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, table.getName());
+			ps.setString(1, table.getCode());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				String comment = rs.getString("comments");
@@ -52,7 +52,7 @@ public class OracleDatabaseParser extends DatabaseParser {
 			rs.close();
 			ps.close();
 			for (Column column : table.getColumnList()){
-				column.setComment(map.get(column.getName()));
+				column.setComment(map.get(column.getCode()));
 			}
 		} finally {
 			try {

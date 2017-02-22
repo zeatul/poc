@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tables>
-	<name>t_dic_index_column</name>
-</tables>
+<table>
+	<code>t_dic_index_column</code>
+	<comment>索引字段</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<objectId>d1d76a05-93ed-4929-84a7-eeee2703c053</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>index_object_id</code>
+			<name>索引对象ID</name>
+			<comment>索引对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>7da95350-bfe2-41ab-b71c-02fa948b77b1</objectId>
+			<dataDefinition>
+				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+			</dataDefinition>
+			<code>column_object_id</code>
+			<name>表字段对象ID</name>
+			<comment>表字段对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<objectId>79511e1c-bf9a-40a4-84ef-dbda301c7e39</objectId>
+			<dataDefinition>
+				<objectId>d1b21e0c-36ce-48c5-997f-6fc09a0ac76b</objectId>
+			</dataDefinition>
+			<code>object_order</code>
+			<name>字段在索引的序号</name>
+			<comment>字段在索引的序号</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+	</columns>
+</table>

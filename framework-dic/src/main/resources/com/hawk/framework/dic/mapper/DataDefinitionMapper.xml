@@ -4,14 +4,14 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.DataDefinitionMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				object_id AS "objectId" ,
 		use_type AS "useType" ,
 		data_type AS "dataType" ,
-		object_label AS "objectLabel" ,
-		description AS "description" ,
+		object_code AS "objectCode" ,
 		object_name AS "objectName" ,
-		display_name AS "displayName" ,
+		object_comment AS "objectComment" ,
+		object_display_name AS "objectDisplayName" ,
 		regex AS "regex" ,
 		char_max_length AS "charMaxLength" ,
 		char_min_length AS "charMinLength" ,
@@ -30,10 +30,10 @@
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="useType != null"> AND use_type = #{useType}  </if>
 			<if test="dataType != null"> AND data_type = #{dataType}  </if>
-			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
-			<if test="description != null"> AND description = #{description}  </if>
+			<if test="objectCode != null"> AND object_code = #{objectCode}  </if>
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
-			<if test="displayName != null"> AND display_name = #{displayName}  </if>
+			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
+			<if test="objectDisplayName != null"> AND object_display_name = #{objectDisplayName}  </if>
 			<if test="regex != null"> AND regex = #{regex}  </if>
 			<if test="charMaxLength != null"> AND char_max_length = #{charMaxLength}  </if>
 			<if test="charMinLength != null"> AND char_min_length = #{charMinLength}  </if>
@@ -53,10 +53,10 @@
 			AND object_id = #{old_objectId}
 			AND use_type = #{old_useType}
 			AND data_type = #{old_dataType}
-			AND object_label = #{old_objectLabel}
-			AND description = #{old_description}
+			AND object_code = #{old_objectCode}
 			AND object_name = #{old_objectName}
-			AND display_name = #{old_displayName}
+			AND object_comment = #{old_objectComment}
+			AND object_display_name = #{old_objectDisplayName}
 			AND regex = #{old_regex}
 			AND char_max_length = #{old_charMaxLength}
 			AND char_min_length = #{old_charMinLength}
@@ -76,10 +76,10 @@
 			object_id = #{objectId},
 			use_type = #{useType},
 			data_type = #{dataType},
-			object_label = #{objectLabel},
-			description = #{description},
+			object_code = #{objectCode},
 			object_name = #{objectName},
-			display_name = #{displayName},
+			object_comment = #{objectComment},
+			object_display_name = #{objectDisplayName},
 			regex = #{regex},
 			char_max_length = #{charMaxLength},
 			char_min_length = #{charMinLength},
@@ -99,10 +99,10 @@
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="useType != null">use_type = #{useType},</if>
 			<if test="dataType != null">data_type = #{dataType},</if>
-			<if test="objectLabel != null">object_label = #{objectLabel},</if>
-			<if test="description != null">description = #{description},</if>
+			<if test="objectCode != null">object_code = #{objectCode},</if>
 			<if test="objectName != null">object_name = #{objectName},</if>
-			<if test="displayName != null">display_name = #{displayName},</if>
+			<if test="objectComment != null">object_comment = #{objectComment},</if>
+			<if test="objectDisplayName != null">object_display_name = #{objectDisplayName},</if>
 			<if test="regex != null">regex = #{regex},</if>
 			<if test="charMaxLength != null">char_max_length = #{charMaxLength},</if>
 			<if test="charMinLength != null">char_min_length = #{charMinLength},</if>
@@ -155,10 +155,10 @@
 				object_id,				
 				use_type,				
 				data_type,				
-				object_label,				
-				description,				
+				object_code,				
 				object_name,				
-				display_name,				
+				object_comment,				
+				object_display_name,				
 				regex,				
 				char_max_length,				
 				char_min_length,				
@@ -175,10 +175,10 @@
 			#{objectId},
 			#{useType},
 			#{dataType},
-			#{objectLabel},
-			#{description},
+			#{objectCode},
 			#{objectName},
-			#{displayName},
+			#{objectComment},
+			#{objectDisplayName},
 			#{regex},
 			#{charMaxLength},
 			#{charMinLength},

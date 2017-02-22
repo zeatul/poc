@@ -9,7 +9,7 @@
 	<select id="loadDynamicPaging" parameterType="hashmap" resultType="${className}Domain">
 		SELECT 		
 		<include refid="columns" />
-		FROM ${tableName}
+		FROM ${tableCode}
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${r"$"}{_orderby}</if>
 		<if test="_offset != null">LIMIT ${r"#"}{_offset},${r"#"}{_limit}</if>	

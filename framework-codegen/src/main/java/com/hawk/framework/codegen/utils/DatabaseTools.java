@@ -8,10 +8,15 @@ import com.hawk.framework.codegen.database.meta.Column;
 
 public class DatabaseTools {
 	
+	/**
+	 * 将column集合转换成map key=code,value=column
+	 * @param columnList
+	 * @return
+	 */
 	public static Map<String,Column> convert(List<Column> columnList){
 		Map<String,Column> map = new HashMap<String,Column>();
 		for (Column column : columnList){
-			map.put(column.getName(), column);
+			map.put(column.getCode(), column);
 		}
 		return map;
 	}

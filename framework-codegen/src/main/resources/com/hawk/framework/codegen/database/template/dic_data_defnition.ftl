@@ -2,13 +2,13 @@
 <dataDefinitions>
 <#list dataDefnitionList as def>
 	<dataDefinition objectId="${def.objectId}">
-		<objectLabel>${def.objectLabel}</objectLabel>
+		<objectCode>${def.objectCode}</objectCode>
 		<objectName>${def.objectName}</objectName>
-		<#if displayName??>
-		<displayName>${def.displayName}</displayName>
+		<#if def.objectDisplayName??>
+		<objectDisplayName>${def.objectDisplayName}</objectDisplayName>
 		</#if>
-		<#if description??>
-		<description>${def.description}</description>
+		<#if def.objectComment??>
+		<objectComment>${def.objectComment}</objectComment>
 		</#if>
 		<useType>${def.useType}</useType>
 		<dataType>${def.dataType}</dataType>

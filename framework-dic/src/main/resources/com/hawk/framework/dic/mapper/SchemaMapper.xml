@@ -4,11 +4,11 @@
 
 <mapper namespace="com.hawk.framework.dic.mapper.SchemaMapper">
 
-	<sql id="columns">
+	<sql id="columns">	
 				object_id AS "objectId" ,
 		object_label AS "objectLabel" ,
 		object_name AS "objectName" ,
-		description AS "description" 
+		object_comment AS "objectComment" 
 	</sql>
 	
 	<sql id="where">
@@ -16,7 +16,7 @@
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="objectLabel != null"> AND object_label = #{objectLabel}  </if>
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
-			<if test="description != null"> AND description = #{description}  </if>
+			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 		</trim>	
 	</sql>
 	
@@ -25,7 +25,7 @@
 			AND object_id = #{old_objectId}
 			AND object_label = #{old_objectLabel}
 			AND object_name = #{old_objectName}
-			AND description = #{old_description}
+			AND object_comment = #{old_objectComment}
 		</trim>
 	</sql>
 	
@@ -34,7 +34,7 @@
 			object_id = #{objectId},
 			object_label = #{objectLabel},
 			object_name = #{objectName},
-			description = #{description},
+			object_comment = #{objectComment},
 		</set>
 	</sql>
 	
@@ -43,7 +43,7 @@
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="objectLabel != null">object_label = #{objectLabel},</if>
 			<if test="objectName != null">object_name = #{objectName},</if>
-			<if test="description != null">description = #{description},</if>
+			<if test="objectComment != null">object_comment = #{objectComment},</if>
 		</set>
 	</sql>
 	
@@ -85,13 +85,13 @@
 				object_id,				
 				object_label,				
 				object_name,				
-				description				
+				object_comment				
 		)		
 		VALUES (	
 			#{objectId},
 			#{objectLabel},
 			#{objectName},
-			#{description}
+			#{objectComment}
 		) 
 	</insert>
 	
