@@ -10,6 +10,16 @@ import java.util.List;
  */
 public class Application {
 
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -34,12 +44,12 @@ public class Application {
 		this.tableList = tableList;
 	}
 
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	private String name;
@@ -49,5 +59,7 @@ public class Application {
 	private String comment;
 
 	private List<Table> tableList;
+	
+	private String id;
 
 }

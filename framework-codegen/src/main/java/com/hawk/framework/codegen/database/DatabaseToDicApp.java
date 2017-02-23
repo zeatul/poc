@@ -28,6 +28,9 @@ import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.data.DataDefinition;
 import com.hawk.framework.dic.data.EnumDataType;
+import com.hawk.framework.dic.database.Application;
+import com.hawk.framework.dic.database.Schema;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -85,11 +88,11 @@ public class DatabaseToDicApp {
 		def.setCharMinLength(column.getCharMinLength());
 		def.setDataType(EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())));
 		def.setDatetimePrecision(column.getDatetimePrecision());
-		def.setObjectId(UUID.randomUUID().toString());
-		def.setObjectCode(column.getCode());
-		def.setObjectName(column.getComment());
-		def.setObjectComment(column.getComment());
-		def.setObjectDisplayName(column.getComment());
+		def.setId(UUID.randomUUID().toString());
+		def.setCode(column.getCode());
+		def.setName(column.getComment());
+		def.setComment(column.getComment());
+		def.setDisplayName(column.getComment());
 		def.setEnumKey(null);
 		def.setEnumValue(null);
 		def.setIsEnum(0);
@@ -114,12 +117,14 @@ public class DatabaseToDicApp {
 			dicTable.setCode(table.getCode());
 			dicTable.setType("normal");
 			dicTable.setComment(table.getComment());
+			dicTable.setId(UUID.randomUUID().toString());
 			dicTableList.add(dicTable);
 			
 			/**
 			 * 字段
 			 */
 			List<com.hawk.framework.dic.database.Column> dicColumnList = new ArrayList<com.hawk.framework.dic.database.Column>();
+			Map<String,com.hawk.framework.dic.database.Column> dicColumnMap = new HashMap<String,com.hawk.framework.dic.database.Column>();
 			dicTable.setColumnList(dicColumnList);
 			for (Column column: table.getColumnList()){
 				String columnCode = column.getCode();
@@ -132,23 +137,24 @@ public class DatabaseToDicApp {
 					def = defCodeMap.get(defCode);					
 					if (def == null){
 						def = convert(column,typeConverter);
-						def.setObjectCode(defCode);
+						def.setCode(defCode);
 						defCodeMap.put(defCode,def);
 					}
 				}
 				else{
 					def = convert(column,typeConverter);
-					defCodeMap.put(def.getObjectCode(), def);
+					defCodeMap.put(def.getCode(), def);
 				}
 				com.hawk.framework.dic.database.Column dicColumn = new com.hawk.framework.dic.database.Column();
-				dicColumnList.add(dicColumn);
+				dicColumnList.add(dicColumn);				
 				dicColumn.setDataDefinition(def);
 				dicColumn.setNullable(column.getNullable());
 				dicColumn.setIsPk(column.getIsPk());
-				dicColumn.setObjectId(UUID.randomUUID().toString());
+				dicColumn.setId(UUID.randomUUID().toString());
 				dicColumn.setCode(column.getCode());
 				dicColumn.setName(column.getComment());
 				dicColumn.setComment(column.getComment());
+				dicColumnMap.put(dicColumn.getCode(), dicColumn);
 			}
 			
 			/**
@@ -158,13 +164,15 @@ public class DatabaseToDicApp {
 			dicTable.setIndexList(dicIndexList);
 			for (Index index : table.getIndexList()){
 				com.hawk.framework.dic.database.Index dicIndex = new com.hawk.framework.dic.database.Index();
+				dicIndexList.add(dicIndex);
 				dicIndex.setCode(index.getCode());
 				dicIndex.setIsPk(index.getIsPk());
 				dicIndex.setIsUnique(index.getIsUnique());
+				dicIndex.setId(UUID.randomUUID().toString());
 				List<com.hawk.framework.dic.database.Column> dicIndexColumnList = new ArrayList<com.hawk.framework.dic.database.Column>();
 				dicIndex.setColumnList(dicIndexColumnList);
 				for (Column column :index.getColumnList()){
-					dicIndex.getColumnList()
+					dicIndexColumnList.add(dicColumnMap.get(column.getCode()));
 				}
 			}
 		}
@@ -184,6 +192,49 @@ public class DatabaseToDicApp {
 		 */
 		writeTable(dicTableList,projectConfigure);
 		
+		
+		/**
+		 * 输出Application
+		 */
+		List<Application> applicationList = new ArrayList<Application>();
+		Application application = new Application();
+		applicationList.add(application);
+		application.setTableList(dicTableList);
+		application.setId(UUID.randomUUID().toString());
+		application.setCode("dic");
+		application.setName("数据字典");
+		application.setComment("元数据驱动开发测试");
+		writeApplication(applicationList,projectConfigure);
+		
+		/**
+		 * 输出Schema
+		 */
+		Schema schema = new Schema();
+		schema.setApplicationList(applicationList);
+		schema.setId(UUID.randomUUID().toString());
+		schema.setCode("dic");
+		schema.setName("dic库");
+		schema.setComment("dic库，目前只有数据字典一个应用");
+	}
+	
+	private static void writeApplication(List<Application> applicationList,IProjectConfigure projectConfigure)throws Exception{
+		Map<String,List<Application>> root = new HashMap<String,List<Application>>();
+		root.put("applicationList", applicationList);
+		/* 获取或创建模板 */
+		Template template = cfg.getTemplate("template/dic_application.ftl");
+		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
+				projectConfigure.getSubPackage(), "design.database");
+		ProjectTools.clearDirectory(directory, "application.xml");
+		for (Application application : applicationList){
+			String filePath = directory + File.separator +application.getCode()+ ".application.xml";
+			if (new File(filePath).exists())
+				throw new RuntimeException("Exists file = " + filePath);
+			FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
+			OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
+			template.process(root, out);
+			out.flush();
+			out.close();
+		}
 	}
 
 	private static void writeDataDefinition(List<DataDefinition> list,IProjectConfigure projectConfigure) throws Exception{ 
@@ -209,7 +260,7 @@ public class DatabaseToDicApp {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_table.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.database");
+				projectConfigure.getSubPackage(), "design.database.table");
 		ProjectTools.clearDirectory(directory, ".table.xml");
 		for (com.hawk.framework.dic.database.Table dicTable : dicTableList){
 			String filePath = directory + File.separator+dicTable.getCode() + ".table.xml";

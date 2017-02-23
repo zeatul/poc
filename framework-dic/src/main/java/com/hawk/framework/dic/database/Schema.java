@@ -4,6 +4,14 @@ import java.util.List;
 
 public class Schema {
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -43,5 +51,7 @@ public class Schema {
 	private String code;
 
 	private String comment;
+	
+	private String id;
 
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="05b37e19-40d1-4311-b617-93490a1215ea">
 	<code>t_dic_application</code>
 	<comment>应用,一个应用一个package,对应很多表.</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>06853be7-e399-474e-ad72-33be9dadd9fe</objectId>
+			<id>0a5d3f14-c7a7-4ed2-861b-0322f9fdd628</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>7da81321-6e97-49bc-aee8-90d3a14e9932</objectId>
+			<id>2d27da34-afbe-4b51-a6c2-1778f7200f5d</id>
 			<dataDefinition>
-				<objectId>3e983a76-bc99-45e9-9b84-33c61b66d34b</objectId>
+				<id>0f73f53a-5a1d-419b-8fcb-abfd4ec66b97</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>应用编码</name>
@@ -27,9 +27,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>cc91dc3c-1982-453f-bf28-74e59d722e04</objectId>
+			<id>dfe88dd5-8329-4dbb-b8ee-3f4b0021b6d6</id>
 			<dataDefinition>
-				<objectId>86d71f38-6d34-40ee-9ae8-46fa2b22a117</objectId>
+				<id>9df95cbc-1dfc-40e3-90de-c6f0969ec22a</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>应用名称</name>
@@ -38,9 +38,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>0560247a-7a27-4528-ba53-4d01f317e758</objectId>
+			<id>cc30ba5e-d51f-46c6-aee5-04939ed85dec</id>
 			<dataDefinition>
-				<objectId>c820840b-eb05-4174-bc13-626c149a61c9</objectId>
+				<id>06f15e64-be35-47e6-a6a2-d530caa64bc0</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>应用描述</name>
@@ -49,4 +49,22 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="e16c641b-80e4-4fa3-9495-8b0169e7505e">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>0a5d3f14-c7a7-4ed2-861b-0322f9fdd628</id>
+				</column>
+			</columns>
+		</index>
+		<index id="afe7b105-6db9-4958-a651-04f2bd0a0e6b">
+			<code>ui_d_a_1</code>
+			<columns>
+				<column>
+					<id>2d27da34-afbe-4b51-a6c2-1778f7200f5d</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

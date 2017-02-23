@@ -12,12 +12,12 @@ public class DataDefinition {
 	
 
 
-	public String getObjectId() {
-		return objectId;
+	public String getId() {
+		return id;
 	}
 
-	public void setObjectId(String objectId) {
-		this.objectId = objectId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getUseType() {
@@ -36,36 +36,36 @@ public class DataDefinition {
 		this.dataType = dataType;
 	}
 
-	public String getObjectCode() {
-		return objectCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setObjectCode(String objectCode) {
-		this.objectCode = objectCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getObjectComment() {
-		return objectComment;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setObjectComment(String objectComment) {
-		this.objectComment = objectComment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public String getObjectName() {
-		return objectName;
+	public String getName() {
+		return name;
 	}
 
-	public void setObjectName(String objectName) {
-		this.objectName = objectName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getObjectDisplayName() {
-		return objectDisplayName;
+	public String getDisplayName() {
+		return displayName;
 	}
 
-	public void setObjectDisplayName(String objectDisplayName) {
-		this.objectDisplayName = objectDisplayName;
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 	public String getRegex() {
@@ -159,7 +159,7 @@ public class DataDefinition {
 	/**
 	 * 对象ID
 	 */
-	private String objectId;
+	private String id;
 	
 	/**
 	 * 用途，业务或技术
@@ -175,25 +175,25 @@ public class DataDefinition {
 	/**
 	 * 对象编码
 	 */
-	private String objectCode;
+	private String code;
 	
 
 	/**
 	 * 对象描述
 	 */
-	private String objectComment;
+	private String comment;
 	
 
 	/**
 	 * 对象名称
 	 */
-	private String objectName;
+	private String name;
 	
 	
 	/**
 	 * 对象显示名称
 	 */
-	private String objectDisplayName;
+	private String displayName;
 	
 
 	/**

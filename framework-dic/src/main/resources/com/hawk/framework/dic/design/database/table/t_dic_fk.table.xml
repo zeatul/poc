@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="ce430277-0de1-4e61-9841-609da3917d78">
 	<code>t_dic_fk</code>
 	<comment>外键对象</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>21981f14-9cdd-4933-a4ac-5f2f52f459dd</objectId>
+			<id>4ffc8c8a-65fe-4eb8-8a92-92cb1a7a5097</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>主键对象ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>0cb66033-f57d-4675-8cad-601f7f5cd7c1</objectId>
+			<id>eb0671dd-fbd2-4b5c-a094-de7ff2dd7d22</id>
 			<dataDefinition>
-				<objectId>beaa51ae-495d-4075-9144-1983fb9ba480</objectId>
+				<id>004afdeb-b9d0-4fec-856e-341e9057af24</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>外键编码</name>
@@ -27,9 +27,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>07948843-5562-4341-8cf5-33c66d5ae496</objectId>
+			<id>a813faa8-510e-4bc8-ad52-54f43b49aac9</id>
 			<dataDefinition>
-				<objectId>ee14060e-0fbb-4c02-909f-e5315114e9dd</objectId>
+				<id>edc6df6a-8dcf-40f9-96c2-c5c1cdbdf908</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>外键名称</name>
@@ -38,9 +38,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>4e43813d-b007-4b8d-ad5c-2298511d8b87</objectId>
+			<id>b81ad6f5-911c-40e7-99a9-047f3b73040a</id>
 			<dataDefinition>
-				<objectId>5012d825-d234-41ad-bd0a-e389711c56a1</objectId>
+				<id>3dfcb275-d59d-4895-ba26-ab2f31654665</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>外键描述</name>
@@ -49,9 +49,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>67f6c04c-7784-457d-bffc-d6142a2f1397</objectId>
+			<id>9ad755d3-6b6e-4557-928b-359c5d5c9f20</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>parent_table_object_id</code>
 			<name>主表对象ID</name>
@@ -60,9 +60,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>5b14e802-cd14-494c-bc0c-dc6190d7aad8</objectId>
+			<id>abd2d033-36bd-45b1-8f10-505846534b18</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>child_table_object_id</code>
 			<name>子表对象ID</name>
@@ -71,4 +71,14 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="292291f0-4216-4422-8a52-938179ee6b2a">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>4ffc8c8a-65fe-4eb8-8a92-92cb1a7a5097</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

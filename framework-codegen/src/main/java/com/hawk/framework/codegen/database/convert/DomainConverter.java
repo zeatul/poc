@@ -89,7 +89,7 @@ public class DomainConverter implements IDomainConverter{
 		 */
 		List<Index> indexList = table.getIndexList();
 		for (Index index : indexList){
-			if (BooleanTools.parse(index.getPk())){ 
+			if (BooleanTools.parse(index.getIsPk())){ 
 				List<Field> keyList =  domain.getKeyList();
 				Map<String,Field> map = new HashMap<String,Field>();
 				for (Field field : fieldList){

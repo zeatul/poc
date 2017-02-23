@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataDefinitions>
 <#list dataDefnitionList as def>
-	<dataDefinition objectId="${def.objectId}">
-		<objectCode>${def.objectCode}</objectCode>
-		<objectName>${def.objectName}</objectName>
-		<#if def.objectDisplayName??>
-		<objectDisplayName>${def.objectDisplayName}</objectDisplayName>
+	<dataDefinition id="${def.id}">
+		<code>${def.code}</code>
+		<name>${def.name}</name>
+		<#if def.displayName??>
+		<displayName>${def.displayName}</displayName>
 		</#if>
 		<#if def.objectComment??>
 		<objectComment>${def.objectComment}</objectComment>

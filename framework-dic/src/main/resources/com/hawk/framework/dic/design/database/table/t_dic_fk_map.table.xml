@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="7a942a88-d38f-4549-be6c-0433e9b0c8d3">
 	<code>t_dic_fk_map</code>
 	<comment>外键字段匹配</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>b8d65e41-0d38-4e6f-8909-e12dc88ec5a2</objectId>
+			<id>a148e66d-3980-43e4-b13c-6670e906e529</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>fk_object_id</code>
 			<name>外键对象ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>9feac335-debb-47b8-9d5f-73f3c418f45d</objectId>
+			<id>35f1f415-3eba-4e36-b70d-081ba3b11fa9</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>parent_column_object_id</code>
 			<name>主表字段对象ID</name>
@@ -27,9 +27,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>f7cc2de9-5bfe-46ba-b75c-7584f647db8d</objectId>
+			<id>5b639952-4b6c-4094-9632-60d2a17d1ef5</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>child_column_object_id</code>
 			<name>主表字段对象ID</name>
@@ -38,4 +38,20 @@
 			<isPk>yes</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="d39e2611-fd36-4a94-853b-426a56468f99">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>a148e66d-3980-43e4-b13c-6670e906e529</id>
+				</column>
+				<column>
+					<id>35f1f415-3eba-4e36-b70d-081ba3b11fa9</id>
+				</column>
+				<column>
+					<id>5b639952-4b6c-4094-9632-60d2a17d1ef5</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

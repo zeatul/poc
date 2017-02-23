@@ -9,6 +9,14 @@ import com.hawk.framework.dic.data.DataDefinition;
  */
 public class Column {
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -41,13 +49,7 @@ public class Column {
 		this.name = name;
 	}
 
-	public String getObjectId() {
-		return objectId;
-	}
-
-	public void setObjectId(String objectId) {
-		this.objectId = objectId;
-	}
+	
 
 	public int getNullable() {
 		return nullable;
@@ -78,7 +80,7 @@ public class Column {
 	 */
 	private int isPk = 0;
 	
-	private String objectId;
+	
 	
 	/**
 	 * 数据库字段名,如果为空，则取dataDefinition的objectName
@@ -94,5 +96,10 @@ public class Column {
 	 * 数据库字段描述,如果为空，则取dataDefinition的objectComment
 	 */
 	private String comment;
+	
+	/**
+	 * 主键
+	 */
+	private String id;
 
 }

@@ -87,7 +87,7 @@ public class MysqlDatabaseParser extends DatabaseParser {
 			while(rs.next()){
 				String indexName = rs.getString("constraint_name");
 				String columnName = rs.getString("column_name");
-				Index index = indexMap.get("indexName");
+				Index index = indexMap.get(indexName);
 				Column column = columnMap.get(columnName);
 				int isPk = "primary".equalsIgnoreCase(indexName)?1:0;
 				if (column == null)

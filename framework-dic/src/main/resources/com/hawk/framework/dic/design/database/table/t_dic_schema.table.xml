@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="9023ed54-094e-48fd-87ef-eab47b3686b1">
 	<code>t_dic_schema</code>
 	<comment>schema代表一个库，一个库可以有很多应用</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>a29ed381-299c-426f-880d-af7ad7444ff0</objectId>
+			<id>87336071-21e7-447b-bbde-fa5373f11953</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>主键ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>2f963452-5fa6-4c21-af71-e39a752b3bf7</objectId>
+			<id>b180bcdd-7eec-4051-97f9-7e1d0837c9ed</id>
 			<dataDefinition>
-				<objectId>001ffd01-73a0-4279-8efd-5e17b0edd0bd</objectId>
+				<id>286ee0d0-bfb9-448b-96de-17c440c135b6</id>
 			</dataDefinition>
 			<code>object_label</code>
 			<name>数据库编码</name>
@@ -27,9 +27,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>c3ee1e0c-85ac-49ae-a279-12bf03843127</objectId>
+			<id>890b919f-d8bb-4201-bdfd-a73ec2bbbddf</id>
 			<dataDefinition>
-				<objectId>48d9a495-e7cc-4bd7-a55c-45f71c749425</objectId>
+				<id>1cacaf8b-c36c-437a-9a3f-9061168af4b1</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>数据库名称</name>
@@ -38,9 +38,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>8b2f6550-23f7-45cb-8617-157efadd5139</objectId>
+			<id>1f2aed51-5089-487b-a5fd-856ee0d13d46</id>
 			<dataDefinition>
-				<objectId>cf19561d-a299-4b49-b08e-2124f43737e8</objectId>
+				<id>c2f74fbf-a562-41a2-a8a3-8a1216ee9d1b</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>数据库描述</name>
@@ -49,4 +49,14 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="b4127caf-8868-4480-a186-559831b0833b">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>87336071-21e7-447b-bbde-fa5373f11953</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

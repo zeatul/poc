@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="${id}">
 	<code>${code}</code>
 	<#if name??>
 	<name>${name}</name>
@@ -11,9 +11,9 @@
 	<columns>
 		<#list columnList as column>
 		<column>
-			<objectId>${column.objectId}</objectId>
+			<id>${column.id}</id>
 			<dataDefinition>
-				<objectId>${column.dataDefinition.objectId}</objectId>
+				<id>${column.dataDefinition.id}</id>
 			</dataDefinition>
 			<#if column.code??>
 			<code>${column.code}</code>
@@ -37,4 +37,26 @@
 		</column>
 		</#list>
 	</columns>
+	<#if (indexList?? && indexList?size>0)>
+	<indexes>
+	<#list indexList as index>
+		<index id="${index.id}">
+			<code>${index.code}</code>
+			<#if index.name??>
+			<code>${index.name}</code>
+			</#if>
+			<#if index.comment??>
+			<comment>${index.comment}</comment>
+			</#if>
+			<columns>
+			<#list index.columnList as column>
+				<column>
+					<id>${column.id}</id>
+				</column>
+			</#list>
+			</columns>
+		</index>
+	</#list>
+	<indexes>
+	</#if>
 </table>

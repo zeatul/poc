@@ -5,6 +5,14 @@ import java.util.List;
 
 public class Table {
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -64,6 +72,8 @@ public class Table {
 	private String code;
 	
 	private String comment;
+	
+	private String id;
 	
 	/**
 	 * 表类型(普通表,树表)

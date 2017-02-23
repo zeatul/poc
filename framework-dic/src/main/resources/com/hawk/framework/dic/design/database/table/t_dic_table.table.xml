@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="5bae379c-5f20-414c-a9bf-5a8ec2451cc0">
 	<code>t_dic_table</code>
 	<comment>表对象</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>7f2aff67-150e-4573-a3dc-075f8625d47c</objectId>
+			<id>dba5b14c-151a-4b08-938a-1ba3afa53211</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>12384eff-8d66-40a3-a81f-21be458a1853</objectId>
+			<id>d7721a99-ac6f-491c-b752-22b5fdbf411f</id>
 			<dataDefinition>
-				<objectId>c3371346-dcc1-4edc-8718-9fbfbd5c551a</objectId>
+				<id>5160092c-55d0-485b-ba30-5e0a55222195</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>表的编码</name>
@@ -27,9 +27,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>ae2060ae-4e9a-41ea-bd2e-eea3891ba05c</objectId>
+			<id>64fd1792-30e5-43f3-a08c-6bfbb6b85d36</id>
 			<dataDefinition>
-				<objectId>5dc6381f-d410-40e8-a70c-389bb4ab04b7</objectId>
+				<id>18d29ced-f6c1-4edd-a729-2cd2f24015a7</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>表的名称</name>
@@ -38,9 +38,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>9764d1ad-c09c-42cd-947d-47a13cd1d41d</objectId>
+			<id>a7676bbd-91de-4ad1-98ab-7515fdbe3e65</id>
 			<dataDefinition>
-				<objectId>e62e4b32-4b98-425e-82ea-2aaf249ab395</objectId>
+				<id>b0914439-bf4b-4a1a-8366-ed3b9c73a5c6</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>表的描述</name>
@@ -49,9 +49,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<objectId>f1d3e394-faea-40d9-a79f-b40ea7a8331d</objectId>
+			<id>66456a69-c2c1-4329-b016-49f99a2274d8</id>
 			<dataDefinition>
-				<objectId>d7fcce38-5c39-47ab-9c1b-10150af7da35</objectId>
+				<id>f09e7cf8-4bd3-4d1b-b2b5-c841417cfbb6</id>
 			</dataDefinition>
 			<code>object_type</code>
 			<name>表的类型</name>
@@ -60,4 +60,22 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="78674897-dfe5-4273-9427-0da4aba3885d">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>dba5b14c-151a-4b08-938a-1ba3afa53211</id>
+				</column>
+			</columns>
+		</index>
+		<index id="6af1dbfb-aa50-44a5-b8a1-c2ff79898b23">
+			<code>UI_DT_1</code>
+			<columns>
+				<column>
+					<id>d7721a99-ac6f-491c-b752-22b5fdbf411f</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

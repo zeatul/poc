@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table id="bfb5dd27-b65a-4513-91c3-26c53861f9a5">
+	<code>t_dic_application_table</code>
+	<comment>应用拥有的表</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<id>a3762c99-ab27-4716-b5b7-15339126b711</id>
+			<dataDefinition>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+			</dataDefinition>
+			<code>application_object_id</code>
+			<name>应用对象ID</name>
+			<comment>应用对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<id>0dc2c4d1-aa26-4d24-9b9d-7e1d9dc96f4a</id>
+			<dataDefinition>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+			</dataDefinition>
+			<code>table_object_id</code>
+			<name>表对象ID</name>
+			<comment>表对象ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+	<indexes>
+		<index id="4fc73d1e-1717-446d-95cf-e736ccc02a11">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>a3762c99-ab27-4716-b5b7-15339126b711</id>
+				</column>
+				<column>
+					<id>0dc2c4d1-aa26-4d24-9b9d-7e1d9dc96f4a</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
+</table>

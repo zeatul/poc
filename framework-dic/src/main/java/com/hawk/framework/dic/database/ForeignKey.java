@@ -4,6 +4,14 @@ import java.util.List;
 
 public class ForeignKey {
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -78,5 +86,6 @@ public class ForeignKey {
 	private String code;
 	private String name;
 	private String comment;
+	private String id;
 
 }

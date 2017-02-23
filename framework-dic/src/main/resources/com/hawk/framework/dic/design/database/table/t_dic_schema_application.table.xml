@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="201b01c1-0d98-46c1-8aff-54455f8899c1">
 	<code>t_dic_schema_application</code>
 	<comment>schema拥有的应用</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>b701ecee-496c-4ee6-9686-db3cbe1ef6c7</objectId>
+			<id>fa200e9b-9c20-4bb8-84ef-30bc433eff93</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>application_object_id</code>
 			<name></name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>9a65c67f-d59e-4e5e-8b77-11c9933aa419</objectId>
+			<id>2442c9ff-75cb-4c13-bbce-9c63880ac824</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>schema_object_id</code>
 			<name></name>
@@ -27,4 +27,17 @@
 			<isPk>yes</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="c40dd4f7-7105-4857-913b-b4f20a182fd1">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>fa200e9b-9c20-4bb8-84ef-30bc433eff93</id>
+				</column>
+				<column>
+					<id>2442c9ff-75cb-4c13-bbce-9c63880ac824</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>

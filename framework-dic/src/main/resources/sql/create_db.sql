@@ -2,8 +2,6 @@ drop index ui_d_a_1 on t_dic_application;
 
 drop table if exists t_dic_application;
 
-drop index ui_d_t_a_1 on t_dic_application_table;
-
 drop table if exists t_dic_application_table;
 
 drop index ui_dc_1 on t_dic_column;
@@ -75,15 +73,6 @@ create table t_dic_application_table
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_dic_application_table comment '应用拥有的表';
-
-/*==============================================================*/
-/* Index: ui_d_t_a_1                                            */
-/*==============================================================*/
-create unique index ui_d_t_a_1 on t_dic_application_table
-(
-   application_object_id,
-   table_object_id
-);
 
 /*==============================================================*/
 /* Table: t_dic_column                                          */

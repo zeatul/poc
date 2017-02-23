@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
+<table id="ea70f859-f7ff-4eb6-9147-6ffac254f180">
 	<code>t_dic_index_column</code>
 	<comment>索引字段</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<objectId>d1d76a05-93ed-4929-84a7-eeee2703c053</objectId>
+			<id>fb943e75-7e2b-45dd-b926-823e7651d8a0</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>index_object_id</code>
 			<name>索引对象ID</name>
@@ -16,9 +16,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>7da95350-bfe2-41ab-b71c-02fa948b77b1</objectId>
+			<id>55295fff-4965-4751-88da-a37047733750</id>
 			<dataDefinition>
-				<objectId>34e58857-4dc5-4c0b-8b7b-cf9ea7e2f0a3</objectId>
+				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
 			</dataDefinition>
 			<code>column_object_id</code>
 			<name>表字段对象ID</name>
@@ -27,9 +27,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<objectId>79511e1c-bf9a-40a4-84ef-dbda301c7e39</objectId>
+			<id>85f44b84-3469-4172-a5eb-253aad78e964</id>
 			<dataDefinition>
-				<objectId>d1b21e0c-36ce-48c5-997f-6fc09a0ac76b</objectId>
+				<id>091b8fbc-5bb8-4890-a6d2-57705463ebc1</id>
 			</dataDefinition>
 			<code>object_order</code>
 			<name>字段在索引的序号</name>
@@ -38,4 +38,17 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index id="f82185e7-8a06-40ac-9912-223bf03cf0d9">
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>fb943e75-7e2b-45dd-b926-823e7651d8a0</id>
+				</column>
+				<column>
+					<id>55295fff-4965-4751-88da-a37047733750</id>
+				</column>
+			</columns>
+		</index>
+	<indexes>
 </table>
