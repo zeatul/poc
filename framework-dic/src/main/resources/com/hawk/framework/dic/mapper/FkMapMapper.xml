@@ -5,13 +5,15 @@
 <mapper namespace="com.hawk.framework.dic.mapper.FkMapMapper">
 
 	<sql id="columns">	
-				fk_object_id AS "fkObjectId" ,
+				object_id AS "objectId" ,
+		fk_object_id AS "fkObjectId" ,
 		parent_column_object_id AS "parentColumnObjectId" ,
 		child_column_object_id AS "childColumnObjectId" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="fkObjectId != null"> AND fk_object_id = #{fkObjectId}  </if>
 			<if test="parentColumnObjectId != null"> AND parent_column_object_id = #{parentColumnObjectId}  </if>
 			<if test="childColumnObjectId != null"> AND child_column_object_id = #{childColumnObjectId}  </if>
@@ -20,6 +22,7 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND object_id = #{old_objectId}
 			AND fk_object_id = #{old_fkObjectId}
 			AND parent_column_object_id = #{old_parentColumnObjectId}
 			AND child_column_object_id = #{old_childColumnObjectId}
@@ -28,6 +31,7 @@
 	
 	<sql id="update">
 		<set>
+			object_id = #{objectId},
 			fk_object_id = #{fkObjectId},
 			parent_column_object_id = #{parentColumnObjectId},
 			child_column_object_id = #{childColumnObjectId},
@@ -36,6 +40,7 @@
 	
 	<sql id="updateWithoutNull">
 		<set>
+			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="fkObjectId != null">fk_object_id = #{fkObjectId},</if>
 			<if test="parentColumnObjectId != null">parent_column_object_id = #{parentColumnObjectId},</if>
 			<if test="childColumnObjectId != null">child_column_object_id = #{childColumnObjectId},</if>
@@ -44,7 +49,7 @@
 	
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-			AND fk_object_id = #{fkObjectId}
+			AND object_id = #{objectId}
 		</trim>
 	</sql>
 	
@@ -77,11 +82,13 @@
 	
 	<insert id="insert"  parameterType="FkMapDomain">
 		INSERT INTO t_dic_fk_map (			
+				object_id,				
 				fk_object_id,				
 				parent_column_object_id,				
 				child_column_object_id				
 		)		
 		VALUES (	
+			#{objectId},
 			#{fkObjectId},
 			#{parentColumnObjectId},
 			#{childColumnObjectId}

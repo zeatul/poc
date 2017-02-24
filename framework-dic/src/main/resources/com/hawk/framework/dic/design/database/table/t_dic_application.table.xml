@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="05b37e19-40d1-4311-b617-93490a1215ea">
+<table>
+	<id>e1986d48-b23e-4362-8689-185728ae795d</id>
 	<code>t_dic_application</code>
 	<comment>应用,一个应用一个package,对应很多表.</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>0a5d3f14-c7a7-4ed2-861b-0322f9fdd628</id>
+			<id>5ab59a4b-538a-4506-a578-64bb1d6bfb09</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -16,20 +17,20 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>2d27da34-afbe-4b51-a6c2-1778f7200f5d</id>
+			<id>c2bc217b-c9b9-4dab-97ef-a0045a8669c4</id>
 			<dataDefinition>
-				<id>0f73f53a-5a1d-419b-8fcb-abfd4ec66b97</id>
+				<id>4501b018-cf8e-40e0-9b06-0604a9811e8a</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>应用编码</name>
 			<comment>应用编码</comment>
-			<nullable>yes</nullable>
+			<nullable>no</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>dfe88dd5-8329-4dbb-b8ee-3f4b0021b6d6</id>
+			<id>d1d1880c-ba9c-44f6-afed-3c193ac35317</id>
 			<dataDefinition>
-				<id>9df95cbc-1dfc-40e3-90de-c6f0969ec22a</id>
+				<id>45ef5b3d-d41f-4575-a9df-cc9705481350</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>应用名称</name>
@@ -38,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>cc30ba5e-d51f-46c6-aee5-04939ed85dec</id>
+			<id>5a0f8283-337e-41bc-8c3c-15ae4731c5ab</id>
 			<dataDefinition>
-				<id>06f15e64-be35-47e6-a6a2-d530caa64bc0</id>
+				<id>1bae3a1a-9e6d-4bd7-9a19-da81e33b8b85</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>应用描述</name>
@@ -50,19 +51,21 @@
 		</column>
 	</columns>
 	<indexes>
-		<index id="e16c641b-80e4-4fa3-9495-8b0169e7505e">
+		<index>
+			<id>3c3bf23e-87c8-440b-bf18-0f8b76414cec</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>0a5d3f14-c7a7-4ed2-861b-0322f9fdd628</id>
+					<id>5ab59a4b-538a-4506-a578-64bb1d6bfb09</id>
 				</column>
 			</columns>
 		</index>
-		<index id="afe7b105-6db9-4958-a651-04f2bd0a0e6b">
-			<code>ui_d_a_1</code>
+		<index>
+			<id>e1b1bb9e-d079-495f-bbc9-ce19f0641d90</id>
+			<code>ui_dic_application_code</code>
 			<columns>
 				<column>
-					<id>2d27da34-afbe-4b51-a6c2-1778f7200f5d</id>
+					<id>c2bc217b-c9b9-4dab-97ef-a0045a8669c4</id>
 				</column>
 			</columns>
 		</index>

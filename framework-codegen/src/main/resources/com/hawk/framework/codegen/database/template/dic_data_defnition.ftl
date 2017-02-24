@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataDefinitions>
 <#list dataDefnitionList as def>
-	<dataDefinition id="${def.id}">
+	<dataDefinition>
+		<id>${def.id}</id>
 		<code>${def.code}</code>
 		<name>${def.name}</name>
 		<#if def.displayName??>

@@ -15,6 +15,11 @@ public class IndexColumnDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
+	 * 主键 object_id
+	 */
+	private String objectId;
+	
+	/**
 	 * 索引对象ID index_object_id
 	 */
 	private String indexObjectId;
@@ -29,6 +34,22 @@ public class IndexColumnDomain implements Serializable {
 	 */
 	private Integer objectOrder;
 	
+	
+	/**
+	 * 
+	 * @return 主键 object_id
+	 */
+	public String getObjectId(){
+		return objectId;
+	}
+	
+	/**
+	 * 
+	 * @param objectId 主键 object_id
+	 */	
+	public void setObjectId (String objectId) {
+		this.objectId = objectId;
+	}
 	
 	/**
 	 * 

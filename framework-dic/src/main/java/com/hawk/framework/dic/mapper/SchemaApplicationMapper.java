@@ -14,10 +14,10 @@ public interface SchemaApplicationMapper  {
 
 	/**
 	 * 根据主键加载记录
-	 * @param applicationObjectId 
+	 * @param objectId 主键
 	 * @return 查询到的记录
 	 */
-	SchemaApplicationDomain load(@Param("applicationObjectId")String applicationObjectId );
+	SchemaApplicationDomain load(@Param("objectId")String objectId );
 	
 	/**
 	 * 动态条件加载记录
@@ -42,10 +42,10 @@ public interface SchemaApplicationMapper  {
 	
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 * @param applicationObjectId 
+	 * @param objectId 主键
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("applicationObjectId")String applicationObjectId );
+	int countByPK(@Param("objectId")String objectId );
 	
 	
 	/**
@@ -57,10 +57,10 @@ public interface SchemaApplicationMapper  {
 	
 	/**
 	 * 根据主键删除记录
-	 * @param applicationObjectId 
+	 * @param objectId 主键
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("applicationObjectId")String applicationObjectId );
+	int delete(@Param("objectId")String objectId );
 	
 	/**
 	 * 动态删除记录

@@ -1,8 +1,8 @@
-package com.hawk.framework.dic.database.converter.mysql;
+package com.hawk.framework.dic.design.database.converter.mysql;
 
-import com.hawk.framework.dic.data.DataDefinition;
-import com.hawk.framework.dic.data.EnumDataType;
-import com.hawk.framework.dic.database.converter.TypeConverter;
+import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.EnumDataType;
+import com.hawk.framework.dic.design.database.converter.TypeConverter;
 import com.hawk.framework.utility.StringTools;
 
 /**

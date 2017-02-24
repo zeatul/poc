@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="9023ed54-094e-48fd-87ef-eab47b3686b1">
+<table>
+	<id>a05c856c-0f0c-491a-acdb-ea0946065089</id>
 	<code>t_dic_schema</code>
 	<comment>schema代表一个库，一个库可以有很多应用</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>87336071-21e7-447b-bbde-fa5373f11953</id>
+			<id>b878dab3-fbf4-4d54-8e8d-5f7ec3f22609</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>object_id</code>
-			<name>主键ID</name>
-			<comment>主键ID</comment>
+			<name>对象Iid</name>
+			<comment>对象Iid</comment>
 			<nullable>no</nullable>
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>b180bcdd-7eec-4051-97f9-7e1d0837c9ed</id>
+			<id>c69c64a5-f4f6-4b17-82d3-ba21bffe2573</id>
 			<dataDefinition>
-				<id>286ee0d0-bfb9-448b-96de-17c440c135b6</id>
+				<id>5e677a36-ba0b-4b82-9732-6ab750922885</id>
 			</dataDefinition>
-			<code>object_label</code>
+			<code>object_code</code>
 			<name>数据库编码</name>
 			<comment>数据库编码</comment>
-			<nullable>yes</nullable>
+			<nullable>no</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>890b919f-d8bb-4201-bdfd-a73ec2bbbddf</id>
+			<id>03e4df6d-d2bd-46b5-b4c7-f2e98c2b392f</id>
 			<dataDefinition>
-				<id>1cacaf8b-c36c-437a-9a3f-9061168af4b1</id>
+				<id>4b71300e-3bc9-4eb3-81c5-f63b31646464</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>数据库名称</name>
@@ -38,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1f2aed51-5089-487b-a5fd-856ee0d13d46</id>
+			<id>880db007-5dd6-4958-949e-6c532bc19fcb</id>
 			<dataDefinition>
-				<id>c2f74fbf-a562-41a2-a8a3-8a1216ee9d1b</id>
+				<id>d1d41f20-8bba-4a7d-b986-be6d38636873</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>数据库描述</name>
@@ -50,11 +51,21 @@
 		</column>
 	</columns>
 	<indexes>
-		<index id="b4127caf-8868-4480-a186-559831b0833b">
+		<index>
+			<id>8922256c-af52-4cef-9f35-70b83c8de405</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>87336071-21e7-447b-bbde-fa5373f11953</id>
+					<id>b878dab3-fbf4-4d54-8e8d-5f7ec3f22609</id>
+				</column>
+			</columns>
+		</index>
+		<index>
+			<id>108ccea4-6b03-4b41-b232-23e80333ce66</id>
+			<code>ui_dic_schema_code</code>
+			<columns>
+				<column>
+					<id>c69c64a5-f4f6-4b17-82d3-ba21bffe2573</id>
 				</column>
 			</columns>
 		</index>

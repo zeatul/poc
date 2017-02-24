@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+	<id>84078186-ad6a-445c-9acc-d5d099fe8fa3</id>
+	<code>dic</code>
+	<name>数据字典库</name>
+	<comment>数据字典库，目前只有数据字典一个应用</comment>
+	<applications>
+		<application>
+			<id>c835756f-0d18-4274-ba64-43e34728d933</id>
+		</application>
+	</applications>
+</schema>

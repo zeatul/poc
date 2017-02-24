@@ -30,7 +30,7 @@ public class DataDefinitionDomain implements Serializable {
 	private String dataType;
 	
 	/**
-	 * 标签 object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
@@ -50,7 +50,7 @@ public class DataDefinitionDomain implements Serializable {
 	private String objectDisplayName;
 	
 	/**
-	 * 正则 regex
+	 * 正则表达式 regex
 	 */
 	private String regex;
 	
@@ -155,7 +155,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 标签 object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -163,7 +163,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 标签 object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -219,7 +219,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 正则 regex
+	 * @return 正则表达式 regex
 	 */
 	public String getRegex(){
 		return regex;
@@ -227,7 +227,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param regex 正则 regex
+	 * @param regex 正则表达式 regex
 	 */	
 	public void setRegex (String regex) {
 		this.regex = regex;

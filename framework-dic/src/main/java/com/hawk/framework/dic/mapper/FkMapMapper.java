@@ -14,10 +14,10 @@ public interface FkMapMapper  {
 
 	/**
 	 * 根据主键加载记录
-	 * @param fkObjectId 外键对象ID
+	 * @param objectId 主键
 	 * @return 查询到的记录
 	 */
-	FkMapDomain load(@Param("fkObjectId")String fkObjectId );
+	FkMapDomain load(@Param("objectId")String objectId );
 	
 	/**
 	 * 动态条件加载记录
@@ -42,10 +42,10 @@ public interface FkMapMapper  {
 	
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 * @param fkObjectId 外键对象ID
+	 * @param objectId 主键
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("fkObjectId")String fkObjectId );
+	int countByPK(@Param("objectId")String objectId );
 	
 	
 	/**
@@ -57,10 +57,10 @@ public interface FkMapMapper  {
 	
 	/**
 	 * 根据主键删除记录
-	 * @param fkObjectId 外键对象ID
+	 * @param objectId 主键
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("fkObjectId")String fkObjectId );
+	int delete(@Param("objectId")String objectId );
 	
 	/**
 	 * 动态删除记录

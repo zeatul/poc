@@ -1,4 +1,4 @@
-package com.hawk.framework.dic.data;
+package com.hawk.framework.dic.design.data;
 
 /**
  * 数据定义

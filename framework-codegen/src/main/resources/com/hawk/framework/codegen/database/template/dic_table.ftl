@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="${id}">
+<table>
+	<id>${id}</id>
 	<code>${code}</code>
 	<#if name??>
 	<name>${name}</name>
@@ -40,7 +41,8 @@
 	<#if (indexList?? && indexList?size>0)>
 	<indexes>
 	<#list indexList as index>
-		<index id="${index.id}">
+		<index>
+			<id>${index.id}</id>
 			<code>${index.code}</code>
 			<#if index.name??>
 			<code>${index.name}</code>

@@ -1,4 +1,4 @@
-package com.hawk.framework.dic.database;
+package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 

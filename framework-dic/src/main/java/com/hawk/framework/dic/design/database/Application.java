@@ -1,16 +1,16 @@
-package com.hawk.framework.dic.database;
+package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
-public class Schema {
+/**
+ * 表属于应用,应用属于schema
+ * 
+ * @author pzhang1
+ *
+ */
+public class Application {
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -36,21 +36,29 @@ public class Schema {
 		this.comment = comment;
 	}
 
-	public List<Application> getApplicationList() {
-		return applicationList;
+	public List<Table> getTableList() {
+		return tableList;
 	}
 
-	public void setApplicationList(List<Application> applicationList) {
-		this.applicationList = applicationList;
+	public void setTableList(List<Table> tableList) {
+		this.tableList = tableList;
 	}
 
-	private List<Application> applicationList;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	private String name;
 
 	private String code;
 
 	private String comment;
+
+	private List<Table> tableList;
 	
 	private String id;
 

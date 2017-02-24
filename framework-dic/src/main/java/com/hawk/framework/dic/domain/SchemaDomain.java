@@ -15,14 +15,14 @@ public class SchemaDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 主键ID object_id
+	 * 对象Iid object_id
 	 */
 	private String objectId;
 	
 	/**
-	 * 数据库编码 object_label
+	 * 数据库编码 object_code
 	 */
-	private String objectLabel;
+	private String objectCode;
 	
 	/**
 	 * 数据库名称 object_name
@@ -37,7 +37,7 @@ public class SchemaDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 主键ID object_id
+	 * @return 对象Iid object_id
 	 */
 	public String getObjectId(){
 		return objectId;
@@ -45,7 +45,7 @@ public class SchemaDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectId 主键ID object_id
+	 * @param objectId 对象Iid object_id
 	 */	
 	public void setObjectId (String objectId) {
 		this.objectId = objectId;
@@ -53,18 +53,18 @@ public class SchemaDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 数据库编码 object_label
+	 * @return 数据库编码 object_code
 	 */
-	public String getObjectLabel(){
-		return objectLabel;
+	public String getObjectCode(){
+		return objectCode;
 	}
 	
 	/**
 	 * 
-	 * @param objectLabel 数据库编码 object_label
+	 * @param objectCode 数据库编码 object_code
 	 */	
-	public void setObjectLabel (String objectLabel) {
-		this.objectLabel = objectLabel;
+	public void setObjectCode (String objectCode) {
+		this.objectCode = objectCode;
 	}
 	
 	/**

@@ -26,10 +26,10 @@ import com.hawk.framework.codegen.database.meta.Table;
 import com.hawk.framework.codegen.database.parse.DatabaseParserFactory;
 import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
-import com.hawk.framework.dic.data.DataDefinition;
-import com.hawk.framework.dic.data.EnumDataType;
-import com.hawk.framework.dic.database.Application;
-import com.hawk.framework.dic.database.Schema;
+import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.EnumDataType;
+import com.hawk.framework.dic.design.database.Application;
+import com.hawk.framework.dic.design.database.Schema;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -108,12 +108,12 @@ public class DatabaseToDicApp {
 	
 	private static void writeDictionary(Database database,IProjectConfigure projectConfigure,IDbToDicConfigure dbToDicConfigure,ITypeConverter typeConverter) throws Exception{
 		Map<String,DataDefinition> defCodeMap = new HashMap<String,DataDefinition>();
-		List<com.hawk.framework.dic.database.Table> dicTableList = new ArrayList<com.hawk.framework.dic.database.Table>();
+		List<com.hawk.framework.dic.design.database.Table> dicTableList = new ArrayList<com.hawk.framework.dic.design.database.Table>();
 		for (Table table : database.getTableList()){
 			/**
 			 * 表
 			 */
-			com.hawk.framework.dic.database.Table dicTable = new com.hawk.framework.dic.database.Table();
+			com.hawk.framework.dic.design.database.Table dicTable = new com.hawk.framework.dic.design.database.Table();
 			dicTable.setCode(table.getCode());
 			dicTable.setType("normal");
 			dicTable.setComment(table.getComment());
@@ -123,8 +123,8 @@ public class DatabaseToDicApp {
 			/**
 			 * 字段
 			 */
-			List<com.hawk.framework.dic.database.Column> dicColumnList = new ArrayList<com.hawk.framework.dic.database.Column>();
-			Map<String,com.hawk.framework.dic.database.Column> dicColumnMap = new HashMap<String,com.hawk.framework.dic.database.Column>();
+			List<com.hawk.framework.dic.design.database.Column> dicColumnList = new ArrayList<com.hawk.framework.dic.design.database.Column>();
+			Map<String,com.hawk.framework.dic.design.database.Column> dicColumnMap = new HashMap<String,com.hawk.framework.dic.design.database.Column>();
 			dicTable.setColumnList(dicColumnList);
 			for (Column column: table.getColumnList()){
 				String columnCode = column.getCode();
@@ -145,7 +145,7 @@ public class DatabaseToDicApp {
 					def = convert(column,typeConverter);
 					defCodeMap.put(def.getCode(), def);
 				}
-				com.hawk.framework.dic.database.Column dicColumn = new com.hawk.framework.dic.database.Column();
+				com.hawk.framework.dic.design.database.Column dicColumn = new com.hawk.framework.dic.design.database.Column();
 				dicColumnList.add(dicColumn);				
 				dicColumn.setDataDefinition(def);
 				dicColumn.setNullable(column.getNullable());
@@ -160,16 +160,16 @@ public class DatabaseToDicApp {
 			/**
 			 * 索引
 			 */
-			List<com.hawk.framework.dic.database.Index> dicIndexList = new ArrayList<com.hawk.framework.dic.database.Index>();
+			List<com.hawk.framework.dic.design.database.Index> dicIndexList = new ArrayList<com.hawk.framework.dic.design.database.Index>();
 			dicTable.setIndexList(dicIndexList);
 			for (Index index : table.getIndexList()){
-				com.hawk.framework.dic.database.Index dicIndex = new com.hawk.framework.dic.database.Index();
+				com.hawk.framework.dic.design.database.Index dicIndex = new com.hawk.framework.dic.design.database.Index();
 				dicIndexList.add(dicIndex);
 				dicIndex.setCode(index.getCode());
 				dicIndex.setIsPk(index.getIsPk());
 				dicIndex.setIsUnique(index.getIsUnique());
 				dicIndex.setId(UUID.randomUUID().toString());
-				List<com.hawk.framework.dic.database.Column> dicIndexColumnList = new ArrayList<com.hawk.framework.dic.database.Column>();
+				List<com.hawk.framework.dic.design.database.Column> dicIndexColumnList = new ArrayList<com.hawk.framework.dic.design.database.Column>();
 				dicIndex.setColumnList(dicIndexColumnList);
 				for (Column column :index.getColumnList()){
 					dicIndexColumnList.add(dicColumnMap.get(column.getCode()));
@@ -194,7 +194,7 @@ public class DatabaseToDicApp {
 		
 		
 		/**
-		 * 输出Application
+		 * 输出Application,每个application一个文件
 		 */
 		List<Application> applicationList = new ArrayList<Application>();
 		Application application = new Application();
@@ -213,13 +213,28 @@ public class DatabaseToDicApp {
 		schema.setApplicationList(applicationList);
 		schema.setId(UUID.randomUUID().toString());
 		schema.setCode("dic");
-		schema.setName("dic库");
-		schema.setComment("dic库，目前只有数据字典一个应用");
+		schema.setName("数据字典库");
+		schema.setComment("数据字典库，目前只有数据字典一个应用");
+		writeSchema(schema,projectConfigure);
+	}
+	
+	private static void writeSchema(Schema schema,IProjectConfigure projectConfigure)throws Exception{
+		/* 获取或创建模板 */
+		Template template = cfg.getTemplate("template/dic_schema.ftl");
+		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
+				projectConfigure.getSubPackage(), "design.database");
+		ProjectTools.clearDirectory(directory, "schema.xml");
+		String filePath = directory + File.separator +schema.getCode()+ ".schema.xml";
+		if (new File(filePath).exists())
+			throw new RuntimeException("Exists file = " + filePath);
+		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
+		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
+		template.process(schema, out);
+		out.flush();
+		out.close();
 	}
 	
 	private static void writeApplication(List<Application> applicationList,IProjectConfigure projectConfigure)throws Exception{
-		Map<String,List<Application>> root = new HashMap<String,List<Application>>();
-		root.put("applicationList", applicationList);
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_application.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
@@ -231,7 +246,7 @@ public class DatabaseToDicApp {
 				throw new RuntimeException("Exists file = " + filePath);
 			FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
 			OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
-			template.process(root, out);
+			template.process(application, out);
 			out.flush();
 			out.close();
 		}
@@ -256,13 +271,13 @@ public class DatabaseToDicApp {
 		out.close();
 	}
 	
-	private static void writeTable(List<com.hawk.framework.dic.database.Table> dicTableList,IProjectConfigure projectConfigure)throws Exception{
+	private static void writeTable(List<com.hawk.framework.dic.design.database.Table> dicTableList,IProjectConfigure projectConfigure)throws Exception{
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_table.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "design.database.table");
 		ProjectTools.clearDirectory(directory, ".table.xml");
-		for (com.hawk.framework.dic.database.Table dicTable : dicTableList){
+		for (com.hawk.framework.dic.design.database.Table dicTable : dicTableList){
 			String filePath = directory + File.separator+dicTable.getCode() + ".table.xml";
 			if (new File(filePath).exists())
 				throw new RuntimeException("Exists file = " + filePath);

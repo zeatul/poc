@@ -1,41 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="201b01c1-0d98-46c1-8aff-54455f8899c1">
+<table>
+	<id>b5a04acd-17ca-4717-91a5-1773ca23a0dc</id>
 	<code>t_dic_schema_application</code>
 	<comment>schema拥有的应用</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>fa200e9b-9c20-4bb8-84ef-30bc433eff93</id>
+			<id>7f6bec05-7135-4bf3-978b-c33649108bea</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
-			<code>application_object_id</code>
-			<name></name>
-			<comment></comment>
+			<code>object_id</code>
+			<name>主键</name>
+			<comment>主键</comment>
 			<nullable>no</nullable>
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>2442c9ff-75cb-4c13-bbce-9c63880ac824</id>
+			<id>2343c27b-dab0-4f8c-918f-977ab74f9049</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+			</dataDefinition>
+			<code>application_object_id</code>
+			<name>应用对象id</name>
+			<comment>应用对象id</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>50a419b9-8317-4182-8852-cdc061dc97a1</id>
+			<dataDefinition>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>schema_object_id</code>
-			<name></name>
-			<comment></comment>
+			<name>数据库对象Id</name>
+			<comment>数据库对象Id</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 	</columns>
 	<indexes>
-		<index id="c40dd4f7-7105-4857-913b-b4f20a182fd1">
+		<index>
+			<id>93818c0a-a658-4562-87fd-4ea8cbd65b23</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>fa200e9b-9c20-4bb8-84ef-30bc433eff93</id>
+					<id>7f6bec05-7135-4bf3-978b-c33649108bea</id>
+				</column>
+			</columns>
+		</index>
+		<index>
+			<id>7f3459c2-1da1-4be9-a9f1-af74c18debfa</id>
+			<code>ui_dic_schema_application</code>
+			<columns>
+				<column>
+					<id>2343c27b-dab0-4f8c-918f-977ab74f9049</id>
 				</column>
 				<column>
-					<id>2442c9ff-75cb-4c13-bbce-9c63880ac824</id>
+					<id>50a419b9-8317-4182-8852-cdc061dc97a1</id>
 				</column>
 			</columns>
 		</index>

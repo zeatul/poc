@@ -15,6 +15,11 @@ public class ApplicationTableDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
+	 * 主键 object_id
+	 */
+	private String objectId;
+	
+	/**
 	 * 应用对象ID application_object_id
 	 */
 	private String applicationObjectId;
@@ -24,6 +29,22 @@ public class ApplicationTableDomain implements Serializable {
 	 */
 	private String tableObjectId;
 	
+	
+	/**
+	 * 
+	 * @return 主键 object_id
+	 */
+	public String getObjectId(){
+		return objectId;
+	}
+	
+	/**
+	 * 
+	 * @param objectId 主键 object_id
+	 */	
+	public void setObjectId (String objectId) {
+		this.objectId = objectId;
+	}
 	
 	/**
 	 * 

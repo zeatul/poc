@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="196b0ebb-8279-4324-b63e-2e0971f70c0a">
+<table>
+	<id>15360dba-20f9-4387-8e1a-780446a53d57</id>
 	<code>t_dic_index</code>
 	<comment>索引</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>3f19db37-c7c7-4e47-9601-9aa228957e69</id>
+			<id>9583863e-46af-4633-a4fb-e035b038a04d</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -16,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>6a5d44c9-939e-45e4-b0ba-3cc496d43b32</id>
+			<id>6751f747-6e25-4332-b7cf-e6666c7f90ad</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>table_object_id</code>
 			<name>表对象ID</name>
@@ -27,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f88aa1ab-e23d-41f8-9cbd-e0756425dd81</id>
+			<id>f9379f5e-bdf4-409e-98cb-9abbd2a3270a</id>
 			<dataDefinition>
-				<id>c65f020e-1010-4a18-8e86-4d54fb5f3a71</id>
+				<id>9a02310b-2f18-4443-a155-7b93916e5bda</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>索引编码</name>
@@ -38,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>07448b71-26c0-4a12-90ee-1660723431b2</id>
+			<id>9ebe38f4-8bde-43c0-8dba-ef55ab687237</id>
 			<dataDefinition>
-				<id>0fe718ad-15bc-4878-9f5d-2e07ba768c80</id>
+				<id>eaa1a28c-6793-4c47-8858-52c6816da75a</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>索引名称</name>
@@ -49,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f73eed6f-ef1d-4faf-9eff-e5970f5d9497</id>
+			<id>c86d78b6-721f-4061-b56c-f5ae5ebe00c4</id>
 			<dataDefinition>
-				<id>5f2af416-a95e-499b-8038-09213896efda</id>
+				<id>0090ca80-4de1-4a61-ad44-1c253e4fe95e</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>索引描述</name>
@@ -60,9 +61,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>48a51a82-2dcd-42b7-908b-9ff5dd9079b2</id>
+			<id>ef222c1f-fd5f-4368-abf0-66b193d1f78a</id>
 			<dataDefinition>
-				<id>5ae1c903-f3e3-43ed-b35c-82d482b02169</id>
+				<id>1ad9c7b4-e5fe-4e3e-a4fb-d25a8d07d4a5</id>
 			</dataDefinition>
 			<code>is_unique</code>
 			<name>是唯一索引</name>
@@ -71,9 +72,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>cdfc8301-c182-473a-a169-0a827d50b65b</id>
+			<id>99f4460c-47bf-415d-a324-eab6ef3f6b13</id>
 			<dataDefinition>
-				<id>777e46cd-d6f2-4ac4-b39f-8648dae417d3</id>
+				<id>492fcb8c-12c2-489b-90f3-b0b7ee6d56db</id>
 			</dataDefinition>
 			<code>is_pk</code>
 			<name>是主键</name>
@@ -83,19 +84,21 @@
 		</column>
 	</columns>
 	<indexes>
-		<index id="c61dd299-227b-489c-acf0-1b9b4f767511">
+		<index>
+			<id>6cedf306-21ec-4397-ad70-f28d5e8b9768</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>3f19db37-c7c7-4e47-9601-9aa228957e69</id>
+					<id>9583863e-46af-4633-a4fb-e035b038a04d</id>
 				</column>
 			</columns>
 		</index>
-		<index id="34df3d1d-048c-48f4-90b2-10f81d21c42d">
+		<index>
+			<id>999de5cd-a6b7-481d-8bee-bb70f39a02d6</id>
 			<code>ui_di_1</code>
 			<columns>
 				<column>
-					<id>f88aa1ab-e23d-41f8-9cbd-e0756425dd81</id>
+					<id>f9379f5e-bdf4-409e-98cb-9abbd2a3270a</id>
 				</column>
 			</columns>
 		</index>

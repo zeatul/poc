@@ -5,12 +5,14 @@
 <mapper namespace="com.hawk.framework.dic.mapper.SchemaApplicationMapper">
 
 	<sql id="columns">	
-				application_object_id AS "applicationObjectId" ,
+				object_id AS "objectId" ,
+		application_object_id AS "applicationObjectId" ,
 		schema_object_id AS "schemaObjectId" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="applicationObjectId != null"> AND application_object_id = #{applicationObjectId}  </if>
 			<if test="schemaObjectId != null"> AND schema_object_id = #{schemaObjectId}  </if>
 		</trim>	
@@ -18,6 +20,7 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND object_id = #{old_objectId}
 			AND application_object_id = #{old_applicationObjectId}
 			AND schema_object_id = #{old_schemaObjectId}
 		</trim>
@@ -25,6 +28,7 @@
 	
 	<sql id="update">
 		<set>
+			object_id = #{objectId},
 			application_object_id = #{applicationObjectId},
 			schema_object_id = #{schemaObjectId},
 		</set>
@@ -32,6 +36,7 @@
 	
 	<sql id="updateWithoutNull">
 		<set>
+			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="applicationObjectId != null">application_object_id = #{applicationObjectId},</if>
 			<if test="schemaObjectId != null">schema_object_id = #{schemaObjectId},</if>
 		</set>
@@ -39,7 +44,7 @@
 	
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-			AND application_object_id = #{applicationObjectId}
+			AND object_id = #{objectId}
 		</trim>
 	</sql>
 	
@@ -72,10 +77,12 @@
 	
 	<insert id="insert"  parameterType="SchemaApplicationDomain">
 		INSERT INTO t_dic_schema_application (			
+				object_id,				
 				application_object_id,				
 				schema_object_id				
 		)		
 		VALUES (	
+			#{objectId},
 			#{applicationObjectId},
 			#{schemaObjectId}
 		) 

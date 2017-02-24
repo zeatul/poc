@@ -15,19 +15,40 @@ public class SchemaApplicationDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 *  application_object_id
+	 * 主键 object_id
+	 */
+	private String objectId;
+	
+	/**
+	 * 应用对象id application_object_id
 	 */
 	private String applicationObjectId;
 	
 	/**
-	 *  schema_object_id
+	 * 数据库对象Id schema_object_id
 	 */
 	private String schemaObjectId;
 	
 	
 	/**
 	 * 
-	 * @return  application_object_id
+	 * @return 主键 object_id
+	 */
+	public String getObjectId(){
+		return objectId;
+	}
+	
+	/**
+	 * 
+	 * @param objectId 主键 object_id
+	 */	
+	public void setObjectId (String objectId) {
+		this.objectId = objectId;
+	}
+	
+	/**
+	 * 
+	 * @return 应用对象id application_object_id
 	 */
 	public String getApplicationObjectId(){
 		return applicationObjectId;
@@ -35,7 +56,7 @@ public class SchemaApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param applicationObjectId  application_object_id
+	 * @param applicationObjectId 应用对象id application_object_id
 	 */	
 	public void setApplicationObjectId (String applicationObjectId) {
 		this.applicationObjectId = applicationObjectId;
@@ -43,7 +64,7 @@ public class SchemaApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return  schema_object_id
+	 * @return 数据库对象Id schema_object_id
 	 */
 	public String getSchemaObjectId(){
 		return schemaObjectId;
@@ -51,7 +72,7 @@ public class SchemaApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param schemaObjectId  schema_object_id
+	 * @param schemaObjectId 数据库对象Id schema_object_id
 	 */	
 	public void setSchemaObjectId (String schemaObjectId) {
 		this.schemaObjectId = schemaObjectId;

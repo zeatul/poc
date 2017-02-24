@@ -50,7 +50,7 @@ public class ColumnDomain implements Serializable {
 	private Integer objectOrder;
 	
 	/**
-	 * 可否为空1/0) nullable
+	 * 可否为空(1/0) nullable
 	 */
 	private Integer nullable;
 	
@@ -174,7 +174,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 可否为空1/0) nullable
+	 * @return 可否为空(1/0) nullable
 	 */
 	public Integer getNullable(){
 		return nullable;
@@ -182,7 +182,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param nullable 可否为空1/0) nullable
+	 * @param nullable 可否为空(1/0) nullable
 	 */	
 	public void setNullable (Integer nullable) {
 		this.nullable = nullable;

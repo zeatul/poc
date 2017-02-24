@@ -5,13 +5,15 @@
 <mapper namespace="com.hawk.framework.dic.mapper.IndexColumnMapper">
 
 	<sql id="columns">	
-				index_object_id AS "indexObjectId" ,
+				object_id AS "objectId" ,
+		index_object_id AS "indexObjectId" ,
 		column_object_id AS "columnObjectId" ,
 		object_order AS "objectOrder" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="indexObjectId != null"> AND index_object_id = #{indexObjectId}  </if>
 			<if test="columnObjectId != null"> AND column_object_id = #{columnObjectId}  </if>
 			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
@@ -20,6 +22,7 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND object_id = #{old_objectId}
 			AND index_object_id = #{old_indexObjectId}
 			AND column_object_id = #{old_columnObjectId}
 			AND object_order = #{old_objectOrder}
@@ -28,6 +31,7 @@
 	
 	<sql id="update">
 		<set>
+			object_id = #{objectId},
 			index_object_id = #{indexObjectId},
 			column_object_id = #{columnObjectId},
 			object_order = #{objectOrder},
@@ -36,6 +40,7 @@
 	
 	<sql id="updateWithoutNull">
 		<set>
+			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="indexObjectId != null">index_object_id = #{indexObjectId},</if>
 			<if test="columnObjectId != null">column_object_id = #{columnObjectId},</if>
 			<if test="objectOrder != null">object_order = #{objectOrder},</if>
@@ -44,7 +49,7 @@
 	
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-			AND index_object_id = #{indexObjectId}
+			AND object_id = #{objectId}
 		</trim>
 	</sql>
 	
@@ -77,11 +82,13 @@
 	
 	<insert id="insert"  parameterType="IndexColumnDomain">
 		INSERT INTO t_dic_index_column (			
+				object_id,				
 				index_object_id,				
 				column_object_id,				
 				object_order				
 		)		
 		VALUES (	
+			#{objectId},
 			#{indexObjectId},
 			#{columnObjectId},
 			#{objectOrder}

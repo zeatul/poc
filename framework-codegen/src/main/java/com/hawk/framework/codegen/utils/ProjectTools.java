@@ -6,7 +6,7 @@ public class ProjectTools {
 	
 	/**
 	 * 清理目录 
-	 * @param directory
+	 * @param directory 要清理的目录
 	 * @param filter 当前只支持过滤结尾是filter的文件 ，符合该条件的文件才被删除
 	 */
 	public static void  clearDirectory(String directory,String filter) {

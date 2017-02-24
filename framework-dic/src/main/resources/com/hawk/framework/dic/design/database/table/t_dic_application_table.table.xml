@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="bfb5dd27-b65a-4513-91c3-26c53861f9a5">
+<table>
+	<id>80bb61b5-b34c-49b7-8003-21f44388287a</id>
 	<code>t_dic_application_table</code>
 	<comment>应用拥有的表</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>a3762c99-ab27-4716-b5b7-15339126b711</id>
+			<id>e4ddf429-2f45-4ff8-87d8-689e7afc7de8</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<id>a4a33935-60b4-4886-be52-ea55518f7c20</id>
+			<dataDefinition>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>application_object_id</code>
 			<name>应用对象ID</name>
 			<comment>应用对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>0dc2c4d1-aa26-4d24-9b9d-7e1d9dc96f4a</id>
+			<id>97d20418-d023-4d9d-8867-037a90f0e630</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>table_object_id</code>
 			<name>表对象ID</name>
 			<comment>表对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 	</columns>
 	<indexes>
-		<index id="4fc73d1e-1717-446d-95cf-e736ccc02a11">
+		<index>
+			<id>5a9b7e83-e706-4f07-8b16-172847689e80</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>a3762c99-ab27-4716-b5b7-15339126b711</id>
-				</column>
-				<column>
-					<id>0dc2c4d1-aa26-4d24-9b9d-7e1d9dc96f4a</id>
+					<id>e4ddf429-2f45-4ff8-87d8-689e7afc7de8</id>
 				</column>
 			</columns>
 		</index>

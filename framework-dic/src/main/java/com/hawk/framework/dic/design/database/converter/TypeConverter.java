@@ -1,6 +1,6 @@
-package com.hawk.framework.dic.database.converter;
+package com.hawk.framework.dic.design.database.converter;
 
-import com.hawk.framework.dic.data.DataDefinition;
+import com.hawk.framework.dic.design.data.DataDefinition;
 
 /**
  * 将业务数据的数据类型转化成特定数据库的类型的字符串表示法

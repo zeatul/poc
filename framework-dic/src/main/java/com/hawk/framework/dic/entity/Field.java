@@ -1,6 +1,6 @@
 package com.hawk.framework.dic.entity;
 
-import com.hawk.framework.dic.data.DataDefinition;
+import com.hawk.framework.dic.design.data.DataDefinition;
 
 public class Field {	
 

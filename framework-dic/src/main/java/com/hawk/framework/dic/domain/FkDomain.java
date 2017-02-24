@@ -15,7 +15,7 @@ public class FkDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 主键对象ID object_id
+	 * 对象ID object_id
 	 */
 	private String objectId;
 	
@@ -47,7 +47,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 主键对象ID object_id
+	 * @return 对象ID object_id
 	 */
 	public String getObjectId(){
 		return objectId;
@@ -55,7 +55,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectId 主键对象ID object_id
+	 * @param objectId 对象ID object_id
 	 */	
 	public void setObjectId (String objectId) {
 		this.objectId = objectId;

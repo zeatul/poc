@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="ea70f859-f7ff-4eb6-9147-6ffac254f180">
+<table>
+	<id>3f76e417-d3b2-4afb-bc49-1a6712efc781</id>
 	<code>t_dic_index_column</code>
 	<comment>索引字段</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>fb943e75-7e2b-45dd-b926-823e7651d8a0</id>
+			<id>d8a15257-b443-498b-8423-aff76c976638</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<id>fcb75a5b-4ef9-4134-a2f8-39f6ead64641</id>
+			<dataDefinition>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>index_object_id</code>
 			<name>索引对象ID</name>
 			<comment>索引对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>55295fff-4965-4751-88da-a37047733750</id>
+			<id>155d0b13-b0d4-4a58-9471-23b6821f03cd</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>column_object_id</code>
 			<name>表字段对象ID</name>
 			<comment>表字段对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>85f44b84-3469-4172-a5eb-253aad78e964</id>
+			<id>a01d184f-4e4e-4a98-8c30-92196e10459b</id>
 			<dataDefinition>
-				<id>091b8fbc-5bb8-4890-a6d2-57705463ebc1</id>
+				<id>7f135519-7242-4d9f-9330-9a7b50571e23</id>
 			</dataDefinition>
 			<code>object_order</code>
 			<name>字段在索引的序号</name>
@@ -39,14 +51,24 @@
 		</column>
 	</columns>
 	<indexes>
-		<index id="f82185e7-8a06-40ac-9912-223bf03cf0d9">
+		<index>
+			<id>f54890e0-ffe9-47d0-8b65-8d12fc34aae8</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>fb943e75-7e2b-45dd-b926-823e7651d8a0</id>
+					<id>d8a15257-b443-498b-8423-aff76c976638</id>
+				</column>
+			</columns>
+		</index>
+		<index>
+			<id>47c4e77f-4f4e-467a-9a9d-5fe18f012c3e</id>
+			<code>ui_dic_index_column</code>
+			<columns>
+				<column>
+					<id>fcb75a5b-4ef9-4134-a2f8-39f6ead64641</id>
 				</column>
 				<column>
-					<id>55295fff-4965-4751-88da-a37047733750</id>
+					<id>155d0b13-b0d4-4a58-9471-23b6821f03cd</id>
 				</column>
 			</columns>
 		</index>

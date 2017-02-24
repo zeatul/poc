@@ -1,6 +1,5 @@
 package com.hawk.framework.codegen.utils;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,12 +7,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.codehaus.jackson.type.JavaType;
-import org.codehaus.jackson.type.TypeReference;
 
 @SuppressWarnings("deprecation")
 public class JsonTools {
@@ -51,7 +47,7 @@ public class JsonTools {
 		}
 	}
 	
-	public static <T> Collection<T> toObject (String jsonStr, Class<? extends Collection> cClass,Class<T> tClass){
+	public static <T> Collection<T> toObject (String jsonStr, Class<? extends Collection<T>> cClass,Class<T> tClass){
 		try {
 			JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(cClass, tClass);
 			return objectMapper.readValue(jsonStr, javaType);

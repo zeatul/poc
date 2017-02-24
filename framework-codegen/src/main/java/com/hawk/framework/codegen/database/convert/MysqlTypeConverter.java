@@ -32,6 +32,7 @@ public class MysqlTypeConverter extends TypeConverter {
 		javaTypeMap.put("tinyint", "Short");
 		javaTypeMap.put("bigint", "Long");
 		javaTypeMap.put("timestamp","Date");
+		javaTypeMap.put("text","String");
 		
 		
 		jdbcTypeMap.put("int", "numeric");
@@ -45,6 +46,7 @@ public class MysqlTypeConverter extends TypeConverter {
 		jdbcTypeMap.put("bigint", "numeric");
 		jdbcTypeMap.put("clob", "longvarchar");
 		jdbcTypeMap.put("blob", "varbinary");
+		jdbcTypeMap.put("text", "longvarchar");
 	}
 
 	

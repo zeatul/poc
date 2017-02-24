@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="7a942a88-d38f-4549-be6c-0433e9b0c8d3">
+<table>
+	<id>7db4635c-31fc-4a0a-a552-da532f058f73</id>
 	<code>t_dic_fk_map</code>
 	<comment>外键字段匹配</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>a148e66d-3980-43e4-b13c-6670e906e529</id>
+			<id>e63485e6-007f-462a-aeb8-c46b579fe322</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+			</dataDefinition>
+			<code>object_id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<id>968436e0-dc38-49e4-b24f-1f6e80f72fb8</id>
+			<dataDefinition>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>fk_object_id</code>
 			<name>外键对象ID</name>
 			<comment>外键对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>35f1f415-3eba-4e36-b70d-081ba3b11fa9</id>
+			<id>5c7bf1a2-d422-49ba-bbe9-716fa80e3a6f</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>parent_column_object_id</code>
 			<name>主表字段对象ID</name>
 			<comment>主表字段对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5b639952-4b6c-4094-9632-60d2a17d1ef5</id>
+			<id>ed5fa47e-aeb0-4841-9413-4798ec07d2fe</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>child_column_object_id</code>
 			<name>主表字段对象ID</name>
 			<comment>主表字段对象ID</comment>
 			<nullable>no</nullable>
-			<isPk>yes</isPk>
+			<isPk>no</isPk>
 		</column>
 	</columns>
 	<indexes>
-		<index id="d39e2611-fd36-4a94-853b-426a56468f99">
+		<index>
+			<id>9024366f-52ab-43aa-9bc1-42eccaf0f5c9</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>a148e66d-3980-43e4-b13c-6670e906e529</id>
+					<id>e63485e6-007f-462a-aeb8-c46b579fe322</id>
+				</column>
+			</columns>
+		</index>
+		<index>
+			<id>965d7aec-9102-4ccc-b761-72a51dde5581</id>
+			<code>ui_dic_fk</code>
+			<columns>
+				<column>
+					<id>968436e0-dc38-49e4-b24f-1f6e80f72fb8</id>
 				</column>
 				<column>
-					<id>35f1f415-3eba-4e36-b70d-081ba3b11fa9</id>
+					<id>5c7bf1a2-d422-49ba-bbe9-716fa80e3a6f</id>
 				</column>
 				<column>
-					<id>5b639952-4b6c-4094-9632-60d2a17d1ef5</id>
+					<id>ed5fa47e-aeb0-4841-9413-4798ec07d2fe</id>
 				</column>
 			</columns>
 		</index>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table id="5bae379c-5f20-414c-a9bf-5a8ec2451cc0">
+<table>
+	<id>6f8a2f56-d8f5-40e0-ae3a-35675fec95da</id>
 	<code>t_dic_table</code>
 	<comment>表对象</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>dba5b14c-151a-4b08-938a-1ba3afa53211</id>
+			<id>d2dcc96d-ca5b-42f2-9974-c52c275d494e</id>
 			<dataDefinition>
-				<id>334f0c7a-4304-472f-abb3-b72c13c2c5a2</id>
+				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -16,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>d7721a99-ac6f-491c-b752-22b5fdbf411f</id>
+			<id>308ba911-8f34-4075-8f16-802bd6c4d281</id>
 			<dataDefinition>
-				<id>5160092c-55d0-485b-ba30-5e0a55222195</id>
+				<id>1410c578-3043-4952-8807-9b75992610e1</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>表的编码</name>
@@ -27,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>64fd1792-30e5-43f3-a08c-6bfbb6b85d36</id>
+			<id>8d80067e-b592-4725-bfd6-1f5547a6abdb</id>
 			<dataDefinition>
-				<id>18d29ced-f6c1-4edd-a729-2cd2f24015a7</id>
+				<id>2bf5327c-c401-4ba8-888f-2e1ce90ace92</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>表的名称</name>
@@ -38,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a7676bbd-91de-4ad1-98ab-7515fdbe3e65</id>
+			<id>78a3fca7-f554-4429-97d2-144e637f9ee1</id>
 			<dataDefinition>
-				<id>b0914439-bf4b-4a1a-8366-ed3b9c73a5c6</id>
+				<id>8ffea45f-754d-42c0-b878-aec7491726b1</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>表的描述</name>
@@ -49,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>66456a69-c2c1-4329-b016-49f99a2274d8</id>
+			<id>95d52484-17d1-42db-8ed7-294178b40c59</id>
 			<dataDefinition>
-				<id>f09e7cf8-4bd3-4d1b-b2b5-c841417cfbb6</id>
+				<id>06d792a6-8e84-4dce-be23-0a9a5407f444</id>
 			</dataDefinition>
 			<code>object_type</code>
 			<name>表的类型</name>
@@ -61,19 +62,21 @@
 		</column>
 	</columns>
 	<indexes>
-		<index id="78674897-dfe5-4273-9427-0da4aba3885d">
+		<index>
+			<id>050d70b4-2b01-4a13-9d15-5d1ff8e8c650</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>dba5b14c-151a-4b08-938a-1ba3afa53211</id>
+					<id>d2dcc96d-ca5b-42f2-9974-c52c275d494e</id>
 				</column>
 			</columns>
 		</index>
-		<index id="6af1dbfb-aa50-44a5-b8a1-c2ff79898b23">
-			<code>UI_DT_1</code>
+		<index>
+			<id>67bcc9e6-ef7c-4242-868b-bc53352320a7</id>
+			<code>ui_dic_table_code</code>
 			<columns>
 				<column>
-					<id>d7721a99-ac6f-491c-b752-22b5fdbf411f</id>
+					<id>308ba911-8f34-4075-8f16-802bd6c4d281</id>
 				</column>
 			</columns>
 		</index>

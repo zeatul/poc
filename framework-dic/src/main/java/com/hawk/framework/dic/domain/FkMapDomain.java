@@ -15,6 +15,11 @@ public class FkMapDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
+	 * 主键 object_id
+	 */
+	private String objectId;
+	
+	/**
 	 * 外键对象ID fk_object_id
 	 */
 	private String fkObjectId;
@@ -29,6 +34,22 @@ public class FkMapDomain implements Serializable {
 	 */
 	private String childColumnObjectId;
 	
+	
+	/**
+	 * 
+	 * @return 主键 object_id
+	 */
+	public String getObjectId(){
+		return objectId;
+	}
+	
+	/**
+	 * 
+	 * @param objectId 主键 object_id
+	 */	
+	public void setObjectId (String objectId) {
+		this.objectId = objectId;
+	}
 	
 	/**
 	 * 
