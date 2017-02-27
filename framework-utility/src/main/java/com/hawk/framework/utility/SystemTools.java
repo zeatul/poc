@@ -17,5 +17,13 @@ public class SystemTools {
 	public void hookJvmShutdown(Runnable hook){
 		Runtime.getRuntime().addShutdownHook(new Thread(hook));
 	}
+	
+	/**
+	 * 
+	 * @return 操作系统名称
+	 */
+	public String operatingSystem(){
+		return System.getProperty("os.name");
+	}
 
 }
