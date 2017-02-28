@@ -2,7 +2,25 @@ package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
-public class Index {
+import com.hawk.framework.dic.design.IDictionaryObject;
+
+public class Index implements IDictionaryObject{
+
+	public Integer getIsPk() {
+		return isPk;
+	}
+
+	public void setIsPk(Integer isPk) {
+		this.isPk = isPk;
+	}
+
+	public Integer getIsUnique() {
+		return isUnique;
+	}
+
+	public void setIsUnique(Integer isUnique) {
+		this.isUnique = isUnique;
+	}
 
 	public String getId() {
 		return id;
@@ -12,21 +30,7 @@ public class Index {
 		this.id = id;
 	}
 
-	public int getIsPk() {
-		return isPk;
-	}
-
-	public void setIsPk(int isPk) {
-		this.isPk = isPk;
-	}
-
-	public int getIsUnique() {
-		return isUnique;
-	}
-
-	public void setIsUnique(int isUnique) {
-		this.isUnique = isUnique;
-	}
+	
 
 	public String getCode() {
 		return code;
@@ -68,9 +72,9 @@ public class Index {
 
 	private String comment;
 	
-	private int isPk = 0;
+	private Integer isPk = 0;
 	
-	private int isUnique = 0;
+	private Integer isUnique = 0;
 	
 	private String id;
 

@@ -3,7 +3,9 @@ package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
-public class Table {
+import com.hawk.framework.dic.design.IDictionaryObject;
+
+public class Table implements IDictionaryObject{
 	
 	public String getId() {
 		return id;

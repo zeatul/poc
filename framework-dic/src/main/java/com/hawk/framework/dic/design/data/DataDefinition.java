@@ -1,5 +1,7 @@
 package com.hawk.framework.dic.design.data;
 
+import com.hawk.framework.dic.design.IDictionaryObject;
+
 /**
  * 数据定义
  * 名称
@@ -8,7 +10,7 @@ package com.hawk.framework.dic.design.data;
  * @author pzhang1
  *
  */
-public class DataDefinition {
+public class DataDefinition implements IDictionaryObject {
 	
 
 

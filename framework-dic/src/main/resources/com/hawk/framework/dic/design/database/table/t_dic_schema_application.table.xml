@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>b5a04acd-17ca-4717-91a5-1773ca23a0dc</id>
+	<id>68598c76-22df-4328-8716-3d624914086b</id>
 	<code>t_dic_schema_application</code>
 	<comment>schema拥有的应用</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>7f6bec05-7135-4bf3-978b-c33649108bea</id>
+			<id>c11dbcb6-c43c-4fa2-85fe-9c9a9234d969</id>
 			<dataDefinition>
-				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>主键</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>2343c27b-dab0-4f8c-918f-977ab74f9049</id>
+			<id>245e9b0e-1eb0-488c-8f25-784f6215529f</id>
 			<dataDefinition>
-				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
 			</dataDefinition>
 			<code>application_object_id</code>
 			<name>应用对象id</name>
@@ -28,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>50a419b9-8317-4182-8852-cdc061dc97a1</id>
+			<id>4c13a70e-3510-4c9f-9752-7c6ad7539695</id>
 			<dataDefinition>
-				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
 			</dataDefinition>
 			<code>schema_object_id</code>
 			<name>数据库对象Id</name>
@@ -41,25 +41,25 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>93818c0a-a658-4562-87fd-4ea8cbd65b23</id>
+			<id>a8e49080-b9cc-44e8-b7f4-df77cc019b14</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>7f6bec05-7135-4bf3-978b-c33649108bea</id>
+					<id>c11dbcb6-c43c-4fa2-85fe-9c9a9234d969</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>7f3459c2-1da1-4be9-a9f1-af74c18debfa</id>
+			<id>21caa28b-e24a-469d-8759-35f5376e74a2</id>
 			<code>ui_dic_schema_application</code>
 			<columns>
 				<column>
-					<id>2343c27b-dab0-4f8c-918f-977ab74f9049</id>
+					<id>245e9b0e-1eb0-488c-8f25-784f6215529f</id>
 				</column>
 				<column>
-					<id>50a419b9-8317-4182-8852-cdc061dc97a1</id>
+					<id>4c13a70e-3510-4c9f-9752-7c6ad7539695</id>
 				</column>
 			</columns>
 		</index>
-	<indexes>
+	</indexes>
 </table>

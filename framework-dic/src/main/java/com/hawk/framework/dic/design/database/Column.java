@@ -1,5 +1,6 @@
 package com.hawk.framework.dic.design.database;
 
+import com.hawk.framework.dic.design.IDictionaryObject;
 import com.hawk.framework.dic.design.data.DataDefinition;
 
 /**
@@ -7,7 +8,23 @@ import com.hawk.framework.dic.design.data.DataDefinition;
  * @author pzhang1
  *
  */
-public class Column {
+public class Column implements IDictionaryObject{
+
+	public Integer getNullable() {
+		return nullable;
+	}
+
+	public void setNullable(Integer nullable) {
+		this.nullable = nullable;
+	}
+
+	public Integer getIsPk() {
+		return isPk;
+	}
+
+	public void setIsPk(Integer isPk) {
+		this.isPk = isPk;
+	}
 
 	public String getId() {
 		return id;
@@ -32,14 +49,7 @@ public class Column {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	public int getIsPk() {
-		return isPk;
-	}
-
-	public void setIsPk(int isPk) {
-		this.isPk = isPk;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -48,18 +58,6 @@ public class Column {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
-
-	public int getNullable() {
-		return nullable;
-	}
-
-	public void setNullable(int nullable) {
-		this.nullable = nullable;
-	}
-
-	
 
 	public DataDefinition getDataDefinition() {
 		return dataDefinition;
@@ -74,11 +72,11 @@ public class Column {
 	/**
 	 * 0=false,1=true
 	 */
-	private int nullable = 1;
+	private Integer nullable = 1;
 	/**
 	 * 0=false,1=true
 	 */
-	private int isPk = 0;
+	private Integer isPk = 0;
 	
 	
 	

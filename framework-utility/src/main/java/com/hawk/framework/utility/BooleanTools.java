@@ -1,4 +1,4 @@
-package com.hawk.framework.codegen.utils;
+package com.hawk.framework.utility;
 
 public class BooleanTools {
 
@@ -33,6 +33,18 @@ public class BooleanTools {
 			return "yes";
 		else
 			return "no";
+	}
+	
+	public static int convet(String str){
+		if (str.trim().equalsIgnoreCase("yes"))
+			return 1;
+		if (str.trim().equalsIgnoreCase("no"))
+			return 0;
+		if (str.trim().equalsIgnoreCase("true"))
+			return 1;
+		if (str.trim().equalsIgnoreCase("false"))
+			return 0;
+		throw new RuntimeException("illegal argument "+str);
 	}
 
 }

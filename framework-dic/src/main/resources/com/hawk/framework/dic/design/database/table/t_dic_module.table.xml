@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>3fc60920-3596-412b-84dc-68dfdc3d0d39</id>
+	<id>9cacde52-d65f-4b84-ab9b-f192c732f0db</id>
 	<code>t_dic_module</code>
 	<comment>测试表的元数据使用,包括字段类型,索引,外键,不维护数据</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>e92822c9-0401-4f3d-ac10-6324cfc9159b</id>
+			<id>913b6863-e4f5-425b-be36-c25a8307835b</id>
 			<dataDefinition>
-				<id>c8533e5d-52e6-4b22-a065-716f54deb788</id>
+				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>主键</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>6fb73991-59a6-4277-9557-d17d81d17b02</id>
+			<id>aa91b22d-cb43-4f46-9dea-a5861d6bfb2b</id>
 			<dataDefinition>
-				<id>3660452b-ee99-45c2-80e0-bab6f04d4a3d</id>
+				<id>905ff8e2-610f-454c-bca7-c6e0e772e9f2</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>编码</name>
@@ -28,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>54a97423-4ae7-42dc-b9c6-ed2e031c9699</id>
+			<id>161f29b3-4d29-4a2f-aa63-28c9bd4a4c06</id>
 			<dataDefinition>
-				<id>3b0efdb2-e296-4ae8-b0e7-c7aed8d4986d</id>
+				<id>5188f684-0a38-4643-8def-dce9e957346d</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>名称</name>
@@ -39,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b4ed3428-4566-4869-bf77-274bcc13f7bc</id>
+			<id>1d48ab0e-c453-40db-aee2-94a80f577c4d</id>
 			<dataDefinition>
-				<id>11e64949-92cd-4f0e-a67e-8cd091fbb8fd</id>
+				<id>5a23e0e3-8c95-4c68-b1be-7748931f147e</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>描述</name>
@@ -50,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>eeffefd1-1436-446b-b596-4b1a0bea0c4f</id>
+			<id>ca3489aa-194a-4fa4-8efb-48472ed23504</id>
 			<dataDefinition>
-				<id>cd3a8046-cb68-419a-bcca-bfb3ce03aa82</id>
+				<id>023e01d9-1c0e-41b7-a73a-787381ed4f41</id>
 			</dataDefinition>
 			<code>create_date</code>
 			<name>创建时间</name>
@@ -61,9 +61,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e5795959-27f5-4d26-a807-8001fcf6d5f3</id>
+			<id>94f906ff-003d-4df5-988d-a196d087c8b2</id>
 			<dataDefinition>
-				<id>609e81f4-432b-4d06-8ca5-e1e535014561</id>
+				<id>8c8cdf75-2b1a-4559-80eb-d4e1bac2abbb</id>
 			</dataDefinition>
 			<code>update_date</code>
 			<name>更新时间</name>
@@ -72,9 +72,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d97506ea-fdb6-43ca-a23c-412befd17fc6</id>
+			<id>43ab9b50-0e9d-4103-9051-9ec3577623cc</id>
 			<dataDefinition>
-				<id>e0d69783-505d-4754-a6de-f91ab3a864c5</id>
+				<id>01a9ed14-4b62-4741-bc95-a19ac8f42d99</id>
 			</dataDefinition>
 			<code>delete_date</code>
 			<name>删除时间</name>
@@ -83,9 +83,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>82fb3747-4fb7-437a-b5eb-1dcb55763b85</id>
+			<id>89c4591e-ed7c-4ffc-abd0-93ec0b6d4204</id>
 			<dataDefinition>
-				<id>d7126396-08db-490e-8505-302ab93b4eeb</id>
+				<id>6839c36c-5e34-42c6-b184-cbaa22522e32</id>
 			</dataDefinition>
 			<code>id</code>
 			<name>长整型主键</name>
@@ -94,9 +94,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4789b9db-bf2a-4a55-b2b8-3ee3c469e02d</id>
+			<id>ea05e090-d557-43e7-8dc1-c02384273d10</id>
 			<dataDefinition>
-				<id>d40d0cf1-5f8a-47bb-81a3-3fa15f2b50c8</id>
+				<id>2162d1ba-9522-4a39-a6db-14a9cc045974</id>
 			</dataDefinition>
 			<code>code</code>
 			<name>编码</name>
@@ -105,9 +105,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7aaa197a-ec58-4fff-bf75-ea304f4d46af</id>
+			<id>d68cc237-38bd-4063-98fc-9bbf862a1062</id>
 			<dataDefinition>
-				<id>52ef5d4a-0c3e-421c-8875-26e0a62bab2e</id>
+				<id>52c83c5c-9cbe-445b-aab5-bd72a0c8c5d7</id>
 			</dataDefinition>
 			<code>name</code>
 			<name>名称</name>
@@ -116,9 +116,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3e2ff9cd-ae8a-4a2f-8a42-2ae74782b121</id>
+			<id>0bd4c9d9-894f-43a9-9c0a-048006a8dc13</id>
 			<dataDefinition>
-				<id>4b714b5f-3bef-497b-8f02-59f217e28783</id>
+				<id>7e619b72-af6d-4e16-a0b5-a6e66fa9fc07</id>
 			</dataDefinition>
 			<code>comment</code>
 			<name>描述</name>
@@ -127,9 +127,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3b35dd38-4975-4d16-8747-bd2f003b557d</id>
+			<id>4a22b491-a906-4dbc-aad4-b378e15bc388</id>
 			<dataDefinition>
-				<id>a641a908-134f-407e-9a37-44877fffa7d8</id>
+				<id>fd0f1288-8f2b-441f-bc66-08e63ca7e797</id>
 			</dataDefinition>
 			<code>uuid</code>
 			<name>uuid主键</name>
@@ -138,9 +138,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3c35fbc0-3603-4659-84cc-46f7dbc56a0b</id>
+			<id>c554c1fe-e81a-4b47-8aed-58516e8d557f</id>
 			<dataDefinition>
-				<id>8e2bfe7e-a957-4d64-a220-7948d70bfe46</id>
+				<id>09b2cb07-cff1-4154-b5fa-805ca5f09dae</id>
 			</dataDefinition>
 			<code>password</code>
 			<name>密码</name>
@@ -149,9 +149,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d3ac2957-bb8d-4c30-9bfe-9eee051c2ad9</id>
+			<id>cb9ea86c-384b-4aab-bac2-1b0a5ad931e1</id>
 			<dataDefinition>
-				<id>3b57cdd7-9909-407b-bb79-f59d15a18c23</id>
+				<id>d819360f-0eb8-4f2c-b101-f7f1b6606ad7</id>
 			</dataDefinition>
 			<code>version</code>
 			<name>版本号</name>
@@ -162,31 +162,31 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>900a400c-34e8-410d-a0e8-a7cea15a2a43</id>
+			<id>a7b552c0-c8be-49d1-9f54-7eda1eec6a64</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>e92822c9-0401-4f3d-ac10-6324cfc9159b</id>
+					<id>913b6863-e4f5-425b-be36-c25a8307835b</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>52a3abcc-5bfa-456f-a1b1-d723792c3682</id>
+			<id>9d405901-1ca7-4fbf-b97e-341338368682</id>
 			<code>ui_dic_module_code</code>
 			<columns>
 				<column>
-					<id>6fb73991-59a6-4277-9557-d17d81d17b02</id>
+					<id>aa91b22d-cb43-4f46-9dea-a5861d6bfb2b</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>088aaea1-18fe-4de9-a6a7-21b9439732cd</id>
+			<id>d644c0cc-3fc2-423f-9ca8-a269a25987b1</id>
 			<code>ui_dic_module_id</code>
 			<columns>
 				<column>
-					<id>82fb3747-4fb7-437a-b5eb-1dcb55763b85</id>
+					<id>89c4591e-ed7c-4ffc-abd0-93ec0b6d4204</id>
 				</column>
 			</columns>
 		</index>
-	<indexes>
+	</indexes>
 </table>

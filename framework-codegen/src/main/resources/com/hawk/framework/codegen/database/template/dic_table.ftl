@@ -59,6 +59,6 @@
 			</columns>
 		</index>
 	</#list>
-	<indexes>
+	</indexes>
 	</#if>
 </table>

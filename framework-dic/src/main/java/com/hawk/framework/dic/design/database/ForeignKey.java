@@ -2,7 +2,9 @@ package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
-public class ForeignKey {
+import com.hawk.framework.dic.design.IDictionaryObject;
+
+public class ForeignKey implements IDictionaryObject{
 	
 	public String getId() {
 		return id;

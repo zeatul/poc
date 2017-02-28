@@ -2,13 +2,15 @@ package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
+import com.hawk.framework.dic.design.IDictionaryObject;
+
 /**
  * 表属于应用,应用属于schema
  * 
  * @author pzhang1
  *
  */
-public class Application {
+public class Application implements IDictionaryObject{
 
 
 

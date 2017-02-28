@@ -2,7 +2,9 @@ package com.hawk.framework.dic.design.database;
 
 import java.util.List;
 
-public class Schema {
+import com.hawk.framework.dic.design.IDictionaryObject;
+
+public class Schema implements IDictionaryObject{
 
 	public String getId() {
 		return id;
