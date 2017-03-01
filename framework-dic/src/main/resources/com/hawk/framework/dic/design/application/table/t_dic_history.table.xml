@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>b0525116-2580-441e-a5b3-c6ea14c11c21</id>
+	<id>69291b91-02f8-4cf9-9dbe-7c71905621dd</id>
 	<code>t_dic_history</code>
 	<comment>一张表缓存所有的数据字典，用来保留历史版本</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>d010a641-c9c8-4035-9506-aff1ea7adb94</id>
+			<id>10fc85f6-ef49-4897-a204-a364cce2b2c8</id>
 			<dataDefinition>
-				<id>25cf0501-a6b6-46ac-b3f6-891512e1f0f0</id>
+				<id>0170ca4c-a66a-413b-94b7-5e3ed3f1e431</id>
 			</dataDefinition>
 			<code>table_name</code>
 			<name>数据字典的表的名称</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>52d87ae8-4470-4363-b63b-43bbd131d726</id>
+			<id>436604db-82bd-45a8-8633-34db9fffd34f</id>
 			<dataDefinition>
-				<id>d819360f-0eb8-4f2c-b101-f7f1b6606ad7</id>
+				<id>2358d27c-60ac-4f82-bbb5-5284eae1a6e0</id>
 			</dataDefinition>
 			<code>version</code>
 			<name>版本号</name>
@@ -28,9 +28,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>beeabedd-35d5-4bf5-815d-28ffc62bf65b</id>
+			<id>74a53bb0-b79b-43d6-b0d1-f4c2dc8c5c8b</id>
 			<dataDefinition>
-				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
+				<id>0603eb30-2030-465a-9980-643c02b681d8</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>记录主键</name>
@@ -39,9 +39,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>0c48e2b9-752c-4e7d-bfcc-fc82e9891440</id>
+			<id>6c644d4d-b252-49cb-a1a9-078f0f2d291c</id>
 			<dataDefinition>
-				<id>39ba76a5-93eb-4905-a4b3-8017188ea683</id>
+				<id>b59934f4-fa83-479e-bfac-0ce87828d83d</id>
 			</dataDefinition>
 			<code>object_content</code>
 			<name>记录(json格式)</name>
@@ -50,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>55b62eea-5580-4c77-a52f-3505aa875f6c</id>
+			<id>10c974af-5fc8-4543-86e0-8ac20576b971</id>
 			<dataDefinition>
-				<id>023e01d9-1c0e-41b7-a73a-787381ed4f41</id>
+				<id>6a631780-afe0-456a-bfc9-43ed52fa97cf</id>
 			</dataDefinition>
 			<code>create_date</code>
 			<name>版本创建日期</name>
@@ -63,17 +63,17 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>55b91c33-aaf9-4e43-b69a-ad28eafb4f29</id>
+			<id>71401701-7eec-45f4-b5bb-d2c95fef6c60</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>d010a641-c9c8-4035-9506-aff1ea7adb94</id>
+					<id>10fc85f6-ef49-4897-a204-a364cce2b2c8</id>
 				</column>
 				<column>
-					<id>52d87ae8-4470-4363-b63b-43bbd131d726</id>
+					<id>436604db-82bd-45a8-8633-34db9fffd34f</id>
 				</column>
 				<column>
-					<id>beeabedd-35d5-4bf5-815d-28ffc62bf65b</id>
+					<id>74a53bb0-b79b-43d6-b0d1-f4c2dc8c5c8b</id>
 				</column>
 			</columns>
 		</index>

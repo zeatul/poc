@@ -1,10 +1,10 @@
 package com.hawk.framework.dic.service;
 
-import com.hawk.framework.dic.design.database.Schema;
+import com.hawk.framework.dic.design.Dictionary;
 
 public class ParseHistoryService {
 	
-	public Schema parseSchema(){
+	public Dictionary parse(){
 		return null;
 	}
 

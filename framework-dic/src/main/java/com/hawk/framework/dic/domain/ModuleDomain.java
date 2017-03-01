@@ -83,7 +83,7 @@ public class ModuleDomain implements Serializable {
 	/**
 	 * 版本号 version
 	 */
-	private String version;
+	private Integer version;
 	
 	
 	/**
@@ -298,7 +298,7 @@ public class ModuleDomain implements Serializable {
 	 * 
 	 * @return 版本号 version
 	 */
-	public String getVersion(){
+	public Integer getVersion(){
 		return version;
 	}
 	
@@ -306,7 +306,7 @@ public class ModuleDomain implements Serializable {
 	 * 
 	 * @param version 版本号 version
 	 */	
-	public void setVersion (String version) {
+	public void setVersion (Integer version) {
 		this.version = version;
 	}
 	

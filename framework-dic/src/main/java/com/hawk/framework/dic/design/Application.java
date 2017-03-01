@@ -1,8 +1,8 @@
-package com.hawk.framework.dic.design.database;
+package com.hawk.framework.dic.design;
 
 import java.util.List;
 
-import com.hawk.framework.dic.design.IDictionaryObject;
+import com.hawk.framework.dic.design.database.Table;
 
 /**
  * 表属于应用,应用属于schema

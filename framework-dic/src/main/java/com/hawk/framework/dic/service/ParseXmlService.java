@@ -6,19 +6,20 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.hawk.framework.dic.design.Application;
+import com.hawk.framework.dic.design.Dictionary;
 import com.hawk.framework.dic.design.data.DataDefinition;
-import com.hawk.framework.dic.design.database.Application;
 import com.hawk.framework.dic.design.database.Column;
 import com.hawk.framework.dic.design.database.Index;
-import com.hawk.framework.dic.design.database.Schema;
 import com.hawk.framework.dic.design.database.Table;
 import com.hawk.framework.utility.BooleanTools;
 import com.hawk.framework.utility.JsonTools;
@@ -29,27 +30,102 @@ public class ParseXmlService {
 	private static String DATA_DEFINITION_FILE_SUFFIX = "data_defnition.xml";
 	private static String TABLE_FILE_SUFFIX = "table.xml";
 	private static String APPLICATION_FILE_SUFFIX = "application.xml";
-	private static String SCHEMA_FILE_SUFFIX = "schema.xml";
 	
-	/**
-	 * 转换xml 为 schema
-	 * @param classPathList
-	 * @return
-	 */
-	public List<Schema> parseSchemaByClassPath(List<String> classPathList ){
+	public Dictionary parseFromFileSystem(String...directoryList){
 		return null;
 	}
 	
-	public List<Schema> parseSchemaByClassPath(String classPath) throws Exception{
-		List<String> xmlClassPathList = packageTools.listFile(classPath, true, new packageTools.XmlFileFilter());
-		for (String xmlClassPath : xmlClassPathList){
-			System.out.println(xmlClassPath);
+ 	public Dictionary parseFromClassPath(String...packageNameList) throws Exception{
+		
+		
+		List<String> classPathList = listXmlFileClassPath(packageNameList);
+		
+		List<DataDefinition> dataDefinitionList = parseDataDefinitionByClassPath(classPathList);
+		
+		Map<String,DataDefinition> dataDefinitionMap = new HashMap<String,DataDefinition>();
+		for (DataDefinition dataDefinition : dataDefinitionList){
+			dataDefinitionMap.put(dataDefinition.getId(), dataDefinition);
 		}
 		
-		return null;
+		List<Table> tableList = parseTableByClassPath(classPathList,dataDefinitionMap);
+		
+		Map<String,Table> tableMap = new HashMap<String,Table>();
+		for (Table table : tableList){
+			tableMap.put(table.getId(), table);
+		}
+		
+		List<Application> applicationList = parseApplicationByClassPath(classPathList, tableMap);
+		
+		
+		Dictionary dictionary = new Dictionary();
+		dictionary.setDataDefinitionList(dataDefinitionList);
+		dictionary.setApplicationList(applicationList);
+		return dictionary;		
 	}
 	
-	public List<Table> parseTableByClassPath(List<String> classPathList,Map<String,DataDefinition> dataDefinitionMap) throws Exception{
+	
+	
+	private List<String> listXmlFileClassPath(String...packageNameList) throws Exception{
+		Set<String> xmlClassPathSet = new HashSet<String>();
+		for (String packageName : packageNameList){
+			List<String> xmlClassPathList = packageTools.listFile(packageName, true, new packageTools.XmlFileFilter());
+			for (String str : xmlClassPathList){
+				xmlClassPathSet.add(str);
+			}
+		}
+		
+		List<String> classPathList = new ArrayList<String>();
+		for(String classPath : xmlClassPathSet){
+			classPathList.add(classPath);
+		}
+		return classPathList;
+	}
+	
+	
+	
+	
+	
+	private List<Application> parseApplicationByClassPath(List<String> classPathList,Map<String,Table> tableMap) throws Exception{
+		List<Application> applicationList = new ArrayList<Application>();
+		for (String classPath : classPathList){
+			if (!classPath.toLowerCase().endsWith(APPLICATION_FILE_SUFFIX)){
+				continue;
+			}
+			Application application = parseApplicationByClassPath(classPath,tableMap);
+			applicationList.add(application);
+		}
+		
+		return applicationList;
+	}
+	
+	private Application parseApplicationByClassPath(String classPath,Map<String,Table> tableMap) throws Exception{
+		if (!classPath.toLowerCase().endsWith(APPLICATION_FILE_SUFFIX)){
+			throw new RuntimeException("The classPath is illegal for application ,classPath = " + classPath);
+		}
+		
+		SAXReader saxReader = new SAXReader();
+		InputStream inputStream = getClass().getResourceAsStream(classPath);
+		Document document = saxReader.read(inputStream);
+		Element applicationElement = document.getRootElement();
+		Application application = convert(applicationElement,Application.class);
+		/**
+		 * table
+		 */
+		List<Table> tableList = new ArrayList<Table>();
+		application.setTableList(tableList);
+		@SuppressWarnings("unchecked")
+		List<Element> tableElementList = applicationElement.element("tables").elements();
+		for (Element tableElement : tableElementList){
+			String id = tableElement.elementTextTrim("id");
+			Table table = tableMap.get(id);
+			if (table == null)
+				throw new RuntimeException ("Found no table instance of id = " + id);
+			tableList.add(table);
+		}
+		return application;
+	}
+	
+	private List<Table> parseTableByClassPath(List<String> classPathList,Map<String,DataDefinition> dataDefinitionMap) throws Exception{
 		List<Table> tableList = new ArrayList<Table>();
 		for (String classPath : classPathList){
 			if (!classPath.toLowerCase().endsWith(TABLE_FILE_SUFFIX)){
@@ -61,7 +137,7 @@ public class ParseXmlService {
 		return tableList;
 	}
 	
-	public Table parseTableByClassPath(String classPath,Map<String,DataDefinition> dataDefinitionMap) throws Exception{
+	private Table parseTableByClassPath(String classPath,Map<String,DataDefinition> dataDefinitionMap) throws Exception{
 		if (!classPath.toLowerCase().endsWith(TABLE_FILE_SUFFIX)){
 			throw new RuntimeException("The classPath is illegal for table ,classPath = " + classPath);
 		}
@@ -119,7 +195,7 @@ public class ParseXmlService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<DataDefinition> parseDataDefinitionByClassPath(List<String> classPathList) throws Exception{
+	private List<DataDefinition> parseDataDefinitionByClassPath(List<String> classPathList) throws Exception{
 		
 		List<DataDefinition> dataDefinitionList = new ArrayList<DataDefinition>();
 		for (String classPath : classPathList){
@@ -140,7 +216,7 @@ public class ParseXmlService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<DataDefinition> parseDataDefinitionByClassPath(String classPath)throws Exception{
+	private List<DataDefinition> parseDataDefinitionByClassPath(String classPath)throws Exception{
 		if (!classPath.toLowerCase().endsWith(DATA_DEFINITION_FILE_SUFFIX)){
 			throw new RuntimeException("The classPath is illegal for data definition,classPath = " + classPath);
 		}
@@ -197,31 +273,9 @@ public class ParseXmlService {
 		return result;
 	}
 	
-	
-	
-	
-	
-	public List<Application> parseApplicationByClassPath(String classPath){
-		return null;
-	}
-
 	public static void main(String[] args) throws Exception{
-		System.out.println("+++data definition+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		List<String> xmlClassPathList = packageTools.listFile("com.hawk.framework.dic.design", true, new packageTools.XmlFileFilter());
-		List<DataDefinition> dataDefinitionList = new ParseXmlService().parseDataDefinitionByClassPath(xmlClassPathList);
-		for (DataDefinition dataDefinition : dataDefinitionList){
-			System.out.println(JsonTools.toJsonString(dataDefinition));
-		}
+		Dictionary dictionary = new ParseXmlService().parseFromClassPath("com.hawk.framework.dic.design");
+		System.out.println(JsonTools.toJsonString(dictionary));
 		
-		Map<String,DataDefinition> dataDefinitionMap = new HashMap<String,DataDefinition>();
-		for (DataDefinition dataDefinition : dataDefinitionList){
-			dataDefinitionMap.put(dataDefinition.getId(), dataDefinition);
-		}
-		
-		System.out.println("+++table+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		List<Table> tableList =new ParseXmlService(). parseTableByClassPath(xmlClassPathList,dataDefinitionMap);
-		for (Table table : tableList){
-			System.out.println(JsonTools.toJsonString(table));
-		}
 	}
 }

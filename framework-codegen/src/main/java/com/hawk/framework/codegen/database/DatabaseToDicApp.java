@@ -26,11 +26,9 @@ import com.hawk.framework.codegen.database.meta.Table;
 import com.hawk.framework.codegen.database.parse.DatabaseParserFactory;
 import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
+import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.data.DataDefinition;
 import com.hawk.framework.dic.design.data.EnumDataType;
-import com.hawk.framework.dic.design.database.Application;
-import com.hawk.framework.dic.design.database.Schema;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -208,39 +206,16 @@ public class DatabaseToDicApp {
 		application.setComment("元数据驱动开发测试");
 		writeApplication(applicationList, projectConfigure);
 
-		/**
-		 * 输出Schema
-		 */
-		Schema schema = new Schema();
-		schema.setApplicationList(applicationList);
-		schema.setId(UUID.randomUUID().toString());
-		schema.setCode("dic");
-		schema.setName("数据字典库");
-		schema.setComment("数据字典库，目前只有数据字典一个应用");
-		writeSchema(schema, projectConfigure);
+		
 	}
 
-	private static void writeSchema(Schema schema, IProjectConfigure projectConfigure) throws Exception {
-		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("template/dic_schema.ftl");
-		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.database");
-		ProjectTools.clearDirectory(directory, "schema.xml");
-		String filePath = directory + File.separator + schema.getCode() + ".schema.xml";
-		if (new File(filePath).exists())
-			throw new RuntimeException("Exists file = " + filePath);
-		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
-		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
-		template.process(schema, out);
-		out.flush();
-		out.close();
-	}
+	
 
 	private static void writeApplication(List<Application> applicationList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_application.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.database");
+				projectConfigure.getSubPackage(), "design.application");
 		ProjectTools.clearDirectory(directory, "application.xml");
 		for (Application application : applicationList) {
 			String filePath = directory + File.separator + application.getCode() + ".application.xml";
@@ -277,7 +252,7 @@ public class DatabaseToDicApp {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_table.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.database.table");
+				projectConfigure.getSubPackage(), "design.application.table");
 		ProjectTools.clearDirectory(directory, ".table.xml");
 		for (com.hawk.framework.dic.design.database.Table dicTable : dicTableList) {
 			String filePath = directory + File.separator + dicTable.getCode() + ".table.xml";

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>0dca6c5d-66bc-4529-bb16-c2ee67b39bf5</id>
+	<id>015d1e93-2a69-468f-816d-7509b318d704</id>
 	<code>t_dic_column</code>
 	<comment>表字段对象</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>f6a3d01a-0b3a-451e-abc8-de7bb91e0011</id>
+			<id>ad3b49be-030e-4fe9-9fde-3d6f122b6997</id>
 			<dataDefinition>
-				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
+				<id>0603eb30-2030-465a-9980-643c02b681d8</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>fc6eeb09-6b10-40c4-935d-c894248bda98</id>
+			<id>f53efcf6-6f4c-4b95-bf8c-16e096f6a239</id>
 			<dataDefinition>
-				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
+				<id>0603eb30-2030-465a-9980-643c02b681d8</id>
 			</dataDefinition>
 			<code>table_object_id</code>
 			<name>表对象ID</name>
@@ -28,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>6491de7a-8a8e-4b29-8f7a-948d2bc431b5</id>
+			<id>73c1e561-7bb6-4c93-837a-f7e200a47e11</id>
 			<dataDefinition>
-				<id>582416a6-f9fd-4ecd-83c7-699bc1cadedf</id>
+				<id>0603eb30-2030-465a-9980-643c02b681d8</id>
 			</dataDefinition>
 			<code>data_definition_object_id</code>
 			<name>引用的数据类型ID</name>
@@ -39,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>185da0e4-dd66-43dc-a6bd-de43967f2bfd</id>
+			<id>a55ac27a-7887-444f-abf4-2240dae251e7</id>
 			<dataDefinition>
-				<id>905ff8e2-610f-454c-bca7-c6e0e772e9f2</id>
+				<id>ff42b33c-c3fe-4933-a3f1-373ee772c63e</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>数据库字段编码（为空，则用数据字典名）</name>
@@ -50,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ae4578b6-b82c-4ceb-adda-e799fefbbd06</id>
+			<id>0fffaa4b-9cd7-44ff-bcbe-33dd2765e978</id>
 			<dataDefinition>
-				<id>5188f684-0a38-4643-8def-dce9e957346d</id>
+				<id>1134cb5b-4ef4-4ceb-8d74-eb9a90166d78</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>数据库字段名称</name>
@@ -61,9 +61,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d48f8115-53bd-44d2-8bee-b7a59a1a43a1</id>
+			<id>f5a1809b-1102-496f-8da3-f7b0e551ee44</id>
 			<dataDefinition>
-				<id>5a23e0e3-8c95-4c68-b1be-7748931f147e</id>
+				<id>8512850f-e631-477b-912c-2290534c3734</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>数据库字段描述</name>
@@ -72,9 +72,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b7a96729-b593-4e47-afc2-178264b43ef7</id>
+			<id>ab7514c4-6cbf-4156-a853-0734dc0057fa</id>
 			<dataDefinition>
-				<id>b637bd5e-67ce-4086-8c2e-d70591e265f3</id>
+				<id>c2aa1f8c-410f-4297-abeb-c05edfaef2a1</id>
 			</dataDefinition>
 			<code>object_order</code>
 			<name>数据库字段在表的序号</name>
@@ -83,9 +83,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>0bba2040-72dc-4fed-8c95-7f960173d67e</id>
+			<id>80c45ecc-42c5-40b1-9169-2e2d3e2cc217</id>
 			<dataDefinition>
-				<id>1575dda4-2eed-40c2-9cb1-87eb074e4366</id>
+				<id>0307b5f4-bc33-4ee9-8d02-573b2d2945b6</id>
 			</dataDefinition>
 			<code>nullable</code>
 			<name>可否为空(1/0)</name>
@@ -94,9 +94,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ab983a88-419e-407a-9c6e-eb4dac8f101b</id>
+			<id>65710406-cce3-4750-849d-90e83dfd14f8</id>
 			<dataDefinition>
-				<id>aa13cd6e-ae71-432b-9dd3-a9a4a07a8644</id>
+				<id>32c88938-fc8c-4987-8a01-ac26e425fdcd</id>
 			</dataDefinition>
 			<code>is_pk</code>
 			<name>是否为主键(1/0)</name>
@@ -107,23 +107,23 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>5909bc2b-d718-4c11-a655-203edfe00a5a</id>
+			<id>655e0485-a8b1-4f58-b683-342e2f95b9e7</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>f6a3d01a-0b3a-451e-abc8-de7bb91e0011</id>
+					<id>ad3b49be-030e-4fe9-9fde-3d6f122b6997</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>2b43d1b0-daf9-4801-bab5-df8f7236194e</id>
+			<id>1bdfc183-7c21-45f9-a0f6-b44ab75d79fe</id>
 			<code>ui_dic_col_code</code>
 			<columns>
 				<column>
-					<id>fc6eeb09-6b10-40c4-935d-c894248bda98</id>
+					<id>f53efcf6-6f4c-4b95-bf8c-16e096f6a239</id>
 				</column>
 				<column>
-					<id>185da0e4-dd66-43dc-a6bd-de43967f2bfd</id>
+					<id>a55ac27a-7887-444f-abf4-2240dae251e7</id>
 				</column>
 			</columns>
 		</index>

@@ -42,14 +42,6 @@ drop index ui_dic_module_code on t_dic_module;
 
 drop table if exists t_dic_module;
 
-drop index ui_dic_schema_code on t_dic_schema;
-
-drop table if exists t_dic_schema;
-
-drop index ui_dic_schema_application on t_dic_schema_application;
-
-drop table if exists t_dic_schema_application;
-
 drop index ui_dic_table_code on t_dic_table;
 
 drop table if exists t_dic_table;
@@ -135,7 +127,7 @@ create unique index ui_dic_col_code on t_dic_column
 create table t_dic_data_definition
 (
    object_id            varchar(50) not null comment '对象ID',
-   use_type             int comment '用途类型',
+   use_type             varchar(50) comment '用途类型',
    data_type            varchar(50) comment '数据类型',
    object_code          varchar(50) comment '编码',
    object_name          varchar(50) comment '中文名',
@@ -308,7 +300,7 @@ create table t_dic_module
    comment              varchar(1000) comment '描述',
    uuid                 varchar(50) comment 'uuid主键',
    password             varchar(500) comment '密码',
-   version              varchar(50) comment '版本号',
+   version              integer comment '版本号',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -341,52 +333,6 @@ create index i_dic_module_search on t_dic_module
    update_date,
    delete_date,
    id
-);
-
-/*==============================================================*/
-/* Table: t_dic_schema                                          */
-/*==============================================================*/
-create table t_dic_schema
-(
-   object_id            varchar(50) not null comment '对象Iid',
-   object_code          varchar(50) not null comment '数据库编码',
-   object_name          varchar(50) comment '数据库名称',
-   object_comment       varchar(50) comment '数据库描述',
-   primary key (object_id)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-alter table t_dic_schema comment 'schema代表一个库，一个库可以有很多应用';
-
-/*==============================================================*/
-/* Index: ui_dic_schema_code                                    */
-/*==============================================================*/
-create unique index ui_dic_schema_code on t_dic_schema
-(
-   object_code
-);
-
-/*==============================================================*/
-/* Table: t_dic_schema_application                              */
-/*==============================================================*/
-create table t_dic_schema_application
-(
-   object_id            varchar(50) not null comment '主键',
-   application_object_id varchar(50) not null comment '应用对象id',
-   schema_object_id     varchar(50) not null comment '数据库对象Id',
-   primary key (object_id)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-alter table t_dic_schema_application comment 'schema拥有的应用';
-
-/*==============================================================*/
-/* Index: ui_dic_schema_application                             */
-/*==============================================================*/
-create unique index ui_dic_schema_application on t_dic_schema_application
-(
-   application_object_id,
-   schema_object_id
 );
 
 /*==============================================================*/

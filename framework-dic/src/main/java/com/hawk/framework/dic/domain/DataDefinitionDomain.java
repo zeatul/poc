@@ -22,7 +22,7 @@ public class DataDefinitionDomain implements Serializable {
 	/**
 	 * 用途类型 use_type
 	 */
-	private Integer useType;
+	private String useType;
 	
 	/**
 	 * 数据类型 data_type
@@ -125,7 +125,7 @@ public class DataDefinitionDomain implements Serializable {
 	 * 
 	 * @return 用途类型 use_type
 	 */
-	public Integer getUseType(){
+	public String getUseType(){
 		return useType;
 	}
 	
@@ -133,7 +133,7 @@ public class DataDefinitionDomain implements Serializable {
 	 * 
 	 * @param useType 用途类型 use_type
 	 */	
-	public void setUseType (Integer useType) {
+	public void setUseType (String useType) {
 		this.useType = useType;
 	}
 	

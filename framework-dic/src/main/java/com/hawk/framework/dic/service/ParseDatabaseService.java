@@ -1,6 +1,6 @@
 package com.hawk.framework.dic.service;
 
-import com.hawk.framework.dic.design.database.Schema;
+import com.hawk.framework.dic.design.Dictionary;
 
 public class ParseDatabaseService {
 	
@@ -8,7 +8,7 @@ public class ParseDatabaseService {
 	 * 
 	 * @return
 	 */
-	public Schema parseSchema(){
+	public Dictionary parse(){
 		return null;
 	}
 
