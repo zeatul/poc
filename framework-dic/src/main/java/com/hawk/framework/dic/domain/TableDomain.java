@@ -1,5 +1,6 @@
 package com.hawk.framework.dic.domain;
 import java.io.Serializable;
+import java.util.Date;
 
 
 
@@ -38,6 +39,36 @@ public class TableDomain implements Serializable {
 	 * 表的类型 object_type
 	 */
 	private String objectType;
+	
+	/**
+	 * 表的物理特性 physical_option
+	 */
+	private String physicalOption;
+	
+	/**
+	 * 系统编码(区分不同项目，不同集团) system_code
+	 */
+	private String systemCode;
+	
+	/**
+	 * 版本号 version
+	 */
+	private Integer version;
+	
+	/**
+	 * 创建日期 create_date
+	 */
+	private Date createDate;
+	
+	/**
+	 * 更新日期 update_date
+	 */
+	private Date updateDate;
+	
+	/**
+	 * 删除日期 delete_date
+	 */
+	private Date deleteDate;
 	
 	
 	/**
@@ -118,6 +149,102 @@ public class TableDomain implements Serializable {
 	 */	
 	public void setObjectType (String objectType) {
 		this.objectType = objectType;
+	}
+	
+	/**
+	 * 
+	 * @return 表的物理特性 physical_option
+	 */
+	public String getPhysicalOption(){
+		return physicalOption;
+	}
+	
+	/**
+	 * 
+	 * @param physicalOption 表的物理特性 physical_option
+	 */	
+	public void setPhysicalOption (String physicalOption) {
+		this.physicalOption = physicalOption;
+	}
+	
+	/**
+	 * 
+	 * @return 系统编码(区分不同项目，不同集团) system_code
+	 */
+	public String getSystemCode(){
+		return systemCode;
+	}
+	
+	/**
+	 * 
+	 * @param systemCode 系统编码(区分不同项目，不同集团) system_code
+	 */	
+	public void setSystemCode (String systemCode) {
+		this.systemCode = systemCode;
+	}
+	
+	/**
+	 * 
+	 * @return 版本号 version
+	 */
+	public Integer getVersion(){
+		return version;
+	}
+	
+	/**
+	 * 
+	 * @param version 版本号 version
+	 */	
+	public void setVersion (Integer version) {
+		this.version = version;
+	}
+	
+	/**
+	 * 
+	 * @return 创建日期 create_date
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+	
+	/**
+	 * 
+	 * @param createDate 创建日期 create_date
+	 */	
+	public void setCreateDate (Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	/**
+	 * 
+	 * @return 更新日期 update_date
+	 */
+	public Date getUpdateDate(){
+		return updateDate;
+	}
+	
+	/**
+	 * 
+	 * @param updateDate 更新日期 update_date
+	 */	
+	public void setUpdateDate (Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	/**
+	 * 
+	 * @return 删除日期 delete_date
+	 */
+	public Date getDeleteDate(){
+		return deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @param deleteDate 删除日期 delete_date
+	 */	
+	public void setDeleteDate (Date deleteDate) {
+		this.deleteDate = deleteDate;
 	}
 	
 

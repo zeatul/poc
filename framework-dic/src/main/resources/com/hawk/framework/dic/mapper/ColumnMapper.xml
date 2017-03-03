@@ -13,7 +13,12 @@
 		object_comment AS "objectComment" ,
 		object_order AS "objectOrder" ,
 		nullable AS "nullable" ,
-		is_pk AS "isPk" 
+		is_pk AS "isPk" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -27,6 +32,11 @@
 			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
 			<if test="nullable != null"> AND nullable = #{nullable}  </if>
 			<if test="isPk != null"> AND is_pk = #{isPk}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -41,6 +51,11 @@
 			AND object_order = #{old_objectOrder}
 			AND nullable = #{old_nullable}
 			AND is_pk = #{old_isPk}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -55,6 +70,11 @@
 			object_order = #{objectOrder},
 			nullable = #{nullable},
 			is_pk = #{isPk},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -69,6 +89,11 @@
 			<if test="objectOrder != null">object_order = #{objectOrder},</if>
 			<if test="nullable != null">nullable = #{nullable},</if>
 			<if test="isPk != null">is_pk = #{isPk},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -115,7 +140,12 @@
 				object_comment,				
 				object_order,				
 				nullable,				
-				is_pk				
+				is_pk,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
@@ -126,7 +156,12 @@
 			#{objectComment},
 			#{objectOrder},
 			#{nullable},
-			#{isPk}
+			#{isPk},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

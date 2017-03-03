@@ -12,11 +12,27 @@
 		<module>../framework-codegen</module>
 	</modules>
 
-	<!-- <profiles> <profile> <id>dev</id> <build> <filters> <filter>../taw-parent/taw-user-service/taw_user_service_dev.properties</filter> <filter>../taw-parent/taw-scene-service/taw_scene_service_dev.properties</filter> 
-		<filter>../taw-parent/taw-picture-service/taw_picture_service_dev.properties</filter> <filter>../taw-parent/taw-pub/taw_pub_dev.properties</filter> </filters> </build> 
-		<activation> <activeByDefault>true</activeByDefault> </activation> </profile> <profile> <id>test</id> <build> <filters> <filter>../taw-parent/taw-user-service/taw_user_service_test.properties</filter> 
-		<filter>../taw-parent/taw-scene-service/taw_scene_service_test.properties</filter> <filter>../taw-parent/taw-picture-service/taw_picture_service_test.properties</filter> 
-		<filter>../taw-parent/taw-pub/taw_pub_test.properties</filter> </filters> </build> </profile> </profiles> -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<build>
+				<filters>
+					<filter>../framework-parent/framework/framework_dev.properties</filter>
+				</filters>
+			</build>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<build>
+				<filters>
+					<filter>../framework-parent/framework/framework_test.properties</filter>
+				</filters>
+			</build>
+		</profile>
+	</profiles>
 
 	<properties>
 		<java-version>1.7</java-version>

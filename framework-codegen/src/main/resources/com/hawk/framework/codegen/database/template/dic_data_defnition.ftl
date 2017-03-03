@@ -16,6 +16,7 @@
 		<#if def.dataType="string">
 		<charMinLength>${def.charMinLength}</charMinLength>
 		<charMaxLength>${def.charMaxLength}</charMaxLength>
+		<isOnlyAscii>${def.isOnlyAscii}</isOnlyAscii>
 		<#if def.regex??>
 		<regex>${def.regex}</regex>
 		</#if>

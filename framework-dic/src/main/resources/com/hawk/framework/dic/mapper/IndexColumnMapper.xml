@@ -8,7 +8,12 @@
 				object_id AS "objectId" ,
 		index_object_id AS "indexObjectId" ,
 		column_object_id AS "columnObjectId" ,
-		object_order AS "objectOrder" 
+		object_order AS "objectOrder" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -17,6 +22,11 @@
 			<if test="indexObjectId != null"> AND index_object_id = #{indexObjectId}  </if>
 			<if test="columnObjectId != null"> AND column_object_id = #{columnObjectId}  </if>
 			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -26,6 +36,11 @@
 			AND index_object_id = #{old_indexObjectId}
 			AND column_object_id = #{old_columnObjectId}
 			AND object_order = #{old_objectOrder}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -35,6 +50,11 @@
 			index_object_id = #{indexObjectId},
 			column_object_id = #{columnObjectId},
 			object_order = #{objectOrder},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -44,6 +64,11 @@
 			<if test="indexObjectId != null">index_object_id = #{indexObjectId},</if>
 			<if test="columnObjectId != null">column_object_id = #{columnObjectId},</if>
 			<if test="objectOrder != null">object_order = #{objectOrder},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -85,13 +110,23 @@
 				object_id,				
 				index_object_id,				
 				column_object_id,				
-				object_order				
+				object_order,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
 			#{indexObjectId},
 			#{columnObjectId},
-			#{objectOrder}
+			#{objectOrder},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

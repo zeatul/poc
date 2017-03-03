@@ -7,7 +7,12 @@
 	<sql id="columns">	
 				object_id AS "objectId" ,
 		application_object_id AS "applicationObjectId" ,
-		table_object_id AS "tableObjectId" 
+		table_object_id AS "tableObjectId" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -15,6 +20,11 @@
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="applicationObjectId != null"> AND application_object_id = #{applicationObjectId}  </if>
 			<if test="tableObjectId != null"> AND table_object_id = #{tableObjectId}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -23,6 +33,11 @@
 			AND object_id = #{old_objectId}
 			AND application_object_id = #{old_applicationObjectId}
 			AND table_object_id = #{old_tableObjectId}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -31,6 +46,11 @@
 			object_id = #{objectId},
 			application_object_id = #{applicationObjectId},
 			table_object_id = #{tableObjectId},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -39,6 +59,11 @@
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="applicationObjectId != null">application_object_id = #{applicationObjectId},</if>
 			<if test="tableObjectId != null">table_object_id = #{tableObjectId},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -79,12 +104,22 @@
 		INSERT INTO t_dic_application_table (			
 				object_id,				
 				application_object_id,				
-				table_object_id				
+				table_object_id,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
 			#{applicationObjectId},
-			#{tableObjectId}
+			#{tableObjectId},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

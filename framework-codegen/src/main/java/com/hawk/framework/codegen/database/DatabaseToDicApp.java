@@ -93,6 +93,7 @@ public class DatabaseToDicApp {
 		def.setIsEnum(0);
 		def.setMaxValue(null);
 		def.setMinValue(null);
+		def.setIsOnlyAscii(1);
 		def.setNumericPrecision(column.getNumericPrecision());
 		def.setNumericScale(column.getNumericScale());
 

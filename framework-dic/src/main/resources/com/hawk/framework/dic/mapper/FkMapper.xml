@@ -10,7 +10,12 @@
 		object_name AS "objectName" ,
 		object_comment AS "objectComment" ,
 		parent_table_object_id AS "parentTableObjectId" ,
-		child_table_object_id AS "childTableObjectId" 
+		child_table_object_id AS "childTableObjectId" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -21,6 +26,11 @@
 			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 			<if test="parentTableObjectId != null"> AND parent_table_object_id = #{parentTableObjectId}  </if>
 			<if test="childTableObjectId != null"> AND child_table_object_id = #{childTableObjectId}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -32,6 +42,11 @@
 			AND object_comment = #{old_objectComment}
 			AND parent_table_object_id = #{old_parentTableObjectId}
 			AND child_table_object_id = #{old_childTableObjectId}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -43,6 +58,11 @@
 			object_comment = #{objectComment},
 			parent_table_object_id = #{parentTableObjectId},
 			child_table_object_id = #{childTableObjectId},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -54,6 +74,11 @@
 			<if test="objectComment != null">object_comment = #{objectComment},</if>
 			<if test="parentTableObjectId != null">parent_table_object_id = #{parentTableObjectId},</if>
 			<if test="childTableObjectId != null">child_table_object_id = #{childTableObjectId},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -97,7 +122,12 @@
 				object_name,				
 				object_comment,				
 				parent_table_object_id,				
-				child_table_object_id				
+				child_table_object_id,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
@@ -105,7 +135,12 @@
 			#{objectName},
 			#{objectComment},
 			#{parentTableObjectId},
-			#{childTableObjectId}
+			#{childTableObjectId},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

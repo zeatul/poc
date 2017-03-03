@@ -9,7 +9,13 @@
 		object_code AS "objectCode" ,
 		object_name AS "objectName" ,
 		object_comment AS "objectComment" ,
-		object_type AS "objectType" 
+		object_type AS "objectType" ,
+		physical_option AS "physicalOption" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -19,6 +25,12 @@
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
 			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 			<if test="objectType != null"> AND object_type = #{objectType}  </if>
+			<if test="physicalOption != null"> AND physical_option = #{physicalOption}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -29,6 +41,12 @@
 			AND object_name = #{old_objectName}
 			AND object_comment = #{old_objectComment}
 			AND object_type = #{old_objectType}
+			AND physical_option = #{old_physicalOption}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -39,6 +57,12 @@
 			object_name = #{objectName},
 			object_comment = #{objectComment},
 			object_type = #{objectType},
+			physical_option = #{physicalOption},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -49,6 +73,12 @@
 			<if test="objectName != null">object_name = #{objectName},</if>
 			<if test="objectComment != null">object_comment = #{objectComment},</if>
 			<if test="objectType != null">object_type = #{objectType},</if>
+			<if test="physicalOption != null">physical_option = #{physicalOption},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -91,14 +121,26 @@
 				object_code,				
 				object_name,				
 				object_comment,				
-				object_type				
+				object_type,				
+				physical_option,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
 			#{objectCode},
 			#{objectName},
 			#{objectComment},
-			#{objectType}
+			#{objectType},
+			#{physicalOption},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

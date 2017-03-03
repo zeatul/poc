@@ -15,6 +15,7 @@
 		regex AS "regex" ,
 		char_max_length AS "charMaxLength" ,
 		char_min_length AS "charMinLength" ,
+		is_only_ascii AS "isOnlyAscii" ,
 		max_value AS "maxValue" ,
 		min_value AS "minValue" ,
 		datetime_precision AS "datetimePrecision" ,
@@ -22,7 +23,12 @@
 		numeric_scale AS "numericScale" ,
 		is_enum AS "isEnum" ,
 		enum_key AS "enumKey" ,
-		enum_value AS "enumValue" 
+		enum_value AS "enumValue" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -37,6 +43,7 @@
 			<if test="regex != null"> AND regex = #{regex}  </if>
 			<if test="charMaxLength != null"> AND char_max_length = #{charMaxLength}  </if>
 			<if test="charMinLength != null"> AND char_min_length = #{charMinLength}  </if>
+			<if test="isOnlyAscii != null"> AND is_only_ascii = #{isOnlyAscii}  </if>
 			<if test="maxValue != null"> AND max_value = #{maxValue}  </if>
 			<if test="minValue != null"> AND min_value = #{minValue}  </if>
 			<if test="datetimePrecision != null"> AND datetime_precision = #{datetimePrecision}  </if>
@@ -45,6 +52,11 @@
 			<if test="isEnum != null"> AND is_enum = #{isEnum}  </if>
 			<if test="enumKey != null"> AND enum_key = #{enumKey}  </if>
 			<if test="enumValue != null"> AND enum_value = #{enumValue}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -60,6 +72,7 @@
 			AND regex = #{old_regex}
 			AND char_max_length = #{old_charMaxLength}
 			AND char_min_length = #{old_charMinLength}
+			AND is_only_ascii = #{old_isOnlyAscii}
 			AND max_value = #{old_maxValue}
 			AND min_value = #{old_minValue}
 			AND datetime_precision = #{old_datetimePrecision}
@@ -68,6 +81,11 @@
 			AND is_enum = #{old_isEnum}
 			AND enum_key = #{old_enumKey}
 			AND enum_value = #{old_enumValue}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -83,6 +101,7 @@
 			regex = #{regex},
 			char_max_length = #{charMaxLength},
 			char_min_length = #{charMinLength},
+			is_only_ascii = #{isOnlyAscii},
 			max_value = #{maxValue},
 			min_value = #{minValue},
 			datetime_precision = #{datetimePrecision},
@@ -91,6 +110,11 @@
 			is_enum = #{isEnum},
 			enum_key = #{enumKey},
 			enum_value = #{enumValue},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -106,6 +130,7 @@
 			<if test="regex != null">regex = #{regex},</if>
 			<if test="charMaxLength != null">char_max_length = #{charMaxLength},</if>
 			<if test="charMinLength != null">char_min_length = #{charMinLength},</if>
+			<if test="isOnlyAscii != null">is_only_ascii = #{isOnlyAscii},</if>
 			<if test="maxValue != null">max_value = #{maxValue},</if>
 			<if test="minValue != null">min_value = #{minValue},</if>
 			<if test="datetimePrecision != null">datetime_precision = #{datetimePrecision},</if>
@@ -114,6 +139,11 @@
 			<if test="isEnum != null">is_enum = #{isEnum},</if>
 			<if test="enumKey != null">enum_key = #{enumKey},</if>
 			<if test="enumValue != null">enum_value = #{enumValue},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -162,6 +192,7 @@
 				regex,				
 				char_max_length,				
 				char_min_length,				
+				is_only_ascii,				
 				max_value,				
 				min_value,				
 				datetime_precision,				
@@ -169,7 +200,12 @@
 				numeric_scale,				
 				is_enum,				
 				enum_key,				
-				enum_value				
+				enum_value,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{objectId},
@@ -182,6 +218,7 @@
 			#{regex},
 			#{charMaxLength},
 			#{charMinLength},
+			#{isOnlyAscii},
 			#{maxValue},
 			#{minValue},
 			#{datetimePrecision},
@@ -189,7 +226,12 @@
 			#{numericScale},
 			#{isEnum},
 			#{enumKey},
-			#{enumValue}
+			#{enumValue},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

@@ -14,6 +14,14 @@ public class DataDefinition implements IDictionaryObject {
 	
 
 
+	public Integer getIsOnlyAscii() {
+		return isOnlyAscii;
+	}
+
+	public void setIsOnlyAscii(Integer isOnlyAscii) {
+		this.isOnlyAscii = isOnlyAscii;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -214,6 +222,11 @@ public class DataDefinition implements IDictionaryObject {
 	 * 字符串的最小长度
 	 */
 	private Integer charMinLength;
+	
+	/**
+	 * 是否只包含一个字节长度的字符
+	 */
+	private Integer isOnlyAscii ;
 	
 
 	/**
