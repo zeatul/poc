@@ -1,6 +1,14 @@
 package com.hawk.framework.dic.service;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
+
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.Dictionary;
@@ -15,12 +23,34 @@ import com.hawk.framework.dic.domain.DataDefinitionDomain;
 import com.hawk.framework.dic.domain.IndexColumnDomain;
 import com.hawk.framework.dic.domain.IndexDomain;
 import com.hawk.framework.dic.domain.TableDomain;
-import com.hawk.framework.dic.mapper.ApplicationMapper;
 import com.hawk.framework.utility.DomainTools;
 
+@Component
 public class ReporsitoryService {
 	
-	private ApplicationMapper applicationMapper;
+//	@Autowired
+//	private ApplicationMapper applicationMapper;
+//	@Autowired
+//	private ApplicationTableMapper applicationTableMapper;
+//	@Autowired
+//	private ColumnMapper columnMapper;
+//	@Autowired
+//	private DataDefinitionMapper dataDefinitionMapper;
+//	@Autowired
+//	private FkMapper fkMapper;
+//	@Autowired
+//	private FkMapMapper fkMapMapper;
+//	@Autowired
+//	private IndexMapper indexMapper;
+//	@Autowired
+//	private IndexColumnMapper indexColumnMapper;
+//	@Autowired
+//	private TableMapper tableMapper;
+	
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
+	
+	
 
 	/**
 	 * 存到当前库
@@ -32,22 +62,56 @@ public class ReporsitoryService {
 
 		DictionaryDomainWrap dictionaryDomainWrap = build(dictionary);
 		
-		/**
-		 * 物理删除旧数据
-		 */
-		ApplicationDomain
-		DataDefinitionDomain
-		TableDomain
-		ColumnDomain
-		IndexDomain
-		IndexColumnDomain
-		ApplicationTableDomain
+		SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
 		
-		
-		/**
-		 * 插入新数据
-		 */
+		try {
+			/**
+			 * 物理删除旧数据
+			 */		
+			cleanDictionary(dictionaryDomainWrap,sqlSession);
+			
+			/**
+			 * 插入新数据
+			 */
+			createDictionary(dictionaryDomainWrap,sqlSession);
 
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			sqlSession.rollback();
+		}finally{
+			if (sqlSession != null)
+			sqlSession.close();
+		}
+	}
+	
+	private void cleanDictionary(DictionaryDomainWrap dictionaryDomainWrap,SqlSession sqlSession){
+		Iterator<Class<?>> it = dictionaryDomainWrap.getMap().keySet().iterator();
+		while(it.hasNext()){
+			Class<?> clazz = it.next();
+			sqlSession.delete(clazz.getName()+".deleteDynamic");
+		}
+		sqlSession.flushStatements();
+	}
+	
+	private void createDictionary(DictionaryDomainWrap dictionaryDomainWrap,SqlSession sqlSession){
+		Iterator<Class<?>> it = dictionaryDomainWrap.getMap().keySet().iterator();
+		int i = 0;
+		while(it.hasNext()){
+			Class<?> clazz = it.next();
+			List<?> list = dictionaryDomainWrap.getMap().get(clazz);
+			for (Object object : list){
+				sqlSession.insert(clazz.getName()+".insert", object);
+				i++;
+				if (i%500==0){
+					sqlSession.flushStatements();
+				}
+			}
+		}
+		
+		if (i%500>0){
+			sqlSession.flushStatements();
+		}
 	}
 	
 	
@@ -147,18 +211,6 @@ public class ReporsitoryService {
 
 	}
 
-	/**
-	 * 存为历史数据库
-	 */
-	public void saveToHistoryDatabase(Dictionary dictionary) {
-
-	}
-
-	/**
-	 * 存为历史xml文件
-	 */
-	public void saveToHistoryXml(Dictionary dictionary) {
-
-	}
+	
 
 }

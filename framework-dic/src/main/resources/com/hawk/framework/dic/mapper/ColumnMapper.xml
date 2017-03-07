@@ -14,6 +14,7 @@
 		object_order AS "objectOrder" ,
 		nullable AS "nullable" ,
 		is_pk AS "isPk" ,
+		operators AS "operators" ,
 		system_code AS "systemCode" ,
 		version AS "version" ,
 		create_date AS "createDate" ,
@@ -32,6 +33,7 @@
 			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
 			<if test="nullable != null"> AND nullable = #{nullable}  </if>
 			<if test="isPk != null"> AND is_pk = #{isPk}  </if>
+			<if test="operators != null"> AND operators = #{operators}  </if>
 			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
 			<if test="version != null"> AND version = #{version}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -51,6 +53,7 @@
 			AND object_order = #{old_objectOrder}
 			AND nullable = #{old_nullable}
 			AND is_pk = #{old_isPk}
+			AND operators = #{old_operators}
 			AND system_code = #{old_systemCode}
 			AND version = #{old_version}
 			AND create_date = #{old_createDate}
@@ -70,6 +73,7 @@
 			object_order = #{objectOrder},
 			nullable = #{nullable},
 			is_pk = #{isPk},
+			operators = #{operators},
 			system_code = #{systemCode},
 			version = #{version},
 			create_date = #{createDate},
@@ -89,6 +93,7 @@
 			<if test="objectOrder != null">object_order = #{objectOrder},</if>
 			<if test="nullable != null">nullable = #{nullable},</if>
 			<if test="isPk != null">is_pk = #{isPk},</if>
+			<if test="operators != null">operators = #{operators},</if>
 			<if test="systemCode != null">system_code = #{systemCode},</if>
 			<if test="version != null">version = #{version},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -141,6 +146,7 @@
 				object_order,				
 				nullable,				
 				is_pk,				
+				operators,				
 				system_code,				
 				version,				
 				create_date,				
@@ -157,6 +163,7 @@
 			#{objectOrder},
 			#{nullable},
 			#{isPk},
+			#{operators},
 			#{systemCode},
 			#{version},
 			#{createDate},

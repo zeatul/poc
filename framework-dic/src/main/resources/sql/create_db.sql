@@ -32,13 +32,13 @@ drop index ui_dic_index_column on t_dic_index_column;
 
 drop table if exists t_dic_index_column;
 
-drop index i_dic_module_search on t_dic_module;
+drop index i_dic_module_search on t_dic_model;
 
-drop index ui_dic_module_id on t_dic_module;
+drop index ui_dic_module_id on t_dic_model;
 
-drop index ui_dic_module_code on t_dic_module;
+drop index ui_dic_module_code on t_dic_model;
 
-drop table if exists t_dic_module;
+drop table if exists t_dic_model;
 
 drop index ui_dic_table_code on t_dic_table;
 
@@ -114,6 +114,7 @@ create table t_dic_column
    object_order         integer comment '数据库字段在表的序号',
    nullable             integer comment '可否为空(1/0)',
    is_pk                integer comment '是否为主键(1/0)',
+   operators            varchar(50) comment '支持的运算符，等于默认支持',
    system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              int comment '版本号',
    create_date          timestamp(3) null comment '创建日期',
@@ -307,9 +308,9 @@ create unique index ui_dic_index_column on t_dic_index_column
 );
 
 /*==============================================================*/
-/* Table: t_dic_module                                          */
+/* Table: t_dic_model                                           */
 /*==============================================================*/
-create table t_dic_module
+create table t_dic_model
 (
    object_id            varchar(50) not null comment '主键',
    object_code          varchar(50) not null comment '编码',
@@ -329,12 +330,12 @@ create table t_dic_module
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table t_dic_module comment '测试表的元数据使用,包括字段类型,索引,外键,不维护数据';
+alter table t_dic_model comment '测试表的元数据使用,包括字段类型,索引,外键,不维护数据';
 
 /*==============================================================*/
 /* Index: ui_dic_module_code                                    */
 /*==============================================================*/
-create unique index ui_dic_module_code on t_dic_module
+create unique index ui_dic_module_code on t_dic_model
 (
    object_code
 );
@@ -342,7 +343,7 @@ create unique index ui_dic_module_code on t_dic_module
 /*==============================================================*/
 /* Index: ui_dic_module_id                                      */
 /*==============================================================*/
-create unique index ui_dic_module_id on t_dic_module
+create unique index ui_dic_module_id on t_dic_model
 (
    id
 );
@@ -350,7 +351,7 @@ create unique index ui_dic_module_id on t_dic_module
 /*==============================================================*/
 /* Index: i_dic_module_search                                   */
 /*==============================================================*/
-create index i_dic_module_search on t_dic_module
+create index i_dic_module_search on t_dic_model
 (
    object_name,
    create_date,

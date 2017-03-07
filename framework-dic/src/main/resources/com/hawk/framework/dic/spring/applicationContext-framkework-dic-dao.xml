@@ -85,6 +85,7 @@
 
 	<!-- define the SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
 		<property name="typeAliasesPackage" value="com.hawk.framework.dic.domain;com.hawk.framework.dic.domain.extra" />
 	</bean>
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>745bf3ce-ffa4-4921-abef-6ff40c0d0434</id>
+	<id>b07604b6-8087-471a-8a46-571fac9e11aa</id>
 	<code>t_dic_application</code>
 	<comment>应用,一个应用一个package,对应很多表.</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>4c40abb5-2e15-456f-9dab-7182570f8783</id>
+			<id>2aebcb57-36a6-449f-b0a2-80ddf5c8e2d3</id>
 			<dataDefinition>
-				<id>c91cbb48-187b-4347-bd8f-42da0d40741a</id>
+				<id>6955bc6e-3011-4173-8815-86a1e344d04a</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>af6e66d3-75e0-4678-b353-1f33dfae1ebb</id>
+			<id>9aefbb89-6eb2-4ddf-9893-4b4acec67b00</id>
 			<dataDefinition>
-				<id>44a0a50a-a0e6-4aa2-acbd-ee4fc18c6d68</id>
+				<id>1c594e50-be29-4909-acf1-70b9f07d95b6</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>应用编码</name>
@@ -28,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4b16cf18-e104-41ef-b033-461cb075d7d5</id>
+			<id>168a5360-8a36-4016-b58b-8993af55c470</id>
 			<dataDefinition>
-				<id>2c3b5b75-631b-496c-8f76-2b5212e9a17e</id>
+				<id>afbcc5fe-b0ad-4b79-bcde-1028084a682b</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>应用名称</name>
@@ -39,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ac8db797-28f9-45f1-82b2-cb49b7ee9778</id>
+			<id>0fd034ba-73d7-4f45-88af-a8b08c58d60a</id>
 			<dataDefinition>
-				<id>499b78df-3e04-49f5-9cb7-94b03dfc37fa</id>
+				<id>e3777214-c9e1-4d62-a11c-01251f7e908c</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>应用描述</name>
@@ -50,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9c5e9737-5ac3-4fd0-9b2d-5dd5737054a0</id>
+			<id>065634ea-9053-4697-bf24-3ee10077bb64</id>
 			<dataDefinition>
-				<id>a868d17f-1aef-4ed1-826b-09e900437954</id>
+				<id>54f12788-f6f3-4919-9b63-471c26f0f9e3</id>
 			</dataDefinition>
 			<code>system_code</code>
 			<name>系统编码(区分不同项目，不同集团)</name>
@@ -61,9 +61,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d540f437-e4ed-4e71-9dd3-66cd8b1ae57b</id>
+			<id>aa877f41-e7fc-4528-801b-6e045c83573f</id>
 			<dataDefinition>
-				<id>1cfbb530-73e5-4da3-90bb-2c8bfee53747</id>
+				<id>acb0682f-d552-4c55-80d1-f60150d0cd78</id>
 			</dataDefinition>
 			<code>version</code>
 			<name>版本号</name>
@@ -72,9 +72,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9f9876d8-87cd-4147-a685-2d738d613259</id>
+			<id>757760a2-564f-4d02-9ed0-1e47b4d51122</id>
 			<dataDefinition>
-				<id>b3df8fe4-0770-48a3-88e8-758a42a0c6dd</id>
+				<id>3718c224-18e4-4fa2-98d5-16ffde3ffd24</id>
 			</dataDefinition>
 			<code>create_date</code>
 			<name>创建日期</name>
@@ -83,9 +83,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b48e18a2-63fe-4aa7-863a-8d012c05baea</id>
+			<id>015ba47c-3cc1-430a-b839-540133b256ec</id>
 			<dataDefinition>
-				<id>aad20f22-4e05-4bd7-a122-4e25119b2e23</id>
+				<id>d6ba8ff7-4a69-4487-9a0b-9aeabe080e31</id>
 			</dataDefinition>
 			<code>update_date</code>
 			<name>更新日期</name>
@@ -94,9 +94,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>074f664d-4442-45ae-9d1d-dd291d35b540</id>
+			<id>358fb483-120f-4110-ab35-632d522d79c5</id>
 			<dataDefinition>
-				<id>f73f23b1-b4d3-4593-9dea-a28155057268</id>
+				<id>16d97866-5e81-4df2-a537-c09ffe92d8f2</id>
 			</dataDefinition>
 			<code>delete_date</code>
 			<name>删除日期</name>
@@ -107,20 +107,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>45f2ed46-e148-4721-968d-6bd4ce032ed2</id>
+			<id>2eb6e189-e1cb-4236-a48b-498b3897e152</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>4c40abb5-2e15-456f-9dab-7182570f8783</id>
+					<id>2aebcb57-36a6-449f-b0a2-80ddf5c8e2d3</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>e217d2ff-f657-4ae1-83bf-6f606fbca699</id>
+			<id>9b0af411-89c9-46f7-a584-151e52b7a62a</id>
 			<code>ui_dic_application_code</code>
 			<columns>
 				<column>
-					<id>af6e66d3-75e0-4678-b353-1f33dfae1ebb</id>
+					<id>9aefbb89-6eb2-4ddf-9893-4b4acec67b00</id>
 				</column>
 			</columns>
 		</index>

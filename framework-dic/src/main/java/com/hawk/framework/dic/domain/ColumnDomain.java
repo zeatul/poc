@@ -61,6 +61,11 @@ public class ColumnDomain implements Serializable {
 	private Integer isPk;
 	
 	/**
+	 * 支持的运算符，等于默认支持 operators
+	 */
+	private String operators;
+	
+	/**
 	 * 系统编码(区分不同项目，不同集团) system_code
 	 */
 	private String systemCode;
@@ -228,6 +233,22 @@ public class ColumnDomain implements Serializable {
 	 */	
 	public void setIsPk (Integer isPk) {
 		this.isPk = isPk;
+	}
+	
+	/**
+	 * 
+	 * @return 支持的运算符，等于默认支持 operators
+	 */
+	public String getOperators(){
+		return operators;
+	}
+	
+	/**
+	 * 
+	 * @param operators 支持的运算符，等于默认支持 operators
+	 */	
+	public void setOperators (String operators) {
+		this.operators = operators;
 	}
 	
 	/**

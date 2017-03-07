@@ -2,7 +2,9 @@ package com.hawk.framework.dic.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hawk.framework.dic.domain.ApplicationDomain;
 import com.hawk.framework.dic.domain.ApplicationTableDomain;
@@ -19,34 +21,6 @@ public class DictionaryDomainWrap {
 	
 	
 	
-	public List<DataDefinitionDomain> getDataDefinitionDomainList() {
-		return dataDefinitionDomainList;
-	}
-
-	public List<ApplicationDomain> getApplicationDomainList() {
-		return applicationDomainList;
-	}
-
-	public List<TableDomain> getTableDomainList() {
-		return tableDomainList;
-	}
-
-	public List<ColumnDomain> getColumnDomainList() {
-		return columnDomainList;
-	}
-
-	public List<IndexDomain> getIndexDomainList() {
-		return indexDomainList;
-	}
-
-	public List<IndexColumnDomain> getIndexColumnDomainList() {
-		return indexColumnDomainList;
-	}
-
-	public List<ApplicationTableDomain> getApplicationTableDomainList() {
-		return applicationTableDomainList;
-	}
-	
 	
 
 	private List<DataDefinitionDomain> dataDefinitionDomainList = new ArrayList<DataDefinitionDomain>();	
@@ -56,6 +30,22 @@ public class DictionaryDomainWrap {
 	private List<IndexDomain> indexDomainList = new ArrayList<IndexDomain>();
 	private List<IndexColumnDomain> indexColumnDomainList = new ArrayList<IndexColumnDomain>();
 	private List<ApplicationTableDomain> applicationTableDomainList = new ArrayList<ApplicationTableDomain>();
+	
+	private  Map<Class<?>,List<?>> map = new HashMap<Class<?>,List<?>>();
+	
+	public Map<Class<?>,List<?>> getMap(){
+		return map;
+	}
+	
+	public DictionaryDomainWrap(){
+		map.put(DataDefinitionDomain.class, dataDefinitionDomainList);
+		map.put(ApplicationDomain.class, applicationDomainList);
+		map.put(TableDomain.class, tableDomainList);
+		map.put(ColumnDomain.class, columnDomainList);
+		map.put(IndexDomain.class, indexDomainList);
+		map.put(IndexColumnDomain.class, indexColumnDomainList);
+		map.put(ApplicationTableDomain.class, applicationTableDomainList);
+	}
 
 	public void add(DataDefinitionDomain dataDefinitionDomain) {
 		dataDefinitionDomainList.add(dataDefinitionDomain);

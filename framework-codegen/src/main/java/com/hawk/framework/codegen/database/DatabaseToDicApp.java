@@ -238,7 +238,7 @@ public class DatabaseToDicApp {
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "design.data");
 		ProjectTools.clearDirectory(directory, "data_defnition.xml");
-		String filePath = directory + File.separator + "data_defnition.xml";
+		String filePath = directory + File.separator + "dic.data_defnition.xml";
 		if (new File(filePath).exists())
 			throw new RuntimeException("Exists file = " + filePath);
 

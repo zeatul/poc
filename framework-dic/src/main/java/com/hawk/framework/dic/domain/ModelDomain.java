@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * 测试表的元数据使用,包括字段类型,索引,外键,不维护数据
- * The class is mapped to the table t_dic_module 
+ * The class is mapped to the table t_dic_model 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class ModuleDomain implements Serializable {
+public class ModelDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	

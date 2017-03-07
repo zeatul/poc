@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>c2fb2df0-e938-493b-a018-e9109a3afa82</id>
+	<id>059a72b6-0f5e-4784-85ce-80f926e3d43e</id>
 	<code>t_dic_table</code>
 	<comment>表对象</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>67e556ee-8530-42dc-a3c2-01527cb0ef1c</id>
+			<id>dc182654-cd30-465c-88ed-875b2c1f3eae</id>
 			<dataDefinition>
-				<id>c91cbb48-187b-4347-bd8f-42da0d40741a</id>
+				<id>6955bc6e-3011-4173-8815-86a1e344d04a</id>
 			</dataDefinition>
 			<code>object_id</code>
 			<name>对象ID</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>8fd1b279-fdba-484b-a0b5-9c368f996b41</id>
+			<id>b868742d-f59a-4733-a002-b0775e250b9b</id>
 			<dataDefinition>
-				<id>44a0a50a-a0e6-4aa2-acbd-ee4fc18c6d68</id>
+				<id>1c594e50-be29-4909-acf1-70b9f07d95b6</id>
 			</dataDefinition>
 			<code>object_code</code>
 			<name>表的编码</name>
@@ -28,9 +28,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>dda8dcab-7dd7-46ed-a1a1-26cac3cad992</id>
+			<id>3eec73ab-9250-4ee3-b69f-42d99355d467</id>
 			<dataDefinition>
-				<id>2c3b5b75-631b-496c-8f76-2b5212e9a17e</id>
+				<id>afbcc5fe-b0ad-4b79-bcde-1028084a682b</id>
 			</dataDefinition>
 			<code>object_name</code>
 			<name>表的名称</name>
@@ -39,9 +39,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>adf6650d-2990-41bf-b7f2-1587f23c4a07</id>
+			<id>28069313-2411-43f7-a3cf-efd73f9a5002</id>
 			<dataDefinition>
-				<id>499b78df-3e04-49f5-9cb7-94b03dfc37fa</id>
+				<id>e3777214-c9e1-4d62-a11c-01251f7e908c</id>
 			</dataDefinition>
 			<code>object_comment</code>
 			<name>表的描述</name>
@@ -50,9 +50,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>977a1ead-ac28-4c31-bebb-7aa2b3dbf9c8</id>
+			<id>7ab81564-fc9d-4d80-9d5b-7973fe2af954</id>
 			<dataDefinition>
-				<id>a102823e-44fd-46b0-b661-bc83381ce39e</id>
+				<id>e63aabab-6450-459c-8cd9-f8464c8d2eb6</id>
 			</dataDefinition>
 			<code>object_type</code>
 			<name>表的类型</name>
@@ -61,9 +61,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>13498e18-a83c-4a5d-8df3-80e04465dc34</id>
+			<id>3f22ee1f-4161-4121-9ebd-7497f643a18b</id>
 			<dataDefinition>
-				<id>4c3b9dc7-2592-4763-bdc0-1915a32ebcb0</id>
+				<id>b3b3e195-6bd3-4151-b53e-a4c2d592da13</id>
 			</dataDefinition>
 			<code>physical_option</code>
 			<name>表的物理特性</name>
@@ -72,9 +72,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>09445217-e7ef-4a56-abfd-e5004bc6f43a</id>
+			<id>7c2e0cf9-d978-42fe-92c6-1e4c19773b3d</id>
 			<dataDefinition>
-				<id>a868d17f-1aef-4ed1-826b-09e900437954</id>
+				<id>54f12788-f6f3-4919-9b63-471c26f0f9e3</id>
 			</dataDefinition>
 			<code>system_code</code>
 			<name>系统编码(区分不同项目，不同集团)</name>
@@ -83,9 +83,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>331373d4-8a4c-4b1c-8c16-3b38b67d7ee9</id>
+			<id>adc62864-bb31-4512-9cb4-ec731675ad36</id>
 			<dataDefinition>
-				<id>1cfbb530-73e5-4da3-90bb-2c8bfee53747</id>
+				<id>acb0682f-d552-4c55-80d1-f60150d0cd78</id>
 			</dataDefinition>
 			<code>version</code>
 			<name>版本号</name>
@@ -94,9 +94,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3507f012-3c8a-4597-ab57-bd7ad20130f6</id>
+			<id>03bb479d-b79d-42bb-bff6-937c350c53df</id>
 			<dataDefinition>
-				<id>b3df8fe4-0770-48a3-88e8-758a42a0c6dd</id>
+				<id>3718c224-18e4-4fa2-98d5-16ffde3ffd24</id>
 			</dataDefinition>
 			<code>create_date</code>
 			<name>创建日期</name>
@@ -105,9 +105,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1280f9a1-ae40-4c56-91f5-727aaf8815c2</id>
+			<id>11e2ddfd-bec4-4a43-92b0-85c621aee00b</id>
 			<dataDefinition>
-				<id>aad20f22-4e05-4bd7-a122-4e25119b2e23</id>
+				<id>d6ba8ff7-4a69-4487-9a0b-9aeabe080e31</id>
 			</dataDefinition>
 			<code>update_date</code>
 			<name>更新日期</name>
@@ -116,9 +116,9 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d7a003ef-e58e-466c-b738-ff3f5f92579a</id>
+			<id>e5e03862-429b-482d-91c7-8fe58937daca</id>
 			<dataDefinition>
-				<id>f73f23b1-b4d3-4593-9dea-a28155057268</id>
+				<id>16d97866-5e81-4df2-a537-c09ffe92d8f2</id>
 			</dataDefinition>
 			<code>delete_date</code>
 			<name>删除日期</name>
@@ -129,20 +129,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>0014b469-def3-4410-961b-c5d7de48e80f</id>
+			<id>47ff4822-cebb-4f57-93d6-16c7e3ec2f63</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>67e556ee-8530-42dc-a3c2-01527cb0ef1c</id>
+					<id>dc182654-cd30-465c-88ed-875b2c1f3eae</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>be96d159-f463-4bf9-a9c2-b5bfdb357447</id>
+			<id>09641d81-469d-49f6-b3bc-20b28aeec94b</id>
 			<code>ui_dic_table_code</code>
 			<columns>
 				<column>
-					<id>8fd1b279-fdba-484b-a0b5-9c368f996b41</id>
+					<id>b868742d-f59a-4733-a002-b0775e250b9b</id>
 				</column>
 			</columns>
 		</index>
