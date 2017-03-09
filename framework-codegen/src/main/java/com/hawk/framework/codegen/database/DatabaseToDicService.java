@@ -38,27 +38,18 @@ import freemarker.template.Template;
  * @author pzhang1
  *
  */
-public class DatabaseToDicApp {
+public class DatabaseToDicService {
 
-	private static Configuration cfg = new Configuration();
-	static {
-		cfg.setClassForTemplateLoading(DatabaseToDicApp.class, "");
+	private Configuration cfg = new Configuration();
+	public DatabaseToDicService(){
+		cfg.setClassForTemplateLoading(DatabaseToDicService.class, "");
 		cfg.setNumberFormat("########");
 	}
+	
 
-	public static void main(String[] args) {
-		try {
-			run();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-
-		System.exit(0);
-	}
-
-	private static void run() throws Throwable {
-		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build();
-		IProjectConfigure projectConfigure = ProjectConfigure.build();
+	public void execute(String configFileClassPath) throws Throwable {
+		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build(configFileClassPath);
+		IProjectConfigure projectConfigure = ProjectConfigure.build(configFileClassPath);
 		ITypeConverter typeConverter = TypeConverterFactory.build(databaseConfigure.getDialect());
 
 		IDatabaseParser dbParser = DatabaseParserFactory.build(databaseConfigure);
@@ -102,7 +93,7 @@ public class DatabaseToDicApp {
 		return def;
 	}
 
-	private static void writeDictionary(Database database, IProjectConfigure projectConfigure, IDbToDicConfigure dbToDicConfigure, ITypeConverter typeConverter)
+	private void writeDictionary(Database database, IProjectConfigure projectConfigure, IDbToDicConfigure dbToDicConfigure, ITypeConverter typeConverter)
 			throws Exception {
 		Map<String, DataDefinition> defCodeMap = new HashMap<String, DataDefinition>();
 		List<com.hawk.framework.dic.design.database.Table> dicTableList = new ArrayList<com.hawk.framework.dic.design.database.Table>();
@@ -188,6 +179,11 @@ public class DatabaseToDicApp {
 			list.add(it.next());
 		}
 		writeDataDefinition(list, projectConfigure);
+		
+		/**
+		 * 输出所有的所有数据字典的code为一个文件
+		 */
+		writeWord(list, projectConfigure);
 
 		/**
 		 * 输出每个表为一个文件
@@ -212,7 +208,7 @@ public class DatabaseToDicApp {
 
 	
 
-	private static void writeApplication(List<Application> applicationList, IProjectConfigure projectConfigure) throws Exception {
+	private void writeApplication(List<Application> applicationList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_application.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
@@ -230,7 +226,7 @@ public class DatabaseToDicApp {
 		}
 	}
 
-	private static void writeDataDefinition(List<DataDefinition> list, IProjectConfigure projectConfigure) throws Exception {
+	private void writeDataDefinition(List<DataDefinition> list, IProjectConfigure projectConfigure) throws Exception {
 		Map<String, List<DataDefinition>> root = new HashMap<String, List<DataDefinition>>();
 		root.put("dataDefnitionList", list);
 		/* 获取或创建模板 */
@@ -248,8 +244,27 @@ public class DatabaseToDicApp {
 		out.flush();
 		out.close();
 	}
+	
+	private void writeWord(List<DataDefinition> list ,IProjectConfigure projectConfigure) throws Exception{
+		Map<String, List<DataDefinition>> root = new HashMap<String, List<DataDefinition>>();
+		root.put("dataDefnitionList", list);
+		/* 获取或创建模板 */
+		Template template = cfg.getTemplate("template/dic_word.ftl");
+		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
+				projectConfigure.getSubPackage(), "design.word");
+		ProjectTools.clearDirectory(directory, "word.xml");
+		String filePath = directory + File.separator + "framework-dic.word.xml";
+		if (new File(filePath).exists())
+			throw new RuntimeException("Exists file = " + filePath);
 
-	private static void writeTable(List<com.hawk.framework.dic.design.database.Table> dicTableList, IProjectConfigure projectConfigure) throws Exception {
+		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
+		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
+		template.process(root, out);
+		out.flush();
+		out.close();
+	}
+
+	private void writeTable(List<com.hawk.framework.dic.design.database.Table> dicTableList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_table.ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
