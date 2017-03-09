@@ -9,22 +9,15 @@
 	</parent>
 
 	<packaging>jar</packaging>
-	<artifactId>e-commerce-user-service</artifactId>
-	<name>e-commerce-user-service</name>
+	<artifactId>e-commerce-code-gen</artifactId>
+	<name>e-commerce-code-gen</name>
 	<url>http://maven.apache.org</url>
 
 
 	<dependencies>
-		<!-- mybatis -->
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-codegen</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-		</dependency>
-
 	</dependencies>
 </project>

@@ -9,6 +9,7 @@
 	<modules>
 		<module>../e-commerce-user-service</module>
 		<module>../e-commerce-sms-service</module>
+		<module>../e-commerce-code-gen</module>
 	</modules>
 
 	<profiles>
@@ -16,7 +17,7 @@
 			<id>dev</id>
 			<build>
 				<filters>
-					<!--<filter>../framework-parent/framework/framework_dev.properties</filter>-->
+					<!--<filter>../framework-parent/framework/framework_dev.properties</filter> -->
 				</filters>
 			</build>
 			<activation>
@@ -27,7 +28,7 @@
 			<id>test</id>
 			<build>
 				<filters>
-					<!--<filter>../framework-parent/framework/framework_test.properties</filter>-->
+					<!--<filter>../framework-parent/framework/framework_test.properties</filter> -->
 				</filters>
 			</build>
 		</profile>
@@ -46,9 +47,17 @@
 		<org.mybatis-spring-version>1.2.3</org.mybatis-spring-version>
 		<dom4j-version>1.6.1</dom4j-version>
 		<junit-version>4.12</junit-version>
+		<freemarker-version>2.3.20</freemarker-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+
+			<!--com.hawk.framework -->
+			<dependency>
+				<groupId>com.hawk.framework</groupId>
+				<artifactId>framework-codegen</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- project -->
 			<dependency>
@@ -56,12 +65,13 @@
 				<artifactId>e-commerce-user-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-sms-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 
 			<!-- H2 inmemroy database -->
 			<dependency>
@@ -74,7 +84,7 @@
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
-				<version>2.3.20</version>
+				<version>${freemarker-version}</version>
 			</dependency>
 
 			<!-- cglib -->

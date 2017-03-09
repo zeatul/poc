@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.hawk.framework.utility.ClassPathTools;
+
 public class DatabaseConfigure implements IDatabaseConfigure{
 	
 	
@@ -62,13 +64,14 @@ public class DatabaseConfigure implements IDatabaseConfigure{
 		
 	}
 	
-	public static IDatabaseConfigure build(){
+	public static IDatabaseConfigure build(String configFileClassPath){
 		DatabaseConfigure databaseConfigure = new DatabaseConfigure();
 		/**
 		 * 读取配置文件
 		 */
 		Properties props = new Properties();
-		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream("database.properties"));
+		String classPath = ClassPathTools.dotToAbsoluteClassPath(configFileClassPath)+ "/database.properties";
+		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream(classPath));
 		
 		try {
 			props.load(in);

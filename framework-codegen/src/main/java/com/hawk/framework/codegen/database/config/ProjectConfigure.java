@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import com.hawk.framework.codegen.utils.ProjectTools;
+import com.hawk.framework.utility.ClassPathTools;
 
 public class ProjectConfigure implements IProjectConfigure {
 	
@@ -63,14 +64,15 @@ public class ProjectConfigure implements IProjectConfigure {
 		
 	}
 	
-	public static IProjectConfigure build(){
+	public static IProjectConfigure build(String configFileClassPath){
 		
 		ProjectConfigure projectConfigure = new ProjectConfigure();
 		/**
 		 * 读取配置文件
 		 */
 		Properties props = new Properties();
-		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream("project.properties"));
+		String classPath = ClassPathTools.dotToAbsoluteClassPath(configFileClassPath)+ "/project.properties";
+		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream(classPath));
 		
 		try {
 			props.load(in);

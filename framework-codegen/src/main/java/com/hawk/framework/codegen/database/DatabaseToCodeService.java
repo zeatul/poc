@@ -30,27 +30,22 @@ import freemarker.template.Template;
  * @author pzhang1
  *
  */
-public class DatabaseToCodeApp {
+public class DatabaseToCodeService {
 
-	private static Configuration cfg = new Configuration();
-	static {
-		cfg.setClassForTemplateLoading(DatabaseToCodeApp.class, "");
-	}
-
-	public static void main(String[] args)  {
-		
-		try {
-			run();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-
-		System.exit(0);
+	private  Configuration cfg = new Configuration();
+	
+	public DatabaseToCodeService(){
+		cfg.setClassForTemplateLoading(DatabaseToCodeService.class, "");
 	}
 	
-	private static void run() throws Throwable{
-		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build();
-		IProjectConfigure projectConfigure = ProjectConfigure.build();
+	/**
+	 * 分析数据库,生成对应的代码(domain,mapper,sql)
+	 * @param configFileClassPath 配置文件所在的classPath,例如com.hawk.ecom.codegen.user
+	 * @throws Throwable
+	 */
+	public void execute(String configFileClassPath) throws Throwable{
+		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build(configFileClassPath);
+		IProjectConfigure projectConfigure = ProjectConfigure.build(configFileClassPath);
 
 		IDatabaseParser dbParser = DatabaseParserFactory.build(databaseConfigure);
 
@@ -62,7 +57,7 @@ public class DatabaseToCodeApp {
 
 		IDomainConverter domianConverter = DomainConverterFactory.build(databaseConfigure.getDialect());
 
-		String packageName = projectConfigure.getRootPackage() + "." + projectConfigure.getSubPackage();
+		String packageName = projectConfigure.getRootPackage() + "." + projectConfigure.getSubPackage()+ ".persist";
 		List<Domain> domainList = new ArrayList<Domain>();
 		stdt = new Date();
 		for (Table table : database.getTableList()) {
@@ -98,13 +93,13 @@ public class DatabaseToCodeApp {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	private static void writeDomain(List<Domain> domainList, IProjectConfigure projectConfigure) throws IOException, Exception {
+	private void writeDomain(List<Domain> domainList, IProjectConfigure projectConfigure) throws IOException, Exception {
 
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/domain.ftl");
 
 		String directory = ProjectTools.computeProjectSourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "domain");
+				projectConfigure.getSubPackage(), "persist.domain");
 		ProjectTools.clearDirectory(directory, "Domain.java");
 
 		for (Domain domain : domainList) {
@@ -128,12 +123,12 @@ public class DatabaseToCodeApp {
 	 * @param domain
 	 * @throws Exception
 	 */
-	private static void writeMapper(List<Domain> domainList, IProjectConfigure projectConfigure) throws Exception {
+	private void writeMapper(List<Domain> domainList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/mapper.ftl");
 
 		String directory = ProjectTools.computeProjectSourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "mapper");
+				projectConfigure.getSubPackage(), "persist.mapper");
 		ProjectTools.clearDirectory(directory, "Mapper.java");
 
 		for (Domain domain : domainList) {
@@ -156,11 +151,11 @@ public class DatabaseToCodeApp {
 	 * @param domain
 	 * @throws Exception
 	 */
-	private static void writeSqlMapper(List<Domain> domainList, IProjectConfigure projectConfigure, EnumDialect dialect) throws Exception {
+	private void writeSqlMapper(List<Domain> domainList, IProjectConfigure projectConfigure, EnumDialect dialect) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/mybatis_" + dialect.getValue() + ".ftl");
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "mapper");
+				projectConfigure.getSubPackage(), "persist.mapper");
 		ProjectTools.clearDirectory(directory, "Mapper.xml");
 
 		for (Domain domain : domainList) {

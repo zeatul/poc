@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import static com.hawk.framework.utility.ClassPathTools.*;
 
 public class packageTools {
 
@@ -44,7 +45,7 @@ public class packageTools {
 	}
 
 	/**
-	 * 返回指定package下的符合条件的文件的classpath全名
+	 * 返回指定package下的符合条件的文件的带classpath的全路径名
 	 * 
 	 * @param packageName
 	 * @param recursive
@@ -53,7 +54,7 @@ public class packageTools {
 	 * @throws Exception
 	 */
 	public static List<String> listFile(final String packageName, final boolean recursive, final FileFilter filter) throws Exception {
-		String packagePath = dotToPath(packageName);
+		String packagePath = dotToClassPath(packageName);
 		Enumeration<URL> urls = Thread.currentThread().getContextClassLoader().getResources(packagePath);
 		List<String> fileNameList = new ArrayList<String>();
 		while (urls.hasMoreElements()) {
@@ -84,7 +85,7 @@ public class packageTools {
 	 * @throws Exception
 	 */
 	public static List<String> listClass(final String packageName, final boolean recursive, final ClassFilter classFilter) throws Exception {
-		String packagePath = dotToPath(packageName);
+		String packagePath = dotToClassPath(packageName);
 		Enumeration<URL> urls = Thread.currentThread().getContextClassLoader().getResources(packagePath);
 		List<String> classNameList = new ArrayList<String>();
 		while (urls.hasMoreElements()) {
@@ -120,7 +121,7 @@ public class packageTools {
 				if (fileFilter == null || fileFilter.accept(fileName)) {
 					int beginIndex = rootDir.getPath().length() - packageName.length();
 					fileName = fileName.substring(beginIndex);
-					fileNameList.add(toAbsoluteClassPath(fileName));
+					fileNameList.add(classPathtoAbsoluteClassPath(fileName));
 				}
 
 			} else {
@@ -133,7 +134,7 @@ public class packageTools {
 
 	private static void findClassInJar(final List<String> classNameList, File file, String packageName, final ClassFilter classFilter) throws Exception {
 		JarFile jarFile = null;
-		String packagePath = dotToPath(packageName) + "/";
+		String packagePath = dotToClassPath(packageName) + "/";
 
 		try {
 			jarFile = new JarFile(file);
@@ -145,7 +146,7 @@ public class packageTools {
 				if (name.startsWith(packagePath) && name.endsWith(CLASS_FILE_SUFFIX)) {
 					String className = name.substring(0, name.length() - CLASS_FILE_SUFFIX.length());
 					if (classFilter == null || classFilter.accept(className)) {
-						classNameList.add(pathToDot(className));
+						classNameList.add(classPathToDot(className));
 					}
 				}
 			}
@@ -162,7 +163,7 @@ public class packageTools {
 
 	private static void findFileInJar(final List<String> fileNameList, File file, String packageName, final FileFilter fileFilter) throws Exception {
 		JarFile jarFile = null;
-		String packagePath = dotToPath(packageName) + "/";
+		String packagePath = dotToClassPath(packageName) + "/";
 
 		try {
 			jarFile = new JarFile(file);
@@ -174,7 +175,7 @@ public class packageTools {
 				if (name.startsWith(packagePath)) {
 
 					if (fileFilter == null || fileFilter.accept(name)) {
-						fileNameList.add(toAbsoluteClassPath(name));
+						fileNameList.add(classPathtoAbsoluteClassPath(name));
 					}
 				}
 			}
@@ -216,7 +217,7 @@ public class packageTools {
 				if (classFileName.endsWith(CLASS_FILE_SUFFIX)) {
 					int beginIndex = rootDir.getPath().length() - packageName.length();
 					int endIndex = classFileName.length() - CLASS_FILE_SUFFIX.length();
-					String className = pathToDot(classFileName.substring(beginIndex, endIndex));
+					String className = classPathToDot(classFileName.substring(beginIndex, endIndex));
 					if (classFilter == null || classFilter.accept(className)) {
 						classNameList.add(className);
 					}
@@ -229,20 +230,7 @@ public class packageTools {
 		}
 	}
 
-	private static String dotToPath(String s) {
-		return s.replace('.', '/');
-	}
-
-	private static String pathToDot(String s) {
-		return s.replace('/', '.').replace('\\', '.');
-	}
-
-	private static String toAbsoluteClassPath(String s) {
-		if (!s.startsWith("/"))
-			s = "/" + s;
-
-		return s.replace('\\', '/');
-	}
+	
 
 	// public static void main(String[] args) throws Exception {
 	// List<String> classNameList = packageTools.listClass("com.hawk", true, new
