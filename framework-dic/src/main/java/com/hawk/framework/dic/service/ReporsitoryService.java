@@ -16,13 +16,13 @@ import com.hawk.framework.dic.design.data.DataDefinition;
 import com.hawk.framework.dic.design.database.Column;
 import com.hawk.framework.dic.design.database.Index;
 import com.hawk.framework.dic.design.database.Table;
-import com.hawk.framework.dic.domain.ApplicationDomain;
-import com.hawk.framework.dic.domain.ApplicationTableDomain;
-import com.hawk.framework.dic.domain.ColumnDomain;
-import com.hawk.framework.dic.domain.DataDefinitionDomain;
-import com.hawk.framework.dic.domain.IndexColumnDomain;
-import com.hawk.framework.dic.domain.IndexDomain;
-import com.hawk.framework.dic.domain.TableDomain;
+import com.hawk.framework.dic.persist.domain.ApplicationDomain;
+import com.hawk.framework.dic.persist.domain.ApplicationTableDomain;
+import com.hawk.framework.dic.persist.domain.ColumnDomain;
+import com.hawk.framework.dic.persist.domain.DataDefinitionDomain;
+import com.hawk.framework.dic.persist.domain.IndexColumnDomain;
+import com.hawk.framework.dic.persist.domain.IndexDomain;
+import com.hawk.framework.dic.persist.domain.TableDomain;
 import com.hawk.framework.utility.DomainTools;
 
 @Component

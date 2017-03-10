@@ -64,15 +64,18 @@ public class ProjectConfigure implements IProjectConfigure {
 		
 	}
 	
-	public static IProjectConfigure build(String configFileClassPath){
+	public static IProjectConfigure build(String packageName){
 		
 		ProjectConfigure projectConfigure = new ProjectConfigure();
 		/**
 		 * 读取配置文件
 		 */
 		Properties props = new Properties();
-		String classPath = ClassPathTools.dotToAbsoluteClassPath(configFileClassPath)+ "/project.properties";
-		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream(classPath));
+		String classPath = ClassPathTools.dotToAbsoluteClassPath(packageName)+ "/project.properties";
+		InputStream in = ProjectConfigure.class.getResourceAsStream(classPath);
+		if (in == null)
+			throw new RuntimeException("Couldn't open stream = " + classPath);
+		in = new BufferedInputStream(in);
 		
 		try {
 			props.load(in);

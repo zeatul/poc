@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.framework.dic.persist.mapper.DataDefinitionMapper">
+
+	<sql id="columns">	
+				object_id AS "objectId" ,
+		use_type AS "useType" ,
+		data_type AS "dataType" ,
+		object_code AS "objectCode" ,
+		object_name AS "objectName" ,
+		object_comment AS "objectComment" ,
+		object_display_name AS "objectDisplayName" ,
+		regex AS "regex" ,
+		char_max_length AS "charMaxLength" ,
+		char_min_length AS "charMinLength" ,
+		is_only_ascii AS "isOnlyAscii" ,
+		max_value AS "maxValue" ,
+		min_value AS "minValue" ,
+		datetime_precision AS "datetimePrecision" ,
+		numeric_precision AS "numericPrecision" ,
+		numeric_scale AS "numericScale" ,
+		is_enum AS "isEnum" ,
+		enum_key AS "enumKey" ,
+		enum_value AS "enumValue" ,
+		system_code AS "systemCode" ,
+		version AS "version" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="objectId != null"> AND object_id = #{objectId}  </if>
+			<if test="useType != null"> AND use_type = #{useType}  </if>
+			<if test="dataType != null"> AND data_type = #{dataType}  </if>
+			<if test="objectCode != null"> AND object_code = #{objectCode}  </if>
+			<if test="objectName != null"> AND object_name = #{objectName}  </if>
+			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
+			<if test="objectDisplayName != null"> AND object_display_name = #{objectDisplayName}  </if>
+			<if test="regex != null"> AND regex = #{regex}  </if>
+			<if test="charMaxLength != null"> AND char_max_length = #{charMaxLength}  </if>
+			<if test="charMinLength != null"> AND char_min_length = #{charMinLength}  </if>
+			<if test="isOnlyAscii != null"> AND is_only_ascii = #{isOnlyAscii}  </if>
+			<if test="maxValue != null"> AND max_value = #{maxValue}  </if>
+			<if test="minValue != null"> AND min_value = #{minValue}  </if>
+			<if test="datetimePrecision != null"> AND datetime_precision = #{datetimePrecision}  </if>
+			<if test="numericPrecision != null"> AND numeric_precision = #{numericPrecision}  </if>
+			<if test="numericScale != null"> AND numeric_scale = #{numericScale}  </if>
+			<if test="isEnum != null"> AND is_enum = #{isEnum}  </if>
+			<if test="enumKey != null"> AND enum_key = #{enumKey}  </if>
+			<if test="enumValue != null"> AND enum_value = #{enumValue}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND object_id = #{old_objectId}
+			AND use_type = #{old_useType}
+			AND data_type = #{old_dataType}
+			AND object_code = #{old_objectCode}
+			AND object_name = #{old_objectName}
+			AND object_comment = #{old_objectComment}
+			AND object_display_name = #{old_objectDisplayName}
+			AND regex = #{old_regex}
+			AND char_max_length = #{old_charMaxLength}
+			AND char_min_length = #{old_charMinLength}
+			AND is_only_ascii = #{old_isOnlyAscii}
+			AND max_value = #{old_maxValue}
+			AND min_value = #{old_minValue}
+			AND datetime_precision = #{old_datetimePrecision}
+			AND numeric_precision = #{old_numericPrecision}
+			AND numeric_scale = #{old_numericScale}
+			AND is_enum = #{old_isEnum}
+			AND enum_key = #{old_enumKey}
+			AND enum_value = #{old_enumValue}
+			AND system_code = #{old_systemCode}
+			AND version = #{old_version}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			object_id = #{objectId},
+			use_type = #{useType},
+			data_type = #{dataType},
+			object_code = #{objectCode},
+			object_name = #{objectName},
+			object_comment = #{objectComment},
+			object_display_name = #{objectDisplayName},
+			regex = #{regex},
+			char_max_length = #{charMaxLength},
+			char_min_length = #{charMinLength},
+			is_only_ascii = #{isOnlyAscii},
+			max_value = #{maxValue},
+			min_value = #{minValue},
+			datetime_precision = #{datetimePrecision},
+			numeric_precision = #{numericPrecision},
+			numeric_scale = #{numericScale},
+			is_enum = #{isEnum},
+			enum_key = #{enumKey},
+			enum_value = #{enumValue},
+			system_code = #{systemCode},
+			version = #{version},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="objectId != null">object_id = #{objectId},</if>
+			<if test="useType != null">use_type = #{useType},</if>
+			<if test="dataType != null">data_type = #{dataType},</if>
+			<if test="objectCode != null">object_code = #{objectCode},</if>
+			<if test="objectName != null">object_name = #{objectName},</if>
+			<if test="objectComment != null">object_comment = #{objectComment},</if>
+			<if test="objectDisplayName != null">object_display_name = #{objectDisplayName},</if>
+			<if test="regex != null">regex = #{regex},</if>
+			<if test="charMaxLength != null">char_max_length = #{charMaxLength},</if>
+			<if test="charMinLength != null">char_min_length = #{charMinLength},</if>
+			<if test="isOnlyAscii != null">is_only_ascii = #{isOnlyAscii},</if>
+			<if test="maxValue != null">max_value = #{maxValue},</if>
+			<if test="minValue != null">min_value = #{minValue},</if>
+			<if test="datetimePrecision != null">datetime_precision = #{datetimePrecision},</if>
+			<if test="numericPrecision != null">numeric_precision = #{numericPrecision},</if>
+			<if test="numericScale != null">numeric_scale = #{numericScale},</if>
+			<if test="isEnum != null">is_enum = #{isEnum},</if>
+			<if test="enumKey != null">enum_key = #{enumKey},</if>
+			<if test="enumValue != null">enum_value = #{enumValue},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND object_id = #{objectId}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="DataDefinitionDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_dic_data_definition
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="DataDefinitionDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_data_definition
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_dic_data_definition
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_dic_data_definition
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="DataDefinitionDomain">
+		INSERT INTO t_dic_data_definition (			
+				object_id,				
+				use_type,				
+				data_type,				
+				object_code,				
+				object_name,				
+				object_comment,				
+				object_display_name,				
+				regex,				
+				char_max_length,				
+				char_min_length,				
+				is_only_ascii,				
+				max_value,				
+				min_value,				
+				datetime_precision,				
+				numeric_precision,				
+				numeric_scale,				
+				is_enum,				
+				enum_key,				
+				enum_value,				
+				system_code,				
+				version,				
+				create_date,				
+				update_date,				
+				delete_date				
+		)		
+		VALUES (	
+			#{objectId},
+			#{useType},
+			#{dataType},
+			#{objectCode},
+			#{objectName},
+			#{objectComment},
+			#{objectDisplayName},
+			#{regex},
+			#{charMaxLength},
+			#{charMinLength},
+			#{isOnlyAscii},
+			#{maxValue},
+			#{minValue},
+			#{datetimePrecision},
+			#{numericPrecision},
+			#{numericScale},
+			#{isEnum},
+			#{enumKey},
+			#{enumValue},
+			#{systemCode},
+			#{version},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_dic_data_definition
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_dic_data_definition
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="DataDefinitionDomain">
+		UPDATE t_dic_data_definition	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="DataDefinitionDomain">
+		UPDATE t_dic_data_definition
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_dic_data_definition	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="DataDefinitionDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_data_definition
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

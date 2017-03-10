@@ -23,7 +23,7 @@ import com.hawk.framework.dic.design.database.Index;
 import com.hawk.framework.dic.design.database.Table;
 import com.hawk.framework.utility.BooleanTools;
 import com.hawk.framework.utility.JsonTools;
-import com.hawk.framework.utility.packageTools;
+import com.hawk.framework.utility.PackageTools;
 
 public class ParseXmlService {
 	
@@ -68,7 +68,7 @@ public class ParseXmlService {
 	private List<String> listXmlFileClassPath(String...packageNameList) throws Exception{
 		Set<String> xmlClassPathSet = new HashSet<String>();
 		for (String packageName : packageNameList){
-			List<String> xmlClassPathList = packageTools.listFile(packageName, true, new packageTools.XmlFileFilter());
+			List<String> xmlClassPathList = PackageTools.listFile(packageName, true, new PackageTools.XmlFileFilter());
 			for (String str : xmlClassPathList){
 				xmlClassPathSet.add(str);
 			}

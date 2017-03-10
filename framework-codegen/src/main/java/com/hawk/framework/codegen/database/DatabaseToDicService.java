@@ -29,6 +29,8 @@ import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.data.DataDefinition;
 import com.hawk.framework.dic.design.data.EnumDataType;
+import com.hawk.framework.utility.StringTools;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -47,9 +49,14 @@ public class DatabaseToDicService {
 	}
 	
 
-	public void execute(String configFileClassPath) throws Throwable {
-		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build(configFileClassPath);
-		IProjectConfigure projectConfigure = ProjectConfigure.build(configFileClassPath);
+	/**
+	 * 配置文件所在的package
+	 * @param packageName
+	 * @throws Throwable
+	 */
+	public void execute(String packageName) throws Throwable {
+		IDatabaseConfigure databaseConfigure = DatabaseConfigure.build(packageName);
+		IProjectConfigure projectConfigure = ProjectConfigure.build(packageName);
 		ITypeConverter typeConverter = TypeConverterFactory.build(databaseConfigure.getDialect());
 
 		IDatabaseParser dbParser = DatabaseParserFactory.build(databaseConfigure);
@@ -63,19 +70,49 @@ public class DatabaseToDicService {
 		/**
 		 * 生成数据字典定义
 		 */
-		IDbToDicConfigure dbToDicConfigure = DbToDicConfigure.build();
+		IDbToDicConfigure dbToDicConfigure = DbToDicConfigure.build(packageName);
 		writeDictionary(database, projectConfigure, dbToDicConfigure, typeConverter);
 
 	}
-
-	private static DataDefinition convert(Column column, ITypeConverter typeConverter) {
+	
+	/**
+	 * 比较DataDefinition和column的数据类型是否完全一致
+	 * @param def
+	 * @param column
+	 */
+	private static boolean compareDataType(DataDefinition def ,Column column,ITypeConverter typeConverter){
+		
+		if (column.getCharMaxLength() != def.getCharMaxLength())
+			return false;		
+		if (column.getCharMinLength() != def.getCharMinLength())
+			return false;
+		if (EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())) != def.getDataType())
+			return false;
+		if (column.getDatetimePrecision() != def.getDatetimePrecision())
+			return false;
+		if (!StringTools.compare(column.getComment(), def.getName()))
+			return false;
+		if (column.getNumericPrecision() != def.getNumericPrecision())
+			return false;
+		if (column.getNumericScale() != def.getNumericScale())
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	private static DataDefinition convert(Column column, ITypeConverter typeConverter,IDbToDicConfigure dbToDicConfigure,String code) {
 		DataDefinition def = new DataDefinition();
 		def.setCharMaxLength(column.getCharMaxLength());
 		def.setCharMinLength(column.getCharMinLength());
 		def.setDataType(EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())));
 		def.setDatetimePrecision(column.getDatetimePrecision());
-		def.setId(UUID.randomUUID().toString());
-		def.setCode(column.getCode());
+		
+		String id = dbToDicConfigure.findId(code);				
+		def.setId(id==null?UUID.randomUUID().toString():id);
+		
+		def.setCode(code);
 		def.setName(column.getComment());
 		def.setComment(column.getComment());
 		def.setDisplayName(column.getComment());
@@ -116,25 +153,33 @@ public class DatabaseToDicService {
 			dicTable.setColumnList(dicColumnList);
 			for (Column column : table.getColumnList()) {
 				String columnCode = column.getCode();
-				String defCode = dbToDicConfigure.computeDataDefinitionName(columnCode);
+				String defCode = dbToDicConfigure.findSynonymCode(columnCode);
 				DataDefinition def = null;
 				/**
-				 * defName不为空,表示这个字段的定义是公用的,需要从map里取
+				 * defCode不为空，表示它有一个公用的数据字典定义code
 				 */
 				if (defCode != null && defCode.trim().length() > 0) {
 					def = defCodeMap.get(defCode);
 					if (def == null) {
-						def = convert(column, typeConverter);
-						def.setCode(defCode);
+						/**
+						 * code设置成公用code
+						 */
+						def = convert(column, typeConverter,dbToDicConfigure,defCode);
 						defCodeMap.put(defCode, def);
 					}
 				} else {
 					defCode = columnCode;
 					def = defCodeMap.get(defCode);
-					if (def != null)
-						throw new RuntimeException("Found duplicated data defintion code = " + defCode);
+					if (def != null){
+						/**
+						 * 发现相同的code但是数据定义不同，报错
+						 */
+						if (!compareDataType(def,column,typeConverter)){
+							throw new RuntimeException("Found duplicated data defintion code = " + defCode);
+						}
+					}
 					else {
-						def = convert(column, typeConverter);
+						def = convert(column, typeConverter,dbToDicConfigure,defCode);
 						defCodeMap.put(def.getCode(), def);
 					}
 				}
@@ -215,7 +260,7 @@ public class DatabaseToDicService {
 				projectConfigure.getSubPackage(), "design.application");
 		ProjectTools.clearDirectory(directory, "application.xml");
 		for (Application application : applicationList) {
-			String filePath = directory + File.separator + application.getCode() + ".application.xml";
+			String filePath = directory + File.separator + projectConfigure.getSubPackage() + ".application.xml";
 			if (new File(filePath).exists())
 				throw new RuntimeException("Exists file = " + filePath);
 			FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
@@ -234,7 +279,7 @@ public class DatabaseToDicService {
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "design.data");
 		ProjectTools.clearDirectory(directory, "data_defnition.xml");
-		String filePath = directory + File.separator + "dic.data_defnition.xml";
+		String filePath = directory + File.separator +projectConfigure.getSubPackage()+ ".data_defnition.xml";
 		if (new File(filePath).exists())
 			throw new RuntimeException("Exists file = " + filePath);
 
@@ -253,7 +298,7 @@ public class DatabaseToDicService {
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "design.word");
 		ProjectTools.clearDirectory(directory, "word.xml");
-		String filePath = directory + File.separator + "framework-dic.word.xml";
+		String filePath = directory + File.separator+projectConfigure.getRootPackage()+"." +projectConfigure.getSubPackage()+ ".word.xml";
 		if (new File(filePath).exists())
 			throw new RuntimeException("Exists file = " + filePath);
 
@@ -271,7 +316,7 @@ public class DatabaseToDicService {
 				projectConfigure.getSubPackage(), "design.application.table");
 		ProjectTools.clearDirectory(directory, ".table.xml");
 		for (com.hawk.framework.dic.design.database.Table dicTable : dicTableList) {
-			String filePath = directory + File.separator + dicTable.getCode() + ".table.xml";
+			String filePath = directory + File.separator+projectConfigure.getSubPackage()+"." + dicTable.getCode() + ".table.xml";
 			if (new File(filePath).exists())
 				throw new RuntimeException("Exists file = " + filePath);
 			FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);

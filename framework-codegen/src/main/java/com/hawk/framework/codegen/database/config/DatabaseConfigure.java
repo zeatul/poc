@@ -64,14 +64,19 @@ public class DatabaseConfigure implements IDatabaseConfigure{
 		
 	}
 	
-	public static IDatabaseConfigure build(String configFileClassPath){
+	public static IDatabaseConfigure build(String packageName){
 		DatabaseConfigure databaseConfigure = new DatabaseConfigure();
 		/**
 		 * 读取配置文件
 		 */
 		Properties props = new Properties();
-		String classPath = ClassPathTools.dotToAbsoluteClassPath(configFileClassPath)+ "/database.properties";
-		InputStream in = new BufferedInputStream(DatabaseConfigure.class.getResourceAsStream(classPath));
+		String classPath = ClassPathTools.dotToAbsoluteClassPath(packageName)+ "/database.properties";
+		InputStream in = DatabaseConfigure.class.getResourceAsStream(classPath);
+		if (in == null){
+			throw new RuntimeException("Couldn't open stream = "+classPath);
+		}
+		in = new BufferedInputStream(in);
+		
 		
 		try {
 			props.load(in);
