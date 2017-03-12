@@ -1,7 +1,7 @@
 package com.hawk.framework.dic.design.database;
 
 import com.hawk.framework.dic.design.IDictionaryObject;
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 
 /**
  * 
@@ -59,15 +59,15 @@ public class Column implements IDictionaryObject{
 		this.name = name;
 	}
 
-	public DataDefinition getDataDefinition() {
+	public Word getDataDefinition() {
 		return dataDefinition;
 	}
 
-	public void setDataDefinition(DataDefinition dataDefinition) {
+	public void setDataDefinition(Word dataDefinition) {
 		this.dataDefinition = dataDefinition;
 	}
 
-	private DataDefinition dataDefinition;
+	private Word dataDefinition;
 	
 	/**
 	 * 0=false,1=true

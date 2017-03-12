@@ -35,7 +35,7 @@ public class ProjectTools {
 	 * @param relative 相对位置,传"0",表示和code-gen工程目录并列,直属于同一个父目录
 	 * @return
 	 */
-	public static String computeProjectRootDirectory(String projectName,int relative) {
+	public static String computeProjectRootDirectory(String projectName) {
 		
 
 			String baseDir = System.getProperty("user.dir");

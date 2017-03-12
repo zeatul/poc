@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.Dictionary;
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.design.database.Column;
 import com.hawk.framework.dic.design.database.Index;
 import com.hawk.framework.dic.design.database.Table;
@@ -124,7 +124,7 @@ public class ReporsitoryService {
 		/**
 		 * 转换 data_definition 为 入库记录
 		 */
-		for (DataDefinition dataDefinition : dictionary.getDataDefinitionList()) {
+		for (Word dataDefinition : dictionary.getDataDefinitionList()) {
 			DataDefinitionDomain dataDefinitionDomain = new DataDefinitionDomain();
 			DomainTools.copy(dataDefinition, dataDefinitionDomain);
 			dictionaryDomainWrap.add(dataDefinitionDomain);

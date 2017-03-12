@@ -1,6 +1,6 @@
 package com.hawk.framework.dic.design.database.converter;
 
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 
 /**
  * 将业务数据的数据类型转化成特定数据库的类型的字符串表示法
@@ -14,5 +14,5 @@ public interface TypeConverter {
 	 * @param dataType
 	 * @return
 	 */
-	public String convert(DataDefinition dataDefinition);
+	public String convert(Word dataDefinition);
 }

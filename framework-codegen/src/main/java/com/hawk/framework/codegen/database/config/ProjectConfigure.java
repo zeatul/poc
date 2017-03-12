@@ -10,13 +10,7 @@ import com.hawk.framework.utility.ClassPathTools;
 
 public class ProjectConfigure implements IProjectConfigure {
 	
-	public int getRelative() {
-		return relative;
-	}
-
-	public void setRelative(int relative) {
-		this.relative = relative;
-	}
+	
 
 	public void setSubPackage(String subPackage) {
 		this.subPackage = subPackage;
@@ -57,7 +51,6 @@ public class ProjectConfigure implements IProjectConfigure {
 	private String rootPackage;
 	private String subPackage;
 	private String projectRootDirectory;
-	private int relative ;
 	
 	
 	private ProjectConfigure(){
@@ -81,13 +74,11 @@ public class ProjectConfigure implements IProjectConfigure {
 			props.load(in);
 			String projectName =props.getProperty("projectName");
 			projectConfigure.setProjectName(projectName);
-			int relative = Integer.parseInt(props.getProperty("relative", "0"));
-			projectConfigure.setRelative(relative);
 			projectConfigure.setRootPackage(props.getProperty("rootPackage"));
 			projectConfigure.setSubPackage(props.getProperty("subPackage"));
 			String projectRootDirectory = props.getProperty("projectRootDirectory");
 			if (projectRootDirectory == null || projectRootDirectory.trim().length() == 0){
-				projectRootDirectory = ProjectTools.computeProjectRootDirectory(projectName, relative);
+				projectRootDirectory = ProjectTools.computeProjectRootDirectory(projectName);
 			}
 				
 			projectConfigure.setProjectRootDirectory(projectRootDirectory);

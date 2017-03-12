@@ -13,8 +13,8 @@
 		login_type AS "loginType" ,
 		login_date AS "loginDate" ,
 		last_access_date AS "lastAccessDate" ,
-		token有效时间 AS "token有效时间" ,
-		token失效日期 AS "token失效日期" ,
+		duration_second AS "durationSecond" ,
+		expire_date AS "expireDate" ,
 		imei AS "imei" ,
 		operating_system AS "operatingSystem" ,
 		operating_system_version AS "operatingSystemVersion" ,
@@ -36,8 +36,8 @@
 			<if test="loginType != null"> AND login_type = #{loginType}  </if>
 			<if test="loginDate != null"> AND login_date = #{loginDate}  </if>
 			<if test="lastAccessDate != null"> AND last_access_date = #{lastAccessDate}  </if>
-			<if test="token有效时间 != null"> AND token有效时间 = #{token有效时间}  </if>
-			<if test="token失效日期 != null"> AND token失效日期 = #{token失效日期}  </if>
+			<if test="durationSecond != null"> AND duration_second = #{durationSecond}  </if>
+			<if test="expireDate != null"> AND expire_date = #{expireDate}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
 			<if test="operatingSystem != null"> AND operating_system = #{operatingSystem}  </if>
 			<if test="operatingSystemVersion != null"> AND operating_system_version = #{operatingSystemVersion}  </if>
@@ -60,8 +60,8 @@
 			AND login_type = #{old_loginType}
 			AND login_date = #{old_loginDate}
 			AND last_access_date = #{old_lastAccessDate}
-			AND token有效时间 = #{old_token有效时间}
-			AND token失效日期 = #{old_token失效日期}
+			AND duration_second = #{old_durationSecond}
+			AND expire_date = #{old_expireDate}
 			AND imei = #{old_imei}
 			AND operating_system = #{old_operatingSystem}
 			AND operating_system_version = #{old_operatingSystemVersion}
@@ -84,8 +84,8 @@
 			login_type = #{loginType},
 			login_date = #{loginDate},
 			last_access_date = #{lastAccessDate},
-			token有效时间 = #{token有效时间},
-			token失效日期 = #{token失效日期},
+			duration_second = #{durationSecond},
+			expire_date = #{expireDate},
 			imei = #{imei},
 			operating_system = #{operatingSystem},
 			operating_system_version = #{operatingSystemVersion},
@@ -108,8 +108,8 @@
 			<if test="loginType != null">login_type = #{loginType},</if>
 			<if test="loginDate != null">login_date = #{loginDate},</if>
 			<if test="lastAccessDate != null">last_access_date = #{lastAccessDate},</if>
-			<if test="token有效时间 != null">token有效时间 = #{token有效时间},</if>
-			<if test="token失效日期 != null">token失效日期 = #{token失效日期},</if>
+			<if test="durationSecond != null">duration_second = #{durationSecond},</if>
+			<if test="expireDate != null">expire_date = #{expireDate},</if>
 			<if test="imei != null">imei = #{imei},</if>
 			<if test="operatingSystem != null">operating_system = #{operatingSystem},</if>
 			<if test="operatingSystemVersion != null">operating_system_version = #{operatingSystemVersion},</if>
@@ -165,8 +165,8 @@
 				login_type,				
 				login_date,				
 				last_access_date,				
-				token有效时间,				
-				token失效日期,				
+				duration_second,				
+				expire_date,				
 				imei,				
 				operating_system,				
 				operating_system_version,				
@@ -186,8 +186,8 @@
 			#{loginType},
 			#{loginDate},
 			#{lastAccessDate},
-			#{token有效时间},
-			#{token失效日期},
+			#{durationSecond},
+			#{expireDate},
 			#{imei},
 			#{operatingSystem},
 			#{operatingSystemVersion},

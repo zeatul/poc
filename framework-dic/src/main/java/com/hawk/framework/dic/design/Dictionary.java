@@ -2,7 +2,7 @@ package com.hawk.framework.dic.design;
 
 import java.util.List;
 
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 
 public class Dictionary {	
 	
@@ -12,13 +12,13 @@ public class Dictionary {
 	public void setApplicationList(List<Application> applicationList) {
 		this.applicationList = applicationList;
 	}
-	public List<DataDefinition> getDataDefinitionList() {
+	public List<Word> getDataDefinitionList() {
 		return dataDefinitionList;
 	}
-	public void setDataDefinitionList(List<DataDefinition> dataDefinitionList) {
+	public void setDataDefinitionList(List<Word> dataDefinitionList) {
 		this.dataDefinitionList = dataDefinitionList;
 	}
 	private List<Application> applicationList;
-	private List<DataDefinition> dataDefinitionList ;
+	private List<Word> dataDefinitionList ;
 
 }

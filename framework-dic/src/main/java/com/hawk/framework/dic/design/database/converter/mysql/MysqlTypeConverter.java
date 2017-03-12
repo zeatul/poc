@@ -1,6 +1,6 @@
 package com.hawk.framework.dic.design.database.converter.mysql;
 
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.database.converter.TypeConverter;
 import com.hawk.framework.utility.StringTools;
@@ -15,7 +15,7 @@ public class MysqlTypeConverter implements TypeConverter{
 	
 
 	@Override
-	public String convert(DataDefinition dataDefinition) {
+	public String convert(Word dataDefinition) {
 		EnumDataType dataType = dataDefinition.getDataType();
 		if (dataType == EnumDataType.String){
 			return StringTools.concat("varchar(",dataDefinition.getCharMaxLength(),")");

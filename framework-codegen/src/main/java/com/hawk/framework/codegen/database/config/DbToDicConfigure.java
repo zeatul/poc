@@ -1,15 +1,23 @@
 package com.hawk.framework.codegen.database.config;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.hawk.framework.dic.design.data.Word;
+import com.hawk.framework.dic.service.ParseXmlService;
+import com.hawk.framework.utility.ClassPathTools;
 import com.hawk.framework.utility.PackageTools;
 import com.hawk.framework.utility.PackageTools.FileFilter;
 
@@ -19,22 +27,48 @@ import com.hawk.framework.utility.PackageTools.FileFilter;
  *
  */
 public class DbToDicConfigure implements IDbToDicConfigure {
-
 	
+		
+	public Set<String> getWordFiles() {
+		return wordFiles;
+	}
+
+	public String getWordProjectName() {
+		return wordProjectName;
+	}
+
+	public void setWordProjectName(String wordProjectName) {
+		this.wordProjectName = wordProjectName;
+	}
+
+	public String getWordPackage() {
+		return wordPackage;
+	}
+
+	public void setWordPackage(String wordPackage) {
+		this.wordPackage = wordPackage;
+	}
+
 	public String findSynonymCode(String columnName) {
 		return synonymMap.get(columnName);
 				 
 	}
 	
-	public String findId(String code){
-		return wordIdMap.get(code);
+	@Override
+	public Word findWord(String code) {
+		return wordCodeMap.get(code);
 	}
 
 	
 	/**
 	 * 所有的code集合
 	 */
-	private Map<String,String> wordIdMap = new HashMap<String,String>();
+	private Map<String,Word> wordCodeMap = new HashMap<String,Word>();
+	
+	/**
+	 * 所有的word定义文件集合
+	 */
+	private Set<String> wordFiles ;
 
 	/**
 	 * 所有的同义词集合
@@ -44,28 +78,20 @@ public class DbToDicConfigure implements IDbToDicConfigure {
 	 */
 	private Map<String, String> synonymMap = new HashMap<String, String>();
 
-	private void fillWordIdMap(List<String> wordFileList) {
-		for (String wordFile : wordFileList) {
-			SAXReader saxReader = new SAXReader();
-			InputStream inputStream = getClass().getResourceAsStream(wordFile);
-			Document document;
-			try {
-				document = saxReader.read(inputStream);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
+	private void fillWordCodeMap(String... packageNames) {
+		try {
+			ParseXmlService serice = new ParseXmlService();
+			this.wordFiles = serice.listWordFile(packageNames);
+			List<Word> wordList = serice.parseWordByClassPath(this.wordFiles.toArray(new String[]{})) ;
+			for (Word word : wordList){
+				wordCodeMap.put(word.getCode(), word);
 			}
-			@SuppressWarnings("unchecked")
-			Iterator<Element> it = document.getRootElement().elements().iterator();
-			while(it.hasNext()){
-				Element wordElement = it.next();
-				String code = wordElement.elementTextTrim("code");
-				String id = wordElement.elementTextTrim("id");
-				wordIdMap.put(code,id);
-			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	private void fillSynonym(List<String> wordMapFileList) {
+	private void fillSynonym(Set<String> wordMapFileList) {
 		for (String wordMapFile : wordMapFileList){
 			SAXReader saxReader = new SAXReader();
 			InputStream inputStream = getClass().getResourceAsStream(wordMapFile);
@@ -94,51 +120,60 @@ public class DbToDicConfigure implements IDbToDicConfigure {
 	}
 
 	public static DbToDicConfigure build(String packageName) {
-
-		if (!packageName.endsWith("word")) {
-			packageName = packageName.substring(0, packageName.lastIndexOf(".")) + "word";
+		DbToDicConfigure dbToDicConfigure = new DbToDicConfigure();
+		String propertyFileClassPath = ClassPathTools.dotToAbsoluteClassPath(packageName.substring(0, packageName.lastIndexOf(".")))+"/dbToDic.properties";
+		Properties props = new Properties();
+		InputStream in = DatabaseConfigure.class.getResourceAsStream(propertyFileClassPath);
+		if (in == null){
+			throw new RuntimeException("Couldn't open stream = "+propertyFileClassPath);
 		}
+		in = new BufferedInputStream(in);
+		
+		
+		try {
+			props.load(in);
+			dbToDicConfigure.setWordProjectName(props.getProperty("wordProjectName"));
+			dbToDicConfigure.setWordPackage(props.getProperty("wordPackage"));			
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
 
-		/**
-		 * 计算出所有的word文件
-		 */
-		List<String> wordFileList = new ArrayList<String>();
-		FileFilter fileFilter = new FileFilter() {
-			@Override
-			public boolean accept(String fileName) {
-				if (fileName.toLowerCase().endsWith(".word.xml"))
-					return true;
-				else
-					return false;
-			}
-		};
-		wordFileList.addAll(PackageTools.listFile(packageName, false, fileFilter));
-		wordFileList.addAll(PackageTools.listFile("com.hawk.framework.codegen.word", false, fileFilter));
+		dbToDicConfigure.fillWordCodeMap(dbToDicConfigure.getWordPackage(),"com.hawk.framework.word");
 
 		/**
 		 * 计算出所有的word.map文件
 		 */
-		List<String> wordMapFileList = new ArrayList<String>();
-		fileFilter = new FileFilter() {
+		Set<String> wordMapFileSet = new HashSet<String>();
+		FileFilter fileFilter = new FileFilter() {
 			@Override
 			public boolean accept(String fileName) {
-				if (fileName.toLowerCase().endsWith(".word.mapper.xml"))
+				if (fileName.toLowerCase().endsWith(".word.map.xml"))
 					return true;
 				else
 					return false;
 			}
 		};
-		wordMapFileList.addAll(PackageTools.listFile(packageName, false, fileFilter));
-		wordMapFileList.addAll(PackageTools.listFile("com.hawk.framework.codegen.word", false, fileFilter));
+		wordMapFileSet.addAll(PackageTools.listFile("com.hawk.framework.word", false, fileFilter));
+		wordMapFileSet.addAll(PackageTools.listFile(dbToDicConfigure.getWordPackage(), false, fileFilter));
+		
+		dbToDicConfigure.fillSynonym(wordMapFileSet);
+		
 
-		DbToDicConfigure dbToDicConfigure = new DbToDicConfigure();
-
-		dbToDicConfigure.fillWordIdMap(wordFileList);
-		dbToDicConfigure.fillSynonym(wordMapFileList);
+		
+		
 
 		
 
 		return dbToDicConfigure;
 	}
+
+	
+	
+	private String wordProjectName;
+	
+	private String wordPackage;
+
+	
 
 }

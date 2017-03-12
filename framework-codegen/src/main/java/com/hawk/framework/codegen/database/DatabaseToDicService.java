@@ -27,7 +27,7 @@ import com.hawk.framework.codegen.database.parse.DatabaseParserFactory;
 import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.design.Application;
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.utility.StringTools;
 
@@ -50,8 +50,8 @@ public class DatabaseToDicService {
 	
 
 	/**
-	 * 配置文件所在的package
-	 * @param packageName
+	 * 
+	 * @param packageName 配置文件所在的package
 	 * @throws Throwable
 	 */
 	public void execute(String packageName) throws Throwable {
@@ -80,61 +80,80 @@ public class DatabaseToDicService {
 	 * @param def
 	 * @param column
 	 */
-	private static boolean compareDataType(DataDefinition def ,Column column,ITypeConverter typeConverter){
+	private static boolean compareDataType(Word def ,Column column,ITypeConverter typeConverter){
 		
-		if (column.getCharMaxLength() != def.getCharMaxLength())
+		if (def.getDataType()==EnumDataType.String && column.getCharMaxLength() != def.getCharMaxLength()){
+			System.out.println("CharMaxLength is not same");
 			return false;		
-		if (column.getCharMinLength() != def.getCharMinLength())
+		}
+		if (def.getDataType()==EnumDataType.String && column.getCharMinLength() != def.getCharMinLength()){
+			System.out.println("CharMinLength is not same");
 			return false;
-		if (EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())) != def.getDataType())
+		}
+		if (EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())) != def.getDataType()){
+			System.out.println("DataType is not same");
 			return false;
-		if (column.getDatetimePrecision() != def.getDatetimePrecision())
+		}
+		if (def.getDataType()==EnumDataType.Date && column.getDatetimePrecision() != def.getDatetimePrecision()){
+			System.out.println("DatetimePrecision is not same");
 			return false;
-		if (!StringTools.compare(column.getComment(), def.getName()))
+		}
+		if (!StringTools.compare(column.getComment(), def.getName())){
+			System.out.println("Comment is not same");
 			return false;
-		if (column.getNumericPrecision() != def.getNumericPrecision())
+		}
+		if (def.getDataType()==EnumDataType.Numeric && column.getNumericPrecision() != def.getNumericPrecision()){
+			System.out.println("NumericPrecision is not same");
 			return false;
-		if (column.getNumericScale() != def.getNumericScale())
+		}
+		if (def.getDataType()==EnumDataType.Numeric && column.getNumericScale() != def.getNumericScale()){
+			System.out.println("NumericScale is not same");
 			return false;
+		}
 		
 		return true;
 	}
 	
 	
 	
-	private static DataDefinition convert(Column column, ITypeConverter typeConverter,IDbToDicConfigure dbToDicConfigure,String code) {
-		DataDefinition def = new DataDefinition();
-		def.setCharMaxLength(column.getCharMaxLength());
-		def.setCharMinLength(column.getCharMinLength());
-		def.setDataType(EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())));
-		def.setDatetimePrecision(column.getDatetimePrecision());
+	private static Word convert(Column column, ITypeConverter typeConverter,IDbToDicConfigure dbToDicConfigure,String code) {
+		Word word = dbToDicConfigure.findWord(code);	
+		if (word != null)
+			return word;
+		word = new Word();
 		
-		String id = dbToDicConfigure.findId(code);				
-		def.setId(id==null?UUID.randomUUID().toString():id);
+		word.setCharMaxLength(column.getCharMaxLength());
+		word.setCharMinLength(column.getCharMinLength());
+		word.setDataType(EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())));
+		word.setDatetimePrecision(column.getDatetimePrecision());
 		
-		def.setCode(code);
-		def.setName(column.getComment());
-		def.setComment(column.getComment());
-		def.setDisplayName(column.getComment());
-		def.setEnumKey(null);
-		def.setEnumValue(null);
-		def.setIsEnum(0);
-		def.setMaxValue(null);
-		def.setMinValue(null);
-		def.setIsOnlyAscii(1);
-		def.setNumericPrecision(column.getNumericPrecision());
-		def.setNumericScale(column.getNumericScale());
+				
+		word.setId(UUID.randomUUID().toString());
+		
+		word.setCode(code);
+		word.setName(column.getComment());
+		word.setComment(column.getComment());
+		word.setDisplayName(column.getComment());
+		word.setEnumKey(null);
+		word.setEnumValue(null);
+		word.setIsEnum(0);
+		word.setMaxValue(null);
+		word.setMinValue(null);
+		word.setIsOnlyAscii(1);
+		word.setNumericPrecision(column.getNumericPrecision());
+		word.setNumericScale(column.getNumericScale());
 
-		def.setRegex(null);
-		def.setUseType("technology");
-		return def;
+		word.setRegex(null);
+		word.setUseType("technology");
+		return word;
 	}
 
 	private void writeDictionary(Database database, IProjectConfigure projectConfigure, IDbToDicConfigure dbToDicConfigure, ITypeConverter typeConverter)
 			throws Exception {
-		Map<String, DataDefinition> defCodeMap = new HashMap<String, DataDefinition>();
+		Map<String, Word> defCodeMap = new HashMap<String, Word>();
 		List<com.hawk.framework.dic.design.database.Table> dicTableList = new ArrayList<com.hawk.framework.dic.design.database.Table>();
 		for (Table table : database.getTableList()) {
+			System.out.println(table.getCode());
 			/**
 			 * 表
 			 */
@@ -154,7 +173,7 @@ public class DatabaseToDicService {
 			for (Column column : table.getColumnList()) {
 				String columnCode = column.getCode();
 				String defCode = dbToDicConfigure.findSynonymCode(columnCode);
-				DataDefinition def = null;
+				Word def = null;
 				/**
 				 * defCode不为空，表示它有一个公用的数据字典定义code
 				 */
@@ -175,7 +194,7 @@ public class DatabaseToDicService {
 						 * 发现相同的code但是数据定义不同，报错
 						 */
 						if (!compareDataType(def,column,typeConverter)){
-							throw new RuntimeException("Found duplicated data defintion code = " + defCode);
+							throw new RuntimeException("Found duplicated word code = " + defCode);
 						}
 					}
 					else {
@@ -218,17 +237,12 @@ public class DatabaseToDicService {
 		/**
 		 * 输出所有的数据字典定义为一个文件
 		 */
-		Iterator<DataDefinition> it = defCodeMap.values().iterator();
-		List<DataDefinition> list = new ArrayList<DataDefinition>();
+		Iterator<Word> it = defCodeMap.values().iterator();
+		List<Word> list = new ArrayList<Word>();
 		while (it.hasNext()) {
 			list.add(it.next());
 		}
-		writeDataDefinition(list, projectConfigure);
-		
-		/**
-		 * 输出所有的所有数据字典的code为一个文件
-		 */
-		writeWord(list, projectConfigure);
+		writeWord(list, projectConfigure,dbToDicConfigure);
 
 		/**
 		 * 输出每个表为一个文件
@@ -256,6 +270,7 @@ public class DatabaseToDicService {
 	private void writeApplication(List<Application> applicationList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_application.ftl");
+		
 		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
 				projectConfigure.getSubPackage(), "design.application");
 		ProjectTools.clearDirectory(directory, "application.xml");
@@ -271,15 +286,26 @@ public class DatabaseToDicService {
 		}
 	}
 
-	private void writeDataDefinition(List<DataDefinition> list, IProjectConfigure projectConfigure) throws Exception {
-		Map<String, List<DataDefinition>> root = new HashMap<String, List<DataDefinition>>();
-		root.put("dataDefnitionList", list);
+	private void writeWord(List<Word> list, IProjectConfigure projectConfigure,IDbToDicConfigure dbtoDicConfig) throws Exception {
+		Map<String, List<Word>> root = new HashMap<String, List<Word>>();
+		root.put("wordList", list);
 		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("template/dic_data_defnition.ftl");
-		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.data");
-		ProjectTools.clearDirectory(directory, "data_defnition.xml");
-		String filePath = directory + File.separator +projectConfigure.getSubPackage()+ ".data_defnition.xml";
+		Template template = cfg.getTemplate("template/dic_word.ftl");
+		String wordProjectRootDirectory = ProjectTools.computeProjectRootDirectory(dbtoDicConfig.getWordProjectName());
+		String directory = ProjectTools.computeProjectResourceDirectory(wordProjectRootDirectory,dbtoDicConfig.getWordPackage());		
+		String filePath = directory + File.separator +projectConfigure.getRootPackage()+"."+projectConfigure.getSubPackage()+ ".word.xml";
+		
+		/*
+		 * 备份原文件
+		 */
+		
+		File backFile = new File(filePath+".back");
+		if (backFile.exists())
+			backFile.delete();
+		new File(filePath).renameTo(backFile);
+		
+		
+		new File(filePath).delete();
 		if (new File(filePath).exists())
 			throw new RuntimeException("Exists file = " + filePath);
 
@@ -290,25 +316,7 @@ public class DatabaseToDicService {
 		out.close();
 	}
 	
-	private void writeWord(List<DataDefinition> list ,IProjectConfigure projectConfigure) throws Exception{
-		Map<String, List<DataDefinition>> root = new HashMap<String, List<DataDefinition>>();
-		root.put("dataDefnitionList", list);
-		/* 获取或创建模板 */
-		Template template = cfg.getTemplate("template/dic_word.ftl");
-		String directory = ProjectTools.computeProjectResourceDirectory(projectConfigure.getProjectRootDirectory(), projectConfigure.getRootPackage(),
-				projectConfigure.getSubPackage(), "design.word");
-		ProjectTools.clearDirectory(directory, "word.xml");
-		String filePath = directory + File.separator+projectConfigure.getRootPackage()+"." +projectConfigure.getSubPackage()+ ".word.xml";
-		if (new File(filePath).exists())
-			throw new RuntimeException("Exists file = " + filePath);
-
-		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
-		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");
-		template.process(root, out);
-		out.flush();
-		out.close();
-	}
-
+	
 	private void writeTable(List<com.hawk.framework.dic.design.database.Table> dicTableList, IProjectConfigure projectConfigure) throws Exception {
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_table.ftl");

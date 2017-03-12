@@ -15,6 +15,7 @@
 		user_status_change_date AS "userStatusChangeDate" ,
 		register_channel AS "registerChannel" ,
 		nickname AS "nickname" ,
+		name AS "name" ,
 		sex AS "sex" ,
 		register_ip AS "registerIp" ,
 		id_type AS "idType" ,
@@ -43,6 +44,7 @@
 			<if test="userStatusChangeDate != null"> AND user_status_change_date = #{userStatusChangeDate}  </if>
 			<if test="registerChannel != null"> AND register_channel = #{registerChannel}  </if>
 			<if test="nickname != null"> AND nickname = #{nickname}  </if>
+			<if test="name != null"> AND name = #{name}  </if>
 			<if test="sex != null"> AND sex = #{sex}  </if>
 			<if test="registerIp != null"> AND register_ip = #{registerIp}  </if>
 			<if test="idType != null"> AND id_type = #{idType}  </if>
@@ -72,6 +74,7 @@
 			AND user_status_change_date = #{old_userStatusChangeDate}
 			AND register_channel = #{old_registerChannel}
 			AND nickname = #{old_nickname}
+			AND name = #{old_name}
 			AND sex = #{old_sex}
 			AND register_ip = #{old_registerIp}
 			AND id_type = #{old_idType}
@@ -101,6 +104,7 @@
 			user_status_change_date = #{userStatusChangeDate},
 			register_channel = #{registerChannel},
 			nickname = #{nickname},
+			name = #{name},
 			sex = #{sex},
 			register_ip = #{registerIp},
 			id_type = #{idType},
@@ -130,6 +134,7 @@
 			<if test="userStatusChangeDate != null">user_status_change_date = #{userStatusChangeDate},</if>
 			<if test="registerChannel != null">register_channel = #{registerChannel},</if>
 			<if test="nickname != null">nickname = #{nickname},</if>
+			<if test="name != null">name = #{name},</if>
 			<if test="sex != null">sex = #{sex},</if>
 			<if test="registerIp != null">register_ip = #{registerIp},</if>
 			<if test="idType != null">id_type = #{idType},</if>
@@ -192,6 +197,7 @@
 				user_status_change_date,				
 				register_channel,				
 				nickname,				
+				name,				
 				sex,				
 				register_ip,				
 				id_type,				
@@ -218,6 +224,7 @@
 			#{userStatusChangeDate},
 			#{registerChannel},
 			#{nickname},
+			#{name},
 			#{sex},
 			#{registerIp},
 			#{idType},

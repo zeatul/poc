@@ -1,5 +1,9 @@
 package com.hawk.framework.codegen.database.config;
 
+import java.util.Set;
+
+import com.hawk.framework.dic.design.data.Word;
+
 public interface IDbToDicConfigure {
 	
 	/**
@@ -14,6 +18,26 @@ public interface IDbToDicConfigure {
 	 * @param code
 	 * @return
 	 */
-	public String findId(String code);
+	public Word findWord(String code);
+	
+	/**
+	 * 定义word的项目
+	 * @return
+	 */
+	public String getWordProjectName();
+	
+	/**
+	 * 定义word的package
+	 * @return
+	 */
+	public String getWordPackage();
+	
+	/**
+	 * 返回word定义文件的路径集合
+	 * @return
+	 */
+	public Set<String> getWordFiles();
+	
+	
 
 }

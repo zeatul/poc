@@ -21,12 +21,12 @@ public class UserDomain implements Serializable {
 	private Long id;
 	
 	/**
-	 * 用户编号（唯一) user_code
+	 * 用户编号 user_code
 	 */
 	private String userCode;
 	
 	/**
-	 * 用户手机号(唯一) mobile_number
+	 * 手机号 mobile_number
 	 */
 	private String mobileNumber;
 	
@@ -64,6 +64,11 @@ public class UserDomain implements Serializable {
 	 * 用户昵称 nickname
 	 */
 	private String nickname;
+	
+	/**
+	 * 用户姓名 name
+	 */
+	private String name;
 	
 	/**
 	 * 用户性别 sex
@@ -111,7 +116,7 @@ public class UserDomain implements Serializable {
 	private String deviceModel;
 	
 	/**
-	 * http请求的user_agen原始信息 user_agent
+	 * http请求的user_agent原始信息 user_agent
 	 */
 	private String userAgent;
 	
@@ -126,7 +131,7 @@ public class UserDomain implements Serializable {
 	private Date createDate;
 	
 	/**
-	 * 修改日期 update_date
+	 * 更新日期 update_date
 	 */
 	private Date updateDate;
 	
@@ -154,7 +159,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 用户编号（唯一) user_code
+	 * @return 用户编号 user_code
 	 */
 	public String getUserCode(){
 		return userCode;
@@ -162,7 +167,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param userCode 用户编号（唯一) user_code
+	 * @param userCode 用户编号 user_code
 	 */	
 	public void setUserCode (String userCode) {
 		this.userCode = userCode;
@@ -170,7 +175,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 用户手机号(唯一) mobile_number
+	 * @return 手机号 mobile_number
 	 */
 	public String getMobileNumber(){
 		return mobileNumber;
@@ -178,7 +183,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param mobileNumber 用户手机号(唯一) mobile_number
+	 * @param mobileNumber 手机号 mobile_number
 	 */	
 	public void setMobileNumber (String mobileNumber) {
 		this.mobileNumber = mobileNumber;
@@ -294,6 +299,22 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setNickname (String nickname) {
 		this.nickname = nickname;
+	}
+	
+	/**
+	 * 
+	 * @return 用户姓名 name
+	 */
+	public String getName(){
+		return name;
+	}
+	
+	/**
+	 * 
+	 * @param name 用户姓名 name
+	 */	
+	public void setName (String name) {
+		this.name = name;
 	}
 	
 	/**
@@ -442,7 +463,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return http请求的user_agen原始信息 user_agent
+	 * @return http请求的user_agent原始信息 user_agent
 	 */
 	public String getUserAgent(){
 		return userAgent;
@@ -450,7 +471,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param userAgent http请求的user_agen原始信息 user_agent
+	 * @param userAgent http请求的user_agent原始信息 user_agent
 	 */	
 	public void setUserAgent (String userAgent) {
 		this.userAgent = userAgent;
@@ -490,7 +511,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 修改日期 update_date
+	 * @return 更新日期 update_date
 	 */
 	public Date getUpdateDate(){
 		return updateDate;
@@ -498,7 +519,7 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param updateDate 修改日期 update_date
+	 * @param updateDate 更新日期 update_date
 	 */	
 	public void setUpdateDate (Date updateDate) {
 		this.updateDate = updateDate;

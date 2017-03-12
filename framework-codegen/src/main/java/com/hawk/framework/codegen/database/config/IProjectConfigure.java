@@ -16,10 +16,5 @@ public interface IProjectConfigure {
 	 */
 	public String getProjectRootDirectory();
 	
-	/**
-	 * 项目与code-gen的相对位置，0 表示平级
-	 * @return
-	 */
-	public int getRelative();
 
 }

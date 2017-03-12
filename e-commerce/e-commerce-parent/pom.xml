@@ -10,6 +10,7 @@
 		<module>../e-commerce-user-service</module>
 		<module>../e-commerce-sms-service</module>
 		<module>../e-commerce-code-gen</module>
+		<module>../e-commerce-word</module>
 	</modules>
 
 	<profiles>
@@ -70,6 +71,12 @@
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-sms-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-word</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

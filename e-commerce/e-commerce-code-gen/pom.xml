@@ -19,5 +19,9 @@
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-codegen</artifactId>
 		</dependency>
+		<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-word</artifactId>
+			</dependency>
 	</dependencies>
 </project>

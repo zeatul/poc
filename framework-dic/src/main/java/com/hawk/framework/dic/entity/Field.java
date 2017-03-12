@@ -1,18 +1,18 @@
 package com.hawk.framework.dic.entity;
 
-import com.hawk.framework.dic.design.data.DataDefinition;
+import com.hawk.framework.dic.design.data.Word;
 
 public class Field {	
 
-	public DataDefinition getDataDefinition() {
+	public Word getDataDefinition() {
 		return dataDefinition;
 	}
 
-	public void setDataDefinition(DataDefinition dataDefinition) {
+	public void setDataDefinition(Word dataDefinition) {
 		this.dataDefinition = dataDefinition;
 	}
 
-	private DataDefinition dataDefinition;
+	private Word dataDefinition;
 	
 
 }

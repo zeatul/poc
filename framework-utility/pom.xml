@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>com.hawk.framework</groupId>
 		<artifactId>framework-parent</artifactId>
@@ -12,11 +12,11 @@
 	<artifactId>framework-utility</artifactId>
 	<name>framework-utility</name>
 	<url>http://maven.apache.org</url>
-	
+
 
 	<dependencies>
-		
-		
+
+
 		<!-- jackson -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -27,6 +27,12 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 		</dependency>
-		
+
+		<!-- io -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>

@@ -26,7 +26,7 @@ public class LoginDomain implements Serializable {
 	private Long userId;
 	
 	/**
-	 * 用户手机号 mobile_number
+	 * 手机号 mobile_number
 	 */
 	private String mobileNumber;
 	
@@ -56,14 +56,14 @@ public class LoginDomain implements Serializable {
 	private Date lastAccessDate;
 	
 	/**
-	 * token有效时间(分钟数/短期弹性) token有效时间
+	 * 有效时间(秒) duration_second
 	 */
-	private Integer token有效时间;
+	private Integer durationSecond;
 	
 	/**
-	 * token失效日期(长期固定/短期固定) token失效日期
+	 * 失效日期 expire_date
 	 */
-	private Date token失效日期;
+	private Date expireDate;
 	
 	/**
 	 * 设备唯一的串号 imei
@@ -91,7 +91,7 @@ public class LoginDomain implements Serializable {
 	private String deviceModel;
 	
 	/**
-	 * http请求的user_agen原始信息 user_agent
+	 * http请求的user_agent原始信息 user_agent
 	 */
 	private String userAgent;
 	
@@ -145,7 +145,7 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 用户手机号 mobile_number
+	 * @return 手机号 mobile_number
 	 */
 	public String getMobileNumber(){
 		return mobileNumber;
@@ -153,7 +153,7 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param mobileNumber 用户手机号 mobile_number
+	 * @param mobileNumber 手机号 mobile_number
 	 */	
 	public void setMobileNumber (String mobileNumber) {
 		this.mobileNumber = mobileNumber;
@@ -241,34 +241,34 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return token有效时间(分钟数/短期弹性) token有效时间
+	 * @return 有效时间(秒) duration_second
 	 */
-	public Integer getToken有效时间(){
-		return token有效时间;
+	public Integer getDurationSecond(){
+		return durationSecond;
 	}
 	
 	/**
 	 * 
-	 * @param token有效时间 token有效时间(分钟数/短期弹性) token有效时间
+	 * @param durationSecond 有效时间(秒) duration_second
 	 */	
-	public void setToken有效时间 (Integer token有效时间) {
-		this.token有效时间 = token有效时间;
+	public void setDurationSecond (Integer durationSecond) {
+		this.durationSecond = durationSecond;
 	}
 	
 	/**
 	 * 
-	 * @return token失效日期(长期固定/短期固定) token失效日期
+	 * @return 失效日期 expire_date
 	 */
-	public Date getToken失效日期(){
-		return token失效日期;
+	public Date getExpireDate(){
+		return expireDate;
 	}
 	
 	/**
 	 * 
-	 * @param token失效日期 token失效日期(长期固定/短期固定) token失效日期
+	 * @param expireDate 失效日期 expire_date
 	 */	
-	public void setToken失效日期 (Date token失效日期) {
-		this.token失效日期 = token失效日期;
+	public void setExpireDate (Date expireDate) {
+		this.expireDate = expireDate;
 	}
 	
 	/**
@@ -353,7 +353,7 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return http请求的user_agen原始信息 user_agent
+	 * @return http请求的user_agent原始信息 user_agent
 	 */
 	public String getUserAgent(){
 		return userAgent;
@@ -361,7 +361,7 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param userAgent http请求的user_agen原始信息 user_agent
+	 * @param userAgent http请求的user_agent原始信息 user_agent
 	 */	
 	public void setUserAgent (String userAgent) {
 		this.userAgent = userAgent;
