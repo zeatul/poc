@@ -16,7 +16,7 @@ public class FkMapDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 主键 object_id
+	 * 对象ID object_id
 	 */
 	private String objectId;
 	
@@ -31,7 +31,7 @@ public class FkMapDomain implements Serializable {
 	private String parentColumnObjectId;
 	
 	/**
-	 * 主表字段对象ID child_column_object_id
+	 * 子表字段对象ID child_column_object_id
 	 */
 	private String childColumnObjectId;
 	
@@ -63,7 +63,7 @@ public class FkMapDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 主键 object_id
+	 * @return 对象ID object_id
 	 */
 	public String getObjectId(){
 		return objectId;
@@ -71,7 +71,7 @@ public class FkMapDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectId 主键 object_id
+	 * @param objectId 对象ID object_id
 	 */	
 	public void setObjectId (String objectId) {
 		this.objectId = objectId;
@@ -111,7 +111,7 @@ public class FkMapDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 主表字段对象ID child_column_object_id
+	 * @return 子表字段对象ID child_column_object_id
 	 */
 	public String getChildColumnObjectId(){
 		return childColumnObjectId;
@@ -119,7 +119,7 @@ public class FkMapDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param childColumnObjectId 主表字段对象ID child_column_object_id
+	 * @param childColumnObjectId 子表字段对象ID child_column_object_id
 	 */	
 	public void setChildColumnObjectId (String childColumnObjectId) {
 		this.childColumnObjectId = childColumnObjectId;

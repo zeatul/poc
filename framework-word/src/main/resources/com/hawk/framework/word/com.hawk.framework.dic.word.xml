@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <words>
 	<word>
-		<id>e31c9931-1665-4bad-9fba-da9320ace809</id>
+		<id>c8628876-4d8a-4112-8a75-7cab4a0fc1cd</id>
 		<code>physical_option</code>
 		<name>表的物理特性</name>
 		<displayName>表的物理特性</displayName>
@@ -13,7 +13,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>009797d3-ec1a-4b69-8841-47ea0fee7db4</id>
+		<id>aea9d955-8aca-402d-9257-c89f07e6d7a3</id>
 		<code>object_comment</code>
 		<name>描述</name>
 		<displayName>描述</displayName>
@@ -25,7 +25,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>491c3964-4d6b-4cc4-ab28-f67f688d94e6</id>
+		<id>69e9db97-01ae-4c3b-a3c1-fbc1b2b1b6d9</id>
 		<code>char_min_length</code>
 		<name>最小长度</name>
 		<displayName>最小长度</displayName>
@@ -34,7 +34,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>c6776ed3-0ce7-4d6f-b1dc-0bb0097d6d70</id>
+		<id>87b3198a-5b9b-4822-af10-8984aee6786d</id>
 		<code>version</code>
 		<name>版本号</name>
 		<displayName>版本号</displayName>
@@ -43,28 +43,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>2dd8d53d-9925-4a6e-9a44-987fc8f90732</id>
-		<code>object_type</code>
-		<name>类型</name>
-		<displayName>类型</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>577fa12d-ca83-4825-9ac3-777cad4c32b8</id>
-		<code>id</code>
-		<name>长整型主键</name>
-		<displayName>长整型主键</displayName>
-		<useType>technology</useType>
-		<dataType>long</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>cb5ea4eb-ce5e-4a81-b62a-7b01f1e15788</id>
+		<id>caf00d2a-56c2-43fb-9fa8-e97868b103c6</id>
 		<code>enum_key</code>
 		<name>枚举值</name>
 		<displayName>枚举值</displayName>
@@ -76,7 +55,28 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>991d2ac7-28df-4ed6-995e-a03a8550ff15</id>
+		<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
+		<code>id</code>
+		<name>长整型主键</name>
+		<displayName>长整型主键</displayName>
+		<useType>technology</useType>
+		<dataType>long</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>feee745e-9838-46b1-bbb8-2a8de423bbf6</id>
+		<code>object_type</code>
+		<name>类型</name>
+		<displayName>类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c8caa8e7-92ff-4422-bd24-e3a5a7449f9a</id>
 		<code>is_only_ascii</code>
 		<name>是否有超过1个byte长度的的字符</name>
 		<displayName>是否有超过1个byte长度的的字符</displayName>
@@ -85,7 +85,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>7dd2505d-2a76-448f-8d01-c91ac19d95bd</id>
+		<id>0bdb89a3-e55f-4f54-bf69-2b4cd912a6be</id>
 		<code>is_pk</code>
 		<name>是否为主键(1/0)</name>
 		<displayName>是否为主键(1/0)</displayName>
@@ -94,7 +94,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>6315aacc-7e7a-4327-b5cf-63cb4d06a596</id>
+		<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 		<code>create_date</code>
 		<name>创建日期</name>
 		<displayName>创建日期</displayName>
@@ -104,7 +104,16 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>19335fe6-5e52-445a-b8f4-ee73c507072b</id>
+		<id>f815f733-743f-4e4d-a4c4-6cddedb048d3</id>
+		<code>datetime_precision</code>
+		<name>时间精度</name>
+		<displayName>时间精度</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>cc691e4b-1ed4-445a-b7a6-c927f2d51591</id>
 		<code>data_type</code>
 		<name>数据类型</name>
 		<displayName>数据类型</displayName>
@@ -116,16 +125,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>fc823873-200f-4d73-ae00-18d36f8555d8</id>
-		<code>datetime_precision</code>
-		<name>时间精度</name>
-		<displayName>时间精度</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>99268441-6ddc-475d-ac86-f3fd72acdc91</id>
+		<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 		<code>delete_date</code>
 		<name>删除日期</name>
 		<displayName>删除日期</displayName>
@@ -135,7 +135,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>7ab4718a-5acb-401b-b510-d76ab06eb13f</id>
+		<id>b8ff419d-cd24-4d14-a4af-696999a72df5</id>
 		<code>operators</code>
 		<name>需要支持的运算符，等于默认支持</name>
 		<displayName>需要支持的运算符，等于默认支持</displayName>
@@ -147,7 +147,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>42b7cf9a-9fda-4ddf-977a-ec45accba694</id>
+		<id>98451740-25ea-47aa-a5c2-09ed4d783cd4</id>
 		<code>is_unique</code>
 		<name>是唯一索引</name>
 		<displayName>是唯一索引</displayName>
@@ -156,7 +156,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>5920a9ab-695a-4c74-bc19-8d73157d78c3</id>
+		<id>d5e62544-c548-4a13-aa87-4542d6de851c</id>
 		<code>enum_value</code>
 		<name>枚举显示值</name>
 		<displayName>枚举显示值</displayName>
@@ -168,7 +168,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>a36ed891-7cec-4ba5-81ea-25d6ebcb6fea</id>
+		<id>8ea5fcdf-7f5d-4dce-be89-99a47c7c0177</id>
 		<code>system_code</code>
 		<name>系统编码(区分不同项目，不同集团)</name>
 		<displayName>系统编码(区分不同项目，不同集团)</displayName>
@@ -180,7 +180,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>edd0a54d-3d2e-4c33-aed1-a66906d704da</id>
+		<id>53d71cee-3b20-47f6-9e5b-1bc73a50d8f6</id>
 		<code>object_display_name</code>
 		<name>显示名称</name>
 		<displayName>显示名称</displayName>
@@ -192,7 +192,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>520035dd-b23e-4c02-a0fc-0d36012899e7</id>
+		<id>6305cf5f-524f-4ede-b78f-09f593e52702</id>
 		<code>regex</code>
 		<name>正则表达式</name>
 		<displayName>正则表达式</displayName>
@@ -204,7 +204,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>dc3f2108-af09-407a-88f2-05e56910548c</id>
+		<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 		<code>object_id</code>
 		<name>对象ID</name>
 		<displayName>对象ID</displayName>
@@ -216,7 +216,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>bf908142-bc57-42ab-9852-737c912af742</id>
+		<id>50c70573-ef5b-4ba6-aeb4-5b761678f7e1</id>
 		<code>object_order</code>
 		<name>序号</name>
 		<displayName>序号</displayName>
@@ -225,7 +225,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>5c63a307-c010-4d4e-a0c6-5df19f38f3f0</id>
+		<id>9a8384b5-5924-41d1-a7d9-e9e5ee00e979</id>
 		<code>use_type</code>
 		<name>用途类型</name>
 		<displayName>用途类型</displayName>
@@ -237,7 +237,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>fd12e4d1-378b-48f2-84fa-0822e0c2c79e</id>
+		<id>e03294ad-3fa3-4578-b3e2-57bbb54ca77f</id>
 		<code>nullable</code>
 		<name>可否为空(1/0)</name>
 		<displayName>可否为空(1/0)</displayName>
@@ -246,7 +246,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>0cc941a5-e274-4c7d-9032-588e066fef5c</id>
+		<id>477d8fc2-58b7-4101-b4a1-756a1c3f63c6</id>
 		<code>object_code</code>
 		<name>编码</name>
 		<displayName>编码</displayName>
@@ -258,7 +258,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>93ebaad4-6d0f-4fe0-9a32-6c038ecc5ff7</id>
+		<id>60e21f85-4324-49c1-9ccc-3a3e79547ab4</id>
 		<code>numeric_precision</code>
 		<name>数据精度</name>
 		<displayName>数据精度</displayName>
@@ -267,7 +267,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>3d501f48-b80f-4461-9212-774fb771b4cf</id>
+		<id>60fdd370-4c81-49d7-b364-785f81ad588c</id>
 		<code>char_max_length</code>
 		<name>最大长度</name>
 		<displayName>最大长度</displayName>
@@ -276,7 +276,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>fb323616-5d2b-44b7-87c3-092647990d7c</id>
+		<id>04265f01-c19f-4996-9781-a4218b5aad03</id>
 		<code>is_enum</code>
 		<name>是否枚举(yes/no)</name>
 		<displayName>是否枚举(yes/no)</displayName>
@@ -285,7 +285,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>ddaa997d-c96e-487c-adcb-f7c078583187</id>
+		<id>f65384b1-141f-4ed6-a412-61ba0e872f2e</id>
 		<code>object_name</code>
 		<name>名称</name>
 		<displayName>名称</displayName>
@@ -297,7 +297,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>3156ca53-c1d1-4137-a2db-a5da0658a0ac</id>
+		<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 		<code>update_date</code>
 		<name>更新日期</name>
 		<displayName>更新日期</displayName>
@@ -307,7 +307,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>d4a350a8-f372-4e7d-9ba5-3db62450cc88</id>
+		<id>839da17e-e236-4e64-86ba-0133b39621fc</id>
 		<code>numeric_scale</code>
 		<name>数据小数精度</name>
 		<displayName>数据小数精度</displayName>
@@ -316,7 +316,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>c965edfe-cf1b-4091-83ba-786f67dc452f</id>
+		<id>6cf618b3-effe-4c6f-a3cc-8b1c435a7c8e</id>
 		<code>max_value</code>
 		<name>最大值</name>
 		<displayName>最大值</displayName>
@@ -328,7 +328,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>94e95971-60fc-4f7b-8132-5de5049e0c4c</id>
+		<id>fd5d805f-0567-4e31-8873-4ea2c815f215</id>
 		<code>min_value</code>
 		<name>最小值</name>
 		<displayName>最小值</displayName>

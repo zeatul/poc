@@ -10,6 +10,14 @@ import com.hawk.framework.dic.design.data.Word;
  */
 public class Column implements IDictionaryObject{
 
+	public Word getWord() {
+		return word;
+	}
+
+	public void setWord(Word word) {
+		this.word = word;
+	}
+
 	public Integer getNullable() {
 		return nullable;
 	}
@@ -59,15 +67,9 @@ public class Column implements IDictionaryObject{
 		this.name = name;
 	}
 
-	public Word getDataDefinition() {
-		return dataDefinition;
-	}
+	
 
-	public void setDataDefinition(Word dataDefinition) {
-		this.dataDefinition = dataDefinition;
-	}
-
-	private Word dataDefinition;
+	private Word word;
 	
 	/**
 	 * 0=false,1=true

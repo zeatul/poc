@@ -16,7 +16,7 @@ public class ModelDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 主键 object_id
+	 * 对象ID object_id
 	 */
 	private String objectId;
 	
@@ -36,59 +36,29 @@ public class ModelDomain implements Serializable {
 	private String objectComment;
 	
 	/**
-	 * 创建时间 create_date
+	 * 创建日期 create_date
 	 */
 	private Date createDate;
 	
 	/**
-	 * 更新时间 update_date
+	 * 更新日期 update_date
 	 */
 	private Date updateDate;
 	
 	/**
-	 * 删除时间 delete_date
+	 * 删除日期 delete_date
 	 */
 	private Date deleteDate;
 	
 	/**
 	 * 长整型主键 id
 	 */
-	private String id;
-	
-	/**
-	 * 编码 code
-	 */
-	private String code;
-	
-	/**
-	 * 名称 name
-	 */
-	private String name;
-	
-	/**
-	 * 描述 comment
-	 */
-	private String comment;
-	
-	/**
-	 * uuid主键 uuid
-	 */
-	private String uuid;
-	
-	/**
-	 * 密码 password
-	 */
-	private String password;
-	
-	/**
-	 * 版本号 version
-	 */
-	private Integer version;
+	private Long id;
 	
 	
 	/**
 	 * 
-	 * @return 主键 object_id
+	 * @return 对象ID object_id
 	 */
 	public String getObjectId(){
 		return objectId;
@@ -96,7 +66,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectId 主键 object_id
+	 * @param objectId 对象ID object_id
 	 */	
 	public void setObjectId (String objectId) {
 		this.objectId = objectId;
@@ -152,7 +122,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 创建时间 create_date
+	 * @return 创建日期 create_date
 	 */
 	public Date getCreateDate(){
 		return createDate;
@@ -160,7 +130,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param createDate 创建时间 create_date
+	 * @param createDate 创建日期 create_date
 	 */	
 	public void setCreateDate (Date createDate) {
 		this.createDate = createDate;
@@ -168,7 +138,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 更新时间 update_date
+	 * @return 更新日期 update_date
 	 */
 	public Date getUpdateDate(){
 		return updateDate;
@@ -176,7 +146,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param updateDate 更新时间 update_date
+	 * @param updateDate 更新日期 update_date
 	 */	
 	public void setUpdateDate (Date updateDate) {
 		this.updateDate = updateDate;
@@ -184,7 +154,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 删除时间 delete_date
+	 * @return 删除日期 delete_date
 	 */
 	public Date getDeleteDate(){
 		return deleteDate;
@@ -192,7 +162,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param deleteDate 删除时间 delete_date
+	 * @param deleteDate 删除日期 delete_date
 	 */	
 	public void setDeleteDate (Date deleteDate) {
 		this.deleteDate = deleteDate;
@@ -202,7 +172,7 @@ public class ModelDomain implements Serializable {
 	 * 
 	 * @return 长整型主键 id
 	 */
-	public String getId(){
+	public Long getId(){
 		return id;
 	}
 	
@@ -210,104 +180,8 @@ public class ModelDomain implements Serializable {
 	 * 
 	 * @param id 长整型主键 id
 	 */	
-	public void setId (String id) {
+	public void setId (Long id) {
 		this.id = id;
-	}
-	
-	/**
-	 * 
-	 * @return 编码 code
-	 */
-	public String getCode(){
-		return code;
-	}
-	
-	/**
-	 * 
-	 * @param code 编码 code
-	 */	
-	public void setCode (String code) {
-		this.code = code;
-	}
-	
-	/**
-	 * 
-	 * @return 名称 name
-	 */
-	public String getName(){
-		return name;
-	}
-	
-	/**
-	 * 
-	 * @param name 名称 name
-	 */	
-	public void setName (String name) {
-		this.name = name;
-	}
-	
-	/**
-	 * 
-	 * @return 描述 comment
-	 */
-	public String getComment(){
-		return comment;
-	}
-	
-	/**
-	 * 
-	 * @param comment 描述 comment
-	 */	
-	public void setComment (String comment) {
-		this.comment = comment;
-	}
-	
-	/**
-	 * 
-	 * @return uuid主键 uuid
-	 */
-	public String getUuid(){
-		return uuid;
-	}
-	
-	/**
-	 * 
-	 * @param uuid uuid主键 uuid
-	 */	
-	public void setUuid (String uuid) {
-		this.uuid = uuid;
-	}
-	
-	/**
-	 * 
-	 * @return 密码 password
-	 */
-	public String getPassword(){
-		return password;
-	}
-	
-	/**
-	 * 
-	 * @param password 密码 password
-	 */	
-	public void setPassword (String password) {
-		this.password = password;
-	}
-	
-	/**
-	 * 
-	 * @return 版本号 version
-	 */
-	public Integer getVersion(){
-		return version;
-	}
-	
-	/**
-	 * 
-	 * @param version 版本号 version
-	 */	
-	public void setVersion (Integer version) {
-		this.version = version;
 	}
 	
 

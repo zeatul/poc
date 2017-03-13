@@ -7,7 +7,7 @@
 	<sql id="columns">	
 				object_id AS "objectId" ,
 		table_object_id AS "tableObjectId" ,
-		data_definition_object_id AS "dataDefinitionObjectId" ,
+		word_object_id AS "wordObjectId" ,
 		object_code AS "objectCode" ,
 		object_name AS "objectName" ,
 		object_comment AS "objectComment" ,
@@ -26,7 +26,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
 			<if test="tableObjectId != null"> AND table_object_id = #{tableObjectId}  </if>
-			<if test="dataDefinitionObjectId != null"> AND data_definition_object_id = #{dataDefinitionObjectId}  </if>
+			<if test="wordObjectId != null"> AND word_object_id = #{wordObjectId}  </if>
 			<if test="objectCode != null"> AND object_code = #{objectCode}  </if>
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
 			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
@@ -46,7 +46,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND object_id = #{old_objectId}
 			AND table_object_id = #{old_tableObjectId}
-			AND data_definition_object_id = #{old_dataDefinitionObjectId}
+			AND word_object_id = #{old_wordObjectId}
 			AND object_code = #{old_objectCode}
 			AND object_name = #{old_objectName}
 			AND object_comment = #{old_objectComment}
@@ -66,7 +66,7 @@
 		<set>
 			object_id = #{objectId},
 			table_object_id = #{tableObjectId},
-			data_definition_object_id = #{dataDefinitionObjectId},
+			word_object_id = #{wordObjectId},
 			object_code = #{objectCode},
 			object_name = #{objectName},
 			object_comment = #{objectComment},
@@ -86,7 +86,7 @@
 		<set>
 			<if test="objectId != null">object_id = #{objectId},</if>
 			<if test="tableObjectId != null">table_object_id = #{tableObjectId},</if>
-			<if test="dataDefinitionObjectId != null">data_definition_object_id = #{dataDefinitionObjectId},</if>
+			<if test="wordObjectId != null">word_object_id = #{wordObjectId},</if>
 			<if test="objectCode != null">object_code = #{objectCode},</if>
 			<if test="objectName != null">object_name = #{objectName},</if>
 			<if test="objectComment != null">object_comment = #{objectComment},</if>
@@ -139,7 +139,7 @@
 		INSERT INTO t_dic_column (			
 				object_id,				
 				table_object_id,				
-				data_definition_object_id,				
+				word_object_id,				
 				object_code,				
 				object_name,				
 				object_comment,				
@@ -156,7 +156,7 @@
 		VALUES (	
 			#{objectId},
 			#{tableObjectId},
-			#{dataDefinitionObjectId},
+			#{wordObjectId},
 			#{objectCode},
 			#{objectName},
 			#{objectComment},

@@ -21,22 +21,22 @@ public class TableDomain implements Serializable {
 	private String objectId;
 	
 	/**
-	 * 表的编码 object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
 	/**
-	 * 表的名称 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
 	/**
-	 * 表的描述 object_comment
+	 * 描述 object_comment
 	 */
 	private String objectComment;
 	
 	/**
-	 * 表的类型 object_type
+	 * 类型 object_type
 	 */
 	private String objectType;
 	
@@ -89,7 +89,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 表的编码 object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -97,7 +97,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 表的编码 object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -105,7 +105,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 表的名称 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -113,7 +113,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 表的名称 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -121,7 +121,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 表的描述 object_comment
+	 * @return 描述 object_comment
 	 */
 	public String getObjectComment(){
 		return objectComment;
@@ -129,7 +129,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectComment 表的描述 object_comment
+	 * @param objectComment 描述 object_comment
 	 */	
 	public void setObjectComment (String objectComment) {
 		this.objectComment = objectComment;
@@ -137,7 +137,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 表的类型 object_type
+	 * @return 类型 object_type
 	 */
 	public String getObjectType(){
 		return objectType;
@@ -145,7 +145,7 @@ public class TableDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectType 表的类型 object_type
+	 * @param objectType 类型 object_type
 	 */	
 	public void setObjectType (String objectType) {
 		this.objectType = objectType;

@@ -8,7 +8,7 @@
 			<synonymy>fk_object_id</synonymy>
 			<synonymy>parent_column_object_id</synonymy>
 			<synonymy>child_column_object_id</synonymy>
-			<synonymy>data_definition_object_id</synonymy>
+			<synonymy>word_object_id</synonymy>
 			<synonymy>index_object_id</synonymy>
 			<synonymy>column_object_id</synonymy>
 			<synonymy>application_object_id</synonymy>

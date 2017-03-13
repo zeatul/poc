@@ -9,10 +9,10 @@ import java.util.Map;
 import com.hawk.framework.dic.persist.domain.ApplicationDomain;
 import com.hawk.framework.dic.persist.domain.ApplicationTableDomain;
 import com.hawk.framework.dic.persist.domain.ColumnDomain;
-import com.hawk.framework.dic.persist.domain.DataDefinitionDomain;
 import com.hawk.framework.dic.persist.domain.IndexColumnDomain;
 import com.hawk.framework.dic.persist.domain.IndexDomain;
 import com.hawk.framework.dic.persist.domain.TableDomain;
+import com.hawk.framework.dic.persist.domain.WordDomain;
 
 public class DictionaryDomainWrap {
 	
@@ -23,7 +23,7 @@ public class DictionaryDomainWrap {
 	
 	
 
-	private List<DataDefinitionDomain> dataDefinitionDomainList = new ArrayList<DataDefinitionDomain>();	
+	private List<WordDomain> wordDomainList = new ArrayList<WordDomain>();	
 	private List<ApplicationDomain> applicationDomainList = new ArrayList<ApplicationDomain>();
 	private List<TableDomain> tableDomainList = new ArrayList<TableDomain>();
 	private List<ColumnDomain> columnDomainList = new ArrayList<ColumnDomain>();
@@ -38,7 +38,7 @@ public class DictionaryDomainWrap {
 	}
 	
 	public DictionaryDomainWrap(){
-		map.put(DataDefinitionDomain.class, dataDefinitionDomainList);
+		map.put(WordDomain.class, wordDomainList);
 		map.put(ApplicationDomain.class, applicationDomainList);
 		map.put(TableDomain.class, tableDomainList);
 		map.put(ColumnDomain.class, columnDomainList);
@@ -47,10 +47,10 @@ public class DictionaryDomainWrap {
 		map.put(ApplicationTableDomain.class, applicationTableDomainList);
 	}
 
-	public void add(DataDefinitionDomain dataDefinitionDomain) {
-		dataDefinitionDomainList.add(dataDefinitionDomain);
-		dataDefinitionDomain.setCreateDate(createDate);
-		dataDefinitionDomain.setUpdateDate(updateDate);
+	public void add(WordDomain wordDomain) {
+		wordDomainList.add(wordDomain);
+		wordDomain.setCreateDate(createDate);
+		wordDomain.setUpdateDate(updateDate);
 	}
 	
 	public void add(ApplicationDomain applicationDomain) {

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>0ba08f0d-a1fb-4735-92f0-509d046cf3d5</id>
+	<id>bc0149d4-ec53-4283-9d7f-d4dcd1583cd1</id>
 	<code>t_usr_user</code>
 	<comment>用户注册表</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>195313ca-8f6f-4943-99bb-8d9ba6b324e6</id>
-			<dataDefinition>
-				<id>577fa12d-ca83-4825-9ac3-777cad4c32b8</id>
-			</dataDefinition>
+			<id>6efa7876-4fd8-4eba-9a5d-a245f456604f</id>
+			<word>
+				<id>a7096702-c22b-4c50-892d-b72f2f599f66</id>
+			</word>
 			<code>id</code>
 			<name>主键</name>
 			<comment>主键</comment>
@@ -17,10 +17,10 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>dac6b822-2369-448b-82a6-3617d5e5cc00</id>
-			<dataDefinition>
-				<id>52da4d5d-3c51-4f0b-8948-39727b5a7a93</id>
-			</dataDefinition>
+			<id>b9672c13-08f6-451b-aec5-23a7a7732ab5</id>
+			<word>
+				<id>e57e7d17-03e5-495d-ae6f-ca79c7d58ea9</id>
+			</word>
 			<code>user_code</code>
 			<name>用户编号</name>
 			<comment>用户编号</comment>
@@ -28,10 +28,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>70f7209a-8afb-43d3-a36d-83a32c5b83f9</id>
-			<dataDefinition>
-				<id>bafac1e1-65fe-471b-b64a-f5300addcbde</id>
-			</dataDefinition>
+			<id>4e12e177-af96-4296-a93d-dcf85cf7e8e9</id>
+			<word>
+				<id>459b4e78-6f77-4f89-8582-fb9959aabab5</id>
+			</word>
 			<code>mobile_number</code>
 			<name>手机号</name>
 			<comment>手机号</comment>
@@ -39,10 +39,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ad8c9a7c-37ef-4982-b963-52604d74f96e</id>
-			<dataDefinition>
-				<id>588bca47-e185-4489-bad3-2dcfb92bea7f</id>
-			</dataDefinition>
+			<id>c441249a-7d9c-4205-8981-fedba2c94a0c</id>
+			<word>
+				<id>5b31cce8-1a09-48de-b9f9-85b9eaea0c43</id>
+			</word>
 			<code>is_mobile_verified</code>
 			<name>手机号是否已经验证</name>
 			<comment>手机号是否已经验证</comment>
@@ -50,10 +50,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e168e00a-01b4-4254-a950-bac7577c7c25</id>
-			<dataDefinition>
-				<id>bcae1325-0d8b-4a38-98d0-41cca9d78edc</id>
-			</dataDefinition>
+			<id>22a433f2-8ba4-488f-9ef5-f49e460d4704</id>
+			<word>
+				<id>8eed08d7-7e85-4af3-8cb5-883de3a43944</id>
+			</word>
 			<code>mobile_operator</code>
 			<name>手机号运营商</name>
 			<comment>手机号运营商</comment>
@@ -61,10 +61,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>dc8af3e9-7a83-44a5-ae0a-d0c27dd2209e</id>
-			<dataDefinition>
-				<id>9ce4a84a-6532-4fc9-8f18-04897427b4a7</id>
-			</dataDefinition>
+			<id>a01edb6c-9dd7-401d-b140-8af422dfb4bd</id>
+			<word>
+				<id>7ccc7900-2943-4f10-8e79-23994e37da78</id>
+			</word>
 			<code>login_pwd</code>
 			<name>登录密码</name>
 			<comment>登录密码</comment>
@@ -72,10 +72,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9bbf07a5-e7d5-4dd1-bc22-23d3f775d145</id>
-			<dataDefinition>
-				<id>9d1d87cd-0e41-4c05-9b51-6a6658665f05</id>
-			</dataDefinition>
+			<id>23cbaed5-8c8a-4ab8-b07f-5a4670780069</id>
+			<word>
+				<id>2204f2a6-a065-460e-9de8-001023f79bdd</id>
+			</word>
 			<code>user_status</code>
 			<name>用户状态</name>
 			<comment>用户状态</comment>
@@ -83,10 +83,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3d5ff046-89e9-44c1-a484-0b9600eaf800</id>
-			<dataDefinition>
-				<id>f7f85b16-737a-4839-9d49-d26d5403bd67</id>
-			</dataDefinition>
+			<id>c8fc1491-b7a7-4a35-8b4b-1d283de7c671</id>
+			<word>
+				<id>de705a9b-cab6-4051-b8a8-f2b06cf27ed1</id>
+			</word>
 			<code>user_status_change_date</code>
 			<name>状态变更日期</name>
 			<comment>状态变更日期</comment>
@@ -94,10 +94,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4cbf2a53-04f9-4a75-a8a0-8adc8a191d6d</id>
-			<dataDefinition>
-				<id>147035a5-1c09-40dc-9953-296fa6d2405d</id>
-			</dataDefinition>
+			<id>d1078034-4251-4c90-ad85-d5b471467f77</id>
+			<word>
+				<id>c9e89fc4-8908-434e-899e-84a8e9bb1b2b</id>
+			</word>
 			<code>register_channel</code>
 			<name>注册渠道</name>
 			<comment>注册渠道</comment>
@@ -105,10 +105,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>82133b05-159a-408c-9eda-d64088bb0b7c</id>
-			<dataDefinition>
-				<id>88e942de-17b9-4b27-b7fb-0d7e972d54a8</id>
-			</dataDefinition>
+			<id>66565bc2-37f3-47be-873e-1c59e0c9e877</id>
+			<word>
+				<id>47e36bd8-3e68-43a2-acac-d9bca923e4ca</id>
+			</word>
 			<code>nickname</code>
 			<name>用户昵称</name>
 			<comment>用户昵称</comment>
@@ -116,10 +116,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>78c15708-59b8-44bd-9571-bc27df5a1f81</id>
-			<dataDefinition>
-				<id>42042fe0-86f7-4844-be2b-8f42734efe5a</id>
-			</dataDefinition>
+			<id>e38e2d4b-a77b-4728-a341-3f547709deff</id>
+			<word>
+				<id>ebb840e9-b044-447f-9551-143d9f9644f7</id>
+			</word>
 			<code>name</code>
 			<name>用户姓名</name>
 			<comment>用户姓名</comment>
@@ -127,10 +127,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7b3f350b-814c-4d0d-b5ce-4c1641cf6530</id>
-			<dataDefinition>
-				<id>928fe082-2b81-4b07-ada5-e4c3c5e75927</id>
-			</dataDefinition>
+			<id>6485c7be-bf85-4fdd-a8a4-a4ef2e99457f</id>
+			<word>
+				<id>c2c3ad3a-5773-4aa7-acbe-36fdb672e3be</id>
+			</word>
 			<code>sex</code>
 			<name>用户性别</name>
 			<comment>用户性别</comment>
@@ -138,10 +138,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>180afbe7-bd09-40b4-abad-657026b74ed0</id>
-			<dataDefinition>
-				<id>16924c84-a1c8-4533-afb1-e3c03a4e0675</id>
-			</dataDefinition>
+			<id>b3370234-e60a-457f-8f84-f9792d6a5db7</id>
+			<word>
+				<id>61face36-78a7-464d-b161-45653f9b5c84</id>
+			</word>
 			<code>register_ip</code>
 			<name>注册IP</name>
 			<comment>注册IP</comment>
@@ -149,10 +149,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a0357133-5036-4755-88f8-acc620d5d657</id>
-			<dataDefinition>
-				<id>821d7122-63ea-4e53-bd23-962ba9ca80ed</id>
-			</dataDefinition>
+			<id>ab46232f-a373-4b85-9fb0-252ff214c9e8</id>
+			<word>
+				<id>93fd9d0d-3626-4503-a829-a70092e97557</id>
+			</word>
 			<code>id_type</code>
 			<name>证件类型</name>
 			<comment>证件类型</comment>
@@ -160,10 +160,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>eb6916a0-0ffe-4808-be6e-3b65efb7baf1</id>
-			<dataDefinition>
-				<id>7b5d07fc-6b01-4042-8aa5-2cf05468d9b0</id>
-			</dataDefinition>
+			<id>b65101bf-bff8-41d0-bb0c-15326990cc34</id>
+			<word>
+				<id>881c4f45-567d-4650-a8e9-d8f3ea7839a3</id>
+			</word>
 			<code>id_number</code>
 			<name>证件号码</name>
 			<comment>证件号码</comment>
@@ -171,10 +171,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b4d1d429-e53b-45dd-a1b4-7fc913b5780e</id>
-			<dataDefinition>
-				<id>9ed8beb2-f6bd-419e-b894-5fc5efef6b1d</id>
-			</dataDefinition>
+			<id>e33717e8-6ac0-4a9b-bdb0-46605f712f4b</id>
+			<word>
+				<id>c909da5e-d154-47d0-b90e-c74fbc0acaa0</id>
+			</word>
 			<code>imei</code>
 			<name>设备唯一的串号</name>
 			<comment>设备唯一的串号</comment>
@@ -182,10 +182,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a78fa113-7ebd-4e93-8249-8244a68ab288</id>
-			<dataDefinition>
-				<id>7904aee4-0c49-4a4a-936e-2a4a2f4c8c8f</id>
-			</dataDefinition>
+			<id>ed3df445-2e2b-4bb4-a64a-b2a6d5326e1a</id>
+			<word>
+				<id>89009ff5-97fe-4fd8-b50f-1d4346454ef4</id>
+			</word>
 			<code>operating_system</code>
 			<name>设备操作系统</name>
 			<comment>设备操作系统</comment>
@@ -193,10 +193,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>56258df0-b2bb-4f1d-8397-bed89d598704</id>
-			<dataDefinition>
-				<id>ae7f51d4-2539-4729-aeca-ab89fa75805e</id>
-			</dataDefinition>
+			<id>60a37bc0-bdf8-4b16-9c74-8e8d1c2c806c</id>
+			<word>
+				<id>13924d2c-7e16-4ade-9feb-b1c33407802f</id>
+			</word>
 			<code>operating_system_version</code>
 			<name>设备操作系统版本号</name>
 			<comment>设备操作系统版本号</comment>
@@ -204,10 +204,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a7a48958-4e44-4a96-b680-39686a868930</id>
-			<dataDefinition>
-				<id>736eadc2-1428-4ef6-95f4-8b81e97b68d1</id>
-			</dataDefinition>
+			<id>f16d7b29-55a7-4384-9b7a-2e2affd4721f</id>
+			<word>
+				<id>31851154-4f7c-412a-8154-d08fee168fe9</id>
+			</word>
 			<code>device_brand</code>
 			<name>三星/华为/苹果</name>
 			<comment>三星/华为/苹果</comment>
@@ -215,10 +215,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3cabd4c5-1622-4403-9c7f-9dd2e78e1c43</id>
-			<dataDefinition>
-				<id>7ecbf852-27bd-4e8f-937d-04568a14e111</id>
-			</dataDefinition>
+			<id>252beccf-0526-4185-af98-61ba29a7babd</id>
+			<word>
+				<id>99f3264c-34da-468f-8326-0bc6106b0464</id>
+			</word>
 			<code>device_model</code>
 			<name>厂商给设备定义的编号</name>
 			<comment>厂商给设备定义的编号</comment>
@@ -226,10 +226,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b09ce12a-0fcb-4d1b-b6c6-4e7b07625935</id>
-			<dataDefinition>
-				<id>2734f19a-871e-42b1-adf0-087e6230f1bd</id>
-			</dataDefinition>
+			<id>693f32f6-7280-47fe-9a11-3093b316c084</id>
+			<word>
+				<id>be03f9e2-90e0-4c6a-bbce-bf78d98f3b40</id>
+			</word>
 			<code>user_agent</code>
 			<name>http请求的user_agent原始信息</name>
 			<comment>http请求的user_agent原始信息</comment>
@@ -237,10 +237,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c66cb446-7dd4-46fb-82d8-485674f342fa</id>
-			<dataDefinition>
-				<id>7f746a99-d242-4615-ba65-7dae19926825</id>
-			</dataDefinition>
+			<id>e1d3ed23-3af6-4be7-8828-03e3b0e9daf5</id>
+			<word>
+				<id>2b6543fe-6758-4604-bb7f-74857def5d50</id>
+			</word>
 			<code>last_access_date</code>
 			<name>最近访问日期</name>
 			<comment>最近访问日期</comment>
@@ -248,10 +248,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>62546806-afc5-482d-a187-89c6a543d7cf</id>
-			<dataDefinition>
-				<id>6315aacc-7e7a-4327-b5cf-63cb4d06a596</id>
-			</dataDefinition>
+			<id>4a1160c1-e8c5-44e1-b649-3c229bae4c69</id>
+			<word>
+				<id>d0ef8ad6-6f9a-49af-82b8-d3d646f2a08e</id>
+			</word>
 			<code>create_date</code>
 			<name>创建日期</name>
 			<comment>创建日期</comment>
@@ -259,10 +259,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7bee17cf-f951-4d55-93e0-0cbd68a9875a</id>
-			<dataDefinition>
-				<id>3156ca53-c1d1-4137-a2db-a5da0658a0ac</id>
-			</dataDefinition>
+			<id>efe5cf77-b8a9-409b-8327-8d412a43a554</id>
+			<word>
+				<id>8d2ed46e-8caa-4a3a-a690-85032f150e52</id>
+			</word>
 			<code>update_date</code>
 			<name>更新日期</name>
 			<comment>更新日期</comment>
@@ -270,10 +270,10 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>2a238554-5590-42e0-9cb6-341445786ed2</id>
-			<dataDefinition>
-				<id>99268441-6ddc-475d-ac86-f3fd72acdc91</id>
-			</dataDefinition>
+			<id>0cb1f748-c383-4835-80d1-b63a56acb06e</id>
+			<word>
+				<id>dca1ca2f-e3a8-4bd5-ba34-d63b9c80beda</id>
+			</word>
 			<code>delete_date</code>
 			<name>删除日期</name>
 			<comment>删除日期</comment>
@@ -283,11 +283,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>dc6c55f6-aa30-4672-9724-498f7d13440b</id>
+			<id>530cc770-c4c5-467a-923f-2675c8fae738</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>195313ca-8f6f-4943-99bb-8d9ba6b324e6</id>
+					<id>6efa7876-4fd8-4eba-9a5d-a245f456604f</id>
 				</column>
 			</columns>
 		</index>

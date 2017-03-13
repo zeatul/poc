@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
-	<id>c7e159a2-9853-4e1e-85b4-b112beeb81f9</id>
+	<id>86ef0a91-0e79-4dca-b6ff-03d22d21650f</id>
 	<code>dic</code>
 	<name>数据字典</name>
 	<comment>元数据驱动开发测试</comment>
 	<tables>
 		<table>
-			<id>66d8cfcd-9ba2-4b47-8274-27e895ef1d78</id>
+			<id>bdd7f267-1a47-4381-90ea-9e856d52ddcb</id>
 		</table>
 		<table>
-			<id>c083f5da-829d-4123-ba89-00632df9e42c</id>
+			<id>2a851308-bd13-4d63-b1b5-a0272772b735</id>
 		</table>
 		<table>
-			<id>f7c51798-3075-4b41-8f79-413927dd9b09</id>
+			<id>7aa67eb1-1ad2-4a2d-bddf-0da4375c5bbb</id>
 		</table>
 		<table>
-			<id>fdfe1cce-9cac-4db0-b1fc-226c14afb331</id>
+			<id>69853117-8abf-4e33-b858-060f0f4c98c5</id>
 		</table>
 		<table>
-			<id>c52b0316-e7a9-4ed3-87c9-83b354b4a398</id>
+			<id>090b85d1-f017-4953-9cbe-0b1dbb704d02</id>
 		</table>
 		<table>
-			<id>6ce32c30-1e85-427d-8777-475245c5470f</id>
+			<id>bb8b6772-0f39-4ba2-869e-d1cf25bb54ef</id>
 		</table>
 		<table>
-			<id>e6caf5c4-d734-497a-9063-31d75e268fb2</id>
+			<id>27e3d410-d791-4b14-b2d2-6a0bf6f6bbf4</id>
 		</table>
 		<table>
-			<id>dd84b36a-1460-47bc-8c0d-c61599775d77</id>
+			<id>35c1b6b3-e2f3-45d3-a0b9-aa81007de1ed</id>
 		</table>
 		<table>
-			<id>7b4accd1-9651-41ed-971d-b856b2415846</id>
+			<id>35467192-e324-47d2-bfb3-e7f3da826190</id>
 		</table>
 		<table>
-			<id>19dc574f-898d-4b68-9d7c-8459b6daf6c8</id>
+			<id>56a39b03-b85e-4666-b8e6-b848aee13b12</id>
 		</table>
 	</tables>
 </application>

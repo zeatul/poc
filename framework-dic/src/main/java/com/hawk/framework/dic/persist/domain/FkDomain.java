@@ -21,17 +21,17 @@ public class FkDomain implements Serializable {
 	private String objectId;
 	
 	/**
-	 * 外键编码 object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
 	/**
-	 * 外键名称 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
 	/**
-	 * 外键描述 object_comment
+	 * 描述 object_comment
 	 */
 	private String objectComment;
 	
@@ -89,7 +89,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 外键编码 object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -97,7 +97,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 外键编码 object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -105,7 +105,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 外键名称 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -113,7 +113,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 外键名称 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -121,7 +121,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 外键描述 object_comment
+	 * @return 描述 object_comment
 	 */
 	public String getObjectComment(){
 		return objectComment;
@@ -129,7 +129,7 @@ public class FkDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectComment 外键描述 object_comment
+	 * @param objectComment 描述 object_comment
 	 */	
 	public void setObjectComment (String objectComment) {
 		this.objectComment = objectComment;

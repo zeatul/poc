@@ -16,7 +16,7 @@ public class IndexColumnDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 主键 object_id
+	 * 对象ID object_id
 	 */
 	private String objectId;
 	
@@ -26,12 +26,12 @@ public class IndexColumnDomain implements Serializable {
 	private String indexObjectId;
 	
 	/**
-	 * 表字段对象ID column_object_id
+	 * 字段对象ID column_object_id
 	 */
 	private String columnObjectId;
 	
 	/**
-	 * 字段在索引的序号 object_order
+	 * 序号 object_order
 	 */
 	private Integer objectOrder;
 	
@@ -63,7 +63,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 主键 object_id
+	 * @return 对象ID object_id
 	 */
 	public String getObjectId(){
 		return objectId;
@@ -71,7 +71,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectId 主键 object_id
+	 * @param objectId 对象ID object_id
 	 */	
 	public void setObjectId (String objectId) {
 		this.objectId = objectId;
@@ -95,7 +95,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 表字段对象ID column_object_id
+	 * @return 字段对象ID column_object_id
 	 */
 	public String getColumnObjectId(){
 		return columnObjectId;
@@ -103,7 +103,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param columnObjectId 表字段对象ID column_object_id
+	 * @param columnObjectId 字段对象ID column_object_id
 	 */	
 	public void setColumnObjectId (String columnObjectId) {
 		this.columnObjectId = columnObjectId;
@@ -111,7 +111,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 字段在索引的序号 object_order
+	 * @return 序号 object_order
 	 */
 	public Integer getObjectOrder(){
 		return objectOrder;
@@ -119,7 +119,7 @@ public class IndexColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectOrder 字段在索引的序号 object_order
+	 * @param objectOrder 序号 object_order
 	 */	
 	public void setObjectOrder (Integer objectOrder) {
 		this.objectOrder = objectOrder;

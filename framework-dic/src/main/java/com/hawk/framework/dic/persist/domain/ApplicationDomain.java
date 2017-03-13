@@ -21,17 +21,17 @@ public class ApplicationDomain implements Serializable {
 	private String objectId;
 	
 	/**
-	 * 应用编码 object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
 	/**
-	 * 应用名称 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
 	/**
-	 * 应用描述 object_comment
+	 * 描述 object_comment
 	 */
 	private String objectComment;
 	
@@ -79,7 +79,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 应用编码 object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -87,7 +87,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 应用编码 object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -95,7 +95,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 应用名称 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -103,7 +103,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 应用名称 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -111,7 +111,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 应用描述 object_comment
+	 * @return 描述 object_comment
 	 */
 	public String getObjectComment(){
 		return objectComment;
@@ -119,7 +119,7 @@ public class ApplicationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectComment 应用描述 object_comment
+	 * @param objectComment 描述 object_comment
 	 */	
 	public void setObjectComment (String objectComment) {
 		this.objectComment = objectComment;

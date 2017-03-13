@@ -13,9 +13,9 @@
 		<#list columnList as column>
 		<column>
 			<id>${column.id}</id>
-			<dataDefinition>
-				<id>${column.dataDefinition.id}</id>
-			</dataDefinition>
+			<word>
+				<id>${column.word.id}</id>
+			</word>
 			<#if column.code??>
 			<code>${column.code}</code>
 			</#if>

@@ -42,14 +42,14 @@ public class ParseXmlService {
 
 		String[] classPathArray = classPathList.toArray(new String[] {});
 
-		List<Word> dataDefinitionList = parseWordByClassPath(classPathArray);
+		List<Word> wordList = parseWordByClassPath(classPathArray);
 
-		Map<String, Word> dataDefinitionMap = new HashMap<String, Word>();
-		for (Word dataDefinition : dataDefinitionList) {
-			dataDefinitionMap.put(dataDefinition.getId(), dataDefinition);
+		Map<String, Word> wordMap = new HashMap<String, Word>();
+		for (Word word : wordList) {
+			wordMap.put(word.getId(), word);
 		}
 
-		List<Table> tableList = parseTableByClassPath(classPathList, dataDefinitionMap);
+		List<Table> tableList = parseTableByClassPath(classPathList, wordMap);
 
 		Map<String, Table> tableMap = new HashMap<String, Table>();
 		for (Table table : tableList) {
@@ -59,7 +59,7 @@ public class ParseXmlService {
 		List<Application> applicationList = parseApplicationByClassPath(classPathList, tableMap);
 
 		Dictionary dictionary = new Dictionary();
-		dictionary.setDataDefinitionList(dataDefinitionList);
+		dictionary.setWordList(wordList);
 		dictionary.setApplicationList(applicationList);
 		return dictionary;
 	}
@@ -138,19 +138,19 @@ public class ParseXmlService {
 		return application;
 	}
 
-	private List<Table> parseTableByClassPath(List<String> classPathList, Map<String, Word> dataDefinitionMap) throws Exception {
+	private List<Table> parseTableByClassPath(List<String> classPathList, Map<String, Word> wordMap) throws Exception {
 		List<Table> tableList = new ArrayList<Table>();
 		for (String classPath : classPathList) {
 			if (!classPath.toLowerCase().endsWith(TABLE_FILE_SUFFIX)) {
 				continue;
 			}
-			Table table = parseTableByClassPath(classPath, dataDefinitionMap);
+			Table table = parseTableByClassPath(classPath, wordMap);
 			tableList.add(table);
 		}
 		return tableList;
 	}
 
-	private Table parseTableByClassPath(String classPath, Map<String, Word> dataDefinitionMap) throws Exception {
+	private Table parseTableByClassPath(String classPath, Map<String, Word> wordMap) throws Exception {
 		if (!classPath.toLowerCase().endsWith(TABLE_FILE_SUFFIX)) {
 			throw new RuntimeException("The classPath is illegal for table ,classPath = " + classPath);
 		}
@@ -169,11 +169,11 @@ public class ParseXmlService {
 		List<Element> columnElementList = tableElement.element("columns").elements();
 		for (Element columnElement : columnElementList) {
 			Column column = convert(columnElement, Column.class);
-			String dataDefinitionId = columnElement.element("dataDefinition").elementTextTrim("id");
-			Word dataDefinition = dataDefinitionMap.get(dataDefinitionId);
-			if (dataDefinition == null)
-				throw new RuntimeException(table.getCode() + " has illegal data definition id = " + dataDefinitionId);
-			column.setDataDefinition(dataDefinition);
+			String wordId = columnElement.element("word").elementTextTrim("id");
+			Word word = wordMap.get(wordId);
+			if (word == null)
+				throw new RuntimeException(table.getCode() + " has illegal data word id = " + wordId);
+			column.setWord(word);
 			columnList.add(column);
 			columnMap.put(column.getId(), column);
 		}

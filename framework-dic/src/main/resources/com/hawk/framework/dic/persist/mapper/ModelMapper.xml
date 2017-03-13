@@ -12,13 +12,7 @@
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" ,
-		id AS "id" ,
-		code AS "code" ,
-		name AS "name" ,
-		comment AS "comment" ,
-		uuid AS "uuid" ,
-		password AS "password" ,
-		version AS "version" 
+		id AS "id" 
 	</sql>
 	
 	<sql id="where">
@@ -31,12 +25,6 @@
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 			<if test="id != null"> AND id = #{id}  </if>
-			<if test="code != null"> AND code = #{code}  </if>
-			<if test="name != null"> AND name = #{name}  </if>
-			<if test="comment != null"> AND comment = #{comment}  </if>
-			<if test="uuid != null"> AND uuid = #{uuid}  </if>
-			<if test="password != null"> AND password = #{password}  </if>
-			<if test="version != null"> AND version = #{version}  </if>
 		</trim>	
 	</sql>
 	
@@ -50,12 +38,6 @@
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
 			AND id = #{old_id}
-			AND code = #{old_code}
-			AND name = #{old_name}
-			AND comment = #{old_comment}
-			AND uuid = #{old_uuid}
-			AND password = #{old_password}
-			AND version = #{old_version}
 		</trim>
 	</sql>
 	
@@ -69,12 +51,6 @@
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
 			id = #{id},
-			code = #{code},
-			name = #{name},
-			comment = #{comment},
-			uuid = #{uuid},
-			password = #{password},
-			version = #{version},
 		</set>
 	</sql>
 	
@@ -88,12 +64,6 @@
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 			<if test="id != null">id = #{id},</if>
-			<if test="code != null">code = #{code},</if>
-			<if test="name != null">name = #{name},</if>
-			<if test="comment != null">comment = #{comment},</if>
-			<if test="uuid != null">uuid = #{uuid},</if>
-			<if test="password != null">password = #{password},</if>
-			<if test="version != null">version = #{version},</if>
 		</set>
 	</sql>
 	
@@ -139,13 +109,7 @@
 				create_date,				
 				update_date,				
 				delete_date,				
-				id,				
-				code,				
-				name,				
-				comment,				
-				uuid,				
-				password,				
-				version				
+				id				
 		)		
 		VALUES (	
 			#{objectId},
@@ -155,13 +119,7 @@
 			#{createDate},
 			#{updateDate},
 			#{deleteDate},
-			#{id},
-			#{code},
-			#{name},
-			#{comment},
-			#{uuid},
-			#{password},
-			#{version}
+			#{id}
 		) 
 	</insert>
 	

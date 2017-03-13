@@ -10,10 +10,6 @@ drop index ui_dic_col_code on t_dic_column;
 
 drop table if exists t_dic_column;
 
-drop index ui_dic_data_def_code on t_dic_data_definition;
-
-drop table if exists t_dic_data_definition;
-
 drop index ui_dic_fk_code on t_dic_fk;
 
 drop index ui_dic_fk_table on t_dic_fk;
@@ -43,6 +39,10 @@ drop table if exists t_dic_model;
 drop index ui_dic_table_code on t_dic_table;
 
 drop table if exists t_dic_table;
+
+drop index ui_dic_data_def_code on t_dic_word;
+
+drop table if exists t_dic_word;
 
 /*==============================================================*/
 /* Table: t_dic_application                                     */
@@ -107,7 +107,7 @@ create table t_dic_column
 (
    object_id            varchar(50) not null comment '对象ID',
    table_object_id      varchar(50) not null comment '表对象ID',
-   data_definition_object_id varchar(50) not null comment '引用的数据类型ID',
+   word_object_id       varchar(50) not null comment '引用的数据类型ID',
    object_code          varchar(50) not null comment '编码',
    object_name          varchar(50) comment '名称',
    object_comment       varchar(1024) comment '描述',
@@ -132,49 +132,6 @@ alter table t_dic_column comment '表字段对象';
 create unique index ui_dic_col_code on t_dic_column
 (
    table_object_id,
-   object_code
-);
-
-/*==============================================================*/
-/* Table: t_dic_data_definition                                 */
-/*==============================================================*/
-create table t_dic_data_definition
-(
-   object_id            varchar(50) not null comment '对象ID',
-   use_type             varchar(50) comment '用途类型',
-   data_type            varchar(50) comment '数据类型',
-   object_code          varchar(50) comment '编码',
-   object_name          varchar(50) comment '名称',
-   object_comment       varchar(1024) comment '描述',
-   object_display_name  varchar(50) comment '显示名称',
-   regex                varchar(50) comment '正则表达式',
-   char_max_length      integer comment '最大长度',
-   char_min_length      integer comment '最小长度',
-   is_only_ascii        integer comment '是否有超过1个byte长度的的字符',
-   max_value            varchar(50) comment '最大值',
-   min_value            varchar(50) comment '最小值',
-   datetime_precision   integer comment '时间精度',
-   numeric_precision    integer comment '数据精度',
-   numeric_scale        integer comment '数据小数精度',
-   is_enum              integer comment '是否枚举(yes/no)',
-   enum_key             varchar(500) comment '枚举值',
-   enum_value           varchar(2000) comment '枚举显示值',
-   system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
-   version              integer comment '版本号',
-   create_date          timestamp(3) null comment '创建日期',
-   update_date          timestamp(3) null comment '更新日期',
-   delete_date          timestamp(3) null comment '删除日期',
-   primary key (object_id)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-alter table t_dic_data_definition comment '数据字典定义';
-
-/*==============================================================*/
-/* Index: ui_dic_data_def_code                                  */
-/*==============================================================*/
-create unique index ui_dic_data_def_code on t_dic_data_definition
-(
    object_code
 );
 
@@ -380,6 +337,49 @@ alter table t_dic_table comment '表对象';
 /* Index: ui_dic_table_code                                     */
 /*==============================================================*/
 create unique index ui_dic_table_code on t_dic_table
+(
+   object_code
+);
+
+/*==============================================================*/
+/* Table: t_dic_word                                            */
+/*==============================================================*/
+create table t_dic_word
+(
+   object_id            varchar(50) not null comment '对象ID',
+   use_type             varchar(50) comment '用途类型',
+   data_type            varchar(50) comment '数据类型',
+   object_code          varchar(50) comment '编码',
+   object_name          varchar(50) comment '名称',
+   object_comment       varchar(1024) comment '描述',
+   object_display_name  varchar(50) comment '显示名称',
+   regex                varchar(50) comment '正则表达式',
+   char_max_length      integer comment '最大长度',
+   char_min_length      integer comment '最小长度',
+   is_only_ascii        integer comment '是否有超过1个byte长度的的字符',
+   max_value            varchar(50) comment '最大值',
+   min_value            varchar(50) comment '最小值',
+   datetime_precision   integer comment '时间精度',
+   numeric_precision    integer comment '数据精度',
+   numeric_scale        integer comment '数据小数精度',
+   is_enum              integer comment '是否枚举(yes/no)',
+   enum_key             varchar(500) comment '枚举值',
+   enum_value           varchar(2000) comment '枚举显示值',
+   system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
+   version              integer comment '版本号',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (object_id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_dic_word comment '数据字典定义';
+
+/*==============================================================*/
+/* Index: ui_dic_data_def_code                                  */
+/*==============================================================*/
+create unique index ui_dic_data_def_code on t_dic_word
 (
    object_code
 );

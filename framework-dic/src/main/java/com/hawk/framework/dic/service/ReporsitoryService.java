@@ -19,10 +19,10 @@ import com.hawk.framework.dic.design.database.Table;
 import com.hawk.framework.dic.persist.domain.ApplicationDomain;
 import com.hawk.framework.dic.persist.domain.ApplicationTableDomain;
 import com.hawk.framework.dic.persist.domain.ColumnDomain;
-import com.hawk.framework.dic.persist.domain.DataDefinitionDomain;
 import com.hawk.framework.dic.persist.domain.IndexColumnDomain;
 import com.hawk.framework.dic.persist.domain.IndexDomain;
 import com.hawk.framework.dic.persist.domain.TableDomain;
+import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.utility.DomainTools;
 
 @Component
@@ -124,10 +124,10 @@ public class ReporsitoryService {
 		/**
 		 * 转换 data_definition 为 入库记录
 		 */
-		for (Word dataDefinition : dictionary.getDataDefinitionList()) {
-			DataDefinitionDomain dataDefinitionDomain = new DataDefinitionDomain();
-			DomainTools.copy(dataDefinition, dataDefinitionDomain);
-			dictionaryDomainWrap.add(dataDefinitionDomain);
+		for (Word word : dictionary.getWordList()) {
+			WordDomain wordDomain = new WordDomain();
+			DomainTools.copy(word, wordDomain);
+			dictionaryDomainWrap.add(wordDomain);
 		}
 
 		/**
@@ -166,7 +166,7 @@ public class ReporsitoryService {
 				for (Column column : table.getColumnList()){
 					ColumnDomain columnDomain = new ColumnDomain();
 					DomainTools.copy(column, columnDomain);
-					columnDomain.setDataDefinitionObjectId(column.getDataDefinition().getId());
+					columnDomain.setWordObjectId(column.getWord().getId());
 					columnDomain.setTableObjectId(table.getId());
 					i = i +100;
 					columnDomain.setObjectOrder(i);

@@ -6,9 +6,11 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import com.hawk.framework.codegen.database.config.DatabaseConfigure;
@@ -28,9 +30,8 @@ import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.data.Word;
+import com.hawk.framework.dic.service.ParseXmlService;
 import com.hawk.framework.dic.design.data.EnumDataType;
-import com.hawk.framework.utility.StringTools;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -76,7 +77,7 @@ public class DatabaseToDicService {
 	}
 	
 	/**
-	 * 比较DataDefinition和column的数据类型是否完全一致
+	 * 比较wor和column的数据类型是否完全一致
 	 * @param def
 	 * @param column
 	 */
@@ -98,10 +99,10 @@ public class DatabaseToDicService {
 			System.out.println("DatetimePrecision is not same");
 			return false;
 		}
-		if (!StringTools.compare(column.getComment(), def.getName())){
-			System.out.println("Comment is not same");
-			return false;
-		}
+//		if (!StringTools.compare(column.getComment(), def.getName())){
+//			System.out.println("Comment is not same");
+//			return false;
+//		}
 		if (def.getDataType()==EnumDataType.Numeric && column.getNumericPrecision() != def.getNumericPrecision()){
 			System.out.println("NumericPrecision is not same");
 			return false;
@@ -204,10 +205,12 @@ public class DatabaseToDicService {
 				}
 				com.hawk.framework.dic.design.database.Column dicColumn = new com.hawk.framework.dic.design.database.Column();
 				dicColumnList.add(dicColumn);
-				dicColumn.setDataDefinition(def);
+				dicColumn.setWord(def);
 				dicColumn.setNullable(column.getNullable());
 				dicColumn.setIsPk(column.getIsPk());
 				dicColumn.setId(UUID.randomUUID().toString());
+				
+				
 				dicColumn.setCode(column.getCode());
 				dicColumn.setName(column.getComment());
 				dicColumn.setComment(column.getComment());
@@ -287,18 +290,42 @@ public class DatabaseToDicService {
 	}
 
 	private void writeWord(List<Word> list, IProjectConfigure projectConfigure,IDbToDicConfigure dbtoDicConfig) throws Exception {
-		Map<String, List<Word>> root = new HashMap<String, List<Word>>();
-		root.put("wordList", list);
+		
 		/* 获取或创建模板 */
 		Template template = cfg.getTemplate("template/dic_word.ftl");
 		String wordProjectRootDirectory = ProjectTools.computeProjectRootDirectory(dbtoDicConfig.getWordProjectName());
-		String directory = ProjectTools.computeProjectResourceDirectory(wordProjectRootDirectory,dbtoDicConfig.getWordPackage());		
-		String filePath = directory + File.separator +projectConfigure.getRootPackage()+"."+projectConfigure.getSubPackage()+ ".word.xml";
+		String directory = ProjectTools.computeProjectResourceDirectory(wordProjectRootDirectory,dbtoDicConfig.getWordPackage());	
+		String fileName = projectConfigure.getRootPackage()+"."+projectConfigure.getSubPackage()+ ".word.xml";
+		String filePath = directory + File.separator +fileName;
+		
+		/**
+		 * 过滤掉已经在其它文件定义过的word
+		 */
+		
+		Set<String> wordFileSet = dbtoDicConfig.getWordFiles();
+		List<String> filteredWordFileList = new ArrayList<String>(); //不包含当前要写的文件
+		for (String str : wordFileSet){
+			if (!str.toLowerCase().endsWith(fileName.toLowerCase())){
+				filteredWordFileList.add(str);
+			}
+		}
+		List<Word> definedWordList =  new ParseXmlService().parseWordByClassPath(filteredWordFileList.toArray(new String[]{})); //已经定义过的word集合
+		Set<String> definedWordCodeSet = new HashSet<String>();
+		for (Word word : definedWordList){
+			definedWordCodeSet.add(word.getCode());
+		}		
+		List<Word> wordList = new ArrayList<Word>();
+		for (Word word : list){
+			if (!definedWordCodeSet.contains(word.getCode())){
+				wordList.add(word);
+			}
+		}
+		Map<String, List<Word>> root = new HashMap<String, List<Word>>();
+		root.put("wordList", wordList);
 		
 		/*
 		 * 备份原文件
-		 */
-		
+		 */		
 		File backFile = new File(filePath+".back");
 		if (backFile.exists())
 			backFile.delete();
@@ -308,6 +335,8 @@ public class DatabaseToDicService {
 		new File(filePath).delete();
 		if (new File(filePath).exists())
 			throw new RuntimeException("Exists file = " + filePath);
+		
+		
 
 		FileOutputStream fileOutputStream = new FileOutputStream(filePath, false);
 		OutputStreamWriter out = new OutputStreamWriter(fileOutputStream, "UTF-8");

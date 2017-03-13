@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maps>
+	<map>
+		<word>ip</word>
+		<synonymies>
+			<synonymy>login_ip</synonymy>
+			<synonymy>register_ip</synonymy>
+		</synonymies>
+	</map>	
+	<map>
+		<word>id</word>
+		<synonymies>
+			<synonymy>user_id</synonymy>
+		</synonymies>
+	</map>	
+</maps>
+
+

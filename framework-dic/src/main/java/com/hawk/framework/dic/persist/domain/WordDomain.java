@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * 数据字典定义
- * The class is mapped to the table t_dic_data_definition 
+ * The class is mapped to the table t_dic_word 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class DataDefinitionDomain implements Serializable {
+public class WordDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -36,7 +36,7 @@ public class DataDefinitionDomain implements Serializable {
 	private String objectCode;
 	
 	/**
-	 * 中文名 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
@@ -202,7 +202,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 中文名 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -210,7 +210,7 @@ public class DataDefinitionDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 中文名 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;

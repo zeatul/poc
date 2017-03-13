@@ -26,27 +26,27 @@ public class ColumnDomain implements Serializable {
 	private String tableObjectId;
 	
 	/**
-	 * 引用的数据类型ID data_definition_object_id
+	 * 引用的数据类型ID word_object_id
 	 */
-	private String dataDefinitionObjectId;
+	private String wordObjectId;
 	
 	/**
-	 * 数据库字段编码（为空，则用数据字典名） object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
 	/**
-	 * 数据库字段名称 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
 	/**
-	 * 数据库字段描述 object_comment
+	 * 描述 object_comment
 	 */
 	private String objectComment;
 	
 	/**
-	 * 数据库字段在表的序号 object_order
+	 * 序号 object_order
 	 */
 	private Integer objectOrder;
 	
@@ -61,7 +61,7 @@ public class ColumnDomain implements Serializable {
 	private Integer isPk;
 	
 	/**
-	 * 支持的运算符，等于默认支持 operators
+	 * 需要支持的运算符，等于默认支持 operators
 	 */
 	private String operators;
 	
@@ -125,23 +125,23 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 引用的数据类型ID data_definition_object_id
+	 * @return 引用的数据类型ID word_object_id
 	 */
-	public String getDataDefinitionObjectId(){
-		return dataDefinitionObjectId;
+	public String getWordObjectId(){
+		return wordObjectId;
 	}
 	
 	/**
 	 * 
-	 * @param dataDefinitionObjectId 引用的数据类型ID data_definition_object_id
+	 * @param wordObjectId 引用的数据类型ID word_object_id
 	 */	
-	public void setDataDefinitionObjectId (String dataDefinitionObjectId) {
-		this.dataDefinitionObjectId = dataDefinitionObjectId;
+	public void setWordObjectId (String wordObjectId) {
+		this.wordObjectId = wordObjectId;
 	}
 	
 	/**
 	 * 
-	 * @return 数据库字段编码（为空，则用数据字典名） object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -149,7 +149,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 数据库字段编码（为空，则用数据字典名） object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -157,7 +157,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 数据库字段名称 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -165,7 +165,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 数据库字段名称 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -173,7 +173,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 数据库字段描述 object_comment
+	 * @return 描述 object_comment
 	 */
 	public String getObjectComment(){
 		return objectComment;
@@ -181,7 +181,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectComment 数据库字段描述 object_comment
+	 * @param objectComment 描述 object_comment
 	 */	
 	public void setObjectComment (String objectComment) {
 		this.objectComment = objectComment;
@@ -189,7 +189,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 数据库字段在表的序号 object_order
+	 * @return 序号 object_order
 	 */
 	public Integer getObjectOrder(){
 		return objectOrder;
@@ -197,7 +197,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectOrder 数据库字段在表的序号 object_order
+	 * @param objectOrder 序号 object_order
 	 */	
 	public void setObjectOrder (Integer objectOrder) {
 		this.objectOrder = objectOrder;
@@ -237,7 +237,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 支持的运算符，等于默认支持 operators
+	 * @return 需要支持的运算符，等于默认支持 operators
 	 */
 	public String getOperators(){
 		return operators;
@@ -245,7 +245,7 @@ public class ColumnDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param operators 支持的运算符，等于默认支持 operators
+	 * @param operators 需要支持的运算符，等于默认支持 operators
 	 */	
 	public void setOperators (String operators) {
 		this.operators = operators;

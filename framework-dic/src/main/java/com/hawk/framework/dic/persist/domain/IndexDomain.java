@@ -26,17 +26,17 @@ public class IndexDomain implements Serializable {
 	private String tableObjectId;
 	
 	/**
-	 * 索引编码 object_code
+	 * 编码 object_code
 	 */
 	private String objectCode;
 	
 	/**
-	 * 索引名称 object_name
+	 * 名称 object_name
 	 */
 	private String objectName;
 	
 	/**
-	 * 索引描述 object_comment
+	 * 描述 object_comment
 	 */
 	private String objectComment;
 	
@@ -46,7 +46,7 @@ public class IndexDomain implements Serializable {
 	private Integer isUnique;
 	
 	/**
-	 * 是主键 is_pk
+	 * 是否为主键(1/0) is_pk
 	 */
 	private Integer isPk;
 	
@@ -110,7 +110,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 索引编码 object_code
+	 * @return 编码 object_code
 	 */
 	public String getObjectCode(){
 		return objectCode;
@@ -118,7 +118,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectCode 索引编码 object_code
+	 * @param objectCode 编码 object_code
 	 */	
 	public void setObjectCode (String objectCode) {
 		this.objectCode = objectCode;
@@ -126,7 +126,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 索引名称 object_name
+	 * @return 名称 object_name
 	 */
 	public String getObjectName(){
 		return objectName;
@@ -134,7 +134,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectName 索引名称 object_name
+	 * @param objectName 名称 object_name
 	 */	
 	public void setObjectName (String objectName) {
 		this.objectName = objectName;
@@ -142,7 +142,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 索引描述 object_comment
+	 * @return 描述 object_comment
 	 */
 	public String getObjectComment(){
 		return objectComment;
@@ -150,7 +150,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param objectComment 索引描述 object_comment
+	 * @param objectComment 描述 object_comment
 	 */	
 	public void setObjectComment (String objectComment) {
 		this.objectComment = objectComment;
@@ -174,7 +174,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是主键 is_pk
+	 * @return 是否为主键(1/0) is_pk
 	 */
 	public Integer getIsPk(){
 		return isPk;
@@ -182,7 +182,7 @@ public class IndexDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param isPk 是主键 is_pk
+	 * @param isPk 是否为主键(1/0) is_pk
 	 */	
 	public void setIsPk (Integer isPk) {
 		this.isPk = isPk;
