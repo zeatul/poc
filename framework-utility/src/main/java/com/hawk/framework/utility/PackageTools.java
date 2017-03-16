@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import static com.hawk.framework.utility.ClassPathTools.*;
@@ -53,7 +56,19 @@ public class PackageTools {
 	 * @param filter
 	 * @return
 	 */
-	public static List<String> listFile(final String packageName, final boolean recursive, final FileFilter filter)  {
+	public static List<String> listFile(final boolean recursive, final FileFilter filter ,String... packageNames)  {
+		Set<String> fileNameSet = new HashSet<String>();
+		for (String packageName : packageNames ){
+			List<String> fileNameList = listFile(packageName,filter,recursive);
+			for (String fileName : fileNameList){
+				fileNameSet.add(fileName);
+			}
+		}
+
+		return Arrays.asList(fileNameSet.toArray(new String[]{}));
+	}
+	
+	private static List<String> listFile(final String packageName , final FileFilter filter,final boolean recursive){
 		String packagePath = dotToClassPath(packageName);
 		Enumeration<URL> urls;
 		try {

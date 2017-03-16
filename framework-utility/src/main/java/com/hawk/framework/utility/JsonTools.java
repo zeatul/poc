@@ -47,7 +47,7 @@ public class JsonTools {
 		}
 	}
 	
-	public static <T> Collection<T> toObject (String jsonStr, Class<? extends Collection> cClass,Class<T> tClass){
+	public static <T> Collection<T> toObject (String jsonStr, Class<? extends Collection<?>> cClass,Class<T> tClass){
 		try {
 			JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(cClass, tClass);
 			return objectMapper.readValue(jsonStr, javaType);

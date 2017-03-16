@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,12 +26,27 @@ import com.hawk.framework.dic.design.database.Table;
 import com.hawk.framework.utility.BooleanTools;
 import com.hawk.framework.utility.JsonTools;
 import com.hawk.framework.utility.PackageTools;
+import com.hawk.framework.utility.PackageTools.FileFilter;
 
 public class ParseXmlService {
 
 	private static String WORD_FILE_SUFFIX = "word.xml";
 	private static String TABLE_FILE_SUFFIX = "table.xml";
 	private static String APPLICATION_FILE_SUFFIX = "application.xml";
+	
+	public static class wordMapFileFilter implements  FileFilter{
+
+		@Override
+		public boolean accept(String fileName) {
+			if (fileName.toLowerCase().endsWith(".word.map.xml"))
+				return true;
+			else
+				return false;
+		}
+		
+	}
+	
+	
 
 	public Dictionary parseFromFileSystem(String... directoryList) {
 		return null;
@@ -67,7 +83,7 @@ public class ParseXmlService {
 	private List<String> listXmlFile(String... packageNameList) throws Exception {
 		Set<String> xmlClassPathSet = new HashSet<String>();
 		for (String packageName : packageNameList) {
-			List<String> xmlClassPathList = PackageTools.listFile(packageName, true, new PackageTools.XmlFileFilter());
+			List<String> xmlClassPathList = PackageTools.listFile(true, new PackageTools.XmlFileFilter(),packageName);
 			for (String str : xmlClassPathList) {
 				xmlClassPathSet.add(str);
 			}
@@ -88,7 +104,7 @@ public class ParseXmlService {
 	public Set<String> listWordFile(String... packageNameList) {
 		Set<String> xmlClassPathSet = new HashSet<String>();
 		for (String packageName : packageNameList) {
-			List<String> xmlClassPathList = PackageTools.listFile(packageName, true, new PackageTools.XmlFileFilter());
+			List<String> xmlClassPathList = PackageTools.listFile(true, new PackageTools.XmlFileFilter(),packageName);
 			for (String str : xmlClassPathList) {
 				if (str.toLowerCase().endsWith(WORD_FILE_SUFFIX)) {
 					xmlClassPathSet.add(str);
@@ -263,6 +279,47 @@ public class ParseXmlService {
 			wordList.add(word);
 		}
 		return wordList;
+	}
+	
+	/**
+	 * 返回同义词匹配关系
+	 * @param packageNames
+	 * @return
+	 */
+	public Map<String,String> parseWordMapByPackageNames(String...packageNames){
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		List<String> wordMapFileList = PackageTools.listFile(false, new wordMapFileFilter(),packageNames);
+		
+		
+		for (String wordMapFile : wordMapFileList){
+			SAXReader saxReader = new SAXReader();
+			InputStream inputStream = getClass().getResourceAsStream(wordMapFile);
+			Document document;
+			try {
+				document = saxReader.read(inputStream);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			@SuppressWarnings("unchecked")
+			Iterator<Element> it =  document.getRootElement().elements().iterator();
+			
+			while(it.hasNext()){
+				Element mapElement = it.next();
+				String word = mapElement.elementTextTrim("word");
+				map.put(word, word); //同义词包括自身
+				@SuppressWarnings("unchecked")
+				Iterator<Element> it2 =mapElement.element("synonymies").elements().iterator();
+				while (it2.hasNext()){
+					String synonym = it2.next().getTextTrim();
+					map.put(synonym, word);
+				}
+			}
+		}
+		
+		return map;
 	}
 
 	/**

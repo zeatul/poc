@@ -145,17 +145,10 @@ public class DbToDicConfigure implements IDbToDicConfigure {
 		 * 计算出所有的word.map文件
 		 */
 		Set<String> wordMapFileSet = new HashSet<String>();
-		FileFilter fileFilter = new FileFilter() {
-			@Override
-			public boolean accept(String fileName) {
-				if (fileName.toLowerCase().endsWith(".word.map.xml"))
-					return true;
-				else
-					return false;
-			}
-		};
-		wordMapFileSet.addAll(PackageTools.listFile("com.hawk.framework.word", false, fileFilter));
-		wordMapFileSet.addAll(PackageTools.listFile(dbToDicConfigure.getWordPackage(), false, fileFilter));
+		
+		FileFilter fileFilter = new ParseXmlService.wordMapFileFilter();
+		
+		wordMapFileSet.addAll(PackageTools.listFile(false, fileFilter,"com.hawk.framework.word",dbToDicConfigure.getWordPackage()));
 		
 		dbToDicConfigure.fillSynonym(wordMapFileSet);
 		

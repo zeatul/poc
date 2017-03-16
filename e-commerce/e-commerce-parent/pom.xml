@@ -11,6 +11,7 @@
 		<module>../e-commerce-sms-service</module>
 		<module>../e-commerce-code-gen</module>
 		<module>../e-commerce-word</module>
+		<module>../e-commerce-config</module>
 	</modules>
 
 	<profiles>
@@ -36,6 +37,9 @@
 	</profiles>
 
 	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 		<java-version>1.8</java-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
@@ -60,6 +64,18 @@
 				<artifactId>framework-codegen</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.framework</groupId>
+				<artifactId>framework-pub</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-dic</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 			<!-- project -->
 			<dependency>
@@ -77,6 +93,12 @@
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-word</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-config</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

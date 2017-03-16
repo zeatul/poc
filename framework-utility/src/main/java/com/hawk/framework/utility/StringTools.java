@@ -80,7 +80,7 @@ public class StringTools {
 	 * @param str
 	 * @return
 	 */
-	public boolean isEmptyOrNull(String str){
+	public static boolean isEmptyOrNull(String str){
 		if (str == null || str.trim().length() == 0)
 			return true;
 		return false;
@@ -91,7 +91,7 @@ public class StringTools {
 	 * @param str
 	 * @return
 	 */
-	public boolean isNotEmptyOrNull(String str){
+	public static boolean isNotEmptyOrNull(String str){
 		return !isEmptyOrNull(str);
 	}
 	
