@@ -12,6 +12,7 @@
 		<module>../e-commerce-code-gen</module>
 		<module>../e-commerce-word</module>
 		<module>../e-commerce-config</module>
+		<module>../e-commerce-bsi</module>
 	</modules>
 
 	<profiles>
@@ -64,18 +65,18 @@
 				<artifactId>framework-codegen</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.framework</groupId>
 				<artifactId>framework-pub</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
-			<groupId>com.hawk.framework</groupId>
-			<artifactId>framework-dic</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+				<groupId>com.hawk.framework</groupId>
+				<artifactId>framework-dic</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- project -->
 			<dependency>
@@ -95,7 +96,7 @@
 				<artifactId>e-commerce-word</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-config</artifactId>
@@ -310,7 +311,7 @@
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
-				<version>4.5.1</version>
+				<version>4.5.3</version>
 				<exclusions>
 					<exclusion>
 						<groupId>commons-logging</groupId>
@@ -321,6 +322,13 @@
 						<artifactId>commons-codec</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<!-- old version httpclinet ,can't use in product env -->
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>3.1</version>
 			</dependency>
 
 			<!-- codec -->
@@ -377,13 +385,13 @@
 				<version>2.6.1</version>
 			</dependency>
 
-			
 
-			
 
-			
 
-			
+
+
+
+
 
 
 
@@ -397,8 +405,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.3</version>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
+						<source>1.8</source>
+						<target>1.8</target>
 						<compilerArgument>-Xlint:all</compilerArgument>
 						<showWarnings>true</showWarnings>
 						<showDeprecation>true</showDeprecation>
@@ -409,6 +417,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.6</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
 				</plugin>
 
 
