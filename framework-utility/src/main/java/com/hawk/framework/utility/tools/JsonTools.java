@@ -7,9 +7,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
-import org.codehaus.jackson.type.JavaType;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("deprecation")
 public class JsonTools {
@@ -18,16 +19,12 @@ public class JsonTools {
 
 	static {
 		objectMapper = new ObjectMapper();
-		objectMapper.getSerializationConfig().setSerializationInclusion(Inclusion.NON_EMPTY);
+		objectMapper.setSerializationInclusion(Include.NON_NULL); 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		objectMapper.getSerializationConfig().setDateFormat(df);
-		objectMapper.getDeserializationConfig().setDateFormat(df);
-		objectMapper.getDeserializationConfig().set(org.codehaus.jackson.map.DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		/*
-		 * objectMapper.getSerializationConfig().set(
-		 * org.codehaus.jackson.map.SerializationConfig
-		 * .Feature.FAIL_ON_EMPTY_BEANS, false);
-		 */
+		objectMapper.getSerializationConfig().with(df);
+		objectMapper.getDeserializationConfig().with(df);
+		objectMapper.getDeserializationConfig().with(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		
 	}
 
 	public static String toJsonString(Object object) {

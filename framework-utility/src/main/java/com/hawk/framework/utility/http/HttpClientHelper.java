@@ -2,6 +2,7 @@ package com.hawk.framework.utility.http;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,6 +22,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.NoHttpResponseException;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.config.RequestConfig;
@@ -60,18 +62,7 @@ public class HttpClientHelper implements HttpExecutor {
 
 	
 
-	/**
-	 * 主机名
-	 */
-	private String hostname;
-	/**
-	 * 协议名
-	 */
-	private String scheme;
-	/**
-	 * 端口号
-	 */
-	private int port;
+	
 
 	private String userAgent = "httpclient4.5.1";
 
@@ -91,8 +82,8 @@ public class HttpClientHelper implements HttpExecutor {
 		httpRequestBase.setConfig(requestConfig);
 	}
 
-	@SuppressWarnings("deprecation")
 	public HttpClientHelper() throws Exception {
+		
 
 		requestConfig = RequestConfig.custom().setSocketTimeout(3000) // //
 																		// 设置读取超时
@@ -186,12 +177,8 @@ public class HttpClientHelper implements HttpExecutor {
 		}
 	};
 
-	private URIBuilder generateURIBuilder(String path, Map<String, String> params) {
-		URIBuilder uriBuilder = new URIBuilder();
-		uriBuilder.setScheme(scheme);
-		uriBuilder.setHost(hostname);
-		uriBuilder.setPort(port);
-		uriBuilder.setPath(path);
+	private URIBuilder generateURIBuilder(String url, Map<String, String> params) throws URISyntaxException {
+		URIBuilder uriBuilder = new URIBuilder(url);
 
 		if (params != null && params.size() > 0) {
 			List<NameValuePair> p = new ArrayList<NameValuePair>();
@@ -227,7 +214,7 @@ public class HttpClientHelper implements HttpExecutor {
 			throw new HttpResponseException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
 	}
 
-	public String get(String path, Map<String, String> params) throws Exception {
+	public String get(String path, Map<String, String> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -239,6 +226,8 @@ public class HttpClientHelper implements HttpExecutor {
 
 			HttpEntity entity = response.getEntity();
 			return EntityUtils.toString(entity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				if (response != null)
@@ -249,11 +238,11 @@ public class HttpClientHelper implements HttpExecutor {
 		}
 	}
 
-	public String post(String path, String content, Map<String, String> params) throws Exception {
+	public String post(String url, String content, Map<String, String> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-			HttpPost httpPost = new HttpPost(generateURIBuilder(path, params).build());
+			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
 			config(httpPost);
 			if (StringTools.isNotNullOrEmpty(content)) {
 				StringEntity stringEntity = new StringEntity(content, "utf-8");
@@ -267,6 +256,8 @@ public class HttpClientHelper implements HttpExecutor {
 			HttpEntity entity = response.getEntity();
 
 			return EntityUtils.toString(entity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				if (response != null)
@@ -278,11 +269,11 @@ public class HttpClientHelper implements HttpExecutor {
 
 	}
 
-	public String post(String path, byte[] b, Map<String, String> params, int off, int length) throws Exception {
+	public String post(String url, byte[] b, Map<String, String> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-			HttpPost httpPost = new HttpPost(generateURIBuilder(path, params).build());
+			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
 			config(httpPost);
 			if (b != null && b.length > 0) {
 				ByteArrayEntity byteArrayEntity = new ByteArrayEntity(b);
@@ -294,6 +285,8 @@ public class HttpClientHelper implements HttpExecutor {
 			HttpEntity entity = response.getEntity();
 
 			return EntityUtils.toString(entity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				if (response != null)
@@ -307,5 +300,7 @@ public class HttpClientHelper implements HttpExecutor {
 	public void destroy() {
 		connMgr.close();
 	}
+
+	
 
 }

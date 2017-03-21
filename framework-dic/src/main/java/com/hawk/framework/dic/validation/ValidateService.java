@@ -29,11 +29,11 @@ public class ValidateService {
 	private Integer validateInteger(Word word ,Integer value){
 		String strMaxValue = word.getMaxValue();
 		String strMinValue = word.getMinValue();
-		if (StringTools.isNotEmptyOrNull(strMaxValue)){
+		if (StringTools.isNotNullOrEmpty(strMaxValue)){
 			if (value >  Integer.parseInt(strMaxValue))
 				throw new RuntimeException(" greater than maxvalue " + strMaxValue);
 		}
-		if (StringTools.isNotEmptyOrNull(strMinValue)){
+		if (StringTools.isNotNullOrEmpty(strMinValue)){
 			if (value < Integer.parseInt(strMinValue))
 				throw new RuntimeException(" less than  minvalue " + strMinValue);
 		}
@@ -46,11 +46,11 @@ public class ValidateService {
 	private Long validateLong(Word word ,Long value){
 		String strMaxValue = word.getMaxValue();
 		String strMinValue = word.getMinValue();
-		if (StringTools.isNotEmptyOrNull(strMaxValue)){
+		if (StringTools.isNotNullOrEmpty(strMaxValue)){
 			if (value >  Long.parseLong(strMaxValue))
 				throw new RuntimeException(" greater than maxvalue " + strMaxValue);
 		}
-		if (StringTools.isNotEmptyOrNull(strMinValue)){
+		if (StringTools.isNotNullOrEmpty(strMinValue)){
 			if (value < Long.parseLong(strMinValue))
 				throw new RuntimeException(" less than  minvalue " + strMinValue);
 		}

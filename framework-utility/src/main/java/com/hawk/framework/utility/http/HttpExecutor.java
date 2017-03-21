@@ -4,10 +4,10 @@ import java.util.Map;
 
 public interface HttpExecutor {
 	
-	public String get(String path,Map<String, String> params);
+	public String get(String url,Map<String, String> params);
 	
-	public String post(String path, String content, Map<String, String> params);
+	public String post(String url, String content, Map<String, String> params);
 	
-	public String post(String path, byte[] b, Map<String, String> params);
+	public String post(String url, byte[] b, Map<String, String> params);
 
 }

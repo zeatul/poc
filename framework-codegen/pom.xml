@@ -23,16 +23,7 @@
 			<artifactId>framework-dic</artifactId>
 		</dependency>
 
-		<!-- json -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-		</dependency>
+		
 
 		<!-- database -->
 		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>jdbc</artifactId> <version>4.0</version> </dependency> -->
