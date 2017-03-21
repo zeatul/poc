@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.hawk.framework.utility.ClassPathTools;
+import com.hawk.framework.utility.tools.ClassPathTools;
 
 public class DatabaseConfigure implements IDatabaseConfigure{
 	

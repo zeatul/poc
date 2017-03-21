@@ -1,4 +1,4 @@
-package com.hawk.framework.utility;
+package com.hawk.framework.utility.tools;
 
 import java.util.List;
 
@@ -80,7 +80,7 @@ public class StringTools {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isEmptyOrNull(String str){
+	public static boolean isNullOrEmpty(String str){
 		if (str == null || str.trim().length() == 0)
 			return true;
 		return false;
@@ -91,8 +91,8 @@ public class StringTools {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isNotEmptyOrNull(String str){
-		return !isEmptyOrNull(str);
+	public static boolean isNotNullOrEmpty(String str){
+		return !isNullOrEmpty(str);
 	}
 	
 	/**

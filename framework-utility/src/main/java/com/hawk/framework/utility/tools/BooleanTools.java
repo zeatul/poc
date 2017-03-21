@@ -1,4 +1,4 @@
-package com.hawk.framework.utility;
+package com.hawk.framework.utility.tools;
 
 public class BooleanTools {
 

@@ -23,7 +23,7 @@ import com.hawk.framework.dic.persist.domain.IndexColumnDomain;
 import com.hawk.framework.dic.persist.domain.IndexDomain;
 import com.hawk.framework.dic.persist.domain.TableDomain;
 import com.hawk.framework.dic.persist.domain.WordDomain;
-import com.hawk.framework.utility.DomainTools;
+import com.hawk.framework.utility.tools.DomainTools;
 
 @Component
 public class ReporsitoryService {

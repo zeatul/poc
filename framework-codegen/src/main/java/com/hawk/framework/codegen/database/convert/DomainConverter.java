@@ -12,7 +12,7 @@ import com.hawk.framework.codegen.database.meta.Field;
 import com.hawk.framework.codegen.database.meta.Index;
 import com.hawk.framework.codegen.database.meta.Table;
 import com.hawk.framework.codegen.utils.CamelNameTools;
-import com.hawk.framework.utility.BooleanTools;
+import com.hawk.framework.utility.tools.BooleanTools;
 
 public class DomainConverter implements IDomainConverter{
 	

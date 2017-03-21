@@ -14,7 +14,14 @@ import org.apache.commons.httpclient.params.HttpClientParams;
 
 import sun.misc.BASE64Encoder;
 
-public class Test {
+
+/**
+ * 测试小宝外部接口
+ * @author pzhang1
+ *
+ */
+@SuppressWarnings("restriction")
+public class TestBsiService {
 	static String para = "{\"ProductId\":\"10075\"}";
 	public static final String KEY_MAC = "HmacMD5";
 
@@ -45,7 +52,7 @@ public class Test {
 		httpClient.setParams(params);
 		try {
 			httpClient.executeMethod(postMethod);
-			// ��ȡ�����Ƶ�byte��
+			
 			byte[] b = postMethod.getResponseBody();
 			String str = new String(b, "UTF8");
 			System.out.println(str);

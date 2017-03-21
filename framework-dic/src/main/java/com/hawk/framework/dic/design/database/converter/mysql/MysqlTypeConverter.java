@@ -3,7 +3,7 @@ package com.hawk.framework.dic.design.database.converter.mysql;
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.database.converter.TypeConverter;
-import com.hawk.framework.utility.StringTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 /**
  * 将框架的数据类型 转换成Mysql 数据库类型

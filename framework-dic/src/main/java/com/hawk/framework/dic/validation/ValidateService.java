@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.service.DictionaryService;
-import com.hawk.framework.utility.StringTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 public class ValidateService {
 	

@@ -1,4 +1,6 @@
-package com.hawk.framework.utility;
+package com.hawk.framework.utility.tools;
+
+import static com.hawk.framework.utility.tools.ClassPathTools.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import static com.hawk.framework.utility.ClassPathTools.*;
 
 public class PackageTools {
 

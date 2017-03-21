@@ -23,10 +23,10 @@ import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.design.database.Column;
 import com.hawk.framework.dic.design.database.Index;
 import com.hawk.framework.dic.design.database.Table;
-import com.hawk.framework.utility.BooleanTools;
-import com.hawk.framework.utility.JsonTools;
-import com.hawk.framework.utility.PackageTools;
-import com.hawk.framework.utility.PackageTools.FileFilter;
+import com.hawk.framework.utility.tools.BooleanTools;
+import com.hawk.framework.utility.tools.JsonTools;
+import com.hawk.framework.utility.tools.PackageTools;
+import com.hawk.framework.utility.tools.PackageTools.FileFilter;
 
 public class ParseXmlService {
 

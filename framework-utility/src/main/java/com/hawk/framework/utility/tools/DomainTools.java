@@ -1,4 +1,4 @@
-package com.hawk.framework.utility;
+package com.hawk.framework.utility.tools;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;

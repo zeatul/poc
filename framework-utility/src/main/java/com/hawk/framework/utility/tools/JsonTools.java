@@ -1,4 +1,4 @@
-package com.hawk.framework.utility;
+package com.hawk.framework.utility.tools;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
