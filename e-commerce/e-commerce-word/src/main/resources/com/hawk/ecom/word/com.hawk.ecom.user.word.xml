@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <words>
 	<word>
-		<id>c2c3ad3a-5773-4aa7-acbe-36fdb672e3be</id>
-		<code>sex</code>
-		<name>用户性别</name>
-		<displayName>用户性别</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>2b6543fe-6758-4604-bb7f-74857def5d50</id>
-		<code>last_access_date</code>
-		<name>最近访问日期</name>
-		<displayName>最近访问日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>3d7e5a86-b604-4d48-af60-0128b2b0a5f7</id>
-		<code>expire_date</code>
-		<name>失效日期</name>
-		<displayName>失效日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>8eed08d7-7e85-4af3-8cb5-883de3a43944</id>
+		<id>1a15a3f8-42a8-4112-99b8-13becadb971c</id>
 		<code>mobile_operator</code>
 		<name>手机号运营商</name>
 		<displayName>手机号运营商</displayName>
@@ -45,28 +13,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>e57e7d17-03e5-495d-ae6f-ca79c7d58ea9</id>
-		<code>user_code</code>
-		<name>用户编号</name>
-		<displayName>用户编号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>a7096702-c22b-4c50-892d-b72f2f599f66</id>
-		<code>id</code>
-		<name>用户ID</name>
-		<displayName>用户ID</displayName>
-		<useType>technology</useType>
-		<dataType>long</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>99f3264c-34da-468f-8326-0bc6106b0464</id>
+		<id>a53cb65f-8439-42a0-89b4-33ebde0d814b</id>
 		<code>device_model</code>
 		<name>厂商给设备定义的编号</name>
 		<displayName>厂商给设备定义的编号</displayName>
@@ -78,115 +25,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>d0ef8ad6-6f9a-49af-82b8-d3d646f2a08e</id>
-		<code>create_date</code>
-		<name>创建日期</name>
-		<displayName>创建日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>93fd9d0d-3626-4503-a829-a70092e97557</id>
-		<code>id_type</code>
-		<name>证件类型</name>
-		<displayName>证件类型</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>8fcf655f-44d8-49ec-a2d8-9c802f5a62fc</id>
-		<code>token</code>
-		<name>token</name>
-		<displayName>token</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>13924d2c-7e16-4ade-9feb-b1c33407802f</id>
-		<code>operating_system_version</code>
-		<name>设备操作系统版本号</name>
-		<displayName>设备操作系统版本号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>ebb840e9-b044-447f-9551-143d9f9644f7</id>
-		<code>name</code>
-		<name>用户姓名</name>
-		<displayName>用户姓名</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>dca1ca2f-e3a8-4bd5-ba34-d63b9c80beda</id>
-		<code>delete_date</code>
-		<name>删除日期</name>
-		<displayName>删除日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>5b31cce8-1a09-48de-b9f9-85b9eaea0c43</id>
-		<code>is_mobile_verified</code>
-		<name>手机号是否已经验证</name>
-		<displayName>手机号是否已经验证</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>7ccc7900-2943-4f10-8e79-23994e37da78</id>
-		<code>login_pwd</code>
-		<name>登录密码</name>
-		<displayName>登录密码</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>89009ff5-97fe-4fd8-b50f-1d4346454ef4</id>
-		<code>operating_system</code>
-		<name>设备操作系统</name>
-		<displayName>设备操作系统</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>37a566b0-c187-4b63-a683-80fbf369cf94</id>
-		<code>login_date</code>
-		<name>登录日期</name>
-		<displayName>登录日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>9ff8616b-5687-47a5-ad9e-e58348dfacd6</id>
+		<id>f14d3bb1-bd25-4429-8535-60fde8b90292</id>
 		<code>login_type</code>
 		<name>登录类型(长期固定/短期固定/短期弹性)</name>
 		<displayName>登录类型(长期固定/短期固定/短期弹性)</displayName>
@@ -198,10 +37,52 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>881c4f45-567d-4650-a8e9-d8f3ea7839a3</id>
-		<code>id_number</code>
-		<name>证件号码</name>
-		<displayName>证件号码</displayName>
+		<id>38162621-67d3-449e-8285-dcd247269bd6</id>
+		<code>login_date</code>
+		<name>登录日期</name>
+		<displayName>登录日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>722e6952-70c6-4896-a20f-83e9ef553048</id>
+		<code>last_access_date</code>
+		<name>最近访问日期</name>
+		<displayName>最近访问日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>dba5bb39-9ec3-4dac-9afe-cbb48f533f51</id>
+		<code>user_status_change_date</code>
+		<name>状态变更日期</name>
+		<displayName>状态变更日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>fb7b8e39-7bcb-4ebb-8ffe-3287471394e0</id>
+		<code>operating_system_version</code>
+		<name>设备操作系统版本号</name>
+		<displayName>设备操作系统版本号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>1c870c6f-157a-47cc-af54-a4282ccb9085</id>
+		<code>user_code</code>
+		<name>用户编号</name>
+		<displayName>用户编号</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -210,7 +91,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>47e36bd8-3e68-43a2-acac-d9bca923e4ca</id>
+		<id>ca492dc2-7a59-46d5-ae51-e8dda2a11971</id>
 		<code>nickname</code>
 		<name>用户昵称</name>
 		<displayName>用户昵称</displayName>
@@ -222,19 +103,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>6b4c2899-a30e-4353-834c-424eab76d347</id>
-		<code>duration_second</code>
-		<name>有效时间(秒)</name>
-		<displayName>有效时间(秒)</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>c909da5e-d154-47d0-b90e-c74fbc0acaa0</id>
-		<code>imei</code>
-		<name>设备唯一的串号</name>
-		<displayName>设备唯一的串号</displayName>
+		<id>d07fed98-f6fa-49f2-9bed-efcdf06d5290</id>
+		<code>operating_system</code>
+		<name>设备操作系统</name>
+		<displayName>设备操作系统</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -243,7 +115,16 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>c9e89fc4-8908-434e-899e-84a8e9bb1b2b</id>
+		<id>df903ffd-2212-4344-8ebf-33b667d5849f</id>
+		<code>id_type</code>
+		<name>证件类型</name>
+		<displayName>证件类型</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c7d2fab4-2f23-4e24-90af-3680489defae</id>
 		<code>register_channel</code>
 		<name>注册渠道</name>
 		<displayName>注册渠道</displayName>
@@ -255,62 +136,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>2204f2a6-a065-460e-9de8-001023f79bdd</id>
-		<code>user_status</code>
-		<name>用户状态</name>
-		<displayName>用户状态</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>de705a9b-cab6-4051-b8a8-f2b06cf27ed1</id>
-		<code>user_status_change_date</code>
-		<name>状态变更日期</name>
-		<displayName>状态变更日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>31851154-4f7c-412a-8154-d08fee168fe9</id>
-		<code>device_brand</code>
-		<name>三星/华为/苹果</name>
-		<displayName>三星/华为/苹果</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>61face36-78a7-464d-b161-45653f9b5c84</id>
-		<code>ip</code>
-		<name>登录IP</name>
-		<displayName>登录IP</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>459b4e78-6f77-4f89-8582-fb9959aabab5</id>
-		<code>mobile_number</code>
-		<name>手机号</name>
-		<displayName>手机号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>20</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>be03f9e2-90e0-4c6a-bbce-bf78d98f3b40</id>
+		<id>62e67ebe-326a-4d56-95bf-2d3989b45e5c</id>
 		<code>user_agent</code>
 		<name>http请求的user_agent原始信息</name>
 		<displayName>http请求的user_agent原始信息</displayName>
@@ -322,13 +148,148 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>8d2ed46e-8caa-4a3a-a690-85032f150e52</id>
-		<code>update_date</code>
-		<name>更新日期</name>
-		<displayName>更新日期</displayName>
+		<id>bdd382b9-14f6-42b8-97a0-2ac3a831b397</id>
+		<code>user_status</code>
+		<name>用户状态</name>
+		<displayName>用户状态</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>78639e9e-7101-4d67-81ba-bb503258c6c6</id>
+		<code>id_number</code>
+		<name>证件号码</name>
+		<displayName>证件号码</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>a8239958-1657-4f97-87cc-b85c2b6d1eac</id>
+		<code>ip</code>
+		<name>登录IP</name>
+		<displayName>登录IP</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>7de23f76-7a74-4720-962d-862376139bb9</id>
+		<code>sex</code>
+		<name>用户性别</name>
+		<displayName>用户性别</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>1cd97bf1-a0fe-4076-b275-48c41dc8f21e</id>
+		<code>duration_second</code>
+		<name>有效时间(秒)</name>
+		<displayName>有效时间(秒)</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3e117b85-751b-44ea-a516-47a9db6cf702</id>
+		<code>is_mobile_verified</code>
+		<name>手机号是否已经验证</name>
+		<displayName>手机号是否已经验证</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>e9313a51-a7a7-4bda-9bed-10c47b18d000</id>
+		<code>login_pwd</code>
+		<name>登录密码</name>
+		<displayName>登录密码</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3b66e6da-0027-4b18-8975-8f860bd1be87</id>
+		<code>token</code>
+		<name>token</name>
+		<displayName>token</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3e1f6cc4-50cb-4e1e-ba71-989222c9f115</id>
+		<code>expire_date</code>
+		<name>失效日期</name>
+		<displayName>失效日期</displayName>
 		<useType>technology</useType>
 		<dataType>date</dataType>
 		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>39ab775e-08f8-4c45-9051-0966cb9bfc19</id>
+		<code>device_brand</code>
+		<name>三星/华为/苹果</name>
+		<displayName>三星/华为/苹果</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>d40665c1-30ae-4327-9fa1-7269551b3cf8</id>
+		<code>name</code>
+		<name>用户姓名</name>
+		<displayName>用户姓名</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>ec5c9f96-ecd4-4f66-a288-c461b2c53ceb</id>
+		<code>imei</code>
+		<name>设备唯一的串号</name>
+		<displayName>设备唯一的串号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>6198112f-8a89-4348-ba84-4d35348d88fe</id>
+		<code>mobile_number</code>
+		<name>手机号</name>
+		<displayName>手机号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>20</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 </words>

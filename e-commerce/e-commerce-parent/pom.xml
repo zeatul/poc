@@ -12,7 +12,7 @@
 		<module>../e-commerce-code-gen</module>
 		<module>../e-commerce-word</module>
 		<module>../e-commerce-config</module>
-		<module>../e-commerce-bsi</module>
+		<module>../e-commerce-svp</module>
 	</modules>
 
 	<profiles>
@@ -330,7 +330,7 @@
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
-				<version>4.5.3</version>
+				<version>4.5.1</version>
 				<exclusions>
 					<exclusion>
 						<groupId>commons-logging</groupId>

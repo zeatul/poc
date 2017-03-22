@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+	<id>02c6398b-0c3a-4266-aa89-9aea63165113</id>
+	<code>t_svp_bsi_phone_prodcut_map</code>
+	<comment>碎屏险手机型号产品的对应关系</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<id>79791451-6741-44f0-b2b6-71ebaed4b5da</id>
+			<word>
+				<id>f23b7b39-c762-4527-9e71-b0d802ac6e15</id>
+			</word>
+			<code>bsi_product_id</code>
+			<name>产品ID</name>
+			<comment>产品ID</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+		<column>
+			<id>aed4b8ce-c859-4e71-86da-a6e6588ad40e</id>
+			<word>
+				<id>79374d22-721d-47d9-983c-671dfd6e6fb2</id>
+			</word>
+			<code>bsi_phone_model_id</code>
+			<name>手机型号Id</name>
+			<comment>手机型号Id</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+	<indexes>
+		<index>
+			<id>e0c91bca-0f4e-4b7b-9300-b79cf89bdb2d</id>
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>79791451-6741-44f0-b2b6-71ebaed4b5da</id>
+				</column>
+				<column>
+					<id>aed4b8ce-c859-4e71-86da-a6e6588ad40e</id>
+				</column>
+			</columns>
+		</index>
+	</indexes>
+</table>

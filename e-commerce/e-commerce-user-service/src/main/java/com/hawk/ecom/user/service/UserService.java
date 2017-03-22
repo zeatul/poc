@@ -7,7 +7,7 @@ import com.hawk.ecom.user.request.CreateUserParam;
 @Service
 public class UserService {
 	
-	private void createUser(CreateUserParam createUserParam){
+	public void createUser(CreateUserParam createUserParam){
 		
 	}
 

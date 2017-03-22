@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapper.BsiPhoneProdcutMapMapper">
+
+	<sql id="columns">	
+				bsi_product_id AS "bsiProductId" ,
+		bsi_phone_model_id AS "bsiPhoneModelId" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
+			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND bsi_product_id = #{old_bsiProductId}
+			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			bsi_product_id = #{bsiProductId},
+			bsi_phone_model_id = #{bsiPhoneModelId},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
+			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND bsi_product_id = #{bsiProductId}
+			AND bsi_phone_model_id = #{bsiPhoneModelId}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="BsiPhoneProdcutMapDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_svp_bsi_phone_prodcut_map
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="BsiPhoneProdcutMapDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_bsi_phone_prodcut_map
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_bsi_phone_prodcut_map
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_bsi_phone_prodcut_map
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="BsiPhoneProdcutMapDomain">
+		INSERT INTO t_svp_bsi_phone_prodcut_map (			
+				bsi_product_id,				
+				bsi_phone_model_id				
+		)		
+		VALUES (	
+			#{bsiProductId},
+			#{bsiPhoneModelId}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_svp_bsi_phone_prodcut_map
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_svp_bsi_phone_prodcut_map
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="BsiPhoneProdcutMapDomain">
+		UPDATE t_svp_bsi_phone_prodcut_map	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="BsiPhoneProdcutMapDomain">
+		UPDATE t_svp_bsi_phone_prodcut_map
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_svp_bsi_phone_prodcut_map	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="BsiPhoneProdcutMapDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_bsi_phone_prodcut_map
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>
