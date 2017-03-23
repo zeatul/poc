@@ -277,6 +277,7 @@ create table t_dic_model
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',
    id                   bigint not null comment '长整型主键',
+   spell_abbr           varchar(50) comment '拼首',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

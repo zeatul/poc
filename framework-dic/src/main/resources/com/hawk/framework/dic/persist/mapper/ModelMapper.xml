@@ -12,7 +12,8 @@
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" ,
-		id AS "id" 
+		id AS "id" ,
+		spell_abbr AS "spellAbbr" 
 	</sql>
 	
 	<sql id="where">
@@ -25,6 +26,7 @@
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="spellAbbr != null"> AND spell_abbr = #{spellAbbr}  </if>
 		</trim>	
 	</sql>
 	
@@ -38,6 +40,7 @@
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
 			AND id = #{old_id}
+			AND spell_abbr = #{old_spellAbbr}
 		</trim>
 	</sql>
 	
@@ -51,6 +54,7 @@
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
 			id = #{id},
+			spell_abbr = #{spellAbbr},
 		</set>
 	</sql>
 	
@@ -64,6 +68,7 @@
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 			<if test="id != null">id = #{id},</if>
+			<if test="spellAbbr != null">spell_abbr = #{spellAbbr},</if>
 		</set>
 	</sql>
 	
@@ -109,7 +114,8 @@
 				create_date,				
 				update_date,				
 				delete_date,				
-				id				
+				id,				
+				spell_abbr				
 		)		
 		VALUES (	
 			#{objectId},
@@ -119,7 +125,8 @@
 			#{createDate},
 			#{updateDate},
 			#{deleteDate},
-			#{id}
+			#{id},
+			#{spellAbbr}
 		) 
 	</insert>
 	

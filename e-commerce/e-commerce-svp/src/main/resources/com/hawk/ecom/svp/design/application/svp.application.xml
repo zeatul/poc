@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
-	<id>0798fd83-a0c9-44ed-af8e-1915a25f75b7</id>
+	<id>70bdc047-d5bf-4563-8339-dd73e93a501a</id>
 	<code>dic</code>
 	<name>数据字典</name>
 	<comment>元数据驱动开发测试</comment>
 	<tables>
 		<table>
-			<id>9d2be530-02de-42a3-81b3-048aec9e8671</id>
+			<id>a8cae76f-97e5-4654-8611-c4cbe200f051</id>
 		</table>
 		<table>
-			<id>02c6398b-0c3a-4266-aa89-9aea63165113</id>
+			<id>0d13e13b-d9c0-48e8-b13c-85c3a74b59e6</id>
 		</table>
 		<table>
-			<id>5b50c59e-a99c-4145-a922-5198b211135e</id>
+			<id>5701d7fd-6f4b-417e-9793-9252795ec7bb</id>
 		</table>
 	</tables>
 </application>

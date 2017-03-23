@@ -7,7 +7,7 @@
 	<sql id="columns">	
 				bsi_product_id AS "bsiProductId" ,
 		bsi_product_name AS "bsiProductName" ,
-		bsi_produc_valid_period AS "bsiProducValidPeriod" ,
+		bsi_product_valid_period AS "bsiProductValidPeriod" ,
 		bsi_product_status AS "bsiProductStatus" 
 	</sql>
 	
@@ -15,7 +15,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="bsiProductName != null"> AND bsi_product_name = #{bsiProductName}  </if>
-			<if test="bsiProducValidPeriod != null"> AND bsi_produc_valid_period = #{bsiProducValidPeriod}  </if>
+			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
 			<if test="bsiProductStatus != null"> AND bsi_product_status = #{bsiProductStatus}  </if>
 		</trim>	
 	</sql>
@@ -24,7 +24,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND bsi_product_id = #{old_bsiProductId}
 			AND bsi_product_name = #{old_bsiProductName}
-			AND bsi_produc_valid_period = #{old_bsiProducValidPeriod}
+			AND bsi_product_valid_period = #{old_bsiProductValidPeriod}
 			AND bsi_product_status = #{old_bsiProductStatus}
 		</trim>
 	</sql>
@@ -33,7 +33,7 @@
 		<set>
 			bsi_product_id = #{bsiProductId},
 			bsi_product_name = #{bsiProductName},
-			bsi_produc_valid_period = #{bsiProducValidPeriod},
+			bsi_product_valid_period = #{bsiProductValidPeriod},
 			bsi_product_status = #{bsiProductStatus},
 		</set>
 	</sql>
@@ -42,7 +42,7 @@
 		<set>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="bsiProductName != null">bsi_product_name = #{bsiProductName},</if>
-			<if test="bsiProducValidPeriod != null">bsi_produc_valid_period = #{bsiProducValidPeriod},</if>
+			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
 			<if test="bsiProductStatus != null">bsi_product_status = #{bsiProductStatus},</if>
 		</set>
 	</sql>
@@ -84,13 +84,13 @@
 		INSERT INTO t_svp_bsi_product (			
 				bsi_product_id,				
 				bsi_product_name,				
-				bsi_produc_valid_period,				
+				bsi_product_valid_period,				
 				bsi_product_status				
 		)		
 		VALUES (	
 			#{bsiProductId},
 			#{bsiProductName},
-			#{bsiProducValidPeriod},
+			#{bsiProductValidPeriod},
 			#{bsiProductStatus}
 		) 
 	</insert>

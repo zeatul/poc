@@ -13,15 +13,6 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
-		<code>bsi_product_valid_period</code>
-		<name>有效期(月)</name>
-		<displayName>有效期(月)</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>79374d22-721d-47d9-983c-671dfd6e6fb2</id>
 		<code>bsi_phone_model_id</code>
 		<name>型号ID</name>
@@ -85,6 +76,15 @@
 		<charMinLength>0</charMinLength>
 		<charMaxLength>1</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>fb9ef982-dd89-46c6-8e08-3eec20bb76c9</id>
+		<code>bsi_produc_valid_period</code>
+		<name>有效期(月)</name>
+		<displayName>有效期(月)</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 </words>

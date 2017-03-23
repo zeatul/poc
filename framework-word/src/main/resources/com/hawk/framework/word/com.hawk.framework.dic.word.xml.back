@@ -1,153 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <words>
 	<word>
-		<id>da9fa591-b6d4-4730-993d-fac668dedbb9</id>
-		<code>physical_option</code>
-		<name>表的物理特性</name>
-		<displayName>表的物理特性</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>2000</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>38f62aed-705a-4b86-8dd8-978f7e3561d9</id>
-		<code>object_comment</code>
-		<name>描述</name>
-		<displayName>描述</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1024</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>c64dfbef-78f6-4078-a8ee-37cb68cacadc</id>
-		<code>char_min_length</code>
-		<name>最小长度</name>
-		<displayName>最小长度</displayName>
+		<id>e03294ad-3fa3-4578-b3e2-57bbb54ca77f</id>
+		<code>nullable</code>
+		<name>可否为空(1/0)</name>
+		<displayName>可否为空(1/0)</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>bdd57ce0-e3e2-4cf2-a4ea-70fa4ecb9e81</id>
-		<code>version</code>
-		<name>版本号</name>
-		<displayName>版本号</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>1d042ac5-0c8c-4fbc-8781-f10d114f081d</id>
-		<code>enum_key</code>
-		<name>枚举值</name>
-		<displayName>枚举值</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>500</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>c2c09daf-605d-48e4-ba32-2608e0ec20f0</id>
-		<code>id</code>
-		<name>长整型主键</name>
-		<displayName>长整型主键</displayName>
-		<useType>technology</useType>
-		<dataType>long</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>684a4a81-d7cf-45ee-92c6-f6b18933af4f</id>
-		<code>object_type</code>
-		<name>类型</name>
-		<displayName>类型</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>16bf8e83-1e12-4a38-b8aa-0bac3b8e00f2</id>
-		<code>is_only_ascii</code>
-		<name>是否有超过1个byte长度的的字符</name>
-		<displayName>是否有超过1个byte长度的的字符</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>2b0d3be3-6d63-48f5-bb90-7df58faa3f36</id>
-		<code>is_pk</code>
-		<name>是否为主键(1/0)</name>
-		<displayName>是否为主键(1/0)</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>a0068256-cc8f-452d-bf22-35fb0d95ab04</id>
-		<code>create_date</code>
-		<name>创建日期</name>
-		<displayName>创建日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>eedb5f97-efb2-4ac2-917c-3c8febb0fcba</id>
-		<code>datetime_precision</code>
-		<name>时间精度</name>
-		<displayName>时间精度</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>960a992f-e142-4867-b7d8-5b0d845bfe4a</id>
-		<code>data_type</code>
-		<name>数据类型</name>
-		<displayName>数据类型</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>957b7440-961a-4f24-93f6-cb8fdd7141a8</id>
-		<code>delete_date</code>
-		<name>删除日期</name>
-		<displayName>删除日期</displayName>
-		<useType>technology</useType>
-		<dataType>date</dataType>
-		<datetimePrecision>3</datetimePrecision>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>b5dac3d4-4c5f-491c-ad7c-96693e6d07c0</id>
-		<code>operators</code>
-		<name>需要支持的运算符，等于默认支持</name>
-		<displayName>需要支持的运算符，等于默认支持</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>ef66b6ac-a1c6-4a06-aa22-52c3abeb4dac</id>
+		<id>98451740-25ea-47aa-a5c2-09ed4d783cd4</id>
 		<code>is_unique</code>
 		<name>是唯一索引</name>
 		<displayName>是唯一索引</displayName>
@@ -156,19 +19,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>63824d65-0916-434a-8dcb-5d54f8319905</id>
-		<code>enum_value</code>
-		<name>枚举显示值</name>
-		<displayName>枚举显示值</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>2000</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>00816ae4-9314-42b0-9f5f-c2bbff2c3723</id>
+		<id>8ea5fcdf-7f5d-4dce-be89-99a47c7c0177</id>
 		<code>system_code</code>
 		<name>系统编码(区分不同项目，不同集团)</name>
 		<displayName>系统编码(区分不同项目，不同集团)</displayName>
@@ -180,52 +31,34 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>5fa5ed2d-52d5-457a-a0fe-5d1b9255bd22</id>
-		<code>object_display_name</code>
-		<name>显示名称</name>
-		<displayName>显示名称</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>cc2b3cdb-69b8-4c56-a21e-3f613f65b1f7</id>
-		<code>regex</code>
-		<name>正则表达式</name>
-		<displayName>正则表达式</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>f30ea542-7951-45dc-90b7-9e32932c3d51</id>
-		<code>object_id</code>
-		<name>对象ID</name>
-		<displayName>对象ID</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>088ae925-9bbe-4419-9c77-b8fa1d8e5b43</id>
-		<code>object_order</code>
-		<name>序号</name>
-		<displayName>序号</displayName>
+		<id>839da17e-e236-4e64-86ba-0133b39621fc</id>
+		<code>numeric_scale</code>
+		<name>数据小数精度</name>
+		<displayName>数据小数精度</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>3ad03ae8-a666-4233-89d6-ccdd42c6f1a8</id>
+		<id>0bdb89a3-e55f-4f54-bf69-2b4cd912a6be</id>
+		<code>is_pk</code>
+		<name>是否为主键(1/0)</name>
+		<displayName>是否为主键(1/0)</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c8caa8e7-92ff-4422-bd24-e3a5a7449f9a</id>
+		<code>is_only_ascii</code>
+		<name>是否有超过1个byte长度的的字符</name>
+		<displayName>是否有超过1个byte长度的的字符</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>9a8384b5-5924-41d1-a7d9-e9e5ee00e979</id>
 		<code>use_type</code>
 		<name>用途类型</name>
 		<displayName>用途类型</displayName>
@@ -237,19 +70,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>c80f512c-4263-4a48-ae4a-293513f464c9</id>
-		<code>nullable</code>
-		<name>可否为空(1/0)</name>
-		<displayName>可否为空(1/0)</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>582c403a-c5f7-4973-89c4-eb05d6d86c3d</id>
-		<code>object_code</code>
-		<name>编码</name>
-		<displayName>编码</displayName>
+		<id>b8ff419d-cd24-4d14-a4af-696999a72df5</id>
+		<code>operators</code>
+		<name>需要支持的运算符，等于默认支持</name>
+		<displayName>需要支持的运算符，等于默认支持</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -258,34 +82,16 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>3683a627-b005-4110-a7ab-8d332d03a37d</id>
-		<code>numeric_precision</code>
-		<name>数据精度</name>
-		<displayName>数据精度</displayName>
+		<id>69e9db97-01ae-4c3b-a3c1-fbc1b2b1b6d9</id>
+		<code>char_min_length</code>
+		<name>最小长度</name>
+		<displayName>最小长度</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>5c68dc73-626b-418b-a252-be67a473cab5</id>
-		<code>char_max_length</code>
-		<name>最大长度</name>
-		<displayName>最大长度</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>e3501c7d-f429-410c-ad38-22e5fda9988a</id>
-		<code>is_enum</code>
-		<name>是否枚举(yes/no)</name>
-		<displayName>是否枚举(yes/no)</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>bac718c2-b637-4c5c-8766-52280f4f79d1</id>
+		<id>f65384b1-141f-4ed6-a412-61ba0e872f2e</id>
 		<code>object_name</code>
 		<name>名称</name>
 		<displayName>名称</displayName>
@@ -297,7 +103,120 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>ca9bd518-c706-41e7-aa5f-98141175e545</id>
+		<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
+		<code>delete_date</code>
+		<name>删除日期</name>
+		<displayName>删除日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
+		<code>id</code>
+		<name>长整型主键</name>
+		<displayName>长整型主键</displayName>
+		<useType>technology</useType>
+		<dataType>long</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
+		<code>create_date</code>
+		<name>创建日期</name>
+		<displayName>创建日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>50c70573-ef5b-4ba6-aeb4-5b761678f7e1</id>
+		<code>object_order</code>
+		<name>序号</name>
+		<displayName>序号</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>f815f733-743f-4e4d-a4c4-6cddedb048d3</id>
+		<code>datetime_precision</code>
+		<name>时间精度</name>
+		<displayName>时间精度</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>04265f01-c19f-4996-9781-a4218b5aad03</id>
+		<code>is_enum</code>
+		<name>是否枚举(yes/no)</name>
+		<displayName>是否枚举(yes/no)</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>aea9d955-8aca-402d-9257-c89f07e6d7a3</id>
+		<code>object_comment</code>
+		<name>描述</name>
+		<displayName>描述</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1024</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>feee745e-9838-46b1-bbb8-2a8de423bbf6</id>
+		<code>object_type</code>
+		<name>类型</name>
+		<displayName>类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>d5e62544-c548-4a13-aa87-4542d6de851c</id>
+		<code>enum_value</code>
+		<name>枚举显示值</name>
+		<displayName>枚举显示值</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>2000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
+		<code>object_id</code>
+		<name>对象ID</name>
+		<displayName>对象ID</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>87b3198a-5b9b-4822-af10-8984aee6786d</id>
+		<code>version</code>
+		<name>版本号</name>
+		<displayName>版本号</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 		<code>update_date</code>
 		<name>更新日期</name>
 		<displayName>更新日期</displayName>
@@ -307,19 +226,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>cc2aa9e2-28ac-4c12-988e-196972fde2a8</id>
-		<code>numeric_scale</code>
-		<name>数据小数精度</name>
-		<displayName>数据小数精度</displayName>
-		<useType>technology</useType>
-		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>d7cc5342-de5b-4e88-920a-abc6380e0a01</id>
-		<code>max_value</code>
-		<name>最大值</name>
-		<displayName>最大值</displayName>
+		<id>53d71cee-3b20-47f6-9e5b-1bc73a50d8f6</id>
+		<code>object_display_name</code>
+		<name>显示名称</name>
+		<displayName>显示名称</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -328,10 +238,112 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>cd37f013-2f95-405e-a706-be3ff859416d</id>
+		<id>29704bd4-b7c7-44cf-9fb1-825dbd3563a6</id>
+		<code>spell_abbr</code>
+		<name>拼首</name>
+		<displayName>拼首</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>fd5d805f-0567-4e31-8873-4ea2c815f215</id>
 		<code>min_value</code>
 		<name>最小值</name>
 		<displayName>最小值</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c8628876-4d8a-4112-8a75-7cab4a0fc1cd</id>
+		<code>physical_option</code>
+		<name>表的物理特性</name>
+		<displayName>表的物理特性</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>2000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>6305cf5f-524f-4ede-b78f-09f593e52702</id>
+		<code>regex</code>
+		<name>正则表达式</name>
+		<displayName>正则表达式</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>caf00d2a-56c2-43fb-9fa8-e97868b103c6</id>
+		<code>enum_key</code>
+		<name>枚举值</name>
+		<displayName>枚举值</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>500</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>cc691e4b-1ed4-445a-b7a6-c927f2d51591</id>
+		<code>data_type</code>
+		<name>数据类型</name>
+		<displayName>数据类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>60e21f85-4324-49c1-9ccc-3a3e79547ab4</id>
+		<code>numeric_precision</code>
+		<name>数据精度</name>
+		<displayName>数据精度</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>477d8fc2-58b7-4101-b4a1-756a1c3f63c6</id>
+		<code>object_code</code>
+		<name>编码</name>
+		<displayName>编码</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>60fdd370-4c81-49d7-b364-785f81ad588c</id>
+		<code>char_max_length</code>
+		<name>最大长度</name>
+		<displayName>最大长度</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>6cf618b3-effe-4c6f-a3cc-8b1c435a7c8e</id>
+		<code>max_value</code>
+		<name>最大值</name>
+		<displayName>最大值</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>

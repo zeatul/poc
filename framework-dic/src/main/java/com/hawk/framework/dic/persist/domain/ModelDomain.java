@@ -55,6 +55,11 @@ public class ModelDomain implements Serializable {
 	 */
 	private Long id;
 	
+	/**
+	 * 拼首 spell_abbr
+	 */
+	private String spellAbbr;
+	
 	
 	/**
 	 * 
@@ -182,6 +187,22 @@ public class ModelDomain implements Serializable {
 	 */	
 	public void setId (Long id) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 拼首 spell_abbr
+	 */
+	public String getSpellAbbr(){
+		return spellAbbr;
+	}
+	
+	/**
+	 * 
+	 * @param spellAbbr 拼首 spell_abbr
+	 */	
+	public void setSpellAbbr (String spellAbbr) {
+		this.spellAbbr = spellAbbr;
 	}
 	
 

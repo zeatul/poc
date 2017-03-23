@@ -22,7 +22,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.NoHttpResponseException;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.config.RequestConfig;
@@ -58,7 +57,7 @@ import com.hawk.framework.utility.tools.StringTools;
 
 
 @SuppressWarnings("deprecation")
-public class HttpClientHelper implements HttpExecutor {
+public class HttpClientExecutorImpl implements HttpExecutor {
 
 	
 
@@ -82,7 +81,7 @@ public class HttpClientHelper implements HttpExecutor {
 		httpRequestBase.setConfig(requestConfig);
 	}
 
-	public HttpClientHelper() throws Exception {
+	public HttpClientExecutorImpl() throws Exception {
 		
 
 		requestConfig = RequestConfig.custom().setSocketTimeout(3000) // //

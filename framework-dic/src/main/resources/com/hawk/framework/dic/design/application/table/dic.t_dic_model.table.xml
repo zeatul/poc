@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>35c1b6b3-e2f3-45d3-a0b9-aa81007de1ed</id>
+	<id>506c10dc-fd8d-45c4-b3c5-1f274b3ba219</id>
 	<code>t_dic_model</code>
 	<comment>测试表的元数据使用,包括字段类型,索引,外键,不维护数据</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>c4862234-a740-4e9d-971b-d1b3ecf6e522</id>
+			<id>a6315676-2042-46a3-b7a7-7adf0489e9ee</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>7b34c6a8-9148-4b02-a4e8-804ee8f15491</id>
+			<id>48a90fb3-844b-4416-9fd6-5c6fba48e309</id>
 			<word>
 				<id>477d8fc2-58b7-4101-b4a1-756a1c3f63c6</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f03d778d-b50f-4717-916c-8da520379653</id>
+			<id>3cf47e0d-a074-41e1-8f87-81f32efe557d</id>
 			<word>
 				<id>f65384b1-141f-4ed6-a412-61ba0e872f2e</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>dca3fe4b-e2e9-4c8d-84b8-21a49ff02daa</id>
+			<id>89209c56-af94-4731-ad5e-36291ccd6702</id>
 			<word>
 				<id>aea9d955-8aca-402d-9257-c89f07e6d7a3</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>05347517-319e-4c34-ac49-8eaad3f2fa1c</id>
+			<id>d81a93a7-4ca7-4c33-bf09-0382b0daf444</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>940eeca8-3a07-4840-b536-b45cb3f62131</id>
+			<id>c38bf920-93c0-4427-b1f4-a9dcc6912849</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>736bcc8c-fb4e-485a-8f39-775a1674001e</id>
+			<id>525a8d2e-6781-45f1-be5e-32c9a6d43432</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7da21da4-5241-440f-a12c-f292f4d74123</id>
+			<id>9052852c-b27f-494f-96a3-1ac50337cc8f</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -93,32 +93,43 @@
 			<nullable>no</nullable>
 			<isPk>no</isPk>
 		</column>
+		<column>
+			<id>9b829cc0-8567-4469-b981-310b4807f2cb</id>
+			<word>
+				<id>29704bd4-b7c7-44cf-9fb1-825dbd3563a6</id>
+			</word>
+			<code>spell_abbr</code>
+			<name>拼首</name>
+			<comment>拼首</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>ef679ebd-7365-4376-9314-923c8f4a4dcb</id>
+			<id>75308e85-1033-416d-aeac-1615c710aed0</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>c4862234-a740-4e9d-971b-d1b3ecf6e522</id>
+					<id>a6315676-2042-46a3-b7a7-7adf0489e9ee</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>eb805050-2222-4950-a1ab-d1ea07a6c785</id>
+			<id>3a8a7aec-d9b9-4980-825e-659b169977be</id>
 			<code>ui_dic_module_code</code>
 			<columns>
 				<column>
-					<id>7b34c6a8-9148-4b02-a4e8-804ee8f15491</id>
+					<id>48a90fb3-844b-4416-9fd6-5c6fba48e309</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>7a7480bf-fe77-4bcc-81c9-50afeea7c39a</id>
+			<id>39a0c8ab-574d-4096-b169-3bd2d499e81d</id>
 			<code>ui_dic_module_id</code>
 			<columns>
 				<column>
-					<id>7da21da4-5241-440f-a12c-f292f4d74123</id>
+					<id>9052852c-b27f-494f-96a3-1ac50337cc8f</id>
 				</column>
 			</columns>
 		</index>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>5b50c59e-a99c-4145-a922-5198b211135e</id>
+	<id>5701d7fd-6f4b-417e-9793-9252795ec7bb</id>
 	<code>t_svp_bsi_product</code>
 	<comment>碎屏险产品</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>ff7b6b8c-410e-4c90-ae34-c283a89a5159</id>
+			<id>008f0959-0ffd-410e-a7ee-bf63179702f5</id>
 			<word>
 				<id>f23b7b39-c762-4527-9e71-b0d802ac6e15</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>93edd2ba-8f55-4b40-9a6c-88d78a86dcf9</id>
+			<id>3f4db511-f430-4b47-8e6a-e4a38279cc4f</id>
 			<word>
 				<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
 			</word>
@@ -28,18 +28,18 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>bf2cc4d9-0a26-4a02-a66e-25a19caa9ec4</id>
+			<id>0a71810c-a3fd-4d44-81b6-e1c78aa2b9d6</id>
 			<word>
-				<id>fb9ef982-dd89-46c6-8e08-3eec20bb76c9</id>
+				<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
 			</word>
-			<code>bsi_produc_valid_period</code>
+			<code>bsi_product_valid_period</code>
 			<name>有效期(月)</name>
 			<comment>有效期(月)</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a6ea460f-5823-44e9-b55f-6eba4f9a0d3b</id>
+			<id>5bb669bf-2147-44c4-b878-bc2d3ef0ce7a</id>
 			<word>
 				<id>172b4b67-0649-4e79-bfcb-79c29812dd37</id>
 			</word>
@@ -52,11 +52,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>ab646b5e-3c1d-47ab-b1d5-f48db38af25c</id>
+			<id>ac19a74a-861b-4e96-9c62-c96d448297e0</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>ff7b6b8c-410e-4c90-ae34-c283a89a5159</id>
+					<id>008f0959-0ffd-410e-a7ee-bf63179702f5</id>
 				</column>
 			</columns>
 		</index>

@@ -25,9 +25,9 @@ public class BsiProductDomain implements Serializable {
 	private String bsiProductName;
 	
 	/**
-	 * 有效期(月) bsi_produc_valid_period
+	 * 有效期(月) bsi_product_valid_period
 	 */
-	private Integer bsiProducValidPeriod;
+	private Integer bsiProductValidPeriod;
 	
 	/**
 	 * 产品状态 bsi_product_status
@@ -69,18 +69,18 @@ public class BsiProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 有效期(月) bsi_produc_valid_period
+	 * @return 有效期(月) bsi_product_valid_period
 	 */
-	public Integer getBsiProducValidPeriod(){
-		return bsiProducValidPeriod;
+	public Integer getBsiProductValidPeriod(){
+		return bsiProductValidPeriod;
 	}
 	
 	/**
 	 * 
-	 * @param bsiProducValidPeriod 有效期(月) bsi_produc_valid_period
+	 * @param bsiProductValidPeriod 有效期(月) bsi_product_valid_period
 	 */	
-	public void setBsiProducValidPeriod (Integer bsiProducValidPeriod) {
-		this.bsiProducValidPeriod = bsiProducValidPeriod;
+	public void setBsiProductValidPeriod (Integer bsiProductValidPeriod) {
+		this.bsiProductValidPeriod = bsiProductValidPeriod;
 	}
 	
 	/**
