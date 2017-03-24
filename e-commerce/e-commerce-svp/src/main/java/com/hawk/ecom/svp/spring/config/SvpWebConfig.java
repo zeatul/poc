@@ -9,9 +9,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.hawk.ecom.svp.controller.HomeController;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.hawk.ecom.bsi.controller")
+@ComponentScan(basePackageClasses={HomeController.class})
 public class SvpWebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

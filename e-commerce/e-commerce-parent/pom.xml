@@ -20,7 +20,7 @@
 			<id>dev</id>
 			<build>
 				<filters>
-					<!--<filter>../framework-parent/framework/framework_dev.properties</filter> -->
+					<filter>../e-commerce-parent/config/e_commerce_svp_dev.properties</filter>
 				</filters>
 			</build>
 			<activation>
@@ -31,7 +31,7 @@
 			<id>test</id>
 			<build>
 				<filters>
-					<!--<filter>../framework-parent/framework/framework_test.properties</filter> -->
+					<filter>../e-commerce-parent/config/e_commerce_svp_test.properties</filter>
 				</filters>
 			</build>
 		</profile>
@@ -169,17 +169,8 @@
 				<version>${jackson-version}</version>
 			</dependency>
 
-			<!-- <dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${org.codehaus.jackson-version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-core-asl</artifactId>
-				<version>${org.codehaus.jackson-version}</version>
-			</dependency> -->
+			<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> <version>${org.codehaus.jackson-version}</version> </dependency> 
+				<dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-core-asl</artifactId> <version>${org.codehaus.jackson-version}</version> </dependency> -->
 
 			<!-- aspectj -->
 			<dependency>
@@ -427,11 +418,6 @@
 				<version>3.1.0</version>
 				<scope>provided</scope>
 			</dependency>
-
-
-
-
-
 
 
 		</dependencies>

@@ -6,7 +6,7 @@ public class SvpWebAppInitializer extends AbstractAnnotationConfigDispatcherServ
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{SvpRootConfig.class};
+		return new Class<?>[]{};
 	}
 
 	@Override

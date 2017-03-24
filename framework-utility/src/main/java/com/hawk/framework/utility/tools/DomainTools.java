@@ -3,7 +3,9 @@ package com.hawk.framework.utility.tools;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class DomainTools {
 	
@@ -77,7 +79,7 @@ public class DomainTools {
 			
 			V target;
 			try {
-				target = clazz.newInstance();
+				target =  clazz.newInstance();
 				copy(source,target);				
 				targets.add(target);
 			} catch (Exception e) {
@@ -86,6 +88,19 @@ public class DomainTools {
 			
 		}
 		
+	}
+	
+	/**
+	 * 集合复制(浅拷贝,简单对象)
+	 * @param sources 源对象集合
+	 * @param clazz 目标对象类型 
+	 * @return 拷贝后的目标对象集合
+	 */
+	public static <K,V> List<V> copy(Collection<K> sources, Class<V> clazz){
+		int size = sources == null ? 1 : sources.size();
+		List<V> target = new ArrayList<V>(size);
+		copy(sources,target,clazz);
+		return target;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
 
-public class DomainTools {
+public class DicDomainTools {
 	
 	/**
 	 * 将来源数据里的同名field拷贝给目标对象(浅拷贝,简单对象)

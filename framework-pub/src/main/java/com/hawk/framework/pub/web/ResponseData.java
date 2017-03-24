@@ -6,5 +6,6 @@ package com.hawk.framework.pub.web;
  *
  */
 public interface ResponseData {
-
+	
+	
 }
