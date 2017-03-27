@@ -19,7 +19,7 @@ public class SvpRootConfig {
 
 	public static class WebPackage extends RegexPatternTypeFilter {
 		public WebPackage() {
-			super(Pattern.compile("com\\.hawk\\.ecom\\.bsi\\.controller"));
+			super(Pattern.compile("com\\.hawk\\.ecom\\.svp\\.controller"));
 		}
 	}
 }
