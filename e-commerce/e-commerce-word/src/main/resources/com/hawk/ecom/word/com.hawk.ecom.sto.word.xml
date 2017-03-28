@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<words>
+	<word>
+		<id>9bf0b199-fa6e-4445-bc64-7d21e73363ac</id>
+		<code>store_status</code>
+		<name></name>
+		<displayName></displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>88f3b29c-358e-400a-a484-3ddd5d4defcd</id>
+		<code>store_name</code>
+		<name></name>
+		<displayName></displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+</words>

@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <words>
 	<word>
-		<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
-		<code>bsi_phone_model</code>
-		<name>手机型号</name>
-		<displayName>手机型号</displayName>
+		<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
+		<code>bsi_cash_coupon_status</code>
+		<name>代金券状态</name>
+		<displayName>代金券状态</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>79374d22-721d-47d9-983c-671dfd6e6fb2</id>
-		<code>bsi_phone_model_id</code>
-		<name>型号ID</name>
-		<displayName>型号ID</displayName>
-		<useType>technology</useType>
-		<dataType>long</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
-		<code>bsi_product_name</code>
-		<name>产品名称</name>
-		<displayName>产品名称</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
+		<charMaxLength>1</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
@@ -46,6 +25,27 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
+		<code>bsi_phone_model</code>
+		<name>手机型号</name>
+		<displayName>手机型号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
+		<code>bsi_product_valid_period</code>
+		<name>有效期(月)</name>
+		<displayName>有效期(月)</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>4e7d3820-6b22-45bf-9362-e1e952720b05</id>
 		<code>bsi_phone_model_status</code>
 		<name>型号状态</name>
@@ -55,15 +55,6 @@
 		<charMinLength>0</charMinLength>
 		<charMaxLength>1</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>f23b7b39-c762-4527-9e71-b0d802ac6e15</id>
-		<code>bsi_product_id</code>
-		<name>产品ID</name>
-		<displayName>产品ID</displayName>
-		<useType>technology</useType>
-		<dataType>long</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -79,12 +70,83 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>fb9ef982-dd89-46c6-8e08-3eec20bb76c9</id>
-		<code>bsi_produc_valid_period</code>
-		<name>有效期(月)</name>
-		<displayName>有效期(月)</displayName>
+		<id>4de03e27-879d-4ad7-84d9-0b256ed165ab</id>
+		<code>bsi_cash_coupon_name</code>
+		<name>代金券名称</name>
+		<displayName>代金券名称</displayName>
 		<useType>technology</useType>
-		<dataType>integer</dataType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
+		<code>bsi_cash_coupon_code</code>
+		<name>代金券编号</name>
+		<displayName>代金券编号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
+		<code>bsi_product_name</code>
+		<name>产品名称</name>
+		<displayName>产品名称</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>190cc63c-e5f2-4837-9266-5a51c4146c79</id>
+		<code>bsi_order_status</code>
+		<name>订单状态</name>
+		<displayName>订单状态</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>14c1c0dc-fd71-4afe-89e9-b626796d2f9b</id>
+		<code>bsi_cash_coupon_owner</code>
+		<name>代金券所有者</name>
+		<displayName>代金券所有者</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
+		<code>bsi_cash_coupon_create_date</code>
+		<name>代金券生成日期</name>
+		<displayName>代金券生成日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>1ddcd78b-7819-4809-ab35-f795ef35bce2</id>
+		<code>bsi_cash_coupon_invalid_date</code>
+		<name>代金券失效效日期</name>
+		<displayName>代金券失效效日期</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
 		<isEnum>no</isEnum>
 	</word>
 </words>

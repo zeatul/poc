@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<maps>	
+<maps>
+	<map>
+		<word>price</word>
+		<synonymies>
+			<synonymy>bsi_display_price</synonymy>
+			<synonymy>bsi_trade_price</synonymy>
+			<synonymy>bsi_retail_price</synonymy>
+		</synonymies>
+	</map>
+	
+	<map>
+		<word>id</word>
+		<synonymies>
+			<synonymy>bsi_phone_model_id</synonymy>
+			<synonymy>bsi_product_id</synonymy>
+		</synonymies>
+	</map>
+	
+	
+
 </maps>
 
 

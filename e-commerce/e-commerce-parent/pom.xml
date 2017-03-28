@@ -13,6 +13,8 @@
 		<module>../e-commerce-word</module>
 		<module>../e-commerce-config</module>
 		<module>../e-commerce-svp</module>
+		<module>../e-commerce-store-service</module>
+		<module>../e-commerce-pay-service</module>
 	</modules>
 
 	<profiles>

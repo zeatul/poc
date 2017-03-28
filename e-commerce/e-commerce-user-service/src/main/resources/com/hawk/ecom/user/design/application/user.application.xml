@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
-	<id>b4e6cffd-0f4d-4ed9-9595-9cf5901b3e12</id>
+	<id>50361036-f49d-4a16-8d5c-8f9bb843a90f</id>
 	<code>dic</code>
 	<name>数据字典</name>
 	<comment>元数据驱动开发测试</comment>
 	<tables>
 		<table>
-			<id>5e11c34a-2428-485c-a677-75b1a791867a</id>
+			<id>891107b7-91de-430d-8609-bf6f3da7e19e</id>
 		</table>
 		<table>
-			<id>4c85475c-57cb-454b-b95c-a8747a6a152f</id>
+			<id>0caa8875-62fc-40d7-87b3-0a2369ca95e3</id>
 		</table>
 	</tables>
 </application>

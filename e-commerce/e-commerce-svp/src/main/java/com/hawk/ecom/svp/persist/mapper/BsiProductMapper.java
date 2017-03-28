@@ -14,7 +14,7 @@ public interface BsiProductMapper  {
 
 	/**
 	 * 根据主键加载记录
-	 * @param bsiProductId 产品ID
+	 * @param bsiProductId 碎屏险产品ID
 	 * @return 查询到的记录
 	 */
 	BsiProductDomain load(@Param("bsiProductId")Long bsiProductId );
@@ -42,7 +42,7 @@ public interface BsiProductMapper  {
 	
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 * @param bsiProductId 产品ID
+	 * @param bsiProductId 碎屏险产品ID
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
 	int countByPK(@Param("bsiProductId")Long bsiProductId );
@@ -57,7 +57,7 @@ public interface BsiProductMapper  {
 	
 	/**
 	 * 根据主键删除记录
-	 * @param bsiProductId 产品ID
+	 * @param bsiProductId 碎屏险产品ID
 	 * @return 删除的记录数
 	 */
 	int delete(@Param("bsiProductId")Long bsiProductId );

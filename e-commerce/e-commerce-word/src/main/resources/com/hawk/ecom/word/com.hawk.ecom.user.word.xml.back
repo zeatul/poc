@@ -77,19 +77,7 @@
 		<charMaxLength>100</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>1c870c6f-157a-47cc-af54-a4282ccb9085</id>
-		<code>user_code</code>
-		<name>用户编号</name>
-		<displayName>用户编号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
+	</word>	
 	<word>
 		<id>ca492dc2-7a59-46d5-ae51-e8dda2a11971</id>
 		<code>nickname</code>
@@ -277,18 +265,6 @@
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
 		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>6198112f-8a89-4348-ba84-4d35348d88fe</id>
-		<code>mobile_number</code>
-		<name>手机号</name>
-		<displayName>手机号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>20</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>

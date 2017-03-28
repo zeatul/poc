@@ -74,6 +74,8 @@ public class TestBsiService {
 		System.out.println(retStr);
 		return retStr;
 	}
+	
+	
 
 	/**
 	 * HMAC加密

@@ -13,7 +13,12 @@
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" ,
 		id AS "id" ,
-		spell_abbr AS "spellAbbr" 
+		spell_abbr AS "spellAbbr" ,
+		price AS "price" ,
+		store_code AS "storeCode" ,
+		order_number AS "orderNumber" ,
+		user_code AS "userCode" ,
+		mobile_number AS "mobileNumber" 
 	</sql>
 	
 	<sql id="where">
@@ -27,6 +32,11 @@
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="spellAbbr != null"> AND spell_abbr = #{spellAbbr}  </if>
+			<if test="price != null"> AND price = #{price}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="orderNumber != null"> AND order_number = #{orderNumber}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 		</trim>	
 	</sql>
 	
@@ -41,6 +51,11 @@
 			AND delete_date = #{old_deleteDate}
 			AND id = #{old_id}
 			AND spell_abbr = #{old_spellAbbr}
+			AND price = #{old_price}
+			AND store_code = #{old_storeCode}
+			AND order_number = #{old_orderNumber}
+			AND user_code = #{old_userCode}
+			AND mobile_number = #{old_mobileNumber}
 		</trim>
 	</sql>
 	
@@ -55,6 +70,11 @@
 			delete_date = #{deleteDate},
 			id = #{id},
 			spell_abbr = #{spellAbbr},
+			price = #{price},
+			store_code = #{storeCode},
+			order_number = #{orderNumber},
+			user_code = #{userCode},
+			mobile_number = #{mobileNumber},
 		</set>
 	</sql>
 	
@@ -69,6 +89,11 @@
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 			<if test="id != null">id = #{id},</if>
 			<if test="spellAbbr != null">spell_abbr = #{spellAbbr},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="orderNumber != null">order_number = #{orderNumber},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 		</set>
 	</sql>
 	
@@ -115,7 +140,12 @@
 				update_date,				
 				delete_date,				
 				id,				
-				spell_abbr				
+				spell_abbr,				
+				price,				
+				store_code,				
+				order_number,				
+				user_code,				
+				mobile_number				
 		)		
 		VALUES (	
 			#{objectId},
@@ -126,7 +156,12 @@
 			#{updateDate},
 			#{deleteDate},
 			#{id},
-			#{spellAbbr}
+			#{spellAbbr},
+			#{price},
+			#{storeCode},
+			#{orderNumber},
+			#{userCode},
+			#{mobileNumber}
 		) 
 	</insert>
 	

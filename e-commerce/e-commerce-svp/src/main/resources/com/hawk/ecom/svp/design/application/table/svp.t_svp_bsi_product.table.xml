@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>5701d7fd-6f4b-417e-9793-9252795ec7bb</id>
+	<id>0a56e7ad-006b-4ee9-aae7-1ef77000a26c</id>
 	<code>t_svp_bsi_product</code>
 	<comment>碎屏险产品</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>008f0959-0ffd-410e-a7ee-bf63179702f5</id>
+			<id>b549313d-7cda-4675-adee-bdda46ccd670</id>
 			<word>
-				<id>f23b7b39-c762-4527-9e71-b0d802ac6e15</id>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
 			<code>bsi_product_id</code>
-			<name>产品ID</name>
-			<comment>产品ID</comment>
+			<name>碎屏险产品ID</name>
+			<comment>碎屏险产品ID</comment>
 			<nullable>no</nullable>
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>3f4db511-f430-4b47-8e6a-e4a38279cc4f</id>
+			<id>c804520f-1404-4c1a-bebd-6d06a22e8553</id>
 			<word>
 				<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>0a71810c-a3fd-4d44-81b6-e1c78aa2b9d6</id>
+			<id>b246f68f-df7f-4e65-af0a-72568a1a9f98</id>
 			<word>
 				<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5bb669bf-2147-44c4-b878-bc2d3ef0ce7a</id>
+			<id>f2968917-60bb-4757-85ca-791eb447f09d</id>
 			<word>
 				<id>172b4b67-0649-4e79-bfcb-79c29812dd37</id>
 			</word>
@@ -49,14 +49,47 @@
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
+		<column>
+			<id>6228e843-00a5-4d3f-8075-b8736301c160</id>
+			<word>
+				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
+			</word>
+			<code>bsi_display_price</code>
+			<name>显示价格</name>
+			<comment>显示价格</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>10f7bb67-8e1e-4624-9c7a-0e422577fc77</id>
+			<word>
+				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
+			</word>
+			<code>bsi_trade_price</code>
+			<name>批发价格</name>
+			<comment>批发价格</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>e28f34c2-71bb-4c22-8016-ae1e879651c3</id>
+			<word>
+				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
+			</word>
+			<code>bsi_retail_price</code>
+			<name>销售价格</name>
+			<comment>销售价格</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>ac19a74a-861b-4e96-9c62-c96d448297e0</id>
+			<id>02149b77-ea3f-4e28-8410-14c3e361a070</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>008f0959-0ffd-410e-a7ee-bf63179702f5</id>
+					<id>b549313d-7cda-4675-adee-bdda46ccd670</id>
 				</column>
 			</columns>
 		</index>

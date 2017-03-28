@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.sto.persist.mapper.StoreMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		store_code AS "storeCode" ,
+		store_name AS "storeName" ,
+		store_status AS "storeStatus" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="storeName != null"> AND store_name = #{storeName}  </if>
+			<if test="storeStatus != null"> AND store_status = #{storeStatus}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND store_code = #{old_storeCode}
+			AND store_name = #{old_storeName}
+			AND store_status = #{old_storeStatus}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			store_code = #{storeCode},
+			store_name = #{storeName},
+			store_status = #{storeStatus},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="storeName != null">store_name = #{storeName},</if>
+			<if test="storeStatus != null">store_status = #{storeStatus},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="StoreDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_sto_store
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="StoreDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_sto_store
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_sto_store
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_sto_store
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="StoreDomain">
+		INSERT INTO t_sto_store (			
+				id,				
+				store_code,				
+				store_name,				
+				store_status				
+		)		
+		VALUES (	
+			#{id},
+			#{storeCode},
+			#{storeName},
+			#{storeStatus}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_sto_store
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_sto_store
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="StoreDomain">
+		UPDATE t_sto_store	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="StoreDomain">
+		UPDATE t_sto_store
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_sto_store	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="StoreDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_sto_store
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

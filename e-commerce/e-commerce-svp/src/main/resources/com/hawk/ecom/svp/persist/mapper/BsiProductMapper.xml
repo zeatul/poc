@@ -8,7 +8,10 @@
 				bsi_product_id AS "bsiProductId" ,
 		bsi_product_name AS "bsiProductName" ,
 		bsi_product_valid_period AS "bsiProductValidPeriod" ,
-		bsi_product_status AS "bsiProductStatus" 
+		bsi_product_status AS "bsiProductStatus" ,
+		bsi_display_price AS "bsiDisplayPrice" ,
+		bsi_trade_price AS "bsiTradePrice" ,
+		bsi_retail_price AS "bsiRetailPrice" 
 	</sql>
 	
 	<sql id="where">
@@ -17,6 +20,9 @@
 			<if test="bsiProductName != null"> AND bsi_product_name = #{bsiProductName}  </if>
 			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
 			<if test="bsiProductStatus != null"> AND bsi_product_status = #{bsiProductStatus}  </if>
+			<if test="bsiDisplayPrice != null"> AND bsi_display_price = #{bsiDisplayPrice}  </if>
+			<if test="bsiTradePrice != null"> AND bsi_trade_price = #{bsiTradePrice}  </if>
+			<if test="bsiRetailPrice != null"> AND bsi_retail_price = #{bsiRetailPrice}  </if>
 		</trim>	
 	</sql>
 	
@@ -26,6 +32,9 @@
 			AND bsi_product_name = #{old_bsiProductName}
 			AND bsi_product_valid_period = #{old_bsiProductValidPeriod}
 			AND bsi_product_status = #{old_bsiProductStatus}
+			AND bsi_display_price = #{old_bsiDisplayPrice}
+			AND bsi_trade_price = #{old_bsiTradePrice}
+			AND bsi_retail_price = #{old_bsiRetailPrice}
 		</trim>
 	</sql>
 	
@@ -35,6 +44,9 @@
 			bsi_product_name = #{bsiProductName},
 			bsi_product_valid_period = #{bsiProductValidPeriod},
 			bsi_product_status = #{bsiProductStatus},
+			bsi_display_price = #{bsiDisplayPrice},
+			bsi_trade_price = #{bsiTradePrice},
+			bsi_retail_price = #{bsiRetailPrice},
 		</set>
 	</sql>
 	
@@ -44,6 +56,9 @@
 			<if test="bsiProductName != null">bsi_product_name = #{bsiProductName},</if>
 			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
 			<if test="bsiProductStatus != null">bsi_product_status = #{bsiProductStatus},</if>
+			<if test="bsiDisplayPrice != null">bsi_display_price = #{bsiDisplayPrice},</if>
+			<if test="bsiTradePrice != null">bsi_trade_price = #{bsiTradePrice},</if>
+			<if test="bsiRetailPrice != null">bsi_retail_price = #{bsiRetailPrice},</if>
 		</set>
 	</sql>
 	
@@ -85,13 +100,19 @@
 				bsi_product_id,				
 				bsi_product_name,				
 				bsi_product_valid_period,				
-				bsi_product_status				
+				bsi_product_status,				
+				bsi_display_price,				
+				bsi_trade_price,				
+				bsi_retail_price				
 		)		
 		VALUES (	
 			#{bsiProductId},
 			#{bsiProductName},
 			#{bsiProductValidPeriod},
-			#{bsiProductStatus}
+			#{bsiProductStatus},
+			#{bsiDisplayPrice},
+			#{bsiTradePrice},
+			#{bsiRetailPrice}
 		) 
 	</insert>
 	

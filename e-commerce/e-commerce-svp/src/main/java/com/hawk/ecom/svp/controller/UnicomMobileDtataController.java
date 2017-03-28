@@ -23,10 +23,15 @@ public class UnicomMobileDtataController {
 		return "Welcome to unicom family!!!";
 	}
 
-	@RequestMapping(value="/valid/order/number/{orderNumber}",method = GET)
+	@RequestMapping(value="/valid/orderNumber/{orderNumber}",method = GET)
 	public String validOrderNumber(@PathVariable String orderNumber) {
 		if (StringTools.isNullOrEmpty(orderNumber))
 			return "false";
-		return "success to receive orderNumber = " + orderNumber;
+		return "success";
+	}
+	
+	
+	public void notify(@PathVariable String orderNumber){
+		
 	}
 }

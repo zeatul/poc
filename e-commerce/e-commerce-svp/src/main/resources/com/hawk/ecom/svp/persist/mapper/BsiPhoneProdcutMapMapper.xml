@@ -6,13 +6,15 @@
 
 	<sql id="columns">	
 				bsi_product_id AS "bsiProductId" ,
-		bsi_phone_model_id AS "bsiPhoneModelId" 
+		bsi_phone_model_id AS "bsiPhoneModelId" ,
+		bsi_product_valid_period AS "bsiProductValidPeriod" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
+			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
 		</trim>	
 	</sql>
 	
@@ -20,6 +22,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND bsi_product_id = #{old_bsiProductId}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
+			AND bsi_product_valid_period = #{old_bsiProductValidPeriod}
 		</trim>
 	</sql>
 	
@@ -27,6 +30,7 @@
 		<set>
 			bsi_product_id = #{bsiProductId},
 			bsi_phone_model_id = #{bsiPhoneModelId},
+			bsi_product_valid_period = #{bsiProductValidPeriod},
 		</set>
 	</sql>
 	
@@ -34,6 +38,7 @@
 		<set>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
+			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
 		</set>
 	</sql>
 	
@@ -74,11 +79,13 @@
 	<insert id="insert"  parameterType="BsiPhoneProdcutMapDomain">
 		INSERT INTO t_svp_bsi_phone_prodcut_map (			
 				bsi_product_id,				
-				bsi_phone_model_id				
+				bsi_phone_model_id,				
+				bsi_product_valid_period				
 		)		
 		VALUES (	
 			#{bsiProductId},
-			#{bsiPhoneModelId}
+			#{bsiPhoneModelId},
+			#{bsiProductValidPeriod}
 		) 
 	</insert>
 	

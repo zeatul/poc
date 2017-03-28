@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class QueryPhoneBrandResponse  implements ResponseData{
+public class MultiBrandResponse  implements ResponseData{
 	
 	public List<String> getBrands() {
 		return brands;
@@ -19,7 +19,7 @@ public class QueryPhoneBrandResponse  implements ResponseData{
 	
 	private int count = 0;
 	
-	public QueryPhoneBrandResponse(List<String> brands){
+	public MultiBrandResponse(List<String> brands){
 		setBrands(brands);
 	}
 	

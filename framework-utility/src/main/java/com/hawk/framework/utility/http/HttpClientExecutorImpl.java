@@ -5,11 +5,7 @@ import java.io.InterruptedIOException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
@@ -176,17 +172,21 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		}
 	};
 
-	private URIBuilder generateURIBuilder(String url, Map<String, String> params) throws URISyntaxException {
+	public URIBuilder generateURIBuilder(String url, List<HttpParam> params) throws URISyntaxException {
 		URIBuilder uriBuilder = new URIBuilder(url);
 
 		if (params != null && params.size() > 0) {
 			List<NameValuePair> p = new ArrayList<NameValuePair>();
-			Iterator<Entry<String, String>> it = params.entrySet().iterator();
-			while (it.hasNext()) {
-				Entry<String, String> entry = it.next();
-				p.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+			if (params != null){
+				for (HttpParam httpParam : params){
+					p.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
+				}
 			}
+			
 			uriBuilder.setCustomQuery(URLEncodedUtils.format(p, "UTF-8"));
+			
+			
+			
 		}
 		return uriBuilder;
 	}
@@ -213,7 +213,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			throw new HttpResponseException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
 	}
 
-	public String get(String path, Map<String, String> params)  {
+	public String get(String path, List<HttpParam> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -236,8 +236,10 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			}
 		}
 	}
+	
+	
 
-	public String post(String url, String content, Map<String, String> params)  {
+	public String post(String url, String content, List<HttpParam> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -249,6 +251,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 				stringEntity.setContentType("application/json");
 				httpPost.setEntity(stringEntity);
 			}
+			
 
 			response = httpClient.execute(httpPost);
 			checkResponse(response);
@@ -268,7 +271,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	}
 
-	public String post(String url, byte[] b, Map<String, String> params)  {
+	public String post(String url, byte[] b, List<HttpParam> params)  {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -298,6 +301,15 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	public void destroy() {
 		connMgr.close();
+	}
+
+	@Override
+	public String buildUrl(String url, List<HttpParam> params) {
+		try {
+			return generateURIBuilder(url, params).build().toString();
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	

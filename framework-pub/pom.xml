@@ -15,7 +15,22 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<!-- project -->
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-utility</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>

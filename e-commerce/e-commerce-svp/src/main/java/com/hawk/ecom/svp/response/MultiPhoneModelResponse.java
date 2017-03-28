@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class QueryPhoneModelResponse implements ResponseData{
+public class MultiPhoneModelResponse implements ResponseData{
 	
-	public QueryPhoneModelResponse(List<PhoneModel> phoneModels){
+	public MultiPhoneModelResponse(List<PhoneModel> phoneModels){
 		setPhoneModels(phoneModels);
 	}
 	

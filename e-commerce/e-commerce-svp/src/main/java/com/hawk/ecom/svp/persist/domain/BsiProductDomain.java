@@ -1,5 +1,6 @@
 package com.hawk.ecom.svp.persist.domain;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 
 
@@ -15,7 +16,7 @@ public class BsiProductDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
-	 * 产品ID bsi_product_id
+	 * 碎屏险产品ID bsi_product_id
 	 */
 	private Long bsiProductId;
 	
@@ -34,10 +35,25 @@ public class BsiProductDomain implements Serializable {
 	 */
 	private String bsiProductStatus;
 	
+	/**
+	 * 显示价格 bsi_display_price
+	 */
+	private BigDecimal bsiDisplayPrice;
+	
+	/**
+	 * 批发价格 bsi_trade_price
+	 */
+	private BigDecimal bsiTradePrice;
+	
+	/**
+	 * 销售价格 bsi_retail_price
+	 */
+	private BigDecimal bsiRetailPrice;
+	
 	
 	/**
 	 * 
-	 * @return 产品ID bsi_product_id
+	 * @return 碎屏险产品ID bsi_product_id
 	 */
 	public Long getBsiProductId(){
 		return bsiProductId;
@@ -45,7 +61,7 @@ public class BsiProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param bsiProductId 产品ID bsi_product_id
+	 * @param bsiProductId 碎屏险产品ID bsi_product_id
 	 */	
 	public void setBsiProductId (Long bsiProductId) {
 		this.bsiProductId = bsiProductId;
@@ -97,6 +113,54 @@ public class BsiProductDomain implements Serializable {
 	 */	
 	public void setBsiProductStatus (String bsiProductStatus) {
 		this.bsiProductStatus = bsiProductStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 显示价格 bsi_display_price
+	 */
+	public BigDecimal getBsiDisplayPrice(){
+		return bsiDisplayPrice;
+	}
+	
+	/**
+	 * 
+	 * @param bsiDisplayPrice 显示价格 bsi_display_price
+	 */	
+	public void setBsiDisplayPrice (BigDecimal bsiDisplayPrice) {
+		this.bsiDisplayPrice = bsiDisplayPrice;
+	}
+	
+	/**
+	 * 
+	 * @return 批发价格 bsi_trade_price
+	 */
+	public BigDecimal getBsiTradePrice(){
+		return bsiTradePrice;
+	}
+	
+	/**
+	 * 
+	 * @param bsiTradePrice 批发价格 bsi_trade_price
+	 */	
+	public void setBsiTradePrice (BigDecimal bsiTradePrice) {
+		this.bsiTradePrice = bsiTradePrice;
+	}
+	
+	/**
+	 * 
+	 * @return 销售价格 bsi_retail_price
+	 */
+	public BigDecimal getBsiRetailPrice(){
+		return bsiRetailPrice;
+	}
+	
+	/**
+	 * 
+	 * @param bsiRetailPrice 销售价格 bsi_retail_price
+	 */	
+	public void setBsiRetailPrice (BigDecimal bsiRetailPrice) {
+		this.bsiRetailPrice = bsiRetailPrice;
 	}
 	
 

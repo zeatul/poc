@@ -278,6 +278,11 @@ create table t_dic_model
    delete_date          timestamp(3) null comment '删除日期',
    id                   bigint not null comment '长整型主键',
    spell_abbr           varchar(50) comment '拼首',
+   price                numeric(10,2) comment '价格',
+   store_code           varchar(50) comment '商户编号',
+   order_number         varchar(50) comment '订单编号',
+   user_code            varchar(50) not null comment '用户编号',
+   mobile_number        varchar(20) not null comment '手机号',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

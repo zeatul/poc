@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>a8cae76f-97e5-4654-8611-c4cbe200f051</id>
+	<id>27a7b331-0614-439a-a02f-99ed58bf4651</id>
 	<code>t_svp_bsi_phone_model</code>
 	<comment>碎屏险手机品牌型号</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>11a49eab-ffc1-4437-a98f-07bac2faee59</id>
+			<id>e995c7d7-1dc8-4c54-8bd8-e50c4c3dc174</id>
 			<word>
-				<id>79374d22-721d-47d9-983c-671dfd6e6fb2</id>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
 			<code>bsi_phone_model_id</code>
-			<name>型号ID</name>
-			<comment>型号ID</comment>
+			<name>手机型号ID</name>
+			<comment>手机型号ID</comment>
 			<nullable>no</nullable>
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>6cb64d9e-f4d6-490f-9034-bf3c7ce04ca6</id>
+			<id>b82ee0fd-a6c9-40d9-8a63-493981d5c41d</id>
 			<word>
 				<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>0133996c-fc1c-4174-91e8-901c7a21411b</id>
+			<id>7f1721b0-23c9-4c6a-a88a-0711cefe5c1e</id>
 			<word>
 				<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>cab873a9-51e4-44e7-985b-e54ec6978053</id>
+			<id>bbb4c69d-021e-484c-a3d6-8cfbad8c9b53</id>
 			<word>
 				<id>4e7d3820-6b22-45bf-9362-e1e952720b05</id>
 			</word>
@@ -52,23 +52,23 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>0fe1dcbb-570b-461f-ad84-a9edbdd221e3</id>
+			<id>92341dd2-49c3-47f9-89fb-95fc0c1d4c01</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>11a49eab-ffc1-4437-a98f-07bac2faee59</id>
+					<id>e995c7d7-1dc8-4c54-8bd8-e50c4c3dc174</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>c28dc089-a729-473b-a034-cd24fdcbb8f9</id>
+			<id>fc87041c-ba9b-4959-a60b-090846063cd8</id>
 			<code>us_svp_bpm1</code>
 			<columns>
 				<column>
-					<id>6cb64d9e-f4d6-490f-9034-bf3c7ce04ca6</id>
+					<id>b82ee0fd-a6c9-40d9-8a63-493981d5c41d</id>
 				</column>
 				<column>
-					<id>0133996c-fc1c-4174-91e8-901c7a21411b</id>
+					<id>7f1721b0-23c9-4c6a-a88a-0711cefe5c1e</id>
 				</column>
 			</columns>
 		</index>

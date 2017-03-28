@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>0d13e13b-d9c0-48e8-b13c-85c3a74b59e6</id>
+	<id>e91048b8-704b-492a-86eb-0f2fda3365e8</id>
 	<code>t_svp_bsi_phone_prodcut_map</code>
 	<comment>碎屏险手机型号产品的对应关系</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>daf266f3-3a33-4091-b21d-c6b776160699</id>
+			<id>c08d5e2b-28f1-499a-a603-3530144af47b</id>
 			<word>
-				<id>f23b7b39-c762-4527-9e71-b0d802ac6e15</id>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
 			<code>bsi_product_id</code>
 			<name>产品ID</name>
@@ -17,9 +17,9 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>c400b2ce-a09a-4ee9-803f-d9906b30cf0a</id>
+			<id>7ad30329-ba7c-4708-89e0-7ebbd8366b98</id>
 			<word>
-				<id>79374d22-721d-47d9-983c-671dfd6e6fb2</id>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
 			<code>bsi_phone_model_id</code>
 			<name>手机型号Id</name>
@@ -27,17 +27,28 @@
 			<nullable>no</nullable>
 			<isPk>yes</isPk>
 		</column>
+		<column>
+			<id>cab8d78e-cc06-41b6-8220-ab4f55df89fa</id>
+			<word>
+				<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
+			</word>
+			<code>bsi_product_valid_period</code>
+			<name>有效期(月)</name>
+			<comment>有效期(月)</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>5f472fad-bf62-4481-be3b-4af0191eb4b6</id>
+			<id>c06a853c-67e2-47f3-a37a-e3dd85430e4b</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>daf266f3-3a33-4091-b21d-c6b776160699</id>
+					<id>c08d5e2b-28f1-499a-a603-3530144af47b</id>
 				</column>
 				<column>
-					<id>c400b2ce-a09a-4ee9-803f-d9906b30cf0a</id>
+					<id>7ad30329-ba7c-4708-89e0-7ebbd8366b98</id>
 				</column>
 			</columns>
 		</index>

@@ -1,6 +1,7 @@
 package com.hawk.framework.dic.persist.domain;
 import java.io.Serializable;
 import java.util.Date;
+import java.math.BigDecimal;
 
 
 
@@ -59,6 +60,31 @@ public class ModelDomain implements Serializable {
 	 * 拼首 spell_abbr
 	 */
 	private String spellAbbr;
+	
+	/**
+	 * 价格 price
+	 */
+	private BigDecimal price;
+	
+	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
+	 * 订单编号 order_number
+	 */
+	private String orderNumber;
+	
+	/**
+	 * 用户编号 user_code
+	 */
+	private String userCode;
+	
+	/**
+	 * 手机号 mobile_number
+	 */
+	private String mobileNumber;
 	
 	
 	/**
@@ -203,6 +229,86 @@ public class ModelDomain implements Serializable {
 	 */	
 	public void setSpellAbbr (String spellAbbr) {
 		this.spellAbbr = spellAbbr;
+	}
+	
+	/**
+	 * 
+	 * @return 价格 price
+	 */
+	public BigDecimal getPrice(){
+		return price;
+	}
+	
+	/**
+	 * 
+	 * @param price 价格 price
+	 */	
+	public void setPrice (BigDecimal price) {
+		this.price = price;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
+	}
+	
+	/**
+	 * 
+	 * @return 订单编号 order_number
+	 */
+	public String getOrderNumber(){
+		return orderNumber;
+	}
+	
+	/**
+	 * 
+	 * @param orderNumber 订单编号 order_number
+	 */	
+	public void setOrderNumber (String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 用户编号 user_code
+	 */
+	public String getUserCode(){
+		return userCode;
+	}
+	
+	/**
+	 * 
+	 * @param userCode 用户编号 user_code
+	 */	
+	public void setUserCode (String userCode) {
+		this.userCode = userCode;
+	}
+	
+	/**
+	 * 
+	 * @return 手机号 mobile_number
+	 */
+	public String getMobileNumber(){
+		return mobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @param mobileNumber 手机号 mobile_number
+	 */	
+	public void setMobileNumber (String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 	
 

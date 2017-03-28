@@ -24,6 +24,11 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 */
 	private Long bsiPhoneModelId;
 	
+	/**
+	 * 有效期(月) bsi_product_valid_period
+	 */
+	private Integer bsiProductValidPeriod;
+	
 	
 	/**
 	 * 
@@ -55,6 +60,22 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 */	
 	public void setBsiPhoneModelId (Long bsiPhoneModelId) {
 		this.bsiPhoneModelId = bsiPhoneModelId;
+	}
+	
+	/**
+	 * 
+	 * @return 有效期(月) bsi_product_valid_period
+	 */
+	public Integer getBsiProductValidPeriod(){
+		return bsiProductValidPeriod;
+	}
+	
+	/**
+	 * 
+	 * @param bsiProductValidPeriod 有效期(月) bsi_product_valid_period
+	 */	
+	public void setBsiProductValidPeriod (Integer bsiProductValidPeriod) {
+		this.bsiProductValidPeriod = bsiProductValidPeriod;
 	}
 	
 
