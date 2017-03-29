@@ -135,85 +135,104 @@ public class TestBsiService2 {
 		
 	}
 	
-//	@SuppressWarnings("deprecation")
-//	public String sign (String req){
-//		try {
-//			byte[] b = encryptHMAC(req,this.password);
-//			return  URLEncoder.encode(Base64.getEncoder().encodeToString(b));
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
-	
-	public static final String KEY_MAC = "HmacMD5";
-	
+
 	@SuppressWarnings("deprecation")
 	public static String encode(String s, String key) {
 		String retStr = "";
-		;
 		try {
 			System.out.println();
-			retStr = URLEncoder.encode(new BASE64Encoder().encode(DigestUtils.md5(s+key)));
-//			retStr = new BASE64Encoder().encode(DigestUtils.md5(s+key));
+			retStr = URLEncoder.encode(new BASE64Encoder().encode(encryptHMAC(s, key)));
 		} catch (Exception e) {
 		}
 		System.out.println(retStr);
 		return retStr;
 	}
+	
+	
+	public static final String KEY_MAC = "HmacMD5";
 
-//	/**
-//	 * HMAC加密
-//	 * 
-//	 * @param data
-//	 * @param key
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	public static byte[] encryptHMAC(String json, String key) throws Exception {
-//
-//		SecretKey secretKey = new SecretKeySpec(key.getBytes("UTF-8"), KEY_MAC);
-//		Mac mac = Mac.getInstance(secretKey.getAlgorithm());
-//		mac.init(secretKey);
-//		
-//		Md
-//
-//		return mac.doFinal(json.getBytes("UTF-8"));
-//
-//	}
+	/**
+	 * HMAC加密
+	 * 
+	 * @param data
+	 * @param key
+	 * @return
+	 * @throws Exception
+	 */
+	public static byte[] encryptHMAC(String json, String key) throws Exception {
+
+		SecretKey secretKey = new SecretKeySpec(key.getBytes("UTF-8"), KEY_MAC);
+		Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+		mac.init(secretKey);
+
+		return mac.doFinal(json.getBytes("UTF-8"));
+
+	}
+	
+	public void testQueryOrder(){
+		String url = "http://testordersvc.baosm.com/Services/api";
+		String req = "{\"OutOrderID\":\"dab2166\"}";
+		String reqhash = encode(req,"id9R4$jsb0");
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("PartnerCode", "1213623"));	
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("action", "outqueryorder"));
+		params.add(new HttpParam("source", "1"));
+		params.add(new HttpParam("password", "id9R4$jsb0"));
+		params.add(new HttpParam("req", req));
+		params.add(new HttpParam("reqhash", reqhash));
+		String result = httpExecutor.postParamInBody(url,"", params) ;//.post(url, "", params);
+		
+		System.out.println("result="+result);
+	}
 	
 	public void testCreateOrder(){
 		Order order = createOrder();
 		String url = "http://testordersvc.baosm.com/Services/api";		
-		String action = "outcreateorder";
-		String source = "1";
-		String version = "1.0";
-//		String req = JsonTools.toJsonString(order);
+		
 		String x = "\"";
-		String req = "{\"OutOrderID\":\"0001\",\"ProductId\":10218,\"GoodId\":51,\"mobile\":\"18694072943\",\"username\":\"AAAA\",\"CertiType\":1,\"IDCard\":\"429005199308273048\",\"Birthday\":\"1993-08-27\",\"Sex\":1,\"GoodsSerialNo\":\"231232131231231\"}";
+		String req = "{\"outOrderID\":\"dab2166\",\"productId\":11248,\"goodId\":120,\"mobile\":\"13916082482\",\"username\":\"隔壁老王\",\"certiType\":\"1\",\"iDCard\":\"320106198801011232\",\"birthday\":\"1988-01-01\",\"sex\":1,\"goodsSerialNo\":\"615190\"}";
+		
+
 		System.out.println("req="+req);
-		String reqhash = encode(req,password);
+		String reqhash = encode(req,"id9R4$jsb0");
 		System.out.println("reqhash="+reqhash);
+		
+	
+		System.out.println("right=sGdpsIFA%2be%2bErieZ9f70Zg%3d%3d");
+		
+
 		
 //		partnercode=1001&version=1.0&action=customerlogin&source=1
 //				&req={"mobile":"13912345678","password":"123456"}
 //		&reqhash=3WPccIkeJpMAGj7jD0mmJQ%3d%3d
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("partnercode", partnercode));		
-		params.add(new HttpParam("action", action));
-		params.add(new HttpParam("source", source));
-		params.add(new HttpParam("version", version));
+		params.add(new HttpParam("PartnerCode", "1213623"));	
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("action", "outcreateorder"));
+		params.add(new HttpParam("source", "1"));
+		params.add(new HttpParam("password", "id9R4$jsb0"));
 		params.add(new HttpParam("req", req));
 		params.add(new HttpParam("reqhash", reqhash));
 		
+		
+//		postMethod.setParameter("partnercode", "1213623");
+//		postMethod.setParameter("version", "1.0");
+//		postMethod.setParameter("action", "outcreateorder");
+//		postMethod.setParameter("source", "1");
+//		postMethod.setParameter("req", para);
+//		postMethod.setParameter("reqhash", v);
+
+		
 		System.out.println(httpExecutor.buildUrl(url, params));
 
-		String result = httpExecutor.post(url,"", params) ;//.post(url, "", params);
+		String result = httpExecutor.postParamInBody(url,"", params) ;//.post(url, "", params);
 		
 		System.out.println("result="+result);
 	}
 	
 	public static void main(String[] args) throws Exception{
-		new TestBsiService2().testCreateOrder();
+		new TestBsiService2().testQueryOrder();
 	}
 }

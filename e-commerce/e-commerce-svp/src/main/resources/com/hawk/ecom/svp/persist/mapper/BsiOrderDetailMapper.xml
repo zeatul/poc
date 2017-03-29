@@ -6,74 +6,79 @@
 
 	<sql id="columns">	
 				id AS "id" ,
-		svp_order_id AS "svpOrderId" ,
+		order_id AS "orderId" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
 		bsi_product_id AS "bsiProductId" ,
 		imei AS "imei" ,
-		bsi_id_typ AS "bsiIdTyp" ,
-		bsi_id_number AS "bsiIdNumber" ,
-		bsi_birthday AS "bsiBirthday" ,
-		bsi_sex AS "bsiSex" ,
-		bsi_name AS "bsiName" 
+		bsi_benef_id_typ AS "bsiBenefIdTyp" ,
+		bsi_benef_id_number AS "bsiBenefIdNumber" ,
+		bsi_benef_birthday AS "bsiBenefBirthday" ,
+		bsi_benef_sex AS "bsiBenefSex" ,
+		bsi_benef_name AS "bsiBenefName" ,
+		bsi_benef_mobile_number AS "bsiBenefMobileNumber" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
-			<if test="svpOrderId != null"> AND svp_order_id = #{svpOrderId}  </if>
+			<if test="orderId != null"> AND order_id = #{orderId}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
-			<if test="bsiIdTyp != null"> AND bsi_id_typ = #{bsiIdTyp}  </if>
-			<if test="bsiIdNumber != null"> AND bsi_id_number = #{bsiIdNumber}  </if>
-			<if test="bsiBirthday != null"> AND bsi_birthday = #{bsiBirthday}  </if>
-			<if test="bsiSex != null"> AND bsi_sex = #{bsiSex}  </if>
-			<if test="bsiName != null"> AND bsi_name = #{bsiName}  </if>
+			<if test="bsiBenefIdTyp != null"> AND bsi_benef_id_typ = #{bsiBenefIdTyp}  </if>
+			<if test="bsiBenefIdNumber != null"> AND bsi_benef_id_number = #{bsiBenefIdNumber}  </if>
+			<if test="bsiBenefBirthday != null"> AND bsi_benef_birthday = #{bsiBenefBirthday}  </if>
+			<if test="bsiBenefSex != null"> AND bsi_benef_sex = #{bsiBenefSex}  </if>
+			<if test="bsiBenefName != null"> AND bsi_benef_name = #{bsiBenefName}  </if>
+			<if test="bsiBenefMobileNumber != null"> AND bsi_benef_mobile_number = #{bsiBenefMobileNumber}  </if>
 		</trim>	
 	</sql>
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
-			AND svp_order_id = #{old_svpOrderId}
+			AND order_id = #{old_orderId}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
 			AND bsi_product_id = #{old_bsiProductId}
 			AND imei = #{old_imei}
-			AND bsi_id_typ = #{old_bsiIdTyp}
-			AND bsi_id_number = #{old_bsiIdNumber}
-			AND bsi_birthday = #{old_bsiBirthday}
-			AND bsi_sex = #{old_bsiSex}
-			AND bsi_name = #{old_bsiName}
+			AND bsi_benef_id_typ = #{old_bsiBenefIdTyp}
+			AND bsi_benef_id_number = #{old_bsiBenefIdNumber}
+			AND bsi_benef_birthday = #{old_bsiBenefBirthday}
+			AND bsi_benef_sex = #{old_bsiBenefSex}
+			AND bsi_benef_name = #{old_bsiBenefName}
+			AND bsi_benef_mobile_number = #{old_bsiBenefMobileNumber}
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			id = #{id},
-			svp_order_id = #{svpOrderId},
+			order_id = #{orderId},
 			bsi_phone_model_id = #{bsiPhoneModelId},
 			bsi_product_id = #{bsiProductId},
 			imei = #{imei},
-			bsi_id_typ = #{bsiIdTyp},
-			bsi_id_number = #{bsiIdNumber},
-			bsi_birthday = #{bsiBirthday},
-			bsi_sex = #{bsiSex},
-			bsi_name = #{bsiName},
+			bsi_benef_id_typ = #{bsiBenefIdTyp},
+			bsi_benef_id_number = #{bsiBenefIdNumber},
+			bsi_benef_birthday = #{bsiBenefBirthday},
+			bsi_benef_sex = #{bsiBenefSex},
+			bsi_benef_name = #{bsiBenefName},
+			bsi_benef_mobile_number = #{bsiBenefMobileNumber},
 		</set>
 	</sql>
 	
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
-			<if test="svpOrderId != null">svp_order_id = #{svpOrderId},</if>
+			<if test="orderId != null">order_id = #{orderId},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="imei != null">imei = #{imei},</if>
-			<if test="bsiIdTyp != null">bsi_id_typ = #{bsiIdTyp},</if>
-			<if test="bsiIdNumber != null">bsi_id_number = #{bsiIdNumber},</if>
-			<if test="bsiBirthday != null">bsi_birthday = #{bsiBirthday},</if>
-			<if test="bsiSex != null">bsi_sex = #{bsiSex},</if>
-			<if test="bsiName != null">bsi_name = #{bsiName},</if>
+			<if test="bsiBenefIdTyp != null">bsi_benef_id_typ = #{bsiBenefIdTyp},</if>
+			<if test="bsiBenefIdNumber != null">bsi_benef_id_number = #{bsiBenefIdNumber},</if>
+			<if test="bsiBenefBirthday != null">bsi_benef_birthday = #{bsiBenefBirthday},</if>
+			<if test="bsiBenefSex != null">bsi_benef_sex = #{bsiBenefSex},</if>
+			<if test="bsiBenefName != null">bsi_benef_name = #{bsiBenefName},</if>
+			<if test="bsiBenefMobileNumber != null">bsi_benef_mobile_number = #{bsiBenefMobileNumber},</if>
 		</set>
 	</sql>
 	
@@ -113,27 +118,29 @@
 	<insert id="insert"  parameterType="BsiOrderDetailDomain">
 		INSERT INTO t_svp_bsi_order_detail (			
 				id,				
-				svp_order_id,				
+				order_id,				
 				bsi_phone_model_id,				
 				bsi_product_id,				
 				imei,				
-				bsi_id_typ,				
-				bsi_id_number,				
-				bsi_birthday,				
-				bsi_sex,				
-				bsi_name				
+				bsi_benef_id_typ,				
+				bsi_benef_id_number,				
+				bsi_benef_birthday,				
+				bsi_benef_sex,				
+				bsi_benef_name,				
+				bsi_benef_mobile_number				
 		)		
 		VALUES (	
 			#{id},
-			#{svpOrderId},
+			#{orderId},
 			#{bsiPhoneModelId},
 			#{bsiProductId},
 			#{imei},
-			#{bsiIdTyp},
-			#{bsiIdNumber},
-			#{bsiBirthday},
-			#{bsiSex},
-			#{bsiName}
+			#{bsiBenefIdTyp},
+			#{bsiBenefIdNumber},
+			#{bsiBenefBirthday},
+			#{bsiBenefSex},
+			#{bsiBenefName},
+			#{bsiBenefMobileNumber}
 		) 
 	</insert>
 	

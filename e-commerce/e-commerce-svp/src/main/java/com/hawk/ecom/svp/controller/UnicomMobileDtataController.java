@@ -10,12 +10,12 @@ import com.hawk.framework.utility.tools.StringTools;
 
 
 /**
- * 联通公司的接口
+ * 联通公司的查询和回调接口
  * @author pzhang1
  *
  */
 @RestController
-@RequestMapping("/unicom")
+@RequestMapping("/svp/unicom")
 public class UnicomMobileDtataController {
 	
 	@RequestMapping(value="/home",method = GET)

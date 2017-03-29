@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>4bc97615-f6b4-4db1-b48a-c34b0bd4b4cc</id>
+	<id>e72ef0dc-c7ce-4569-bd5f-2d19a4eda9c6</id>
 	<code>t_svp_bsi_order_detail</code>
 	<comment>碎屏险订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>1f1acaa4-c958-454b-bbaa-a5235d8440db</id>
+			<id>8dd0c4aa-a758-4d0e-a7cd-ad29c87e191a</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,18 +17,18 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>796dcf78-9ed5-4067-8213-23c4d12603b5</id>
+			<id>e5277864-855c-4c80-9b28-dcd19691ae08</id>
 			<word>
-				<id>57c793f9-4c60-4e49-a7c8-7e641998abb5</id>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
-			<code>svp_order_id</code>
-			<name>订单id</name>
-			<comment>订单id</comment>
+			<code>order_id</code>
+			<name>碎屏险订单id</name>
+			<comment>碎屏险订单id</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a75cf475-35d4-44ce-8d36-0cc6bcfea971</id>
+			<id>443a0f3f-4bf3-4ecd-9485-af0f357afaa7</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e306d6a5-b508-4a72-94a9-5139d06f0148</id>
+			<id>982d39e3-976f-46f1-80ed-aafbaf7e3e44</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e12ea8f3-3896-401c-9fb2-23951982f30a</id>
+			<id>706e2ff8-60bc-450d-9bcb-4c64c3e2613e</id>
 			<word>
 				<id>ec5c9f96-ecd4-4f66-a288-c461b2c53ceb</id>
 			</word>
@@ -61,68 +61,79 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>60a50690-e89c-491a-831c-6f15681ec106</id>
+			<id>55dd8a13-8137-470e-bfa9-0e78a11e326e</id>
 			<word>
-				<id>32ed2d69-e7fe-4f55-b546-b81be1fa5e7f</id>
+				<id>5e685cf9-bc94-483a-a073-38f92eade1cc</id>
 			</word>
-			<code>bsi_id_typ</code>
+			<code>bsi_benef_id_typ</code>
 			<name>证件类型</name>
 			<comment>证件类型</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7ca6ddaf-3fb2-4241-ab7b-49194c4a73c5</id>
+			<id>9cb34f1c-5025-4995-a9e9-6311a2d8e4b8</id>
 			<word>
-				<id>c5ea7f8e-958c-4496-a9de-82096beff05f</id>
+				<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
 			</word>
-			<code>bsi_id_number</code>
+			<code>bsi_benef_id_number</code>
 			<name>证件号码</name>
 			<comment>证件号码</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5eda21a7-553f-437b-a527-b4ad5d1e911f</id>
+			<id>8612ed08-1164-4ca4-b200-821a189a561d</id>
 			<word>
-				<id>cb140581-e54d-45d6-9002-70d4492c8786</id>
+				<id>dba8c789-f1db-4811-925e-314951c28c35</id>
 			</word>
-			<code>bsi_birthday</code>
+			<code>bsi_benef_birthday</code>
 			<name>投保者生日</name>
 			<comment>投保者生日</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1f149dcc-ae04-4e00-83c2-1c8a54a77e40</id>
+			<id>d187a6db-03be-43d0-888f-2d226fd4e6e0</id>
 			<word>
-				<id>a6076923-4630-40a0-a6df-03040b367276</id>
+				<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
 			</word>
-			<code>bsi_sex</code>
+			<code>bsi_benef_sex</code>
 			<name>投保者性别</name>
 			<comment>投保者性别</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>71e88915-e597-4ea3-9397-bcee3683e6ec</id>
+			<id>e4e215ce-c659-4f3d-8e34-ab5a118408a5</id>
 			<word>
-				<id>0329409e-d59b-4661-a55b-319025e39221</id>
+				<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
 			</word>
-			<code>bsi_name</code>
+			<code>bsi_benef_name</code>
 			<name>投保者姓名</name>
 			<comment>投保者姓名</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
+		<column>
+			<id>9c64e77e-9b80-4be1-b8b4-79332e0f83a9</id>
+			<word>
+				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
+			</word>
+			<code>bsi_benef_mobile_number</code>
+			<name>投保者手机号</name>
+			<comment>投保者手机号</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>30ab6bb4-0475-4563-a669-c1495b030170</id>
+			<id>3daa3cd8-bd7b-45b0-9269-fe930a473441</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>1f1acaa4-c958-454b-bbaa-a5235d8440db</id>
+					<id>8dd0c4aa-a758-4d0e-a7cd-ad29c87e191a</id>
 				</column>
 			</columns>
 		</index>

@@ -21,6 +21,7 @@ import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -243,7 +244,20 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
+			
+//			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
+//            for (HttpParam httpParam : params) {
+//                    pairs.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
+//            }
+//            url += "?" + EntityUtils.toString(new UrlEncodedFormEntity(pairs, "utf-8"));
+//          HttpPost httpPost = new HttpPost(url);
+			
 			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
+            
+
+			
+			
+			
 			config(httpPost);
 			if (StringTools.isNotNullOrEmpty(content)) {
 				StringEntity stringEntity = new StringEntity(content, "utf-8");
@@ -310,6 +324,53 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public String postParamInBody(String url, String content, List<HttpParam> params) {
+		CloseableHttpResponse response = null;
+		try {
+			CloseableHttpClient httpClient = buileHttpClient();
+			
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
+            for (HttpParam httpParam : params) {
+                    pairs.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
+            }
+            content = EntityUtils.toString(new UrlEncodedFormEntity(pairs, "utf-8"));
+			
+//			HttpPost httpPost = new HttpPost(generateURIBuilder(url, null).build());
+			
+			HttpPost httpPost = new HttpPost(url);
+            
+
+			
+			
+			
+			config(httpPost);
+			if (StringTools.isNotNullOrEmpty(content)) {
+				StringEntity stringEntity = new StringEntity(content, "utf-8");
+				stringEntity.setContentEncoding("UTF-8");
+				stringEntity.setContentType("application/x-www-form-urlencoded");
+				httpPost.setEntity(stringEntity);
+			}
+			
+
+			response = httpClient.execute(httpPost);
+			checkResponse(response);
+			HttpEntity entity = response.getEntity();
+
+			return EntityUtils.toString(entity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (response != null)
+					response.close();
+			} catch (Exception e) {
+
+			}
+		}
+
 	}
 
 	

@@ -26,8 +26,13 @@ import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @RestController
-@RequestMapping("/bsi")
+@RequestMapping("sv/bsi")
 public class BsiController {
+	
+	@RequestMapping(value="/home",method = GET)
+	public String home(){
+		return "Welcome to bsi!!!";
+	}
 
 	@Autowired
 	private BsiService bsiService;

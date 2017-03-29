@@ -20,9 +20,9 @@ public class BsiOrderDetailDomain implements Serializable {
 	private Long id;
 	
 	/**
-	 * 订单id svp_order_id
+	 * 碎屏险订单id order_id
 	 */
-	private Long svpOrderId;
+	private Long orderId;
 	
 	/**
 	 * 手机型号ID bsi_phone_model_id
@@ -40,29 +40,34 @@ public class BsiOrderDetailDomain implements Serializable {
 	private String imei;
 	
 	/**
-	 * 证件类型 bsi_id_typ
+	 * 证件类型 bsi_benef_id_typ
 	 */
-	private Integer bsiIdTyp;
+	private Integer bsiBenefIdTyp;
 	
 	/**
-	 * 证件号码 bsi_id_number
+	 * 证件号码 bsi_benef_id_number
 	 */
-	private String bsiIdNumber;
+	private String bsiBenefIdNumber;
 	
 	/**
-	 * 投保者生日 bsi_birthday
+	 * 投保者生日 bsi_benef_birthday
 	 */
-	private String bsiBirthday;
+	private String bsiBenefBirthday;
 	
 	/**
-	 * 投保者性别 bsi_sex
+	 * 投保者性别 bsi_benef_sex
 	 */
-	private String bsiSex;
+	private String bsiBenefSex;
 	
 	/**
-	 * 投保者姓名 bsi_name
+	 * 投保者姓名 bsi_benef_name
 	 */
-	private String bsiName;
+	private String bsiBenefName;
+	
+	/**
+	 * 投保者手机号 bsi_benef_mobile_number
+	 */
+	private String bsiBenefMobileNumber;
 	
 	
 	/**
@@ -83,18 +88,18 @@ public class BsiOrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单id svp_order_id
+	 * @return 碎屏险订单id order_id
 	 */
-	public Long getSvpOrderId(){
-		return svpOrderId;
+	public Long getOrderId(){
+		return orderId;
 	}
 	
 	/**
 	 * 
-	 * @param svpOrderId 订单id svp_order_id
+	 * @param orderId 碎屏险订单id order_id
 	 */	
-	public void setSvpOrderId (Long svpOrderId) {
-		this.svpOrderId = svpOrderId;
+	public void setOrderId (Long orderId) {
+		this.orderId = orderId;
 	}
 	
 	/**
@@ -147,82 +152,98 @@ public class BsiOrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 证件类型 bsi_id_typ
+	 * @return 证件类型 bsi_benef_id_typ
 	 */
-	public Integer getBsiIdTyp(){
-		return bsiIdTyp;
+	public Integer getBsiBenefIdTyp(){
+		return bsiBenefIdTyp;
 	}
 	
 	/**
 	 * 
-	 * @param bsiIdTyp 证件类型 bsi_id_typ
+	 * @param bsiBenefIdTyp 证件类型 bsi_benef_id_typ
 	 */	
-	public void setBsiIdTyp (Integer bsiIdTyp) {
-		this.bsiIdTyp = bsiIdTyp;
+	public void setBsiBenefIdTyp (Integer bsiBenefIdTyp) {
+		this.bsiBenefIdTyp = bsiBenefIdTyp;
 	}
 	
 	/**
 	 * 
-	 * @return 证件号码 bsi_id_number
+	 * @return 证件号码 bsi_benef_id_number
 	 */
-	public String getBsiIdNumber(){
-		return bsiIdNumber;
+	public String getBsiBenefIdNumber(){
+		return bsiBenefIdNumber;
 	}
 	
 	/**
 	 * 
-	 * @param bsiIdNumber 证件号码 bsi_id_number
+	 * @param bsiBenefIdNumber 证件号码 bsi_benef_id_number
 	 */	
-	public void setBsiIdNumber (String bsiIdNumber) {
-		this.bsiIdNumber = bsiIdNumber;
+	public void setBsiBenefIdNumber (String bsiBenefIdNumber) {
+		this.bsiBenefIdNumber = bsiBenefIdNumber;
 	}
 	
 	/**
 	 * 
-	 * @return 投保者生日 bsi_birthday
+	 * @return 投保者生日 bsi_benef_birthday
 	 */
-	public String getBsiBirthday(){
-		return bsiBirthday;
+	public String getBsiBenefBirthday(){
+		return bsiBenefBirthday;
 	}
 	
 	/**
 	 * 
-	 * @param bsiBirthday 投保者生日 bsi_birthday
+	 * @param bsiBenefBirthday 投保者生日 bsi_benef_birthday
 	 */	
-	public void setBsiBirthday (String bsiBirthday) {
-		this.bsiBirthday = bsiBirthday;
+	public void setBsiBenefBirthday (String bsiBenefBirthday) {
+		this.bsiBenefBirthday = bsiBenefBirthday;
 	}
 	
 	/**
 	 * 
-	 * @return 投保者性别 bsi_sex
+	 * @return 投保者性别 bsi_benef_sex
 	 */
-	public String getBsiSex(){
-		return bsiSex;
+	public String getBsiBenefSex(){
+		return bsiBenefSex;
 	}
 	
 	/**
 	 * 
-	 * @param bsiSex 投保者性别 bsi_sex
+	 * @param bsiBenefSex 投保者性别 bsi_benef_sex
 	 */	
-	public void setBsiSex (String bsiSex) {
-		this.bsiSex = bsiSex;
+	public void setBsiBenefSex (String bsiBenefSex) {
+		this.bsiBenefSex = bsiBenefSex;
 	}
 	
 	/**
 	 * 
-	 * @return 投保者姓名 bsi_name
+	 * @return 投保者姓名 bsi_benef_name
 	 */
-	public String getBsiName(){
-		return bsiName;
+	public String getBsiBenefName(){
+		return bsiBenefName;
 	}
 	
 	/**
 	 * 
-	 * @param bsiName 投保者姓名 bsi_name
+	 * @param bsiBenefName 投保者姓名 bsi_benef_name
 	 */	
-	public void setBsiName (String bsiName) {
-		this.bsiName = bsiName;
+	public void setBsiBenefName (String bsiBenefName) {
+		this.bsiBenefName = bsiBenefName;
+	}
+	
+	/**
+	 * 
+	 * @return 投保者手机号 bsi_benef_mobile_number
+	 */
+	public String getBsiBenefMobileNumber(){
+		return bsiBenefMobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @param bsiBenefMobileNumber 投保者手机号 bsi_benef_mobile_number
+	 */	
+	public void setBsiBenefMobileNumber (String bsiBenefMobileNumber) {
+		this.bsiBenefMobileNumber = bsiBenefMobileNumber;
 	}
 	
 

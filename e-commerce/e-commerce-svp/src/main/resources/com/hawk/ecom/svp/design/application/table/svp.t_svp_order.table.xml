@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>6b373709-5235-4714-a5f8-fd2370245897</id>
+	<id>e88c1eb7-18a0-49c8-852e-ef8c77a26fa4</id>
 	<code>t_svp_order</code>
 	<comment>碎屏险订单</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>ac6a0907-a784-4235-b0b9-6eb2d8fc5a73</id>
+			<id>51b1270f-333e-4936-9a13-d71d6ae69d30</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,18 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>0c483922-fde1-47f0-ba59-2ac9f7530296</id>
+			<id>4fef560d-bb59-4b17-a1ea-0f2dbca53cef</id>
+			<word>
+				<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
+			</word>
+			<code>order_code</code>
+			<name>订单编号</name>
+			<comment>订单编号</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>03a01858-04c3-4103-a9b8-cd2c6aef3dc5</id>
 			<word>
 				<id>3f0a4f29-1aec-490a-822c-c4619fc28aca</id>
 			</word>
@@ -28,51 +39,51 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>293c8785-4db4-4353-ba64-31bda0625b7a</id>
-			<word>
-				<id>20c1beb6-5698-4ee2-85bf-5e06cd11d244</id>
-			</word>
-			<code>order_number</code>
-			<name>订单编号</name>
-			<comment>订单编号</comment>
-			<nullable>yes</nullable>
-			<isPk>no</isPk>
-		</column>
-		<column>
-			<id>64137b89-89eb-4fcc-a7e3-7fd58755ee97</id>
+			<id>87fafdfc-0f85-4a30-a480-e063669a500e</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
 			<code>user_code</code>
 			<name>用户编号</name>
 			<comment>用户编号</comment>
-			<nullable>no</nullable>
+			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>79fa3cf0-3ade-4c7e-8b70-711228b51f75</id>
+			<id>6f1a1efb-7172-4506-8869-bdc4aa2dc6c9</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
 			<code>mobile_number</code>
-			<name>手机号</name>
-			<comment>手机号</comment>
-			<nullable>no</nullable>
+			<name>手机号码</name>
+			<comment>手机号码</comment>
+			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c089dc61-00de-4abf-aca8-15be3a64ab12</id>
+			<id>aee68405-086b-46be-ad2d-3e923685d6aa</id>
 			<word>
-				<id>190cc63c-e5f2-4837-9266-5a51c4146c79</id>
+				<id>f5a813df-bafc-43d3-9468-53fcdbf2cf9c</id>
 			</word>
-			<code>bsi_order_status</code>
+			<code>order_status</code>
 			<name>订单状态</name>
 			<comment>订单状态</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>08fd3c87-df6a-4944-bd5d-8315a58573f6</id>
+			<id>35b04916-55f9-4e34-9bb1-b263fd2bf36f</id>
+			<word>
+				<id>62317d93-2895-4012-8c1b-6fcd6620b61c</id>
+			</word>
+			<code>order_type</code>
+			<name>订单类型</name>
+			<comment>订单类型</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>e4aa2907-24e7-498b-91c5-d5862e357e3c</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -83,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a4508be1-887b-4f52-9d31-4ed4ad308c1f</id>
+			<id>5bfac4e8-9b0e-4ba2-9242-ae4ab7d3b970</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -94,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9ae74672-6f98-4d6d-8a5f-b8b08a124cb6</id>
+			<id>2b46b4d0-e80f-4cd6-a7bd-1649fdc504d8</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -107,11 +118,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>4093aded-0b13-49da-ad82-9a03d6fb176b</id>
+			<id>1c8be2ce-d9ae-4833-9ee6-bd459e6754e9</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>ac6a0907-a784-4235-b0b9-6eb2d8fc5a73</id>
+					<id>51b1270f-333e-4936-9a13-d71d6ae69d30</id>
 				</column>
 			</columns>
 		</index>
