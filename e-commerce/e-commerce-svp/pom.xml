@@ -10,7 +10,7 @@
 
 	<packaging>war</packaging>
 	<artifactId>e-commerce-svp</artifactId>
-	<name>e-commerce-sale-virtual-product</name>
+	<name>e-commerce-svp</name>
 	<url>http://maven.apache.org</url>
 
 
