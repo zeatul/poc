@@ -6,69 +6,94 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		user_code AS "userCode" ,
+		mobile_number AS "mobileNumber" ,
 		bsi_cash_coupon_code AS "bsiCashCouponCode" ,
 		bsi_cash_coupon_name AS "bsiCashCouponName" ,
 		bsi_cash_coupon_create_date AS "bsiCashCouponCreateDate" ,
-		user_code AS "userCode" ,
-		bsi_cash_coupon_owner AS "bsiCashCouponOwner" ,
 		bsi_cash_coupon_invalid_date AS "bsiCashCouponInvalidDate" ,
 		bsi_cash_coupon_status AS "bsiCashCouponStatus" ,
-		order_number AS "orderNumber" 
+		bsi_cash_coupon_type AS "bsiCashCouponType" ,
+		bsi_cash_coupon_period AS "bsiCashCouponPeriod" ,
+		order_code AS "orderCode" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 			<if test="bsiCashCouponCode != null"> AND bsi_cash_coupon_code = #{bsiCashCouponCode}  </if>
 			<if test="bsiCashCouponName != null"> AND bsi_cash_coupon_name = #{bsiCashCouponName}  </if>
 			<if test="bsiCashCouponCreateDate != null"> AND bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate}  </if>
-			<if test="userCode != null"> AND user_code = #{userCode}  </if>
-			<if test="bsiCashCouponOwner != null"> AND bsi_cash_coupon_owner = #{bsiCashCouponOwner}  </if>
 			<if test="bsiCashCouponInvalidDate != null"> AND bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate}  </if>
 			<if test="bsiCashCouponStatus != null"> AND bsi_cash_coupon_status = #{bsiCashCouponStatus}  </if>
-			<if test="orderNumber != null"> AND order_number = #{orderNumber}  </if>
+			<if test="bsiCashCouponType != null"> AND bsi_cash_coupon_type = #{bsiCashCouponType}  </if>
+			<if test="bsiCashCouponPeriod != null"> AND bsi_cash_coupon_period = #{bsiCashCouponPeriod}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
+			AND user_code = #{old_userCode}
+			AND mobile_number = #{old_mobileNumber}
 			AND bsi_cash_coupon_code = #{old_bsiCashCouponCode}
 			AND bsi_cash_coupon_name = #{old_bsiCashCouponName}
 			AND bsi_cash_coupon_create_date = #{old_bsiCashCouponCreateDate}
-			AND user_code = #{old_userCode}
-			AND bsi_cash_coupon_owner = #{old_bsiCashCouponOwner}
 			AND bsi_cash_coupon_invalid_date = #{old_bsiCashCouponInvalidDate}
 			AND bsi_cash_coupon_status = #{old_bsiCashCouponStatus}
-			AND order_number = #{old_orderNumber}
+			AND bsi_cash_coupon_type = #{old_bsiCashCouponType}
+			AND bsi_cash_coupon_period = #{old_bsiCashCouponPeriod}
+			AND order_code = #{old_orderCode}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			id = #{id},
+			user_code = #{userCode},
+			mobile_number = #{mobileNumber},
 			bsi_cash_coupon_code = #{bsiCashCouponCode},
 			bsi_cash_coupon_name = #{bsiCashCouponName},
 			bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate},
-			user_code = #{userCode},
-			bsi_cash_coupon_owner = #{bsiCashCouponOwner},
 			bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate},
 			bsi_cash_coupon_status = #{bsiCashCouponStatus},
-			order_number = #{orderNumber},
+			bsi_cash_coupon_type = #{bsiCashCouponType},
+			bsi_cash_coupon_period = #{bsiCashCouponPeriod},
+			order_code = #{orderCode},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 			<if test="bsiCashCouponCode != null">bsi_cash_coupon_code = #{bsiCashCouponCode},</if>
 			<if test="bsiCashCouponName != null">bsi_cash_coupon_name = #{bsiCashCouponName},</if>
 			<if test="bsiCashCouponCreateDate != null">bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate},</if>
-			<if test="userCode != null">user_code = #{userCode},</if>
-			<if test="bsiCashCouponOwner != null">bsi_cash_coupon_owner = #{bsiCashCouponOwner},</if>
 			<if test="bsiCashCouponInvalidDate != null">bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate},</if>
 			<if test="bsiCashCouponStatus != null">bsi_cash_coupon_status = #{bsiCashCouponStatus},</if>
-			<if test="orderNumber != null">order_number = #{orderNumber},</if>
+			<if test="bsiCashCouponType != null">bsi_cash_coupon_type = #{bsiCashCouponType},</if>
+			<if test="bsiCashCouponPeriod != null">bsi_cash_coupon_period = #{bsiCashCouponPeriod},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -108,25 +133,35 @@
 	<insert id="insert"  parameterType="BsiCashCouponDomain">
 		INSERT INTO t_svp_bsi_cash_coupon (			
 				id,				
+				user_code,				
+				mobile_number,				
 				bsi_cash_coupon_code,				
 				bsi_cash_coupon_name,				
 				bsi_cash_coupon_create_date,				
-				user_code,				
-				bsi_cash_coupon_owner,				
 				bsi_cash_coupon_invalid_date,				
 				bsi_cash_coupon_status,				
-				order_number				
+				bsi_cash_coupon_type,				
+				bsi_cash_coupon_period,				
+				order_code,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{id},
+			#{userCode},
+			#{mobileNumber},
 			#{bsiCashCouponCode},
 			#{bsiCashCouponName},
 			#{bsiCashCouponCreateDate},
-			#{userCode},
-			#{bsiCashCouponOwner},
 			#{bsiCashCouponInvalidDate},
 			#{bsiCashCouponStatus},
-			#{orderNumber}
+			#{bsiCashCouponType},
+			#{bsiCashCouponPeriod},
+			#{orderCode},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

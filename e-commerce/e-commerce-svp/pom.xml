@@ -27,10 +27,14 @@
 			<artifactId>framework-dic</artifactId>
 		</dependency>
 
-		<!-- <dependency>
+		<!-- com.hawk.com -->
+		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
-			<artifactId>e-commerce-config</artifactId>
-		</dependency> -->
+			<artifactId>e-commerce-pub</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>com.hawk.e-commerce</groupId> <artifactId>e-commerce-config</artifactId> </dependency> -->
 
 		<!-- codec -->
 		<dependency>
@@ -38,7 +42,7 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
-	
+
 
 		<!-- mybatis -->
 		<dependency>

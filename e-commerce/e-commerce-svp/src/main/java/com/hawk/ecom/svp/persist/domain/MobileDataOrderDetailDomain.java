@@ -1,5 +1,6 @@
 package com.hawk.ecom.svp.persist.domain;
 import java.io.Serializable;
+import java.util.Date;
 
 
 
@@ -37,12 +38,42 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	/**
 	 * 充值状态 charge_status
 	 */
-	private String chargeStatus;
+	private Integer chargeStatus;
 	
 	/**
 	 * 充值任务号 charge_task_id
 	 */
 	private String chargeTaskId;
+	
+	/**
+	 * 充值次数 charge_times
+	 */
+	private Integer chargeTimes;
+	
+	/**
+	 * 最近一次充值返回代码 charge_rtn_code
+	 */
+	private String chargeRtnCode;
+	
+	/**
+	 * 最近一次充值返回原因 charge_rtn_msg
+	 */
+	private String chargeRtnMsg;
+	
+	/**
+	 * 创建日期 create_date
+	 */
+	private Date createDate;
+	
+	/**
+	 * 更新日期 update_date
+	 */
+	private Date updateDate;
+	
+	/**
+	 * 删除日期 delete_date
+	 */
+	private Date deleteDate;
 	
 	
 	/**
@@ -113,7 +144,7 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 * 
 	 * @return 充值状态 charge_status
 	 */
-	public String getChargeStatus(){
+	public Integer getChargeStatus(){
 		return chargeStatus;
 	}
 	
@@ -121,7 +152,7 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 * 
 	 * @param chargeStatus 充值状态 charge_status
 	 */	
-	public void setChargeStatus (String chargeStatus) {
+	public void setChargeStatus (Integer chargeStatus) {
 		this.chargeStatus = chargeStatus;
 	}
 	
@@ -139,6 +170,102 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 */	
 	public void setChargeTaskId (String chargeTaskId) {
 		this.chargeTaskId = chargeTaskId;
+	}
+	
+	/**
+	 * 
+	 * @return 充值次数 charge_times
+	 */
+	public Integer getChargeTimes(){
+		return chargeTimes;
+	}
+	
+	/**
+	 * 
+	 * @param chargeTimes 充值次数 charge_times
+	 */	
+	public void setChargeTimes (Integer chargeTimes) {
+		this.chargeTimes = chargeTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最近一次充值返回代码 charge_rtn_code
+	 */
+	public String getChargeRtnCode(){
+		return chargeRtnCode;
+	}
+	
+	/**
+	 * 
+	 * @param chargeRtnCode 最近一次充值返回代码 charge_rtn_code
+	 */	
+	public void setChargeRtnCode (String chargeRtnCode) {
+		this.chargeRtnCode = chargeRtnCode;
+	}
+	
+	/**
+	 * 
+	 * @return 最近一次充值返回原因 charge_rtn_msg
+	 */
+	public String getChargeRtnMsg(){
+		return chargeRtnMsg;
+	}
+	
+	/**
+	 * 
+	 * @param chargeRtnMsg 最近一次充值返回原因 charge_rtn_msg
+	 */	
+	public void setChargeRtnMsg (String chargeRtnMsg) {
+		this.chargeRtnMsg = chargeRtnMsg;
+	}
+	
+	/**
+	 * 
+	 * @return 创建日期 create_date
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+	
+	/**
+	 * 
+	 * @param createDate 创建日期 create_date
+	 */	
+	public void setCreateDate (Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	/**
+	 * 
+	 * @return 更新日期 update_date
+	 */
+	public Date getUpdateDate(){
+		return updateDate;
+	}
+	
+	/**
+	 * 
+	 * @param updateDate 更新日期 update_date
+	 */	
+	public void setUpdateDate (Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	/**
+	 * 
+	 * @return 删除日期 delete_date
+	 */
+	public Date getDeleteDate(){
+		return deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @param deleteDate 删除日期 delete_date
+	 */	
+	public void setDeleteDate (Date deleteDate) {
+		this.deleteDate = deleteDate;
 	}
 	
 

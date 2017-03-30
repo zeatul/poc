@@ -13,10 +13,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>0329409e-d59b-4661-a55b-319025e39221</id>
-		<code>bsi_name</code>
-		<name>投保者姓名</name>
-		<displayName>投保者姓名</displayName>
+		<id>57d4f6c4-3531-4b02-b99f-01744d2ecfca</id>
+		<code>charge_rtn_code</code>
+		<name>最近一次充值返回代码</name>
+		<displayName>最近一次充值返回代码</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -37,24 +37,24 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>a6076923-4630-40a0-a6df-03040b367276</id>
-		<code>bsi_sex</code>
-		<name>投保者性别</name>
-		<displayName>投保者性别</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>32ed2d69-e7fe-4f55-b546-b81be1fa5e7f</id>
-		<code>bsi_id_typ</code>
+		<id>5e685cf9-bc94-483a-a073-38f92eade1cc</id>
+		<code>bsi_benef_id_typ</code>
 		<name>证件类型</name>
 		<displayName>证件类型</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
+		<code>bsi_benef_name</code>
+		<name>投保者姓名</name>
+		<displayName>投保者姓名</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -70,12 +70,66 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
+		<code>charge_data_size</code>
+		<name>充值流量</name>
+		<displayName>充值流量</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>f5a813df-bafc-43d3-9468-53fcdbf2cf9c</id>
+		<code>order_status</code>
+		<name>订单状态</name>
+		<displayName>订单状态</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
+		<code>bsi_benef_sex</code>
+		<name>投保者性别</name>
+		<displayName>投保者性别</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
 		<code>bsi_product_valid_period</code>
 		<name>有效期(月)</name>
 		<displayName>有效期(月)</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>709d9aeb-98b3-4553-9328-49e7d6f8f462</id>
+		<code>charge_status</code>
+		<name>充值状态</name>
+		<displayName>充值状态</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>5715b1ce-0f93-44b5-b25a-9710190c50b5</id>
+		<code>charge_rtn_msg</code>
+		<name>最近一次充值返回原因</name>
+		<displayName>最近一次充值返回原因</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -103,8 +157,20 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>cb140581-e54d-45d6-9002-70d4492c8786</id>
-		<code>bsi_birthday</code>
+		<id>62317d93-2895-4012-8c1b-6fcd6620b61c</id>
+		<code>order_type</code>
+		<name>订单类型</name>
+		<displayName>订单类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>dba8c789-f1db-4811-925e-314951c28c35</id>
+		<code>bsi_benef_birthday</code>
 		<name>投保者生日</name>
 		<displayName>投保者生日</displayName>
 		<useType>technology</useType>
@@ -127,12 +193,15 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>57c793f9-4c60-4e49-a7c8-7e641998abb5</id>
-		<code>svp_order_id</code>
-		<name>订单id</name>
-		<displayName>订单id</displayName>
+		<id>6c1af899-d77c-488f-9c5a-e5d5e0d25c4c</id>
+		<code>charge_task_id</code>
+		<name>充值任务号</name>
+		<displayName>充值任务号</displayName>
 		<useType>technology</useType>
-		<dataType>long</dataType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -148,8 +217,8 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>c5ea7f8e-958c-4496-a9de-82096beff05f</id>
-		<code>bsi_id_number</code>
+		<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
+		<code>bsi_benef_id_number</code>
 		<name>证件号码</name>
 		<displayName>证件号码</displayName>
 		<useType>technology</useType>
@@ -196,18 +265,6 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>14c1c0dc-fd71-4afe-89e9-b626796d2f9b</id>
-		<code>bsi_cash_coupon_owner</code>
-		<name>代金券所有者</name>
-		<displayName>代金券所有者</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
 		<code>bsi_cash_coupon_create_date</code>
 		<name>代金券生成日期</name>
@@ -225,6 +282,15 @@
 		<useType>technology</useType>
 		<dataType>date</dataType>
 		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>b729bb39-9ed6-4b47-a5ee-5ce11888defa</id>
+		<code>charge_times</code>
+		<name>充值次数</name>
+		<displayName>充值次数</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 </words>

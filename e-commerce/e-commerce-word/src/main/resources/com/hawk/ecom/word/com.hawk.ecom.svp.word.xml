@@ -13,6 +13,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>838c2979-8df3-4c4f-9b5b-5920b60963fb</id>
+		<code>charge_rtn_code</code>
+		<name>最近一次充值返回代码</name>
+		<displayName>最近一次充值返回代码</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
 		<code>bsi_phone_brand</code>
 		<name>手机品牌</name>
@@ -22,6 +34,15 @@
 		<charMinLength>0</charMinLength>
 		<charMaxLength>100</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
+		<code>bsi_cash_coupon_period</code>
+		<name>代金券保险月份数</name>
+		<displayName>代金券保险月份数</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -105,6 +126,18 @@
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
 		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>1107bee4-b1c7-4d46-8acf-7fcc62594dcb</id>
+		<code>charge_rtn_msg</code>
+		<name>最近一次充值返回原因</name>
+		<displayName>最近一次充值返回原因</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
@@ -193,6 +226,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
+		<code>bsi_cash_coupon_type</code>
+		<name>代金券类型</name>
+		<displayName>代金券类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
 		<code>bsi_benef_id_number</code>
 		<name>证件号码</name>
@@ -241,18 +286,6 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>14c1c0dc-fd71-4afe-89e9-b626796d2f9b</id>
-		<code>bsi_cash_coupon_owner</code>
-		<name>代金券所有者</name>
-		<displayName>代金券所有者</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
 		<code>bsi_cash_coupon_create_date</code>
 		<name>代金券生成日期</name>
@@ -270,6 +303,15 @@
 		<useType>technology</useType>
 		<dataType>date</dataType>
 		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>dfb8561b-170f-4058-88d1-3e9415030985</id>
+		<code>charge_times</code>
+		<name>充值次数</name>
+		<displayName>充值次数</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 </words>

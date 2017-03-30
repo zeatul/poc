@@ -21,6 +21,16 @@ public class BsiCashCouponDomain implements Serializable {
 	private Long id;
 	
 	/**
+	 * 用户编号 user_code
+	 */
+	private String userCode;
+	
+	/**
+	 * 手机号码 mobile_number
+	 */
+	private String mobileNumber;
+	
+	/**
 	 * 代金券编号 bsi_cash_coupon_code
 	 */
 	private String bsiCashCouponCode;
@@ -36,29 +46,44 @@ public class BsiCashCouponDomain implements Serializable {
 	private Date bsiCashCouponCreateDate;
 	
 	/**
-	 * 用户编号 user_code
-	 */
-	private String userCode;
-	
-	/**
-	 * 代金券所有者 bsi_cash_coupon_owner
-	 */
-	private String bsiCashCouponOwner;
-	
-	/**
-	 * 代金券失效效日期 bsi_cash_coupon_invalid_date
+	 * 代金券失效日期 bsi_cash_coupon_invalid_date
 	 */
 	private Date bsiCashCouponInvalidDate;
 	
 	/**
 	 * 代金券状态 bsi_cash_coupon_status
 	 */
-	private String bsiCashCouponStatus;
+	private Integer bsiCashCouponStatus;
 	
 	/**
-	 * 订单编号 order_number
+	 * 代金券类型 bsi_cash_coupon_type
 	 */
-	private String orderNumber;
+	private String bsiCashCouponType;
+	
+	/**
+	 * 代金券保险月份数 bsi_cash_coupon_period
+	 */
+	private Integer bsiCashCouponPeriod;
+	
+	/**
+	 * 订单编号 order_code
+	 */
+	private String orderCode;
+	
+	/**
+	 * 创建日期 create_date
+	 */
+	private Date createDate;
+	
+	/**
+	 * 更新日期 update_date
+	 */
+	private Date updateDate;
+	
+	/**
+	 * 删除日期 delete_date
+	 */
+	private Date deleteDate;
 	
 	
 	/**
@@ -75,6 +100,38 @@ public class BsiCashCouponDomain implements Serializable {
 	 */	
 	public void setId (Long id) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 用户编号 user_code
+	 */
+	public String getUserCode(){
+		return userCode;
+	}
+	
+	/**
+	 * 
+	 * @param userCode 用户编号 user_code
+	 */	
+	public void setUserCode (String userCode) {
+		this.userCode = userCode;
+	}
+	
+	/**
+	 * 
+	 * @return 手机号码 mobile_number
+	 */
+	public String getMobileNumber(){
+		return mobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @param mobileNumber 手机号码 mobile_number
+	 */	
+	public void setMobileNumber (String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 	
 	/**
@@ -127,39 +184,7 @@ public class BsiCashCouponDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 用户编号 user_code
-	 */
-	public String getUserCode(){
-		return userCode;
-	}
-	
-	/**
-	 * 
-	 * @param userCode 用户编号 user_code
-	 */	
-	public void setUserCode (String userCode) {
-		this.userCode = userCode;
-	}
-	
-	/**
-	 * 
-	 * @return 代金券所有者 bsi_cash_coupon_owner
-	 */
-	public String getBsiCashCouponOwner(){
-		return bsiCashCouponOwner;
-	}
-	
-	/**
-	 * 
-	 * @param bsiCashCouponOwner 代金券所有者 bsi_cash_coupon_owner
-	 */	
-	public void setBsiCashCouponOwner (String bsiCashCouponOwner) {
-		this.bsiCashCouponOwner = bsiCashCouponOwner;
-	}
-	
-	/**
-	 * 
-	 * @return 代金券失效效日期 bsi_cash_coupon_invalid_date
+	 * @return 代金券失效日期 bsi_cash_coupon_invalid_date
 	 */
 	public Date getBsiCashCouponInvalidDate(){
 		return bsiCashCouponInvalidDate;
@@ -167,7 +192,7 @@ public class BsiCashCouponDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param bsiCashCouponInvalidDate 代金券失效效日期 bsi_cash_coupon_invalid_date
+	 * @param bsiCashCouponInvalidDate 代金券失效日期 bsi_cash_coupon_invalid_date
 	 */	
 	public void setBsiCashCouponInvalidDate (Date bsiCashCouponInvalidDate) {
 		this.bsiCashCouponInvalidDate = bsiCashCouponInvalidDate;
@@ -177,7 +202,7 @@ public class BsiCashCouponDomain implements Serializable {
 	 * 
 	 * @return 代金券状态 bsi_cash_coupon_status
 	 */
-	public String getBsiCashCouponStatus(){
+	public Integer getBsiCashCouponStatus(){
 		return bsiCashCouponStatus;
 	}
 	
@@ -185,24 +210,104 @@ public class BsiCashCouponDomain implements Serializable {
 	 * 
 	 * @param bsiCashCouponStatus 代金券状态 bsi_cash_coupon_status
 	 */	
-	public void setBsiCashCouponStatus (String bsiCashCouponStatus) {
+	public void setBsiCashCouponStatus (Integer bsiCashCouponStatus) {
 		this.bsiCashCouponStatus = bsiCashCouponStatus;
 	}
 	
 	/**
 	 * 
-	 * @return 订单编号 order_number
+	 * @return 代金券类型 bsi_cash_coupon_type
 	 */
-	public String getOrderNumber(){
-		return orderNumber;
+	public String getBsiCashCouponType(){
+		return bsiCashCouponType;
 	}
 	
 	/**
 	 * 
-	 * @param orderNumber 订单编号 order_number
+	 * @param bsiCashCouponType 代金券类型 bsi_cash_coupon_type
 	 */	
-	public void setOrderNumber (String orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setBsiCashCouponType (String bsiCashCouponType) {
+		this.bsiCashCouponType = bsiCashCouponType;
+	}
+	
+	/**
+	 * 
+	 * @return 代金券保险月份数 bsi_cash_coupon_period
+	 */
+	public Integer getBsiCashCouponPeriod(){
+		return bsiCashCouponPeriod;
+	}
+	
+	/**
+	 * 
+	 * @param bsiCashCouponPeriod 代金券保险月份数 bsi_cash_coupon_period
+	 */	
+	public void setBsiCashCouponPeriod (Integer bsiCashCouponPeriod) {
+		this.bsiCashCouponPeriod = bsiCashCouponPeriod;
+	}
+	
+	/**
+	 * 
+	 * @return 订单编号 order_code
+	 */
+	public String getOrderCode(){
+		return orderCode;
+	}
+	
+	/**
+	 * 
+	 * @param orderCode 订单编号 order_code
+	 */	
+	public void setOrderCode (String orderCode) {
+		this.orderCode = orderCode;
+	}
+	
+	/**
+	 * 
+	 * @return 创建日期 create_date
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+	
+	/**
+	 * 
+	 * @param createDate 创建日期 create_date
+	 */	
+	public void setCreateDate (Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	/**
+	 * 
+	 * @return 更新日期 update_date
+	 */
+	public Date getUpdateDate(){
+		return updateDate;
+	}
+	
+	/**
+	 * 
+	 * @param updateDate 更新日期 update_date
+	 */	
+	public void setUpdateDate (Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	/**
+	 * 
+	 * @return 删除日期 delete_date
+	 */
+	public Date getDeleteDate(){
+		return deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @param deleteDate 删除日期 delete_date
+	 */	
+	public void setDeleteDate (Date deleteDate) {
+		this.deleteDate = deleteDate;
 	}
 	
 

@@ -10,7 +10,13 @@
 		charge_mobile_number AS "chargeMobileNumber" ,
 		charge_data_size AS "chargeDataSize" ,
 		charge_status AS "chargeStatus" ,
-		charge_task_id AS "chargeTaskId" 
+		charge_task_id AS "chargeTaskId" ,
+		charge_times AS "chargeTimes" ,
+		charge_rtn_code AS "chargeRtnCode" ,
+		charge_rtn_msg AS "chargeRtnMsg" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -21,6 +27,12 @@
 			<if test="chargeDataSize != null"> AND charge_data_size = #{chargeDataSize}  </if>
 			<if test="chargeStatus != null"> AND charge_status = #{chargeStatus}  </if>
 			<if test="chargeTaskId != null"> AND charge_task_id = #{chargeTaskId}  </if>
+			<if test="chargeTimes != null"> AND charge_times = #{chargeTimes}  </if>
+			<if test="chargeRtnCode != null"> AND charge_rtn_code = #{chargeRtnCode}  </if>
+			<if test="chargeRtnMsg != null"> AND charge_rtn_msg = #{chargeRtnMsg}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -32,6 +44,12 @@
 			AND charge_data_size = #{old_chargeDataSize}
 			AND charge_status = #{old_chargeStatus}
 			AND charge_task_id = #{old_chargeTaskId}
+			AND charge_times = #{old_chargeTimes}
+			AND charge_rtn_code = #{old_chargeRtnCode}
+			AND charge_rtn_msg = #{old_chargeRtnMsg}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -43,6 +61,12 @@
 			charge_data_size = #{chargeDataSize},
 			charge_status = #{chargeStatus},
 			charge_task_id = #{chargeTaskId},
+			charge_times = #{chargeTimes},
+			charge_rtn_code = #{chargeRtnCode},
+			charge_rtn_msg = #{chargeRtnMsg},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -54,6 +78,12 @@
 			<if test="chargeDataSize != null">charge_data_size = #{chargeDataSize},</if>
 			<if test="chargeStatus != null">charge_status = #{chargeStatus},</if>
 			<if test="chargeTaskId != null">charge_task_id = #{chargeTaskId},</if>
+			<if test="chargeTimes != null">charge_times = #{chargeTimes},</if>
+			<if test="chargeRtnCode != null">charge_rtn_code = #{chargeRtnCode},</if>
+			<if test="chargeRtnMsg != null">charge_rtn_msg = #{chargeRtnMsg},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -81,7 +111,13 @@
 				charge_mobile_number,				
 				charge_data_size,				
 				charge_status,				
-				charge_task_id				
+				charge_task_id,				
+				charge_times,				
+				charge_rtn_code,				
+				charge_rtn_msg,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{id},
@@ -89,7 +125,13 @@
 			#{chargeMobileNumber},
 			#{chargeDataSize},
 			#{chargeStatus},
-			#{chargeTaskId}
+			#{chargeTaskId},
+			#{chargeTimes},
+			#{chargeRtnCode},
+			#{chargeRtnMsg},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

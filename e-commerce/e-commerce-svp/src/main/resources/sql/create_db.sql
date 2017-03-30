@@ -26,14 +26,19 @@ drop table if exists t_svp_order;
 create table t_svp_bsi_cash_coupon
 (
    id                   bigint not null comment '主键',
+   user_code            varchar(50) not null comment '用户编号',
+   mobile_number        varchar(20) comment '手机号码',
    bsi_cash_coupon_code varchar(50) not null comment '代金券编号',
    bsi_cash_coupon_name varchar(100) comment '代金券名称',
    bsi_cash_coupon_create_date timestamp(3) null comment '代金券生成日期',
-   user_code            varchar(50) not null comment '用户编号',
-   bsi_cash_coupon_owner varchar(50) comment '代金券所有者',
-   bsi_cash_coupon_invalid_date timestamp(3) null comment '代金券失效效日期',
-   bsi_cash_coupon_status char(1) comment '代金券状态',
-   order_number         char(10) comment '订单编号',
+   bsi_cash_coupon_invalid_date timestamp(3) null comment '代金券失效日期',
+   bsi_cash_coupon_status integer comment '代金券状态',
+   bsi_cash_coupon_type varchar(50) comment '代金券类型',
+   bsi_cash_coupon_period integer comment '代金券保险月份数',
+   order_code           varchar(50) comment '订单编号',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -155,8 +160,14 @@ create table t_svp_mobile_data_order_detail
    order_id             bigint comment '碎屏险订单id',
    charge_mobile_number varchar(20) comment '手机号码',
    charge_data_size     integer comment '充值流量',
-   charge_status        char(1) comment '充值状态',
-   charge_task_id       varchar(100) comment '充值任务号'
+   charge_status        integer comment '充值状态',
+   charge_task_id       varchar(100) comment '充值任务号',
+   charge_times         integer comment '充值次数',
+   charge_rtn_code      varchar(50) comment '最近一次充值返回代码',
+   charge_rtn_msg       varchar(1000) comment '最近一次充值返回原因',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期'
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -173,7 +184,7 @@ create table t_svp_order
    user_code            varchar(50) comment '用户编号',
    mobile_number        varchar(20) comment '手机号码',
    order_status         integer comment '订单状态',
-   order_type           char(1) comment '订单类型',
+   order_type           varchar(50) comment '订单类型',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',

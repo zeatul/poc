@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>0e54948f-609b-49cc-b029-373b12fd2a0f</id>
+	<id>70938146-fbb9-49bb-87d6-ca95c0b307b5</id>
 	<code>t_svp_mobile_data_order_detail</code>
 	<comment>联通流量订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>be51af5c-fb34-40a9-ab0e-b76c55770917</id>
+			<id>25f09ef2-2ac4-4159-81ad-cd39b81c42fc</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9cf30d9a-0dd1-4fec-abb3-f572625c491e</id>
+			<id>b6dcbee4-0443-4449-8848-7afc65e9cfc9</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>422cf2e3-8bfc-4dd5-94be-6aa85ee62277</id>
+			<id>d8bb425b-1a4c-4128-86ae-afd416d7f28a</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f9399125-f9bd-48ce-9faa-f9cfcfa3d536</id>
+			<id>21a15900-8dad-4bc6-9058-e62da3d67e0a</id>
 			<word>
 				<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ad63f7e5-a31f-4d3a-8d66-68889d6c573a</id>
+			<id>eedb0550-c435-4142-a77a-56984cd1fe70</id>
 			<word>
 				<id>709d9aeb-98b3-4553-9328-49e7d6f8f462</id>
 			</word>
@@ -61,13 +61,79 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d6cd1c92-02a5-458d-80b6-4de910813ba7</id>
+			<id>db18c68f-b972-48d8-bcf3-effb31ebc762</id>
 			<word>
 				<id>6c1af899-d77c-488f-9c5a-e5d5e0d25c4c</id>
 			</word>
 			<code>charge_task_id</code>
 			<name>充值任务号</name>
 			<comment>充值任务号</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>c0adfa7c-5bd9-4990-a786-f6f621d8eeb5</id>
+			<word>
+				<id>dfb8561b-170f-4058-88d1-3e9415030985</id>
+			</word>
+			<code>charge_times</code>
+			<name>充值次数</name>
+			<comment>充值次数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>5e44f4f6-2a36-4b82-a683-3865f214ff06</id>
+			<word>
+				<id>838c2979-8df3-4c4f-9b5b-5920b60963fb</id>
+			</word>
+			<code>charge_rtn_code</code>
+			<name>最近一次充值返回代码</name>
+			<comment>最近一次充值返回代码</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>3c2a9380-fe07-4ff6-9609-58fb3dde9983</id>
+			<word>
+				<id>1107bee4-b1c7-4d46-8acf-7fcc62594dcb</id>
+			</word>
+			<code>charge_rtn_msg</code>
+			<name>最近一次充值返回原因</name>
+			<comment>最近一次充值返回原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>c78a507c-2547-477d-a675-6be4564eaa70</id>
+			<word>
+				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
+			</word>
+			<code>create_date</code>
+			<name>创建日期</name>
+			<comment>创建日期</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>099549f6-7697-40df-8b8a-89670b17cc0e</id>
+			<word>
+				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
+			</word>
+			<code>update_date</code>
+			<name>更新日期</name>
+			<comment>更新日期</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>1a3d7029-90dc-4f0c-a806-22a9297d58e1</id>
+			<word>
+				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
+			</word>
+			<code>delete_date</code>
+			<name>删除日期</name>
+			<comment>删除日期</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>

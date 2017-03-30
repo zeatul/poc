@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>d91d18e3-4464-4cd8-a1dc-dcf3fefa59b1</id>
+	<id>9a8f6980-7acf-4931-81af-7e59560d9a07</id>
 	<code>t_svp_bsi_cash_coupon</code>
 	<comment>代金券</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>70cd8a9f-f8d2-4fcd-a9ee-14624bee60d0</id>
+			<id>3d09333d-a662-4a6a-ba31-d5521d85a9a6</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,40 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>3d2cd313-2f64-4dbb-a542-401580ca46c1</id>
-			<word>
-				<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
-			</word>
-			<code>bsi_cash_coupon_code</code>
-			<name>代金券编号</name>
-			<comment>代金券编号</comment>
-			<nullable>no</nullable>
-			<isPk>no</isPk>
-		</column>
-		<column>
-			<id>51c399a1-d41f-4c50-ab47-67b96d3c31c5</id>
-			<word>
-				<id>4de03e27-879d-4ad7-84d9-0b256ed165ab</id>
-			</word>
-			<code>bsi_cash_coupon_name</code>
-			<name>代金券名称</name>
-			<comment>代金券名称</comment>
-			<nullable>yes</nullable>
-			<isPk>no</isPk>
-		</column>
-		<column>
-			<id>76aad1d5-13f5-4115-a50f-4d6b9f89f55c</id>
-			<word>
-				<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
-			</word>
-			<code>bsi_cash_coupon_create_date</code>
-			<name>代金券生成日期</name>
-			<comment>代金券生成日期</comment>
-			<nullable>yes</nullable>
-			<isPk>no</isPk>
-		</column>
-		<column>
-			<id>2b250a5e-d1c5-4544-aff5-e6e33c917628</id>
+			<id>d628cbfb-036d-491f-b3a2-c8bd8ec77ee2</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
@@ -61,29 +28,62 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c670af4e-834d-4570-805f-f8eafd0b04d8</id>
+			<id>75e2ca24-6ef4-4c7c-b4df-8501151d2a5a</id>
 			<word>
-				<id>14c1c0dc-fd71-4afe-89e9-b626796d2f9b</id>
+				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
-			<code>bsi_cash_coupon_owner</code>
-			<name>代金券所有者</name>
-			<comment>代金券所有者</comment>
+			<code>mobile_number</code>
+			<name>手机号码</name>
+			<comment>手机号码</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f0bc8112-9a70-4bf4-a52e-adc17e837b46</id>
+			<id>b58bca0f-c6db-4af1-b805-58bb5d231872</id>
+			<word>
+				<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
+			</word>
+			<code>bsi_cash_coupon_code</code>
+			<name>代金券编号</name>
+			<comment>代金券编号</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>ab2fd11b-5f53-4184-b9bb-a6b4e716b19d</id>
+			<word>
+				<id>4de03e27-879d-4ad7-84d9-0b256ed165ab</id>
+			</word>
+			<code>bsi_cash_coupon_name</code>
+			<name>代金券名称</name>
+			<comment>代金券名称</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>14111449-6c29-419e-aca0-a9f706935789</id>
+			<word>
+				<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
+			</word>
+			<code>bsi_cash_coupon_create_date</code>
+			<name>代金券生成日期</name>
+			<comment>代金券生成日期</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>5679078e-20f1-469f-839c-f1f61b117683</id>
 			<word>
 				<id>1ddcd78b-7819-4809-ab35-f795ef35bce2</id>
 			</word>
 			<code>bsi_cash_coupon_invalid_date</code>
-			<name>代金券失效效日期</name>
-			<comment>代金券失效效日期</comment>
+			<name>代金券失效日期</name>
+			<comment>代金券失效日期</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>672679cb-f4fa-4761-92a3-18d215998e46</id>
+			<id>deac4f02-95d3-4823-a39a-2ea2e6189f8a</id>
 			<word>
 				<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
 			</word>
@@ -94,33 +94,88 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>aa2a7a98-c3bc-4e36-8f47-ad71f9546362</id>
+			<id>ac6d8d8d-9912-45f7-a0e3-f92fea277690</id>
 			<word>
-				<id>20c1beb6-5698-4ee2-85bf-5e06cd11d244</id>
+				<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
 			</word>
-			<code>order_number</code>
+			<code>bsi_cash_coupon_type</code>
+			<name>代金券类型</name>
+			<comment>代金券类型</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>d1b32a00-8229-47f3-9fea-5ab787b18f4b</id>
+			<word>
+				<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
+			</word>
+			<code>bsi_cash_coupon_period</code>
+			<name>代金券保险月份数</name>
+			<comment>代金券保险月份数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>2674b91c-a4de-4142-9eb5-778618069bf2</id>
+			<word>
+				<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
+			</word>
+			<code>order_code</code>
 			<name>订单编号</name>
 			<comment>订单编号</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>34c04ad6-afe6-4414-8f75-5046512567cb</id>
+			<word>
+				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
+			</word>
+			<code>create_date</code>
+			<name>创建日期</name>
+			<comment>创建日期</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>f79c2127-bbe2-413f-b9e4-321097561579</id>
+			<word>
+				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
+			</word>
+			<code>update_date</code>
+			<name>更新日期</name>
+			<comment>更新日期</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>9cc02a52-7160-4d28-b830-084fc530fe92</id>
+			<word>
+				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
+			</word>
+			<code>delete_date</code>
+			<name>删除日期</name>
+			<comment>删除日期</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>869fd7a2-6819-4421-8f7f-c9d1d0360a14</id>
+			<id>642329f1-20d8-418a-8ab1-cdd45527a030</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>70cd8a9f-f8d2-4fcd-a9ee-14624bee60d0</id>
+					<id>3d09333d-a662-4a6a-ba31-d5521d85a9a6</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>99ef2304-d374-4861-829c-0ef99271852a</id>
+			<id>d74579f8-1209-45fe-ad94-4b80506219a6</id>
 			<code>ui_bsi_cc_code</code>
 			<columns>
 				<column>
-					<id>3d2cd313-2f64-4dbb-a542-401580ca46c1</id>
+					<id>b58bca0f-c6db-4af1-b805-58bb5d231872</id>
 				</column>
 			</columns>
 		</index>
