@@ -16,7 +16,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("spittr.web")
+@ComponentScan("com.hawk.framework.spittr.web")
 public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	@Bean

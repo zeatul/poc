@@ -38,6 +38,14 @@
 				</filters>
 			</build>
 		</profile>
+		<profile>
+			<id>test</id>
+			<build>
+				<filters>
+					<filter>../e-commerce-parent/config/e_commerce_svp_prod.properties</filter>
+				</filters>
+			</build>
+		</profile>
 	</profiles>
 
 	<properties>

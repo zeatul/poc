@@ -13,7 +13,7 @@ import com.hawk.framework.spittr.config.RootConfig.WebPackage;
 
 @Configuration
 @Import(DataConfig.class)
-@ComponentScan(basePackages={"spittr"},excludeFilters={@Filter(type=FilterType.CUSTOM,value=WebPackage.class)})
+@ComponentScan(basePackages={"com.hawk.framework.spittr"},excludeFilters={@Filter(type=FilterType.CUSTOM,value=WebPackage.class)})
 public class RootConfig {
 	public static class WebPackage extends RegexPatternTypeFilter{
 		public WebPackage(){

@@ -15,6 +15,13 @@
 
 
 	<dependencies>
+
+		<!-- H2 inmemroy database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.192</version>
+		</dependency>
 		<!-- apache common tools -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -160,7 +167,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
-		
+
 		<!-- thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
