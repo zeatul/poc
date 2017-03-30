@@ -39,7 +39,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>test</id>
+			<id>prod</id>
 			<build>
 				<filters>
 					<filter>../e-commerce-parent/config/e_commerce_svp_prod.properties</filter>
