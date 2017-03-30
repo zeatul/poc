@@ -30,6 +30,8 @@ public interface HttpExecutor {
 	
 	public String post(String url, String content, List<HttpParam> params);
 	
+	public String post(String url, Object object , List<HttpParam> params);
+	
 	public String post(String url, byte[] b, List<HttpParam> params);
 	
 	public String postParamInBody(String url, String content, List<HttpParam> params);

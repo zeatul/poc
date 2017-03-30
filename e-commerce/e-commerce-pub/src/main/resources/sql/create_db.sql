@@ -6,7 +6,7 @@ drop table if exists t_fun_global_sequence;
 create table t_fun_global_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null comment '主键',
+   id                   bigint not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;

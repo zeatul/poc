@@ -12,7 +12,7 @@
 		<module>../framework-word</module>
 		<module>../framework-codegen</module>
 		<module>../framework-pub</module>
-		<module>../framework-web-example</module>
+		<!-- <module>../framework-web-example</module> -->
 	</modules>
 
 	<profiles>

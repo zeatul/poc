@@ -50,6 +50,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
+import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
+import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 
@@ -238,7 +240,9 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		}
 	}
 	
-	
+	public String post(String url, Object object , List<HttpParam> params){
+		return post(url,JsonTools.toJsonString(object),params);
+	}
 
 	public String post(String url, String content, List<HttpParam> params)  {
 		CloseableHttpResponse response = null;

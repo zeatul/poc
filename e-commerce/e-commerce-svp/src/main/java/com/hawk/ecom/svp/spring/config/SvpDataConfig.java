@@ -4,13 +4,14 @@ import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiPhoneModelMapper;
@@ -19,8 +20,8 @@ import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@PropertySource("classpath:/com/hawk/ecom/svp/env/jdbc.properties")  
-@MapperScan(basePackageClasses={BsiPhoneModelExMapper.class,BsiPhoneModelMapper.class})
+@PropertySource("classpath:/com/hawk/ecom/svp/env/jdbc.properties")
+@MapperScan(basePackageClasses = { BsiPhoneModelExMapper.class, BsiPhoneModelMapper.class })
 public class SvpDataConfig {
 
 	@Autowired
@@ -134,11 +135,21 @@ public class SvpDataConfig {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String packageName =  BsiPhoneModelDomain.class.getPackage().getName();
-		String str = StringTools.concatWithSymbol(";", packageName,packageName+"ex");
+		String packageName = BsiPhoneModelDomain.class.getPackage().getName();
+		String str = StringTools.concatWithSymbol(";", packageName, packageName + "ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}
 
-	
+	@Configuration
+	@EnableTransactionManagement
+	public static class TransactionConfig {
+		@Bean
+		public PlatformTransactionManager transactionManager(DataSource dataSource) {
+			DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+			transactionManager.setDataSource(dataSource);
+			return transactionManager;
+		}
+	}
+
 }

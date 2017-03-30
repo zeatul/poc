@@ -94,6 +94,7 @@ public class BsiService {
 		bsiCashCouponDomain.setUserCode(mobileNumber);
 		bsiCashCouponDomain.setCreateDate(currentDate);
 		bsiCashCouponDomain.setUpdateDate(currentDate);
+		bsiCashCouponDomain.setId(pkGenService.genPk());
 		bsiCashCouponMapper.insert(bsiCashCouponDomain);
 	}
 	

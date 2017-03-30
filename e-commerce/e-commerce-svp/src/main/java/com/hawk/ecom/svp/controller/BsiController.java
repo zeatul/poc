@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @RestController
-@RequestMapping("sv/bsi")
+@RequestMapping("svp/bsi")
 public class BsiController {
 	
 	@RequestMapping(value="/home",method = GET)
@@ -50,24 +51,28 @@ public class BsiController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/brand/model", method = GET)
-	public WebResponse<MultiPhoneModelResponse> modelOfBrand(HttpServletRequest request) throws Exception{
-		QueryModelOfBrandParam param = HttpRequestTools.parse(request, QueryModelOfBrandParam.class);
+	@RequestMapping(value = "/brand/{brand}", method = GET)
+	public WebResponse<MultiPhoneModelResponse> modelOfBrand(@PathVariable String brand) throws Exception{
+		QueryModelOfBrandParam param = new QueryModelOfBrandParam();
+		param.setBrand(brand);
 		List<BsiPhoneModelDomain> domainList = bsiPhoneModelService.queryPhoneModel(param.getBrand());
 		List<MultiPhoneModelResponse.PhoneModel> phoneModelList = DomainTools.copy(domainList, MultiPhoneModelResponse.PhoneModel.class);
 		WebResponse<MultiPhoneModelResponse> response = SuccessResponse.build(new MultiPhoneModelResponse(phoneModelList));
 		return response;
 	}
 	
-	@RequestMapping(value = "/product", method = GET)
-	public WebResponse<SingleProductResponse> queryProduct(HttpServletRequest request) throws Exception{
-		QueryProductParam queryProductParam = HttpRequestTools.parse(request, QueryProductParam.class);
+	@RequestMapping(value = "/brand/{brand}/model/{model}/period/{period}", method = GET)
+	public WebResponse<SingleProductResponse> queryProduct(@PathVariable String brand,@PathVariable String model,@PathVariable int period) throws Exception{
+		QueryProductParam queryProductParam = new QueryProductParam();
+		queryProductParam.setBrand(brand);
+		queryProductParam.setModel(model);
+		queryProductParam.setPeriod(period);
 		BsiProductDomain bsiProductDomain =bsiService.queryProduct(queryProductParam);
 		SingleProductResponse singleProductResponse = DomainTools.copy(bsiProductDomain, SingleProductResponse.class);
 		return SuccessResponse.build(singleProductResponse);
 	}
 	
-	@RequestMapping(value = "/coupon/present", method = POST)
+	@RequestMapping(value = "/coupon/register/present", method = POST)
 	public WebResponse<ResponseData> registerForCoupon(HttpServletRequest request) throws Exception{
 		RegisterForCouponParam registerForCouponParam = HttpRequestTools.parse(request, RegisterForCouponParam.class);
 		bsiService.rgeisterForCoupon(registerForCouponParam);

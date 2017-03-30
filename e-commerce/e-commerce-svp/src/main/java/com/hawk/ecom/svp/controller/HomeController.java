@@ -17,7 +17,7 @@ public class HomeController {
 	private final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/home", method = GET)
-	@ResponseBody
+    @ResponseBody
 	public Map<String,String> home() {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("1", "hello");

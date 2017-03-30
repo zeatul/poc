@@ -23,7 +23,7 @@ public class JsonTools {
 		objectMapper.getSerializationConfig().with(df);
 		objectMapper.getDeserializationConfig().with(df);
 		objectMapper.getDeserializationConfig().with(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		
+		objectMapper.setSerializationInclusion(Include.NON_NULL);
 	}
 
 	public static String toJsonString(Object object) {
