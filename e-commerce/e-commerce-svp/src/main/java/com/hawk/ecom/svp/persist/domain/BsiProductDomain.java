@@ -18,7 +18,7 @@ public class BsiProductDomain implements Serializable {
 	/**
 	 * 碎屏险产品ID bsi_product_id
 	 */
-	private Long bsiProductId;
+	private Integer bsiProductId;
 	
 	/**
 	 * 产品名称 bsi_product_name
@@ -55,7 +55,7 @@ public class BsiProductDomain implements Serializable {
 	 * 
 	 * @return 碎屏险产品ID bsi_product_id
 	 */
-	public Long getBsiProductId(){
+	public Integer getBsiProductId(){
 		return bsiProductId;
 	}
 	
@@ -63,7 +63,7 @@ public class BsiProductDomain implements Serializable {
 	 * 
 	 * @param bsiProductId 碎屏险产品ID bsi_product_id
 	 */	
-	public void setBsiProductId (Long bsiProductId) {
+	public void setBsiProductId (Integer bsiProductId) {
 		this.bsiProductId = bsiProductId;
 	}
 	

@@ -77,7 +77,7 @@ public class BsiController {
 	@RequestMapping(value = "/coupon/activate", method = POST)
 	public WebResponse<ResponseData> activateCashCoupon(HttpServletRequest request) throws Exception{
 		ActivateCouponParam activateCouponParam = HttpRequestTools.parse(request, ActivateCouponParam.class);
-	
+		bsiService.activateCoupon(activateCouponParam);
 		return SuccessResponse.build(null);
 	}
 

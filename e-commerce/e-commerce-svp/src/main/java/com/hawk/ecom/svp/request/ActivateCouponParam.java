@@ -2,6 +2,38 @@ package com.hawk.ecom.svp.request;
 
 public class ActivateCouponParam {
 	
+	public Integer getPhoneModelId() {
+		return phoneModelId;
+	}
+
+	public void setPhoneModelId(Integer phoneModelId) {
+		this.phoneModelId = phoneModelId;
+	}
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public Integer getIdType() {
+		return idType;
+	}
+
+	public void setIdType(Integer idType) {
+		this.idType = idType;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
 	public String getTicket() {
 		return ticket;
 	}
@@ -18,22 +50,9 @@ public class ActivateCouponParam {
 		this.couponCode = couponCode;
 	}
 
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
+	
 
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
-	}
-
-	public String getIdType() {
-		return idType;
-	}
-
-	public void setIdType(String idType) {
-		this.idType = idType;
-	}
-
+	
 	public String getIdNumber() {
 		return idNumber;
 	}
@@ -87,12 +106,12 @@ public class ActivateCouponParam {
 	/**
 	 * 投保者手机号
 	 */
-	private String mobilePhone;
+	private String mobileNumber;
 	
 	/**
 	 * 投保者证件类型
 	 */
-	private String idType;
+	private Integer idType;
 	
 	/**
 	 * 投保者证件号码
@@ -119,5 +138,15 @@ public class ActivateCouponParam {
 	 * 投保者身份证号
 	 */
 	private String birthday;
+	
+	/**
+	 * 手机型号ID
+	 */
+	private Integer phoneModelId;
+	
+	/**
+	 * 产品ID
+	 */
+	private Integer productId;
 
 }

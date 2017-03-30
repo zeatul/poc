@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>9a8f6980-7acf-4931-81af-7e59560d9a07</id>
+	<id>a489535c-f9dc-4929-a0b8-893a19a0bcdc</id>
 	<code>t_svp_bsi_cash_coupon</code>
 	<comment>代金券</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>3d09333d-a662-4a6a-ba31-d5521d85a9a6</id>
+			<id>0ff6ae5e-35f1-4a9b-a38f-fdd24de417b9</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>d628cbfb-036d-491f-b3a2-c8bd8ec77ee2</id>
+			<id>832b5654-5556-46fb-bc32-2ada45ee1387</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>75e2ca24-6ef4-4c7c-b4df-8501151d2a5a</id>
+			<id>a8a1fbe9-b76c-4d1a-9517-d3d46e15d3a4</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b58bca0f-c6db-4af1-b805-58bb5d231872</id>
+			<id>de249749-17dd-4184-a67f-8736bde804e7</id>
 			<word>
 				<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ab2fd11b-5f53-4184-b9bb-a6b4e716b19d</id>
+			<id>aed11e8f-ff01-4c20-99f0-fb4d850c63ac</id>
 			<word>
 				<id>4de03e27-879d-4ad7-84d9-0b256ed165ab</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>14111449-6c29-419e-aca0-a9f706935789</id>
+			<id>3f867e4d-c8d8-478a-9de3-b47c222f653c</id>
 			<word>
 				<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5679078e-20f1-469f-839c-f1f61b117683</id>
+			<id>2d1ec8f6-56ff-496e-95e7-2e31ce6fad26</id>
 			<word>
 				<id>1ddcd78b-7819-4809-ab35-f795ef35bce2</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>deac4f02-95d3-4823-a39a-2ea2e6189f8a</id>
+			<id>5117a187-9fd6-417c-8133-8a548b0e7078</id>
 			<word>
 				<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>ac6d8d8d-9912-45f7-a0e3-f92fea277690</id>
+			<id>0f1ae645-fb97-48ab-bdf7-4c3f0c3074b7</id>
 			<word>
 				<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d1b32a00-8229-47f3-9fea-5ab787b18f4b</id>
+			<id>ecc2b5a0-34aa-43a2-8442-33f0e10380b3</id>
 			<word>
 				<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>2674b91c-a4de-4142-9eb5-778618069bf2</id>
+			<id>564df9aa-e388-44c3-8da8-d71207fdbe69</id>
 			<word>
 				<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>34c04ad6-afe6-4414-8f75-5046512567cb</id>
+			<id>4e7271cf-5fb7-49d2-8a5b-62b266f08591</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -138,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f79c2127-bbe2-413f-b9e4-321097561579</id>
+			<id>a9800417-9e6f-40fb-91a9-329ff008d62c</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -149,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9cc02a52-7160-4d28-b830-084fc530fe92</id>
+			<id>776f5f11-d83a-476b-9d21-c5e2bad8871d</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -162,20 +162,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>642329f1-20d8-418a-8ab1-cdd45527a030</id>
+			<id>62607175-b37b-4642-ba31-a1e3be37b236</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>3d09333d-a662-4a6a-ba31-d5521d85a9a6</id>
+					<id>0ff6ae5e-35f1-4a9b-a38f-fdd24de417b9</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>d74579f8-1209-45fe-ad94-4b80506219a6</id>
+			<id>1978744d-3c8d-4c88-902b-6dc1e616a16a</id>
 			<code>ui_bsi_cc_code</code>
 			<columns>
 				<column>
-					<id>b58bca0f-c6db-4af1-b805-58bb5d231872</id>
+					<id>de249749-17dd-4184-a67f-8736bde804e7</id>
 				</column>
 			</columns>
 		</index>

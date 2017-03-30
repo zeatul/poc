@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>70938146-fbb9-49bb-87d6-ca95c0b307b5</id>
+	<id>4c50a795-6e4a-419c-970e-7c0d9df47f52</id>
 	<code>t_svp_mobile_data_order_detail</code>
 	<comment>联通流量订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>25f09ef2-2ac4-4159-81ad-cd39b81c42fc</id>
+			<id>7945fcb4-b87d-45fc-99da-b9bd3de26078</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b6dcbee4-0443-4449-8848-7afc65e9cfc9</id>
+			<id>067e8467-eb8a-4c10-8623-3d9d01fcbc63</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d8bb425b-1a4c-4128-86ae-afd416d7f28a</id>
+			<id>65f09c35-e5f3-4f0a-bcd6-3c2abc676f44</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>21a15900-8dad-4bc6-9058-e62da3d67e0a</id>
+			<id>10c17380-0467-4429-8bb9-9df8305eb142</id>
 			<word>
 				<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>eedb0550-c435-4142-a77a-56984cd1fe70</id>
+			<id>5c59418e-6a73-4348-9577-58abc6203737</id>
 			<word>
 				<id>709d9aeb-98b3-4553-9328-49e7d6f8f462</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>db18c68f-b972-48d8-bcf3-effb31ebc762</id>
+			<id>5c965800-4c49-4379-852a-a261ec38c0a2</id>
 			<word>
 				<id>6c1af899-d77c-488f-9c5a-e5d5e0d25c4c</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c0adfa7c-5bd9-4990-a786-f6f621d8eeb5</id>
+			<id>1b63bab7-8a41-4e5d-970c-9b9b5fdde0b5</id>
 			<word>
 				<id>dfb8561b-170f-4058-88d1-3e9415030985</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5e44f4f6-2a36-4b82-a683-3865f214ff06</id>
+			<id>7594a7f4-502f-4037-a96b-070d47be9594</id>
 			<word>
 				<id>838c2979-8df3-4c4f-9b5b-5920b60963fb</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3c2a9380-fe07-4ff6-9609-58fb3dde9983</id>
+			<id>c67a1509-2edb-42dd-a702-9796115047ed</id>
 			<word>
 				<id>1107bee4-b1c7-4d46-8acf-7fcc62594dcb</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c78a507c-2547-477d-a675-6be4564eaa70</id>
+			<id>c946bb12-dad0-45d7-997e-22aa95318029</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>099549f6-7697-40df-8b8a-89670b17cc0e</id>
+			<id>dc55a4de-1296-490e-a83e-2a403c1e105c</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1a3d7029-90dc-4f0c-a806-22a9297d58e1</id>
+			<id>bc713548-17f5-452f-9bf8-953fe2e650b2</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>

@@ -8,15 +8,23 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
+import com.hawk.ecom.svp.constant.ConstOrderStatus;
+import com.hawk.ecom.svp.constant.ConstOrderType;
+import com.hawk.ecom.svp.constant.ConstStore;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
-import com.hawk.ecom.svp.persist.domain.BsiOrderDomain;
+import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
+import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiCashCouponMapper;
+import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
+import com.hawk.ecom.svp.persist.mapper.OrderMapper;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterForCouponParam;
+import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
 
 @Service
@@ -34,6 +42,15 @@ public class BsiService {
 	@Autowired
 	private BsiCashCouponMapper bsiCashCouponMapper;
 	
+	@Autowired
+	private OrderMapper orderMapper;
+	
+	@Autowired
+	private BsiOrderDetailMapper bsiOrderDetailMapper;
+	
+	@Autowired
+	private PkGenService pkGenService;
+	
 	/**
 	 * 查询产品信息
 	 * @param queryProductParam
@@ -41,9 +58,9 @@ public class BsiService {
 	 */
 	public BsiProductDomain queryProduct(QueryProductParam queryProductParam){
 		
-		long phoneModelId = bsiPhoneModelService.queryPhoneModelId(queryProductParam.getBrand(), queryProductParam.getModel());
+		int phoneModelId = bsiPhoneModelService.queryPhoneModelId(queryProductParam.getBrand(), queryProductParam.getModel());
 		
-		long productId = bsiPhoneProdcutMapService.queryProductId(phoneModelId, queryProductParam.getPeriod());
+		int productId = bsiPhoneProdcutMapService.queryProductId(phoneModelId, queryProductParam.getPeriod());
 		
 		return bsiProductService.queryProduct(productId);
 	}
@@ -84,17 +101,68 @@ public class BsiService {
 	 * 激活代金券
 	 * @param activateCouponParam
 	 */
+	@Transactional
 	public void activateCoupon(ActivateCouponParam activateCouponParam){
 		
-		BsiOrderDomain bsiOrderDomain = new BsiOrderDomain();
-		bsiOrderDomain.setOrderCode(UUID.randomUUID().toString());
-		bsiOrderDomain.setMobileNumber(activateCouponParam.getTicket());
-		bsiOrderDomain.setBsiOrderStatus("0");
-		bsiOrderDomain.setStoreCode("1");
-		bsiOrderDomain.setUserCode(activateCouponParam.getTicket());
-		bsiOrderDomain.setCreateDate(new Date());
-		bsiOrderDomain.setUpdateDate(bsiOrderDomain.getCreateDate());
+		Map<String,Object> params = new HashMap<String,Object>();
+		String bsiCashCouponCode = activateCouponParam.getCouponCode();
+		params.put("bsiCashCouponCode", bsiCashCouponCode);
+		List<BsiCashCouponDomain> list = bsiCashCouponMapper.loadDynamic(params);
+		if (list.size() == 0)
+			throw new RuntimeException("代金券不存在");
 		
-		bsiOrderDomain.setId(0L);
+		BsiCashCouponDomain bsiCashCouponDomain = list.get(0);
+		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.USED){
+			throw new RuntimeException("代金券 已经使用");
+		}
+		
+		if (bsiCashCouponDomain.getBsiCashCouponStatus()== ConstCouponParameter.CouopnStatus.OUT_OF_DATE || bsiCashCouponDomain.getBsiCashCouponInvalidDate().before(new Date())){
+			throw new RuntimeException("代金券 已经过期");
+		}
+		
+		/**
+		 * 符合条件,下单
+		 */		
+		Date currentDate = new Date();
+		/**
+		 * 订单
+		 */
+		OrderDomain orderDomain = new OrderDomain();
+		orderDomain.setMobileNumber(activateCouponParam.getTicket());
+		orderDomain.setOrderCode(UUID.randomUUID().toString());
+		orderDomain.setOrderStatus(ConstOrderStatus.PAYED);
+		orderDomain.setOrderType(ConstOrderType.REGISTER_PRESENT_COUPON);
+		orderDomain.setStoreCode(ConstStore.STORE_CODE);
+		orderDomain.setUserCode(activateCouponParam.getTicket());
+		orderDomain.setCreateDate(currentDate);
+		orderDomain.setUpdateDate(currentDate);
+		orderDomain.setId(pkGenService.genPk());
+		
+		/**
+		 * 代金券
+		 */
+		bsiCashCouponDomain.setOrderCode(orderDomain.getOrderCode());
+		bsiCashCouponDomain.setBsiCashCouponStatus(ConstCouponParameter.CouopnStatus.USED);
+		
+		/**
+		 * 订单明细
+		 */
+		BsiOrderDetailDomain bsiOrderDetailDomain = new BsiOrderDetailDomain();
+		bsiOrderDetailDomain.setBsiBenefBirthday(activateCouponParam.getBirthday());
+		bsiOrderDetailDomain.setBsiBenefIdNumber(activateCouponParam.getIdNumber());
+		bsiOrderDetailDomain.setBsiBenefIdTyp(activateCouponParam.getIdType());
+		bsiOrderDetailDomain.setBsiBenefMobileNumber(activateCouponParam.getMobileNumber());
+		bsiOrderDetailDomain.setBsiBenefName(activateCouponParam.getName());
+		bsiOrderDetailDomain.setBsiBenefSex(activateCouponParam.getSex());
+		bsiOrderDetailDomain.setBsiPhoneModelId(activateCouponParam.getPhoneModelId());
+		bsiOrderDetailDomain.setBsiProductId(activateCouponParam.getProductId());
+		bsiOrderDetailDomain.setImei(activateCouponParam.getImei());
+		bsiOrderDetailDomain.setOrderId(orderDomain.getId());
+		bsiOrderDetailDomain.setCreateDate(currentDate);
+		bsiOrderDetailDomain.setUpdateDate(currentDate);
+		
+		orderMapper.insert(orderDomain);
+		bsiCashCouponMapper.update(bsiCashCouponDomain);
+		bsiOrderDetailMapper.insert(bsiOrderDetailDomain);
 	}
 }

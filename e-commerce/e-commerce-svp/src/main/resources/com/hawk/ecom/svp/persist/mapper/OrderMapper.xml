@@ -12,6 +12,7 @@
 		mobile_number AS "mobileNumber" ,
 		order_status AS "orderStatus" ,
 		order_type AS "orderType" ,
+		order_desc AS "orderDesc" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -26,6 +27,7 @@
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 			<if test="orderStatus != null"> AND order_status = #{orderStatus}  </if>
 			<if test="orderType != null"> AND order_type = #{orderType}  </if>
+			<if test="orderDesc != null"> AND order_desc = #{orderDesc}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -41,6 +43,7 @@
 			AND mobile_number = #{old_mobileNumber}
 			AND order_status = #{old_orderStatus}
 			AND order_type = #{old_orderType}
+			AND order_desc = #{old_orderDesc}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -56,6 +59,7 @@
 			mobile_number = #{mobileNumber},
 			order_status = #{orderStatus},
 			order_type = #{orderType},
+			order_desc = #{orderDesc},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -71,6 +75,7 @@
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 			<if test="orderStatus != null">order_status = #{orderStatus},</if>
 			<if test="orderType != null">order_type = #{orderType},</if>
+			<if test="orderDesc != null">order_desc = #{orderDesc},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -119,6 +124,7 @@
 				mobile_number,				
 				order_status,				
 				order_type,				
+				order_desc,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -131,6 +137,7 @@
 			#{mobileNumber},
 			#{orderStatus},
 			#{orderType},
+			#{orderDesc},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}

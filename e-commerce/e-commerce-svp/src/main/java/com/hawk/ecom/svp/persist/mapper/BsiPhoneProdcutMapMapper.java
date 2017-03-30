@@ -18,7 +18,7 @@ public interface BsiPhoneProdcutMapMapper  {
 	 * @param bsiPhoneModelId 手机型号Id
 	 * @return 查询到的记录
 	 */
-	BsiPhoneProdcutMapDomain load(@Param("bsiProductId")Long bsiProductId, @Param("bsiPhoneModelId")Long bsiPhoneModelId );
+	BsiPhoneProdcutMapDomain load(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
 	
 	/**
 	 * 动态条件加载记录
@@ -47,7 +47,7 @@ public interface BsiPhoneProdcutMapMapper  {
 	 * @param bsiPhoneModelId 手机型号Id
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("bsiProductId")Long bsiProductId, @Param("bsiPhoneModelId")Long bsiPhoneModelId );
+	int countByPK(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
 	
 	
 	/**
@@ -63,7 +63,7 @@ public interface BsiPhoneProdcutMapMapper  {
 	 * @param bsiPhoneModelId 手机型号Id
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("bsiProductId")Long bsiProductId, @Param("bsiPhoneModelId")Long bsiPhoneModelId );
+	int delete(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
 	
 	/**
 	 * 动态删除记录

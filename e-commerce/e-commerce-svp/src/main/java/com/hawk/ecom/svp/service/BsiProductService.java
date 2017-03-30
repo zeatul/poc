@@ -12,7 +12,7 @@ public class BsiProductService {
 	@Autowired
 	private BsiProductMapper bsiProductMapper;
 	
-	public BsiProductDomain queryProduct(long productId){
+	public BsiProductDomain queryProduct(int productId){
 		BsiProductDomain bsiProductDomain = bsiProductMapper.load(productId);
 		if (bsiProductDomain == null)
 			throw new RuntimeException("Couldn't find the product");

@@ -17,7 +17,7 @@ public interface BsiProductMapper  {
 	 * @param bsiProductId 碎屏险产品ID
 	 * @return 查询到的记录
 	 */
-	BsiProductDomain load(@Param("bsiProductId")Long bsiProductId );
+	BsiProductDomain load(@Param("bsiProductId")Integer bsiProductId );
 	
 	/**
 	 * 动态条件加载记录
@@ -45,7 +45,7 @@ public interface BsiProductMapper  {
 	 * @param bsiProductId 碎屏险产品ID
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("bsiProductId")Long bsiProductId );
+	int countByPK(@Param("bsiProductId")Integer bsiProductId );
 	
 	
 	/**
@@ -60,7 +60,7 @@ public interface BsiProductMapper  {
 	 * @param bsiProductId 碎屏险产品ID
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("bsiProductId")Long bsiProductId );
+	int delete(@Param("bsiProductId")Integer bsiProductId );
 	
 	/**
 	 * 动态删除记录

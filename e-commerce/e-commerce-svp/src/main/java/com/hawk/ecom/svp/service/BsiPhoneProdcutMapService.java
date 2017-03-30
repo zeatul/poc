@@ -16,7 +16,7 @@ public class BsiPhoneProdcutMapService {
 	@Autowired
 	private BsiPhoneProdcutMapMapper bsiPhoneProdcutMapMapper;
 	
-	public long queryProductId(long phoneModelId,int period){
+	public int queryProductId(long phoneModelId,int period){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneModelId", phoneModelId);
 		params.put("bsiProductValidPeriod", period);

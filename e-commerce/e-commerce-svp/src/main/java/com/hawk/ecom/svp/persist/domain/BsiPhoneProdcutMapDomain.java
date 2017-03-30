@@ -17,12 +17,12 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	/**
 	 * 产品ID bsi_product_id
 	 */
-	private Long bsiProductId;
+	private Integer bsiProductId;
 	
 	/**
 	 * 手机型号Id bsi_phone_model_id
 	 */
-	private Long bsiPhoneModelId;
+	private Integer bsiPhoneModelId;
 	
 	/**
 	 * 有效期(月) bsi_product_valid_period
@@ -34,7 +34,7 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 * 
 	 * @return 产品ID bsi_product_id
 	 */
-	public Long getBsiProductId(){
+	public Integer getBsiProductId(){
 		return bsiProductId;
 	}
 	
@@ -42,7 +42,7 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 * 
 	 * @param bsiProductId 产品ID bsi_product_id
 	 */	
-	public void setBsiProductId (Long bsiProductId) {
+	public void setBsiProductId (Integer bsiProductId) {
 		this.bsiProductId = bsiProductId;
 	}
 	
@@ -50,7 +50,7 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 * 
 	 * @return 手机型号Id bsi_phone_model_id
 	 */
-	public Long getBsiPhoneModelId(){
+	public Integer getBsiPhoneModelId(){
 		return bsiPhoneModelId;
 	}
 	
@@ -58,7 +58,7 @@ public class BsiPhoneProdcutMapDomain implements Serializable {
 	 * 
 	 * @param bsiPhoneModelId 手机型号Id bsi_phone_model_id
 	 */	
-	public void setBsiPhoneModelId (Long bsiPhoneModelId) {
+	public void setBsiPhoneModelId (Integer bsiPhoneModelId) {
 		this.bsiPhoneModelId = bsiPhoneModelId;
 	}
 	

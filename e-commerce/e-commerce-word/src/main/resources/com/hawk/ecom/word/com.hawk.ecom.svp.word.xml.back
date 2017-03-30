@@ -13,7 +13,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>57d4f6c4-3531-4b02-b99f-01744d2ecfca</id>
+		<id>838c2979-8df3-4c4f-9b5b-5920b60963fb</id>
 		<code>charge_rtn_code</code>
 		<name>最近一次充值返回代码</name>
 		<displayName>最近一次充值返回代码</displayName>
@@ -34,6 +34,15 @@
 		<charMinLength>0</charMinLength>
 		<charMaxLength>100</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
+		<code>bsi_cash_coupon_period</code>
+		<name>代金券保险月份数</name>
+		<displayName>代金券保险月份数</displayName>
+		<useType>technology</useType>
+		<dataType>integer</dataType>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -121,7 +130,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>5715b1ce-0f93-44b5-b25a-9710190c50b5</id>
+		<id>1107bee4-b1c7-4d46-8acf-7fcc62594dcb</id>
 		<code>charge_rtn_msg</code>
 		<name>最近一次充值返回原因</name>
 		<displayName>最近一次充值返回原因</displayName>
@@ -217,6 +226,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
+		<code>bsi_cash_coupon_type</code>
+		<name>代金券类型</name>
+		<displayName>代金券类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
 		<code>bsi_benef_id_number</code>
 		<name>证件号码</name>
@@ -285,7 +306,7 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>b729bb39-9ed6-4b47-a5ee-5ce11888defa</id>
+		<id>dfb8561b-170f-4058-88d1-3e9415030985</id>
 		<code>charge_times</code>
 		<name>充值次数</name>
 		<displayName>充值次数</displayName>

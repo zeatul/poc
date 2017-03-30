@@ -15,7 +15,10 @@
 		bsi_benef_birthday AS "bsiBenefBirthday" ,
 		bsi_benef_sex AS "bsiBenefSex" ,
 		bsi_benef_name AS "bsiBenefName" ,
-		bsi_benef_mobile_number AS "bsiBenefMobileNumber" 
+		bsi_benef_mobile_number AS "bsiBenefMobileNumber" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -31,6 +34,9 @@
 			<if test="bsiBenefSex != null"> AND bsi_benef_sex = #{bsiBenefSex}  </if>
 			<if test="bsiBenefName != null"> AND bsi_benef_name = #{bsiBenefName}  </if>
 			<if test="bsiBenefMobileNumber != null"> AND bsi_benef_mobile_number = #{bsiBenefMobileNumber}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -47,6 +53,9 @@
 			AND bsi_benef_sex = #{old_bsiBenefSex}
 			AND bsi_benef_name = #{old_bsiBenefName}
 			AND bsi_benef_mobile_number = #{old_bsiBenefMobileNumber}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
 		</trim>
 	</sql>
 	
@@ -63,6 +72,9 @@
 			bsi_benef_sex = #{bsiBenefSex},
 			bsi_benef_name = #{bsiBenefName},
 			bsi_benef_mobile_number = #{bsiBenefMobileNumber},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -79,6 +91,9 @@
 			<if test="bsiBenefSex != null">bsi_benef_sex = #{bsiBenefSex},</if>
 			<if test="bsiBenefName != null">bsi_benef_name = #{bsiBenefName},</if>
 			<if test="bsiBenefMobileNumber != null">bsi_benef_mobile_number = #{bsiBenefMobileNumber},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -127,7 +142,10 @@
 				bsi_benef_birthday,				
 				bsi_benef_sex,				
 				bsi_benef_name,				
-				bsi_benef_mobile_number				
+				bsi_benef_mobile_number,				
+				create_date,				
+				update_date,				
+				delete_date				
 		)		
 		VALUES (	
 			#{id},
@@ -140,7 +158,10 @@
 			#{bsiBenefBirthday},
 			#{bsiBenefSex},
 			#{bsiBenefName},
-			#{bsiBenefMobileNumber}
+			#{bsiBenefMobileNumber},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
 		) 
 	</insert>
 	

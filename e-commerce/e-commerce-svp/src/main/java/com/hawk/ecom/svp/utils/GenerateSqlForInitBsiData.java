@@ -32,18 +32,18 @@ public class GenerateSqlForInitBsiData {
 		list.forEach(e -> {
 			String[] strArray = e.split(",");
 
-			Long phoneModelId = null;
+			Integer phoneModelId = null;
 			try {
-				phoneModelId = Long.parseLong(strArray[0].trim());
+				phoneModelId = Integer.parseInt(strArray[0].trim());
 			} catch (NumberFormatException ex) {
-				phoneModelId = Long.parseLong(strArray[0].trim().substring(1, strArray[0].trim().length()));
+				phoneModelId = Integer.parseInt(strArray[0].trim().substring(1, strArray[0].trim().length()));
 			}
 
 			String phoneBrand = strArray[1].trim();
 
 			String phoneModel = strArray[2].trim();
 			String productName = strArray[3].trim();
-			Long productId = Long.parseLong(strArray[4].trim());
+			Integer productId = Integer.parseInt(strArray[4].trim());
 			int period = Integer.parseInt(strArray[5].trim());
 
 			String key = phoneModelId.toString();

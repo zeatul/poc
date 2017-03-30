@@ -1,5 +1,6 @@
 package com.hawk.ecom.svp.persist.domain;
 import java.io.Serializable;
+import java.util.Date;
 
 
 
@@ -27,12 +28,12 @@ public class BsiOrderDetailDomain implements Serializable {
 	/**
 	 * 手机型号ID bsi_phone_model_id
 	 */
-	private Long bsiPhoneModelId;
+	private Integer bsiPhoneModelId;
 	
 	/**
 	 * 碎屏险产品ID bsi_product_id
 	 */
-	private Long bsiProductId;
+	private Integer bsiProductId;
 	
 	/**
 	 * 设备唯一的串号 imei
@@ -68,6 +69,21 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 投保者手机号 bsi_benef_mobile_number
 	 */
 	private String bsiBenefMobileNumber;
+	
+	/**
+	 * 创建日期 create_date
+	 */
+	private Date createDate;
+	
+	/**
+	 * 更新日期 update_date
+	 */
+	private Date updateDate;
+	
+	/**
+	 * 删除日期 delete_date
+	 */
+	private Date deleteDate;
 	
 	
 	/**
@@ -106,7 +122,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @return 手机型号ID bsi_phone_model_id
 	 */
-	public Long getBsiPhoneModelId(){
+	public Integer getBsiPhoneModelId(){
 		return bsiPhoneModelId;
 	}
 	
@@ -114,7 +130,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @param bsiPhoneModelId 手机型号ID bsi_phone_model_id
 	 */	
-	public void setBsiPhoneModelId (Long bsiPhoneModelId) {
+	public void setBsiPhoneModelId (Integer bsiPhoneModelId) {
 		this.bsiPhoneModelId = bsiPhoneModelId;
 	}
 	
@@ -122,7 +138,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @return 碎屏险产品ID bsi_product_id
 	 */
-	public Long getBsiProductId(){
+	public Integer getBsiProductId(){
 		return bsiProductId;
 	}
 	
@@ -130,7 +146,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @param bsiProductId 碎屏险产品ID bsi_product_id
 	 */	
-	public void setBsiProductId (Long bsiProductId) {
+	public void setBsiProductId (Integer bsiProductId) {
 		this.bsiProductId = bsiProductId;
 	}
 	
@@ -244,6 +260,54 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiBenefMobileNumber (String bsiBenefMobileNumber) {
 		this.bsiBenefMobileNumber = bsiBenefMobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 创建日期 create_date
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+	
+	/**
+	 * 
+	 * @param createDate 创建日期 create_date
+	 */	
+	public void setCreateDate (Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	/**
+	 * 
+	 * @return 更新日期 update_date
+	 */
+	public Date getUpdateDate(){
+		return updateDate;
+	}
+	
+	/**
+	 * 
+	 * @param updateDate 更新日期 update_date
+	 */	
+	public void setUpdateDate (Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	/**
+	 * 
+	 * @return 删除日期 delete_date
+	 */
+	public Date getDeleteDate(){
+		return deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @param deleteDate 删除日期 delete_date
+	 */	
+	public void setDeleteDate (Date deleteDate) {
+		this.deleteDate = deleteDate;
 	}
 	
 

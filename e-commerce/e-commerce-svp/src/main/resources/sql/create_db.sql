@@ -68,8 +68,8 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
    order_id             bigint comment '碎屏险订单id',
-   bsi_phone_model_id   bigint not null comment '手机型号ID',
-   bsi_product_id       bigint not null comment '碎屏险产品ID',
+   bsi_phone_model_id   integer not null comment '手机型号ID',
+   bsi_product_id       integer not null comment '碎屏险产品ID',
    imei                 varchar(100) comment '设备唯一的串号',
    bsi_benef_id_typ     integer comment '证件类型',
    bsi_benef_id_number  varchar(50) comment '证件号码',
@@ -77,6 +77,9 @@ create table t_svp_bsi_order_detail
    bsi_benef_sex        char(1) comment '投保者性别',
    bsi_benef_name       varchar(50) comment '投保者姓名',
    bsi_benef_mobile_number varchar(20) not null comment '投保者手机号',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -100,7 +103,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*==============================================================*/
 create table t_svp_bsi_phone_model
 (
-   bsi_phone_model_id   bigint not null comment '手机型号ID',
+   bsi_phone_model_id   integer not null comment '手机型号ID',
    bsi_phone_brand      varchar(100) not null comment '手机品牌',
    bsi_phone_model      varchar(100) not null comment '手机型号',
    bsi_phone_model_status char(1) comment '型号状态',
@@ -124,8 +127,8 @@ create unique index us_svp_bpm1 on t_svp_bsi_phone_model
 /*==============================================================*/
 create table t_svp_bsi_phone_prodcut_map
 (
-   bsi_product_id       bigint not null comment '产品ID',
-   bsi_phone_model_id   bigint not null comment '手机型号Id',
+   bsi_product_id       integer not null comment '产品ID',
+   bsi_phone_model_id   integer not null comment '手机型号Id',
    bsi_product_valid_period integer comment '有效期(月)',
    primary key (bsi_product_id, bsi_phone_model_id)
 )
@@ -138,7 +141,7 @@ alter table t_svp_bsi_phone_prodcut_map comment '碎屏险手机型号产品的�
 /*==============================================================*/
 create table t_svp_bsi_product
 (
-   bsi_product_id       bigint not null comment '碎屏险产品ID',
+   bsi_product_id       integer not null comment '碎屏险产品ID',
    bsi_product_name     varchar(100) comment '产品名称',
    bsi_product_valid_period integer comment '有效期(月)',
    bsi_product_status   char(1) comment '产品状态',
@@ -185,6 +188,7 @@ create table t_svp_order
    mobile_number        varchar(20) comment '手机号码',
    order_status         integer comment '订单状态',
    order_type           varchar(50) comment '订单类型',
+   order_desc           varchar(1000) comment '订单描述',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',

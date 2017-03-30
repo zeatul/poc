@@ -51,6 +51,11 @@ public class OrderDomain implements Serializable {
 	private String orderType;
 	
 	/**
+	 * 订单描述 order_desc
+	 */
+	private String orderDesc;
+	
+	/**
 	 * 创建日期 create_date
 	 */
 	private Date createDate;
@@ -176,6 +181,22 @@ public class OrderDomain implements Serializable {
 	 */	
 	public void setOrderType (String orderType) {
 		this.orderType = orderType;
+	}
+	
+	/**
+	 * 
+	 * @return 订单描述 order_desc
+	 */
+	public String getOrderDesc(){
+		return orderDesc;
+	}
+	
+	/**
+	 * 
+	 * @param orderDesc 订单描述 order_desc
+	 */	
+	public void setOrderDesc (String orderDesc) {
+		this.orderDesc = orderDesc;
 	}
 	
 	/**

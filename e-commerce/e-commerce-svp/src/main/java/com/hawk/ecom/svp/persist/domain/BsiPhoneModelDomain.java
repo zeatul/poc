@@ -17,7 +17,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	/**
 	 * 手机型号ID bsi_phone_model_id
 	 */
-	private Long bsiPhoneModelId;
+	private Integer bsiPhoneModelId;
 	
 	/**
 	 * 手机品牌 bsi_phone_brand
@@ -39,7 +39,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	 * 
 	 * @return 手机型号ID bsi_phone_model_id
 	 */
-	public Long getBsiPhoneModelId(){
+	public Integer getBsiPhoneModelId(){
 		return bsiPhoneModelId;
 	}
 	
@@ -47,7 +47,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	 * 
 	 * @param bsiPhoneModelId 手机型号ID bsi_phone_model_id
 	 */	
-	public void setBsiPhoneModelId (Long bsiPhoneModelId) {
+	public void setBsiPhoneModelId (Integer bsiPhoneModelId) {
 		this.bsiPhoneModelId = bsiPhoneModelId;
 	}
 	

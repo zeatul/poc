@@ -47,7 +47,7 @@ public class BsiPhoneModelService {
 	 * @param model
 	 * @return
 	 */
-	public long queryPhoneModelId(@NotEmpty String brand,@NotEmpty String model){
+	public int queryPhoneModelId(@NotEmpty String brand,@NotEmpty String model){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneBrand", brand);
 		params.put("bsiPhoneModel", model);
