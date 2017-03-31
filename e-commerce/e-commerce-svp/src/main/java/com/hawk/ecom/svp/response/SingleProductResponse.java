@@ -6,16 +6,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class SingleProductResponse implements ResponseData{
 	
-	public Long getBsiProductId() {
+	public Integer getBsiProductId() {
 		return bsiProductId;
 	}
 
 
-
-	public void setBsiProductId(Long bsiProductId) {
+	public void setBsiProductId(Integer bsiProductId) {
 		this.bsiProductId = bsiProductId;
 	}
-
 
 
 	public String getBsiProductName() {
@@ -23,11 +21,9 @@ public class SingleProductResponse implements ResponseData{
 	}
 
 
-
 	public void setBsiProductName(String bsiProductName) {
 		this.bsiProductName = bsiProductName;
 	}
-
 
 
 	public Integer getBsiProductValidPeriod() {
@@ -35,11 +31,9 @@ public class SingleProductResponse implements ResponseData{
 	}
 
 
-
 	public void setBsiProductValidPeriod(Integer bsiProductValidPeriod) {
 		this.bsiProductValidPeriod = bsiProductValidPeriod;
 	}
-
 
 
 	public BigDecimal getBsiDisplayPrice() {
@@ -47,17 +41,15 @@ public class SingleProductResponse implements ResponseData{
 	}
 
 
-
 	public void setBsiDisplayPrice(BigDecimal bsiDisplayPrice) {
 		this.bsiDisplayPrice = bsiDisplayPrice;
 	}
 
 
-
 	/**
 	 * 碎屏险产品ID bsi_product_id
 	 */
-	private Long bsiProductId;
+	private Integer bsiProductId;
 	
 	/**
 	 * 产品名称 bsi_product_name
@@ -67,13 +59,15 @@ public class SingleProductResponse implements ResponseData{
 	/**
 	 * 有效期(月) bsi_product_valid_period
 	 */
-	private Integer bsiProductValidPeriod;
-	
+	private Integer bsiProductValidPeriod;	
 	
 	
 	/**
 	 * 显示价格 bsi_display_price
 	 */
 	private BigDecimal bsiDisplayPrice;
+	
+	
+	
 
 }

@@ -18,7 +18,7 @@ public class AppWideExceptionHandler {
 		logger.error("error", ex);
 		ExceptionResponseData e = new ExceptionResponseData();
 		e.setErrCode("-1");
-		e.setException(ex.getClass().getName());
+//		e.setException(ex.getClass().getName());
 		e.setMessage(ex.getMessage());
 		return FailureResponse.build(e);
 	}

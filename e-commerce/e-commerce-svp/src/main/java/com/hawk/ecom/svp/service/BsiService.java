@@ -30,9 +30,7 @@ import com.hawk.framework.utility.tools.DateTools;
 @Service
 public class BsiService {
 	
-	@Autowired
-	private BsiPhoneModelService bsiPhoneModelService;
-	
+		
 	@Autowired
 	private BsiPhoneProdcutMapService bsiPhoneProdcutMapService;
 	
@@ -56,11 +54,9 @@ public class BsiService {
 	 * @param queryProductParam
 	 * @return
 	 */
-	public BsiProductDomain queryProduct(QueryProductParam queryProductParam){
+	public BsiProductDomain queryProduct(QueryProductParam queryProductParam){		
 		
-		int phoneModelId = bsiPhoneModelService.queryPhoneModelId(queryProductParam.getBrand(), queryProductParam.getModel());
-		
-		int productId = bsiPhoneProdcutMapService.queryProductId(phoneModelId, queryProductParam.getPeriod());
+		int productId = bsiPhoneProdcutMapService.queryProductId(queryProductParam.getModelId(), queryProductParam.getPeriod());
 		
 		return bsiProductService.queryProduct(productId);
 	}

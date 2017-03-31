@@ -61,11 +61,10 @@ public class BsiController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/brand/{brand}/model/{model}/period/{period}", method = GET)
-	public WebResponse<SingleProductResponse> queryProduct(@PathVariable String brand,@PathVariable String model,@PathVariable int period) throws Exception{
+	@RequestMapping(value = "/modelId/{modelId}/period/{period}", method = GET)
+	public WebResponse<SingleProductResponse> queryProduct(@PathVariable Integer modelId,@PathVariable Integer period) throws Exception{
 		QueryProductParam queryProductParam = new QueryProductParam();
-		queryProductParam.setBrand(brand);
-		queryProductParam.setModel(model);
+		queryProductParam.setModelId(modelId);
 		queryProductParam.setPeriod(period);
 		BsiProductDomain bsiProductDomain =bsiService.queryProduct(queryProductParam);
 		SingleProductResponse singleProductResponse = DomainTools.copy(bsiProductDomain, SingleProductResponse.class);

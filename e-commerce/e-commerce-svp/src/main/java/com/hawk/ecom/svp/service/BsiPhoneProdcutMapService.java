@@ -22,7 +22,7 @@ public class BsiPhoneProdcutMapService {
 		params.put("bsiProductValidPeriod", period);
 		List<BsiPhoneProdcutMapDomain> list = bsiPhoneProdcutMapMapper.loadDynamic(params);
 		if (list.size() == 0)
-			throw new RuntimeException("Couldn't found the product");
+			throw new RuntimeException("没有根据保险月数和型号ID，查到对应的产品ID");
 		
 		return list.get(0).getBsiProductId();
 	}

@@ -2,27 +2,19 @@ package com.hawk.ecom.svp.request;
 
 public class QueryProductParam {
 	
-	public String getBrand() {
-		return brand;
+	public Integer getModelId() {
+		return modelId;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
 	}
-	public String getModel() {
-		return model;
-	}
-	public void setModel(String model) {
-		this.model = model;
-	}
-	public int getPeriod() {
+	public Integer getPeriod() {
 		return period;
 	}
-	public void setPeriod(int period) {
+	public void setPeriod(Integer period) {
 		this.period = period;
 	}
-	
-	private String brand;
-	private String model;
+	private Integer modelId;
 	private Integer period;
 
 }
