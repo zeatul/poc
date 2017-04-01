@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.hawk.ecom.svp.constant.ConstBsiIdType;
 import com.hawk.ecom.svp.constant.ConstBsiSex;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
+import com.hawk.ecom.svp.request.ListCouponParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
@@ -53,7 +54,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testActivateCoupon(){
 		String url =getUrl("/svp/bsi/coupon/activate");
 		ActivateCouponParam activateCouponParam =new ActivateCouponParam();
@@ -71,6 +72,16 @@ public class BsiControllerTest extends AbstractControllerTest {
 		
 		System.out.println("request="+JsonTools.toJsonString(activateCouponParam));
 		String result = httpExecutor.post(url, activateCouponParam, null);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testListCoupon(){
+		String url =getUrl("/svp/bsi/coupon/list");
+		ListCouponParam listCouponParam = new ListCouponParam();
+		listCouponParam.setMobileNumber("13916082487");
+		System.out.println("request="+JsonTools.toJsonString(listCouponParam));
+		String result = httpExecutor.post(url, listCouponParam, null);
 		System.out.println("result=" + result);
 	}
 

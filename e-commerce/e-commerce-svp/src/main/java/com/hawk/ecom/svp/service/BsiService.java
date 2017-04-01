@@ -22,6 +22,7 @@ import com.hawk.ecom.svp.persist.mapper.BsiCashCouponMapper;
 import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapper.OrderMapper;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
+import com.hawk.ecom.svp.request.ListCouponParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -97,6 +98,12 @@ public class BsiService {
 		bsiCashCouponMapper.insert(bsiCashCouponDomain);
 	}
 	
+	public List<BsiCashCouponDomain> listCoupon(ListCouponParam listCouponParam){
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("mobileNumber", listCouponParam.getMobileNumber());
+		return bsiCashCouponMapper.loadDynamic(params);
+	}
+	
 	/**
 	 * 激活代金券
 	 * @param activateCouponParam
@@ -126,6 +133,10 @@ public class BsiService {
 		BsiProductDomain bsiProductDomain = bsiProductService.queryProduct(activateCouponParam.getProductId());
 		if (bsiProductDomain == null)
 			throw new RuntimeException("未找到投保产品");
+		
+		/**
+		 * TODO:检查手机号和代金券是否匹配
+		 */
 			
 		/**
 		 * 符合条件,下单

@@ -48,7 +48,7 @@ public class SvpWebConfig extends WebMvcConfigurerAdapter {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.setSerializationInclusion(Include.NON_NULL); 
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		objectMapper.getSerializationConfig().with(df);
 		objectMapper.getDeserializationConfig().with(df);
 		objectMapper.getDeserializationConfig().with(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

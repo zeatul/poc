@@ -1,7 +1,16 @@
 {
 	"data": {
-		"message": "代金券 已经使用",
-		"errCode": "-1"
+		"cashCoupons": [
+			{
+				"bsiCashCouponCode": "7001a40d-53a0-47e8-b374-5469e93df9bf",
+				"bsiCashCouponName": "一个月免费代金券",
+				"bsiCashCouponCreateDate": 1490922767000,
+				"bsiCashCouponInvalidDate": 1493514767000,
+				"bsiCashCouponStatus": 0,
+				"bsiCashCouponPeriod": 1
+			}
+		],
+		"count": 1
 	},
-	"code": 0
+	"code": 1
 }

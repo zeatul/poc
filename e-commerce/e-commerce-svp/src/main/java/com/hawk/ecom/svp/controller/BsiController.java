@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
+import com.hawk.ecom.svp.request.ListCouponParam;
 import com.hawk.ecom.svp.request.QueryModelOfBrandParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.ecom.svp.response.MultiBrandResponse;
+import com.hawk.ecom.svp.response.MultiCouponResponse;
+import com.hawk.ecom.svp.response.MultiCouponResponse.CashCoupon;
 import com.hawk.ecom.svp.response.MultiPhoneModelResponse;
 import com.hawk.ecom.svp.response.SingleProductResponse;
 import com.hawk.ecom.svp.service.BsiPhoneModelService;
@@ -81,8 +85,19 @@ public class BsiController {
 	@RequestMapping(value = "/coupon/activate", method = POST)
 	public WebResponse<ResponseData> activateCashCoupon(HttpServletRequest request) throws Exception{
 		ActivateCouponParam activateCouponParam = HttpRequestTools.parse(request, ActivateCouponParam.class);
+		
 		bsiService.activateCoupon(activateCouponParam);
 		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/coupon/list", method = POST)
+	public WebResponse<MultiCouponResponse> listCashCoupon(HttpServletRequest request) throws Exception{
+		ListCouponParam listCouponParam = HttpRequestTools.parse(request, ListCouponParam.class);
+		List<BsiCashCouponDomain> list = bsiService.listCoupon(listCouponParam);
+		
+		List<CashCoupon> c = DomainTools.copy(list, CashCoupon.class);
+		
+		return SuccessResponse.build(new MultiCouponResponse(c));
 	}
 
 }
