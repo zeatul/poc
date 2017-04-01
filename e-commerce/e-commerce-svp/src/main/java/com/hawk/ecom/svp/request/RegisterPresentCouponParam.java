@@ -1,6 +1,6 @@
 package com.hawk.ecom.svp.request;
 
-public class RegisterForCouponParam {
+public class RegisterPresentCouponParam {
 	
 	public String getMobileNumber() {
 		return mobileNumber;

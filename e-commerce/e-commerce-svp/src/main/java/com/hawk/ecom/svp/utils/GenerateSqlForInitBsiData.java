@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
-import com.hawk.ecom.svp.persist.domain.BsiPhoneProdcutMapDomain;
+import com.hawk.ecom.svp.persist.domain.BsiPhoneProductMapDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
 import com.hawk.framework.utility.tools.ResourceTools;
 
@@ -27,7 +27,7 @@ public class GenerateSqlForInitBsiData {
 
 		List<BsiPhoneModelDomain> phoneList = new ArrayList<BsiPhoneModelDomain>();
 		Map<String, BsiPhoneModelDomain> phoneFilter = new HashMap<String, BsiPhoneModelDomain>();
-		List<BsiPhoneProdcutMapDomain> mapList = new ArrayList<BsiPhoneProdcutMapDomain>();
+		List<BsiPhoneProductMapDomain> mapList = new ArrayList<BsiPhoneProductMapDomain>();
 		List<BsiProductDomain> productList = new ArrayList<BsiProductDomain>();
 		Map<String, BsiProductDomain> productFilter = new HashMap<String, BsiProductDomain>();
 		list.forEach(e -> {
@@ -63,11 +63,11 @@ public class GenerateSqlForInitBsiData {
 				phoneFilter.put(key, phoneModelDomain);
 			}
 
-			BsiPhoneProdcutMapDomain phoneProdcutMapDomain = new BsiPhoneProdcutMapDomain();
-			phoneProdcutMapDomain.setBsiPhoneModelId(phoneModelId);
-			phoneProdcutMapDomain.setBsiProductId(productId);
-			phoneProdcutMapDomain.setBsiProductValidPeriod(period);
-			mapList.add(phoneProdcutMapDomain);
+			BsiPhoneProductMapDomain phoneProductMapDomain = new BsiPhoneProductMapDomain();
+			phoneProductMapDomain.setBsiPhoneModelId(phoneModelId);
+			phoneProductMapDomain.setBsiProductId(productId);
+			phoneProductMapDomain.setBsiProductValidPeriod(period);
+			mapList.add(phoneProductMapDomain);
 
 			key = productId.toString();
 			BsiProductDomain productDomain = productFilter.get(key);
@@ -112,10 +112,10 @@ public class GenerateSqlForInitBsiData {
 			System.out.println(sb.toString());
 		});
 
-		System.out.println("delete from  t_svp_bsi_phone_prodcut_map;");
+		System.out.println("delete from  t_svp_bsi_phone_product_map;");
 		mapList.forEach(phoneProdcutMapDomain -> {
 			StringBuilder sb = new StringBuilder();
-			sb.append("insert into t_svp_bsi_phone_prodcut_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) ")//
+			sb.append("insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) ")//
 					.append("values(")//
 					.append(phoneProdcutMapDomain.getBsiProductId()).append(",")//
 					.append(phoneProdcutMapDomain.getBsiPhoneModelId()).append(",")//

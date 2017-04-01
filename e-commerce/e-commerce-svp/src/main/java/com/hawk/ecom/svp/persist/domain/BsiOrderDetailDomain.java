@@ -58,7 +58,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	/**
 	 * 投保者性别 bsi_benef_sex
 	 */
-	private String bsiBenefSex;
+	private Integer bsiBenefSex;
 	
 	/**
 	 * 投保者姓名 bsi_benef_name
@@ -218,7 +218,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @return 投保者性别 bsi_benef_sex
 	 */
-	public String getBsiBenefSex(){
+	public Integer getBsiBenefSex(){
 		return bsiBenefSex;
 	}
 	
@@ -226,7 +226,7 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 
 	 * @param bsiBenefSex 投保者性别 bsi_benef_sex
 	 */	
-	public void setBsiBenefSex (String bsiBenefSex) {
+	public void setBsiBenefSex (Integer bsiBenefSex) {
 		this.bsiBenefSex = bsiBenefSex;
 	}
 	

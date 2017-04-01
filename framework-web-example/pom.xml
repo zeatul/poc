@@ -20,8 +20,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.192</version>
-		</dependency>
+			</dependency>
 		<!-- apache common tools -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

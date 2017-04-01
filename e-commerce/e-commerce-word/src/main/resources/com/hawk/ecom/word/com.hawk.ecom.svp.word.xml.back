@@ -214,6 +214,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>dcd09571-333e-4bd2-a049-e791102f3e60</id>
+		<code>order_desc</code>
+		<name>订单描述</name>
+		<displayName>订单描述</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
 		<code>order_code</code>
 		<name>订单编号</name>

@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 /**
  * 碎屏险手机型号产品的对应关系
- * The class is mapped to the table t_svp_bsi_phone_prodcut_map 
+ * The class is mapped to the table t_svp_bsi_phone_product_map 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class BsiPhoneProdcutMapDomain implements Serializable {
+public class BsiPhoneProductMapDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	

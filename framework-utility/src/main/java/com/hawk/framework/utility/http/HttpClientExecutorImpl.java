@@ -50,7 +50,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -212,8 +211,9 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 	 * @throws HttpResponseException
 	 */
 	private void checkResponse(CloseableHttpResponse response) throws HttpResponseException {
-		if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
-			throw new HttpResponseException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
+		int statusCode = response.getStatusLine().getStatusCode();
+		if (statusCode != HttpStatus.SC_OK)
+			throw new HttpResponseException(response.getStatusLine().getStatusCode(),"HttpStatus="+statusCode + ","+ response.getStatusLine().getReasonPhrase());
 	}
 
 	public String get(String path, List<HttpParam> params)  {

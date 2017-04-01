@@ -14,8 +14,7 @@ public class BsiProductService {
 	
 	public BsiProductDomain queryProduct(int productId){
 		BsiProductDomain bsiProductDomain = bsiProductMapper.load(productId);
-		if (bsiProductDomain == null)
-			throw new RuntimeException("Couldn't find the product");
+		
 		return bsiProductDomain;
 	}
 

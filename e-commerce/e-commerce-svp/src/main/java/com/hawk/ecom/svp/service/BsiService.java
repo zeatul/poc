@@ -23,7 +23,7 @@ import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapper.OrderMapper;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
-import com.hawk.ecom.svp.request.RegisterForCouponParam;
+import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
 
@@ -58,14 +58,17 @@ public class BsiService {
 		
 		int productId = bsiPhoneProdcutMapService.queryProductId(queryProductParam.getModelId(), queryProductParam.getPeriod());
 		
-		return bsiProductService.queryProduct(productId);
+		BsiProductDomain bsiProductDomain = bsiProductService.queryProduct(productId);
+		if (bsiProductDomain == null)
+			throw new RuntimeException("未找到产品");
+		return bsiProductDomain;
 	}
 	
 	/**
 	 * 注册赠送代金券只有一次机会
 	 * @param registerForCouponParam
 	 */
-	public void rgeisterForCoupon(RegisterForCouponParam registerForCouponParam){
+	public void rgeisterPresentCoupon(RegisterPresentCouponParam registerForCouponParam){
 		String mobileNumber = registerForCouponParam.getMobileNumber();
 		String bsiCashCouponType = ConstCouponParameter.REGISTER_PRESENT_COUPON.type;
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -109,7 +112,7 @@ public class BsiService {
 			throw new RuntimeException("代金券不存在");
 		
 		BsiCashCouponDomain bsiCashCouponDomain = list.get(0);
-		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.USED){
+		if (bsiCashCouponDomain.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.USED){
 			throw new RuntimeException("代金券 已经使用");
 		}
 		
@@ -117,6 +120,13 @@ public class BsiService {
 			throw new RuntimeException("代金券 已经过期");
 		}
 		
+		/**
+		 * TODO:检查产品的保险月数和代金券的保险月数是否一致
+		 */
+		BsiProductDomain bsiProductDomain = bsiProductService.queryProduct(activateCouponParam.getProductId());
+		if (bsiProductDomain == null)
+			throw new RuntimeException("未找到投保产品");
+			
 		/**
 		 * 符合条件,下单
 		 */		
@@ -157,6 +167,8 @@ public class BsiService {
 		bsiOrderDetailDomain.setOrderId(orderDomain.getId());
 		bsiOrderDetailDomain.setCreateDate(currentDate);
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
+		bsiOrderDetailDomain.setId(pkGenService.genPk());
+		
 		
 		orderMapper.insert(orderDomain);
 		bsiCashCouponMapper.update(bsiCashCouponDomain);

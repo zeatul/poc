@@ -1,16 +1,16 @@
 package com.hawk.ecom.svp.persist.mapper;
 import java.util.List;
 import java.util.Map;
-import com.hawk.ecom.svp.persist.domain.BsiPhoneProdcutMapDomain;
+import com.hawk.ecom.svp.persist.domain.BsiPhoneProductMapDomain;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * table = t_svp_bsi_phone_prodcut_map
+ * table = t_svp_bsi_phone_product_map
  * desc = 碎屏险手机型号产品的对应关系
  * 
  * @author Gen
  */
-public interface BsiPhoneProdcutMapMapper  {
+public interface BsiPhoneProductMapMapper  {
 
 	/**
 	 * 根据主键加载记录
@@ -18,21 +18,21 @@ public interface BsiPhoneProdcutMapMapper  {
 	 * @param bsiPhoneModelId 手机型号Id
 	 * @return 查询到的记录
 	 */
-	BsiPhoneProdcutMapDomain load(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
+	BsiPhoneProductMapDomain load(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
 	
 	/**
 	 * 动态条件加载记录
 	 * @param params 查询条件
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<BsiPhoneProdcutMapDomain> loadDynamic(Map<String,Object> params);
+	List<BsiPhoneProductMapDomain> loadDynamic(Map<String,Object> params);
 	
 	/**
 	 * 需要传入分页参数，请使用对应的工具类注入分页参数
 	 * @param params
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<BsiPhoneProdcutMapDomain> loadDynamicPaging(Map<String,Object> params);
+	List<BsiPhoneProductMapDomain> loadDynamicPaging(Map<String,Object> params);
 	
 	/**
 	 * 计算符合条件的记录数
@@ -52,10 +52,10 @@ public interface BsiPhoneProdcutMapMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param BsiPhoneProdcutMapDomain 碎屏险手机型号产品的对应关系
+	 * @param BsiPhoneProductMapDomain 碎屏险手机型号产品的对应关系
 	 * @return 插入的记录数
 	 */
-	int insert(BsiPhoneProdcutMapDomain bsiPhoneProdcutMapDomain);
+	int insert(BsiPhoneProductMapDomain bsiPhoneProductMapDomain);
 	
 	/**
 	 * 根据主键删除记录
@@ -74,17 +74,17 @@ public interface BsiPhoneProdcutMapMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param BsiPhoneProdcutMapDomain 碎屏险手机型号产品的对应关系
+	 * @param BsiPhoneProductMapDomain 碎屏险手机型号产品的对应关系
 	 * @return 更新的记录数
 	 */
-	int update(BsiPhoneProdcutMapDomain bsiPhoneProdcutMapDomain);
+	int update(BsiPhoneProductMapDomain bsiPhoneProductMapDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param BsiPhoneProdcutMapDomain 碎屏险手机型号产品的对应关系
+	 * @param BsiPhoneProductMapDomain 碎屏险手机型号产品的对应关系
 	 * @return 更新的记录数
 	 */
-	int updateWithoutNull(BsiPhoneProdcutMapDomain bsiPhoneProdcutMapDomain);
+	int updateWithoutNull(BsiPhoneProductMapDomain bsiPhoneProductMapDomain);
 	
 	/**
 	 * 更新,要跟新的字段使用字段名，更新条件使用old_字段名，用来适配某些批量更新记录的情况

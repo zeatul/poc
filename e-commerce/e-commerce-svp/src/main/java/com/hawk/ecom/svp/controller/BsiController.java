@@ -15,7 +15,7 @@ import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
 import com.hawk.ecom.svp.request.QueryModelOfBrandParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
-import com.hawk.ecom.svp.request.RegisterForCouponParam;
+import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.ecom.svp.response.MultiBrandResponse;
 import com.hawk.ecom.svp.response.MultiPhoneModelResponse;
 import com.hawk.ecom.svp.response.SingleProductResponse;
@@ -72,9 +72,9 @@ public class BsiController {
 	}
 	
 	@RequestMapping(value = "/coupon/register/present", method = POST)
-	public WebResponse<ResponseData> registerForCoupon(HttpServletRequest request) throws Exception{
-		RegisterForCouponParam registerForCouponParam = HttpRequestTools.parse(request, RegisterForCouponParam.class);
-		bsiService.rgeisterForCoupon(registerForCouponParam);
+	public WebResponse<ResponseData> registerPresentCoupon(HttpServletRequest request) throws Exception{
+		RegisterPresentCouponParam registerForCouponParam = HttpRequestTools.parse(request, RegisterPresentCouponParam.class);
+		bsiService.rgeisterPresentCoupon(registerForCouponParam);
 		return SuccessResponse.build(null);
 	}
 	

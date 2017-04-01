@@ -12,7 +12,7 @@ drop index us_svp_bpm1 on t_svp_bsi_phone_model;
 
 drop table if exists t_svp_bsi_phone_model;
 
-drop table if exists t_svp_bsi_phone_prodcut_map;
+drop table if exists t_svp_bsi_phone_product_map;
 
 drop table if exists t_svp_bsi_product;
 
@@ -74,7 +74,7 @@ create table t_svp_bsi_order_detail
    bsi_benef_id_typ     integer comment '证件类型',
    bsi_benef_id_number  varchar(50) comment '证件号码',
    bsi_benef_birthday   varchar(50) comment '投保者生日',
-   bsi_benef_sex        char(1) comment '投保者性别',
+   bsi_benef_sex        integer comment '投保者性别',
    bsi_benef_name       varchar(50) comment '投保者姓名',
    bsi_benef_mobile_number varchar(20) not null comment '投保者手机号',
    create_date          timestamp(3) null comment '创建日期',
@@ -123,9 +123,9 @@ create unique index us_svp_bpm1 on t_svp_bsi_phone_model
 );
 
 /*==============================================================*/
-/* Table: t_svp_bsi_phone_prodcut_map                           */
+/* Table: t_svp_bsi_phone_product_map                           */
 /*==============================================================*/
-create table t_svp_bsi_phone_prodcut_map
+create table t_svp_bsi_phone_product_map
 (
    bsi_product_id       integer not null comment '产品ID',
    bsi_phone_model_id   integer not null comment '手机型号Id',
@@ -134,7 +134,7 @@ create table t_svp_bsi_phone_prodcut_map
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table t_svp_bsi_phone_prodcut_map comment '碎屏险手机型号产品的对应关系';
+alter table t_svp_bsi_phone_product_map comment '碎屏险手机型号产品的对应关系';
 
 /*==============================================================*/
 /* Table: t_svp_bsi_product                                     */

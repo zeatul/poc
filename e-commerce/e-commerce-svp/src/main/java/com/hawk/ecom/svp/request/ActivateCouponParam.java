@@ -2,6 +2,14 @@ package com.hawk.ecom.svp.request;
 
 public class ActivateCouponParam {
 	
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
 	public Integer getPhoneModelId() {
 		return phoneModelId;
 	}
@@ -69,13 +77,7 @@ public class ActivateCouponParam {
 		this.name = name;
 	}
 
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+	
 
 	public String getImei() {
 		return imei;
@@ -127,7 +129,7 @@ public class ActivateCouponParam {
 	/**
 	 * 投保者性别	
 	 */
-	private String sex;
+	private Integer sex;
 	
 	/**
 	 * 投保手机串号

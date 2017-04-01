@@ -1,9 +1,7 @@
 {
 	"data": {
-		"bsiProductId": 10260,
-		"bsiProductName": "1个月碎屏保A+（联通）",
-		"bsiProductValidPeriod": 1,
-		"bsiDisplayPrice": 1200.00
+		"message": "代金券 已经使用",
+		"errCode": "-1"
 	},
-	"code": 1
+	"code": 0
 }
