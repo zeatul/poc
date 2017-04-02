@@ -4,9 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -20,10 +22,8 @@ public class JsonTools {
 		objectMapper = new ObjectMapper();
 		objectMapper.setSerializationInclusion(Include.NON_NULL); 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		objectMapper.getSerializationConfig().with(df);
-		objectMapper.getDeserializationConfig().with(df);
-		objectMapper.getDeserializationConfig().with(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		objectMapper.setSerializationInclusion(Include.NON_NULL);
+		objectMapper.setDateFormat(df);
+		
 	}
 
 	public static String toJsonString(Object object) {
@@ -74,12 +74,32 @@ public class JsonTools {
 //		return objectMapper.readValue(jsonStr, new TypeReference<List<T>>() {
 //		});
 //	}
+	
+	public static class T{
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
+		}
+
+		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+		private Date date;
+	}
 
 	public static void main(String[] args){
-		List<String> list = new ArrayList<String>();
+		List<Object> list = new ArrayList<Object>();
 		
 		list.add("onDxbt5qLOjAdkqE9E_1MOhzayHU");
 		list.add("onDxbt5qLOjAdkqE9E_1MOh123HU");
+		
+		list.add(new Date());
+		
+		T t = new T();
+		t.setDate(new Date());
+		
+		list.add(t);
 		
 		String str = JsonTools.toJsonString(list);
 		System.out.println(str);

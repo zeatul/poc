@@ -49,10 +49,7 @@ public class SvpWebConfig extends WebMvcConfigurerAdapter {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.setSerializationInclusion(Include.NON_NULL); 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		objectMapper.getSerializationConfig().with(df);
-		objectMapper.getDeserializationConfig().with(df);
-		objectMapper.getDeserializationConfig().with(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		objectMapper.setSerializationInclusion(Include.NON_NULL);
+		objectMapper.setDateFormat(df);
 		converter.setObjectMapper(objectMapper);
 		
 //		List<MediaType> mediaTypes = new ArrayList(converter.getSupportedMediaTypes());

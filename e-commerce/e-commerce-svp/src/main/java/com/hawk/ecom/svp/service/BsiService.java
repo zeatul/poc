@@ -119,13 +119,16 @@ public class BsiService {
 			throw new RuntimeException("代金券不存在");
 		
 		BsiCashCouponDomain bsiCashCouponDomain = list.get(0);
-		if (bsiCashCouponDomain.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.USED){
-			throw new RuntimeException("代金券 已经使用");
-		}
 		
 		if (bsiCashCouponDomain.getBsiCashCouponStatus()== ConstCouponParameter.CouopnStatus.OUT_OF_DATE || bsiCashCouponDomain.getBsiCashCouponInvalidDate().before(new Date())){
 			throw new RuntimeException("代金券 已经过期");
 		}
+		
+		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.UNUSED){
+			throw new RuntimeException("代金券 已经使用");
+		}
+		
+		
 		
 		/**
 		 * TODO:检查产品的保险月数和代金券的保险月数是否一致
@@ -160,7 +163,7 @@ public class BsiService {
 		 * 代金券
 		 */
 		bsiCashCouponDomain.setOrderCode(orderDomain.getOrderCode());
-		bsiCashCouponDomain.setBsiCashCouponStatus(ConstCouponParameter.CouopnStatus.USED);
+		bsiCashCouponDomain.setBsiCashCouponStatus(ConstCouponParameter.CouopnStatus.ACTIVVATING);
 		
 		/**
 		 * 订单明细
