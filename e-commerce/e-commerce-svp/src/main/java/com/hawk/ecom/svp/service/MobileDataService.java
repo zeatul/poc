@@ -1,7 +1,9 @@
 package com.hawk.ecom.svp.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import com.hawk.ecom.svp.persist.mapperex.OrderMapperEx;
 import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class MobileDataService {
@@ -101,6 +104,25 @@ public class MobileDataService {
 		
 		OrderMapper.insert(orderDomain);
 		mobileDataOrderDetailMapper.insert(mobileDataOrderDetailDomain);
+	}
+	
+	/**
+	 * 校验taskId是否存在，状态是否为UNCHARGED
+	 * @param taskId
+	 */
+	public void checkTaskId(String taskId){
+		if (StringTools.isNullOrEmpty(taskId))
+			throw new RuntimeException("任务编号为空");
+		
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("chargeTaskId", taskId);
+		List<MobileDataOrderDetailDomain> list = mobileDataOrderDetailMapper.loadDynamic(params);
+		
+		if(list.size() == 0)
+			throw new RuntimeException("任务不存在");
+		
+		if(list.get(0).getChargeStatus() != ConstChageStatus.UNCHARGED)
+			throw new RuntimeException("任务状态不是未充值");
 	}
 
 }

@@ -25,6 +25,7 @@ import com.hawk.ecom.svp.response.MultiPhoneModelResponse;
 import com.hawk.ecom.svp.response.SingleProductResponse;
 import com.hawk.ecom.svp.service.BsiPhoneModelService;
 import com.hawk.ecom.svp.service.BsiService;
+import com.hawk.ecom.svp.utils.HttpRequestToolsForSignature;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
@@ -77,7 +78,7 @@ public class BsiController {
 	
 	@RequestMapping(value = "/coupon/register/present", method = POST)
 	public WebResponse<ResponseData> registerPresentCoupon(HttpServletRequest request) throws Exception{
-		RegisterPresentCouponParam registerForCouponParam = HttpRequestTools.parse(request, RegisterPresentCouponParam.class);
+		RegisterPresentCouponParam registerForCouponParam = HttpRequestToolsForSignature.parse(request, RegisterPresentCouponParam.class);
 		bsiService.rgeisterPresentCoupon(registerForCouponParam);
 		return SuccessResponse.build(null);
 	}

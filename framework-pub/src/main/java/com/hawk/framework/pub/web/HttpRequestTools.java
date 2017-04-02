@@ -5,12 +5,15 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 public class HttpRequestTools {
+	
+	
 	
 	/**
 	 * 解析输入的请求参数
@@ -19,7 +22,7 @@ public class HttpRequestTools {
 	 * @return
 	 * @throws IOException 
 	 */
-	public  static <T> T  parse(HttpServletRequest request, Class<T> clazz) throws IOException  {
+	public static <T> T  parse(HttpServletRequest request, Class<T> clazz) throws IOException  {
 
 		String input = null;
 		if (request.getMethod().equalsIgnoreCase("get")) {
@@ -39,5 +42,7 @@ public class HttpRequestTools {
 		return t;
 		
 	}
+	
+	
 
 }

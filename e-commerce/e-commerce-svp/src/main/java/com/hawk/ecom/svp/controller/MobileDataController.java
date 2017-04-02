@@ -7,12 +7,13 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.ecom.svp.service.MobileDataService;
-import com.hawk.framework.pub.web.HttpRequestTools;
+import com.hawk.ecom.svp.utils.HttpRequestToolsForSignature;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
@@ -36,8 +37,14 @@ public class MobileDataController {
 	
 	@RequestMapping(value = "/signin", method = POST)
 	public WebResponse<ResponseData> signIn(HttpServletRequest request) throws IOException{
-		SignInParam signInParam = HttpRequestTools.parse(request, SignInParam.class);		
+		SignInParam signInParam = HttpRequestToolsForSignature.parse(request, SignInParam.class);		
 		mobileDataService.signIn(signInParam);		
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value="/unicom/exist/taskId/{taskId}",method = GET)
+	public WebResponse<ResponseData> checkTaskId(@PathVariable String taskId){
+		mobileDataService.checkTaskId(taskId);
 		return SuccessResponse.build(null);
 	}
 }
