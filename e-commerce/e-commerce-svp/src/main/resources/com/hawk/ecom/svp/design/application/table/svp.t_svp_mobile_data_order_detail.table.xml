@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>063393bc-fcf2-4eac-a161-198f887fa941</id>
+	<id>108d2e2c-4859-4bc1-a133-401f8da70a6c</id>
 	<code>t_svp_mobile_data_order_detail</code>
 	<comment>联通流量订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>023e27ba-d56e-4d80-9493-988e0eda1496</id>
+			<id>6b00ea35-274e-459b-8894-6670f00bc0b9</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>564093f7-e430-4db6-a97a-b51dadcbc301</id>
+			<id>c827b6ce-99f3-4f2c-9944-e9868ae42a53</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3fae9336-224c-4090-8697-af6c5a74192c</id>
+			<id>06459357-5ae5-47f6-83f2-e99871a8aabb</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7f18fdc7-eea6-4fc1-8505-366e9ed2e3e3</id>
+			<id>486fb9f0-796c-4541-8cf4-5e2505ecd699</id>
 			<word>
 				<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3fe2b517-28a4-4901-b42a-aa93eedaf992</id>
+			<id>877729b2-fddf-4750-8825-acc11f1754ca</id>
 			<word>
 				<id>709d9aeb-98b3-4553-9328-49e7d6f8f462</id>
 			</word>
@@ -61,51 +61,62 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>08abfc86-e040-4f83-b107-b26f20111f6c</id>
+			<id>5b0dc567-a3d6-4527-aa73-7b467e732bc5</id>
 			<word>
-				<id>6c1af899-d77c-488f-9c5a-e5d5e0d25c4c</id>
+				<id>8aac1c36-2d87-4088-91ce-2b8587933daa</id>
 			</word>
-			<code>charge_task_id</code>
+			<code>charge_task_code</code>
 			<name>充值任务号</name>
 			<comment>充值任务号</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>8a5044f6-18d7-4fc5-85f5-0b939eb9d15f</id>
+			<id>da9b652b-31b9-44e6-8c5c-1498846b9920</id>
 			<word>
-				<id>dfb8561b-170f-4058-88d1-3e9415030985</id>
+				<id>2fc8b29e-743c-489f-b01e-cc334465ec1f</id>
 			</word>
-			<code>charge_times</code>
-			<name>充值次数</name>
-			<comment>充值次数</comment>
+			<code>exec_times</code>
+			<name>请求次数</name>
+			<comment>请求次数</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>bb624d6f-111b-410b-8818-9be9c4cbb59d</id>
+			<id>caf603e3-e43a-4d98-8bd2-6e191b898995</id>
 			<word>
-				<id>838c2979-8df3-4c4f-9b5b-5920b60963fb</id>
+				<id>8aced0d2-a07a-4526-a5a5-67ddf571a87a</id>
 			</word>
-			<code>charge_rtn_code</code>
-			<name>最近一次充值返回代码</name>
-			<comment>最近一次充值返回代码</comment>
+			<code>max_exec_times</code>
+			<name>最大请求次数</name>
+			<comment>最大请求次数</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f2e9c1a7-aebf-4c23-a2bf-d7a345c612be</id>
+			<id>7ae2e20c-57b8-40d2-8ffc-9aac29f7ec9d</id>
 			<word>
-				<id>1107bee4-b1c7-4d46-8acf-7fcc62594dcb</id>
+				<id>d05d3bb6-0f4c-4c78-80c8-f60914f40f28</id>
 			</word>
-			<code>charge_rtn_msg</code>
-			<name>最近一次充值返回原因</name>
-			<comment>最近一次充值返回原因</comment>
+			<code>last_exec_err_code</code>
+			<name>最后一次请求返回错误代码</name>
+			<comment>最后一次请求返回错误代码</comment>
 			<nullable>yes</nullable>
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1cad1b39-c33c-4749-a423-3c1bfa1b458a</id>
+			<id>53f1c37b-09cc-447b-8315-d36a4e93be58</id>
+			<word>
+				<id>2492762a-882c-488b-af6c-89f605fe4ef4</id>
+			</word>
+			<code>last_exec_err_msg</code>
+			<name>最后一次请求返回错误原因</name>
+			<comment>最后一次请求返回错误原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>187ba846-0816-41e8-8970-010c73c56c1f</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -116,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a7e549d1-ecca-487d-99b7-6695964d3a3d</id>
+			<id>58f1d99d-8753-4c82-9116-da4b576c2e4c</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -127,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>6387605b-027c-4d2b-ad90-ec1252319ecd</id>
+			<id>c5f2960d-297a-4098-8ac7-5827fdf784d6</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -138,4 +149,15 @@
 			<isPk>no</isPk>
 		</column>
 	</columns>
+	<indexes>
+		<index>
+			<id>aa3e19fb-85eb-4801-8350-4029dcba0ed6</id>
+			<code>ui_od_task_code</code>
+			<columns>
+				<column>
+					<id>5b0dc567-a3d6-4527-aa73-7b467e732bc5</id>
+				</column>
+			</columns>
+		</index>
+	</indexes>
 </table>

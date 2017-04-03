@@ -86,6 +86,26 @@ public class ModelDomain implements Serializable {
 	 */
 	private String mobileNumber;
 	
+	/**
+	 * 请求次数 exec_times
+	 */
+	private Integer execTimes;
+	
+	/**
+	 * 最大请求次数 max_exec_times
+	 */
+	private Integer maxExecTimes;
+	
+	/**
+	 * 最后一次请求返回错误代码 last_exec_err_code
+	 */
+	private String lastExecErrCode;
+	
+	/**
+	 * 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	private String lastExecErrMsg;
+	
 	
 	/**
 	 * 
@@ -309,6 +329,70 @@ public class ModelDomain implements Serializable {
 	 */	
 	public void setMobileNumber (String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 请求次数 exec_times
+	 */
+	public Integer getExecTimes(){
+		return execTimes;
+	}
+	
+	/**
+	 * 
+	 * @param execTimes 请求次数 exec_times
+	 */	
+	public void setExecTimes (Integer execTimes) {
+		this.execTimes = execTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最大请求次数 max_exec_times
+	 */
+	public Integer getMaxExecTimes(){
+		return maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @param maxExecTimes 最大请求次数 max_exec_times
+	 */	
+	public void setMaxExecTimes (Integer maxExecTimes) {
+		this.maxExecTimes = maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次请求返回错误代码 last_exec_err_code
+	 */
+	public String getLastExecErrCode(){
+		return lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrCode 最后一次请求返回错误代码 last_exec_err_code
+	 */	
+	public void setLastExecErrCode (String lastExecErrCode) {
+		this.lastExecErrCode = lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	public String getLastExecErrMsg(){
+		return lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrMsg 最后一次请求返回错误原因 last_exec_err_msg
+	 */	
+	public void setLastExecErrMsg (String lastExecErrMsg) {
+		this.lastExecErrMsg = lastExecErrMsg;
 	}
 	
 

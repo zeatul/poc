@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>81bb2e0e-8429-4202-8fd3-d317a8b93c60</id>
+	<id>402b14fc-347b-4635-b962-1f99579b6883</id>
 	<code>t_svp_bsi_order_detail</code>
 	<comment>碎屏险订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>828d0a68-5a82-43d2-9877-49280bac8ebb</id>
+			<id>b48282bf-0641-4b55-9040-d704ff9a9848</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>8a8f6bfc-689e-4fcb-a5da-094d90b40c31</id>
+			<id>2d9da5ad-b6c0-4687-8d81-2f7526cdd74c</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,73 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3dc1c820-ecfc-4772-ab05-34e2d2e29faf</id>
+			<id>5dddbf12-a827-471e-ba0b-833be62c51e0</id>
+			<word>
+				<id>edbdf458-20a4-4458-9d3e-1b9dc7db5c4f</id>
+			</word>
+			<code>bsi_task_code</code>
+			<name>任务号,与小宝对接用</name>
+			<comment>任务号,与小宝对接用</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>c634daec-d4bc-4312-b96e-ac4664ef6388</id>
+			<word>
+				<id>dd3248b5-3608-480d-8807-7a32908d0569</id>
+			</word>
+			<code>bsi_task_status</code>
+			<name>任务状态</name>
+			<comment>任务状态</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>633f9b98-6a26-4261-a1a7-03f6ae404a9c</id>
+			<word>
+				<id>2fc8b29e-743c-489f-b01e-cc334465ec1f</id>
+			</word>
+			<code>exec_times</code>
+			<name>请求次数</name>
+			<comment>请求次数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>08d5e998-e3c2-476c-ae12-bf06c9455af2</id>
+			<word>
+				<id>8aced0d2-a07a-4526-a5a5-67ddf571a87a</id>
+			</word>
+			<code>max_exec_times</code>
+			<name>最大请求次数</name>
+			<comment>最大请求次数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>866d584f-53e1-43be-8033-776666d5c109</id>
+			<word>
+				<id>d05d3bb6-0f4c-4c78-80c8-f60914f40f28</id>
+			</word>
+			<code>last_exec_err_code</code>
+			<name>最后一次请求返回错误代码</name>
+			<comment>最后一次请求返回错误代码</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>14c11d2a-6cdc-414a-bbcb-eb23e500c40d</id>
+			<word>
+				<id>2492762a-882c-488b-af6c-89f605fe4ef4</id>
+			</word>
+			<code>last_exec_err_msg</code>
+			<name>最后一次请求返回错误原因</name>
+			<comment>最后一次请求返回错误原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>9aea3a1e-b451-4153-aab3-dda7bd73f216</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -39,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4fe37385-676f-4492-9d1a-2ef82e170ad4</id>
+			<id>ec5921fa-492b-45ec-a6b0-8a99ed90a933</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -50,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>0f848f8a-f085-43b5-82e0-2583b6009108</id>
+			<id>174aa77f-ccaa-4264-92b1-06721752881b</id>
 			<word>
 				<id>ec5c9f96-ecd4-4f66-a288-c461b2c53ceb</id>
 			</word>
@@ -61,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1aeac1ca-9072-4c62-b7bd-f3f097fff993</id>
+			<id>6db9f7f7-8973-4b37-b0bd-c575af6eece5</id>
 			<word>
 				<id>5e685cf9-bc94-483a-a073-38f92eade1cc</id>
 			</word>
@@ -72,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>82f32181-2614-4923-84ea-713b77c16d2c</id>
+			<id>ef329c04-6459-45f9-9bd0-e1b4b6ec98d0</id>
 			<word>
 				<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
 			</word>
@@ -83,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>85e851d6-318e-4200-a229-2297e4d44f3d</id>
+			<id>f580147b-02c4-4826-819b-628ac514c0f2</id>
 			<word>
 				<id>dba8c789-f1db-4811-925e-314951c28c35</id>
 			</word>
@@ -94,7 +160,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1c195149-47f8-4dcb-9ff7-ee730dd0d85b</id>
+			<id>dd286411-c3e4-4b16-8638-1cadac7864f3</id>
 			<word>
 				<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
 			</word>
@@ -105,7 +171,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>20e63e3d-5243-4ffb-8144-9e1dbfa1e2ca</id>
+			<id>15559dc9-e002-48f2-a4b1-f181b4e7c222</id>
 			<word>
 				<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
 			</word>
@@ -116,7 +182,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3f2e277a-52aa-4615-b54e-900a9e72ee75</id>
+			<id>d0dc1bea-86ff-4d95-a82d-fe9ac6427a82</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -127,7 +193,18 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>42ecd88d-27da-4872-987a-583d7b02a785</id>
+			<id>05f5f700-21a0-45bb-af44-0f5923f6aad6</id>
+			<word>
+				<id>924f6d05-8d58-47f7-b7b4-2f6459f53499</id>
+			</word>
+			<code>bsi_insurance_code</code>
+			<name>小宝订单编号</name>
+			<comment>小宝订单编号</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>f006139b-12ae-4c47-b0b3-56c5c7b58043</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -138,7 +215,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1c792313-c850-4db5-9bae-66dca124f0a6</id>
+			<id>e11e8d2a-cd32-419e-8424-6b639119fbc5</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -149,7 +226,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>073657e0-488c-43d7-bb6c-c585741aa2ef</id>
+			<id>264f5b06-d862-454e-b4d4-055b4ce8d418</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -162,11 +239,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>65cc4d1d-b584-45d6-9c52-402605640f80</id>
+			<id>c77dae47-d25e-4e59-8968-f47002003ba0</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>828d0a68-5a82-43d2-9877-49280bac8ebb</id>
+					<id>b48282bf-0641-4b55-9040-d704ff9a9848</id>
+				</column>
+			</columns>
+		</index>
+		<index>
+			<id>5cda4a8a-fbc5-4a13-bde1-7a62ccfdfab5</id>
+			<code>ui_bsi_task_code</code>
+			<columns>
+				<column>
+					<id>5dddbf12-a827-471e-ba0b-833be62c51e0</id>
 				</column>
 			</columns>
 		</index>

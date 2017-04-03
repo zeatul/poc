@@ -7,6 +7,12 @@
 	<sql id="columns">	
 				id AS "id" ,
 		order_id AS "orderId" ,
+		bsi_task_code AS "bsiTaskCode" ,
+		bsi_task_status AS "bsiTaskStatus" ,
+		exec_times AS "execTimes" ,
+		max_exec_times AS "maxExecTimes" ,
+		last_exec_err_code AS "lastExecErrCode" ,
+		last_exec_err_msg AS "lastExecErrMsg" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
 		bsi_product_id AS "bsiProductId" ,
 		imei AS "imei" ,
@@ -16,6 +22,7 @@
 		bsi_benef_sex AS "bsiBenefSex" ,
 		bsi_benef_name AS "bsiBenefName" ,
 		bsi_benef_mobile_number AS "bsiBenefMobileNumber" ,
+		bsi_insurance_code AS "bsiInsuranceCode" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -25,6 +32,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="orderId != null"> AND order_id = #{orderId}  </if>
+			<if test="bsiTaskCode != null"> AND bsi_task_code = #{bsiTaskCode}  </if>
+			<if test="bsiTaskStatus != null"> AND bsi_task_status = #{bsiTaskStatus}  </if>
+			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
+			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
+			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
+			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
@@ -34,6 +47,7 @@
 			<if test="bsiBenefSex != null"> AND bsi_benef_sex = #{bsiBenefSex}  </if>
 			<if test="bsiBenefName != null"> AND bsi_benef_name = #{bsiBenefName}  </if>
 			<if test="bsiBenefMobileNumber != null"> AND bsi_benef_mobile_number = #{bsiBenefMobileNumber}  </if>
+			<if test="bsiInsuranceCode != null"> AND bsi_insurance_code = #{bsiInsuranceCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -44,6 +58,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND order_id = #{old_orderId}
+			AND bsi_task_code = #{old_bsiTaskCode}
+			AND bsi_task_status = #{old_bsiTaskStatus}
+			AND exec_times = #{old_execTimes}
+			AND max_exec_times = #{old_maxExecTimes}
+			AND last_exec_err_code = #{old_lastExecErrCode}
+			AND last_exec_err_msg = #{old_lastExecErrMsg}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
 			AND bsi_product_id = #{old_bsiProductId}
 			AND imei = #{old_imei}
@@ -53,6 +73,7 @@
 			AND bsi_benef_sex = #{old_bsiBenefSex}
 			AND bsi_benef_name = #{old_bsiBenefName}
 			AND bsi_benef_mobile_number = #{old_bsiBenefMobileNumber}
+			AND bsi_insurance_code = #{old_bsiInsuranceCode}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -63,6 +84,12 @@
 		<set>
 			id = #{id},
 			order_id = #{orderId},
+			bsi_task_code = #{bsiTaskCode},
+			bsi_task_status = #{bsiTaskStatus},
+			exec_times = #{execTimes},
+			max_exec_times = #{maxExecTimes},
+			last_exec_err_code = #{lastExecErrCode},
+			last_exec_err_msg = #{lastExecErrMsg},
 			bsi_phone_model_id = #{bsiPhoneModelId},
 			bsi_product_id = #{bsiProductId},
 			imei = #{imei},
@@ -72,6 +99,7 @@
 			bsi_benef_sex = #{bsiBenefSex},
 			bsi_benef_name = #{bsiBenefName},
 			bsi_benef_mobile_number = #{bsiBenefMobileNumber},
+			bsi_insurance_code = #{bsiInsuranceCode},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -82,6 +110,12 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="orderId != null">order_id = #{orderId},</if>
+			<if test="bsiTaskCode != null">bsi_task_code = #{bsiTaskCode},</if>
+			<if test="bsiTaskStatus != null">bsi_task_status = #{bsiTaskStatus},</if>
+			<if test="execTimes != null">exec_times = #{execTimes},</if>
+			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
+			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
+			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="imei != null">imei = #{imei},</if>
@@ -91,6 +125,7 @@
 			<if test="bsiBenefSex != null">bsi_benef_sex = #{bsiBenefSex},</if>
 			<if test="bsiBenefName != null">bsi_benef_name = #{bsiBenefName},</if>
 			<if test="bsiBenefMobileNumber != null">bsi_benef_mobile_number = #{bsiBenefMobileNumber},</if>
+			<if test="bsiInsuranceCode != null">bsi_insurance_code = #{bsiInsuranceCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -134,6 +169,12 @@
 		INSERT INTO t_svp_bsi_order_detail (			
 				id,				
 				order_id,				
+				bsi_task_code,				
+				bsi_task_status,				
+				exec_times,				
+				max_exec_times,				
+				last_exec_err_code,				
+				last_exec_err_msg,				
 				bsi_phone_model_id,				
 				bsi_product_id,				
 				imei,				
@@ -143,6 +184,7 @@
 				bsi_benef_sex,				
 				bsi_benef_name,				
 				bsi_benef_mobile_number,				
+				bsi_insurance_code,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -150,6 +192,12 @@
 		VALUES (	
 			#{id},
 			#{orderId},
+			#{bsiTaskCode},
+			#{bsiTaskStatus},
+			#{execTimes},
+			#{maxExecTimes},
+			#{lastExecErrCode},
+			#{lastExecErrMsg},
 			#{bsiPhoneModelId},
 			#{bsiProductId},
 			#{imei},
@@ -159,6 +207,7 @@
 			#{bsiBenefSex},
 			#{bsiBenefName},
 			#{bsiBenefMobileNumber},
+			#{bsiInsuranceCode},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}

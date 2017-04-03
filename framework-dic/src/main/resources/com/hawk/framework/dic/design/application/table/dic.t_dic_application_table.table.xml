@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>871157e3-3b74-4939-8320-fc331d1c1e77</id>
+	<id>1b730dc6-a2f0-4ead-a197-d68cd561feb8</id>
 	<code>t_dic_application_table</code>
 	<comment>应用拥有的表</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>40c1fb3b-915b-44ba-82de-996a35a2d006</id>
+			<id>f75249b6-1caf-40a5-843f-a98a0332c78e</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>ae9e977a-eb04-415e-bb51-c9404afb0167</id>
+			<id>42bb451c-5610-4cb2-8ff1-1a9acc16d4a8</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>27ba5454-59a0-422e-93f4-fd79bd1f408d</id>
+			<id>3bbe4a4b-9e38-487a-86cf-6aee66dd9059</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f4bf5ecc-3270-4d6f-8480-9117093f5877</id>
+			<id>d2535db5-b507-4df4-865c-17404fab799b</id>
 			<word>
 				<id>8ea5fcdf-7f5d-4dce-be89-99a47c7c0177</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e1ed4063-11d8-41fa-804a-cdad8e86c84b</id>
+			<id>10a5528a-b34d-4131-b617-e4c2bc7c14b1</id>
 			<word>
 				<id>87b3198a-5b9b-4822-af10-8984aee6786d</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b730b515-15a1-4821-a55d-2131bf3f2177</id>
+			<id>3dc32b1c-0aa3-482a-aa55-42f5d9666f12</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>08850317-5bc0-4d8f-8226-a2a4e2dc43b6</id>
+			<id>c0c4bdae-2144-4cb4-af9a-c8c8825a968c</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>69e6ef44-a1b3-4081-b365-5f04b08cee39</id>
+			<id>0cfffdb4-7b8a-4d18-b7af-d5a6bdf89d8e</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -96,11 +96,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>aede1782-c95a-4b25-8934-49153e6dc257</id>
+			<id>5de4ae51-d40d-443c-85b2-d3d945c353f3</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>40c1fb3b-915b-44ba-82de-996a35a2d006</id>
+					<id>f75249b6-1caf-40a5-843f-a98a0332c78e</id>
 				</column>
 			</columns>
 		</index>

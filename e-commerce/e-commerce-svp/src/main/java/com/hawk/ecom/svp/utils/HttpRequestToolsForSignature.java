@@ -27,6 +27,9 @@ public class HttpRequestToolsForSignature {
 		String version = request.getParameter("version");
 		if (!"1.0".equals(version))
 			throw new RuntimeException("version is wrong");
+		String channel = request.getParameter("channel");
+		if (!"0".equals(channel))
+			throw new RuntimeException("channel is wrong");
 		String store = request.getParameter("store");
 		if (!"STO00000001".equals(store))
 			throw new RuntimeException("store is wrong");

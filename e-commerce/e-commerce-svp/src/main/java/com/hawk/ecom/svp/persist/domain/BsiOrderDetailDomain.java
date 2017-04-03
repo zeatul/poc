@@ -26,6 +26,36 @@ public class BsiOrderDetailDomain implements Serializable {
 	private Long orderId;
 	
 	/**
+	 * 任务号,与小宝对接用 bsi_task_code
+	 */
+	private String bsiTaskCode;
+	
+	/**
+	 * 任务状态 bsi_task_status
+	 */
+	private Integer bsiTaskStatus;
+	
+	/**
+	 * 请求次数 exec_times
+	 */
+	private Integer execTimes;
+	
+	/**
+	 * 最大请求次数 max_exec_times
+	 */
+	private Integer maxExecTimes;
+	
+	/**
+	 * 最后一次请求返回错误代码 last_exec_err_code
+	 */
+	private String lastExecErrCode;
+	
+	/**
+	 * 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	private String lastExecErrMsg;
+	
+	/**
 	 * 手机型号ID bsi_phone_model_id
 	 */
 	private Integer bsiPhoneModelId;
@@ -69,6 +99,11 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 投保者手机号 bsi_benef_mobile_number
 	 */
 	private String bsiBenefMobileNumber;
+	
+	/**
+	 * 小宝订单编号 bsi_insurance_code
+	 */
+	private String bsiInsuranceCode;
 	
 	/**
 	 * 创建日期 create_date
@@ -116,6 +151,102 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setOrderId (Long orderId) {
 		this.orderId = orderId;
+	}
+	
+	/**
+	 * 
+	 * @return 任务号,与小宝对接用 bsi_task_code
+	 */
+	public String getBsiTaskCode(){
+		return bsiTaskCode;
+	}
+	
+	/**
+	 * 
+	 * @param bsiTaskCode 任务号,与小宝对接用 bsi_task_code
+	 */	
+	public void setBsiTaskCode (String bsiTaskCode) {
+		this.bsiTaskCode = bsiTaskCode;
+	}
+	
+	/**
+	 * 
+	 * @return 任务状态 bsi_task_status
+	 */
+	public Integer getBsiTaskStatus(){
+		return bsiTaskStatus;
+	}
+	
+	/**
+	 * 
+	 * @param bsiTaskStatus 任务状态 bsi_task_status
+	 */	
+	public void setBsiTaskStatus (Integer bsiTaskStatus) {
+		this.bsiTaskStatus = bsiTaskStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 请求次数 exec_times
+	 */
+	public Integer getExecTimes(){
+		return execTimes;
+	}
+	
+	/**
+	 * 
+	 * @param execTimes 请求次数 exec_times
+	 */	
+	public void setExecTimes (Integer execTimes) {
+		this.execTimes = execTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最大请求次数 max_exec_times
+	 */
+	public Integer getMaxExecTimes(){
+		return maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @param maxExecTimes 最大请求次数 max_exec_times
+	 */	
+	public void setMaxExecTimes (Integer maxExecTimes) {
+		this.maxExecTimes = maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次请求返回错误代码 last_exec_err_code
+	 */
+	public String getLastExecErrCode(){
+		return lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrCode 最后一次请求返回错误代码 last_exec_err_code
+	 */	
+	public void setLastExecErrCode (String lastExecErrCode) {
+		this.lastExecErrCode = lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	public String getLastExecErrMsg(){
+		return lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrMsg 最后一次请求返回错误原因 last_exec_err_msg
+	 */	
+	public void setLastExecErrMsg (String lastExecErrMsg) {
+		this.lastExecErrMsg = lastExecErrMsg;
 	}
 	
 	/**
@@ -260,6 +391,22 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiBenefMobileNumber (String bsiBenefMobileNumber) {
 		this.bsiBenefMobileNumber = bsiBenefMobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 小宝订单编号 bsi_insurance_code
+	 */
+	public String getBsiInsuranceCode(){
+		return bsiInsuranceCode;
+	}
+	
+	/**
+	 * 
+	 * @param bsiInsuranceCode 小宝订单编号 bsi_insurance_code
+	 */	
+	public void setBsiInsuranceCode (String bsiInsuranceCode) {
+		this.bsiInsuranceCode = bsiInsuranceCode;
 	}
 	
 	/**

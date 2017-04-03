@@ -4,6 +4,8 @@ drop index ui_bsi_cc_code on t_svp_bsi_cash_coupon;
 
 drop table if exists t_svp_bsi_cash_coupon;
 
+drop index ui_bsi_task_code on t_svp_bsi_order_detail;
+
 drop table if exists t_svp_bsi_order_detail;
 
 drop table if exists t_svp_bsi_phone_brand;
@@ -15,6 +17,8 @@ drop table if exists t_svp_bsi_phone_model;
 drop table if exists t_svp_bsi_phone_product_map;
 
 drop table if exists t_svp_bsi_product;
+
+drop index ui_od_task_code on t_svp_mobile_data_order_detail;
 
 drop table if exists t_svp_mobile_data_order_detail;
 
@@ -68,6 +72,12 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
    order_id             bigint comment '碎屏险订单id',
+   bsi_task_code        varchar(100) comment '任务号,与小宝对接用',
+   bsi_task_status      integer comment '任务状态',
+   exec_times           integer comment '请求次数',
+   max_exec_times       integer comment '最大请求次数',
+   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
    bsi_phone_model_id   integer not null comment '手机型号ID',
    bsi_product_id       integer not null comment '碎屏险产品ID',
    imei                 varchar(100) comment '设备唯一的串号',
@@ -77,6 +87,7 @@ create table t_svp_bsi_order_detail
    bsi_benef_sex        integer comment '投保者性别',
    bsi_benef_name       varchar(50) comment '投保者姓名',
    bsi_benef_mobile_number varchar(20) not null comment '投保者手机号',
+   bsi_insurance_code   varchar(50) comment '小宝订单编号',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',
@@ -85,6 +96,14 @@ create table t_svp_bsi_order_detail
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_svp_bsi_order_detail comment '碎屏险订单明细';
+
+/*==============================================================*/
+/* Index: ui_bsi_task_code                                      */
+/*==============================================================*/
+create unique index ui_bsi_task_code on t_svp_bsi_order_detail
+(
+   bsi_task_code
+);
 
 /*==============================================================*/
 /* Table: t_svp_bsi_phone_brand                                 */
@@ -164,10 +183,11 @@ create table t_svp_mobile_data_order_detail
    charge_mobile_number varchar(20) comment '手机号码',
    charge_data_size     integer comment '充值流量',
    charge_status        integer comment '充值状态',
-   charge_task_id       varchar(100) comment '充值任务号',
-   charge_times         integer comment '充值次数',
-   charge_rtn_code      varchar(50) comment '最近一次充值返回代码',
-   charge_rtn_msg       varchar(1000) comment '最近一次充值返回原因',
+   charge_task_code     varchar(100) comment '充值任务号',
+   exec_times           integer comment '请求次数',
+   max_exec_times       integer comment '最大请求次数',
+   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期'
@@ -175,6 +195,14 @@ create table t_svp_mobile_data_order_detail
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_svp_mobile_data_order_detail comment '联通流量订单明细';
+
+/*==============================================================*/
+/* Index: ui_od_task_code                                       */
+/*==============================================================*/
+create unique index ui_od_task_code on t_svp_mobile_data_order_detail
+(
+   charge_task_code
+);
 
 /*==============================================================*/
 /* Table: t_svp_order                                           */

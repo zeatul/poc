@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>27aa1354-c5c2-41d3-a7c1-78c2e113d09c</id>
+	<id>c35dc829-8673-44c5-a26c-22b3eb623e17</id>
 	<code>t_svp_bsi_phone_brand</code>
 	<comment></comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>b8b66b71-1007-4807-a666-5b3fc522e29b</id>
+			<id>ec6e3bf9-df7e-4e47-9ba8-97b4e3e5e5b9</id>
 			<word>
 				<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>cd06c9f1-1694-496d-8ac6-546108c58efb</id>
+			<id>43f73b3a-e40f-4416-aafe-c1933d9fc897</id>
 			<word>
 				<id>29704bd4-b7c7-44cf-9fb1-825dbd3563a6</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5c60a864-15ac-41ec-996e-a2ed4f72b741</id>
+			<id>d8428408-fadf-4c9e-9f2b-fb98e6b688fe</id>
 			<word>
 				<id>50c70573-ef5b-4ba6-aeb4-5b761678f7e1</id>
 			</word>
@@ -41,11 +41,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>a49ef837-6923-4a81-95b5-4d4da5a11b5a</id>
+			<id>e08a5bcc-bff7-490d-b1f6-2804a2de8c12</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>b8b66b71-1007-4807-a666-5b3fc522e29b</id>
+					<id>ec6e3bf9-df7e-4e47-9ba8-97b4e3e5e5b9</id>
 				</column>
 			</columns>
 		</index>

@@ -10,6 +10,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>20c1beb6-5698-4ee2-85bf-5e06cd11d244</id>
+		<code>order_number</code>
+		<name>订单编号</name>
+		<displayName>订单编号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>98451740-25ea-47aa-a5c2-09ed4d783cd4</id>
 		<code>is_unique</code>
 		<name>是唯一索引</name>
@@ -70,6 +82,18 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>db948195-8add-427f-8200-d701ce5d8042</id>
+		<code>user_code</code>
+		<name>用户编号</name>
+		<displayName>用户编号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>b8ff419d-cd24-4d14-a4af-696999a72df5</id>
 		<code>operators</code>
 		<name>需要支持的运算符，等于默认支持</name>
@@ -88,6 +112,17 @@
 		<displayName>最小长度</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
+		<code>price</code>
+		<name>价格</name>
+		<displayName>价格</displayName>
+		<useType>technology</useType>
+		<dataType>numeric</dataType>
+		<numericPrecision>10</numericPrecision>
+		<numericScale>2</numericScale>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -138,6 +173,18 @@
 		<displayName>序号</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>3f0a4f29-1aec-490a-822c-c4619fc28aca</id>
+		<code>store_code</code>
+		<name>商户编号</name>
+		<displayName>商户编号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -337,6 +384,18 @@
 		<displayName>最大长度</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
+		<code>mobile_number</code>
+		<name>手机号</name>
+		<displayName>手机号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>20</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>

@@ -283,6 +283,10 @@ create table t_dic_model
    order_number         varchar(50) comment '订单编号',
    user_code            varchar(50) not null comment '用户编号',
    mobile_number        varchar(20) not null comment '手机号',
+   exec_times           integer comment '请求次数',
+   max_exec_times       integer comment '最大请求次数',
+   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

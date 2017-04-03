@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>98637d15-f35f-4d7b-9819-adfd4f8a5562</id>
+	<id>f86b6c05-fb15-49af-84a3-5d4bf1b38975</id>
 	<code>t_dic_index</code>
 	<comment>索引</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>db9e6ec7-028c-4dd1-86ee-8d2b8063c72f</id>
+			<id>bedd0943-ccfc-439e-bf37-cda2a875529a</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>cab90db8-5500-443d-9599-acfca80e100c</id>
+			<id>88a91978-facf-459b-ba66-6474d90f3e9c</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d92bc1a7-53c7-47b2-9e4c-4965b7673147</id>
+			<id>6da08b88-127e-43be-a7a9-7d1a1bfe942b</id>
 			<word>
 				<id>477d8fc2-58b7-4101-b4a1-756a1c3f63c6</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>69f2cc46-6355-4a6c-94d6-d144c2e37869</id>
+			<id>d20fd384-99c5-4259-b6d9-36635cdb698b</id>
 			<word>
 				<id>f65384b1-141f-4ed6-a412-61ba0e872f2e</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4697dab2-0a10-4742-80eb-2f6509f850ba</id>
+			<id>93468a32-9c2e-4407-8e68-570939e6bfec</id>
 			<word>
 				<id>aea9d955-8aca-402d-9257-c89f07e6d7a3</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5f273813-afd1-4c90-bf54-91c2225c2a61</id>
+			<id>111e261b-3d8a-4ce5-aa33-9800d46d5e26</id>
 			<word>
 				<id>98451740-25ea-47aa-a5c2-09ed4d783cd4</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f9a7bcfa-1a79-49fc-8cc3-e242732ef3b1</id>
+			<id>5358d3b0-6af8-40c9-bd8a-04f2bc99e9b2</id>
 			<word>
 				<id>0bdb89a3-e55f-4f54-bf69-2b4cd912a6be</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>854541e8-8663-4b83-9ee1-4254046c8583</id>
+			<id>c52cb04b-be19-48b3-a3eb-113ba4839619</id>
 			<word>
 				<id>8ea5fcdf-7f5d-4dce-be89-99a47c7c0177</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d5f3fee9-d5a4-422e-9592-43f33f506017</id>
+			<id>d25d8ace-e46a-4d96-8b8b-cb5656b837e6</id>
 			<word>
 				<id>87b3198a-5b9b-4822-af10-8984aee6786d</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>513317df-1e89-4380-a7f5-333bd030fdfa</id>
+			<id>f31e50dd-6718-49fd-a38c-6264e72859a9</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e08878e8-91e9-40b0-9c73-60814ab6e285</id>
+			<id>d7bca860-6cc8-4e87-abce-1e8306f94ff5</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d7d4412f-ba43-4833-8955-c21533e7b38f</id>
+			<id>4c20f554-4bbe-4bba-86fc-4067409f88a9</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -140,20 +140,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>4ec46ec7-356b-48af-a0fa-db5badf570f7</id>
+			<id>00b073d5-c7c4-4488-95e3-815f2b8ba803</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>db9e6ec7-028c-4dd1-86ee-8d2b8063c72f</id>
+					<id>bedd0943-ccfc-439e-bf37-cda2a875529a</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>efd59118-c2d1-4cee-b5b3-585bd7d7a1c5</id>
+			<id>48327b71-06e5-456d-b2d9-009687642474</id>
 			<code>ui_di_1</code>
 			<columns>
 				<column>
-					<id>d92bc1a7-53c7-47b2-9e4c-4965b7673147</id>
+					<id>6da08b88-127e-43be-a7a9-7d1a1bfe942b</id>
 				</column>
 			</columns>
 		</index>

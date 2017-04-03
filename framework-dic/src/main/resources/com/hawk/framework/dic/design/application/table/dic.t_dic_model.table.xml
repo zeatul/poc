@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>09c5a9e9-5d97-4298-9e6d-e254cca5924b</id>
+	<id>19dfe346-142d-4c1c-8bed-7a3da85d2ba5</id>
 	<code>t_dic_model</code>
 	<comment>测试表的元数据使用,包括字段类型,索引,外键,不维护数据</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>69281ed3-12f5-4923-8ed3-97f3ef8f2740</id>
+			<id>e97dac0f-15f4-40af-b4ec-ef032fac076f</id>
 			<word>
 				<id>3efb0197-8cb7-4a1f-90a5-e5157d89323f</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>8e5bef1d-3fa6-465d-a830-1978af08ae41</id>
+			<id>7abe985e-d3a8-48d6-8a28-9a6a28352803</id>
 			<word>
 				<id>477d8fc2-58b7-4101-b4a1-756a1c3f63c6</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>eb7a3b2e-81ee-4338-9d4e-cad4ad2b3032</id>
+			<id>04f4892e-0189-4df2-908c-307dad3d2486</id>
 			<word>
 				<id>f65384b1-141f-4ed6-a412-61ba0e872f2e</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>403ad10a-3baa-410a-9428-72e33e2c2b9d</id>
+			<id>7594e28c-7eb9-44ae-9f6b-6aa59d130efe</id>
 			<word>
 				<id>aea9d955-8aca-402d-9257-c89f07e6d7a3</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>11f44477-cfce-4ae5-9b47-e3fd87d096e8</id>
+			<id>9d8305e9-4ce5-46e6-aa5b-0ac4bf55765f</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>88710a55-6fd0-4a9a-8980-901da8c1236e</id>
+			<id>3c7e6983-00a4-468c-80a3-56e46e0aa180</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>5d9eeb6a-e72a-4f3e-ba89-b94259c90cfd</id>
+			<id>f73d3746-468c-41cd-985c-b28083072ee3</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>6a76c59c-273f-4206-9da2-fc7aa205a419</id>
+			<id>f3dea431-1dde-41fe-b760-52fdea6f7c8d</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>769b0bd0-b490-4f00-aa7a-c9ecee53b948</id>
+			<id>e6172cfa-895f-449e-badb-e74c047cc31a</id>
 			<word>
 				<id>29704bd4-b7c7-44cf-9fb1-825dbd3563a6</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d15e364f-da19-4709-8c8a-93833ffda95f</id>
+			<id>0b211fd0-831b-453c-850b-dcc26bf1b478</id>
 			<word>
 				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c221c1d3-66ee-4d1f-8a3c-5a62c5d75251</id>
+			<id>4b2abc9b-7f1e-4901-93b1-e5a152bd72e3</id>
 			<word>
 				<id>3f0a4f29-1aec-490a-822c-c4619fc28aca</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>844ead36-c68e-4a2f-88ce-7d240632561b</id>
+			<id>d328bba1-8ff4-4403-b276-73ad613cf208</id>
 			<word>
 				<id>20c1beb6-5698-4ee2-85bf-5e06cd11d244</id>
 			</word>
@@ -138,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1c657ea8-f08d-4e36-9cc9-e4fd48cd2b73</id>
+			<id>7872ff29-5907-4da2-aa60-569bfd805d3a</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
@@ -149,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>39f79b25-33c1-4246-874d-d367a72294b0</id>
+			<id>0b28b604-5e61-4cc0-89a6-ec423edc802e</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -159,32 +159,76 @@
 			<nullable>no</nullable>
 			<isPk>no</isPk>
 		</column>
+		<column>
+			<id>07772e6b-c303-462d-b2be-fe6d62cb4a05</id>
+			<word>
+				<id>2fc8b29e-743c-489f-b01e-cc334465ec1f</id>
+			</word>
+			<code>exec_times</code>
+			<name>请求次数</name>
+			<comment>请求次数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>2acba50c-b74b-4ad1-8827-735a940844ae</id>
+			<word>
+				<id>8aced0d2-a07a-4526-a5a5-67ddf571a87a</id>
+			</word>
+			<code>max_exec_times</code>
+			<name>最大请求次数</name>
+			<comment>最大请求次数</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>16cfb917-c958-4edb-8749-9d5363005a09</id>
+			<word>
+				<id>d05d3bb6-0f4c-4c78-80c8-f60914f40f28</id>
+			</word>
+			<code>last_exec_err_code</code>
+			<name>最后一次请求返回错误代码</name>
+			<comment>最后一次请求返回错误代码</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>220f5628-5582-4f32-8eb7-6a6af4c63ff3</id>
+			<word>
+				<id>2492762a-882c-488b-af6c-89f605fe4ef4</id>
+			</word>
+			<code>last_exec_err_msg</code>
+			<name>最后一次请求返回错误原因</name>
+			<comment>最后一次请求返回错误原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
 	</columns>
 	<indexes>
 		<index>
-			<id>86e9044c-f33b-4b8f-9538-dfd097dc7b3f</id>
+			<id>e86fdd2a-b179-4b75-a9c1-0af042c3dcfb</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>69281ed3-12f5-4923-8ed3-97f3ef8f2740</id>
+					<id>e97dac0f-15f4-40af-b4ec-ef032fac076f</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>69fe935d-e7db-473c-aa89-8df415d39d61</id>
+			<id>e35e9640-3d5a-41f5-af8b-4f7b2758933c</id>
 			<code>ui_dic_module_code</code>
 			<columns>
 				<column>
-					<id>8e5bef1d-3fa6-465d-a830-1978af08ae41</id>
+					<id>7abe985e-d3a8-48d6-8a28-9a6a28352803</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>510ee142-09b6-4cd5-a73d-c4e50794bb6a</id>
+			<id>d9090535-ad85-41d4-a2cb-34f2051a96d9</id>
 			<code>ui_dic_module_id</code>
 			<columns>
 				<column>
-					<id>6a76c59c-273f-4206-9da2-fc7aa205a419</id>
+					<id>f3dea431-1dde-41fe-b760-52fdea6f7c8d</id>
 				</column>
 			</columns>
 		</index>

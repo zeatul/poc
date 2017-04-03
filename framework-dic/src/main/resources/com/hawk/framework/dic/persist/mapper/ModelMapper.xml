@@ -18,7 +18,11 @@
 		store_code AS "storeCode" ,
 		order_number AS "orderNumber" ,
 		user_code AS "userCode" ,
-		mobile_number AS "mobileNumber" 
+		mobile_number AS "mobileNumber" ,
+		exec_times AS "execTimes" ,
+		max_exec_times AS "maxExecTimes" ,
+		last_exec_err_code AS "lastExecErrCode" ,
+		last_exec_err_msg AS "lastExecErrMsg" 
 	</sql>
 	
 	<sql id="where">
@@ -37,6 +41,10 @@
 			<if test="orderNumber != null"> AND order_number = #{orderNumber}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
+			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
+			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
+			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
+			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
 		</trim>	
 	</sql>
 	
@@ -56,6 +64,10 @@
 			AND order_number = #{old_orderNumber}
 			AND user_code = #{old_userCode}
 			AND mobile_number = #{old_mobileNumber}
+			AND exec_times = #{old_execTimes}
+			AND max_exec_times = #{old_maxExecTimes}
+			AND last_exec_err_code = #{old_lastExecErrCode}
+			AND last_exec_err_msg = #{old_lastExecErrMsg}
 		</trim>
 	</sql>
 	
@@ -75,6 +87,10 @@
 			order_number = #{orderNumber},
 			user_code = #{userCode},
 			mobile_number = #{mobileNumber},
+			exec_times = #{execTimes},
+			max_exec_times = #{maxExecTimes},
+			last_exec_err_code = #{lastExecErrCode},
+			last_exec_err_msg = #{lastExecErrMsg},
 		</set>
 	</sql>
 	
@@ -94,6 +110,10 @@
 			<if test="orderNumber != null">order_number = #{orderNumber},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
+			<if test="execTimes != null">exec_times = #{execTimes},</if>
+			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
+			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
+			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
 		</set>
 	</sql>
 	
@@ -145,7 +165,11 @@
 				store_code,				
 				order_number,				
 				user_code,				
-				mobile_number				
+				mobile_number,				
+				exec_times,				
+				max_exec_times,				
+				last_exec_err_code,				
+				last_exec_err_msg				
 		)		
 		VALUES (	
 			#{objectId},
@@ -161,7 +185,11 @@
 			#{storeCode},
 			#{orderNumber},
 			#{userCode},
-			#{mobileNumber}
+			#{mobileNumber},
+			#{execTimes},
+			#{maxExecTimes},
+			#{lastExecErrCode},
+			#{lastExecErrMsg}
 		) 
 	</insert>
 	

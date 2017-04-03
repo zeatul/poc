@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hawk.ecom.svp.constant.ConstBsiTaskStatus;
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
@@ -181,6 +182,9 @@ public class BsiService {
 		bsiOrderDetailDomain.setOrderId(orderDomain.getId());
 		bsiOrderDetailDomain.setCreateDate(currentDate);
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
+		bsiOrderDetailDomain.setExecTimes(0);
+		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
+		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
 		
 		

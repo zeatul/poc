@@ -41,24 +41,29 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	private Integer chargeStatus;
 	
 	/**
-	 * 充值任务号 charge_task_id
+	 * 充值任务号 charge_task_code
 	 */
-	private String chargeTaskId;
+	private String chargeTaskCode;
 	
 	/**
-	 * 充值次数 charge_times
+	 * 请求次数 exec_times
 	 */
-	private Integer chargeTimes;
+	private Integer execTimes;
 	
 	/**
-	 * 最近一次充值返回代码 charge_rtn_code
+	 * 最大请求次数 max_exec_times
 	 */
-	private String chargeRtnCode;
+	private Integer maxExecTimes;
 	
 	/**
-	 * 最近一次充值返回原因 charge_rtn_msg
+	 * 最后一次请求返回错误代码 last_exec_err_code
 	 */
-	private String chargeRtnMsg;
+	private String lastExecErrCode;
+	
+	/**
+	 * 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	private String lastExecErrMsg;
 	
 	/**
 	 * 创建日期 create_date
@@ -158,66 +163,82 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 充值任务号 charge_task_id
+	 * @return 充值任务号 charge_task_code
 	 */
-	public String getChargeTaskId(){
-		return chargeTaskId;
+	public String getChargeTaskCode(){
+		return chargeTaskCode;
 	}
 	
 	/**
 	 * 
-	 * @param chargeTaskId 充值任务号 charge_task_id
+	 * @param chargeTaskCode 充值任务号 charge_task_code
 	 */	
-	public void setChargeTaskId (String chargeTaskId) {
-		this.chargeTaskId = chargeTaskId;
+	public void setChargeTaskCode (String chargeTaskCode) {
+		this.chargeTaskCode = chargeTaskCode;
 	}
 	
 	/**
 	 * 
-	 * @return 充值次数 charge_times
+	 * @return 请求次数 exec_times
 	 */
-	public Integer getChargeTimes(){
-		return chargeTimes;
+	public Integer getExecTimes(){
+		return execTimes;
 	}
 	
 	/**
 	 * 
-	 * @param chargeTimes 充值次数 charge_times
+	 * @param execTimes 请求次数 exec_times
 	 */	
-	public void setChargeTimes (Integer chargeTimes) {
-		this.chargeTimes = chargeTimes;
+	public void setExecTimes (Integer execTimes) {
+		this.execTimes = execTimes;
 	}
 	
 	/**
 	 * 
-	 * @return 最近一次充值返回代码 charge_rtn_code
+	 * @return 最大请求次数 max_exec_times
 	 */
-	public String getChargeRtnCode(){
-		return chargeRtnCode;
+	public Integer getMaxExecTimes(){
+		return maxExecTimes;
 	}
 	
 	/**
 	 * 
-	 * @param chargeRtnCode 最近一次充值返回代码 charge_rtn_code
+	 * @param maxExecTimes 最大请求次数 max_exec_times
 	 */	
-	public void setChargeRtnCode (String chargeRtnCode) {
-		this.chargeRtnCode = chargeRtnCode;
+	public void setMaxExecTimes (Integer maxExecTimes) {
+		this.maxExecTimes = maxExecTimes;
 	}
 	
 	/**
 	 * 
-	 * @return 最近一次充值返回原因 charge_rtn_msg
+	 * @return 最后一次请求返回错误代码 last_exec_err_code
 	 */
-	public String getChargeRtnMsg(){
-		return chargeRtnMsg;
+	public String getLastExecErrCode(){
+		return lastExecErrCode;
 	}
 	
 	/**
 	 * 
-	 * @param chargeRtnMsg 最近一次充值返回原因 charge_rtn_msg
+	 * @param lastExecErrCode 最后一次请求返回错误代码 last_exec_err_code
 	 */	
-	public void setChargeRtnMsg (String chargeRtnMsg) {
-		this.chargeRtnMsg = chargeRtnMsg;
+	public void setLastExecErrCode (String lastExecErrCode) {
+		this.lastExecErrCode = lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次请求返回错误原因 last_exec_err_msg
+	 */
+	public String getLastExecErrMsg(){
+		return lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrMsg 最后一次请求返回错误原因 last_exec_err_msg
+	 */	
+	public void setLastExecErrMsg (String lastExecErrMsg) {
+		this.lastExecErrMsg = lastExecErrMsg;
 	}
 	
 	/**

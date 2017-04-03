@@ -1,9 +1,7 @@
 package com.hawk.ecom.svp.service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,6 @@ import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
-import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class MobileDataService {
@@ -98,10 +95,10 @@ public class MobileDataService {
 		
 		mobileDataOrderDetailDomain.setChargeDataSize(10);
 		mobileDataOrderDetailDomain.setChargeMobileNumber(mobileNumber);
-		mobileDataOrderDetailDomain.setChargeTaskId(UUID.randomUUID().toString());
+		mobileDataOrderDetailDomain.setChargeTaskCode(UUID.randomUUID().toString());
 		mobileDataOrderDetailDomain.setOrderId(orderDomain.getId());
 		mobileDataOrderDetailDomain.setChargeStatus(ConstChageStatus.UNCHARGED);
-		mobileDataOrderDetailDomain.setChargeTimes(0);
+		mobileDataOrderDetailDomain.setExecTimes(0);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
 		mobileDataOrderDetailDomain.setId(pkGenService.genPk());
