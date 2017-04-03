@@ -20,6 +20,7 @@ import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapper.OrderMapper;
 import com.hawk.ecom.svp.persist.mapperex.OrderMapperEx;
 import com.hawk.ecom.svp.request.SignInParam;
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -38,6 +39,9 @@ public class MobileDataService {
 	
 	@Autowired
 	private MobileDataOrderDetailMapper mobileDataOrderDetailMapper;
+	
+	@Autowired
+	private MobileDataOrderDetailService mobileDataOrderDetailService;
 
 	/**
 	 * 签到,送流量 每个月可以签到10次，每次签到送10M流量。 只支持流通手机号。 每隔5分钟可以签到一次。 当月签到10次，即送完。
@@ -110,19 +114,25 @@ public class MobileDataService {
 	 * 校验taskId是否存在，状态是否为UNCHARGED
 	 * @param taskId
 	 */
-	public void checkTaskId(String taskId){
-		if (StringTools.isNullOrEmpty(taskId))
-			throw new RuntimeException("任务编号为空");
+	public void checkTaskId(@NotEmpty String taskId){
 		
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("chargeTaskId", taskId);
-		List<MobileDataOrderDetailDomain> list = mobileDataOrderDetailMapper.loadDynamic(params);
+		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(taskId);
 		
-		if(list.size() == 0)
+		
+		if(mobileDataOrderDetailDomain == null)
 			throw new RuntimeException("任务不存在");
 		
-		if(list.get(0).getChargeStatus() != ConstChageStatus.UNCHARGED)
+		if(mobileDataOrderDetailDomain.getChargeStatus() != ConstChageStatus.UNCHARGED)
 			throw new RuntimeException("任务状态不是未充值");
+	}
+	
+	public void notify(String taskId){
+		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(taskId);
+		if(mobileDataOrderDetailDomain == null)
+			throw new RuntimeException("任务不存在");
+		
+		if (mobileDataOrderDetailDomain.getChargeStatus() == ConstChageStatus.SUCCESS_COMPLETED)
+			return ;
 	}
 
 }

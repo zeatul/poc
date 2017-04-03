@@ -1,16 +1,7 @@
 {
 	"data": {
-		"cashCoupons": [
-			{
-				"bsiCashCouponCode": "7001a40d-53a0-47e8-b374-5469e93df9bf",
-				"bsiCashCouponName": "一个月免费代金券",
-				"bsiCashCouponCreateDate": "2017-03-31 09:12:47",
-				"bsiCashCouponInvalidDate": "2017-04-30 09:12:47",
-				"bsiCashCouponStatus": 0,
-				"bsiCashCouponPeriod": 1
-			}
-		],
-		"count": 1
+		"message": "任务不存在",
+		"errCode": "-1"
 	},
-	"code": 1
+	"code": 0
 }

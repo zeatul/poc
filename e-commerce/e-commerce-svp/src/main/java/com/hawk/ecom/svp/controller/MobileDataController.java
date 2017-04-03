@@ -47,4 +47,10 @@ public class MobileDataController {
 		mobileDataService.checkTaskId(taskId);
 		return SuccessResponse.build(null);
 	}
+	
+	@RequestMapping(value="/unicom/notify/taskId/{taskId}",method = GET)
+	public WebResponse<ResponseData> notify(@PathVariable String taskId){
+		mobileDataService.notify(taskId);
+		return SuccessResponse.build(null);
+	}
 }
