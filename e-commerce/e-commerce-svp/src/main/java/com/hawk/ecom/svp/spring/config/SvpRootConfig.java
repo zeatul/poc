@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
-import com.hawk.ecom.pub.srping.config.GlobalPkGenConfig;
 import com.hawk.ecom.pub.srping.config.PubConfig;
 import com.hawk.ecom.svp.spring.config.SvpRootConfig.WebPackage;
 

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.svp.request.SignInParam;
+import com.hawk.ecom.svp.request.UnicomNotifyParam;
 import com.hawk.ecom.svp.service.MobileDataService;
 import com.hawk.ecom.svp.utils.HttpRequestToolsForSignature;
+import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
@@ -48,9 +50,10 @@ public class MobileDataController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value="/unicom/notify/taskId/{taskId}",method = GET)
-	public WebResponse<ResponseData> notify(@PathVariable String taskId){
-		mobileDataService.notify(taskId);
+	@RequestMapping(value="/unicom/notify",method = POST)
+	public WebResponse<ResponseData> notify(HttpServletRequest request) throws IOException{
+		UnicomNotifyParam param = HttpRequestTools.parse(request, UnicomNotifyParam.class);
+		mobileDataService.notify(param);
 		return SuccessResponse.build(null);
 	}
 }
