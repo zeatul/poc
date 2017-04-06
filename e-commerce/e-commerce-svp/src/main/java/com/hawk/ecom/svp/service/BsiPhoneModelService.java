@@ -35,7 +35,7 @@ public class BsiPhoneModelService {
 	 * @param brand 手机品牌
 	 * @return 手机型号
 	 */
-	public List<BsiPhoneModelDomain> queryPhoneModel(@NotEmpty String brand){
+	public List<BsiPhoneModelDomain> queryPhoneModel(@NotEmpty("brand") String brand){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneBrand", brand);
 		return bsiPhoneModelMapper.loadDynamic(params);
@@ -47,7 +47,7 @@ public class BsiPhoneModelService {
 	 * @param model
 	 * @return
 	 */
-	public int queryPhoneModelId(@NotEmpty String brand,@NotEmpty String model){
+	public int queryPhoneModelId(@NotEmpty("brand") String brand,@NotEmpty("model") String model){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneBrand", brand);
 		params.put("bsiPhoneModel", model);

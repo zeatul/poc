@@ -112,7 +112,7 @@ public class MobileDataService {
 	 * 校验taskId是否存在，状态是否为UNCHARGED
 	 * @param taskId
 	 */
-	public void checkTaskId(@NotEmpty String taskId){
+	public void checkTaskId(@NotEmpty("taskId") String taskId){
 		
 		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(taskId);
 		
