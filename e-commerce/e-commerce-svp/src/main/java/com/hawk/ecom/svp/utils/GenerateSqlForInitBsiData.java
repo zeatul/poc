@@ -21,7 +21,9 @@ public class GenerateSqlForInitBsiData {
 
 	public static void generate() {
 
-		List<String> list = ResourceTools.readResource("/file/小宝碎屏险产品手机信号对应表20170321.csv", GenerateSqlForInitBsiData.class);
+//		List<String> list = ResourceTools.readResource("/file/小宝碎屏险产品手机信号对应表20170321.csv", GenerateSqlForInitBsiData.class);
+		
+		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
 
 		// list.forEach(e -> System.out.println(e));
 
