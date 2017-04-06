@@ -37,7 +37,7 @@ public class CreateUserParam {
 	 * 手机号,校验非空,长度,正则
 	 */
 	@ExternalInputParam(name="手机号")
-	@NotEmpty
+	@NotEmpty("mobileNumber")
 	private String mobileNumber;
 	
 	
@@ -45,7 +45,7 @@ public class CreateUserParam {
 	 * 密码,校验非空,长度,正则
 	 */
 	@ExternalInputParam(name="登录密码")
-	@NotEmpty
+	@NotEmpty("loginPwd")
 	private String loginPwd;
 	
 	/**
