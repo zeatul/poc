@@ -11,12 +11,25 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import com.hawk.framework.dic.validation.validator.NotEmptyValidator;
+
 
 @Documented
-@Constraint
+@Constraint(validatedBy={NotEmptyValidator.class})
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
-@NotNull
 public @interface NotEmpty {
+	
+	/**
+	 * 数据字典定义的code	
+	 * @return
+	 */
+	String value() ;
+	
+	/**
+	 * 自定义的字段名
+	 * @return
+	 */
+	String name() default "";
 
 }

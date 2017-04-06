@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint
+@Constraint(validatedBy={})
 public @interface ExternalInputParam {
 
 	String name() ;

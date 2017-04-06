@@ -186,24 +186,24 @@ public class BsiOuterService {
 	public static void main(String[] args) throws Exception{
 		BsiOuterService service = new BsiOuterService("1213623","id9R4$jsb0","http://testordersvc.baosm.com/Services/api");
 		
-		service.outQueryOrder("dab2166");
+//		service.outQueryOrder("dab2166");
 		
-//		int goodId = 120;
-//		int productId = 11248;
-//		
-//		Order order = new Order();
+		int goodId = 120;
+		int productId = 11248;
+		
+		Order order = new Order();
 //		order.setBirthday("1988-01-01");
-//		order.setCertiType(1);
-//		order.setGoodId(goodId);
-//		order.setGoodsSerialNo(UUID.randomUUID().toString());
-//		order.setIdCard("320106198801011232");
-//		order.setMobile(13916082482L);
-//		order.setOutOrderID("1234567");
-//		order.setProductId(productId);
+		order.setCertiType(1);
+		order.setGoodId(goodId);
+		order.setGoodsSerialNo(UUID.randomUUID().toString());
+		order.setIdCard("320106198801011232");
+		order.setMobile(13916082484L);
+		order.setOutOrderID("132234567");
+		order.setProductId(productId);
 //		order.setSex(1);
-//		order.setUsername("隔壁老王");
-//		
-//		service.outCreateOrder(order);
+		order.setUsername("隔壁老王");
+		
+		service.outCreateOrder(order);
 	}
 
 	

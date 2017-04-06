@@ -11,12 +11,17 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import com.hawk.framework.dic.validation.validator.NotNullValidator;
+
 
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint
+@Constraint(validatedBy={NotNullValidator.class})
 public @interface NotNull {
+	
+	String value() ;
+	String name() default "";
 
 }

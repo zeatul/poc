@@ -18,7 +18,7 @@ public class TestAOPTestService {
 	
 	@Test
 	public void test(){
-		aopTestService.exec();
+		aopTestService.exec(null);
 	}
 
 }

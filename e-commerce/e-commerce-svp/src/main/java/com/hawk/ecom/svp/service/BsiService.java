@@ -26,6 +26,7 @@ import com.hawk.ecom.svp.request.ActivateCouponParam;
 import com.hawk.ecom.svp.request.ListCouponParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
+import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
 
@@ -56,7 +57,8 @@ public class BsiService {
 	 * @param queryProductParam
 	 * @return
 	 */
-	public BsiProductDomain queryProduct(QueryProductParam queryProductParam){		
+	@Valid
+	public BsiProductDomain queryProduct(@Valid QueryProductParam queryProductParam){		
 		
 		int productId = bsiPhoneProdcutMapService.queryProductId(queryProductParam.getModelId(), queryProductParam.getPeriod());
 		

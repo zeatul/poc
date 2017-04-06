@@ -26,12 +26,21 @@
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-word</artifactId>
+		</dependency>
 
-		<!-- com.hawk.com -->
+		<!-- com.hawk.ecom -->
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-pub</artifactId>
-			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-word</artifactId>
 		</dependency>
 
 		<!-- <dependency> <groupId>com.hawk.e-commerce</groupId> <artifactId>e-commerce-config</artifactId> </dependency> -->

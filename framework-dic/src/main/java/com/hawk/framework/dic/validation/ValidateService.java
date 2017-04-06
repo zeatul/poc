@@ -1,77 +1,62 @@
 package com.hawk.framework.dic.validation;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
-import com.hawk.framework.dic.design.data.EnumDataType;
-import com.hawk.framework.dic.design.data.Word;
-import com.hawk.framework.dic.service.DictionaryService;
-import com.hawk.framework.utility.tools.StringTools;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
-public class ValidateService {
+import com.hawk.framework.dic.validation.annotation.Constraint;
+import com.hawk.framework.dic.validation.validator.ConstraintValidator;
+
+public class ValidateService implements ApplicationContextAware {
 	
-	@Autowired
-	private DictionaryService dictionaryService;
+	private ApplicationContext applicationContext;
 	
-	public Object validate(String code, Object value  ){
-		Word word = dictionaryService.queryWord(code);
-		
-		if (word.getDataType() == EnumDataType.String){
-			return validateString(word,(String)value);
-		}else if (word.getDataType() == EnumDataType.Integer){
-			return validateInteger(word,(Integer)value);
-		}else if (word.getDataType() == EnumDataType.Long){		
-			return validateLong(word,(Long)value);
-		}else{		
-			throw new RuntimeException("Unsupported data type");
-		}
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+
 	}
 	
-	private Integer validateInteger(Word word ,Integer value){
-		String strMaxValue = word.getMaxValue();
-		String strMinValue = word.getMinValue();
-		if (StringTools.isNotNullOrEmpty(strMaxValue)){
-			if (value >  Integer.parseInt(strMaxValue))
-				throw new RuntimeException(" greater than maxvalue " + strMaxValue);
+	/**
+	 * 校验函数所有参数
+	 * @param methodAnnotations 参数注解
+	 * @param values 参数值
+	 * @throws ValidateException 
+	 * @throws BeansException 
+	 */
+	@SuppressWarnings("unchecked")
+	public void validMethodParameters (Method method ,Object[] values) throws ValidateException{
+		if (values == null || values.length == 0)
+			return ;
+		
+		
+		 Parameter[] parameters = method.getParameters();
+		
+		for(int i=0 ; i< values.length; i++){
+			Object value = values[i];
+			Parameter parameter = parameters[i];
+		
+			Annotation[] annotations = parameter.getAnnotations();
+			
+			for (Annotation annotation : annotations){
+				Constraint c = annotation.annotationType().getDeclaredAnnotation(Constraint.class);
+				if ( c==null)
+					continue;
+
+				for (int j =0; j<c.validatedBy().length; j++){
+					Class<?> clazz  = c.validatedBy()[j] ;
+					((ConstraintValidator<Annotation,Object>)(applicationContext.getBean(clazz))).valid(annotation, value,parameter.getName());
+					
+				}
+			}
 		}
-		if (StringTools.isNotNullOrEmpty(strMinValue)){
-			if (value < Integer.parseInt(strMinValue))
-				throw new RuntimeException(" less than  minvalue " + strMinValue);
-		}
-		
-		
-		return value;
-		
 	}
-	
-	private Long validateLong(Word word ,Long value){
-		String strMaxValue = word.getMaxValue();
-		String strMinValue = word.getMinValue();
-		if (StringTools.isNotNullOrEmpty(strMaxValue)){
-			if (value >  Long.parseLong(strMaxValue))
-				throw new RuntimeException(" greater than maxvalue " + strMaxValue);
-		}
-		if (StringTools.isNotNullOrEmpty(strMinValue)){
-			if (value < Long.parseLong(strMinValue))
-				throw new RuntimeException(" less than  minvalue " + strMinValue);
-		}
+
 		
-		
-		return value;
-		
-	}
-	
-	private String validateString(Word word, String value){
-		value = value.trim();
-		int maxLength = word.getCharMaxLength();
-		int minLength = word.getCharMinLength();
-		if (value.length() > maxLength)
-			throw new RuntimeException();
-		if (value.length() < minLength)
-			throw new RuntimeException();
-		
-		return value;
-	}
-	
 	
 
 }

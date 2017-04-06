@@ -22,6 +22,7 @@ import java.lang.annotation.Target;
  */
 @Target({ METHOD, FIELD, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
+@Constraint(validatedBy={})
 public @interface Valid {
 
 }
