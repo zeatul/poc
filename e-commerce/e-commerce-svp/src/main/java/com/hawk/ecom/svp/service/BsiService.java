@@ -72,7 +72,8 @@ public class BsiService {
 	 * 注册赠送代金券只有一次机会
 	 * @param registerForCouponParam
 	 */
-	public void rgeisterPresentCoupon(RegisterPresentCouponParam registerForCouponParam){
+	@Valid
+	public void rgeisterPresentCoupon(@Valid RegisterPresentCouponParam registerForCouponParam){
 		String mobileNumber = registerForCouponParam.getMobileNumber();
 		String bsiCashCouponType = ConstCouponParameter.REGISTER_PRESENT_COUPON.type;
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -101,7 +102,8 @@ public class BsiService {
 		bsiCashCouponMapper.insert(bsiCashCouponDomain);
 	}
 	
-	public List<BsiCashCouponDomain> listCoupon(ListCouponParam listCouponParam){
+	@Valid
+	public List<BsiCashCouponDomain> listCoupon(@Valid ListCouponParam listCouponParam){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("mobileNumber", listCouponParam.getMobileNumber());
 		return bsiCashCouponMapper.loadDynamic(params);
@@ -112,7 +114,8 @@ public class BsiService {
 	 * @param activateCouponParam
 	 */
 	@Transactional
-	public void activateCoupon(ActivateCouponParam activateCouponParam){
+	@Valid
+	public void activateCoupon(@Valid ActivateCouponParam activateCouponParam){
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		String bsiCashCouponCode = activateCouponParam.getCouponCode();

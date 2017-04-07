@@ -1,5 +1,7 @@
 package com.hawk.ecom.svp.request;
 
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
+
 public class RegisterPresentCouponParam {
 	
 	public String getMobileNumber() {
@@ -10,6 +12,7 @@ public class RegisterPresentCouponParam {
 		this.mobileNumber = mobileNumber;
 	}
 
+	@NotEmpty("mobile_number")
 	private String mobileNumber;
 
 }

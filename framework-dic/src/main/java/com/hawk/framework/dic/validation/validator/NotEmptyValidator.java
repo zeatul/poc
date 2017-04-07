@@ -16,17 +16,15 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 	private DictionaryService dictionaryService;
 	
 	@Override
-	public void valid(NotEmpty annotation, Object value, String code) throws ValidateException {
-		boolean isValid = isValid(annotation,value,code);
+	public void valid(NotEmpty annotation, Object value) throws ValidateException {
+		boolean isValid = isValid(annotation,value);
 		if (!isValid){
 			
 			String name = annotation.name();
 			
 			if (StringTools.isNullOrEmpty(name)){
-				if (StringTools.isNotNullOrEmpty(annotation.value())){
-					code = annotation.value();
-				}
-				Word word = dictionaryService.queryWord(code);
+				
+				Word word = dictionaryService.queryWord(annotation.value());
 				name = word.getName();
 			}
 			
@@ -37,7 +35,7 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 		}
 	}
 
-	private boolean isValid(NotEmpty annotation, Object value ,String code) throws ValidateException {
+	private boolean isValid(NotEmpty annotation, Object value ) throws ValidateException {
 		if (value == null)
 			return false;
 		

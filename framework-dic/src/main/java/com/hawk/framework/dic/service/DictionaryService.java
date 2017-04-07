@@ -43,6 +43,7 @@ public class DictionaryService {
 		List<Word> wordList = parseXmlService.parseWordByPackageName(packageNameArray);
 		wordList.forEach(e -> {
 			this.codeWordMap.put(CamelNameTools.camelName(e.getCode()), e);
+			this.codeWordMap.put(e.getCode(), e);
 		});
 
 		/**

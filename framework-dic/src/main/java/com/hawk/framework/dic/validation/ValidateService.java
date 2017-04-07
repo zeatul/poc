@@ -49,7 +49,7 @@ public class ValidateService implements ApplicationContextAware {
 
 				for (int j =0; j<c.validatedBy().length; j++){
 					Class<?> clazz  = c.validatedBy()[j] ;
-					((ConstraintValidator<Annotation,Object>)(applicationContext.getBean(clazz))).valid(annotation, value,parameter.getName());
+					((ConstraintValidator<Annotation,Object>)(applicationContext.getBean(clazz))).valid(annotation, value);
 					
 				}
 			}

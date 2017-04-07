@@ -21,8 +21,9 @@ import com.hawk.framework.dic.validation.ValidateException;
 import com.hawk.framework.dic.validation.ValidateService;
 import com.hawk.framework.dic.validation.validator.NotEmptyValidator;
 import com.hawk.framework.dic.validation.validator.NotNullValidator;
+import com.hawk.framework.dic.validation.validator.SingleObjectValidator;
 
-@Configuration
+
 @EnableAspectJAutoProxy
 public class SvpAopConfig {
 	
@@ -31,42 +32,6 @@ public class SvpAopConfig {
 		return new Validator();
 	}
 	
-	@Bean
-	public AOPTestService aopTestService(){
-		return new AOPTestService();
-	}
-	
-	@Bean
-	public ValidateService validateService(){
-		return new ValidateService();
-	}
-	
-	@Bean
-	public NotEmptyValidator notEmptyValidator(){
-		return new NotEmptyValidator();
-	}
-	
-	@Bean
-	public NotNullValidator notNullValidator(){
-		return new NotNullValidator();
-	}
-	
-	@Bean
-	public ParseXmlService parseXmlService(){
-		return new ParseXmlService();
-	}
-	
-	@Bean	
-	public DictionaryService dictionaryService(ParseXmlService parseXmlService) throws Exception{
-		List<String> packageNames = new ArrayList<String>();
-		packageNames.add("com.hawk.ecom.word");
-		packageNames.add("com.hawk.framework.word");
-		DictionaryService dictionaryService = new DictionaryService(packageNames,parseXmlService);
-		return dictionaryService;
-	}
-	
-	
-
 	@Aspect
 	public static class Validator {
 		
@@ -79,9 +44,12 @@ public class SvpAopConfig {
 		
 		@Before("methodOfValidateParameter()")
 		public void validate(JoinPoint jp) throws ValidateException{
+						
 			MethodSignature signature = (MethodSignature) jp.getSignature();
 			Method method = signature.getMethod();			
-			validateService.validMethodParameters(method, jp.getArgs());			
+			validateService.validMethodParameters(method, jp.getArgs());	
+			
+			
 		}
 	}
 

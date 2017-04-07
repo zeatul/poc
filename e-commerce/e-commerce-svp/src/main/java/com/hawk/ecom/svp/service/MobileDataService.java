@@ -20,6 +20,7 @@ import com.hawk.ecom.svp.persist.mapperex.OrderMapperEx;
 import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.ecom.svp.request.UnicomNotifyParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.utility.tools.DateTools;
 
@@ -48,7 +49,8 @@ public class MobileDataService {
 	 * @param signInParam
 	 */
 	@Transactional
-	public void signIn(SignInParam signInParam) {
+	@Valid
+	public void signIn(@Valid SignInParam signInParam) {
 		String mobileNumber = signInParam.getMobileNumber();
 		String orderType = ConstOrderType.SIGN_IN_MOBILE_DATA_GIFT_10;
 		Date currentDt = new Date();
@@ -112,6 +114,7 @@ public class MobileDataService {
 	 * 校验taskId是否存在，状态是否为UNCHARGED
 	 * @param taskId
 	 */
+	@Valid
 	public void checkTaskId(@NotEmpty("taskId") String taskId){
 		
 		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(taskId);
@@ -124,7 +127,8 @@ public class MobileDataService {
 			throw new RuntimeException("任务状态不是未充值");
 	}
 	
-	public void notify(UnicomNotifyParam unicomNotifyParam){
+	@Valid
+	public void notify(@Valid UnicomNotifyParam unicomNotifyParam){
 		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(unicomNotifyParam.getTaskId());
 		if(mobileDataOrderDetailDomain == null)
 			throw new RuntimeException("任务不存在");

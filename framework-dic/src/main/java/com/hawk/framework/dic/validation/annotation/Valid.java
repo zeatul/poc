@@ -9,6 +9,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import com.hawk.framework.dic.validation.validator.SingleObjectValidator;
+
 /**
  * Marks a property, method parameter or method return type for validation cascading.
  * <p/>
@@ -22,7 +24,7 @@ import java.lang.annotation.Target;
  */
 @Target({ METHOD, FIELD, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
-@Constraint(validatedBy={})
+@Constraint(validatedBy={SingleObjectValidator.class})
 public @interface Valid {
 
 }

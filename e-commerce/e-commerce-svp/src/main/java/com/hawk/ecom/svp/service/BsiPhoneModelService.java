@@ -11,6 +11,7 @@ import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiPhoneModelMapper;
 import com.hawk.ecom.svp.persist.mapperex.BsiPhoneModelExMapper;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.Valid;
 
 @Service
 public class BsiPhoneModelService {
@@ -35,7 +36,8 @@ public class BsiPhoneModelService {
 	 * @param brand 手机品牌
 	 * @return 手机型号
 	 */
-	public List<BsiPhoneModelDomain> queryPhoneModel(@NotEmpty("brand") String brand){
+	@Valid
+	public List<BsiPhoneModelDomain> queryPhoneModel(@NotEmpty("bsi_phone_brand") String brand){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneBrand", brand);
 		return bsiPhoneModelMapper.loadDynamic(params);
@@ -47,7 +49,8 @@ public class BsiPhoneModelService {
 	 * @param model
 	 * @return
 	 */
-	public int queryPhoneModelId(@NotEmpty("brand") String brand,@NotEmpty("model") String model){
+	@Valid
+	public int queryPhoneModelId(@NotEmpty("bsi_phone_brand") String brand,@NotEmpty("bsi_phone_model") String model){
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("bsiPhoneBrand", brand);
 		params.put("bsiPhoneModel", model);

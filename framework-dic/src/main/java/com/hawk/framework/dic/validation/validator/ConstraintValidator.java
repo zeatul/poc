@@ -13,6 +13,6 @@ import com.hawk.framework.dic.validation.ValidateException;
  */
 public interface ConstraintValidator <A extends Annotation, T> {
 	
-	public void valid(A annotation , T value ,String code) throws ValidateException;
+	public void valid(A annotation , T value ) throws ValidateException;
 
 }

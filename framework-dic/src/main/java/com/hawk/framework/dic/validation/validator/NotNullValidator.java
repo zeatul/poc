@@ -14,15 +14,12 @@ public class NotNullValidator implements ConstraintValidator<NotNull, Object> {
 	private DictionaryService dictionaryService;
 
 	@Override
-	public void valid(NotNull annotation, Object value, String code) throws ValidateException {
+	public void valid(NotNull annotation, Object value) throws ValidateException {
 		if (value == null) {
 			String name = annotation.name();
 
 			if (StringTools.isNullOrEmpty(name)) {
-				if (StringTools.isNotNullOrEmpty(annotation.value())) {
-					code = annotation.value();
-				}
-				Word word = dictionaryService.queryWord(code);
+				Word word = dictionaryService.queryWord(annotation.value());
 				name = word.getName();
 			}
 

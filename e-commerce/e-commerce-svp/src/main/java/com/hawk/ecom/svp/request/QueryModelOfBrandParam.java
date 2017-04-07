@@ -1,5 +1,7 @@
 package com.hawk.ecom.svp.request;
 
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
+
 public class QueryModelOfBrandParam {
 	
 	
@@ -12,6 +14,7 @@ public class QueryModelOfBrandParam {
 		this.brand = brand;
 	}
 
+	@NotEmpty("bsi_phone_brand")
 	private String brand;
 
 }
