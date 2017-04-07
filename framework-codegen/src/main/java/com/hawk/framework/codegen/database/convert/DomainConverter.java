@@ -11,8 +11,8 @@ import com.hawk.framework.codegen.database.meta.Domain;
 import com.hawk.framework.codegen.database.meta.Field;
 import com.hawk.framework.codegen.database.meta.Index;
 import com.hawk.framework.codegen.database.meta.Table;
-import com.hawk.framework.codegen.utils.CamelNameTools;
 import com.hawk.framework.utility.tools.BooleanTools;
+import com.hawk.framework.utility.tools.CamelNameTools;
 
 public class DomainConverter implements IDomainConverter{
 	

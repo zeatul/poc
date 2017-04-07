@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hawk.ecom.svp.spring.config.SvpAopConfig;
+import com.hawk.framework.dic.validation.ValidateException;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,7 +18,7 @@ public class TestAOPTestService {
 	private AOPTestService aopTestService;
 	
 	@Test
-	public void test(){
+	public void test() throws ValidateException{
 		aopTestService.exec(null);
 	}
 

@@ -1,4 +1,4 @@
-package com.hawk.framework.codegen.utils;
+package com.hawk.framework.utility.tools;
 
 public class CamelNameTools {
 	
@@ -33,6 +33,15 @@ public class CamelNameTools {
 			className = uncapFirst(className);
 		}
 		return className;
+	}
+	
+	/**
+	 * 首字母小写,下划线分割, 数据库字段转java字段名
+	 * @param srcStr
+	 * @return
+	 */
+	public static String camelName(String srcStr){
+		return camelName(srcStr,"_",0,false);
 	}
 
 }

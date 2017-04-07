@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hawk.framework.dic.design.data.Word;
+import com.hawk.framework.utility.tools.CamelNameTools;
 
 /**
  * 加载字典数据 查询字典数据
@@ -41,14 +42,14 @@ public class DictionaryService {
 		 */
 		List<Word> wordList = parseXmlService.parseWordByPackageName(packageNameArray);
 		wordList.forEach(e -> {
-			this.codeWordMap.put(e.getCode(), e);
+			this.codeWordMap.put(CamelNameTools.camelName(e.getCode()), e);
 		});
 
 		/**
 		 * 
 		 */
 		Map<String, String> map = parseXmlService.parseWordMapByPackageNames(packageNameArray);
-		synonymMap.putAll(map);
+		this.synonymMap.putAll(map);
 	}
 	
 	/**

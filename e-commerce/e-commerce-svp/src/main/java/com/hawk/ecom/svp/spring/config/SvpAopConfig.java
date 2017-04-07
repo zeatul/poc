@@ -81,9 +81,7 @@ public class SvpAopConfig {
 		public void validate(JoinPoint jp) throws ValidateException{
 			MethodSignature signature = (MethodSignature) jp.getSignature();
 			Method method = signature.getMethod();			
-			validateService.validMethodParameters(method, jp.getArgs());
-			
-			System.out.println(jp.getSignature().getName());
+			validateService.validMethodParameters(method, jp.getArgs());			
 		}
 	}
 
