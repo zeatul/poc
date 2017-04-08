@@ -14,7 +14,7 @@ import com.hawk.ecom.svp.spring.config.SvpRootConfig.WebPackage;
 
 
 @Configuration
-@Import({SvpDataConfig.class,PubConfig.class})
+@Import({SvpDataConfig.class,PubConfig.class,SvpJobConfigure.class})
 @ComponentScan(basePackages = { "com.hawk.ecom.svp" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
 public class SvpRootConfig {
 

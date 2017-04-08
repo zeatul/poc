@@ -15,6 +15,8 @@ import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
 import com.hawk.ecom.svp.constant.ConstStore;
+import com.hawk.ecom.svp.job.BsiOuterCreateOrderJob;
+import com.hawk.ecom.svp.job.TaskPool;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
@@ -51,6 +53,9 @@ public class BsiService {
 	
 	@Autowired
 	private PkGenService pkGenService;
+	
+	@Autowired
+	private TaskPool taskPool;
 	
 	/**
 	 * 查询产品信息
@@ -188,6 +193,7 @@ public class BsiService {
 		bsiOrderDetailDomain.setCreateDate(currentDate);
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
 		bsiOrderDetailDomain.setExecTimes(0);
+		bsiOrderDetailDomain.setMaxExecTimes(5); // 最多请求5次
 		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
@@ -196,5 +202,8 @@ public class BsiService {
 		orderMapper.insert(orderDomain);
 		bsiCashCouponMapper.update(bsiCashCouponDomain);
 		bsiOrderDetailMapper.insert(bsiOrderDetailDomain);
+		
+		BsiOuterCreateOrderJob job = new BsiOuterCreateOrderJob(bsiOrderDetailDomain);
+		taskPool.execute(job);
 	}
 }
