@@ -34,7 +34,7 @@ import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @RestController
-@RequestMapping("svp/bsi")
+@RequestMapping("/svp/bsi")
 @CrossOrigin
 public class BsiController {
 	

@@ -34,5 +34,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
+		
+		<!-- aspectj -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
 	</dependencies>
 </project>
