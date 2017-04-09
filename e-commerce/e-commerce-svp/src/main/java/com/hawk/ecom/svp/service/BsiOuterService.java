@@ -51,13 +51,10 @@ public class BsiOuterService {
 	 * @param order
 	 * @return 小宝内部订单编号
 	 */
-	public void outCreateOrder(Order order) throws OuterCallException{
+	public String outCreateOrder(Order order) throws OuterCallException{
 		String req = JsonTools.toJsonString(order);
 		
-		logger.info("outCreateOrder req={}",req);
-	
-		
-		
+		logger.info("outCreateOrder_request={}",req);
 		
 		String reqhash = encode(req);
 		
@@ -78,14 +75,16 @@ public class BsiOuterService {
 		
 		String result = (String)map.get("result");
 		
+		logger.info("outCreateOrder_response={}",result);
+		
 		if ("0".equals(result)){
 			throw new OuterCallException("unkonwn",(String)map.get("notice"));
 		}else if ("1".equals(result)){
-//			List<?> list =  (List<?>)map.get("orderList");
-//			@SuppressWarnings("rawtypes")
-//			Map orderMap = (Map)list.get(0);
-//			String orderNo =  (String)orderMap.get("orderno");
-			return ;
+			List<?> list =  (List<?>)map.get("orderList");
+			@SuppressWarnings("rawtypes")
+			Map orderMap = (Map)list.get(0);
+			String orderNo =  (String)orderMap.get("orderno");
+			return orderNo;
 			
 		}else{
 			throw new RuntimeException("result code is illegal");

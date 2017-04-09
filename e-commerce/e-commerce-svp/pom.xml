@@ -147,11 +147,7 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
-		<!-- aspectj -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
+		
 
 		<!-- log -->
 		<dependency>
