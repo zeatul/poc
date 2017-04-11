@@ -20,7 +20,11 @@ public class NotNullValidator implements ConstraintValidator<NotNull, Object> {
 
 			if (StringTools.isNullOrEmpty(name)) {
 				Word word = dictionaryService.queryWord(annotation.value());
-				name = word.getName();
+				if (word == null){
+					name = annotation.value();
+				}else{
+					name = word.getName();
+				}
 			}
 
 			throw new ValidateException("-1", name + "不能为空");

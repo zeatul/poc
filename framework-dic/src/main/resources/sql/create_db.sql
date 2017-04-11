@@ -283,10 +283,12 @@ create table t_dic_model
    order_number         varchar(50) comment '订单编号',
    user_code            varchar(50) not null comment '用户编号',
    mobile_number        varchar(20) not null comment '手机号',
-   exec_times           integer comment '请求次数',
-   max_exec_times       integer comment '最大请求次数',
-   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
-   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
+   exec_times           integer comment '已经执行次数',
+   max_exec_times       integer comment '最大允许执行次数',
+   last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次执行错误原因',
+   last_exec_date       timestamp(3) null comment '最后一次执行时间',
+   schedule_exec_date   timestamp(3) null comment '计划执行时间',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

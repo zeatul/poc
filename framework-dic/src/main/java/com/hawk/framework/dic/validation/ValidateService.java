@@ -34,7 +34,7 @@ public class ValidateService implements ApplicationContextAware {
 			return ;
 		
 		
-		 Parameter[] parameters = method.getParameters();
+		 Parameter[] parameters = method.getParameters();R
 		
 		for(int i=0 ; i< values.length; i++){
 			Object value = values[i];

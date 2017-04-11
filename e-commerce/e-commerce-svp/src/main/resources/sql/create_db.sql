@@ -4,9 +4,13 @@ drop index ui_bsi_cc_code on t_svp_bsi_cash_coupon;
 
 drop table if exists t_svp_bsi_cash_coupon;
 
+drop table if exists t_svp_bsi_cash_coupon_sequence;
+
 drop index ui_bsi_task_code on t_svp_bsi_order_detail;
 
 drop table if exists t_svp_bsi_order_detail;
+
+drop table if exists t_svp_bsi_out_order_sequence;
 
 drop table if exists t_svp_bsi_phone_brand;
 
@@ -18,11 +22,15 @@ drop table if exists t_svp_bsi_phone_product_map;
 
 drop table if exists t_svp_bsi_product;
 
+drop table if exists t_svp_charge_sequence;
+
 drop index ui_od_task_code on t_svp_mobile_data_order_detail;
 
 drop table if exists t_svp_mobile_data_order_detail;
 
 drop table if exists t_svp_order;
+
+drop table if exists t_svp_order_sequence;
 
 /*==============================================================*/
 /* Table: t_svp_bsi_cash_coupon                                 */
@@ -39,6 +47,7 @@ create table t_svp_bsi_cash_coupon
    bsi_cash_coupon_status integer comment '代金券状态',
    bsi_cash_coupon_type varchar(50) comment '代金券类型',
    bsi_cash_coupon_period integer comment '代金券保险月份数',
+   bsi_cash_coupon_activate_error varchar(1000) comment '代金券激活失败原因',
    order_code           varchar(50) comment '订单编号',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
@@ -66,6 +75,19 @@ create index i_bsi_user_code on t_svp_bsi_cash_coupon
 );
 
 /*==============================================================*/
+/* Table: t_svp_bsi_cash_coupon_sequence                        */
+/*==============================================================*/
+create table t_svp_bsi_cash_coupon_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_svp_bsi_cash_coupon_sequence comment '代金券编号生成表';
+
+/*==============================================================*/
 /* Table: t_svp_bsi_order_detail                                */
 /*==============================================================*/
 create table t_svp_bsi_order_detail
@@ -74,10 +96,12 @@ create table t_svp_bsi_order_detail
    order_id             bigint comment '碎屏险订单id',
    bsi_task_code        varchar(100) comment '任务号,与小宝对接用',
    bsi_task_status      integer comment '任务状态',
-   exec_times           integer comment '请求次数',
-   max_exec_times       integer comment '最大请求次数',
-   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
-   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
+   exec_times           integer comment '已经执行次数',
+   max_exec_times       integer comment '最大允许执行次数',
+   last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次执行错误原因',
+   last_exec_date       timestamp(3) null comment '最后一次执行时间',
+   schedule_exec_date   timestamp(3) null comment '计划执行时间',
    bsi_phone_model_id   integer not null comment '手机型号ID',
    bsi_product_id       integer not null comment '碎屏险产品ID',
    imei                 varchar(100) comment '设备唯一的串号',
@@ -104,6 +128,19 @@ create unique index ui_bsi_task_code on t_svp_bsi_order_detail
 (
    bsi_task_code
 );
+
+/*==============================================================*/
+/* Table: t_svp_bsi_out_order_sequence                          */
+/*==============================================================*/
+create table t_svp_bsi_out_order_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_svp_bsi_out_order_sequence comment '碎屏险外部订单号生成表';
 
 /*==============================================================*/
 /* Table: t_svp_bsi_phone_brand                                 */
@@ -174,6 +211,19 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_svp_bsi_product comment '碎屏险产品';
 
 /*==============================================================*/
+/* Table: t_svp_charge_sequence                                 */
+/*==============================================================*/
+create table t_svp_charge_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_svp_charge_sequence comment '流量充值任务号生成表';
+
+/*==============================================================*/
 /* Table: t_svp_mobile_data_order_detail                        */
 /*==============================================================*/
 create table t_svp_mobile_data_order_detail
@@ -184,10 +234,12 @@ create table t_svp_mobile_data_order_detail
    charge_data_size     integer comment '充值流量',
    charge_status        integer comment '充值状态',
    charge_task_code     varchar(100) comment '充值任务号',
-   exec_times           integer comment '请求次数',
-   max_exec_times       integer comment '最大请求次数',
-   last_exec_err_code   varchar(50) comment '最后一次请求返回错误代码',
-   last_exec_err_msg    varchar(1000) comment '最后一次请求返回错误原因',
+   exec_times           integer comment '已经执行次数',
+   max_exec_times       integer comment '最大允许执行次数',
+   last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
+   last_exec_err_msg    varchar(1000) comment '最后一次执行错误原因',
+   last_exec_date       timestamp(3) null comment '最后一次执行时间',
+   schedule_exec_date   timestamp(3) null comment '计划执行时间',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期'
@@ -217,6 +269,7 @@ create table t_svp_order
    order_status         integer comment '订单状态',
    order_type           varchar(50) comment '订单类型',
    order_desc           varchar(1000) comment '订单描述',
+   order_error_cause    varchar(1000) comment '订单失败原因',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',
@@ -225,3 +278,16 @@ create table t_svp_order
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_svp_order comment '碎屏险订单';
+
+/*==============================================================*/
+/* Table: t_svp_order_sequence                                  */
+/*==============================================================*/
+create table t_svp_order_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_svp_order_sequence comment '订单编号生成表';

@@ -15,6 +15,7 @@
 		bsi_cash_coupon_status AS "bsiCashCouponStatus" ,
 		bsi_cash_coupon_type AS "bsiCashCouponType" ,
 		bsi_cash_coupon_period AS "bsiCashCouponPeriod" ,
+		bsi_cash_coupon_activate_error AS "bsiCashCouponActivateError" ,
 		order_code AS "orderCode" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
@@ -33,6 +34,7 @@
 			<if test="bsiCashCouponStatus != null"> AND bsi_cash_coupon_status = #{bsiCashCouponStatus}  </if>
 			<if test="bsiCashCouponType != null"> AND bsi_cash_coupon_type = #{bsiCashCouponType}  </if>
 			<if test="bsiCashCouponPeriod != null"> AND bsi_cash_coupon_period = #{bsiCashCouponPeriod}  </if>
+			<if test="bsiCashCouponActivateError != null"> AND bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError}  </if>
 			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
@@ -52,6 +54,7 @@
 			AND bsi_cash_coupon_status = #{old_bsiCashCouponStatus}
 			AND bsi_cash_coupon_type = #{old_bsiCashCouponType}
 			AND bsi_cash_coupon_period = #{old_bsiCashCouponPeriod}
+			AND bsi_cash_coupon_activate_error = #{old_bsiCashCouponActivateError}
 			AND order_code = #{old_orderCode}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
@@ -71,6 +74,7 @@
 			bsi_cash_coupon_status = #{bsiCashCouponStatus},
 			bsi_cash_coupon_type = #{bsiCashCouponType},
 			bsi_cash_coupon_period = #{bsiCashCouponPeriod},
+			bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},
 			order_code = #{orderCode},
 			create_date = #{createDate},
 			update_date = #{updateDate},
@@ -90,6 +94,7 @@
 			<if test="bsiCashCouponStatus != null">bsi_cash_coupon_status = #{bsiCashCouponStatus},</if>
 			<if test="bsiCashCouponType != null">bsi_cash_coupon_type = #{bsiCashCouponType},</if>
 			<if test="bsiCashCouponPeriod != null">bsi_cash_coupon_period = #{bsiCashCouponPeriod},</if>
+			<if test="bsiCashCouponActivateError != null">bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},</if>
 			<if test="orderCode != null">order_code = #{orderCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
@@ -142,6 +147,7 @@
 				bsi_cash_coupon_status,				
 				bsi_cash_coupon_type,				
 				bsi_cash_coupon_period,				
+				bsi_cash_coupon_activate_error,				
 				order_code,				
 				create_date,				
 				update_date,				
@@ -158,6 +164,7 @@
 			#{bsiCashCouponStatus},
 			#{bsiCashCouponType},
 			#{bsiCashCouponPeriod},
+			#{bsiCashCouponActivateError},
 			#{orderCode},
 			#{createDate},
 			#{updateDate},

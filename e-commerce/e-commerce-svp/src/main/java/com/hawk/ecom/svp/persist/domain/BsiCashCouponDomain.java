@@ -66,6 +66,11 @@ public class BsiCashCouponDomain implements Serializable {
 	private Integer bsiCashCouponPeriod;
 	
 	/**
+	 * 代金券激活失败原因 bsi_cash_coupon_activate_error
+	 */
+	private String bsiCashCouponActivateError;
+	
+	/**
 	 * 订单编号 order_code
 	 */
 	private String orderCode;
@@ -244,6 +249,22 @@ public class BsiCashCouponDomain implements Serializable {
 	 */	
 	public void setBsiCashCouponPeriod (Integer bsiCashCouponPeriod) {
 		this.bsiCashCouponPeriod = bsiCashCouponPeriod;
+	}
+	
+	/**
+	 * 
+	 * @return 代金券激活失败原因 bsi_cash_coupon_activate_error
+	 */
+	public String getBsiCashCouponActivateError(){
+		return bsiCashCouponActivateError;
+	}
+	
+	/**
+	 * 
+	 * @param bsiCashCouponActivateError 代金券激活失败原因 bsi_cash_coupon_activate_error
+	 */	
+	public void setBsiCashCouponActivateError (String bsiCashCouponActivateError) {
+		this.bsiCashCouponActivateError = bsiCashCouponActivateError;
 	}
 	
 	/**

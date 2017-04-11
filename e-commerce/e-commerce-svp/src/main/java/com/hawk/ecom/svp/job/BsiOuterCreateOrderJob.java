@@ -9,6 +9,7 @@ import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.ecom.svp.service.BsiOuterService;
 import com.hawk.ecom.svp.service.BsiOuterService.Order;
 import com.hawk.framework.pub.spring.FrameworkContext;
+import com.hawk.framework.utility.tools.DateTools;
 
 /**
  *  创建碎屏险外部订单job
@@ -79,7 +80,19 @@ public class BsiOuterCreateOrderJob implements Runnable{
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.EXEC_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode(e.getClass().getName());
 				bsiOrderDetailDomain.setLastExecErrMsg(e.getMessage());
-				bsiOrderDetailDomain. // 设置下次执行时间  scheduleTime
+				 // 设置下次执行时间  scheduleTime
+				Date scheduleExecDate = new Date();
+				if (execTimes == 1){
+					/**
+					 * 第一次，5分钟
+					 */
+					scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 5);
+				}else{
+					/**
+					 * 第一次，5分钟
+					 */
+				}
+				bsiOrderDetailDomain.setScheduleExecDate(scheduleExecDate);
 			}
 			
 			

@@ -13,6 +13,7 @@
 		order_status AS "orderStatus" ,
 		order_type AS "orderType" ,
 		order_desc AS "orderDesc" ,
+		order_error_cause AS "orderErrorCause" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -28,6 +29,7 @@
 			<if test="orderStatus != null"> AND order_status = #{orderStatus}  </if>
 			<if test="orderType != null"> AND order_type = #{orderType}  </if>
 			<if test="orderDesc != null"> AND order_desc = #{orderDesc}  </if>
+			<if test="orderErrorCause != null"> AND order_error_cause = #{orderErrorCause}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -44,6 +46,7 @@
 			AND order_status = #{old_orderStatus}
 			AND order_type = #{old_orderType}
 			AND order_desc = #{old_orderDesc}
+			AND order_error_cause = #{old_orderErrorCause}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -60,6 +63,7 @@
 			order_status = #{orderStatus},
 			order_type = #{orderType},
 			order_desc = #{orderDesc},
+			order_error_cause = #{orderErrorCause},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -76,6 +80,7 @@
 			<if test="orderStatus != null">order_status = #{orderStatus},</if>
 			<if test="orderType != null">order_type = #{orderType},</if>
 			<if test="orderDesc != null">order_desc = #{orderDesc},</if>
+			<if test="orderErrorCause != null">order_error_cause = #{orderErrorCause},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -125,6 +130,7 @@
 				order_status,				
 				order_type,				
 				order_desc,				
+				order_error_cause,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -138,6 +144,7 @@
 			#{orderStatus},
 			#{orderType},
 			#{orderDesc},
+			#{orderErrorCause},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}

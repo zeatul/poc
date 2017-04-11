@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+	<id>ea7d3c39-9a9c-4e45-ba83-0bd90548644b</id>
+	<code>t_svp_bsi_out_order_sequence</code>
+	<comment>碎屏险外部订单号生成表</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<id>08579b45-55f2-4435-b5d9-a3a02b650e20</id>
+			<word>
+				<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
+			</word>
+			<code>stub</code>
+			<name>stub</name>
+			<comment>stub</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>f6319964-8a51-4145-8321-ea309c6f95b5</id>
+			<word>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
+			</word>
+			<code>id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+	<indexes>
+		<index>
+			<id>1777583f-a7fa-40f5-9707-176690941814</id>
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>f6319964-8a51-4145-8321-ea309c6f95b5</id>
+				</column>
+			</columns>
+		</index>
+	</indexes>
+</table>

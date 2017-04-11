@@ -79,8 +79,7 @@ public class ValidateConfig {
 						
 			MethodSignature signature = (MethodSignature) jp.getSignature();
 			Method method = signature.getMethod();			
-			validateService.validMethodParameters(method, jp.getArgs());	
-			
+			validateService.validMethodParameters(method, jp.getArgs());
 			
 		}
 	}

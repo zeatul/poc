@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>3f1f2047-63fa-40db-a6b4-576d5c0016b7</id>
+	<id>7e71517e-59ee-4e13-8dc7-7e10858ceec0</id>
 	<code>t_svp_order</code>
 	<comment>碎屏险订单</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>0453c9a5-2a2b-42ab-a626-d6955c4b7aaf</id>
+			<id>ebcd9019-b363-4309-a301-3cec869992bf</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>33cb114b-578f-4850-a577-bd150250f5a1</id>
+			<id>45f00978-ad12-4b11-8b3d-e42deed01906</id>
 			<word>
 				<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b4d4dac4-db53-4105-a6b4-7b5fb50aa7ea</id>
+			<id>8b9983e3-aafb-46d6-9bf2-faf13f8accc8</id>
 			<word>
 				<id>3f0a4f29-1aec-490a-822c-c4619fc28aca</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1168ce11-88d3-40c6-a57e-7490b08df42a</id>
+			<id>952df38e-f245-4a06-a788-6798089e7ce8</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>29f814a9-a8d5-4202-b58b-8c7201eb1d7a</id>
+			<id>8e97ade6-aa7f-4ca9-8d0f-648128c78403</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>bca36461-5e38-4b91-aa22-465162eaa8d2</id>
+			<id>fdc92b24-1d2b-4fbd-a05d-367852a64a0a</id>
 			<word>
 				<id>f5a813df-bafc-43d3-9468-53fcdbf2cf9c</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>acb30875-b486-4b84-8dc4-2291065024d6</id>
+			<id>9ec98351-0500-4ef3-8121-a515a178a817</id>
 			<word>
 				<id>62317d93-2895-4012-8c1b-6fcd6620b61c</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>70872c9c-c882-4e92-88e0-592454852462</id>
+			<id>32639b3e-5b31-4b84-8451-e556a37db391</id>
 			<word>
 				<id>dcd09571-333e-4bd2-a049-e791102f3e60</id>
 			</word>
@@ -94,7 +94,18 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>985a7290-e9e5-457f-8064-3fe7b1144073</id>
+			<id>425710f2-ccda-44a7-bf56-070e6fc9cc0d</id>
+			<word>
+				<id>a1fcfc66-f50d-43f8-8302-57299c05eeda</id>
+			</word>
+			<code>order_error_cause</code>
+			<name>订单失败原因</name>
+			<comment>订单失败原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>5b3b3489-ae7c-4ace-aa2b-db6fd2537c57</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -105,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>bae9f509-c141-44a5-85c4-2d4dba1cc136</id>
+			<id>56872835-d31b-44f0-b2b2-bdc0d2cf2890</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -116,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>532a5460-b5b8-4897-bbb0-7fb4b1f2fb3a</id>
+			<id>7a6e33a3-a421-4d5c-baf7-77224c5c8a86</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -129,11 +140,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>dcbe6995-1ccc-4a9b-8ecf-2aaaeb96153c</id>
+			<id>23a06aca-d8c3-49ae-ba81-3134ad8bb127</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>0453c9a5-2a2b-42ab-a626-d6955c4b7aaf</id>
+					<id>ebcd9019-b363-4309-a301-3cec869992bf</id>
 				</column>
 			</columns>
 		</index>

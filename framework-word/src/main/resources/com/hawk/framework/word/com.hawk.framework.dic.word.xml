@@ -79,12 +79,32 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
+		<id>8cf7e77c-020d-4440-a4b5-87d5c38cb1d6</id>
+		<code>schedule_exec_date</code>
+		<name>计划执行时间</name>
+		<displayName>计划执行时间</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
 		<id>c8caa8e7-92ff-4422-bd24-e3a5a7449f9a</id>
 		<code>is_only_ascii</code>
 		<name>是否有超过1个byte长度的的字符</name>
 		<displayName>是否有超过1个byte长度的的字符</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>11ab7c30-5b88-4b3e-907b-2f1eca556da3</id>
+		<code>last_exec_date</code>
+		<name>最后一次执行时间</name>
+		<displayName>最后一次执行时间</displayName>
+		<useType>technology</useType>
+		<dataType>date</dataType>
+		<datetimePrecision>3</datetimePrecision>
 		<isEnum>no</isEnum>
 	</word>
 	<word>

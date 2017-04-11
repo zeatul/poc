@@ -56,6 +56,11 @@ public class OrderDomain implements Serializable {
 	private String orderDesc;
 	
 	/**
+	 * 订单失败原因 order_error_cause
+	 */
+	private String orderErrorCause;
+	
+	/**
 	 * 创建日期 create_date
 	 */
 	private Date createDate;
@@ -197,6 +202,22 @@ public class OrderDomain implements Serializable {
 	 */	
 	public void setOrderDesc (String orderDesc) {
 		this.orderDesc = orderDesc;
+	}
+	
+	/**
+	 * 
+	 * @return 订单失败原因 order_error_cause
+	 */
+	public String getOrderErrorCause(){
+		return orderErrorCause;
+	}
+	
+	/**
+	 * 
+	 * @param orderErrorCause 订单失败原因 order_error_cause
+	 */	
+	public void setOrderErrorCause (String orderErrorCause) {
+		this.orderErrorCause = orderErrorCause;
 	}
 	
 	/**

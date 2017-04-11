@@ -87,24 +87,34 @@ public class ModelDomain implements Serializable {
 	private String mobileNumber;
 	
 	/**
-	 * 请求次数 exec_times
+	 * 已经执行次数 exec_times
 	 */
 	private Integer execTimes;
 	
 	/**
-	 * 最大请求次数 max_exec_times
+	 * 最大允许执行次数 max_exec_times
 	 */
 	private Integer maxExecTimes;
 	
 	/**
-	 * 最后一次请求返回错误代码 last_exec_err_code
+	 * 最后一次执行错误代码 last_exec_err_code
 	 */
 	private String lastExecErrCode;
 	
 	/**
-	 * 最后一次请求返回错误原因 last_exec_err_msg
+	 * 最后一次执行错误原因 last_exec_err_msg
 	 */
 	private String lastExecErrMsg;
+	
+	/**
+	 * 最后一次执行时间 last_exec_date
+	 */
+	private Date lastExecDate;
+	
+	/**
+	 * 计划执行时间 schedule_exec_date
+	 */
+	private Date scheduleExecDate;
 	
 	
 	/**
@@ -333,7 +343,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 请求次数 exec_times
+	 * @return 已经执行次数 exec_times
 	 */
 	public Integer getExecTimes(){
 		return execTimes;
@@ -341,7 +351,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param execTimes 请求次数 exec_times
+	 * @param execTimes 已经执行次数 exec_times
 	 */	
 	public void setExecTimes (Integer execTimes) {
 		this.execTimes = execTimes;
@@ -349,7 +359,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 最大请求次数 max_exec_times
+	 * @return 最大允许执行次数 max_exec_times
 	 */
 	public Integer getMaxExecTimes(){
 		return maxExecTimes;
@@ -357,7 +367,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param maxExecTimes 最大请求次数 max_exec_times
+	 * @param maxExecTimes 最大允许执行次数 max_exec_times
 	 */	
 	public void setMaxExecTimes (Integer maxExecTimes) {
 		this.maxExecTimes = maxExecTimes;
@@ -365,7 +375,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 最后一次请求返回错误代码 last_exec_err_code
+	 * @return 最后一次执行错误代码 last_exec_err_code
 	 */
 	public String getLastExecErrCode(){
 		return lastExecErrCode;
@@ -373,7 +383,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param lastExecErrCode 最后一次请求返回错误代码 last_exec_err_code
+	 * @param lastExecErrCode 最后一次执行错误代码 last_exec_err_code
 	 */	
 	public void setLastExecErrCode (String lastExecErrCode) {
 		this.lastExecErrCode = lastExecErrCode;
@@ -381,7 +391,7 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 最后一次请求返回错误原因 last_exec_err_msg
+	 * @return 最后一次执行错误原因 last_exec_err_msg
 	 */
 	public String getLastExecErrMsg(){
 		return lastExecErrMsg;
@@ -389,10 +399,42 @@ public class ModelDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param lastExecErrMsg 最后一次请求返回错误原因 last_exec_err_msg
+	 * @param lastExecErrMsg 最后一次执行错误原因 last_exec_err_msg
 	 */	
 	public void setLastExecErrMsg (String lastExecErrMsg) {
 		this.lastExecErrMsg = lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次执行时间 last_exec_date
+	 */
+	public Date getLastExecDate(){
+		return lastExecDate;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecDate 最后一次执行时间 last_exec_date
+	 */	
+	public void setLastExecDate (Date lastExecDate) {
+		this.lastExecDate = lastExecDate;
+	}
+	
+	/**
+	 * 
+	 * @return 计划执行时间 schedule_exec_date
+	 */
+	public Date getScheduleExecDate(){
+		return scheduleExecDate;
+	}
+	
+	/**
+	 * 
+	 * @param scheduleExecDate 计划执行时间 schedule_exec_date
+	 */	
+	public void setScheduleExecDate (Date scheduleExecDate) {
+		this.scheduleExecDate = scheduleExecDate;
 	}
 	
 

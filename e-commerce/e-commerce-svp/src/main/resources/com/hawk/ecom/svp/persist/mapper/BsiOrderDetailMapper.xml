@@ -13,6 +13,8 @@
 		max_exec_times AS "maxExecTimes" ,
 		last_exec_err_code AS "lastExecErrCode" ,
 		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_date AS "lastExecDate" ,
+		schedule_exec_date AS "scheduleExecDate" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
 		bsi_product_id AS "bsiProductId" ,
 		imei AS "imei" ,
@@ -38,6 +40,8 @@
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
 			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
 			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
@@ -64,6 +68,8 @@
 			AND max_exec_times = #{old_maxExecTimes}
 			AND last_exec_err_code = #{old_lastExecErrCode}
 			AND last_exec_err_msg = #{old_lastExecErrMsg}
+			AND last_exec_date = #{old_lastExecDate}
+			AND schedule_exec_date = #{old_scheduleExecDate}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
 			AND bsi_product_id = #{old_bsiProductId}
 			AND imei = #{old_imei}
@@ -90,6 +96,8 @@
 			max_exec_times = #{maxExecTimes},
 			last_exec_err_code = #{lastExecErrCode},
 			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_date = #{lastExecDate},
+			schedule_exec_date = #{scheduleExecDate},
 			bsi_phone_model_id = #{bsiPhoneModelId},
 			bsi_product_id = #{bsiProductId},
 			imei = #{imei},
@@ -116,6 +124,8 @@
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
 			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
 			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
+			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="imei != null">imei = #{imei},</if>
@@ -175,6 +185,8 @@
 				max_exec_times,				
 				last_exec_err_code,				
 				last_exec_err_msg,				
+				last_exec_date,				
+				schedule_exec_date,				
 				bsi_phone_model_id,				
 				bsi_product_id,				
 				imei,				
@@ -198,6 +210,8 @@
 			#{maxExecTimes},
 			#{lastExecErrCode},
 			#{lastExecErrMsg},
+			#{lastExecDate},
+			#{scheduleExecDate},
 			#{bsiPhoneModelId},
 			#{bsiProductId},
 			#{imei},

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>fa95aa17-603b-4b6f-bd31-e4b0a68e0f25</id>
+	<id>f79065d1-0a3b-4d71-a745-2a59d9bb9e20</id>
 	<code>t_svp_bsi_cash_coupon</code>
 	<comment>代金券</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>171bd0e1-7e0b-4701-8ade-845ecded2f65</id>
+			<id>aeb672b3-a5d5-4fe6-9ef5-d5b47c317b44</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>c8c3d354-c9d4-4297-b0ba-9ecddea947bf</id>
+			<id>3cbacc8e-c482-4caf-8b17-829f20744ca0</id>
 			<word>
 				<id>db948195-8add-427f-8200-d701ce5d8042</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>076cfea4-2472-4ccb-a0f1-cde5c542ccc6</id>
+			<id>3576d670-2deb-4c98-8c26-5c4d53235c4f</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d5efbd47-7ef7-4159-a2a5-7288cac50675</id>
+			<id>5b6251f3-ad84-4cdc-b5d9-5f7bac070589</id>
 			<word>
 				<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>8d0d3e2c-c7a5-4bc6-9243-0223ac1c92ed</id>
+			<id>1a50d8d3-20dc-455a-aa9d-ad3fcee3ced2</id>
 			<word>
 				<id>4de03e27-879d-4ad7-84d9-0b256ed165ab</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>8887fc16-f191-4566-9253-21117402f85e</id>
+			<id>83eaa10e-7361-4eef-ac45-bf2bfff10866</id>
 			<word>
 				<id>529d6867-3497-476d-af7c-5a39cd839e4c</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>98a94784-cd8b-471f-90bd-730e4d4f8c5d</id>
+			<id>2c37c15a-ffc7-424f-9077-a4662d44c6a2</id>
 			<word>
 				<id>1ddcd78b-7819-4809-ab35-f795ef35bce2</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1089b192-5a7e-485c-a1b1-7eeb303ccc3c</id>
+			<id>a13266b4-ef33-4106-8f05-05ae7386a6c4</id>
 			<word>
 				<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>98384854-807b-417e-aac5-8b0ddc770979</id>
+			<id>ce06a53f-df4b-4cba-ac7f-92e6d999b3b9</id>
 			<word>
 				<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7c2a79da-af47-4202-9e7c-6813fba50047</id>
+			<id>bb49806e-f115-493c-b3dc-a1bf29b2323f</id>
 			<word>
 				<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
 			</word>
@@ -116,7 +116,18 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d279cddf-e24f-4864-9a8e-7c17bbd55e9e</id>
+			<id>f2008dca-99c9-4a75-88c9-d1bc3fec8a3d</id>
+			<word>
+				<id>72d6a93d-002d-4625-ba40-fbf891f548df</id>
+			</word>
+			<code>bsi_cash_coupon_activate_error</code>
+			<name>代金券激活失败原因</name>
+			<comment>代金券激活失败原因</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>ecfb50af-a99c-46f0-96ca-75c274232621</id>
 			<word>
 				<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
 			</word>
@@ -127,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>550e96d8-835e-4320-84e3-69c0711f7ed5</id>
+			<id>c05f8fbe-f2fd-4cb8-b9af-eeb0bd1fa7fa</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -138,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>58d434c8-3c99-463c-9fcc-1bb1aed785b5</id>
+			<id>92eb1c65-fd42-4775-8174-66d9302b3147</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -149,7 +160,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>3899f229-a9ea-44dd-b8eb-620be1bbc6cf</id>
+			<id>3aa27957-dcc5-43da-a3ef-a1c058ab87fc</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -162,20 +173,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>657be6a3-6c4c-437b-b7a8-04b816df1f0c</id>
+			<id>4e318c46-2c27-442d-8a00-6b0dbf60f968</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>171bd0e1-7e0b-4701-8ade-845ecded2f65</id>
+					<id>aeb672b3-a5d5-4fe6-9ef5-d5b47c317b44</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>335d7310-61ee-44bb-9051-31cb59ca82f8</id>
+			<id>b8347b94-e9de-4577-8597-c2ff54172d37</id>
 			<code>ui_bsi_cc_code</code>
 			<columns>
 				<column>
-					<id>d5efbd47-7ef7-4159-a2a5-7288cac50675</id>
+					<id>5b6251f3-ad84-4cdc-b5d9-5f7bac070589</id>
 				</column>
 			</columns>
 		</index>

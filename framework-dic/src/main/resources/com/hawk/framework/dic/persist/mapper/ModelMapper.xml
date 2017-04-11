@@ -22,7 +22,9 @@
 		exec_times AS "execTimes" ,
 		max_exec_times AS "maxExecTimes" ,
 		last_exec_err_code AS "lastExecErrCode" ,
-		last_exec_err_msg AS "lastExecErrMsg" 
+		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_date AS "lastExecDate" ,
+		schedule_exec_date AS "scheduleExecDate" 
 	</sql>
 	
 	<sql id="where">
@@ -45,6 +47,8 @@
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
 			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
 			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -68,6 +72,8 @@
 			AND max_exec_times = #{old_maxExecTimes}
 			AND last_exec_err_code = #{old_lastExecErrCode}
 			AND last_exec_err_msg = #{old_lastExecErrMsg}
+			AND last_exec_date = #{old_lastExecDate}
+			AND schedule_exec_date = #{old_scheduleExecDate}
 		</trim>
 	</sql>
 	
@@ -91,6 +97,8 @@
 			max_exec_times = #{maxExecTimes},
 			last_exec_err_code = #{lastExecErrCode},
 			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_date = #{lastExecDate},
+			schedule_exec_date = #{scheduleExecDate},
 		</set>
 	</sql>
 	
@@ -114,6 +122,8 @@
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
 			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
 			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
+			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 		</set>
 	</sql>
 	
@@ -169,7 +179,9 @@
 				exec_times,				
 				max_exec_times,				
 				last_exec_err_code,				
-				last_exec_err_msg				
+				last_exec_err_msg,				
+				last_exec_date,				
+				schedule_exec_date				
 		)		
 		VALUES (	
 			#{objectId},
@@ -189,7 +201,9 @@
 			#{execTimes},
 			#{maxExecTimes},
 			#{lastExecErrCode},
-			#{lastExecErrMsg}
+			#{lastExecErrMsg},
+			#{lastExecDate},
+			#{scheduleExecDate}
 		) 
 	</insert>
 	

@@ -20,12 +20,16 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 		boolean isValid = isValid(annotation,value);
 		if (!isValid){
 			
-			String name = annotation.name();
+			String name = annotation.name(); //开发指定名称不需要排序
 			
 			if (StringTools.isNullOrEmpty(name)){
 				
 				Word word = dictionaryService.queryWord(annotation.value());
-				name = word.getName();
+				if (word == null){
+					name = annotation.value();
+				}else{
+					name = word.getName();
+				}
 			}
 			
 			

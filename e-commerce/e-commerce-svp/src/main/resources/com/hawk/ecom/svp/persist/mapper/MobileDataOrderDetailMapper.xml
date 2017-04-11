@@ -15,6 +15,8 @@
 		max_exec_times AS "maxExecTimes" ,
 		last_exec_err_code AS "lastExecErrCode" ,
 		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_date AS "lastExecDate" ,
+		schedule_exec_date AS "scheduleExecDate" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -32,6 +34,8 @@
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
 			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
 			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -50,6 +54,8 @@
 			AND max_exec_times = #{old_maxExecTimes}
 			AND last_exec_err_code = #{old_lastExecErrCode}
 			AND last_exec_err_msg = #{old_lastExecErrMsg}
+			AND last_exec_date = #{old_lastExecDate}
+			AND schedule_exec_date = #{old_scheduleExecDate}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -68,6 +74,8 @@
 			max_exec_times = #{maxExecTimes},
 			last_exec_err_code = #{lastExecErrCode},
 			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_date = #{lastExecDate},
+			schedule_exec_date = #{scheduleExecDate},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -86,6 +94,8 @@
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
 			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
 			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
+			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -121,6 +131,8 @@
 				max_exec_times,				
 				last_exec_err_code,				
 				last_exec_err_msg,				
+				last_exec_date,				
+				schedule_exec_date,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -136,6 +148,8 @@
 			#{maxExecTimes},
 			#{lastExecErrCode},
 			#{lastExecErrMsg},
+			#{lastExecDate},
+			#{scheduleExecDate},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}
