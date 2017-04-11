@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>36145e4c-c6f5-40e6-be64-d919dd213286</id>
+	<id>c42d5a3c-8130-471c-8def-f5bce14cfbc5</id>
 	<code>t_svp_bsi_order_detail</code>
 	<comment>碎屏险订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>54a006d1-fcf3-4a92-8b8c-19d58c861af2</id>
+			<id>7c8e54ab-9e3a-4694-8364-5add1e529276</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>ae604331-d7e0-405a-85bc-4181515f6611</id>
+			<id>152a7ced-8146-439f-80a5-cb12a071d1c5</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>e249f93b-7031-413e-9929-de7a23025c65</id>
+			<id>0f82421f-08d8-4172-97e2-2bea5a267e1f</id>
 			<word>
 				<id>edbdf458-20a4-4458-9d3e-1b9dc7db5c4f</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b78602de-3b5b-49eb-874f-8250164074fd</id>
+			<id>b4af5d78-4d34-4973-9360-3d7b95ee3228</id>
 			<word>
 				<id>dd3248b5-3608-480d-8807-7a32908d0569</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>063fb995-1901-4c24-a707-384800540430</id>
+			<id>208cd015-3a37-4e39-a8e0-ae66baead173</id>
 			<word>
 				<id>2fc8b29e-743c-489f-b01e-cc334465ec1f</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4b0aa3e3-2db0-4b6b-aac8-bedbb91d2289</id>
+			<id>2e6c3b94-aabe-4f5c-87e0-a0831e280388</id>
 			<word>
 				<id>8aced0d2-a07a-4526-a5a5-67ddf571a87a</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c7057362-e75e-4799-a042-37f86d111962</id>
+			<id>e197314f-4b71-4d1a-aab8-f2cd64f0156a</id>
 			<word>
 				<id>d05d3bb6-0f4c-4c78-80c8-f60914f40f28</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>1d7a8dd9-3ebd-4a9b-a237-9752a31259b7</id>
+			<id>1ed88cd7-661f-429d-8d4f-9492f7438f08</id>
 			<word>
 				<id>2492762a-882c-488b-af6c-89f605fe4ef4</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>7db15bbc-d328-4fa5-a615-8948d1c51f79</id>
+			<id>60d16982-1e6d-488a-9784-1fd38fca15bc</id>
 			<word>
 				<id>11ab7c30-5b88-4b3e-907b-2f1eca556da3</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>9c8c76b0-82eb-4424-9bda-8423bfb40b47</id>
+			<id>5dce28ad-c2b0-4d21-a390-0e6878a75de5</id>
 			<word>
 				<id>8cf7e77c-020d-4440-a4b5-87d5c38cb1d6</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a043c674-c4ed-4499-9da6-126b96a12af2</id>
+			<id>b69653d1-8b5b-4e7f-a818-12fa44803957</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c2cdcbc0-8634-4aec-b6b8-42c07a5807a3</id>
+			<id>755f25ba-7e2a-4297-a185-7b77a19cd3c7</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -138,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>2e2ee80e-ee20-45ca-95b7-8a8ca79c59f3</id>
+			<id>e6adc80f-fa62-4a28-a275-f4be70e458fc</id>
 			<word>
 				<id>ec5c9f96-ecd4-4f66-a288-c461b2c53ceb</id>
 			</word>
@@ -149,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d163053d-3ce1-435b-aced-a9f02672c93f</id>
+			<id>e4bec24d-70a8-499c-a8c6-a2ec60a2340f</id>
 			<word>
 				<id>5e685cf9-bc94-483a-a073-38f92eade1cc</id>
 			</word>
@@ -160,7 +160,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d4ab4b35-2901-4fb1-8f35-fcd3131442c4</id>
+			<id>2f7ca930-d2b0-44ce-92f2-a9a7b6f84e65</id>
 			<word>
 				<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
 			</word>
@@ -171,7 +171,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a0e5bdcb-058d-4fbe-9937-f5757a1e304d</id>
+			<id>83c0f006-19bf-422b-9c47-1fa431cd2644</id>
 			<word>
 				<id>dba8c789-f1db-4811-925e-314951c28c35</id>
 			</word>
@@ -182,7 +182,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4d0470d7-7c78-4cb7-8aca-d7e4edae7282</id>
+			<id>5f31f8e8-21b3-494a-81d8-7f8b9415307d</id>
 			<word>
 				<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
 			</word>
@@ -193,7 +193,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b9bbff43-b6e7-4280-8309-a660296a1c84</id>
+			<id>9212f83b-9eb6-47fe-8d24-6a7004ce1533</id>
 			<word>
 				<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
 			</word>
@@ -204,7 +204,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>04cc0689-f96f-4bc2-bd1f-a8c18eb24bf8</id>
+			<id>8700d881-8f72-4b63-b746-4092411e6f40</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -215,7 +215,18 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>830e78ba-2a79-4205-85e3-e30d8eae7cde</id>
+			<id>3ab68945-6933-4476-b598-965d70c9349e</id>
+			<word>
+				<id>00a5fb20-fc56-4894-95e1-2c1ed8fe7edf</id>
+			</word>
+			<code>bsi_cash_coupon_code</code>
+			<name>代金券编号</name>
+			<comment>代金券编号</comment>
+			<nullable>no</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>0d1ec6f2-1d70-4a1c-8e0c-bbe95f49bf31</id>
 			<word>
 				<id>924f6d05-8d58-47f7-b7b4-2f6459f53499</id>
 			</word>
@@ -226,7 +237,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4d58e18c-4531-4cdb-b71a-adc83e2cf36e</id>
+			<id>c3f90cfe-1215-43f4-b54a-87797af1a510</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -237,7 +248,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>fa8444ec-28d2-4613-b97a-4cdfb65d81de</id>
+			<id>e1385a69-7ef2-483a-9cbb-99d064f2749b</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -248,7 +259,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>b342961f-4120-44db-b046-00100afd9725</id>
+			<id>87086c40-daa8-4ebe-b265-428bba7140da</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -261,20 +272,20 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>0573809e-9432-4c0e-b37c-7144e82fc571</id>
+			<id>dd82c03c-76e8-4f88-8c9e-2ec4981f323c</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>54a006d1-fcf3-4a92-8b8c-19d58c861af2</id>
+					<id>7c8e54ab-9e3a-4694-8364-5add1e529276</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>da09fd9d-4043-43bc-b009-e082afc834a0</id>
+			<id>2830ee38-26d1-4c1e-ab9b-0f8129b65d0c</id>
 			<code>ui_bsi_task_code</code>
 			<columns>
 				<column>
-					<id>e249f93b-7031-413e-9929-de7a23025c65</id>
+					<id>0f82421f-08d8-4172-97e2-2bea5a267e1f</id>
 				</column>
 			</columns>
 		</index>

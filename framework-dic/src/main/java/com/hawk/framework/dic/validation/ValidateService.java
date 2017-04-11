@@ -12,15 +12,15 @@ import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.dic.validation.validator.ConstraintValidator;
 
 public class ValidateService implements ApplicationContextAware {
-	
+
 	private ApplicationContext applicationContext;
-	
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 
 	}
-	
+
 	/**
 	 * 校验函数所有参数
 	 * @param methodAnnotations 参数注解
@@ -34,7 +34,7 @@ public class ValidateService implements ApplicationContextAware {
 			return ;
 		
 		
-		 Parameter[] parameters = method.getParameters();R
+		Parameter[] parameters = method.getParameters();R
 		
 		for(int i=0 ; i< values.length; i++){
 			Object value = values[i];
@@ -55,8 +55,5 @@ public class ValidateService implements ApplicationContextAware {
 			}
 		}
 	}
-
-		
-	
 
 }

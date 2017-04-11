@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>ea7d3c39-9a9c-4e45-ba83-0bd90548644b</id>
+	<id>dcd2757c-9e73-444d-b9f8-9846a27a0e0e</id>
 	<code>t_svp_bsi_out_order_sequence</code>
 	<comment>碎屏险外部订单号生成表</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>08579b45-55f2-4435-b5d9-a3a02b650e20</id>
+			<id>5b07806b-7c3c-4ede-a607-d66bfdb03f9e</id>
 			<word>
 				<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f6319964-8a51-4145-8321-ea309c6f95b5</id>
+			<id>0e9cce58-89f9-45ff-90ff-0900de15ef11</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -30,11 +30,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>1777583f-a7fa-40f5-9707-176690941814</id>
+			<id>45d5f47d-9fbc-43da-9f1b-bfc8703c08d8</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>f6319964-8a51-4145-8321-ea309c6f95b5</id>
+					<id>0e9cce58-89f9-45ff-90ff-0900de15ef11</id>
 				</column>
 			</columns>
 		</index>

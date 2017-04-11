@@ -196,6 +196,7 @@ public class BsiService {
 		bsiOrderDetailDomain.setMaxExecTimes(5); // 最多请求5次
 		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
+		
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
 		
 		

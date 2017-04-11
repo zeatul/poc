@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,10 +33,10 @@ public class JsonTools {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T> T toObject(String jsonStr, Class<?> clazz) {
+	
+	public static <T> T toObject(String jsonStr, Class<T> clazz) {
 		try {
-			return (T)objectMapper.readValue(jsonStr, clazz);
+			return objectMapper.readValue(jsonStr, clazz);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

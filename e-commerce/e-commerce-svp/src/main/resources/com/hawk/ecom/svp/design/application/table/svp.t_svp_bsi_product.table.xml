@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>dbd8ad20-ade1-4d8b-bbfb-670dd1bcf47d</id>
+	<id>33f3da28-7a5b-4632-ad03-bcfe23af8271</id>
 	<code>t_svp_bsi_product</code>
 	<comment>碎屏险产品</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>d9b22174-cc7b-44f3-92ca-dd128aefcd7c</id>
+			<id>202002e6-9682-4236-b1ff-ba26be886439</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>234fb93a-5bc6-4bb9-b46b-bf5316a44ba4</id>
+			<id>c96f07ea-287f-4c09-9e1a-4d48fdbda500</id>
 			<word>
 				<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4a599954-ad29-424d-a58b-f8929c69b0b3</id>
+			<id>827e0ad8-9ae0-41f0-8119-bc432d868b7d</id>
 			<word>
 				<id>8bc6bce7-8fba-40d5-a88c-fa9ed015d3bf</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a222a32c-9676-4f8a-8546-7ceeab7de374</id>
+			<id>a2550dbf-ac2f-471f-923c-529c0bf66f25</id>
 			<word>
 				<id>172b4b67-0649-4e79-bfcb-79c29812dd37</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>6c453b7b-8278-4354-bfe8-f642913d2efa</id>
+			<id>41d36c51-a4e1-454a-8272-92d472e8c3c9</id>
 			<word>
 				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>bf48e344-208f-4766-a8cf-a91201567465</id>
+			<id>8d636cb1-2ab4-4b50-85cc-1785cb5e6ae9</id>
 			<word>
 				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>d74c0159-3b58-4705-a7d8-74bd631c9e2f</id>
+			<id>ea1e1d81-974d-407f-81be-3d38edbf46dd</id>
 			<word>
 				<id>cec650fd-d4a5-4ef8-bf96-b34c5748e8d3</id>
 			</word>
@@ -85,11 +85,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>bed43ac3-a800-4257-bbdf-87e7df5feb82</id>
+			<id>f5ad9a2a-e677-4ffd-a461-76bb7d55cbf2</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>d9b22174-cc7b-44f3-92ca-dd128aefcd7c</id>
+					<id>202002e6-9682-4236-b1ff-ba26be886439</id>
 				</column>
 			</columns>
 		</index>

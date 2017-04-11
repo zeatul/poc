@@ -34,11 +34,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> c7a4eb04235778bf05148e1b7183a25e099ef844
 		<!-- aspectj -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

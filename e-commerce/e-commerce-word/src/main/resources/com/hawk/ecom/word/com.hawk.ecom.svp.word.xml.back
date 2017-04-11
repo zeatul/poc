@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <words>
 	<word>
-		<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
-		<code>bsi_cash_coupon_status</code>
-		<name>代金券状态</name>
-		<displayName>代金券状态</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
-		<code>bsi_phone_brand</code>
-		<name>手机品牌</name>
-		<displayName>手机品牌</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>3eb9c082-259f-46e2-bac4-1e8c16b78d5e</id>
 		<code>bsi_cash_coupon_period</code>
 		<name>代金券保险月份数</name>
@@ -43,30 +19,6 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
-		<code>bsi_benef_name</code>
-		<name>投保者姓名</name>
-		<displayName>投保者姓名</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
-		<code>bsi_phone_model</code>
-		<name>手机型号</name>
-		<displayName>手机型号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
 		<code>charge_data_size</code>
 		<name>充值流量</name>
@@ -82,18 +34,6 @@
 		<displayName>订单状态</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
-		<code>bsi_benef_sex</code>
-		<name>投保者性别</name>
-		<displayName>投保者性别</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 	<word>
@@ -118,22 +58,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>4e7d3820-6b22-45bf-9362-e1e952720b05</id>
-		<code>bsi_phone_model_status</code>
-		<name>型号状态</name>
-		<displayName>型号状态</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>172b4b67-0649-4e79-bfcb-79c29812dd37</id>
-		<code>bsi_product_status</code>
-		<name>产品状态</name>
-		<displayName>产品状态</displayName>
+		<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
+		<code>stub</code>
+		<name>stub</name>
+		<displayName>stub</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -178,58 +106,10 @@
 		<isEnum>no</isEnum>
 	</word>
 	<word>
-		<id>edbdf458-20a4-4458-9d3e-1b9dc7db5c4f</id>
-		<code>bsi_task_code</code>
-		<name>任务号,与小宝对接用</name>
-		<displayName>任务号,与小宝对接用</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>dcd09571-333e-4bd2-a049-e791102f3e60</id>
-		<code>order_desc</code>
-		<name>订单描述</name>
-		<displayName>订单描述</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>1000</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
 		<id>342be362-7520-4b4e-9eaf-cf9b00a7bf4c</id>
 		<code>order_code</code>
 		<name>订单编号</name>
 		<displayName>订单编号</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
-		<code>bsi_cash_coupon_type</code>
-		<name>代金券类型</name>
-		<displayName>代金券类型</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
-		<code>bsi_benef_id_number</code>
-		<name>证件号码</name>
-		<displayName>证件号码</displayName>
 		<useType>technology</useType>
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
@@ -246,18 +126,6 @@
 		<dataType>string</dataType>
 		<charMinLength>0</charMinLength>
 		<charMaxLength>50</charMaxLength>
-		<isOnlyAscii>1</isOnlyAscii>
-		<isEnum>no</isEnum>
-	</word>
-	<word>
-		<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
-		<code>bsi_product_name</code>
-		<name>产品名称</name>
-		<displayName>产品名称</displayName>
-		<useType>technology</useType>
-		<dataType>string</dataType>
-		<charMinLength>0</charMinLength>
-		<charMaxLength>100</charMaxLength>
 		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
@@ -324,6 +192,174 @@
 		<displayName>任务状态</displayName>
 		<useType>technology</useType>
 		<dataType>integer</dataType>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>72d6a93d-002d-4625-ba40-fbf891f548df</id>
+		<code>bsi_cash_coupon_activate_error</code>
+		<name>代金券激活失败原因</name>
+		<displayName>代金券激活失败原因</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>af24fea7-2538-4100-b68d-de9752e5f818</id>
+		<code>bsi_cash_coupon_status</code>
+		<name>代金券状态</name>
+		<displayName>代金券状态</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
+		<code>bsi_phone_brand</code>
+		<name>手机品牌</name>
+		<displayName>手机品牌</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>bf7bbc0e-3610-4ec6-9999-e9a4f944c944</id>
+		<code>bsi_benef_name</code>
+		<name>投保者姓名</name>
+		<displayName>投保者姓名</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
+		<code>bsi_phone_model</code>
+		<name>手机型号</name>
+		<displayName>手机型号</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>66fac7a1-07f3-4775-a862-8e712573e71b</id>
+		<code>bsi_benef_sex</code>
+		<name>投保者性别</name>
+		<displayName>投保者性别</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>4e7d3820-6b22-45bf-9362-e1e952720b05</id>
+		<code>bsi_phone_model_status</code>
+		<name>型号状态</name>
+		<displayName>型号状态</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>172b4b67-0649-4e79-bfcb-79c29812dd37</id>
+		<code>bsi_product_status</code>
+		<name>产品状态</name>
+		<displayName>产品状态</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>edbdf458-20a4-4458-9d3e-1b9dc7db5c4f</id>
+		<code>bsi_task_code</code>
+		<name>任务号,与小宝对接用</name>
+		<displayName>任务号,与小宝对接用</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>a1fcfc66-f50d-43f8-8302-57299c05eeda</id>
+		<code>order_error_cause</code>
+		<name>订单失败原因</name>
+		<displayName>订单失败原因</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>dcd09571-333e-4bd2-a049-e791102f3e60</id>
+		<code>order_desc</code>
+		<name>订单描述</name>
+		<displayName>订单描述</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>1000</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>ab56e1ce-2543-48d3-a6e8-be2c9c1242f9</id>
+		<code>bsi_cash_coupon_type</code>
+		<name>代金券类型</name>
+		<displayName>代金券类型</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>e09c9487-af73-42b7-bed8-1168b84851e7</id>
+		<code>bsi_benef_id_number</code>
+		<name>证件号码</name>
+		<displayName>证件号码</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>50</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
+		<isEnum>no</isEnum>
+	</word>
+	<word>
+		<id>d7a239b8-45e5-4596-a4eb-03da63aafc78</id>
+		<code>bsi_product_name</code>
+		<name>产品名称</name>
+		<displayName>产品名称</displayName>
+		<useType>technology</useType>
+		<dataType>string</dataType>
+		<charMinLength>0</charMinLength>
+		<charMaxLength>100</charMaxLength>
+		<isOnlyAscii>1</isOnlyAscii>
 		<isEnum>no</isEnum>
 	</word>
 </words>

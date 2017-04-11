@@ -6,6 +6,8 @@ drop table if exists t_svp_bsi_cash_coupon;
 
 drop table if exists t_svp_bsi_cash_coupon_sequence;
 
+drop index i_bsi_coupon_code on t_svp_bsi_order_detail;
+
 drop index ui_bsi_task_code on t_svp_bsi_order_detail;
 
 drop table if exists t_svp_bsi_order_detail;
@@ -111,6 +113,7 @@ create table t_svp_bsi_order_detail
    bsi_benef_sex        integer comment '投保者性别',
    bsi_benef_name       varchar(50) comment '投保者姓名',
    bsi_benef_mobile_number varchar(20) not null comment '投保者手机号',
+   bsi_cash_coupon_code varchar(50) not null comment '代金券编号',
    bsi_insurance_code   varchar(50) comment '小宝订单编号',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
@@ -127,6 +130,14 @@ alter table t_svp_bsi_order_detail comment '碎屏险订单明细';
 create unique index ui_bsi_task_code on t_svp_bsi_order_detail
 (
    bsi_task_code
+);
+
+/*==============================================================*/
+/* Index: i_bsi_coupon_code                                     */
+/*==============================================================*/
+create index i_bsi_coupon_code on t_svp_bsi_order_detail
+(
+   bsi_cash_coupon_code
 );
 
 /*==============================================================*/

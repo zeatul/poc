@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>d6f60942-05e3-4ec0-b3bc-e2eeb4bf94cb</id>
+	<id>761ec74c-c591-429c-a2bb-c907337914ff</id>
 	<code>t_svp_mobile_data_order_detail</code>
 	<comment>联通流量订单明细</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>c528471b-bb07-41a6-b3df-717818baeba4</id>
+			<id>78a16699-3e26-40f9-a7f7-d78a9a8ea0f4</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>63cb2f82-14ba-4ff1-8dcb-9ace96221b13</id>
+			<id>2c503879-0452-4a0e-853a-6fa32e1699bf</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>f4a3915e-e946-44b1-b83b-73951fee5269</id>
+			<id>e2ffa3e7-eadf-4f51-bd12-8cfcb30f16b7</id>
 			<word>
 				<id>aaef03a3-f792-4219-8261-cde32883c79b</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>56060f58-fbdc-4512-8786-310d82600233</id>
+			<id>89b2a472-6b32-42a1-a71f-4d23618a645c</id>
 			<word>
 				<id>689d8761-6791-48ea-bf37-80ce5430bddf</id>
 			</word>
@@ -50,7 +50,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>77136b1d-3c26-46d6-979c-311536b10b08</id>
+			<id>55cd44f9-d0fc-4fd5-b4fd-5182d39e1315</id>
 			<word>
 				<id>709d9aeb-98b3-4553-9328-49e7d6f8f462</id>
 			</word>
@@ -61,7 +61,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>79554342-4701-446f-a508-09fc16c6e2f5</id>
+			<id>c2f22842-7fd7-43a1-8919-6151d77aba20</id>
 			<word>
 				<id>8aac1c36-2d87-4088-91ce-2b8587933daa</id>
 			</word>
@@ -72,7 +72,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>aeaa0b5b-fbff-42db-8747-ccebd98a0de9</id>
+			<id>e5ba523d-dce9-4faf-a17b-e246a9e144ac</id>
 			<word>
 				<id>2fc8b29e-743c-489f-b01e-cc334465ec1f</id>
 			</word>
@@ -83,7 +83,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c642c2c4-7484-42fa-844d-510c68894c69</id>
+			<id>7d53ac43-c0c8-40fe-9bf8-6213d128484c</id>
 			<word>
 				<id>8aced0d2-a07a-4526-a5a5-67ddf571a87a</id>
 			</word>
@@ -94,7 +94,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>50fd0245-7197-46e0-af6f-cef9a3f430d5</id>
+			<id>1f58ca0b-46d8-4d68-8ec3-12c4cca4213a</id>
 			<word>
 				<id>d05d3bb6-0f4c-4c78-80c8-f60914f40f28</id>
 			</word>
@@ -105,7 +105,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>439a9fed-be89-4d8e-9bc0-a76415f52bfa</id>
+			<id>6f326cd7-d825-42f6-af67-9e765c354e73</id>
 			<word>
 				<id>2492762a-882c-488b-af6c-89f605fe4ef4</id>
 			</word>
@@ -116,7 +116,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>8d1d4d39-643e-43b5-85b5-a55b0a681629</id>
+			<id>abb1ed32-60dc-4109-b00b-67f2b8524c0c</id>
 			<word>
 				<id>11ab7c30-5b88-4b3e-907b-2f1eca556da3</id>
 			</word>
@@ -127,7 +127,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>64d61478-826a-49a5-ae22-cd6fcfc074d9</id>
+			<id>497c453f-2af2-47cf-9425-1db3d6719394</id>
 			<word>
 				<id>8cf7e77c-020d-4440-a4b5-87d5c38cb1d6</id>
 			</word>
@@ -138,7 +138,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c4b9d25b-4733-47e3-892e-0cf2fbddf130</id>
+			<id>c3bf3327-bcdf-4cff-8541-69e92cfec182</id>
 			<word>
 				<id>8b4705c3-b490-499c-8846-e20769a7b8af</id>
 			</word>
@@ -149,7 +149,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>561cbee6-c387-4d97-8961-9a7d2b4cde8b</id>
+			<id>4e630235-9338-407a-aa52-d1d5a9393f46</id>
 			<word>
 				<id>94a4f66f-bfd4-4ab0-819a-01aaee0deeec</id>
 			</word>
@@ -160,7 +160,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c4d68f56-e060-42a4-a7bf-2a80eec8fdaa</id>
+			<id>e6ec0b79-de33-4d6d-8170-3dc337bfd8fc</id>
 			<word>
 				<id>6b9294cc-8c46-49bf-8f81-62a72fac33e3</id>
 			</word>
@@ -173,11 +173,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>2585d4f4-7446-4609-8a8e-0029323d0082</id>
+			<id>3d162a9b-7c15-4479-8516-b18c8b9740da</id>
 			<code>ui_od_task_code</code>
 			<columns>
 				<column>
-					<id>79554342-4701-446f-a508-09fc16c6e2f5</id>
+					<id>c2f22842-7fd7-43a1-8919-6151d77aba20</id>
 				</column>
 			</columns>
 		</index>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>fbf72180-499c-4b60-8bde-e74dd6add3ea</id>
+	<id>b9c193f7-1d82-4753-bbd1-2e916afe8870</id>
 	<code>t_svp_charge_sequence</code>
 	<comment>流量充值任务号生成表</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>4944933b-eca0-4aa5-a64a-0bb1d9f0d8a4</id>
+			<id>64bc2f82-2916-42a5-a292-fd2e04419ee2</id>
 			<word>
 				<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>c3029321-4b61-44af-97fe-a60a0fd3020b</id>
+			<id>22d848d0-a975-41fe-ad81-1e6c1c43cde7</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -30,11 +30,11 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>161ab501-d52d-42dc-8128-3e942bd26ab4</id>
+			<id>7b070377-ed81-4280-be08-3f8562ada139</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>c3029321-4b61-44af-97fe-a60a0fd3020b</id>
+					<id>22d848d0-a975-41fe-ad81-1e6c1c43cde7</id>
 				</column>
 			</columns>
 		</index>

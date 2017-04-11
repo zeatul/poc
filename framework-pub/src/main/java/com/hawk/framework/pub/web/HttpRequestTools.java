@@ -22,7 +22,7 @@ public class HttpRequestTools {
 	 * @return
 	 * @throws IOException 
 	 */
-	public static <T> T  parse(HttpServletRequest request, Class<T> clazz) throws IOException  {
+	public static <T>  T  parse(HttpServletRequest request, Class<T> clazz) throws IOException  {
 
 		String input = null;
 		if (request.getMethod().equalsIgnoreCase("get")) {

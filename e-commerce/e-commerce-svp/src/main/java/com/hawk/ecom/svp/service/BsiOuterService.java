@@ -26,6 +26,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 /**
  * 小宝的外调接口
+ * 有构造函数，不能自动扫描
  * @author zhp
  *
  */

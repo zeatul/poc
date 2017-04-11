@@ -111,6 +111,11 @@ public class BsiOrderDetailDomain implements Serializable {
 	private String bsiBenefMobileNumber;
 	
 	/**
+	 * 代金券编号 bsi_cash_coupon_code
+	 */
+	private String bsiCashCouponCode;
+	
+	/**
 	 * 小宝订单编号 bsi_insurance_code
 	 */
 	private String bsiInsuranceCode;
@@ -433,6 +438,22 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiBenefMobileNumber (String bsiBenefMobileNumber) {
 		this.bsiBenefMobileNumber = bsiBenefMobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 代金券编号 bsi_cash_coupon_code
+	 */
+	public String getBsiCashCouponCode(){
+		return bsiCashCouponCode;
+	}
+	
+	/**
+	 * 
+	 * @param bsiCashCouponCode 代金券编号 bsi_cash_coupon_code
+	 */	
+	public void setBsiCashCouponCode (String bsiCashCouponCode) {
+		this.bsiCashCouponCode = bsiCashCouponCode;
 	}
 	
 	/**

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table>
-	<id>ef83eaab-b9d1-438d-80d7-d22835a7892b</id>
+	<id>9a2bea89-cb25-4429-bb7d-1145b7a78212</id>
 	<code>t_svp_bsi_phone_model</code>
 	<comment>碎屏险手机品牌型号</comment>
 	<type>normal</type>
 	<columns>
 		<column>
-			<id>e5c680f9-73a7-43f2-8a16-771eafab8f45</id>
+			<id>6c53c9a0-a997-41f9-8f33-1120e16bbbc7</id>
 			<word>
 				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
 			</word>
@@ -17,7 +17,7 @@
 			<isPk>yes</isPk>
 		</column>
 		<column>
-			<id>2825479c-7ff1-4c62-964f-796b3c7b0a3d</id>
+			<id>7d8e903b-8168-4a88-8301-5715a0372793</id>
 			<word>
 				<id>c4c6f06e-0dde-4c80-98be-3fe404c1d6e5</id>
 			</word>
@@ -28,7 +28,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>a8a83ffe-112a-4407-a884-7a6e7bbd4c2b</id>
+			<id>c3158de6-7248-4eab-9d93-1e9b5e39b163</id>
 			<word>
 				<id>c87a2005-b544-4529-9949-ea7760975cdf</id>
 			</word>
@@ -39,7 +39,7 @@
 			<isPk>no</isPk>
 		</column>
 		<column>
-			<id>4ecc42d2-6b6c-4ef4-ae09-bd857ed91819</id>
+			<id>1c20d980-0dab-4875-a130-75cdbc925eae</id>
 			<word>
 				<id>4e7d3820-6b22-45bf-9362-e1e952720b05</id>
 			</word>
@@ -52,23 +52,23 @@
 	</columns>
 	<indexes>
 		<index>
-			<id>7ead0a1a-eb7d-4b14-ba5f-dd539bcfc5b0</id>
+			<id>c623528e-61e2-4687-8eb7-49670990f390</id>
 			<code>PRIMARY</code>
 			<columns>
 				<column>
-					<id>e5c680f9-73a7-43f2-8a16-771eafab8f45</id>
+					<id>6c53c9a0-a997-41f9-8f33-1120e16bbbc7</id>
 				</column>
 			</columns>
 		</index>
 		<index>
-			<id>e5fe2f91-10c4-41e7-801c-3f9c2df65563</id>
+			<id>6f20f4fa-46e2-4550-b431-247f3b75012a</id>
 			<code>us_svp_bpm1</code>
 			<columns>
 				<column>
-					<id>2825479c-7ff1-4c62-964f-796b3c7b0a3d</id>
+					<id>7d8e903b-8168-4a88-8301-5715a0372793</id>
 				</column>
 				<column>
-					<id>a8a83ffe-112a-4407-a884-7a6e7bbd4c2b</id>
+					<id>c3158de6-7248-4eab-9d93-1e9b5e39b163</id>
 				</column>
 			</columns>
 		</index>

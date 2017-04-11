@@ -8,31 +8,32 @@ import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.ecom.svp.service.BsiOuterService;
 import com.hawk.ecom.svp.service.BsiOuterService.Order;
+import com.hawk.ecom.svp.utils.ScheduleTools;
 import com.hawk.framework.pub.spring.FrameworkContext;
-import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 /**
- *  创建碎屏险外部订单job
+ * 创建碎屏险外部订单job
+ * 
  * @author Administrator
  *
  */
-public class BsiOuterCreateOrderJob implements Runnable{
-	
-	private BsiOrderDetailDomain bsiOrderDetailDomain ;
-	
-	public BsiOuterCreateOrderJob(BsiOrderDetailDomain bsiOrderDetailDomain){
+public class BsiOuterCreateOrderJob implements Runnable {
+
+	private BsiOrderDetailDomain bsiOrderDetailDomain;
+
+	public BsiOuterCreateOrderJob(BsiOrderDetailDomain bsiOrderDetailDomain) {
 		this.bsiOrderDetailDomain = bsiOrderDetailDomain;
 	}
-	
-	
+
 	private static BsiOuterService bsiOuterService = FrameworkContext.getBean(BsiOuterService.class);
 	private static BsiOrderDetailMapper bsiOrderDetailMapper = FrameworkContext.getBean(BsiOrderDetailMapper.class);
-	
-	
-	private static Order buildOrder(BsiOrderDetailDomain bsiOrderDetailDomain){		
+	private static TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
+
+	private static Order buildOrder(BsiOrderDetailDomain bsiOrderDetailDomain) {
 		Order order = new Order();
 		order.setBirthday(bsiOrderDetailDomain.getBsiBenefBirthday());
-		order.setCertiType(bsiOrderDetailDomain.getBsiBenefIdTyp());		
+		order.setCertiType(bsiOrderDetailDomain.getBsiBenefIdTyp());
 		order.setGoodId(bsiOrderDetailDomain.getBsiPhoneModelId());
 		order.setGoodsSerialNo(bsiOrderDetailDomain.getImei());
 		order.setIdCard(bsiOrderDetailDomain.getBsiBenefIdNumber());
@@ -41,28 +42,28 @@ public class BsiOuterCreateOrderJob implements Runnable{
 		order.setProductId(bsiOrderDetailDomain.getBsiProductId());
 		order.setSex(bsiOrderDetailDomain.getBsiBenefSex());
 		order.setUsername(bsiOrderDetailDomain.getBsiBenefName());
-		
+
 		return order;
 	}
 
 	@Override
 	public void run() {
-		
+
 		/**
 		 * 数据库增加 最后执行时间 ，下次执行时间 ，
 		 */
-		
+
 		Order order = buildOrder(bsiOrderDetailDomain);
-		int execTimes = bsiOrderDetailDomain.getExecTimes() ;
-		
+		int execTimes = bsiOrderDetailDomain.getExecTimes();
+
 		try {
 			bsiOrderDetailDomain.setUpdateDate(new Date());
 			bsiOrderDetailDomain.setExecTimes(execTimes + 1);
-			
+
 			/**
-			 * 用乐观锁卡住只能有一个执行
+			 * TODO:用乐观锁卡住只能有一个执行
 			 */
-			
+
 			String bsiInsuranceCode = bsiOuterService.outCreateOrder(order);
 			bsiOrderDetailDomain.setBsiInsuranceCode(bsiInsuranceCode);
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_SUCCESS);
@@ -70,43 +71,43 @@ public class BsiOuterCreateOrderJob implements Runnable{
 			bsiOrderDetailDomain.setLastExecErrCode(e.getCode());
 			bsiOrderDetailDomain.setLastExecErrMsg(e.getMessage());
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
-		}catch (Exception e){
-			
-			if (execTimes >= bsiOrderDetailDomain.getMaxExecTimes()){
+		} catch (Exception e) {
+
+			if (execTimes >= bsiOrderDetailDomain.getMaxExecTimes()) {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode("overtimes");
 				bsiOrderDetailDomain.setLastExecErrMsg("达到最大执行次数");
-			}else{
+			} else {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.EXEC_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode(e.getClass().getName());
 				bsiOrderDetailDomain.setLastExecErrMsg(e.getMessage());
-				 // 设置下次执行时间  scheduleTime
-				Date scheduleExecDate = new Date();
-				if (execTimes == 1){
-					/**
-					 * 第一次，5分钟
-					 */
-					scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 5);
-				}else{
-					/**
-					 * 第一次，5分钟
-					 */
-				}
+				// 设置下次执行时间 scheduleTime
+				Date scheduleExecDate = ScheduleTools.computeScheduleDate(execTimes);
+
 				bsiOrderDetailDomain.setScheduleExecDate(scheduleExecDate);
 			}
-			
-			
-			
-			
-			//大于执行次数，更新代金券状态(添加失败原因) ，更新订单状态  
-		}finally{
+
+			// 大于执行次数，更新代金券状态(添加失败原因) ，更新订单状态
+		} finally {
 			/**
-			 * 更新订单明细，更新订单  更新 代金券状态
+			 * 更新订单明细，更新订单 更新 代金券状态
 			 */
 			bsiOrderDetailMapper.update(bsiOrderDetailDomain);
-			
-			dispatchServlet 拦截器 ,前后执行 ,mybatis cursor, spring batch , quartz
-			
+
+			if (bsiOrderDetailDomain.getBsiTaskStatus() >= ConstBsiTaskStatus.COMPLETE_FAILED) {
+				String bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
+				if (StringTools.isNotNullOrEmpty(bsiCashCouponCode)) {
+					BsiCashCouponSubJob bsiCashCouponSubJob = new BsiCashCouponSubJob(bsiCashCouponCode);
+					taskPool.submit(bsiCashCouponSubJob);
+				}
+
+				SvpBsiOrderSubJob svpOrderSubJob = new SvpBsiOrderSubJob(bsiOrderDetailDomain.getOrderId());
+				taskPool.submit(svpOrderSubJob);
+				
+			}
+
+			// dispatchServlet 拦截器 ,前后执行 ,mybatis cursor, spring batch , quartz
+
 		}
 	}
 
