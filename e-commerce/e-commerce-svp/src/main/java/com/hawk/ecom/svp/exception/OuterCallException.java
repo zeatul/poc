@@ -12,5 +12,18 @@ public class OuterCallException extends BasicException{
 	public OuterCallException(String code, String message) {
 		super(code, message);
 	}
+	
+	public OuterCallException(Integer code, String message){
+		
+		super(toStr(code),message);
+	}
+	
+	private static String toStr(Integer code){
+		String strCode = null;
+		if (code != null){
+			strCode = code.toString();
+		}
+		return strCode;
+	}
 
 }

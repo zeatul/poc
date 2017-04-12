@@ -13,7 +13,7 @@ public class StringTools {
 	 * 返回一个线程安全的StringBuilder
 	 * @return
 	 */
-	private static  StringBuilder getThreadSafeStringBuilder(){
+	public static  StringBuilder getThreadSafeStringBuilder(){
 		StringBuilder sb = threadLocalStringBuilder.get();
 		sb.delete(0, sb.length());
 		return sb;
