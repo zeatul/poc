@@ -49,7 +49,7 @@ public class UnicomService {
 	 * @param chargeSize
 	 * @throws Exception
 	 */
-	public void chargeVirtualMobileData(String taskId, String mobileNumber, int mobileDataSize) throws Exception {
+	public void chargeVirtualMobileData(String taskId, String mobileNumber, int mobileDataSize) throws OuterCallException,Exception {
 		logger.info("chargeVirtualMobileData start");
 		// http://58.250.151.66/wowap-interface/flow/trafficOrder?u=taskId=111;merchantName=1;merchantPwd=1;mobile=18607511841;flowrateValue=10
 		final String url = baseUrl + "/wowap-interface/flow/trafficOrder";

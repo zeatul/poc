@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MybatisTools {
 
-	public static <T> T sigle(List<T> list){
+	public static <T> T single(List<T> list){
 		if (list == null)
 			return null;
 		if(list.size() == 0)

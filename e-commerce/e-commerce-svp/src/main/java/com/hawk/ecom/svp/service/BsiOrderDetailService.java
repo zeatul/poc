@@ -30,7 +30,18 @@ public class BsiOrderDetailService {
 		
 		MybatisParam params = new MybatisParam().put("bsiCashCouponCode", bsiCashCouponCode);
 		
-		return MybatisTools.sigle(bsiOrderDetailMapper.loadDynamic(params));
+		return MybatisTools.single(bsiOrderDetailMapper.loadDynamic(params));
+		
+	}
+	
+	public int update(BsiOrderDetailDomain bsiOrderDetailDomain){
+		
+		if (bsiOrderDetailDomain == null){
+			logger.error("The bsiOrderDetailDomain is null");
+			return 0;
+		}
+		
+		return bsiOrderDetailMapper.update(bsiOrderDetailDomain);
 		
 	}
 	

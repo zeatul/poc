@@ -131,10 +131,23 @@ public class DateTools {
 	 * @param diff
 	 * @return
 	 */
-	public static Date addMonth(Date date,int diff){
+	public static Date addMonths(Date date,int diff){
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.MONTH, diff);
+		return c.getTime();
+	}
+	
+	/**
+	 * 返回指定的时间加上天数
+	 * @param date
+	 * @param diff
+	 * @return
+	 */
+	public static Date addDays(Date date,int diff){
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, diff);
 		return c.getTime();
 	}
 	

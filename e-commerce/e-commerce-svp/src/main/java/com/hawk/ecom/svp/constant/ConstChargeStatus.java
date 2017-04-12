@@ -1,0 +1,10 @@
+package com.hawk.ecom.svp.constant;
+
+public interface ConstChargeStatus {
+	
+	public final int UN_EXEC= 0;
+	public final int EXEC_FAILED = 10;
+	public final int COMPLETE_FAILED =99;
+	public final int COMPLETE_SUCCESS = 100;
+
+}

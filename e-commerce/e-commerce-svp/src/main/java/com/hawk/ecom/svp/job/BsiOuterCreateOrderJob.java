@@ -2,10 +2,13 @@ package com.hawk.ecom.svp.job;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hawk.ecom.svp.constant.ConstBsiTaskStatus;
 import com.hawk.ecom.svp.exception.OuterCallException;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
-import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
+import com.hawk.ecom.svp.service.BsiOrderDetailService;
 import com.hawk.ecom.svp.service.BsiOuterService;
 import com.hawk.ecom.svp.service.BsiOuterService.Order;
 import com.hawk.ecom.svp.utils.ScheduleTools;
@@ -19,6 +22,8 @@ import com.hawk.framework.utility.tools.StringTools;
  *
  */
 public class BsiOuterCreateOrderJob implements Runnable {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private BsiOrderDetailDomain bsiOrderDetailDomain;
 
@@ -27,7 +32,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 	}
 
 	private static BsiOuterService bsiOuterService = FrameworkContext.getBean(BsiOuterService.class);
-	private static BsiOrderDetailMapper bsiOrderDetailMapper = FrameworkContext.getBean(BsiOrderDetailMapper.class);
+	private static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
 	private static TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
 
 	private static Order buildOrder(BsiOrderDetailDomain bsiOrderDetailDomain) {
@@ -48,6 +53,13 @@ public class BsiOuterCreateOrderJob implements Runnable {
 
 	@Override
 	public void run() {
+		
+		logger.info("Start BsiOuterCreateOrderJob ,  " ,bsiOrderDetailDomain.getBsiTaskCode());
+		int bsiTaskStatus = bsiOrderDetailDomain.getBsiTaskStatus();
+		if (bsiTaskStatus >= ConstBsiTaskStatus.COMPLETE_FAILED  ){
+			logger.error("bsiOrderDetailDomain is in closed status, bsiTaskStatus = {}",bsiTaskStatus);
+			return ;
+		}
 
 		/**
 		 * 数据库增加 最后执行时间 ，下次执行时间 ，
@@ -64,15 +76,17 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			 * TODO:用乐观锁卡住只能有一个执行
 			 */
 
+			bsiOrderDetailDomain.setLastExecDate(new Date());
 			String bsiInsuranceCode = bsiOuterService.outCreateOrder(order);
 			bsiOrderDetailDomain.setBsiInsuranceCode(bsiInsuranceCode);
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_SUCCESS);
 		} catch (OuterCallException e) {
+			logger.error("BsiOuterCreateOrderJob meet error",e);
 			bsiOrderDetailDomain.setLastExecErrCode(e.getCode());
 			bsiOrderDetailDomain.setLastExecErrMsg(e.getMessage());
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 		} catch (Exception e) {
-
+			logger.error("BsiOuterCreateOrderJob meet error",e);
 			if (execTimes >= bsiOrderDetailDomain.getMaxExecTimes()) {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode("overtimes");
@@ -92,7 +106,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			/**
 			 * 更新订单明细，更新订单 更新 代金券状态
 			 */
-			bsiOrderDetailMapper.update(bsiOrderDetailDomain);
+			bsiOrderDetailService.update(bsiOrderDetailDomain);
 
 			if (bsiOrderDetailDomain.getBsiTaskStatus() >= ConstBsiTaskStatus.COMPLETE_FAILED) {
 				String bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();

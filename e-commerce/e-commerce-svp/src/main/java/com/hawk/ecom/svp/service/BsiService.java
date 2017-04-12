@@ -92,7 +92,7 @@ public class BsiService {
 		BsiCashCouponDomain bsiCashCouponDomain = new BsiCashCouponDomain();
 		bsiCashCouponDomain.setBsiCashCouponCode(UUID.randomUUID().toString());
 		bsiCashCouponDomain.setBsiCashCouponCreateDate(currentDate);
-		Date bsiCashCouponInvalidDate = DateTools.addMonth(currentDate, 1);
+		Date bsiCashCouponInvalidDate = DateTools.addDays(currentDate, 10);
 		bsiCashCouponDomain.setBsiCashCouponInvalidDate(bsiCashCouponInvalidDate);
 		bsiCashCouponDomain.setBsiCashCouponName(ConstCouponParameter.REGISTER_PRESENT_COUPON.name);
 		bsiCashCouponDomain.setBsiCashCouponPeriod(ConstCouponParameter.REGISTER_PRESENT_COUPON.period);

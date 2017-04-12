@@ -29,7 +29,7 @@ public class BsiCashCouponService {
 		
 		MybatisParam params = new MybatisParam().put("bsiCashCouponCode", bsiCashCouponCode);
 		
-		return MybatisTools.sigle( bsiCashCouponMapper.loadDynamic(params));
+		return MybatisTools.single( bsiCashCouponMapper.loadDynamic(params));
 	}
 	
 	public int update(BsiCashCouponDomain bsiCashCouponDomain){

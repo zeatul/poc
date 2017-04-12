@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hawk.ecom.svp.constant.ConstChageStatus;
+import com.hawk.ecom.svp.constant.ConstChargeStatus;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
 import com.hawk.ecom.svp.constant.ConstStore;
+import com.hawk.ecom.svp.job.MobileUnicomChargeJob;
+import com.hawk.ecom.svp.job.TaskPool;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
@@ -41,6 +43,9 @@ public class MobileDataService {
 	
 	@Autowired
 	private MobileDataOrderDetailService mobileDataOrderDetailService;
+	
+	@Autowired
+	private TaskPool taskPool;
 
 	/**
 	 * 签到,送流量 每个月可以签到10次，每次签到送10M流量。 只支持流通手机号。 每隔5分钟可以签到一次。 当月签到10次，即送完。
@@ -79,6 +84,7 @@ public class MobileDataService {
 			}
 		}
 		
+		测试是否是联通手机
 		
 		/**
 		 * 符合签到规则,产生订单和订单明细
@@ -100,14 +106,21 @@ public class MobileDataService {
 		mobileDataOrderDetailDomain.setChargeMobileNumber(mobileNumber);
 		mobileDataOrderDetailDomain.setChargeTaskCode(UUID.randomUUID().toString());
 		mobileDataOrderDetailDomain.setOrderId(orderDomain.getId());
-		mobileDataOrderDetailDomain.setChargeStatus(ConstChageStatus.UNCHARGED);
+		mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.UN_EXEC);
 		mobileDataOrderDetailDomain.setExecTimes(0);
+		mobileDataOrderDetailDomain.setMaxExecTimes(5);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
 		mobileDataOrderDetailDomain.setId(pkGenService.genPk());
 		
 		OrderMapper.insert(orderDomain);
 		mobileDataOrderDetailMapper.insert(mobileDataOrderDetailDomain);
+		
+		MobileUnicomChargeJob mobileUnicomChargeJob = new MobileUnicomChargeJob(mobileDataOrderDetailDomain.getChargeTaskCode());
+		
+		taskPool.submit(mobileUnicomChargeJob);
+		
+		
 	}
 	
 	/**
@@ -123,7 +136,7 @@ public class MobileDataService {
 		if(mobileDataOrderDetailDomain == null)
 			throw new RuntimeException("任务不存在");
 		
-		if(mobileDataOrderDetailDomain.getChargeStatus() != ConstChageStatus.UNCHARGED)
+		if(mobileDataOrderDetailDomain.getChargeStatus() != ConstChargeStatus.UN_EXEC)
 			throw new RuntimeException("任务状态不是未充值");
 	}
 	
@@ -133,7 +146,7 @@ public class MobileDataService {
 		if(mobileDataOrderDetailDomain == null)
 			throw new RuntimeException("任务不存在");
 		
-		if (mobileDataOrderDetailDomain.getChargeStatus() == ConstChageStatus.SUCCESS_COMPLETED)
+		if (mobileDataOrderDetailDomain.getChargeStatus() == ConstChargeStatus.COMPLETE_SUCCESS)
 			return ;
 	}
 
