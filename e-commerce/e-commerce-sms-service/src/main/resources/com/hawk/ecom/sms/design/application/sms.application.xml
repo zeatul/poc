@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+	<id>34387656-9c67-42f8-be2c-82c5ede2324e</id>
+	<code>dic</code>
+	<name>数据字典</name>
+	<comment>元数据驱动开发测试</comment>
+	<tables>
+		<table>
+			<id>04cc3a3d-0224-4e28-b218-31ad3bc387ac</id>
+		</table>
+		<table>
+			<id>1d635eff-fc93-4d24-83f9-2b27108c643f</id>
+		</table>
+		<table>
+			<id>2584d3fc-cb4d-4ad5-8b9f-41c3416637bf</id>
+		</table>
+	</tables>
+</application>

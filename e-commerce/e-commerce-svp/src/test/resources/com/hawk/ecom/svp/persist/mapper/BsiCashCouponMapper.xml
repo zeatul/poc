@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapper.BsiCashCouponMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		user_code AS "userCode" ,
+		mobile_number AS "mobileNumber" ,
+		bsi_cash_coupon_code AS "bsiCashCouponCode" ,
+		bsi_cash_coupon_name AS "bsiCashCouponName" ,
+		bsi_cash_coupon_create_date AS "bsiCashCouponCreateDate" ,
+		bsi_cash_coupon_invalid_date AS "bsiCashCouponInvalidDate" ,
+		bsi_cash_coupon_status AS "bsiCashCouponStatus" ,
+		bsi_cash_coupon_type AS "bsiCashCouponType" ,
+		bsi_cash_coupon_period AS "bsiCashCouponPeriod" ,
+		bsi_cash_coupon_activate_error AS "bsiCashCouponActivateError" ,
+		order_code AS "orderCode" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
+			<if test="bsiCashCouponCode != null"> AND bsi_cash_coupon_code = #{bsiCashCouponCode}  </if>
+			<if test="bsiCashCouponName != null"> AND bsi_cash_coupon_name = #{bsiCashCouponName}  </if>
+			<if test="bsiCashCouponCreateDate != null"> AND bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate}  </if>
+			<if test="bsiCashCouponInvalidDate != null"> AND bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate}  </if>
+			<if test="bsiCashCouponStatus != null"> AND bsi_cash_coupon_status = #{bsiCashCouponStatus}  </if>
+			<if test="bsiCashCouponType != null"> AND bsi_cash_coupon_type = #{bsiCashCouponType}  </if>
+			<if test="bsiCashCouponPeriod != null"> AND bsi_cash_coupon_period = #{bsiCashCouponPeriod}  </if>
+			<if test="bsiCashCouponActivateError != null"> AND bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND user_code = #{old_userCode}
+			AND mobile_number = #{old_mobileNumber}
+			AND bsi_cash_coupon_code = #{old_bsiCashCouponCode}
+			AND bsi_cash_coupon_name = #{old_bsiCashCouponName}
+			AND bsi_cash_coupon_create_date = #{old_bsiCashCouponCreateDate}
+			AND bsi_cash_coupon_invalid_date = #{old_bsiCashCouponInvalidDate}
+			AND bsi_cash_coupon_status = #{old_bsiCashCouponStatus}
+			AND bsi_cash_coupon_type = #{old_bsiCashCouponType}
+			AND bsi_cash_coupon_period = #{old_bsiCashCouponPeriod}
+			AND bsi_cash_coupon_activate_error = #{old_bsiCashCouponActivateError}
+			AND order_code = #{old_orderCode}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			user_code = #{userCode},
+			mobile_number = #{mobileNumber},
+			bsi_cash_coupon_code = #{bsiCashCouponCode},
+			bsi_cash_coupon_name = #{bsiCashCouponName},
+			bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate},
+			bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate},
+			bsi_cash_coupon_status = #{bsiCashCouponStatus},
+			bsi_cash_coupon_type = #{bsiCashCouponType},
+			bsi_cash_coupon_period = #{bsiCashCouponPeriod},
+			bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},
+			order_code = #{orderCode},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
+			<if test="bsiCashCouponCode != null">bsi_cash_coupon_code = #{bsiCashCouponCode},</if>
+			<if test="bsiCashCouponName != null">bsi_cash_coupon_name = #{bsiCashCouponName},</if>
+			<if test="bsiCashCouponCreateDate != null">bsi_cash_coupon_create_date = #{bsiCashCouponCreateDate},</if>
+			<if test="bsiCashCouponInvalidDate != null">bsi_cash_coupon_invalid_date = #{bsiCashCouponInvalidDate},</if>
+			<if test="bsiCashCouponStatus != null">bsi_cash_coupon_status = #{bsiCashCouponStatus},</if>
+			<if test="bsiCashCouponType != null">bsi_cash_coupon_type = #{bsiCashCouponType},</if>
+			<if test="bsiCashCouponPeriod != null">bsi_cash_coupon_period = #{bsiCashCouponPeriod},</if>
+			<if test="bsiCashCouponActivateError != null">bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="BsiCashCouponDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_svp_bsi_cash_coupon
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="BsiCashCouponDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_bsi_cash_coupon
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_bsi_cash_coupon
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_bsi_cash_coupon
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="BsiCashCouponDomain">
+		INSERT INTO t_svp_bsi_cash_coupon (			
+				id,				
+				user_code,				
+				mobile_number,				
+				bsi_cash_coupon_code,				
+				bsi_cash_coupon_name,				
+				bsi_cash_coupon_create_date,				
+				bsi_cash_coupon_invalid_date,				
+				bsi_cash_coupon_status,				
+				bsi_cash_coupon_type,				
+				bsi_cash_coupon_period,				
+				bsi_cash_coupon_activate_error,				
+				order_code,				
+				create_date,				
+				update_date,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{userCode},
+			#{mobileNumber},
+			#{bsiCashCouponCode},
+			#{bsiCashCouponName},
+			#{bsiCashCouponCreateDate},
+			#{bsiCashCouponInvalidDate},
+			#{bsiCashCouponStatus},
+			#{bsiCashCouponType},
+			#{bsiCashCouponPeriod},
+			#{bsiCashCouponActivateError},
+			#{orderCode},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_svp_bsi_cash_coupon
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_svp_bsi_cash_coupon
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="BsiCashCouponDomain">
+		UPDATE t_svp_bsi_cash_coupon	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="BsiCashCouponDomain">
+		UPDATE t_svp_bsi_cash_coupon
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_svp_bsi_cash_coupon	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="BsiCashCouponDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_bsi_cash_coupon
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

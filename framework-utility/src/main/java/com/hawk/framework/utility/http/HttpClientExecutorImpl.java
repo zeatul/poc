@@ -11,6 +11,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpRequest;
@@ -53,13 +54,8 @@ import org.apache.http.util.EntityUtils;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
-
 @SuppressWarnings("deprecation")
 public class HttpClientExecutorImpl implements HttpExecutor {
-
-	
-
-	
 
 	private String userAgent = "httpclient4.5.1";
 
@@ -77,10 +73,19 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		//
 
 		httpRequestBase.setConfig(requestConfig);
+		headerList.forEach(header ->{
+			httpRequestBase.addHeader(header);
+		});
+		
+	}
+
+	private List<Header> headerList = new ArrayList<Header>();
+
+	public void addHeader(Header header) {
+		this.headerList.add(header);
 	}
 
 	public HttpClientExecutorImpl() throws Exception {
-		
 
 		requestConfig = RequestConfig.custom().setSocketTimeout(3000) // //
 																		// 设置读取超时
@@ -96,7 +101,6 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, hostnameVerifier);
 		Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory> create()
 				.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", sslsf).build();
-		
 
 		// 初始化连接池
 		connMgr = new PoolingHttpClientConnectionManager(registry);
@@ -179,16 +183,14 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 		if (params != null && params.size() > 0) {
 			List<NameValuePair> p = new ArrayList<NameValuePair>();
-			if (params != null){
-				for (HttpParam httpParam : params){
+			if (params != null) {
+				for (HttpParam httpParam : params) {
 					p.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
 				}
 			}
-			
+
 			uriBuilder.setCustomQuery(URLEncodedUtils.format(p, "UTF-8"));
-			
-			
-			
+
 		}
 		return uriBuilder;
 	}
@@ -213,10 +215,11 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 	private void checkResponse(CloseableHttpResponse response) throws HttpResponseException {
 		int statusCode = response.getStatusLine().getStatusCode();
 		if (statusCode != HttpStatus.SC_OK)
-			throw new HttpResponseException(response.getStatusLine().getStatusCode(),"HttpStatus="+statusCode + ","+ response.getStatusLine().getReasonPhrase());
+			throw new HttpResponseException(response.getStatusLine().getStatusCode(),
+					"HttpStatus=" + statusCode + "," + response.getStatusLine().getReasonPhrase());
 	}
 
-	public String get(String path, List<HttpParam> params)  {
+	public String get(String path, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -239,29 +242,28 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			}
 		}
 	}
-	
-	public String post(String url, Object object , List<HttpParam> params){
-		return post(url,JsonTools.toJsonString(object),params);
+
+	public String post(String url, Object object, List<HttpParam> params) {
+		return post(url, JsonTools.toJsonString(object), params);
 	}
 
-	public String post(String url, String content, List<HttpParam> params)  {
+	public String post(String url, String content, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-			
-//			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
-//            for (HttpParam httpParam : params) {
-//                    pairs.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
-//            }
-//            url += "?" + EntityUtils.toString(new UrlEncodedFormEntity(pairs, "utf-8"));
-//          HttpPost httpPost = new HttpPost(url);
-			
-			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
-            
 
-			
-			
-			
+			// List<NameValuePair> pairs = new
+			// ArrayList<NameValuePair>(params.size());
+			// for (HttpParam httpParam : params) {
+			// pairs.add(new BasicNameValuePair(httpParam.getKey(),
+			// httpParam.getValue()));
+			// }
+			// url += "?" + EntityUtils.toString(new UrlEncodedFormEntity(pairs,
+			// "utf-8"));
+			// HttpPost httpPost = new HttpPost(url);
+
+			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
+
 			config(httpPost);
 			if (StringTools.isNotNullOrEmpty(content)) {
 				StringEntity stringEntity = new StringEntity(content, "utf-8");
@@ -269,7 +271,6 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 				stringEntity.setContentType("application/json");
 				httpPost.setEntity(stringEntity);
 			}
-			
 
 			response = httpClient.execute(httpPost);
 			checkResponse(response);
@@ -289,7 +290,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	}
 
-	public String post(String url, byte[] b, List<HttpParam> params)  {
+	public String post(String url, byte[] b, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
@@ -335,21 +336,18 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		CloseableHttpResponse response = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-			
-			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
-            for (HttpParam httpParam : params) {
-                    pairs.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
-            }
-            content = EntityUtils.toString(new UrlEncodedFormEntity(pairs, "utf-8"));
-			
-//			HttpPost httpPost = new HttpPost(generateURIBuilder(url, null).build());
-			
-			HttpPost httpPost = new HttpPost(url);
-            
 
-			
-			
-			
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
+			for (HttpParam httpParam : params) {
+				pairs.add(new BasicNameValuePair(httpParam.getKey(), httpParam.getValue()));
+			}
+			content = EntityUtils.toString(new UrlEncodedFormEntity(pairs, "utf-8"));
+
+			// HttpPost httpPost = new HttpPost(generateURIBuilder(url,
+			// null).build());
+
+			HttpPost httpPost = new HttpPost(url);
+
 			config(httpPost);
 			if (StringTools.isNotNullOrEmpty(content)) {
 				StringEntity stringEntity = new StringEntity(content, "utf-8");
@@ -357,7 +355,6 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 				stringEntity.setContentType("application/x-www-form-urlencoded");
 				httpPost.setEntity(stringEntity);
 			}
-			
 
 			response = httpClient.execute(httpPost);
 			checkResponse(response);
@@ -376,7 +373,5 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		}
 
 	}
-
-	
 
 }

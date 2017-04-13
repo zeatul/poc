@@ -6,7 +6,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.hawk.ecom.svp.job.TaskPool;
+import com.hawk.ecom.pub.job.TaskPool;
 
 @Configuration
 public class SvpJobConfigure {

@@ -4,16 +4,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.svp.constant.ConstChargeStatus;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
 import com.hawk.ecom.svp.constant.ConstStore;
 import com.hawk.ecom.svp.job.MobileUnicomChargeJob;
-import com.hawk.ecom.svp.job.TaskPool;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
@@ -28,6 +30,8 @@ import com.hawk.framework.utility.tools.DateTools;
 
 @Service
 public class MobileDataService {
+	
+	private final Logger logger = LoggerFactory.getLogger(MobileDataService.class);
 
 	@Autowired
 	private OrderMapperEx orderMapperEx;
@@ -46,6 +50,9 @@ public class MobileDataService {
 	
 	@Autowired
 	private TaskPool taskPool;
+	
+	@Autowired
+	private UnicomService unicomService;
 
 	/**
 	 * 签到,送流量 每个月可以签到10次，每次签到送10M流量。 只支持流通手机号。 每隔5分钟可以签到一次。 当月签到10次，即送完。
@@ -84,7 +91,14 @@ public class MobileDataService {
 			}
 		}
 		
-		测试是否是联通手机
+		try {
+			if (!unicomService.isUnicomMobileNumber(mobileNumber)){
+				throw new RuntimeException("尊敬的用户，当前签到仅仅支持联通手机用户");
+			}
+		} catch (Exception e) {
+			logger.error("isUnicomMobileNumber meet error",e);
+			throw new RuntimeException("判断是否是联通手机号码失败");
+		}
 		
 		/**
 		 * 符合签到规则,产生订单和订单明细

@@ -1,4 +1,4 @@
-package com.hawk.ecom.svp.job;
+package com.hawk.ecom.pub.job;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

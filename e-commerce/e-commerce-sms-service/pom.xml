@@ -16,5 +16,42 @@
 
 	<dependencies>
 
+		<!--com.hawk.framework -->
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-pub</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-dic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-word</artifactId>
+		</dependency>
+
+		<!-- com.hawk.ecom -->
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-pub</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-word</artifactId>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
 	</dependencies>
 </project>
