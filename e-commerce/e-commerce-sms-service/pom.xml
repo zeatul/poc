@@ -42,6 +42,13 @@
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-word</artifactId>
 		</dependency>
+		
+		<!-- codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		
 
 		<!-- mybatis -->
 		<dependency>
