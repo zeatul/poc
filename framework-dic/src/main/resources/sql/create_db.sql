@@ -36,6 +36,10 @@ drop index ui_dic_module_code on t_dic_model;
 
 drop table if exists t_dic_model;
 
+drop index ui_synonym on t_dic_synonym;
+
+drop table if exists t_dic_synonym;
+
 drop index ui_dic_table_code on t_dic_table;
 
 drop table if exists t_dic_table;
@@ -109,13 +113,13 @@ create table t_dic_column
    table_object_id      varchar(50) not null comment '表对象ID',
    word_object_id       varchar(50) not null comment '引用的数据类型ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(1000) comment '名称',
    object_comment       varchar(1024) comment '描述',
    object_order         integer comment '序号',
    nullable             integer comment '可否为空(1/0)',
    is_pk                integer comment '是否为主键(1/0)',
-   operators            varchar(50) comment '需要支持的运算符，等于默认支持',
-   system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
+   operators            varchar(1000) comment '需要支持的运算符，等于默认支持',
+   system_code          varchar(2000) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
@@ -142,7 +146,7 @@ create table t_dic_fk
 (
    object_id            varchar(50) not null comment '对象ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    parent_table_object_id varchar(50) not null comment '主表对象ID',
    child_table_object_id varchar(50) not null comment '子表对象ID',
@@ -212,7 +216,7 @@ create table t_dic_index
    object_id            varchar(50) not null comment '对象ID',
    table_object_id      varchar(50) comment '表对象ID',
    object_code          varchar(50) comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    is_unique            integer comment '是唯一索引',
    is_pk                integer comment '是否为主键(1/0)',
@@ -271,7 +275,7 @@ create table t_dic_model
 (
    object_id            varchar(50) not null comment '对象ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
@@ -324,16 +328,46 @@ create index i_dic_module_search on t_dic_model
 );
 
 /*==============================================================*/
+/* Table: t_dic_synonym                                         */
+/*==============================================================*/
+create table t_dic_synonym
+(
+   object_id            varchar(50) not null comment '对象ID',
+   origin_object_code   varchar(50) comment '原单词编码',
+   synonym_object_code  varchar(50) comment '同义词编码',
+   synonym_display_name varchar(200) comment '同义词显示名称',
+   synonym_type         varchar(50) comment '同义词类型',
+   system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
+   version              integer comment '版本号',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (object_id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_dic_synonym comment '同义词定义表';
+
+/*==============================================================*/
+/* Index: ui_synonym                                            */
+/*==============================================================*/
+create unique index ui_synonym on t_dic_synonym
+(
+   origin_object_code,
+   synonym_object_code
+);
+
+/*==============================================================*/
 /* Table: t_dic_table                                           */
 /*==============================================================*/
 create table t_dic_table
 (
    object_id            varchar(50) not null comment '对象ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    object_type          varchar(50) comment '类型',
-   physical_option      varchar(2000) comment '表的物理特性',
+   physical_option      varchar(200) comment '表的物理特性',
    system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',
    create_date          timestamp(3) null comment '创建日期',
@@ -362,20 +396,20 @@ create table t_dic_word
    use_type             varchar(50) comment '用途类型',
    data_type            varchar(50) comment '数据类型',
    object_code          varchar(50) comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
-   object_display_name  varchar(50) comment '显示名称',
-   regex                varchar(50) comment '正则表达式',
+   object_display_name  varchar(200) comment '显示名称',
+   regex                varchar(1000) comment '正则表达式',
    char_max_length      integer comment '最大长度',
    char_min_length      integer comment '最小长度',
    is_only_ascii        integer comment '是否有超过1个byte长度的的字符',
-   max_value            varchar(50) comment '最大值',
-   min_value            varchar(50) comment '最小值',
+   max_value            varchar(200) comment '最大值',
+   min_value            varchar(200) comment '最小值',
    datetime_precision   integer comment '时间精度',
    numeric_precision    integer comment '数据精度',
    numeric_scale        integer comment '数据小数精度',
    is_enum              integer comment '是否枚举(yes/no)',
-   enum_key             varchar(500) comment '枚举值',
+   enum_key             varchar(2000) comment '枚举值',
    enum_value           varchar(2000) comment '枚举显示值',
    system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',

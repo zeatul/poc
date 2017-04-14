@@ -38,7 +38,7 @@ import freemarker.template.Template;
 /**
  * 将数据库映射成数据字典
  * 
- * @author pzhang1
+ * @author pzhang1                    
  *
  */
 public class DatabaseToDicService {
