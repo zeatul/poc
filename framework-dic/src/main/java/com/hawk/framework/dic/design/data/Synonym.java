@@ -2,6 +2,12 @@ package com.hawk.framework.dic.design.data;
 
 public class Synonym {
 	
+	public String getSynonymDisplayName() {
+		return synonymDisplayName;
+	}
+	public void setSynonymDisplayName(String synonymDisplayName) {
+		this.synonymDisplayName = synonymDisplayName;
+	}
 	public String getOriginCode() {
 		return originCode;
 	}
@@ -23,5 +29,6 @@ public class Synonym {
 	private String originCode;
 	private String synonymCode;
 	private String synonymType;
+	private String synonymDisplayName;
 
 }

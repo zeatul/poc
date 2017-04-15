@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hawk.framework.dic.design.data.Synonym;
 import com.hawk.framework.dic.persist.domain.SynonymDomain;
 import com.hawk.framework.dic.persist.mapper.SynonymMapper;
+import com.hawk.framework.dic.utility.DictionaryHelper;
 import com.hawk.framework.pub.sql.MybatisParam;
 
 @Service
@@ -24,12 +25,8 @@ public class SynonymService {
 	public List<Synonym> loadSynonym(String synonymType, String systemCode, int version) {
 		List<SynonymDomain> synonymDomainList = loadSynonymDomain(synonymType,systemCode,version);
 		List<Synonym> synonymList = new ArrayList<Synonym>();
-		synonymDomainList.forEach(synonymDomain -> {
-			Synonym synonym = new Synonym();
-			synonym.setOriginCode(synonymDomain.getOriginObjectCode());
-			synonym.setSynonymCode(synonymDomain.getSynonymObjectCode());
-			synonym.setSynonymType(synonymDomain.getSynonymType());
-			synonymList.add(synonym);
+		synonymDomainList.forEach(synonymDomain -> {			
+			synonymList.add(DictionaryHelper.convert(synonymDomain));
 		});
 		return synonymList;
 	}

@@ -1,5 +1,7 @@
 package com.hawk.framework.dic.design.data;
 
+import com.hawk.framework.utility.tools.StringTools;
+
 public enum EnumDataType {
 	
 	Integer("integer"),
@@ -27,6 +29,13 @@ public enum EnumDataType {
 	
 	
 	public static EnumDataType parse(String type){
+		
+		if (StringTools.isNullOrEmpty(type)){
+			return null;
+		}else{
+			type = type.trim();
+		}
+		
 		EnumDataType[] types =  EnumDataType.values();
 		if (type.equalsIgnoreCase("bigdecimal"))
 			type = "numeric";

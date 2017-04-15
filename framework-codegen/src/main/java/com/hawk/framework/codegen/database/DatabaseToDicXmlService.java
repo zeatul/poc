@@ -36,16 +36,17 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 /**
- * 将数据库映射成数据字典
+ * 将数据库映射成数据字典,并且保存为xml文件
  * 
  * @author pzhang1                    
  *
  */
-public class DatabaseToDicService {
+@Deprecated
+public class DatabaseToDicXmlService {
 
 	private Configuration cfg = new Configuration();
-	public DatabaseToDicService(){
-		cfg.setClassForTemplateLoading(DatabaseToDicService.class, "");
+	public DatabaseToDicXmlService(){
+		cfg.setClassForTemplateLoading(DatabaseToDicXmlService.class, "");
 		cfg.setNumberFormat("########");
 	}
 	
