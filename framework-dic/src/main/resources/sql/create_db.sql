@@ -91,6 +91,7 @@ create table t_dic_application_table
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',
+   Column_9             char(10),
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -123,7 +124,7 @@ create table t_dic_column
    nullable             integer comment '可否为空(1/0)',
    is_pk                integer comment '是否为主键(1/0)',
    operators            varchar(1000) comment '需要支持的运算符，等于默认支持',
-   system_code          varchar(2000) comment '系统编码(区分不同项目，不同集团)',
+   system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
