@@ -73,7 +73,9 @@ alter table t_dic_application comment '应用,一个应用一个package,对应�
 /*==============================================================*/
 create unique index ui_dic_application_code on t_dic_application
 (
-   object_code
+   object_code,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -101,7 +103,9 @@ alter table t_dic_application_table comment '应用拥有的表';
 create index ui_dic_applicatin_table on t_dic_application_table
 (
    application_object_id,
-   table_object_id
+   table_object_id,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -136,7 +140,9 @@ alter table t_dic_column comment '表字段对象';
 create unique index ui_dic_col_code on t_dic_column
 (
    table_object_id,
-   object_code
+   object_code,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -167,7 +173,9 @@ alter table t_dic_fk comment '外键对象';
 create unique index ui_dic_fk_table on t_dic_fk
 (
    parent_table_object_id,
-   child_table_object_id
+   child_table_object_id,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -175,7 +183,9 @@ create unique index ui_dic_fk_table on t_dic_fk
 /*==============================================================*/
 create unique index ui_dic_fk_code on t_dic_fk
 (
-   object_code
+   object_code,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -205,7 +215,9 @@ create unique index ui_dic_fk on t_dic_fk_map
 (
    fk_object_id,
    parent_column_object_id,
-   child_column_object_id
+   child_column_object_id,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -236,7 +248,9 @@ alter table t_dic_index comment '索引';
 /*==============================================================*/
 create unique index ui_di_1 on t_dic_index
 (
-   object_code
+   object_code,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -265,7 +279,9 @@ alter table t_dic_index_column comment '索引字段';
 create unique index ui_dic_index_column on t_dic_index_column
 (
    index_object_id,
-   column_object_id
+   column_object_id,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -293,6 +309,9 @@ create table t_dic_model
    last_exec_err_msg    varchar(1000) comment '最后一次执行错误原因',
    last_exec_date       timestamp(3) null comment '最后一次执行时间',
    schedule_exec_date   timestamp(3) null comment '计划执行时间',
+   current_exec_computer varchar(200) comment '当前执行机器',
+   current_exec_process_id varchar(50) comment '当前执行进程ID',
+   current_exec_start_date timestamp(3) null comment '当前任务启动时间',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -354,7 +373,10 @@ alter table t_dic_synonym comment '同义词定义表';
 create unique index ui_synonym on t_dic_synonym
 (
    origin_object_code,
-   synonym_object_code
+   synonym_object_code,
+   synonym_type,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -367,7 +389,7 @@ create table t_dic_table
    object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    object_type          varchar(50) comment '类型',
-   physical_option      varchar(200) comment '表的物理特性',
+   physical_option      varchar(2000) comment '表的物理特性',
    system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',
    create_date          timestamp(3) null comment '创建日期',
@@ -384,7 +406,9 @@ alter table t_dic_table comment '表对象';
 /*==============================================================*/
 create unique index ui_dic_table_code on t_dic_table
 (
-   object_code
+   object_code,
+   system_code,
+   version
 );
 
 /*==============================================================*/
@@ -427,5 +451,7 @@ alter table t_dic_word comment '数据字典定义';
 /*==============================================================*/
 create unique index ui_dic_data_def_code on t_dic_word
 (
-   object_code
+   object_code,
+   system_code,
+   version
 );

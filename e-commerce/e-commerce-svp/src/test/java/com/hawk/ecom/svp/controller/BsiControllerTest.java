@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
@@ -51,11 +53,11 @@ public class BsiControllerTest extends AbstractControllerTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testRegisterPresentCoupon(){
 //		https://url?version=1.0&channel=1&store=STO00000001&timestamp=1490921495127&reqhash=5d41402abc4b2a76b9719d911017c592
 		RegisterPresentCouponParam registerForCouponParam = new RegisterPresentCouponParam ();
-		registerForCouponParam.setMobileNumber("13916082487");
+		registerForCouponParam.setMobileNumber("13916082481");
 		String req = JsonTools.toJsonString(registerForCouponParam);
 		
 		String url =getUrl("/svp/bsi/coupon/register/present");
@@ -73,21 +75,21 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-//	@Test
+	@Test
 	public void testActivateCoupon(){
 		String url =getUrl("/svp/bsi/coupon/activate");
 		ActivateCouponParam activateCouponParam =new ActivateCouponParam();
 		activateCouponParam.setBirthday("2000-11-07");
-		activateCouponParam.setCouponCode("7b1187db-6ddd-4b62-9e3a-9d588167cf42");
+		activateCouponParam.setCouponCode("755d76d6-fed7-4a8b-9d9e-5294d141ac6f");
 		activateCouponParam.setIdType(ConstBsiIdType.IDENTITY_CARD);
 		activateCouponParam.setIdNumber("320109200011071232");
-		activateCouponParam.setImei("123456");
-		activateCouponParam.setMobileNumber("13311658138");
+		activateCouponParam.setImei("91891888");
+		activateCouponParam.setMobileNumber("13916082481");
 		activateCouponParam.setName("黄大仙");
-		activateCouponParam.setPhoneModelId(200);
-		activateCouponParam.setProductId(10260);
+		activateCouponParam.setPhoneModelId(1073);
+		activateCouponParam.setProductId(11246);
 		activateCouponParam.setSex(ConstBsiSex.MALE);
-		activateCouponParam.setTicket("13916082487");
+		activateCouponParam.setTicket("13916082481");
 		
 		System.out.println("request="+JsonTools.toJsonString(activateCouponParam));
 		String result = httpExecutor.post(url, activateCouponParam, null);
@@ -103,5 +105,16 @@ public class BsiControllerTest extends AbstractControllerTest {
 		String result = httpExecutor.post(url, listCouponParam, null);
 		System.out.println("result=" + result);
 	}
+	
+////	@Test
+//	public void testActivateCashCouponJob(){
+//		String url =getUrl("/svp/bsi/coupon/job/test");
+//		Map<String,String> map = new HashMap<String,String>();
+//		String couponCode  = "ae35662b-2760-4e6f-82d9-de7a74ebbc3a";
+//		map.put("couponCode",couponCode);
+//		
+//		String result = httpExecutor.post(url, map, null);
+//		System.out.println("result=" + result);
+//	}
 
 }

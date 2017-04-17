@@ -44,7 +44,7 @@ public class SvpDataConfig {
 		/**
 		 * 接池中保留的最大连接数。默认为15
 		 */
-		dataSource.setMaxPoolSize(15);
+		dataSource.setMaxPoolSize(200);
 
 		/**
 		 * 始化时创建的连接数，应在minPoolSize与maxPoolSize之间取值。默认为3

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
 import com.hawk.ecom.svp.constant.ConstStore;
+import com.hawk.ecom.svp.job.BsiCashCouponSubJob;
 import com.hawk.ecom.svp.job.BsiOuterCreateOrderJob;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
@@ -34,6 +37,8 @@ import com.hawk.framework.utility.tools.DateTools;
 
 @Service
 public class BsiService {
+	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 		
 	@Autowired
@@ -79,6 +84,9 @@ public class BsiService {
 	 */
 	@Valid
 	public void rgeisterPresentCoupon(@Valid RegisterPresentCouponParam registerForCouponParam){
+		
+		logger.info("start rgeisterPresentCoupon!!!");
+		
 		String mobileNumber = registerForCouponParam.getMobileNumber();
 		String bsiCashCouponType = ConstCouponParameter.REGISTER_PRESENT_COUPON.type;
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -122,6 +130,8 @@ public class BsiService {
 	@Valid
 	public void activateCoupon(@Valid ActivateCouponParam activateCouponParam){
 		
+		
+		
 		Map<String,Object> params = new HashMap<String,Object>();
 		String bsiCashCouponCode = activateCouponParam.getCouponCode();
 		params.put("bsiCashCouponCode", bsiCashCouponCode);
@@ -141,16 +151,27 @@ public class BsiService {
 		
 		
 		
+		
 		/**
 		 * TODO:检查产品的保险月数和代金券的保险月数是否一致
 		 */
 		BsiProductDomain bsiProductDomain = bsiProductService.queryProduct(activateCouponParam.getProductId());
-		if (bsiProductDomain == null)
+		if (bsiProductDomain == null){
 			throw new RuntimeException("未找到投保产品");
+		}
+		
+		if (!(bsiProductDomain.getBsiProductValidPeriod().intValue() == bsiCashCouponDomain.getBsiCashCouponPeriod())){
+			throw new RuntimeException("代金券保险月份数和产品的保险月份数不符");
+		}
 		
 		/**
-		 * TODO:检查手机号和代金券是否匹配
+		 * 检查手机号和代金券是否匹配
 		 */
+		if (!bsiCashCouponDomain.getMobileNumber().equals(activateCouponParam.getTicket())){
+			throw new RuntimeException("代金券所有者不是当前用户");
+		}
+		
+		
 			
 		/**
 		 * 符合条件,下单
@@ -196,6 +217,7 @@ public class BsiService {
 		bsiOrderDetailDomain.setMaxExecTimes(5); // 最多请求5次
 		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
+		bsiOrderDetailDomain.setBsiCashCouponCode(bsiCashCouponCode);
 		
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
 		
@@ -207,4 +229,9 @@ public class BsiService {
 		BsiOuterCreateOrderJob job = new BsiOuterCreateOrderJob(bsiOrderDetailDomain);
 		taskPool.execute(job);
 	}
+	
+//	public void activateCashCouponJob(String couponCode){
+//		BsiCashCouponSubJob bsiCashCouponSubJob = new BsiCashCouponSubJob(couponCode);
+//		taskPool.execute(bsiCashCouponSubJob);
+//	}
 }

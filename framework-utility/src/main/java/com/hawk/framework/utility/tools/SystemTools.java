@@ -1,5 +1,9 @@
 package com.hawk.framework.utility.tools;
 
+import java.lang.management.ManagementFactory;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class SystemTools {
 	
 	/**
@@ -26,4 +30,41 @@ public class SystemTools {
 		return System.getProperty("os.name");
 	}
 
+	/**
+	 * 
+	 * @return 机器名
+	 */
+	public static String hostname(){
+		String hostname = null;
+		try {
+			hostname = InetAddress.getLocalHost().getHostName();
+		} catch (UnknownHostException e) {
+			String host = e.getMessage();
+			if (host != null){
+				int colon = host.indexOf(':');
+				if (colon > 0){
+					hostname = host.substring(0, colon);
+				}
+			}
+		}
+		
+		if (hostname == null)
+			hostname = "UnknownHost";
+		
+		return hostname;
+	}
+	
+	/**
+	 * 
+	 * @return 当前进程id
+	 */
+	public static String processId(){
+		String name = ManagementFactory.getRuntimeMXBean().getName();
+		String pid = name.split("@")[0];
+		return pid;
+	}
+	
+	public static void main(String[] args){
+		System.out.println(processId());
+	}
 }

@@ -2,6 +2,7 @@ package com.hawk.ecom.svp.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -102,5 +103,13 @@ public class BsiController {
 		
 		return SuccessResponse.build(new MultiCouponResponse(c));
 	}
+	
+//	@RequestMapping(value = "/coupon/job/test", method = POST)
+//	public WebResponse<ResponseData> activateCashCouponJob(HttpServletRequest request) throws Exception{
+//		HashMap<String,String>  map = HttpRequestTools.parse(request, HashMap.class);
+//		String couponCode = map.get("couponCode");
+//		bsiService.activateCashCouponJob(couponCode);
+//		return SuccessResponse.build(null);
+//	}
 
 }

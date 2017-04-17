@@ -11,7 +11,7 @@ public class MybatisParam extends HashMap<String,Object>{
 	
 	
 	public MybatisParam put(String key,Object value){
-		this.put(key, value);
+		super.put(key, value);
 		return this;
 	}
 
