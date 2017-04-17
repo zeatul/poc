@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+	<id>3cdce6ca-8a29-46ca-9c56-bc9e1b9c86dc</id>
+	<code>t_svp_order_sequence</code>
+	<comment>订单编号生成表</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<id>cea682da-b913-49c6-8a82-4233f8582d13</id>
+			<word>
+				<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
+			</word>
+			<code>stub</code>
+			<name>stub</name>
+			<comment>stub</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>5899b4f7-da15-487a-bd1b-be770392bc63</id>
+			<word>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
+			</word>
+			<code>id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+	<indexes>
+		<index>
+			<id>26b533f8-5aa0-4ebc-b53a-aaa74ef8093f</id>
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>5899b4f7-da15-487a-bd1b-be770392bc63</id>
+				</column>
+			</columns>
+		</index>
+	</indexes>
+</table>

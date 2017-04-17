@@ -1,0 +1,24 @@
+{
+	"orderlist": [
+		{
+			"orderid": 467243,
+			"orderno": "301678451",
+			"productname": "12个月碎屏保A+（联通）",
+			"productpartnername": null,
+			"goodsname": "Mate S",
+			"startdate": "2017-04-06",
+			"enddate": "2018-04-06",
+			"status": 2,
+			"mobile": "13916082482",
+			"username": "隔壁老王",
+			"certitype": 1,
+			"idcard": "320106198801011232",
+			"birthday": "1988/1/1 0:00:00",
+			"sex": 1,
+			"insuranceno": "",
+			"goodsserialno": "615190"
+		}
+	],
+	"result": "1",
+	"notice": "操作成功"
+}

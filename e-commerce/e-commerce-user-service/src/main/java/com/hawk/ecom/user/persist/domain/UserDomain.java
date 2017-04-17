@@ -61,19 +61,29 @@ public class UserDomain implements Serializable {
 	private String registerChannel;
 	
 	/**
-	 * 用户昵称 nickname
+	 * 用户昵称 user_nickname
 	 */
-	private String nickname;
+	private String userNickname;
 	
 	/**
-	 * 用户姓名 name
+	 * 用户姓名 user_name
 	 */
-	private String name;
+	private String userName;
 	
 	/**
-	 * 用户性别 sex
+	 * 用户性别 user_sex
 	 */
-	private String sex;
+	private String userSex;
+	
+	/**
+	 * 用户级别 user_level
+	 */
+	private Integer userLevel;
+	
+	/**
+	 * 用户活跃度 user_activeness
+	 */
+	private Integer userActiveness;
 	
 	/**
 	 * 注册IP register_ip
@@ -139,6 +149,21 @@ public class UserDomain implements Serializable {
 	 * 删除日期 delete_date
 	 */
 	private Date deleteDate;
+	
+	/**
+	 * 用户账号 user_account
+	 */
+	private String userAccount;
+	
+	/**
+	 * 用户邮箱 user_email
+	 */
+	private String userEmail;
+	
+	/**
+	 * 用户邮箱是否已验证 is_email_verified
+	 */
+	private String isEmailVerified;
 	
 	
 	/**
@@ -287,50 +312,82 @@ public class UserDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 用户昵称 nickname
+	 * @return 用户昵称 user_nickname
 	 */
-	public String getNickname(){
-		return nickname;
+	public String getUserNickname(){
+		return userNickname;
 	}
 	
 	/**
 	 * 
-	 * @param nickname 用户昵称 nickname
+	 * @param userNickname 用户昵称 user_nickname
 	 */	
-	public void setNickname (String nickname) {
-		this.nickname = nickname;
+	public void setUserNickname (String userNickname) {
+		this.userNickname = userNickname;
 	}
 	
 	/**
 	 * 
-	 * @return 用户姓名 name
+	 * @return 用户姓名 user_name
 	 */
-	public String getName(){
-		return name;
+	public String getUserName(){
+		return userName;
 	}
 	
 	/**
 	 * 
-	 * @param name 用户姓名 name
+	 * @param userName 用户姓名 user_name
 	 */	
-	public void setName (String name) {
-		this.name = name;
+	public void setUserName (String userName) {
+		this.userName = userName;
 	}
 	
 	/**
 	 * 
-	 * @return 用户性别 sex
+	 * @return 用户性别 user_sex
 	 */
-	public String getSex(){
-		return sex;
+	public String getUserSex(){
+		return userSex;
 	}
 	
 	/**
 	 * 
-	 * @param sex 用户性别 sex
+	 * @param userSex 用户性别 user_sex
 	 */	
-	public void setSex (String sex) {
-		this.sex = sex;
+	public void setUserSex (String userSex) {
+		this.userSex = userSex;
+	}
+	
+	/**
+	 * 
+	 * @return 用户级别 user_level
+	 */
+	public Integer getUserLevel(){
+		return userLevel;
+	}
+	
+	/**
+	 * 
+	 * @param userLevel 用户级别 user_level
+	 */	
+	public void setUserLevel (Integer userLevel) {
+		this.userLevel = userLevel;
+	}
+	
+	/**
+	 * 
+	 * @return 用户活跃度 user_activeness
+	 */
+	public Integer getUserActiveness(){
+		return userActiveness;
+	}
+	
+	/**
+	 * 
+	 * @param userActiveness 用户活跃度 user_activeness
+	 */	
+	public void setUserActiveness (Integer userActiveness) {
+		this.userActiveness = userActiveness;
 	}
 	
 	/**
@@ -539,6 +596,54 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setDeleteDate (Date deleteDate) {
 		this.deleteDate = deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @return 用户账号 user_account
+	 */
+	public String getUserAccount(){
+		return userAccount;
+	}
+	
+	/**
+	 * 
+	 * @param userAccount 用户账号 user_account
+	 */	
+	public void setUserAccount (String userAccount) {
+		this.userAccount = userAccount;
+	}
+	
+	/**
+	 * 
+	 * @return 用户邮箱 user_email
+	 */
+	public String getUserEmail(){
+		return userEmail;
+	}
+	
+	/**
+	 * 
+	 * @param userEmail 用户邮箱 user_email
+	 */	
+	public void setUserEmail (String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	/**
+	 * 
+	 * @return 用户邮箱是否已验证 is_email_verified
+	 */
+	public String getIsEmailVerified(){
+		return isEmailVerified;
+	}
+	
+	/**
+	 * 
+	 * @param isEmailVerified 用户邮箱是否已验证 is_email_verified
+	 */	
+	public void setIsEmailVerified (String isEmailVerified) {
+		this.isEmailVerified = isEmailVerified;
 	}
 	
 

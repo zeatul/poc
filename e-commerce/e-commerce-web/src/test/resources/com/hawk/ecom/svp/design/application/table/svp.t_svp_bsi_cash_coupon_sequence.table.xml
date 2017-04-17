@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+	<id>43710e84-febe-4418-b331-ca2905288bb9</id>
+	<code>t_svp_bsi_cash_coupon_sequence</code>
+	<comment>代金券编号生成表</comment>
+	<type>normal</type>
+	<columns>
+		<column>
+			<id>116399e8-012d-43e6-b32e-0039566703d8</id>
+			<word>
+				<id>9ba23431-8bfc-4f0e-956e-69bbbf9d53ce</id>
+			</word>
+			<code>stub</code>
+			<name>stub</name>
+			<comment>stub</comment>
+			<nullable>yes</nullable>
+			<isPk>no</isPk>
+		</column>
+		<column>
+			<id>62aea064-2630-44ec-a22d-29e4c704f8a8</id>
+			<word>
+				<id>29bd64eb-f9a2-4b2a-9748-ec72da3afb42</id>
+			</word>
+			<code>id</code>
+			<name>主键</name>
+			<comment>主键</comment>
+			<nullable>no</nullable>
+			<isPk>yes</isPk>
+		</column>
+	</columns>
+	<indexes>
+		<index>
+			<id>db569704-c967-42cd-9045-fa3cef276745</id>
+			<code>PRIMARY</code>
+			<columns>
+				<column>
+					<id>62aea064-2630-44ec-a22d-29e4c704f8a8</id>
+				</column>
+			</columns>
+		</index>
+	</indexes>
+</table>

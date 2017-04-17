@@ -313,6 +313,7 @@ create table t_dic_model
    current_exec_computer varchar(200) comment '当前执行机器',
    current_exec_process_id varchar(50) comment '当前执行进程ID',
    current_exec_start_date timestamp(3) null comment '当前任务启动时间',
+   last_access_date     timestamp(3) null comment '最近访问日期',
    primary key (object_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

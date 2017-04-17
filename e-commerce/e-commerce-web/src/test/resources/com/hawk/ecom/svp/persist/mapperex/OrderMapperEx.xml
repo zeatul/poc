@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapperex.OrderMapperEx">
+
+	<select id="querySigninOrderOfMonth" parameterType="hashmap" resultType="OrderDomain">
+		SELECT 		
+		<include refid="com.hawk.ecom.svp.persist.mapper.OrderMapper.columns" />
+		FROM t_svp_order
+		WHERE mobile_number = #{mobileNumber}
+		AND order_type = #{orderType}
+		AND create_date <![CDATA[   >=  ]]> #{stdt}
+		AND create_date <![CDATA[   <   ]]> #{endt}
+		
+	</select>
+</mapper>

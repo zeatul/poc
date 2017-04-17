@@ -14,9 +14,11 @@
 		user_status AS "userStatus" ,
 		user_status_change_date AS "userStatusChangeDate" ,
 		register_channel AS "registerChannel" ,
-		nickname AS "nickname" ,
-		name AS "name" ,
-		sex AS "sex" ,
+		user_nickname AS "userNickname" ,
+		user_name AS "userName" ,
+		user_sex AS "userSex" ,
+		user_level AS "userLevel" ,
+		user_activeness AS "userActiveness" ,
 		register_ip AS "registerIp" ,
 		id_type AS "idType" ,
 		id_number AS "idNumber" ,
@@ -29,7 +31,10 @@
 		last_access_date AS "lastAccessDate" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
-		delete_date AS "deleteDate" 
+		delete_date AS "deleteDate" ,
+		user_account AS "userAccount" ,
+		user_email AS "userEmail" ,
+		is_email_verified AS "isEmailVerified" 
 	</sql>
 	
 	<sql id="where">
@@ -43,9 +48,11 @@
 			<if test="userStatus != null"> AND user_status = #{userStatus}  </if>
 			<if test="userStatusChangeDate != null"> AND user_status_change_date = #{userStatusChangeDate}  </if>
 			<if test="registerChannel != null"> AND register_channel = #{registerChannel}  </if>
-			<if test="nickname != null"> AND nickname = #{nickname}  </if>
-			<if test="name != null"> AND name = #{name}  </if>
-			<if test="sex != null"> AND sex = #{sex}  </if>
+			<if test="userNickname != null"> AND user_nickname = #{userNickname}  </if>
+			<if test="userName != null"> AND user_name = #{userName}  </if>
+			<if test="userSex != null"> AND user_sex = #{userSex}  </if>
+			<if test="userLevel != null"> AND user_level = #{userLevel}  </if>
+			<if test="userActiveness != null"> AND user_activeness = #{userActiveness}  </if>
 			<if test="registerIp != null"> AND register_ip = #{registerIp}  </if>
 			<if test="idType != null"> AND id_type = #{idType}  </if>
 			<if test="idNumber != null"> AND id_number = #{idNumber}  </if>
@@ -59,6 +66,9 @@
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+			<if test="userAccount != null"> AND user_account = #{userAccount}  </if>
+			<if test="userEmail != null"> AND user_email = #{userEmail}  </if>
+			<if test="isEmailVerified != null"> AND is_email_verified = #{isEmailVerified}  </if>
 		</trim>	
 	</sql>
 	
@@ -73,9 +83,11 @@
 			AND user_status = #{old_userStatus}
 			AND user_status_change_date = #{old_userStatusChangeDate}
 			AND register_channel = #{old_registerChannel}
-			AND nickname = #{old_nickname}
-			AND name = #{old_name}
-			AND sex = #{old_sex}
+			AND user_nickname = #{old_userNickname}
+			AND user_name = #{old_userName}
+			AND user_sex = #{old_userSex}
+			AND user_level = #{old_userLevel}
+			AND user_activeness = #{old_userActiveness}
 			AND register_ip = #{old_registerIp}
 			AND id_type = #{old_idType}
 			AND id_number = #{old_idNumber}
@@ -89,6 +101,9 @@
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
+			AND user_account = #{old_userAccount}
+			AND user_email = #{old_userEmail}
+			AND is_email_verified = #{old_isEmailVerified}
 		</trim>
 	</sql>
 	
@@ -103,9 +118,11 @@
 			user_status = #{userStatus},
 			user_status_change_date = #{userStatusChangeDate},
 			register_channel = #{registerChannel},
-			nickname = #{nickname},
-			name = #{name},
-			sex = #{sex},
+			user_nickname = #{userNickname},
+			user_name = #{userName},
+			user_sex = #{userSex},
+			user_level = #{userLevel},
+			user_activeness = #{userActiveness},
 			register_ip = #{registerIp},
 			id_type = #{idType},
 			id_number = #{idNumber},
@@ -119,6 +136,9 @@
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
+			user_account = #{userAccount},
+			user_email = #{userEmail},
+			is_email_verified = #{isEmailVerified},
 		</set>
 	</sql>
 	
@@ -133,9 +153,11 @@
 			<if test="userStatus != null">user_status = #{userStatus},</if>
 			<if test="userStatusChangeDate != null">user_status_change_date = #{userStatusChangeDate},</if>
 			<if test="registerChannel != null">register_channel = #{registerChannel},</if>
-			<if test="nickname != null">nickname = #{nickname},</if>
-			<if test="name != null">name = #{name},</if>
-			<if test="sex != null">sex = #{sex},</if>
+			<if test="userNickname != null">user_nickname = #{userNickname},</if>
+			<if test="userName != null">user_name = #{userName},</if>
+			<if test="userSex != null">user_sex = #{userSex},</if>
+			<if test="userLevel != null">user_level = #{userLevel},</if>
+			<if test="userActiveness != null">user_activeness = #{userActiveness},</if>
 			<if test="registerIp != null">register_ip = #{registerIp},</if>
 			<if test="idType != null">id_type = #{idType},</if>
 			<if test="idNumber != null">id_number = #{idNumber},</if>
@@ -149,6 +171,9 @@
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+			<if test="userAccount != null">user_account = #{userAccount},</if>
+			<if test="userEmail != null">user_email = #{userEmail},</if>
+			<if test="isEmailVerified != null">is_email_verified = #{isEmailVerified},</if>
 		</set>
 	</sql>
 	
@@ -196,9 +221,11 @@
 				user_status,				
 				user_status_change_date,				
 				register_channel,				
-				nickname,				
-				name,				
-				sex,				
+				user_nickname,				
+				user_name,				
+				user_sex,				
+				user_level,				
+				user_activeness,				
 				register_ip,				
 				id_type,				
 				id_number,				
@@ -211,7 +238,10 @@
 				last_access_date,				
 				create_date,				
 				update_date,				
-				delete_date				
+				delete_date,				
+				user_account,				
+				user_email,				
+				is_email_verified				
 		)		
 		VALUES (	
 			#{id},
@@ -223,9 +253,11 @@
 			#{userStatus},
 			#{userStatusChangeDate},
 			#{registerChannel},
-			#{nickname},
-			#{name},
-			#{sex},
+			#{userNickname},
+			#{userName},
+			#{userSex},
+			#{userLevel},
+			#{userActiveness},
 			#{registerIp},
 			#{idType},
 			#{idNumber},
@@ -238,7 +270,10 @@
 			#{lastAccessDate},
 			#{createDate},
 			#{updateDate},
-			#{deleteDate}
+			#{deleteDate},
+			#{userAccount},
+			#{userEmail},
+			#{isEmailVerified}
 		) 
 	</insert>
 	

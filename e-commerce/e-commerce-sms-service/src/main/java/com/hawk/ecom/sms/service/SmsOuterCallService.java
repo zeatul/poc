@@ -1,6 +1,8 @@
 package com.hawk.ecom.sms.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +10,11 @@ import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.message.BasicHeader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.hawk.framework.utility.http.HttpClientExecutorImpl;
-import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.JsonTools;
@@ -25,15 +28,17 @@ import com.hawk.framework.utility.tools.StringTools;
  */
 @Service
 public class SmsOuterCallService {
+	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	// 帐号： test04 密码：7TkYPkVh 网关地址：118.178.117.163
 
 	private final String baseUrl = "http://118.178.117.163";
 	private final String accNo = "test04";
 	private final String password = "7TkYPkVh";
-	private final Map<String, String> codeMsgMap = new HashMap<String, String>();
+	private final static Map<String, String> codeMsgMap = new HashMap<String, String>();
 
-	private void initCodeMsgMap() {
+	private static void initCodeMsgMap() {
 		codeMsgMap.put("0", "成功");
 		codeMsgMap.put("100", "系统忙（因平台侧原因，暂时无法处理提交的短信）");
 		codeMsgMap.put("101", "无此用户/用户未登陆");
@@ -60,20 +65,24 @@ public class SmsOuterCallService {
 		codeMsgMap.put("126", "号码发送频率超速");
 		codeMsgMap.put("199", "无此类型接口权限");
 	}
-
-	public SmsOuterCallService() throws Exception {
-		HttpClientExecutorImpl httpClientExecutorImpl = new HttpClientExecutorImpl();
-		httpExecutor = httpClientExecutorImpl;
-		httpClientExecutorImpl.addHeader(new BasicHeader("Accept", "application/json"));
-		httpClientExecutorImpl.addHeader(new BasicHeader("Content-Type", "application/json;charset=utf-8"));
-
+	
+	static{
+		initCodeMsgMap();
 	}
 
-	private HttpExecutor httpExecutor;
+	
+
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public SendSmsResult send(String mobileNumber, String message, String batchNo) {
-		final String url = baseUrl + "/smsapi/SmsMt.php";
+	public SendSmsResult send(String mobileNumber, String message, String batchNo) throws Exception {
+		
+		logger.info("Send Message, mobileNumber={},message={},batchNo={}",mobileNumber,message,batchNo);
+		/**
+		 * TODO:控制同一个手机号，每天的接收短信数量
+		 */
+		
+		final String url = baseUrl + "/smsapi/SmsMt";
 		List<HttpParam> paramList = new ArrayList<HttpParam>();
 		paramList.add(new HttpParam("mobile", mobileNumber));
 		paramList.add(new HttpParam("msg", message));
@@ -82,7 +91,21 @@ public class SmsOuterCallService {
 		String timestamp = DateTools.convert(new Date(), "yyyyMMddHHmmss");
 		String token = DigestUtils.md5Hex(StringTools.concat(accNo, timestamp, password));
 		paramList.add(new HttpParam("token", token));
+		String authorization = StringTools.concatWithSymbol(":",accNo, timestamp);
+		try {
+			authorization = Base64.getEncoder().encodeToString(authorization.getBytes("utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			logger.error("error",e);
+		}
+		
+		HttpClientExecutorImpl httpExecutor = new HttpClientExecutorImpl();
+		httpExecutor.addHeader(new BasicHeader("Accept", "application/json"));
+		httpExecutor.addHeader(new BasicHeader("Content-Type", "application/json;charset=utf-8"));
+		httpExecutor.addHeader(new BasicHeader("Authorization", authorization));
+		
 		String result = httpExecutor.get(url, paramList);
+		
+		logger.info("result={}",result);
 
 		/**
 		 * { "RetTime": "20161110012051", "RetCode": "0", "Rets": [ { "RetCode":
@@ -111,5 +134,9 @@ public class SmsOuterCallService {
 		
 	}
 
-	
+	public static void main(String[] args) throws Exception{
+		SmsOuterCallService service = new SmsOuterCallService();
+		SendSmsResult sendSmsResult = service.send("13916082481", "test", "123456");
+		System.out.println(JsonTools.toJsonString(sendSmsResult));
+	}
 }
