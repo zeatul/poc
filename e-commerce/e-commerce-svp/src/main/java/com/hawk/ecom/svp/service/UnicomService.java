@@ -59,10 +59,13 @@ public class UnicomService {
 				.append("merchantName=").append(merchantName).append(";")//
 				.append("merchantPwd=").append(merchantPwd).append(";")//
 				.append("mobile=").append(mobileNumber).append(";")//
-				.append("flowrateValue=").append(mobileDataSize).append(";")//
+				.append("flowrateValue=").append(mobileDataSize)//
 				.toString();//
+		
 		logger.info("chargeVirtualMobileData u={}", u);
+		
 		u = DES.encryptDES(u, key);
+		u = u.replaceAll(" ", ""); //联通的人说要去掉空格
 		logger.info("chargeVirtualMobileData encrypted u={}", u);
 		String url = queryUrl + "?"+ "u="+ URLEncoder.encode(u,"utf-8");
 		String result = httpExecutor.get(url, null);
@@ -94,6 +97,7 @@ public class UnicomService {
 		String mobileAndTime = StringTools.concatWithSymbol(";", mobileNumber,DateTools.convert(new Date(), DateTools.DATETIME_PATTERN));
 		logger.info("isUnicomMobileNumber mobileAndTime={}",mobileAndTime);
 		mobileAndTime = DES.encryptDES(mobileAndTime, key);
+		mobileAndTime = mobileAndTime.replaceAll(" ", ""); //联通的人说要去掉空格
 		logger.info("isUnicomMobileNumber encrypted mobileAndTime={}",mobileAndTime);
 		String url = queryUrl + "?"+ "mobileAndTime="+ URLEncoder.encode(mobileAndTime,"utf-8");
 
