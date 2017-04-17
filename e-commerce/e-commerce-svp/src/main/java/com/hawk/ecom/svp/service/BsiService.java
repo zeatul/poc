@@ -18,7 +18,6 @@ import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
 import com.hawk.ecom.svp.constant.ConstStore;
-import com.hawk.ecom.svp.job.BsiCashCouponSubJob;
 import com.hawk.ecom.svp.job.BsiOuterCreateOrderJob;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
@@ -145,7 +144,7 @@ public class BsiService {
 			throw new RuntimeException("代金券 已经过期");
 		}
 		
-		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.UNUSED){
+		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.UNUSED && bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.ACTIVATE_FAILED){
 			throw new RuntimeException("代金券 已经使用");
 		}
 		

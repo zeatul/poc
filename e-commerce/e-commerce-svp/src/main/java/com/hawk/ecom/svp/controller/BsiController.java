@@ -2,7 +2,7 @@ package com.hawk.ecom.svp.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
@@ -100,6 +101,19 @@ public class BsiController {
 		List<BsiCashCouponDomain> list = bsiService.listCoupon(listCouponParam);
 		
 		List<CashCoupon> c = DomainTools.copy(list, CashCoupon.class);
+		if (c != null){
+			c.forEach(cashCoupon->{
+				Date date = cashCoupon.getBsiCashCouponInvalidDate();
+				if (date != null){
+					if (date.before(new Date())){
+						if (cashCoupon.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.UNUSED ||
+								cashCoupon.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.ACTIVATE_FAILED){
+							cashCoupon.setBsiCashCouponStatus(ConstCouponParameter.CouopnStatus.OUT_OF_DATE);
+						}
+					}
+				}
+			});
+		}
 		
 		return SuccessResponse.build(new MultiCouponResponse(c));
 	}

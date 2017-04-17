@@ -1,5 +1,6 @@
 package com.hawk.ecom.svp.service;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class UnicomService {
 	public void chargeVirtualMobileData(String taskId, String mobileNumber, int mobileDataSize) throws OuterCallException,Exception {
 		logger.info("chargeVirtualMobileData start");
 		// http://58.250.151.66/wowap-interface/flow/trafficOrder?u=taskId=111;merchantName=1;merchantPwd=1;mobile=18607511841;flowrateValue=10
-		final String url = baseUrl + "/wowap-interface/flow/trafficOrder";
+		final String queryUrl = baseUrl + "/wowap-interface/flow/trafficOrder";
 		String u = StringTools.getThreadSafeStringBuilder()//
 				.append("taskId=").append(taskId).append(";")//
 				.append("merchantName=").append(merchantName).append(";")//
@@ -63,9 +64,8 @@ public class UnicomService {
 		logger.info("chargeVirtualMobileData u={}", u);
 		u = DES.encryptDES(u, key);
 		logger.info("chargeVirtualMobileData encrypted u={}", u);
-		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("u", u));
-		String result = httpExecutor.get(url, params);
+		String url = queryUrl + "?"+ "u="+ URLEncoder.encode(u,"utf-8");
+		String result = httpExecutor.get(url, null);
 		logger.info("chargeVirtualMobileData result={}", result);
 
 		HashMap<?, ?> map = JsonTools.toObject(result, HashMap.class);
@@ -87,17 +87,17 @@ public class UnicomService {
 	 */
 	public boolean isUnicomMobileNumber(String mobileNumber) throws Exception{
 	//	http://58.250.151.66/wowap-interface/flow/isUnicom?mobileAndTime=18607511841;2017-03-24 15:46:55
+//		http://58.250.151.66/wowap-interface/flow/isUnicom?mobileAndTime=JqwOOLXHgMRzyZw65YfMb0NVT3ZAhHlNC3CRhnw+85Q=
 		logger.info("isUnicomMobileNumber start");
-		final String url = baseUrl + "/wowap-interface/flow/isUnicom";
+		final String queryUrl = baseUrl + "/wowap-interface/flow/isUnicom";
 		
 		String mobileAndTime = StringTools.concatWithSymbol(";", mobileNumber,DateTools.convert(new Date(), DateTools.DATETIME_PATTERN));
 		logger.info("isUnicomMobileNumber mobileAndTime={}",mobileAndTime);
 		mobileAndTime = DES.encryptDES(mobileAndTime, key);
 		logger.info("isUnicomMobileNumber encrypted mobileAndTime={}",mobileAndTime);
-		
-		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("mobileAndTime",mobileAndTime));
-		String result = httpExecutor.get(url, params);
+		String url = queryUrl + "?"+ "mobileAndTime="+ URLEncoder.encode(mobileAndTime,"utf-8");
+
+		String result = httpExecutor.get(url, null);
 		logger.info("isUnicomMobileNumber result={}", result);
 		
 		HashMap<?, ?> map = JsonTools.toObject(result, HashMap.class);
