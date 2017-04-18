@@ -32,10 +32,19 @@ public class SmsOuterCallService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	// 帐号： test04 密码：7TkYPkVh 网关地址：118.178.117.163
+//	String gateway = "118.178.117.163";
+//	String acctno = "100085";
+//	String passwd = "u3PndKv3";
+
 
 	private final String baseUrl = "http://118.178.117.163";
-	private final String accNo = "test06";
-	private final String password = "KxyxdMds";
+	
+//	private final String accNo = "test06";	
+//	private final String password = "KxyxdMds";
+	
+	private final String accNo = "100085";
+	private final String password = "u3PndKv3";
+	
 	private final static Map<String, String> codeMsgMap = new HashMap<String, String>();
 
 	private static void initCodeMsgMap() {
@@ -144,7 +153,8 @@ public class SmsOuterCallService {
 
 	public static void main(String[] args) throws Exception {
 		SmsOuterCallService service = new SmsOuterCallService();
-		SendSmsResult sendSmsResult = service.send("13916082481", "【飞到家权益平台】短信测试。", "1123456");
+//		SendSmsResult sendSmsResult = service.send("13916082481", "【飞到家权益平台】短信测试。", "1123456");
+		SendSmsResult sendSmsResult = service.send("13916082481", "【飞到家权益平台】尊敬的用户，您的动态验证码为:1234。该验证码有效期为5分钟。", "11123456");
 		System.out.println(JsonTools.toJsonString(sendSmsResult));
 	}
 }

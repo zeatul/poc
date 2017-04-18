@@ -51,6 +51,11 @@ public class UserDomain implements Serializable {
 	private Integer userStatus;
 	
 	/**
+	 * 状态变更原因 user_status_change_cause
+	 */
+	private String userStatusChangeCause;
+	
+	/**
 	 * 状态变更日期 user_status_change_date
 	 */
 	private Date userStatusChangeDate;
@@ -276,6 +281,22 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setUserStatus (Integer userStatus) {
 		this.userStatus = userStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 状态变更原因 user_status_change_cause
+	 */
+	public String getUserStatusChangeCause(){
+		return userStatusChangeCause;
+	}
+	
+	/**
+	 * 
+	 * @param userStatusChangeCause 状态变更原因 user_status_change_cause
+	 */	
+	public void setUserStatusChangeCause (String userStatusChangeCause) {
+		this.userStatusChangeCause = userStatusChangeCause;
 	}
 	
 	/**

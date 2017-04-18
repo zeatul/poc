@@ -12,6 +12,7 @@
 		mobile_operator AS "mobileOperator" ,
 		login_pwd AS "loginPwd" ,
 		user_status AS "userStatus" ,
+		user_status_change_cause AS "userStatusChangeCause" ,
 		user_status_change_date AS "userStatusChangeDate" ,
 		register_channel AS "registerChannel" ,
 		user_nickname AS "userNickname" ,
@@ -46,6 +47,7 @@
 			<if test="mobileOperator != null"> AND mobile_operator = #{mobileOperator}  </if>
 			<if test="loginPwd != null"> AND login_pwd = #{loginPwd}  </if>
 			<if test="userStatus != null"> AND user_status = #{userStatus}  </if>
+			<if test="userStatusChangeCause != null"> AND user_status_change_cause = #{userStatusChangeCause}  </if>
 			<if test="userStatusChangeDate != null"> AND user_status_change_date = #{userStatusChangeDate}  </if>
 			<if test="registerChannel != null"> AND register_channel = #{registerChannel}  </if>
 			<if test="userNickname != null"> AND user_nickname = #{userNickname}  </if>
@@ -81,6 +83,7 @@
 			AND mobile_operator = #{old_mobileOperator}
 			AND login_pwd = #{old_loginPwd}
 			AND user_status = #{old_userStatus}
+			AND user_status_change_cause = #{old_userStatusChangeCause}
 			AND user_status_change_date = #{old_userStatusChangeDate}
 			AND register_channel = #{old_registerChannel}
 			AND user_nickname = #{old_userNickname}
@@ -116,6 +119,7 @@
 			mobile_operator = #{mobileOperator},
 			login_pwd = #{loginPwd},
 			user_status = #{userStatus},
+			user_status_change_cause = #{userStatusChangeCause},
 			user_status_change_date = #{userStatusChangeDate},
 			register_channel = #{registerChannel},
 			user_nickname = #{userNickname},
@@ -151,6 +155,7 @@
 			<if test="mobileOperator != null">mobile_operator = #{mobileOperator},</if>
 			<if test="loginPwd != null">login_pwd = #{loginPwd},</if>
 			<if test="userStatus != null">user_status = #{userStatus},</if>
+			<if test="userStatusChangeCause != null">user_status_change_cause = #{userStatusChangeCause},</if>
 			<if test="userStatusChangeDate != null">user_status_change_date = #{userStatusChangeDate},</if>
 			<if test="registerChannel != null">register_channel = #{registerChannel},</if>
 			<if test="userNickname != null">user_nickname = #{userNickname},</if>
@@ -219,6 +224,7 @@
 				mobile_operator,				
 				login_pwd,				
 				user_status,				
+				user_status_change_cause,				
 				user_status_change_date,				
 				register_channel,				
 				user_nickname,				
@@ -251,6 +257,7 @@
 			#{mobileOperator},
 			#{loginPwd},
 			#{userStatus},
+			#{userStatusChangeCause},
 			#{userStatusChangeDate},
 			#{registerChannel},
 			#{userNickname},

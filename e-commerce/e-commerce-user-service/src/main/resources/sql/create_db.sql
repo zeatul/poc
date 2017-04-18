@@ -1,5 +1,9 @@
 drop table if exists t_usr_login;
 
+drop index i_login_failure on t_usr_login_failure;
+
+drop table if exists t_usr_login_failure;
+
 drop table if exists t_usr_login_history;
 
 drop index ui_user_email on t_usr_user;
@@ -49,6 +53,31 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_usr_login comment '用户登录表';
 
 /*==============================================================*/
+/* Table: t_usr_login_failure                                   */
+/*==============================================================*/
+create table t_usr_login_failure
+(
+   id                   bigint not null comment '主键',
+   user_code            varchar(50) not null comment '用户编号',
+   mobile_number        varchar(20) not null comment '手机号',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_usr_login_failure comment '用户登录失败记录表';
+
+/*==============================================================*/
+/* Index: i_login_failure                                       */
+/*==============================================================*/
+create index i_login_failure on t_usr_login_failure
+(
+   mobile_number
+);
+
+/*==============================================================*/
 /* Table: t_usr_login_history                                   */
 /*==============================================================*/
 create table t_usr_login_history
@@ -90,6 +119,7 @@ create table t_usr_user
    mobile_operator      varchar(200) comment '手机号运营商',
    login_pwd            varchar(100) comment '登录密码',
    user_status          integer comment '用户状态',
+   user_status_change_cause varchar(1000) comment '状态变更原因',
    user_status_change_date timestamp(3) null comment '状态变更日期',
    register_channel     varchar(200) comment '注册渠道',
    user_nickname        varchar(200) comment '用户昵称',
