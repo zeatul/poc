@@ -3,6 +3,7 @@ package com.hawk.ecom.user.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pub.constant.ConstBoolean;
@@ -20,19 +21,22 @@ public class UserService {
 	@Valid
 	public void createUser(@Valid CreateUserParam createUserParam){
 		UserDomain userDomain = new UserDomain();
-		Date date = new Date();
+		Date curDate = new Date();
 		
-		userDomain.setCreateDate(date);		
+		userDomain.setCreateDate(curDate);		
 		userDomain.setIsEmailVerified(ConstBoolean.FALSE);
 		userDomain.setIsMobileVerified(ConstBoolean.TRUE);
-		userDomain.setLastAccessDate(date);
-//		
-//		userDomain.setLoginPwd(loginPwd);
-//		
-//		userDomain.setMobileNumber(mobileNumber);
+		userDomain.setLastAccessDate(curDate);
+		String loginPwd = createUserParam.getLoginPwd();
+		/**
+		 * TODO:签名
+		 */
+		userDomain.setLoginPwd(loginPwd);
+		
+//		userDomain.setMobileNumber(createUserParam.getMobileNumber());
 //		userDomain.setRegisterChannel(registerChannel);
 //		userDomain.setRegisterIp(registerIp);
-//		userDomain.setUpdateDate(updateDate);
+//		userDomain.setUpdateDate(curDate);
 //		userDomain.setUserAccount(userAccount);
 //		userDomain.setUserActiveness(userActiveness);
 //		userDomain.setUserAgent(userAgent);
@@ -46,6 +50,13 @@ public class UserService {
 //		userDomain.setUserStatusChangeDate(userStatusChangeDate);
 //		
 //		userDomain.setId(id);
+		
+		try{
+		userMapper.insert(userDomain);
+		}catch(DuplicateKeyException ex){
+			
+		}
+		
 	}
 
 }
