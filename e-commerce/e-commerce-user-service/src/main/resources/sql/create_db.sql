@@ -112,7 +112,7 @@ create table t_usr_user
    delete_date          timestamp(3) null comment '删除日期',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
-   is_email_verified    varchar(20) comment '用户邮箱是否已验证',
+   is_email_verified    integer comment '用户邮箱是否已验证',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -198,7 +198,7 @@ create table t_usr_user_history
    delete_date          timestamp(3) null comment '删除日期',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
-   is_email_verified    varchar(20) comment '用户邮箱是否已验证',
+   is_email_verified    integer comment '用户邮箱是否已验证',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

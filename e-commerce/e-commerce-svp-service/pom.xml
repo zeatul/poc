@@ -26,7 +26,7 @@
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-word</artifactId>
@@ -37,7 +37,12 @@
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-pub</artifactId>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-sms-service</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-word</artifactId>
@@ -147,7 +152,7 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
-		
+
 
 		<!-- log -->
 		<dependency>
@@ -212,6 +217,6 @@
 		</testResources>
 
 
-		
+
 	</build>
 </project>

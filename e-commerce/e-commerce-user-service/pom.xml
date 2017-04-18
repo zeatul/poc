@@ -20,16 +20,17 @@
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-pub</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
 		</dependency>
-		
+
+		<!--com.hawk.e-commerce -->
 		<dependency>
-				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-config</artifactId>
-			</dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-pub</artifactId>
+		</dependency>
 
 		<!-- mybatis -->
 		<dependency>
@@ -40,6 +41,25 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- spring modules -->

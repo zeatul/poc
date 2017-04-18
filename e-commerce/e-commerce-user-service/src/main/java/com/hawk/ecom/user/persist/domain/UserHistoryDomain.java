@@ -163,7 +163,7 @@ public class UserHistoryDomain implements Serializable {
 	/**
 	 * 用户邮箱是否已验证 is_email_verified
 	 */
-	private String isEmailVerified;
+	private Integer isEmailVerified;
 	
 	
 	/**
@@ -634,7 +634,7 @@ public class UserHistoryDomain implements Serializable {
 	 * 
 	 * @return 用户邮箱是否已验证 is_email_verified
 	 */
-	public String getIsEmailVerified(){
+	public Integer getIsEmailVerified(){
 		return isEmailVerified;
 	}
 	
@@ -642,7 +642,7 @@ public class UserHistoryDomain implements Serializable {
 	 * 
 	 * @param isEmailVerified 用户邮箱是否已验证 is_email_verified
 	 */	
-	public void setIsEmailVerified (String isEmailVerified) {
+	public void setIsEmailVerified (Integer isEmailVerified) {
 		this.isEmailVerified = isEmailVerified;
 	}
 	

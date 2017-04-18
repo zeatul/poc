@@ -28,14 +28,14 @@ import com.hawk.framework.utility.tools.StringTools;
  */
 @Service
 public class SmsOuterCallService {
-	
+
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	// 帐号： test04 密码：7TkYPkVh 网关地址：118.178.117.163
 
 	private final String baseUrl = "http://118.178.117.163";
-	private final String accNo = "test04";
-	private final String password = "7TkYPkVh";
+	private final String accNo = "test06";
+	private final String password = "KxyxdMds";
 	private final static Map<String, String> codeMsgMap = new HashMap<String, String>();
 
 	private static void initCodeMsgMap() {
@@ -65,24 +65,20 @@ public class SmsOuterCallService {
 		codeMsgMap.put("126", "号码发送频率超速");
 		codeMsgMap.put("199", "无此类型接口权限");
 	}
-	
-	static{
+
+	static {
 		initCodeMsgMap();
 	}
 
-	
-
-	
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SendSmsResult send(String mobileNumber, String message, String batchNo) throws Exception {
-		
-		logger.info("Send Message, mobileNumber={},message={},batchNo={}",mobileNumber,message,batchNo);
+
+		logger.info("Send Message, mobileNumber={},message={},batchNo={}", mobileNumber, message, batchNo);
 		/**
 		 * TODO:控制同一个手机号，每天的接收短信数量
 		 */
-		
-		final String url = baseUrl + "/smsapi/SmsMt";
+
+		String url = baseUrl + "/smsapi/SmsMt";
 		List<HttpParam> paramList = new ArrayList<HttpParam>();
 		paramList.add(new HttpParam("mobile", mobileNumber));
 		paramList.add(new HttpParam("msg", message));
@@ -91,21 +87,33 @@ public class SmsOuterCallService {
 		String timestamp = DateTools.convert(new Date(), "yyyyMMddHHmmss");
 		String token = DigestUtils.md5Hex(StringTools.concat(accNo, timestamp, password));
 		paramList.add(new HttpParam("token", token));
-		String authorization = StringTools.concatWithSymbol(":",accNo, timestamp);
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(url).append("?")//
+				.append("mobile=").append(mobileNumber)//
+				.append("&msg=").append(message)//
+				.append("&serialno=").append(batchNo)//
+				.append("&needstat=").append("0")//
+				.append("&token=").append(token);
+		
+		url = sb.toString();
+		logger.info("url={}", url);
+
+		String authorization = StringTools.concatWithSymbol(":", accNo, timestamp);
 		try {
 			authorization = Base64.getEncoder().encodeToString(authorization.getBytes("utf-8"));
 		} catch (UnsupportedEncodingException e) {
-			logger.error("error",e);
+			logger.error("error", e);
 		}
-		
+
 		HttpClientExecutorImpl httpExecutor = new HttpClientExecutorImpl();
 		httpExecutor.addHeader(new BasicHeader("Accept", "application/json"));
 		httpExecutor.addHeader(new BasicHeader("Content-Type", "application/json;charset=utf-8"));
 		httpExecutor.addHeader(new BasicHeader("Authorization", authorization));
-		
-		String result = httpExecutor.get(url, paramList);
-		
-		logger.info("result={}",result);
+
+		String result = httpExecutor.get(url, null);
+
+		logger.info("result={}", result);
 
 		/**
 		 * { "RetTime": "20161110012051", "RetCode": "0", "Rets": [ { "RetCode":
@@ -130,13 +138,13 @@ public class SmsOuterCallService {
 
 	}
 
-	public void send (List<String> mobileNumberList,String message){
-		
+	public void send(List<String> mobileNumberList, String message) {
+
 	}
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		SmsOuterCallService service = new SmsOuterCallService();
-		SendSmsResult sendSmsResult = service.send("13916082481", "test", "123456");
+		SendSmsResult sendSmsResult = service.send("13916082481", "【飞到家权益平台】短信测试。", "1123456");
 		System.out.println(JsonTools.toJsonString(sendSmsResult));
 	}
 }

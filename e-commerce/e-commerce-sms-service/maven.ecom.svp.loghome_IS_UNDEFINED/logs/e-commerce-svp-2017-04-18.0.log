@@ -1,0 +1,31 @@
+2017-04-18 09:15:57,653 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=test,batchNo=123456
+2017-04-18 09:15:58,702 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418091322","RetCode":"199","SerialNo":"123456"}
+2017-04-18 09:16:28,650 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=test,batchNo=123456
+2017-04-18 09:16:29,717 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418091353","RetCode":"199","SerialNo":"123456"}
+2017-04-18 09:16:44,790 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=test,batchNo=123456
+2017-04-18 09:16:45,795 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418091409","RetCode":"199","SerialNo":"123456"}
+2017-04-18 09:18:35,193 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=test,batchNo=123456
+2017-04-18 09:18:36,199 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418091559","RetCode":"115","SerialNo":"123456"}
+2017-04-18 09:24:17,574 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】尊敬的用户，您的动态验证码为:1234。该验证码有效期为30分钟。,batchNo=1123456
+2017-04-18 09:24:18,614 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418092142","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 09:24:30,083 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】尊敬的用户，您的动态验证码为:1234。该验证码有效期为30分钟。,batchNo=1123456
+2017-04-18 09:24:44,023 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】尊敬的用户，您的动态验证码为:1234。该验证码有效期为30分钟。,batchNo=1123456
+2017-04-18 09:24:45,284 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418092208","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 09:25:23,247 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 09:25:24,315 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418092247","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 09:32:33,134 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:81] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 09:32:36,795 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:109] result={"RetTime":"20170418093000","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 09:47:29,288 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 09:47:30,288 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418094453","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 13:13:01,702 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 13:13:02,667 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418131026","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 13:13:35,406 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 13:13:36,356 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418131059","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 13:14:14,792 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:80] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 13:14:15,933 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:108] result={"RetTime":"20170418131139","RetCode":"115","SerialNo":"1123456"}
+2017-04-18 13:20:28,686 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:76] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 13:20:28,731 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:100] url=http://118.178.117.163/smsapi/SmsMt?mobile=13916082481&msg=【飞到家权益平台】短信测试。&serialno=1123456&needstat=0&token=a0621ae50b08995424f8ae7386bcbd4d
+2017-04-18 13:20:29,873 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:116] result={"RetTime":"20170418131753","RetCode":"109","SerialNo":"1123456"}
+2017-04-18 13:23:01,468 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:76] Send Message, mobileNumber=13916082481,message=【飞到家权益平台】短信测试。,batchNo=1123456
+2017-04-18 13:23:01,508 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:100] url=http://118.178.117.163/smsapi/SmsMt?mobile=13916082481&msg=【飞到家权益平台】短信测试。&serialno=1123456&needstat=0&token=05767ca03ee563a59b44c5264805f059
+2017-04-18 13:23:02,581 INFO [main] c.h.e.s.s.SmsOuterCallService [SmsOuterCallService.java:116] result={"RetTime":"20170418132026","RetCode":"0","Rets":[{"RetCode":"0","MsgId":"20170418200294310101","Mobile":"13916082481"}],"SerialNo":"1123456"}

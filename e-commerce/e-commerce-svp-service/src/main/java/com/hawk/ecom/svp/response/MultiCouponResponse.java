@@ -36,6 +36,18 @@ public class MultiCouponResponse implements ResponseData{
 	
 	
 	public static class CashCoupon{
+	public String getBsiCashCouponActivateError() {
+			return bsiCashCouponActivateError;
+		}
+
+
+
+		public void setBsiCashCouponActivateError(String bsiCashCouponActivateError) {
+			this.bsiCashCouponActivateError = bsiCashCouponActivateError;
+		}
+
+
+
 	public String getBsiCashCouponCode() {
 		return bsiCashCouponCode;
 	}
@@ -133,6 +145,10 @@ public class MultiCouponResponse implements ResponseData{
 	 */
 	private Integer bsiCashCouponStatus;
 	
+	/**
+	 * 代金券激活失败原因 bsi_cash_coupon_activate_error
+	 */
+	private String bsiCashCouponActivateError;
 	
 	
 	/**

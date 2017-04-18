@@ -190,6 +190,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			}
 
 			uriBuilder.setCustomQuery(URLEncodedUtils.format(p, "UTF-8"));
+			
+//			uriBuilder.setCustomQuery(URLEncodedUtils.format(p, "UTF-8"));
 
 		}
 		return uriBuilder;
