@@ -26,26 +26,26 @@ public class UserService {
 		userDomain.setIsEmailVerified(ConstBoolean.FALSE);
 		userDomain.setIsMobileVerified(ConstBoolean.TRUE);
 		userDomain.setLastAccessDate(date);
-		
-		userDomain.setLoginPwd(loginPwd);
-		
-		userDomain.setMobileNumber(mobileNumber);
-		userDomain.setRegisterChannel(registerChannel);
-		userDomain.setRegisterIp(registerIp);
-		userDomain.setUpdateDate(updateDate);
-		userDomain.setUserAccount(userAccount);
-		userDomain.setUserActiveness(userActiveness);
-		userDomain.setUserAgent(userAgent);
-		userDomain.setUserCode(userCode);
-		userDomain.setUserEmail(userEmail);
-		userDomain.setUserLevel(userLevel);
-		userDomain.setUserName(userName);
-		userDomain.setUserNickname(userNickname);
-		userDomain.setUserSex(userSex);
-		userDomain.setUserStatus(userStatus);
-		userDomain.setUserStatusChangeDate(userStatusChangeDate);
-		
-		userDomain.setId(id);
+//		
+//		userDomain.setLoginPwd(loginPwd);
+//		
+//		userDomain.setMobileNumber(mobileNumber);
+//		userDomain.setRegisterChannel(registerChannel);
+//		userDomain.setRegisterIp(registerIp);
+//		userDomain.setUpdateDate(updateDate);
+//		userDomain.setUserAccount(userAccount);
+//		userDomain.setUserActiveness(userActiveness);
+//		userDomain.setUserAgent(userAgent);
+//		userDomain.setUserCode(userCode);
+//		userDomain.setUserEmail(userEmail);
+//		userDomain.setUserLevel(userLevel);
+//		userDomain.setUserName(userName);
+//		userDomain.setUserNickname(userNickname);
+//		userDomain.setUserSex(userSex);
+//		userDomain.setUserStatus(userStatus);
+//		userDomain.setUserStatusChangeDate(userStatusChangeDate);
+//		
+//		userDomain.setId(id);
 	}
 
 }
