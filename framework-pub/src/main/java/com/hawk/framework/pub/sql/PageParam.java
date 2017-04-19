@@ -1,4 +1,4 @@
-package com.hawk.framework.pub;
+package com.hawk.framework.pub.sql;
 
 public class PageParam {
 	public Integer getPageIndex() {

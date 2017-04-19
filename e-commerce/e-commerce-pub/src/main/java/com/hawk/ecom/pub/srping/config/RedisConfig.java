@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+
+import com.hawk.framework.pub.cache.RedisClient;
+
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedisPool;
@@ -55,18 +58,16 @@ public class RedisConfig {
 		}
 
 		
-		JedisShardInfo jedisShardInfo = new JedisShardInfo("localhost", 6379);
-		jedisShardInfo.setPassword("#ecoAst11m123!@");		
 		
-		ShardedJedisPool shardedJedisPool = new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);
 		
+		ShardedJedisPool shardedJedisPool = new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);	
 		
 		
 		return shardedJedisPool;
 	}
 	
-	
-	
-	
-
+	@Bean
+	public RedisClient redisClient(ShardedJedisPool pool){
+		return new RedisClient(pool);		
+	}
 }

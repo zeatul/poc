@@ -10,8 +10,11 @@ import redis.clients.jedis.ShardedJedisPool;
 
 public class RedisClient {
 
-	@Autowired
 	private ShardedJedisPool pool;
+	
+	public RedisClient(ShardedJedisPool pool){
+		this.pool = pool;
+	}
 
 	/**
 	 * 加入缓存,无限期
@@ -60,12 +63,31 @@ public class RedisClient {
 	 */
 	public String get(final String key) {
 		return execute(new Executor() {
-			
+
 			@SuppressWarnings("unchecked")
 			@Override
 			public String exec(ShardedJedis shardedJedis) {
 
 				return shardedJedis.get(key);
+			}
+
+		});
+	}
+
+	/**
+	 * 判断key值是否存在
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public boolean exist(final String key) {
+		return execute(new Executor() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Boolean exec(ShardedJedis shardedJedis) {
+				// TODO Auto-generated method stub
+				return shardedJedis.exists(key);
 			}
 
 		});
@@ -85,7 +107,7 @@ public class RedisClient {
 				shardedJedis.hset(key, field, value);
 				return null;
 			}
-			
+
 		});
 	}
 
@@ -101,7 +123,7 @@ public class RedisClient {
 			public <T> T exec(ShardedJedis shardedJedis) {
 				shardedJedis.hdel(key, field);
 				return null;
-			}			
+			}
 		});
 	}
 
@@ -118,12 +140,12 @@ public class RedisClient {
 			public Long exec(ShardedJedis shardedJedis) {
 				return shardedJedis.hlen(key);
 			}
-			
+
 		});
 	}
 
 	/**
-	 * 返回hset所有元素值
+	 * 返回hashset所有元素值
 	 * 
 	 * @param key
 	 * @return
@@ -151,46 +173,29 @@ public class RedisClient {
 		execute(new Executor() {
 
 			@Override
-			public <T> T exec(ShardedJedisPipeline pipeline) {
-				for (String value : values) {
-					pipeline.sadd(key, value);
-				}
-				return null;
-			}
-
-			@Override
 			public <T> T exec(ShardedJedis shardedJedis) {
-				for (String value : values) {
-					shardedJedis.sadd(key, value);
-				}
+
+				shardedJedis.sadd(key, values.toArray(new String[] {}));
 				return null;
 			}
-		}, false);
+		});
 	}
 
 	/**
 	 * 添加set 元素
 	 * 
 	 * @param key
-	 *            set 的 key
-	 * @param values
-	 *            set 内元素
+	 * @param value
 	 */
 	public void sset(final String key, final String value) {
 		execute(new Executor() {
-
-			@Override
-			public <T> T exec(ShardedJedisPipeline pipeline) {
-				pipeline.sadd(key, value);
-				return null;
-			}
 
 			@Override
 			public <T> T exec(ShardedJedis shardedJedis) {
 				shardedJedis.sadd(key, value);
 				return null;
 			}
-		}, false);
+		});
 	}
 
 	/**
@@ -203,21 +208,11 @@ public class RedisClient {
 		execute(new Executor() {
 
 			@Override
-			public <T> T exec(ShardedJedisPipeline pipeline) {
-				for (String value : values) {
-					pipeline.srem(key, value);
-				}
-				return null;
-			}
-
-			@Override
 			public <T> T exec(ShardedJedis shardedJedis) {
-				for (String value : values) {
-					shardedJedis.srem(key, value);
-				}
+				shardedJedis.srem(key, values.toArray(new String[] {}));
 				return null;
 			}
-		}, false);
+		});
 
 	}
 
@@ -238,14 +233,7 @@ public class RedisClient {
 				return shardedJedis.sismember(key, value);
 			}
 
-			@SuppressWarnings("unchecked")
-			@Override
-			public Boolean exec(ShardedJedisPipeline pipeline) {
-				// TODO Auto-generated method stub
-				return pipeline.sismember(key, value).get();
-			}
-
-		}, false);
+		});
 	}
 
 	/**
@@ -264,38 +252,7 @@ public class RedisClient {
 				return shardedJedis.smembers(key);
 			}
 
-			@SuppressWarnings("unchecked")
-			@Override
-			public Set<String> exec(ShardedJedisPipeline pipeline) {
-				return pipeline.smembers(key).get();
-			}
-		}, false);
-	}
-
-	/**
-	 * 判断key值是否存在
-	 * 
-	 * @param key
-	 * @return
-	 */
-	public boolean exist(final String key) {
-		return execute(new Executor() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public Boolean exec(ShardedJedis shardedJedis) {
-				// TODO Auto-generated method stub
-				return shardedJedis.exists(key);
-			}
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public Boolean exec(ShardedJedisPipeline pipeline) {
-				// TODO Auto-generated method stub
-				return pipeline.exists(key).get();
-			}
-
-		}, false);
+		});
 	}
 
 	private interface Executor {
@@ -317,27 +274,19 @@ public class RedisClient {
 	}
 
 	/**
-	 * 删除可以
-	 * 
+	 * 删除
 	 * @param key
-	 * @param async
 	 */
 	public void delete(final String key) {
 
 		execute(new Executor() {
 
 			@Override
-			public <T> T exec(ShardedJedisPipeline pipeline) {
-				pipeline.del(key);
-				return null;
-			}
-
-			@Override
 			public <T> T exec(ShardedJedis shardedJedis) {
 				shardedJedis.del(key);
 				return null;
 			}
-		}, false);
+		});
 
 	}
 
