@@ -32,7 +32,7 @@ create table t_usr_login
    mobile_number        varchar(20) comment '手机号',
    user_code            varchar(50) comment '用户编号',
    login_ip             varchar(50) comment '登录IP',
-   login_type           char(1) comment '登录类型(长期固定/短期固定/短期弹性)',
+   login_type           integer comment '登录类型(长期固定/短期固定/短期弹性)',
    login_date           timestamp(3) null comment '登录日期',
    last_access_date     timestamp(3) null comment '最近访问日期',
    duration_second      integer comment '有效时间(秒)',

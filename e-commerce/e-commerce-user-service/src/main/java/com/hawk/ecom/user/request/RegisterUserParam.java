@@ -7,6 +7,12 @@ public class RegisterUserParam {
 	
 
 	
+	public String getVeriCode() {
+		return veriCode;
+	}
+	public void setVeriCode(String veriCode) {
+		this.veriCode = veriCode;
+	}
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -39,5 +45,8 @@ public class RegisterUserParam {
 	
 	@NotEmpty(value="veriCode",name="验证码")
 	private String veriCode;
+
+
+	
 
 }

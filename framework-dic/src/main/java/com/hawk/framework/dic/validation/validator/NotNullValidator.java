@@ -27,7 +27,7 @@ public class NotNullValidator implements ConstraintValidator<NotNull, Object> {
 				}
 			}
 
-			throw new ValidateException("-1", name + "不能为空");
+			throw new ValidateException(-1, name + "不能为空");
 		}
 
 	}

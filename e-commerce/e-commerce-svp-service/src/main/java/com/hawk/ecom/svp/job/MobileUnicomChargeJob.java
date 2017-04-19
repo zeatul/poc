@@ -68,7 +68,7 @@ public class MobileUnicomChargeJob implements Runnable{
 		}catch (OuterCallException  e){
 			logger.error("MobileUnicomChargeJob meet error",e);
 			mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.EXEC_FAILED);
-			mobileDataOrderDetailDomain.setLastExecErrCode(e.getCode());
+			mobileDataOrderDetailDomain.setLastExecErrCode(new Integer(e.getCode()).toString());
 			mobileDataOrderDetailDomain.setLastExecErrMsg(e.getMessage());
 		}
 		catch (Exception e) {

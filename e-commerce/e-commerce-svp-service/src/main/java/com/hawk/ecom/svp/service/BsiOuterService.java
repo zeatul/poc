@@ -79,7 +79,7 @@ public class BsiOuterService {
 		logger.info("outCreateOrder_response={}",result);
 		
 		if ("0".equals(result)){
-			throw new OuterCallException("unkonwn",(String)map.get("notice"));
+			throw new OuterCallException(-1,(String)map.get("notice"));
 		}else if ("1".equals(result)){
 			List<?> list =  (List<?>)map.get("orderList");
 			@SuppressWarnings("rawtypes")
@@ -151,7 +151,7 @@ public class BsiOuterService {
 		String result = (String)map.get("result");
 		
 		if ("0".equals(result)){
-			throw new OuterCallException("unkonwn",(String)map.get("notice"));
+			throw new OuterCallException(-1,(String)map.get("notice"));
 		}else if ("1".equals(result)){
 //			{
 //				"orderlist": [

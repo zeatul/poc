@@ -16,12 +16,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiPhoneModelMapper;
 import com.hawk.ecom.svp.persist.mapperex.BsiPhoneModelExMapper;
+import com.hawk.ecom.user.persist.domain.UserDomain;
+import com.hawk.ecom.user.persist.mapper.UserMapper;
+import com.hawk.ecom.user.persist.mapperex.UserExMapper;
 import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { BsiPhoneModelExMapper.class, BsiPhoneModelMapper.class })
+@MapperScan(basePackageClasses = {UserMapper.class,UserExMapper.class, BsiPhoneModelExMapper.class, BsiPhoneModelMapper.class })
 public class DataConfig {
 
 	@Autowired
@@ -135,8 +138,9 @@ public class DataConfig {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String packageName = BsiPhoneModelDomain.class.getPackage().getName();
-		String str = StringTools.concatWithSymbol(";", packageName, packageName + "ex");
+		String svpPackageName = BsiPhoneModelDomain.class.getPackage().getName();
+		String userPackageName = UserDomain.class.getPackage().getName();
+		String str = StringTools.concatWithSymbol(";", svpPackageName, svpPackageName + "ex",userPackageName,userPackageName+ "ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}

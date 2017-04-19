@@ -9,21 +9,11 @@ public class OuterCallException extends BasicException{
 	 */
 	private static final long serialVersionUID = -1927035884999815044L;
 
-	public OuterCallException(String code, String message) {
+	public OuterCallException(int code, String message) {
 		super(code, message);
 	}
 	
-	public OuterCallException(Integer code, String message){
-		
-		super(toStr(code),message);
-	}
 	
-	private static String toStr(Integer code){
-		String strCode = null;
-		if (code != null){
-			strCode = code.toString();
-		}
-		return strCode;
-	}
+	
 
 }

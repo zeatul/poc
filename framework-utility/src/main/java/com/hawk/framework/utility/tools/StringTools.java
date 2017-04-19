@@ -1,6 +1,8 @@
 package com.hawk.framework.utility.tools;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class StringTools {
 	
@@ -135,5 +137,22 @@ public class StringTools {
 		if (l>0)
 			to36Char(l,sb);
 	}
-
+	
+	
+	private static Random random = new Random();
+	/**
+	 * 产生随机的纯数字的字符串
+	 * @param length 字符串长度
+	 * @return
+	 */
+	public static String randomNumberString(int length){
+		
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<length ; i++){			
+//			int t = ThreadLocalRandom.current().nextInt(10);	
+			int t = random.nextInt(10);
+			sb.append(t);
+		}
+		return sb.toString();
+	}
 }

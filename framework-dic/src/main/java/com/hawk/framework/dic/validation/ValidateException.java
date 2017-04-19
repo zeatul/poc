@@ -9,7 +9,7 @@ public class ValidateException extends BasicException{
 	 */
 	private static final long serialVersionUID = 9084306067591543242L;
 
-	public ValidateException(String code, String message) {
+	public ValidateException(int code, String message) {
 		super(code, message);
 	}
 

@@ -35,7 +35,7 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 			
 			
 			
-			throw new ValidateException("-1",name +"不能为空");
+			throw new ValidateException(-1,name +"不能为空");
 		}
 	}
 
@@ -65,7 +65,7 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 				return true;
 		}
 		
-		throw new ValidateException("-1","unsupport object type for empty checking");
+		throw new ValidateException(-1,"unsupport object type for empty checking");
 	}
 
 	

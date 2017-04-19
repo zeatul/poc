@@ -83,7 +83,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_SUCCESS);
 		} catch (OuterCallException e) {
 			logger.error("BsiOuterCreateOrderJob meet error",e);
-			bsiOrderDetailDomain.setLastExecErrCode(e.getCode());
+			bsiOrderDetailDomain.setLastExecErrCode(new Integer(e.getCode()).toString());
 			bsiOrderDetailDomain.setLastExecErrMsg(e.getMessage());
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 		} catch (Exception e) {

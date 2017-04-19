@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.hawk.framework.pub.spring.FrameworkContext;
-
+import com.hawk.ecom.pub.controller.AppWideExceptionHandler;
 
 
 @Configuration
@@ -15,5 +15,10 @@ public class PubConfig {
 	@Bean
 	public FrameworkContext frameworkContext(){
 		return new FrameworkContext();
+	}
+	
+	@Bean
+	public AppWideExceptionHandler AppWideExceptionHandler(){
+		return new AppWideExceptionHandler();
 	}
 }
