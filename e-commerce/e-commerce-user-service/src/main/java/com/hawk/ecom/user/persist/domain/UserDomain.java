@@ -96,6 +96,16 @@ public class UserDomain implements Serializable {
 	private String registerIp;
 	
 	/**
+	 * 用户头像 user_picture
+	 */
+	private String userPicture;
+	
+	/**
+	 * 用户类别 user_type
+	 */
+	private Integer userType;
+	
+	/**
 	 * 证件类型 id_type
 	 */
 	private Integer idType;
@@ -425,6 +435,38 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setRegisterIp (String registerIp) {
 		this.registerIp = registerIp;
+	}
+	
+	/**
+	 * 
+	 * @return 用户头像 user_picture
+	 */
+	public String getUserPicture(){
+		return userPicture;
+	}
+	
+	/**
+	 * 
+	 * @param userPicture 用户头像 user_picture
+	 */	
+	public void setUserPicture (String userPicture) {
+		this.userPicture = userPicture;
+	}
+	
+	/**
+	 * 
+	 * @return 用户类别 user_type
+	 */
+	public Integer getUserType(){
+		return userType;
+	}
+	
+	/**
+	 * 
+	 * @param userType 用户类别 user_type
+	 */	
+	public void setUserType (Integer userType) {
+		this.userType = userType;
 	}
 	
 	/**

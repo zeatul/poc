@@ -21,6 +21,8 @@
 		user_level AS "userLevel" ,
 		user_activeness AS "userActiveness" ,
 		register_ip AS "registerIp" ,
+		user_picture AS "userPicture" ,
+		user_type AS "userType" ,
 		id_type AS "idType" ,
 		id_number AS "idNumber" ,
 		imei AS "imei" ,
@@ -56,6 +58,8 @@
 			<if test="userLevel != null"> AND user_level = #{userLevel}  </if>
 			<if test="userActiveness != null"> AND user_activeness = #{userActiveness}  </if>
 			<if test="registerIp != null"> AND register_ip = #{registerIp}  </if>
+			<if test="userPicture != null"> AND user_picture = #{userPicture}  </if>
+			<if test="userType != null"> AND user_type = #{userType}  </if>
 			<if test="idType != null"> AND id_type = #{idType}  </if>
 			<if test="idNumber != null"> AND id_number = #{idNumber}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
@@ -92,6 +96,8 @@
 			AND user_level = #{old_userLevel}
 			AND user_activeness = #{old_userActiveness}
 			AND register_ip = #{old_registerIp}
+			AND user_picture = #{old_userPicture}
+			AND user_type = #{old_userType}
 			AND id_type = #{old_idType}
 			AND id_number = #{old_idNumber}
 			AND imei = #{old_imei}
@@ -128,6 +134,8 @@
 			user_level = #{userLevel},
 			user_activeness = #{userActiveness},
 			register_ip = #{registerIp},
+			user_picture = #{userPicture},
+			user_type = #{userType},
 			id_type = #{idType},
 			id_number = #{idNumber},
 			imei = #{imei},
@@ -164,6 +172,8 @@
 			<if test="userLevel != null">user_level = #{userLevel},</if>
 			<if test="userActiveness != null">user_activeness = #{userActiveness},</if>
 			<if test="registerIp != null">register_ip = #{registerIp},</if>
+			<if test="userPicture != null">user_picture = #{userPicture},</if>
+			<if test="userType != null">user_type = #{userType},</if>
 			<if test="idType != null">id_type = #{idType},</if>
 			<if test="idNumber != null">id_number = #{idNumber},</if>
 			<if test="imei != null">imei = #{imei},</if>
@@ -233,6 +243,8 @@
 				user_level,				
 				user_activeness,				
 				register_ip,				
+				user_picture,				
+				user_type,				
 				id_type,				
 				id_number,				
 				imei,				
@@ -266,6 +278,8 @@
 			#{userLevel},
 			#{userActiveness},
 			#{registerIp},
+			#{userPicture},
+			#{userType},
 			#{idType},
 			#{idNumber},
 			#{imei},

@@ -3,6 +3,7 @@ package com.hawk.ecom.user.service;
 import java.util.Date;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,14 @@ public class UserService {
 		MybatisParam params = new MybatisParam().put("mobileNumber", mobileNumber);
 		return MybatisTools.single(userMapper.loadDynamic(params));
 	}
+	
+	public String password(String loginPwd,String userCode,Date curDate){
+		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,userCode,curDate.getTime()));
+	}
 
 	@Valid
 	public void createUser(@Valid CreateUserParam createUserParam) {
+		logger.info("Start to create user, mobileNumber={}",createUserParam.getMobileNumber());
 		UserDomain userDomain = new UserDomain();
 		Date curDate = new Date();
 
@@ -58,24 +64,25 @@ public class UserService {
 		 * TODO:签名
 		 */
 		String loginPwd = createUserParam.getLoginPwd();
+		loginPwd = password(loginPwd,userCode,curDate);
 		userDomain.setLoginPwd(loginPwd);
 
 		userDomain.setMobileNumber(createUserParam.getMobileNumber());
-		// userDomain.setRegisterChannel(registerChannel);
+		userDomain.setRegisterChannel(createUserParam.getRegisterChannel());
 		userDomain.setRegisterIp(createUserParam.getRegisterIp());
 		userDomain.setUpdateDate(curDate);
-		userDomain.setUserAccount(StringTools.concat(userCode, "@account.ecom"));
-		// userDomain.setUserActiveness(userActiveness);
+		userDomain.setUserAccount(StringTools.concat(userCode, "@account"));
+		userDomain.setUserActiveness(100);
 		userDomain.setUserAgent(createUserParam.getUserAgent());
 		userDomain.setUserCode(userCode);
-		userDomain.setUserEmail(StringTools.concat(userCode, "@mail.ecom"));
-		// userDomain.setUserLevel(userLevel);
+		userDomain.setUserEmail(StringTools.concat(userCode, "@email"));
+		 userDomain.setUserLevel(1);
 		// userDomain.setUserName(userName);
 		// userDomain.setUserNickname(userNickname);
 		// userDomain.setUserSex(userSex);
+		userDomain.setUserType(100);
 		userDomain.setUserStatus(ConstUserStatus.NORMAL);
 		userDomain.setUserStatusChangeDate(curDate);
-		//
 		userDomain.setId(pkGenService.genPk());
 
 		try {
@@ -84,6 +91,7 @@ public class UserService {
 			throw new MobileNumberRegisteredRuntimeException();
 		}
 
+		logger.info("Succeed to create user, mobileNumber={}",createUserParam.getMobileNumber());
 	}
 
 	private String generateUserCode() {

@@ -9,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.user.constant.ConstLoginType;
-import com.hawk.ecom.user.exception.UnMatchedPasswordException;
+import com.hawk.ecom.user.exception.UnMatchedPasswordRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.LoginDomain;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.LoginMapper;
 import com.hawk.ecom.user.request.LoginParam;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class LoginService {
@@ -29,9 +31,17 @@ public class LoginService {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CacheService cacheService;
+	
+		
 	@Valid
 	public String login(@Valid LoginParam loginParam){
 		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd());
+	}
+	
+	private String buildLongTokenKey(String token){
+		return StringTools.concat("_","user","token",token);
 	}
 	
 	public String login(String mobileNumber, String password){
@@ -39,9 +49,9 @@ public class LoginService {
 		if (userDomain == null){
 			throw new UserNotFoundRuntimeException();
 		}
-		
+		password = userService.password(password, userDomain.getUserCode(), userDomain.getCreateDate());
 		if (!password.equals(userDomain.getLoginPwd())){
-			throw new UnMatchedPasswordException();
+			throw new UnMatchedPasswordRuntimeException();
 		}
 		
 		LoginDomain loginDomain = new LoginDomain();
@@ -53,7 +63,8 @@ public class LoginService {
 		loginDomain.setUserId(userDomain.getId());
 		loginDomain.setUserCode(userDomain.getUserCode());
 		loginDomain.setMobileNumber(mobileNumber);
-		loginDomain.setExpireDate(DateTools.addMinutes(curDate, 240));
+		Date expireDate = DateTools.addMinutes(curDate, 240);
+		loginDomain.setExpireDate(expireDate);
 		
 		
 		loginDomain.setCreateDate(curDate);
@@ -64,6 +75,15 @@ public class LoginService {
 		loginDomain.setToken(token);
 		
 		loginMapper.insert(loginDomain);
+		
+		CachedLoginToken cachedLoginToken = new CachedLoginToken();
+		cachedLoginToken.setExpireDate(expireDate.getTime());
+		cachedLoginToken.setMobileNumber(mobileNumber);
+		cachedLoginToken.setUserCode(userDomain.getUserCode());
+		cachedLoginToken.setUserId(userDomain.getId());
+		
+		String loginTokenKey = buildLongTokenKey(token);
+		cacheService.put(loginTokenKey, cachedLoginToken, 240);
 		
 		return token;
 	}

@@ -3,7 +3,6 @@ package com.hawk.ecom.user.controller;
 import org.junit.Test;
 
 import com.hawk.ecom.user.request.RegisterUserParam;
-import com.hawk.ecom.user.request.SendVeriCodeParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class UserControllerTest extends AbstractControllerTest{
@@ -15,16 +14,7 @@ public class UserControllerTest extends AbstractControllerTest{
 		System.out.println("result="+result);
 	}
 	
-	@Test
-	public void testVeriCode(){
-		String mobileNumber = "13916082481";
-		SendVeriCodeParam sendVeriCodeParam = new SendVeriCodeParam();
-		sendVeriCodeParam.setMobileNumber(mobileNumber);
-		String url = getUrl("/user/veriCode");
-		System.out.println(JsonTools.toJsonString(sendVeriCodeParam));
-		String result = httpExecutor.post(url, sendVeriCodeParam, null);
-		System.out.println("result=" + result);
-	}
+	
 	
 //	@Test
 	public void testRegister(){

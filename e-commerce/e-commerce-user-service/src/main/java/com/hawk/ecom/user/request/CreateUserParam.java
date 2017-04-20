@@ -6,6 +6,12 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 
 public class CreateUserParam {
 	
+	public String getRegisterChannel() {
+		return registerChannel;
+	}
+	public void setRegisterChannel(String registerChannel) {
+		this.registerChannel = registerChannel;
+	}
 	public String getUserAgent() {
 		return userAgent;
 	}
@@ -59,6 +65,9 @@ public class CreateUserParam {
 	 */
 	@ExternalImplicitParam	
 	private String userAgent;
+	
+	
+	private String registerChannel;
 	
 	
 

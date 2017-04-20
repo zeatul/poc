@@ -128,6 +128,8 @@ create table t_usr_user
    user_level           integer comment '用户级别',
    user_activeness      integer comment '用户活跃度',
    register_ip          varchar(200) comment '注册IP',
+   user_picture         varchar(1000) comment '用户头像',
+   user_type            integer comment '用户类别',
    id_type              integer comment '证件类型',
    id_number            varchar(50) comment '证件号码',
    imei                 varchar(200) comment '设备唯一的串号',
