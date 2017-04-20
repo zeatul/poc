@@ -80,7 +80,7 @@ public class SmsOuterCallService {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public SendSmsResult send(String mobileNumber, String message, String batchNo) throws Exception {
+	public SendSmsResult send(String mobileNumber, String message, String batchNo)  {
 
 		logger.info("Send Message, mobileNumber={},message={},batchNo={}", mobileNumber, message, batchNo);
 		/**
@@ -115,7 +115,12 @@ public class SmsOuterCallService {
 			logger.error("error", e);
 		}
 
-		HttpClientExecutorImpl httpExecutor = new HttpClientExecutorImpl();
+		HttpClientExecutorImpl httpExecutor = null;
+		try {
+			httpExecutor = new HttpClientExecutorImpl();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		httpExecutor.addHeader(new BasicHeader("Accept", "application/json"));
 		httpExecutor.addHeader(new BasicHeader("Content-Type", "application/json;charset=utf-8"));
 		httpExecutor.addHeader(new BasicHeader("Authorization", authorization));

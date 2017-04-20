@@ -20,7 +20,7 @@ public class GlobalPkGenConfig {
 	}
 	
 	
-	@Bean
+	@Bean("pkGenService")
 	public PkGenService pkGenService(JdbcTemplate jdbcTemplate){
 		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);

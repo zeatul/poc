@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class UserService {
@@ -26,12 +28,17 @@ public class UserService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
+	@Qualifier("pkGenService")
 	private PkGenService pkGenService;
 
 	@Autowired
+	@Qualifier("userCodeSequenceService")
+	private PkGenService userCodeSequenceService;
+
+	@Autowired
 	private UserMapper userMapper;
-	
-	public UserDomain queryUserByMobileNumber(String mobileNumber){
+
+	public UserDomain queryUserByMobileNumber(String mobileNumber) {
 		MybatisParam params = new MybatisParam().put("mobileNumber", mobileNumber);
 		return MybatisTools.single(userMapper.loadDynamic(params));
 	}
@@ -45,21 +52,23 @@ public class UserService {
 		userDomain.setIsEmailVerified(ConstBoolean.FALSE);
 		userDomain.setIsMobileVerified(ConstBoolean.TRUE);
 		userDomain.setLastAccessDate(curDate);
-		String loginPwd = createUserParam.getLoginPwd();
+
+		String userCode = generateUserCode();
 		/**
 		 * TODO:签名
 		 */
+		String loginPwd = createUserParam.getLoginPwd();
 		userDomain.setLoginPwd(loginPwd);
 
 		userDomain.setMobileNumber(createUserParam.getMobileNumber());
 		// userDomain.setRegisterChannel(registerChannel);
-		// userDomain.setRegisterIp(registerIp);
+		userDomain.setRegisterIp(createUserParam.getRegisterIp());
 		userDomain.setUpdateDate(curDate);
-		// userDomain.setUserAccount(userAccount);
+		userDomain.setUserAccount(StringTools.concat(userCode, "@account.ecom"));
 		// userDomain.setUserActiveness(userActiveness);
-		// userDomain.setUserAgent(userAgent);
-		userDomain.setUserCode(UUID.randomUUID().toString());
-		// userDomain.setUserEmail(userEmail);
+		userDomain.setUserAgent(createUserParam.getUserAgent());
+		userDomain.setUserCode(userCode);
+		userDomain.setUserEmail(StringTools.concat(userCode, "@mail.ecom"));
 		// userDomain.setUserLevel(userLevel);
 		// userDomain.setUserName(userName);
 		// userDomain.setUserNickname(userNickname);
@@ -77,4 +86,11 @@ public class UserService {
 
 	}
 
+	private String generateUserCode() {
+		/**
+		 * 8位及8位以上的数字构成的字符串
+		 */
+		return new Long(userCodeSequenceService.genPk() + 10000000).toString();
+
+	}
 }

@@ -139,7 +139,7 @@ public class StringTools {
 	}
 	
 	
-	private static Random random = new Random();
+//	private static Random random = new Random();
 	/**
 	 * 产生随机的纯数字的字符串
 	 * @param length 字符串长度
@@ -149,8 +149,8 @@ public class StringTools {
 		
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<length ; i++){			
-//			int t = ThreadLocalRandom.current().nextInt(10);	
-			int t = random.nextInt(10);
+			int t = ThreadLocalRandom.current().nextInt(10);	
+//			int t = random.nextInt(10);
 			sb.append(t);
 		}
 		return sb.toString();

@@ -22,3 +22,12 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-user-service/src/m
 
 source /usr/local/source/poc/e-commerce/e-commerce-user-service/src/main/resources/sql/create_db.sql;
 
+
+#短信表
+
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-sms-service/src/main/resources/sql/create_db.sql
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-sms-service/src/main/resources/sql/init.sql
+
+source /usr/local/source/poc/e-commerce/e-commerce-sms-service/src/main/resources/sql/create_db.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-sms-service/src/main/resources/sql/init.sql;
+

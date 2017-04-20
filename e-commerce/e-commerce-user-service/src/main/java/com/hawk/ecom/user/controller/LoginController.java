@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.user.request.LoginParam;
-import com.hawk.ecom.user.request.SendVeriCodeParam;
 import com.hawk.ecom.user.response.LoginResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.framework.pub.web.HttpRequestTools;

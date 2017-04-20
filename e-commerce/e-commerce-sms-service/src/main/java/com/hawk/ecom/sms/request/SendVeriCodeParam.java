@@ -1,4 +1,6 @@
-package com.hawk.ecom.user.request;
+package com.hawk.ecom.sms.request;
+
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
 
 public class SendVeriCodeParam {
 	
@@ -10,6 +12,7 @@ public class SendVeriCodeParam {
 		this.mobileNumber = mobileNumber;
 	}
 
+	@NotEmpty("mobileNumber")
 	private String mobileNumber;
 
 }

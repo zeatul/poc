@@ -46,9 +46,24 @@ public class TaskDomain implements Serializable {
 	private Integer smsStatus;
 	
 	/**
-	 * 短信内容 sms_msg
+	 * 模板编号 sms_model_code
 	 */
-	private String smsMsg;
+	private String smsModelCode;
+	
+	/**
+	 * 版本号 version
+	 */
+	private Integer version;
+	
+	/**
+	 * 模板填充数据 sms_msg_data
+	 */
+	private String smsMsgData;
+	
+	/**
+	 * 短信内容 sms_msg_content
+	 */
+	private String smsMsgContent;
 	
 	/**
 	 * 短信发送回执 sms_receipt
@@ -199,18 +214,66 @@ public class TaskDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 短信内容 sms_msg
+	 * @return 模板编号 sms_model_code
 	 */
-	public String getSmsMsg(){
-		return smsMsg;
+	public String getSmsModelCode(){
+		return smsModelCode;
 	}
 	
 	/**
 	 * 
-	 * @param smsMsg 短信内容 sms_msg
+	 * @param smsModelCode 模板编号 sms_model_code
 	 */	
-	public void setSmsMsg (String smsMsg) {
-		this.smsMsg = smsMsg;
+	public void setSmsModelCode (String smsModelCode) {
+		this.smsModelCode = smsModelCode;
+	}
+	
+	/**
+	 * 
+	 * @return 版本号 version
+	 */
+	public Integer getVersion(){
+		return version;
+	}
+	
+	/**
+	 * 
+	 * @param version 版本号 version
+	 */	
+	public void setVersion (Integer version) {
+		this.version = version;
+	}
+	
+	/**
+	 * 
+	 * @return 模板填充数据 sms_msg_data
+	 */
+	public String getSmsMsgData(){
+		return smsMsgData;
+	}
+	
+	/**
+	 * 
+	 * @param smsMsgData 模板填充数据 sms_msg_data
+	 */	
+	public void setSmsMsgData (String smsMsgData) {
+		this.smsMsgData = smsMsgData;
+	}
+	
+	/**
+	 * 
+	 * @return 短信内容 sms_msg_content
+	 */
+	public String getSmsMsgContent(){
+		return smsMsgContent;
+	}
+	
+	/**
+	 * 
+	 * @param smsMsgContent 短信内容 sms_msg_content
+	 */	
+	public void setSmsMsgContent (String smsMsgContent) {
+		this.smsMsgContent = smsMsgContent;
 	}
 	
 	/**

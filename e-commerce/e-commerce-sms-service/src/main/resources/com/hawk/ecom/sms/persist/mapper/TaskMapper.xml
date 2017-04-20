@@ -11,7 +11,10 @@
 		sms_is_batch AS "smsIsBatch" ,
 		mobile_number AS "mobileNumber" ,
 		sms_status AS "smsStatus" ,
-		sms_msg AS "smsMsg" ,
+		sms_model_code AS "smsModelCode" ,
+		version AS "version" ,
+		sms_msg_data AS "smsMsgData" ,
+		sms_msg_content AS "smsMsgContent" ,
 		sms_receipt AS "smsReceipt" ,
 		exec_times AS "execTimes" ,
 		max_exec_times AS "maxExecTimes" ,
@@ -32,7 +35,10 @@
 			<if test="smsIsBatch != null"> AND sms_is_batch = #{smsIsBatch}  </if>
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 			<if test="smsStatus != null"> AND sms_status = #{smsStatus}  </if>
-			<if test="smsMsg != null"> AND sms_msg = #{smsMsg}  </if>
+			<if test="smsModelCode != null"> AND sms_model_code = #{smsModelCode}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="smsMsgData != null"> AND sms_msg_data = #{smsMsgData}  </if>
+			<if test="smsMsgContent != null"> AND sms_msg_content = #{smsMsgContent}  </if>
 			<if test="smsReceipt != null"> AND sms_receipt = #{smsReceipt}  </if>
 			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
@@ -54,7 +60,10 @@
 			AND sms_is_batch = #{old_smsIsBatch}
 			AND mobile_number = #{old_mobileNumber}
 			AND sms_status = #{old_smsStatus}
-			AND sms_msg = #{old_smsMsg}
+			AND sms_model_code = #{old_smsModelCode}
+			AND version = #{old_version}
+			AND sms_msg_data = #{old_smsMsgData}
+			AND sms_msg_content = #{old_smsMsgContent}
 			AND sms_receipt = #{old_smsReceipt}
 			AND exec_times = #{old_execTimes}
 			AND max_exec_times = #{old_maxExecTimes}
@@ -76,7 +85,10 @@
 			sms_is_batch = #{smsIsBatch},
 			mobile_number = #{mobileNumber},
 			sms_status = #{smsStatus},
-			sms_msg = #{smsMsg},
+			sms_model_code = #{smsModelCode},
+			version = #{version},
+			sms_msg_data = #{smsMsgData},
+			sms_msg_content = #{smsMsgContent},
 			sms_receipt = #{smsReceipt},
 			exec_times = #{execTimes},
 			max_exec_times = #{maxExecTimes},
@@ -98,7 +110,10 @@
 			<if test="smsIsBatch != null">sms_is_batch = #{smsIsBatch},</if>
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 			<if test="smsStatus != null">sms_status = #{smsStatus},</if>
-			<if test="smsMsg != null">sms_msg = #{smsMsg},</if>
+			<if test="smsModelCode != null">sms_model_code = #{smsModelCode},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="smsMsgData != null">sms_msg_data = #{smsMsgData},</if>
+			<if test="smsMsgContent != null">sms_msg_content = #{smsMsgContent},</if>
 			<if test="smsReceipt != null">sms_receipt = #{smsReceipt},</if>
 			<if test="execTimes != null">exec_times = #{execTimes},</if>
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
@@ -153,7 +168,10 @@
 				sms_is_batch,				
 				mobile_number,				
 				sms_status,				
-				sms_msg,				
+				sms_model_code,				
+				version,				
+				sms_msg_data,				
+				sms_msg_content,				
 				sms_receipt,				
 				exec_times,				
 				max_exec_times,				
@@ -172,7 +190,10 @@
 			#{smsIsBatch},
 			#{mobileNumber},
 			#{smsStatus},
-			#{smsMsg},
+			#{smsModelCode},
+			#{version},
+			#{smsMsgData},
+			#{smsMsgContent},
 			#{smsReceipt},
 			#{execTimes},
 			#{maxExecTimes},

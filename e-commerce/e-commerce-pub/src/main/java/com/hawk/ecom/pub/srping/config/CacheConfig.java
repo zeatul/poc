@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.hawk.framework.pub.cache.CacheService;
+import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.cache.RedisClient;
 
 import redis.clients.jedis.JedisPoolConfig;
@@ -17,7 +19,7 @@ import redis.clients.jedis.ShardedJedisPool;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/pub/env/redis.properties")
-public class RedisConfig {
+public class CacheConfig {
 	
 	@Autowired
 	private Environment env;
@@ -69,5 +71,10 @@ public class RedisConfig {
 	@Bean
 	public RedisClient redisClient(ShardedJedisPool pool){
 		return new RedisClient(pool);		
+	}
+	
+	@Bean
+	public CacheService cacheService(RedisClient redisClient){
+		return new RedisCacheServiceImpl(redisClient);
 	}
 }
