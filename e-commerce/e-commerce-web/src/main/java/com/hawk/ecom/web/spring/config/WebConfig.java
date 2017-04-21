@@ -12,6 +12,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -19,10 +20,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hawk.ecom.svp.spring.config.SvpWebConfig;
 import com.hawk.ecom.user.spring.config.UserWebConfig;
+import com.hawk.ecom.web.AccessInterceptor;
+import com.hawk.ecom.web.CommonExceptionResolver;
 
 @Configuration
 @EnableWebMvc
-@Import({SvpWebConfig.class,UserWebConfig.class})
+@Import({ SvpWebConfig.class, UserWebConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -33,6 +36,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setOrder(10);
 		resolver.setExposeContextBeansAsAttributes(true);
 		return resolver;
+	}
+	
+	@Bean
+	public CommonExceptionResolver commonExceptionResolver(){
+		return new CommonExceptionResolver();
 	}
 
 	/**
@@ -47,15 +55,25 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.setSerializationInclusion(Include.NON_NULL); 
+		objectMapper.setSerializationInclusion(Include.NON_NULL);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		objectMapper.setDateFormat(df);
 		converter.setObjectMapper(objectMapper);
-		
-//		List<MediaType> mediaTypes = new ArrayList(converter.getSupportedMediaTypes());
-//		converter.setSupportedMediaTypes(mediaTypes);
-//		mediaTypes.addAll(asList(MediaType.TEXT_PLAIN, MediaType.TEXT_HTML, MediaType.TEXT_XML));
+
+		// List<MediaType> mediaTypes = new
+		// ArrayList(converter.getSupportedMediaTypes());
+		// converter.setSupportedMediaTypes(mediaTypes);
+		// mediaTypes.addAll(asList(MediaType.TEXT_PLAIN, MediaType.TEXT_HTML,
+		// MediaType.TEXT_XML));
 		converters.add(converter);
+	}
+
+	/**
+	 * 拦截http请求
+	 */
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new AccessInterceptor());
 	}
 
 }

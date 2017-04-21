@@ -1,8 +1,6 @@
 package com.hawk.ecom.user.service;
 
 import java.util.Date;
-import java.util.UUID;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +10,16 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pub.constant.ConstBoolean;
+import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.ecom.user.constant.ConstUserStatus;
 import com.hawk.ecom.user.exception.MobileNumberRegisteredRuntimeException;
+import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
+import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.UserMapper;
 import com.hawk.ecom.user.request.CreateUserParam;
+import com.hawk.ecom.user.request.ResetPasswordParam;
+import com.hawk.ecom.user.request.UpdatePasswordParam;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -35,6 +38,12 @@ public class UserService {
 	@Autowired
 	@Qualifier("userCodeSequenceService")
 	private PkGenService userCodeSequenceService;
+	
+	@Autowired
+	private SmsService smsService;
+	
+	@Autowired
+	private LoginService loginService;
 
 	@Autowired
 	private UserMapper userMapper;
@@ -94,6 +103,49 @@ public class UserService {
 		logger.info("Succeed to create user, mobileNumber={}",createUserParam.getMobileNumber());
 	}
 
+	
+	
+	@Valid
+	public void resetPassword(@Valid ResetPasswordParam resetPasswordParam){
+		String veriCode = resetPasswordParam.getVeriCode();		
+		String mobileNumber = resetPasswordParam.getMobileNumber();
+		String newPassword = resetPasswordParam.getNewPassword();
+		if (!smsService.checkVeriCode(mobileNumber, veriCode)){
+			throw new UnMatchedVeriCodeRuntimeException();
+		}
+		
+		UserDomain userDomain = queryUserByMobileNumber(mobileNumber);
+		if (userDomain == null){
+			throw new UserNotFoundRuntimeException();
+		}
+		
+		/**
+		 * 更新密码
+		 */
+		updatePassword(userDomain,newPassword);
+	}
+	
+	@Valid
+	public void updatePassword(@Valid UpdatePasswordParam  updatePasswordParam){
+		String mobileNumber = updatePasswordParam.getMobileNumber();
+		String oldPassword = updatePasswordParam.getOldPassword();
+		String newPassword = updatePasswordParam.getNewPassword();
+		UserDomain userDomain = loginService.checkPassword(mobileNumber, oldPassword);
+		
+		updatePassword(userDomain , newPassword);
+	}
+	
+	
+	private void updatePassword(UserDomain userDomain , String newPassword){
+		UserDomain updatDomain =  new UserDomain();
+		updatDomain.setMobileNumber(userDomain.getMobileNumber());
+		updatDomain.setLoginPwd(password(newPassword,userDomain.getUserCode(),userDomain.getCreateDate()));
+		updatDomain.setUpdateDate(new Date());
+		updatDomain.setLastAccessDate(userDomain.getUpdateDate());
+		updatDomain.setId(userDomain.getId());
+		userMapper.updateWithoutNull(userDomain);
+	}
+	
 	private String generateUserCode() {
 		/**
 		 * 8位及8位以上的数字构成的字符串

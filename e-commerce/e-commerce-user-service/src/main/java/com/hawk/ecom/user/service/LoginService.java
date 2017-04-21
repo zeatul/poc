@@ -15,6 +15,7 @@ import com.hawk.ecom.user.persist.domain.LoginDomain;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.LoginMapper;
 import com.hawk.ecom.user.request.LoginParam;
+import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.utility.tools.DateTools;
@@ -34,6 +35,22 @@ public class LoginService {
 	@Autowired
 	private CacheService cacheService;
 	
+	
+	public UserInfoResponse loginInfo(String token){
+		if (StringTools.isNullOrEmpty(token))
+			return null;
+		String loginTokenKey = buildLongTokenKey(token);
+		CachedLoginToken cachedLoginToken = cacheService.get(loginTokenKey, CachedLoginToken.class);
+		if (cachedLoginToken!=null){
+			if (System.currentTimeMillis() >= cachedLoginToken.getExpireDate()){
+				throw new 
+			}
+		}else{
+		
+			LoginDomain loginDomain = loginMapper.load(token);
+		}
+	}
+	
 		
 	@Valid
 	public String login(@Valid LoginParam loginParam){
@@ -44,15 +61,23 @@ public class LoginService {
 		return StringTools.concat("_","user","token",token);
 	}
 	
-	public String login(String mobileNumber, String password){
+	public UserDomain checkPassword(String mobileNumber, String password){
 		UserDomain userDomain = userService.queryUserByMobileNumber(mobileNumber);
 		if (userDomain == null){
 			throw new UserNotFoundRuntimeException();
 		}
 		password = userService.password(password, userDomain.getUserCode(), userDomain.getCreateDate());
 		if (!password.equals(userDomain.getLoginPwd())){
+			/**
+			 * TODO:连续登陆n次,24小时，禁止登陆
+			 */
 			throw new UnMatchedPasswordRuntimeException();
 		}
+		return userDomain;
+	}
+	
+	public String login(String mobileNumber, String password){
+		UserDomain userDomain = checkPassword(mobileNumber,password);
 		
 		LoginDomain loginDomain = new LoginDomain();
 		

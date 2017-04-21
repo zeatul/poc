@@ -23,5 +23,9 @@ public class SuccessResponse<T extends ResponseData> implements WebResponse<T > 
 	public static <T extends ResponseData> SuccessResponse<T> build(T data){
 		return new SuccessResponse<T>(data);
 	}
+	
+	public static <T extends ResponseData> SuccessResponse<T> build(){
+		return new SuccessResponse<T>(null);
+	}
 
 }

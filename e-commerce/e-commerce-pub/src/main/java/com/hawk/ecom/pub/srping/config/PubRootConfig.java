@@ -9,8 +9,8 @@ import com.hawk.ecom.pub.controller.AppWideExceptionHandler;
 
 
 @Configuration
-@Import({HttpMessageConverterConfig.class,GlobalPkGenConfig.class,ValidateConfig.class})
-public class PubConfig {
+@Import({CacheConfig.class,HttpMessageConverterConfig.class,GlobalPkGenConfig.class,ValidateConfig.class})
+public class PubRootConfig {
 
 	@Bean
 	public FrameworkContext frameworkContext(){

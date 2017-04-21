@@ -1,6 +1,7 @@
 package com.hawk.ecom.user.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.user.request.LoginParam;
 import com.hawk.ecom.user.response.LoginResponse;
+import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
@@ -33,5 +35,16 @@ public class LoginController {
 		loginResponse.setToken(token);
 
 		return SuccessResponse.build(loginResponse);
+	}
+	
+	@RequestMapping(value = "/login/info", method = {POST,GET})
+	public WebResponse<UserInfoResponse> loginInfo(HttpServletRequest request) throws Exception {
+		LoginParam loginParam = HttpRequestTools.parse(request, LoginParam.class);
+		String token = loginService.login(loginParam);
+		LoginResponse loginResponse = new LoginResponse();
+
+		loginResponse.setToken(token);
+
+		return SuccessResponse.build(null);
 	}
 }

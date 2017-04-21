@@ -14,6 +14,8 @@ import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.RegisterUserParam;
+import com.hawk.ecom.user.request.ResetPasswordParam;
+import com.hawk.ecom.user.request.UpdatePasswordParam;
 import com.hawk.ecom.user.response.LoginResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.ecom.user.service.UserService;
@@ -71,11 +73,16 @@ public class UserController {
 	
 	@RequestMapping(value = "/pwd/reset", method = POST)
 	public WebResponse<ResponseData> resetPassword(HttpServletRequest request) throws Exception{
+		ResetPasswordParam resetPasswordParam = HttpRequestTools.parse(request, ResetPasswordParam.class);
+		userService.resetPassword(resetPasswordParam);
+		return SuccessResponse.build();
 		
 	}
 	
 	@RequestMapping(value = "/pwd/update", method = POST)
 	public WebResponse<ResponseData> updatePassword(HttpServletRequest request) throws Exception{
-		
+		UpdatePasswordParam updatePasswordParam = HttpRequestTools.parse(request, UpdatePasswordParam.class);
+		userService.updatePassword(updatePasswordParam);
+		return SuccessResponse.build();
 	}
 }
