@@ -11,6 +11,8 @@ public class ErrorCode {
 		errorMap.put(100001, "用户不存在");
 		errorMap.put(100002, "账号密码不匹配");
 		errorMap.put(100003, "验证码不正确");
+		errorMap.put(100004, "登陆已过期");
+		errorMap.put(100005, "登陆票据为空");
 		
 	}
 	

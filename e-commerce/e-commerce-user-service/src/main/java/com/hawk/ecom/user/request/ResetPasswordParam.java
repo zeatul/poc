@@ -1,5 +1,6 @@
 package com.hawk.ecom.user.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 
 public class ResetPasswordParam {
@@ -26,6 +27,7 @@ public class ResetPasswordParam {
 	@NotEmpty(value="veriCode",name="验证码")
 	private String veriCode;
 	@NotEmpty(value="loginPwd",name="新密码码")
+	@JsonIgnore
 	private String newPassword;
 
 }

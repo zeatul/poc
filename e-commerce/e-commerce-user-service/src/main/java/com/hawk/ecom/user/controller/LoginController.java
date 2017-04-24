@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.ecom.user.exception.TokenEmptyException;
 import com.hawk.ecom.user.request.LoginParam;
 import com.hawk.ecom.user.response.LoginResponse;
 import com.hawk.ecom.user.response.UserInfoResponse;
@@ -17,6 +19,7 @@ import com.hawk.ecom.user.service.LoginService;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
+import com.hawk.framework.utility.tools.StringTools;
 
 @RestController
 @RequestMapping("/user")
@@ -39,11 +42,11 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login/info", method = {POST,GET})
 	public WebResponse<UserInfoResponse> loginInfo(HttpServletRequest request) throws Exception {
-		LoginParam loginParam = HttpRequestTools.parse(request, LoginParam.class);
-		String token = loginService.login(loginParam);
-		LoginResponse loginResponse = new LoginResponse();
-
-		loginResponse.setToken(token);
+		String token = AuthThreadLocal.getToken();
+		if (StringTools.isNullOrEmpty(token)){
+			throw new TokenEmptyException();
+		}
+		loginService.loginInfo(token);
 
 		return SuccessResponse.build(null);
 	}

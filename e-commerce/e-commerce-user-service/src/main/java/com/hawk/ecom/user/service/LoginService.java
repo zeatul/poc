@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.user.constant.ConstLoginType;
+import com.hawk.ecom.user.exception.TokenEmptyException;
+import com.hawk.ecom.user.exception.TokenTimeoutException;
 import com.hawk.ecom.user.exception.UnMatchedPasswordRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.LoginDomain;
@@ -37,18 +39,30 @@ public class LoginService {
 	
 	
 	public UserInfoResponse loginInfo(String token){
-		if (StringTools.isNullOrEmpty(token))
+		if (StringTools.isNullOrEmpty(token)){
+//			throw new TokenEmptyException();
 			return null;
+		}
 		String loginTokenKey = buildLongTokenKey(token);
 		CachedLoginToken cachedLoginToken = cacheService.get(loginTokenKey, CachedLoginToken.class);
 		if (cachedLoginToken!=null){
 			if (System.currentTimeMillis() >= cachedLoginToken.getExpireDate()){
-				throw new 
+				throw new TokenTimeoutException();
 			}
-		}else{
-		
+		}else{		
 			LoginDomain loginDomain = loginMapper.load(token);
+			cachedLoginToken = new CachedLoginToken();
+			cachedLoginToken.setExpireDate(loginDomain.getExpireDate().getTime());
+			cachedLoginToken.setMobileNumber(loginDomain.getMobileNumber());
+			cachedLoginToken.setUserCode(loginDomain.getUserCode());
+			cachedLoginToken.setUserId(loginDomain.getUserId());
+			cacheService.put(loginTokenKey, cachedLoginToken, 240);
 		}
+		
+		UserInfoResponse userInfoResponse = new UserInfoResponse();
+		userInfoResponse.setMobileNumber(cachedLoginToken.getMobileNumber());
+		userInfoResponse.setUserCode(cachedLoginToken.getUserCode());
+		return userInfoResponse;
 	}
 	
 		

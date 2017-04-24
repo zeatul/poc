@@ -1,5 +1,6 @@
 package com.hawk.ecom.user.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hawk.framework.dic.validation.annotation.ExternalImplicitParam;
 import com.hawk.framework.dic.validation.annotation.ExternalInputParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
@@ -52,6 +53,7 @@ public class CreateUserParam {
 	 */
 	@ExternalInputParam(name="登录密码")
 	@NotEmpty("loginPwd")
+	@JsonIgnore
 	private String loginPwd;
 	
 	/**

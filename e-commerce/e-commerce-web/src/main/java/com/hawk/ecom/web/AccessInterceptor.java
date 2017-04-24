@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.pub.web.HttpRequestInfo;
+import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.utility.tools.JsonTools;
@@ -26,8 +28,16 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		logger.info(JsonTools.toJsonString(httpRequestInfo));
 		
 		String token = httpRequestInfo.getToken();
-		loginService.
-		
+		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
+		if (userInfoResponse !=null){		
+			AuthThreadLocal.setMobileNumber(userInfoResponse.getMobileNumber());
+			AuthThreadLocal.setToken(token);
+			AuthThreadLocal.setUserId(userInfoResponse.getUserId());		
+		}else{
+			AuthThreadLocal.setMobileNumber(null);
+			AuthThreadLocal.setToken(null);
+			AuthThreadLocal.setUserId(null);		
+		}
 		return super.preHandle(request, response, handler);
 	}
 
