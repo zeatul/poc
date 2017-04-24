@@ -13,6 +13,7 @@ import com.hawk.ecom.sms.constant.ConstSmsStatus;
 import com.hawk.ecom.sms.exception.OverSpeedException;
 import com.hawk.ecom.sms.persist.domain.TaskDomain;
 import com.hawk.ecom.sms.request.SendVeriCodeParam;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -56,7 +57,7 @@ public class SmsService {
 	 * @return
 	 */
 	@Valid
-	public SendSmsResult sendVeriCode(@Valid SendVeriCodeParam sendVeriCodeParam){
+	public SendSmsResult sendVeriCode(@NotNull("整个参数") @Valid SendVeriCodeParam sendVeriCodeParam){
 		final String mobileNumber = sendVeriCodeParam.getMobileNumber();
 		/**
 		 * 同一个手机号，一天只能发送10次，间隔不低于1分钟
