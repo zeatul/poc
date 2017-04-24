@@ -7,7 +7,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class UserControllerTest extends AbstractControllerTest{
 	
-	@Test
+//	@Test
 	public void testHome(){
 		String url = getUrl("/user/home");
 		String result = httpExecutor.get(url, null);
@@ -16,10 +16,10 @@ public class UserControllerTest extends AbstractControllerTest{
 	
 	
 	
-//	@Test
+	@Test
 	public void testRegister(){
 		String mobileNumber = "13916082481";
-		String veriCode = "0712";
+		String veriCode = "8640";
 		RegisterUserParam registerUserParam = new RegisterUserParam ();
 		registerUserParam.setMobileNumber(mobileNumber);
 		registerUserParam.setVeriCode(veriCode);

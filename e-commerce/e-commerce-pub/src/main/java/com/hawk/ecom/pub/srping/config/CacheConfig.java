@@ -3,6 +3,8 @@ package com.hawk.ecom.pub.srping.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,8 @@ import redis.clients.jedis.ShardedJedisPool;
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/pub/env/redis.properties")
 public class CacheConfig {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private Environment env;
@@ -52,8 +56,11 @@ public class CacheConfig {
 			String[] strArray = nodeStr.split(":");
 			
 			JedisShardInfo jedisShardInfo = new JedisShardInfo(strArray[0], strArray[1]);
+			
+			
 			if (strArray.length >2){
 				jedisShardInfo.setPassword(strArray[2]);
+				
 			}
 			
 			JedisShardInfoList.add(jedisShardInfo);

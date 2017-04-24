@@ -266,6 +266,7 @@ public class RedisClient {
 		} finally {
 			if (shardedJedis != null) {
 				shardedJedis.close();
+//				pool.returnResource(shardedJedis);
 			}
 
 		}

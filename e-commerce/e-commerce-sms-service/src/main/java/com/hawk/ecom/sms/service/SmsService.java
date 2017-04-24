@@ -65,7 +65,7 @@ public class SmsService {
 		if (cacheService.get(key, String.class)!=null){
 			throw new OverSpeedException();
 		}else{
-			cacheService.put(key, "60");
+			cacheService.put(key, "60",60);
 		}
 		
 		

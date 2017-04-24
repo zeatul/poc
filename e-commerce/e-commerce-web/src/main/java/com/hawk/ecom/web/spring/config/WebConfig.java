@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hawk.ecom.sms.spring.config.SmsWebConfig;
 import com.hawk.ecom.svp.spring.config.SvpWebConfig;
 import com.hawk.ecom.user.spring.config.UserWebConfig;
 import com.hawk.ecom.web.AccessInterceptor;
@@ -25,7 +28,7 @@ import com.hawk.ecom.web.CommonExceptionResolver;
 
 @Configuration
 @EnableWebMvc
-@Import({ SvpWebConfig.class, UserWebConfig.class })
+@Import({ SvpWebConfig.class, UserWebConfig.class,SmsWebConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -67,13 +70,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		// MediaType.TEXT_XML));
 		converters.add(converter);
 	}
+	
+	@Bean
+	public AccessInterceptor AccessInterceptor(){
+		return new AccessInterceptor();
+	}
+	
+	@Autowired
+	private AccessInterceptor accessInterceptor;
 
 	/**
 	 * 拦截http请求
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AccessInterceptor());
+		registry.addInterceptor(accessInterceptor);
 	}
 
 }
