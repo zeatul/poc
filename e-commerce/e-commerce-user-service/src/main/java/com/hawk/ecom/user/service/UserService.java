@@ -138,12 +138,12 @@ public class UserService {
 	
 	private void updatePassword(UserDomain userDomain , String newPassword){
 		UserDomain updatDomain =  new UserDomain();
-		updatDomain.setMobileNumber(userDomain.getMobileNumber());
+		
 		updatDomain.setLoginPwd(password(newPassword,userDomain.getUserCode(),userDomain.getCreateDate()));
 		updatDomain.setUpdateDate(new Date());
 		updatDomain.setLastAccessDate(userDomain.getUpdateDate());
 		updatDomain.setId(userDomain.getId());
-		userMapper.updateWithoutNull(userDomain);
+		userMapper.updateWithoutNull(updatDomain);
 	}
 	
 	private String generateUserCode() {

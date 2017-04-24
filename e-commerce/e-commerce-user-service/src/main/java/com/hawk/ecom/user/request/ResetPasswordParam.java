@@ -26,7 +26,7 @@ public class ResetPasswordParam {
 	private String mobileNumber;
 	@NotEmpty(value="veriCode",name="验证码")
 	private String veriCode;
-	@NotEmpty(value="loginPwd",name="新密码码")
+	@NotEmpty(value="loginPwd",name="新密码")
 	@JsonIgnore
 	private String newPassword;
 

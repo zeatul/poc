@@ -10,7 +10,7 @@ public class LoginControllerTest extends AbstractControllerTest{
 	@Test
 	public void testLogin(){
 		String mobileNumber = "13916082481";
-		String loginPwd = "123456";
+		String loginPwd = "654321";
 		LoginParam loginParam = new LoginParam();
 		loginParam.setMobileNumber(mobileNumber);
 		loginParam.setLoginPwd(loginPwd);

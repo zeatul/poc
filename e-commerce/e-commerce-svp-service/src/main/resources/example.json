@@ -1,6 +1,5 @@
 {
-	"data": {
-		"token": "2f9713c2-7fd3-4f1b-a9f2-415fa01d4d2f"
-	},
-	"code": 1
+	"mobileNumber": "13916082481",
+	"oldPassword": "123456",
+	"newPassword": "654321"
 }
