@@ -71,7 +71,7 @@ public class BsiTalkingDataService {
 
 	@SuppressWarnings("rawtypes")
 	public Date first(String imei) {
-		String url = "https:// api.talkingdata.com/data/user-device-interval/v1/first";
+		String url = "https://api.talkingdata.com/data/user-device-interval/v1/first";
 
 		HttpClientExecutorImpl httpExecutor = null;
 		try {
@@ -81,7 +81,7 @@ public class BsiTalkingDataService {
 			throw new RuntimeException(e);
 		}
 		String accessToken = getAccessToken();
-		httpExecutor.addHeader(new BasicHeader("X-AccessAccess-Token", accessToken));
+		httpExecutor.addHeader(new BasicHeader("X-Access-Token", accessToken));
 
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("id", imei));
@@ -105,4 +105,8 @@ public class BsiTalkingDataService {
 		return null;
 	}
 
-};
+	public static void main(String[] args) {
+		System.out.println(new BsiTalkingDataService().first("1111"));
+	}
+
+}

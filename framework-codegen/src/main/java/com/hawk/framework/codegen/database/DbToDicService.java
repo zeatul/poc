@@ -59,8 +59,8 @@ public class DbToDicService {
 
 	public DbToDicService(String packageName) throws Throwable {
 		PACKAGE_NAME = packageName;
-		
-		System.out.println("PACKAGE_NAME="+PACKAGE_NAME);
+
+		System.out.println("PACKAGE_NAME=" + PACKAGE_NAME);
 
 		databaseConfigure = DatabaseConfigure.build(PACKAGE_NAME);
 
@@ -99,17 +99,20 @@ public class DbToDicService {
 	private void writeWord() {
 		List<Word> wordList = new ArrayList<Word>();
 		Map<String, Word> filterWordMap = new HashMap<String, Word>();
-
+		wordService.loadWord(systemCode, version).forEach(word -> {
+			filterWordMap.put(word.getCode(), word);
+		});
+		
 		for (Table table : database.getTableList()) {
 			System.out.println("---" + table.getCode() + "---");
 			for (Column column : table.getColumnList()) {
 				String columnCode = column.getCode();
-				System.out.println("columnCode=" + columnCode );
+				System.out.println("columnCode=" + columnCode);
 
 				/**
 				 * 检测该字段是否是同义词
 				 */
-				
+
 				Synonym synonym = SynonymHelper.findSynonym(columnCode);
 				if (synonym != null) {
 					continue;
@@ -120,8 +123,8 @@ public class DbToDicService {
 
 				Word word = filterWordMap.get(columnCode);
 				if (word != null) {
-					if(!compareDataType(word,column,typeConverter)){
-						throw new RuntimeException("Found duplicated word code = " + columnCode +" in table.code = "+table.getCode());
+					if (!compareDataType(word, column, typeConverter)) {
+						throw new RuntimeException("Found duplicated word code = " + columnCode + " in table.code = " + table.getCode());
 					}
 				} else {
 					word = DatabaseTools.convert(column, typeConverter);
@@ -132,6 +135,7 @@ public class DbToDicService {
 			}
 		}
 
+		System.out.println("wordList.size()="+wordList.size());
 		wordList.forEach(word -> {
 			wordService.insertOrUpdateWord(word, systemCode, version);
 		});
