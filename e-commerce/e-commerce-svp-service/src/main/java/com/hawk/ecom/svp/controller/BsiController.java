@@ -103,13 +103,19 @@ public class BsiController {
 		List<CashCoupon> c = DomainTools.copy(list, CashCoupon.class);
 		if (c != null){
 			c.forEach(cashCoupon->{
+				
+				if (cashCoupon.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.ACTIVATE_FAILED){
+					cashCoupon.setBsiCashCouponActivateError(null);
+				}
+				
 				Date date = cashCoupon.getBsiCashCouponInvalidDate();
 				if (date != null){
 					if (date.before(new Date())){
 						if (cashCoupon.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.UNUSED ||
 								cashCoupon.getBsiCashCouponStatus() == ConstCouponParameter.CouopnStatus.ACTIVATE_FAILED){
 							cashCoupon.setBsiCashCouponStatus(ConstCouponParameter.CouopnStatus.OUT_OF_DATE);
-						}
+						}	
+						
 					}
 				}
 			});

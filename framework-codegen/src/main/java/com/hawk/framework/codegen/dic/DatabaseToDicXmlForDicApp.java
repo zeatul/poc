@@ -2,7 +2,8 @@ package com.hawk.framework.codegen.dic;
 
 import com.hawk.framework.codegen.database.DatabaseToDicXmlService;
 
-public class DatabaseToDicForDicApp {
+@Deprecated
+public class DatabaseToDicXmlForDicApp {
 
 	public static void main(String[] args) {
 		try {

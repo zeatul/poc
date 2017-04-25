@@ -55,7 +55,7 @@ create table t_dic_application
 (
    object_id            varchar(50) not null comment '对象ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(50) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    system_code          varchar(50) comment '系统编码(区分不同项目，不同集团)',
    version              integer comment '版本号',
@@ -118,7 +118,7 @@ create table t_dic_column
    table_object_id      varchar(50) not null comment '表对象ID',
    word_object_id       varchar(50) not null comment '引用的数据类型ID',
    object_code          varchar(50) not null comment '编码',
-   object_name          varchar(1000) comment '名称',
+   object_name          varchar(200) comment '名称',
    object_comment       varchar(1024) comment '描述',
    object_order         integer comment '序号',
    nullable             integer comment '可否为空(1/0)',

@@ -96,6 +96,29 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
+	@Test
+	public void testActivateCouponOnProduct(){
+//		String url =getUrl("/svp/bsi/coupon/activate");
+		String url = "http://210.73.195.78/ecom/svp/bsi/coupon/activate";
+
+		ActivateCouponParam activateCouponParam =new ActivateCouponParam();
+		activateCouponParam.setBirthday("2011-04-04");
+		activateCouponParam.setCouponCode("e14975ca-51d2-4a86-b85a-ef64ff135f3b");
+		activateCouponParam.setIdType(ConstBsiIdType.IDENTITY_CARD);
+		activateCouponParam.setIdNumber("610424198211114992");
+		activateCouponParam.setImei("232323232323232");
+		activateCouponParam.setMobileNumber("18292417675");
+		activateCouponParam.setName("裴明");
+		activateCouponParam.setPhoneModelId(104);
+		activateCouponParam.setProductId(11240);
+		activateCouponParam.setSex(ConstBsiSex.MALE);
+		activateCouponParam.setTicket("18292417675");
+		
+		System.out.println("request="+JsonTools.toJsonString(activateCouponParam));
+		String result = httpExecutor.post(url, activateCouponParam, null);
+		System.out.println("result=" + result);
+	}
+	
 //	@Test
 	public void testListCoupon(){
 		String url =getUrl("/svp/bsi/coupon/list");

@@ -63,6 +63,9 @@ public class BsiService {
 	@Autowired
 	private TaskPool taskPool;
 	
+	@Autowired
+	private BsiTalkingDataService bsiTalkingDataService;
+	
 	/**
 	 * 查询产品信息
 	 * @param queryProductParam
@@ -142,6 +145,10 @@ public class BsiService {
 		
 		BsiCashCouponDomain bsiCashCouponDomain = list.get(0);
 		
+		if (bsiCashCouponDomain.getBsiCashCouponStatus()== ConstCouponParameter.CouopnStatus.ACTIVVATING){
+			throw new RuntimeException("代金券 正在激活中，请稍后再查询状态");
+		}
+		
 		if (bsiCashCouponDomain.getBsiCashCouponStatus()== ConstCouponParameter.CouopnStatus.OUT_OF_DATE || bsiCashCouponDomain.getBsiCashCouponInvalidDate().before(new Date())){
 			throw new RuntimeException("代金券 已经过期");
 		}
@@ -172,7 +179,16 @@ public class BsiService {
 			throw new RuntimeException("代金券所有者不是当前用户");
 		}
 		
-		
+		/**
+		 * 检查手机是否是新机
+		 */
+		Date first = bsiTalkingDataService.first(activateCouponParam.getImei());
+		if (first != null){
+			Date curDate = new Date();
+			if (DateTools.addDays(first, 10).before(curDate)){
+				throw new RuntimeException("当前手机购买超过10天，不符合投保条件");
+			}
+		}
 			
 		/**
 		 * 符合条件,下单

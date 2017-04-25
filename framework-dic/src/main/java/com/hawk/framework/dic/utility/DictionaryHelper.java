@@ -55,6 +55,8 @@ public class DictionaryHelper {
 		wordDomain.setNumericScale(word.getNumericScale());
 		wordDomain.setRegex(word.getRegex());
 		wordDomain.setUseType(word.getUseType());
+		wordDomain.setSystemCode(systemCode);
+		wordDomain.setVersion(version);
 		
 		wordDomain.setCreateDate(new Date());
 		wordDomain.setUpdateDate(wordDomain.getCreateDate());
