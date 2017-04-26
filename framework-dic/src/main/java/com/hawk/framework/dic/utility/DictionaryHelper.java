@@ -1,6 +1,7 @@
 package com.hawk.framework.dic.utility;
 
 import java.util.Date;
+import java.util.UUID;
 
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.data.Synonym;
@@ -69,5 +70,19 @@ public class DictionaryHelper {
 		synonym.setSynonymCode(SynonymDomain.getSynonymObjectCode());
 		synonym.setSynonymType(SynonymDomain.getSynonymType());
 		return synonym;
+	}
+	
+	public static SynonymDomain convert(Synonym synonym ,String systemCode ,int version){
+		SynonymDomain synonymDomain = new SynonymDomain();
+		synonymDomain.setObjectId(UUID.randomUUID().toString());
+		synonymDomain.setOriginObjectCode(synonym.getOriginCode());
+		synonymDomain.setSynonymDisplayName(synonym.getSynonymDisplayName());
+		synonymDomain.setSynonymObjectCode(synonym.getSynonymCode());
+		synonymDomain.setSynonymType(synonym.getSynonymType());
+		
+		synonymDomain.setCreateDate(new Date());
+		synonymDomain.setUpdateDate(synonymDomain.getCreateDate());
+		
+		return synonymDomain;
 	}
 }

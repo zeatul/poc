@@ -3,6 +3,7 @@ package com.hawk.framework.dic.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.design.data.Synonym;
@@ -14,6 +15,7 @@ import com.hawk.framework.pub.sql.MybatisParam;
 @Service
 public class SynonymService {
 
+	@Autowired
 	private SynonymMapper synonymMapper;
 
 	public List<SynonymDomain> loadSynonymDomain(String synonymType, String systemCode, int version) {
@@ -29,5 +31,10 @@ public class SynonymService {
 			synonymList.add(DictionaryHelper.convert(synonymDomain));
 		});
 		return synonymList;
+	}
+	
+	public void insertOrUpdate(Synonym synonym , String systemCode, int version){
+		SynonymDomain synonymDomain = DictionaryHelper.convert(synonym,systemCode,version);
+		synonymMapper.insert(synonymDomain);
 	}
 }

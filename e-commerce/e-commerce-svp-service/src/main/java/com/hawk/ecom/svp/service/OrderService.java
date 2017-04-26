@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.OrderMapper;
+import com.hawk.framework.pub.sql.MybatisParam;
+import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class OrderService {
@@ -16,13 +19,22 @@ public class OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 	
-	public OrderDomain loadById(Long id){
-		if (id == null){
-			logger.error("id is null");
+	public OrderDomain loadById(Long orderId){
+		if (orderId == null){
+			logger.error("orderId is null");
 			return null;
 		}
 		
-		return orderMapper.load(id);
+		return orderMapper.load(orderId);
+	}
+	
+	public OrderDomain loadByCode(String orderCode){
+		if (StringTools.isNullOrEmpty(orderCode)){
+			logger.error("orderCode is null");
+			return null;
+		}
+		MybatisParam params = new MybatisParam().put("orderCode", orderCode);
+		return MybatisTools.single(orderMapper.loadDynamic(params));
 	}
 	
 	public int update(OrderDomain orderDomain){

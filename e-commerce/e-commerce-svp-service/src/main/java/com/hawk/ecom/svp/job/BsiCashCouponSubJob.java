@@ -1,6 +1,7 @@
 package com.hawk.ecom.svp.job;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.service.BsiCashCouponService;
 import com.hawk.ecom.svp.service.BsiOrderDetailService;
 import com.hawk.framework.pub.spring.FrameworkContext;
+import com.hawk.framework.utility.tools.JsonTools;
 
 /**
  * 处理代金券状态
@@ -25,8 +27,8 @@ public class BsiCashCouponSubJob implements Runnable{
 	
 
 
-	public BsiCashCouponSubJob(String bsiCashCouponCode) {
-		this.bsiCashCouponCode = bsiCashCouponCode;
+	public BsiCashCouponSubJob(BsiOrderDetailDomain bsiOrderDetailDomain) {
+		this.bsiOrderDetailDomain = bsiOrderDetailDomain;
 	}
 
 
@@ -34,7 +36,7 @@ public class BsiCashCouponSubJob implements Runnable{
 	private final static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
 
 
-	private String bsiCashCouponCode ;
+	private BsiOrderDetailDomain bsiOrderDetailDomain ;
 	
 	
 	
@@ -43,12 +45,15 @@ public class BsiCashCouponSubJob implements Runnable{
 	@Override
 	public void run() {
 		
-		logger.info("Start BsiCashCouponSubJob with bsiCashCouponCode = {}",bsiCashCouponCode);
+		logger.info("Start BsiCashCouponSubJob with bsiOrderDetailDomain = {}",JsonTools.toJsonString(bsiOrderDetailDomain));
 		
+		if (!(bsiOrderDetailDomain.getBsiTaskStatus() >= ConstBsiTaskStatus.COMPLETE_FAILED)) {
+			logger.error("订单未完成");
+		}
 		
-		
+		String bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
 		BsiCashCouponDomain bsiCashCouponDomain = null;
-		bsiCashCouponDomain = bsiCashCouponService.loadByCode(bsiCashCouponCode);
+		bsiCashCouponDomain = bsiCashCouponService.loadByCode(bsiOrderDetailDomain.getBsiCashCouponCode());
 		
 		
 		if (bsiCashCouponDomain == null){
@@ -56,13 +61,12 @@ public class BsiCashCouponSubJob implements Runnable{
 			return;
 		}
 		
-		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.ACTIVVATING)
+		if (bsiCashCouponDomain.getBsiCashCouponStatus() != ConstCouponParameter.CouopnStatus.ACTIVVATING){
+			logger.error("代金券状态不是激活中！");
 			return ;
+		}
 		
-		/**
-		 * 查询小宝订单激活结果
-		 */
-		BsiOrderDetailDomain bsiOrderDetailDomain = bsiOrderDetailService.loadByCouponCode(bsiCashCouponCode); 
+		
 		
 		/**
 		 * 激活成功

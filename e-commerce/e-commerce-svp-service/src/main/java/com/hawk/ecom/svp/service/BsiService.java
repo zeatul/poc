@@ -66,6 +66,12 @@ public class BsiService {
 	@Autowired
 	private BsiTalkingDataService bsiTalkingDataService;
 	
+	@Autowired
+	private BsiCashCouponService bsiCashCouponService;
+	
+	@Autowired
+	private BsiOrderDetailService bsiOrderDetailService;
+	
 	/**
 	 * 查询产品信息
 	 * @param queryProductParam
@@ -251,4 +257,18 @@ public class BsiService {
 //		BsiCashCouponSubJob bsiCashCouponSubJob = new BsiCashCouponSubJob(couponCode);
 //		taskPool.execute(bsiCashCouponSubJob);
 //	}
+	
+	public List<BsiOrderDetailDomain> queryOrderDetailByCouponCode(String couponCode){
+		BsiCashCouponDomain bsiCashCouponDomain = bsiCashCouponService.loadByCode(couponCode);
+		if (bsiCashCouponDomain == null){
+			throw new RuntimeException("代金券未找到");
+		}
+		String orderCode = bsiCashCouponDomain.getOrderCode();
+		if(orderCode == null){
+			throw new RuntimeException("订单号不存在");
+		}
+		
+		return bsiOrderDetailService.loadByOrderCode(orderCode);
+		
+	}
 }

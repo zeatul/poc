@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
+import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
 import com.hawk.ecom.svp.request.ActivateCouponParam;
@@ -22,6 +23,8 @@ import com.hawk.ecom.svp.request.QueryModelOfBrandParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.ecom.svp.response.MultiBrandResponse;
+import com.hawk.ecom.svp.response.MultiBsiOrderDetailResponse;
+import com.hawk.ecom.svp.response.MultiBsiOrderDetailResponse.BsiOrderDetail;
 import com.hawk.ecom.svp.response.MultiCouponResponse;
 import com.hawk.ecom.svp.response.MultiCouponResponse.CashCoupon;
 import com.hawk.ecom.svp.response.MultiPhoneModelResponse;
@@ -122,6 +125,13 @@ public class BsiController {
 		}
 		
 		return SuccessResponse.build(new MultiCouponResponse(c));
+	}
+	
+	@RequestMapping(value = "/orderDetail/couponCode/{couponCode}", method = GET)
+	public  WebResponse<MultiBsiOrderDetailResponse> queryBsiOrderDetail(@PathVariable String couponCode) throws Exception{
+		List<BsiOrderDetailDomain> bsiOrderDetailDomainList =bsiService.queryOrderDetailByCouponCode(couponCode);
+		List<BsiOrderDetail> c = DomainTools.copy(bsiOrderDetailDomainList, BsiOrderDetail.class);
+		return  SuccessResponse.build(new MultiBsiOrderDetailResponse(c));
 	}
 	
 //	@RequestMapping(value = "/coupon/job/test", method = POST)

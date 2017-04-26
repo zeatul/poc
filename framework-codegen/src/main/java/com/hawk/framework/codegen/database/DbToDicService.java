@@ -24,11 +24,13 @@ import com.hawk.framework.codegen.database.parse.DatabaseParserFactory;
 import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.spring.config.CodeGenConfig;
 import com.hawk.framework.codegen.utils.DatabaseTools;
+import com.hawk.framework.dic.design.constant.ConstSynonymType;
 import com.hawk.framework.dic.design.constant.ConstTableType;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.data.Synonym;
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.persist.domain.TableDomain;
+import com.hawk.framework.dic.service.SynonymService;
 import com.hawk.framework.dic.service.WordService;
 import com.hawk.framework.utility.tools.ClassPathTools;
 
@@ -56,6 +58,8 @@ public class DbToDicService {
 	private final String systemCode = "ecom";
 
 	private final WordService wordService;
+	
+	private final SynonymService synonymService;
 
 	public DbToDicService(String packageName) throws Throwable {
 		PACKAGE_NAME = packageName;
@@ -73,8 +77,7 @@ public class DbToDicService {
 		Date stdt = new Date();
 		database = dbParser.parse();
 		Date endt = new Date();
-		System.out.println(
-				"Success parse database , find " + database.getTableList().size() + " tables, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
+		System.out.println("Success parse database , find " + database.getTableList().size() + " tables, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
 
 		/**
 		 * 启动Spring;
@@ -82,6 +85,10 @@ public class DbToDicService {
 		context = new AnnotationConfigApplicationContext(CodeGenConfig.class);
 
 		wordService = context.getBean(WordService.class);
+		
+		synonymService = context.getBean(SynonymService.class);
+		
+		SynonymHelper.loadFromDatabase(synonymService, ConstSynonymType.WORD, systemCode, version);
 
 	}
 
@@ -93,7 +100,7 @@ public class DbToDicService {
 	}
 
 	private void WriteSynonym() {
-
+		SynonymHelper.save(synonymService, systemCode, version);
 	}
 
 	private void writeWord() {

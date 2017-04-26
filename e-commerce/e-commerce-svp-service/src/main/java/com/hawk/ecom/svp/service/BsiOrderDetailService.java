@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
+import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.framework.pub.sql.MybatisParam;
-import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -22,17 +22,10 @@ public class BsiOrderDetailService {
 	@Autowired
 	private BsiOrderDetailMapper bsiOrderDetailMapper;
 	
-	public BsiOrderDetailDomain loadByCouponCode(String bsiCashCouponCode){
-		if (StringTools.isNullOrEmpty(bsiCashCouponCode)){
-			logger.error("The bsiCashCouponCode is empty");
-			return null;
-		}
-		
-		MybatisParam params = new MybatisParam().put("bsiCashCouponCode", bsiCashCouponCode);
-		
-		return MybatisTools.single(bsiOrderDetailMapper.loadDynamic(params));
-		
-	}
+	@Autowired
+	private OrderService orderService;
+	
+	
 	
 	public int update(BsiOrderDetailDomain bsiOrderDetailDomain){
 		
@@ -52,6 +45,22 @@ public class BsiOrderDetailService {
 		}
 		
 		MybatisParam params = new MybatisParam().put("orderId", orderId);
+		return bsiOrderDetailMapper.loadDynamic(params);
+	}
+	
+	public List<BsiOrderDetailDomain> loadByOrderCode(String orderCode){
+		if (StringTools.isNullOrEmpty(orderCode)){
+			logger.error("The orderCode is null");
+			return Collections.emptyList();
+		}
+		OrderDomain orderDomain = orderService.loadByCode(orderCode);
+		if (orderDomain == null){
+			logger.error("Couldn't find the order with orderCode={}",orderCode);
+			return Collections.emptyList();
+		}
+		
+		
+		MybatisParam params = new MybatisParam().put("orderId", orderDomain.getId());
 		return bsiOrderDetailMapper.loadDynamic(params);
 	}
 }

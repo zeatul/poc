@@ -4,6 +4,7 @@ import com.hawk.framework.codegen.database.DbToDicService;
 
 /**
  * 将数据字典表转换成数据库记录
+ * 
  * @author Administrator
  *
  */

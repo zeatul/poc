@@ -27,7 +27,7 @@ public class ResetPasswordParam {
 	@NotEmpty(value="veriCode",name="验证码")
 	private String veriCode;
 	@NotEmpty(value="loginPwd",name="新密码")
-	@JsonIgnore
+//	@JsonIgnore
 	private String newPassword;
 
 }

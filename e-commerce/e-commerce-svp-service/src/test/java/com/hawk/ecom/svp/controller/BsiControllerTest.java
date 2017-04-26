@@ -4,10 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
@@ -28,9 +25,17 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testBrand(){
 		String url = getUrl("/svp/bsi/brand");
+		String result = httpExecutor.get(url, null);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testQueryBsiOrderDetail(){
+		String bsiCashCouponCode = "755d76d6-fed7-4a8b-9d9e-5294d141ac6f";
+		String url = getUrl("/svp/bsi/orderDetail/couponCode/"+bsiCashCouponCode);
 		String result = httpExecutor.get(url, null);
 		System.out.println("result=" + result);
 	}
@@ -96,7 +101,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testActivateCouponOnProduct(){
 //		String url =getUrl("/svp/bsi/coupon/activate");
 		String url = "http://210.73.195.78/ecom/svp/bsi/coupon/activate";

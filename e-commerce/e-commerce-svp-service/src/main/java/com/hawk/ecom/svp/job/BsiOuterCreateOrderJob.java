@@ -112,7 +112,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			if (bsiOrderDetailDomain.getBsiTaskStatus() >= ConstBsiTaskStatus.COMPLETE_FAILED) {
 				String bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
 				if (StringTools.isNotNullOrEmpty(bsiCashCouponCode)) {
-					BsiCashCouponSubJob bsiCashCouponSubJob = new BsiCashCouponSubJob(bsiCashCouponCode);
+					BsiCashCouponSubJob bsiCashCouponSubJob = new BsiCashCouponSubJob(bsiOrderDetailDomain);
 					taskPool.submit(bsiCashCouponSubJob);
 				}
 

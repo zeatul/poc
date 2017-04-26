@@ -33,10 +33,8 @@ public class UpdatePasswordParam {
 	private String mobileNumber;
 
 	@NotEmpty(value="loginPwd",name="旧密码")
-	@JsonIgnore
 	private String oldPassword;
 	
-	@NotEmpty(value="loginPwd",name="新密码")
-	@JsonIgnore
+	@NotEmpty(value="loginPwd",name="新密码")	
 	private String newPassword;
 }

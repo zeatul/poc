@@ -3,6 +3,7 @@ package com.hawk.ecom.user.controller;
 import org.junit.Test;
 
 import com.hawk.ecom.user.request.RegisterUserParam;
+import com.hawk.ecom.user.request.ResetPasswordParam;
 import com.hawk.ecom.user.request.UpdatePasswordParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
@@ -32,10 +33,10 @@ public class UserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	@Test
+//	@Test
 	public void testUpdatePassword() {
 		UpdatePasswordParam updatePasswordParam = new UpdatePasswordParam();
-		String mobileNumber = "13916082481";
+		String mobileNumber = "13411082481";
 		String oldPassword = "123456";
 		String newPassword = "654321";
 		updatePasswordParam.setMobileNumber(mobileNumber);
@@ -46,6 +47,23 @@ public class UserControllerTest extends AbstractControllerTest {
 		System.out.println(JsonTools.toJsonString(updatePasswordParam));
 
 		String result = httpExecutor.post(url, updatePasswordParam, null);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testResetPassword(){
+		ResetPasswordParam param = new ResetPasswordParam();
+		String mobileNumber = "13411082481";
+		String veriCode = "123456";
+		String newPassword = "654321";
+		param.setMobileNumber(mobileNumber);
+		param.setNewPassword(newPassword);
+		param.setVeriCode(veriCode);
+		
+		String url = getUrl("/user/pwd/reset");
+		System.out.println(JsonTools.toJsonString(param));
+
+		String result = httpExecutor.post(url, param, null);
 		System.out.println("result=" + result);
 	}
 
