@@ -1,7 +1,9 @@
 package com.hawk.ecom.user.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hawk.framework.dic.validation.annotation.ExternalInputParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 
 public class RegisterUserParam {
 	
@@ -40,6 +42,7 @@ public class RegisterUserParam {
 	 */
 	@ExternalInputParam(name="登录密码")
 	@NotEmpty("loginPwd")
+	@JsonSerialize(using=PasswordSerializer.class)
 	private String loginPwd;
 
 	

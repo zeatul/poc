@@ -1,7 +1,8 @@
 package com.hawk.ecom.user.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 
 public class UpdatePasswordParam {
 	
@@ -33,8 +34,10 @@ public class UpdatePasswordParam {
 	private String mobileNumber;
 
 	@NotEmpty(value="loginPwd",name="旧密码")
+	@JsonSerialize(using=PasswordSerializer.class)
 	private String oldPassword;
 	
 	@NotEmpty(value="loginPwd",name="新密码")	
+	@JsonSerialize(using=PasswordSerializer.class)
 	private String newPassword;
 }

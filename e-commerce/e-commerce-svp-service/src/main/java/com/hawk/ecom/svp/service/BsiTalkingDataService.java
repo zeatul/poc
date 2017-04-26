@@ -34,11 +34,11 @@ public class BsiTalkingDataService {
 	@SuppressWarnings("rawtypes")
 	private String getAccessToken() {
 
-		String accessToken = cacheService.get(cacheAccessTokenKey, String.class);
-		if (accessToken != null) {
-			logger.info("cached accessToken={}", accessToken);
-			return accessToken;
-		}
+//		String accessToken = cacheService.get(cacheAccessTokenKey, String.class);
+//		if (accessToken != null) {
+//			logger.info("cached accessToken={}", accessToken);
+//			return accessToken;
+//		}
 
 		String url = "https://api.talkingdata.com/tdmkaccount/authen/app/v2";
 		HttpClientExecutorImpl httpExecutor = null;
@@ -62,7 +62,7 @@ public class BsiTalkingDataService {
 		Boolean flag = (Boolean) data.get("login");
 		if (flag != null && flag) {
 			String token = (String) (data.get("token"));
-			cacheService.put(cacheAccessTokenKey, token);
+//			cacheService.put(cacheAccessTokenKey, token,60*55);
 			return token;
 		} else {
 			throw new RuntimeException("Failed to login talking data server");
@@ -71,7 +71,7 @@ public class BsiTalkingDataService {
 
 	@SuppressWarnings("rawtypes")
 	public Date first(String imei) {
-		String url = "https://api.talkingdata.com/data/user-device-interval/v1/first";
+		String url = "https://api.talkingdata.com/data/tr/user-device-interval/v1/first";
 
 		HttpClientExecutorImpl httpExecutor = null;
 		try {
