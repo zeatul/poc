@@ -24,7 +24,11 @@
 		last_exec_err_code AS "lastExecErrCode" ,
 		last_exec_err_msg AS "lastExecErrMsg" ,
 		last_exec_date AS "lastExecDate" ,
-		schedule_exec_date AS "scheduleExecDate" 
+		schedule_exec_date AS "scheduleExecDate" ,
+		current_exec_computer AS "currentExecComputer" ,
+		current_exec_process_id AS "currentExecProcessId" ,
+		current_exec_start_date AS "currentExecStartDate" ,
+		last_access_date AS "lastAccessDate" 
 	</sql>
 	
 	<sql id="where">
@@ -49,6 +53,10 @@
 			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
 			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
 			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
+			<if test="currentExecComputer != null"> AND current_exec_computer = #{currentExecComputer}  </if>
+			<if test="currentExecProcessId != null"> AND current_exec_process_id = #{currentExecProcessId}  </if>
+			<if test="currentExecStartDate != null"> AND current_exec_start_date = #{currentExecStartDate}  </if>
+			<if test="lastAccessDate != null"> AND last_access_date = #{lastAccessDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -74,6 +82,10 @@
 			AND last_exec_err_msg = #{old_lastExecErrMsg}
 			AND last_exec_date = #{old_lastExecDate}
 			AND schedule_exec_date = #{old_scheduleExecDate}
+			AND current_exec_computer = #{old_currentExecComputer}
+			AND current_exec_process_id = #{old_currentExecProcessId}
+			AND current_exec_start_date = #{old_currentExecStartDate}
+			AND last_access_date = #{old_lastAccessDate}
 		</trim>
 	</sql>
 	
@@ -99,6 +111,10 @@
 			last_exec_err_msg = #{lastExecErrMsg},
 			last_exec_date = #{lastExecDate},
 			schedule_exec_date = #{scheduleExecDate},
+			current_exec_computer = #{currentExecComputer},
+			current_exec_process_id = #{currentExecProcessId},
+			current_exec_start_date = #{currentExecStartDate},
+			last_access_date = #{lastAccessDate},
 		</set>
 	</sql>
 	
@@ -124,6 +140,10 @@
 			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
 			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
 			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
+			<if test="currentExecComputer != null">current_exec_computer = #{currentExecComputer},</if>
+			<if test="currentExecProcessId != null">current_exec_process_id = #{currentExecProcessId},</if>
+			<if test="currentExecStartDate != null">current_exec_start_date = #{currentExecStartDate},</if>
+			<if test="lastAccessDate != null">last_access_date = #{lastAccessDate},</if>
 		</set>
 	</sql>
 	
@@ -181,7 +201,11 @@
 				last_exec_err_code,				
 				last_exec_err_msg,				
 				last_exec_date,				
-				schedule_exec_date				
+				schedule_exec_date,				
+				current_exec_computer,				
+				current_exec_process_id,				
+				current_exec_start_date,				
+				last_access_date				
 		)		
 		VALUES (	
 			#{objectId},
@@ -203,7 +227,11 @@
 			#{lastExecErrCode},
 			#{lastExecErrMsg},
 			#{lastExecDate},
-			#{scheduleExecDate}
+			#{scheduleExecDate},
+			#{currentExecComputer},
+			#{currentExecProcessId},
+			#{currentExecStartDate},
+			#{lastAccessDate}
 		) 
 	</insert>
 	

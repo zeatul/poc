@@ -129,6 +129,7 @@ public class GenerateSqlForInitBsiData {
 			System.out.println(sb.toString());
 		});
 
+		System.out.println("INSERT INTO t_svp_bsi_phone_brand(bsi_phone_brand) SELECT distinct bsi_phone_brand as bsiPhoneBrand FROM t_svp_bsi_phone_model;") ;
 	}
 
 }

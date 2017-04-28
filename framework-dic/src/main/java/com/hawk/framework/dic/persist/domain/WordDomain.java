@@ -51,9 +51,24 @@ public class WordDomain implements Serializable {
 	private String objectDisplayName;
 	
 	/**
+	 * 格式 object_pattern
+	 */
+	private String objectPattern;
+	
+	/**
+	 * 格式描述 object_pattern_comment
+	 */
+	private String objectPatternComment;
+	
+	/**
 	 * 正则表达式 regex
 	 */
 	private String regex;
+	
+	/**
+	 * 扩展校验 object_extra_validation
+	 */
+	private String objectExtraValidation;
 	
 	/**
 	 * 最大长度 char_max_length
@@ -101,14 +116,9 @@ public class WordDomain implements Serializable {
 	private Integer isEnum;
 	
 	/**
-	 * 枚举值 enum_key
+	 * 枚举值 enum_values
 	 */
-	private String enumKey;
-	
-	/**
-	 * 枚举显示值 enum_value
-	 */
-	private String enumValue;
+	private String enumValues;
 	
 	/**
 	 * 系统编码(区分不同项目，不同集团) system_code
@@ -250,6 +260,38 @@ public class WordDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 格式 object_pattern
+	 */
+	public String getObjectPattern(){
+		return objectPattern;
+	}
+	
+	/**
+	 * 
+	 * @param objectPattern 格式 object_pattern
+	 */	
+	public void setObjectPattern (String objectPattern) {
+		this.objectPattern = objectPattern;
+	}
+	
+	/**
+	 * 
+	 * @return 格式描述 object_pattern_comment
+	 */
+	public String getObjectPatternComment(){
+		return objectPatternComment;
+	}
+	
+	/**
+	 * 
+	 * @param objectPatternComment 格式描述 object_pattern_comment
+	 */	
+	public void setObjectPatternComment (String objectPatternComment) {
+		this.objectPatternComment = objectPatternComment;
+	}
+	
+	/**
+	 * 
 	 * @return 正则表达式 regex
 	 */
 	public String getRegex(){
@@ -262,6 +304,22 @@ public class WordDomain implements Serializable {
 	 */	
 	public void setRegex (String regex) {
 		this.regex = regex;
+	}
+	
+	/**
+	 * 
+	 * @return 扩展校验 object_extra_validation
+	 */
+	public String getObjectExtraValidation(){
+		return objectExtraValidation;
+	}
+	
+	/**
+	 * 
+	 * @param objectExtraValidation 扩展校验 object_extra_validation
+	 */	
+	public void setObjectExtraValidation (String objectExtraValidation) {
+		this.objectExtraValidation = objectExtraValidation;
 	}
 	
 	/**
@@ -410,34 +468,18 @@ public class WordDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 枚举值 enum_key
+	 * @return 枚举值 enum_values
 	 */
-	public String getEnumKey(){
-		return enumKey;
+	public String getEnumValues(){
+		return enumValues;
 	}
 	
 	/**
 	 * 
-	 * @param enumKey 枚举值 enum_key
+	 * @param enumValues 枚举值 enum_values
 	 */	
-	public void setEnumKey (String enumKey) {
-		this.enumKey = enumKey;
-	}
-	
-	/**
-	 * 
-	 * @return 枚举显示值 enum_value
-	 */
-	public String getEnumValue(){
-		return enumValue;
-	}
-	
-	/**
-	 * 
-	 * @param enumValue 枚举显示值 enum_value
-	 */	
-	public void setEnumValue (String enumValue) {
-		this.enumValue = enumValue;
+	public void setEnumValues (String enumValues) {
+		this.enumValues = enumValues;
 	}
 	
 	/**

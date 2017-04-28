@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.framework.dic.persist.mapper.EnumMapper">
+
+	<sql id="columns">	
+				object_id AS "objectId" ,
+		word_object_id AS "wordObjectId" ,
+		enum_key AS "enumKey" ,
+		enum_value AS "enumValue" ,
+		version AS "version" ,
+		system_code AS "systemCode" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="objectId != null"> AND object_id = #{objectId}  </if>
+			<if test="wordObjectId != null"> AND word_object_id = #{wordObjectId}  </if>
+			<if test="enumKey != null"> AND enum_key = #{enumKey}  </if>
+			<if test="enumValue != null"> AND enum_value = #{enumValue}  </if>
+			<if test="version != null"> AND version = #{version}  </if>
+			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND object_id = #{old_objectId}
+			AND word_object_id = #{old_wordObjectId}
+			AND enum_key = #{old_enumKey}
+			AND enum_value = #{old_enumValue}
+			AND version = #{old_version}
+			AND system_code = #{old_systemCode}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			object_id = #{objectId},
+			word_object_id = #{wordObjectId},
+			enum_key = #{enumKey},
+			enum_value = #{enumValue},
+			version = #{version},
+			system_code = #{systemCode},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="objectId != null">object_id = #{objectId},</if>
+			<if test="wordObjectId != null">word_object_id = #{wordObjectId},</if>
+			<if test="enumKey != null">enum_key = #{enumKey},</if>
+			<if test="enumValue != null">enum_value = #{enumValue},</if>
+			<if test="version != null">version = #{version},</if>
+			<if test="systemCode != null">system_code = #{systemCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="EnumDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_enum
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_dic_enum
+		<include refid="where" />
+	</select>
+	
+	
+	<insert id="insert"  parameterType="EnumDomain">
+		INSERT INTO t_dic_enum (			
+				object_id,				
+				word_object_id,				
+				enum_key,				
+				enum_value,				
+				version,				
+				system_code,				
+				create_date,				
+				update_date,				
+				delete_date				
+		)		
+		VALUES (	
+			#{objectId},
+			#{wordObjectId},
+			#{enumKey},
+			#{enumValue},
+			#{version},
+			#{systemCode},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_dic_enum
+		<include refid="where" />
+	</delete>
+
+	
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_dic_enum	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="EnumDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_dic_enum
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

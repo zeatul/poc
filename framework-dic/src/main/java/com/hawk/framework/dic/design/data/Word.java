@@ -1,18 +1,33 @@
 package com.hawk.framework.dic.design.data;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.SortedMap;
+
 import com.hawk.framework.dic.design.IDictionaryObject;
+import com.hawk.framework.utility.tools.CollectionTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 /**
- * 数据定义
- * 名称
- * 类型
- * 描述
+ * 数据定义 名称 类型 描述
+ * 
  * @author pzhang1
  *
  */
 public class Word implements IDictionaryObject {
-	
 
+	public Map<String, String> getEnumValues() {
+		return enumValues;
+	}
+
+	public void setEnumValues(Map<String, String> enumValues) {
+		this.enumValues = enumValues;
+	}
 
 	public Integer getIsOnlyAscii() {
 		return isOnlyAscii;
@@ -150,124 +165,128 @@ public class Word implements IDictionaryObject {
 		this.isEnum = isEnum;
 	}
 
-	public String getEnumKey() {
-		return enumKey;
-	}
-
-	public void setEnumKey(String enumKey) {
-		this.enumKey = enumKey;
-	}
-
-	public String getEnumValue() {
-		return enumValue;
-	}
-
-	public void setEnumValue(String enumValue) {
-		this.enumValue = enumValue;
-	}
-
 	/**
 	 * 对象ID
 	 */
 	private String id;
-	
+
 	/**
 	 * 用途，业务或技术
 	 */
 	private String useType;
-	
+
 	/**
 	 * 数据类型
 	 */
 	private EnumDataType dataType;
-	
 
 	/**
 	 * 对象编码
 	 */
 	private String code;
-	
 
 	/**
 	 * 对象描述
 	 */
 	private String comment;
-	
 
 	/**
 	 * 对象名称
 	 */
 	private String name;
-	
-	
+
 	/**
 	 * 对象显示名称
 	 */
 	private String displayName;
-	
 
 	/**
 	 * 正则表达式
 	 */
 	private String regex;
-	
 
 	/**
 	 * 字符串的最大长度
 	 */
 	private Integer charMaxLength;
-	
 
 	/**
 	 * 字符串的最小长度
 	 */
 	private Integer charMinLength;
-	
+
 	/**
 	 * 是否只包含一个字节长度的字符
 	 */
-	private Integer isOnlyAscii ;
-	
+	private Integer isOnlyAscii;
 
 	/**
 	 * 最大值
 	 */
 	private String maxValue;
-	
 
 	/**
 	 * 最小值
 	 */
 	private String minValue;
-	
+
 	/**
 	 * 时间精度
 	 */
 	private Integer datetimePrecision;
-	
+
 	/**
 	 * 数据精度
 	 */
 	private Integer numericPrecision;
-	
+
 	/**
 	 * 数据小数精度
 	 */
 	private Integer numericScale;
-	
+
 	/**
 	 * 是否是枚举
 	 */
 	private Integer isEnum = 0;
-	
+
 	/**
 	 * 枚举值
 	 */
-	private String enumKey;
-	
-	/**
-	 * 枚举显示值
-	 */
-	private String enumValue;
+	private Map<String, String> enumValues;
 
+	public void setEnumValues(String enumValuesStr) {
+		if (StringTools.isNullOrEmpty(enumValuesStr))
+			return;
+
+		if (this.enumValues == null) {
+			this.enumValues = new HashMap<String, String>();
+		}
+
+		String[] pairs = enumValuesStr.split(";");
+
+		for (String pair : pairs) {
+			String[] str = pair.split(":");
+			this.enumValues.put(str[0], str.length > 1 ? str[1] : null);
+		}
+	}
+
+	public String getEnumValuesAsString() {
+		if (CollectionTools.isNullOrEmpty(this.enumValues)) {
+			return null;
+		}
+
+		List<String> list = new ArrayList<String>();
+		this.enumValues.forEach((key, value) -> {
+			if (StringTools.isNullOrEmpty(value)){
+				list.add(key);
+			}else{
+				list.add(StringTools.concatWithSymbol(":", key,value));
+			}
+			
+		});
+		
+		return StringTools.concatWithSymbol(";",list);
+
+	}
 }

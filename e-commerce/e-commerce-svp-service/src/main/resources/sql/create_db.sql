@@ -164,6 +164,7 @@ create table t_svp_bsi_phone_brand
    bsi_phone_brand      varchar(200) not null comment '手机品牌',
    spell_abbr           varchar(50) comment '拼首',
    object_order         integer comment '序号',
+   bsi_phone_brand_status integer comment '手机品牌状态',
    primary key (bsi_phone_brand)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

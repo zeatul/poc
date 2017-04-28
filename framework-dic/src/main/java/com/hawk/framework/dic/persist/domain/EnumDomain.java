@@ -6,12 +6,12 @@ import java.util.Date;
 
 
 /**
- * 同义词定义表
- * The class is mapped to the table t_dic_synonym 
+ * 枚举
+ * The class is mapped to the table t_dic_enum 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class SynonymDomain implements Serializable {
+public class EnumDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -21,34 +21,29 @@ public class SynonymDomain implements Serializable {
 	private String objectId;
 	
 	/**
-	 * 原单词id origin_object_id
+	 * 单词主键 word_object_id
 	 */
-	private String originObjectId;
+	private String wordObjectId;
 	
 	/**
-	 * 同义词编码 synonym_object_code
+	 * 枚举键 enum_key
 	 */
-	private String synonymObjectCode;
+	private String enumKey;
 	
 	/**
-	 * 同义词显示名称 synonym_display_name
+	 * 枚举值 enum_value
 	 */
-	private String synonymDisplayName;
-	
-	/**
-	 * 同义词类型 synonym_type
-	 */
-	private String synonymType;
-	
-	/**
-	 * 系统编码(区分不同项目，不同集团) system_code
-	 */
-	private String systemCode;
+	private String enumValue;
 	
 	/**
 	 * 版本号 version
 	 */
 	private Integer version;
+	
+	/**
+	 * 系统编码(区分不同项目，不同集团) system_code
+	 */
+	private String systemCode;
 	
 	/**
 	 * 创建日期 create_date
@@ -84,82 +79,50 @@ public class SynonymDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 原单词id origin_object_id
+	 * @return 单词主键 word_object_id
 	 */
-	public String getOriginObjectId(){
-		return originObjectId;
+	public String getWordObjectId(){
+		return wordObjectId;
 	}
 	
 	/**
 	 * 
-	 * @param originObjectId 原单词id origin_object_id
+	 * @param wordObjectId 单词主键 word_object_id
 	 */	
-	public void setOriginObjectId (String originObjectId) {
-		this.originObjectId = originObjectId;
+	public void setWordObjectId (String wordObjectId) {
+		this.wordObjectId = wordObjectId;
 	}
 	
 	/**
 	 * 
-	 * @return 同义词编码 synonym_object_code
+	 * @return 枚举键 enum_key
 	 */
-	public String getSynonymObjectCode(){
-		return synonymObjectCode;
+	public String getEnumKey(){
+		return enumKey;
 	}
 	
 	/**
 	 * 
-	 * @param synonymObjectCode 同义词编码 synonym_object_code
+	 * @param enumKey 枚举键 enum_key
 	 */	
-	public void setSynonymObjectCode (String synonymObjectCode) {
-		this.synonymObjectCode = synonymObjectCode;
+	public void setEnumKey (String enumKey) {
+		this.enumKey = enumKey;
 	}
 	
 	/**
 	 * 
-	 * @return 同义词显示名称 synonym_display_name
+	 * @return 枚举值 enum_value
 	 */
-	public String getSynonymDisplayName(){
-		return synonymDisplayName;
+	public String getEnumValue(){
+		return enumValue;
 	}
 	
 	/**
 	 * 
-	 * @param synonymDisplayName 同义词显示名称 synonym_display_name
+	 * @param enumValue 枚举值 enum_value
 	 */	
-	public void setSynonymDisplayName (String synonymDisplayName) {
-		this.synonymDisplayName = synonymDisplayName;
-	}
-	
-	/**
-	 * 
-	 * @return 同义词类型 synonym_type
-	 */
-	public String getSynonymType(){
-		return synonymType;
-	}
-	
-	/**
-	 * 
-	 * @param synonymType 同义词类型 synonym_type
-	 */	
-	public void setSynonymType (String synonymType) {
-		this.synonymType = synonymType;
-	}
-	
-	/**
-	 * 
-	 * @return 系统编码(区分不同项目，不同集团) system_code
-	 */
-	public String getSystemCode(){
-		return systemCode;
-	}
-	
-	/**
-	 * 
-	 * @param systemCode 系统编码(区分不同项目，不同集团) system_code
-	 */	
-	public void setSystemCode (String systemCode) {
-		this.systemCode = systemCode;
+	public void setEnumValue (String enumValue) {
+		this.enumValue = enumValue;
 	}
 	
 	/**
@@ -176,6 +139,22 @@ public class SynonymDomain implements Serializable {
 	 */	
 	public void setVersion (Integer version) {
 		this.version = version;
+	}
+	
+	/**
+	 * 
+	 * @return 系统编码(区分不同项目，不同集团) system_code
+	 */
+	public String getSystemCode(){
+		return systemCode;
+	}
+	
+	/**
+	 * 
+	 * @param systemCode 系统编码(区分不同项目，不同集团) system_code
+	 */	
+	public void setSystemCode (String systemCode) {
+		this.systemCode = systemCode;
 	}
 	
 	/**

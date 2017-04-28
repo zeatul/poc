@@ -3554,3 +3554,4 @@ insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_pr
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11247,468,12);
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11248,468,12);
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11240,4109,1);
+INSERT INTO t_svp_bsi_phone_brand(bsi_phone_brand) SELECT distinct bsi_phone_brand as bsiPhoneBrand FROM t_svp_bsi_phone_model;

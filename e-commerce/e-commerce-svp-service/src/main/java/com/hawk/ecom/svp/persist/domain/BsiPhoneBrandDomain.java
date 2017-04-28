@@ -29,6 +29,11 @@ public class BsiPhoneBrandDomain implements Serializable {
 	 */
 	private Integer objectOrder;
 	
+	/**
+	 * 手机品牌状态 bsi_phone_brand_status
+	 */
+	private Integer bsiPhoneBrandStatus;
+	
 	
 	/**
 	 * 
@@ -76,6 +81,22 @@ public class BsiPhoneBrandDomain implements Serializable {
 	 */	
 	public void setObjectOrder (Integer objectOrder) {
 		this.objectOrder = objectOrder;
+	}
+	
+	/**
+	 * 
+	 * @return 手机品牌状态 bsi_phone_brand_status
+	 */
+	public Integer getBsiPhoneBrandStatus(){
+		return bsiPhoneBrandStatus;
+	}
+	
+	/**
+	 * 
+	 * @param bsiPhoneBrandStatus 手机品牌状态 bsi_phone_brand_status
+	 */	
+	public void setBsiPhoneBrandStatus (Integer bsiPhoneBrandStatus) {
+		this.bsiPhoneBrandStatus = bsiPhoneBrandStatus;
 	}
 	
 

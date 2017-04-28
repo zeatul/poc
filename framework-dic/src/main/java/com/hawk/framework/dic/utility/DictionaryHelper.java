@@ -8,6 +8,7 @@ import com.hawk.framework.dic.design.data.Synonym;
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.persist.domain.SynonymDomain;
 import com.hawk.framework.dic.persist.domain.WordDomain;
+import com.hawk.framework.dic.persist.domainex.SynonymExDomain;
 
 public class DictionaryHelper {
 	
@@ -20,8 +21,10 @@ public class DictionaryHelper {
 		word.setDataType(EnumDataType.parse(wordDomain.getDataType()));
 		word.setDatetimePrecision(wordDomain.getDatetimePrecision());
 		word.setDisplayName(wordDomain.getObjectDisplayName());
-		word.setEnumKey(wordDomain.getEnumKey());
-		word.setEnumValue(wordDomain.getEnumValue());
+		
+		word.setEnumValues(wordDomain.getEnumValues());
+		
+		
 		word.setId(wordDomain.getObjectId());
 		word.setIsEnum(wordDomain.getIsEnum());
 		word.setIsOnlyAscii(wordDomain.getIsOnlyAscii());
@@ -44,8 +47,8 @@ public class DictionaryHelper {
 		wordDomain.setDataType(word.getDataType().getValue());
 		wordDomain.setDatetimePrecision(word.getDatetimePrecision());
 		wordDomain.setObjectDisplayName(word.getDisplayName());
-		wordDomain.setEnumKey(word.getEnumKey());
-		wordDomain.setEnumValue(word.getEnumValue());
+		
+		wordDomain.setEnumValues(word.getEnumValuesAsString());
 		wordDomain.setObjectId(word.getId());
 		wordDomain.setIsEnum(word.getIsEnum());
 		wordDomain.setIsOnlyAscii(word.getIsOnlyAscii());
@@ -64,22 +67,21 @@ public class DictionaryHelper {
 		return wordDomain;
 	}
 
-	public static Synonym convert(SynonymDomain SynonymDomain){
+	public static Synonym convert(SynonymExDomain SynonymExDomain){
 		Synonym synonym = new Synonym();
-		synonym.setOriginCode(SynonymDomain.getOriginObjectCode());
-		synonym.setSynonymCode(SynonymDomain.getSynonymObjectCode());
-		synonym.setSynonymType(SynonymDomain.getSynonymType());
+		synonym.setOriginCode(SynonymExDomain.getOriginObjectCode());
+		synonym.setSynonymCode(SynonymExDomain.getSynonymObjectCode());
+		synonym.setSynonymType(SynonymExDomain.getSynonymType());
 		return synonym;
 	}
 	
-	public static SynonymDomain convert(Synonym synonym ,String systemCode ,int version){
+	public static SynonymDomain convert(Synonym synonym ,String originObjectId,String systemCode ,int version){
 		SynonymDomain synonymDomain = new SynonymDomain();
 		synonymDomain.setObjectId(UUID.randomUUID().toString());
-		synonymDomain.setOriginObjectCode(synonym.getOriginCode());
+		synonymDomain.setOriginObjectId(originObjectId);
 		synonymDomain.setSynonymDisplayName(synonym.getSynonymDisplayName());
 		synonymDomain.setSynonymObjectCode(synonym.getSynonymCode());
-		synonymDomain.setSynonymType(synonym.getSynonymType());
-		
+		synonymDomain.setSynonymType(synonym.getSynonymType());		
 		synonymDomain.setCreateDate(new Date());
 		synonymDomain.setUpdateDate(synonymDomain.getCreateDate());
 		

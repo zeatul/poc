@@ -40,8 +40,9 @@ public class DatabaseTools {
 		word.setName(column.getComment());
 		word.setComment(column.getComment());
 		word.setDisplayName(column.getComment());
-		word.setEnumKey(null);
-		word.setEnumValue(null);
+		
+		
+//		word.setEnumValues(null);
 		word.setIsEnum(0);
 		word.setMaxValue(null);
 		word.setMinValue(null);

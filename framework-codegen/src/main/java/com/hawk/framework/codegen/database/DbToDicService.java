@@ -58,7 +58,7 @@ public class DbToDicService {
 	private final String systemCode = "ecom";
 
 	private final WordService wordService;
-	
+
 	private final SynonymService synonymService;
 
 	public DbToDicService(String packageName) throws Throwable {
@@ -77,7 +77,8 @@ public class DbToDicService {
 		Date stdt = new Date();
 		database = dbParser.parse();
 		Date endt = new Date();
-		System.out.println("Success parse database , find " + database.getTableList().size() + " tables, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
+		System.out.println(
+				"Success parse database , find " + database.getTableList().size() + " tables, cost " + (endt.getTime() - stdt.getTime()) + " millseconds");
 
 		/**
 		 * 启动Spring;
@@ -85,9 +86,9 @@ public class DbToDicService {
 		context = new AnnotationConfigApplicationContext(CodeGenConfig.class);
 
 		wordService = context.getBean(WordService.class);
-		
+
 		synonymService = context.getBean(SynonymService.class);
-		
+
 		SynonymHelper.loadFromDatabase(synonymService, ConstSynonymType.WORD, systemCode, version);
 
 	}
@@ -96,11 +97,41 @@ public class DbToDicService {
 
 		writeWord();
 		WriteSynonym();
+		WriteTable();
+	}
 
+	private void WriteTable() {
+		Date createDate = new Date();
+		Date updateDate = createDate;
+		List<TableDomain> tableDomainList = new ArrayList<TableDomain>();
+		for (Table table : database.getTableList()) {
+			System.out.println(table.getCode());
+
+			TableDomain tableDomain = new TableDomain();
+			tableDomainList.add(tableDomain);
+			String objectCode = table.getCode();
+			String objectComment = table.getComment();
+			String objectId = UUID.randomUUID().toString();
+			String objectName = table.getComment();
+			String objectType = ConstTableType.NORMAL;
+			String physicalOption = "ENGINE=InnoDB DEFAULT CHARSET=utf8";
+
+			tableDomain.setCreateDate(createDate);
+			tableDomain.setUpdateDate(updateDate);
+			tableDomain.setObjectCode(objectCode);
+			tableDomain.setObjectComment(objectComment);
+			tableDomain.setObjectId(objectId);
+			tableDomain.setObjectName(objectName);
+			tableDomain.setObjectType(objectType);
+			tableDomain.setPhysicalOption(physicalOption);
+			tableDomain.setSystemCode(systemCode);
+			tableDomain.setVersion(version);
+
+		}
 	}
 
 	private void WriteSynonym() {
-		SynonymHelper.save(synonymService, systemCode, version);
+		SynonymHelper.save(synonymService, wordService, systemCode, version);
 	}
 
 	private void writeWord() {
@@ -109,7 +140,7 @@ public class DbToDicService {
 		wordService.loadWord(systemCode, version).forEach(word -> {
 			filterWordMap.put(word.getCode(), word);
 		});
-		
+
 		for (Table table : database.getTableList()) {
 			System.out.println("---" + table.getCode() + "---");
 			for (Column column : table.getColumnList()) {
@@ -142,7 +173,7 @@ public class DbToDicService {
 			}
 		}
 
-		System.out.println("wordList.size()="+wordList.size());
+		System.out.println("wordList.size()=" + wordList.size());
 		wordList.forEach(word -> {
 			wordService.insertOrUpdateWord(word, systemCode, version);
 		});
@@ -186,36 +217,6 @@ public class DbToDicService {
 		}
 
 		return true;
-	}
-
-	private void writeDictionary(Database database, int version, String systemCode) {
-		Date createDate = new Date();
-		Date updateDate = createDate;
-		List<TableDomain> tableDomainList = new ArrayList<TableDomain>();
-		for (Table table : database.getTableList()) {
-			System.out.println(table.getCode());
-
-			TableDomain tableDomain = new TableDomain();
-			tableDomainList.add(tableDomain);
-			String objectCode = table.getCode();
-			String objectComment = table.getComment();
-			String objectId = UUID.randomUUID().toString();
-			String objectName = table.getComment();
-			String objectType = ConstTableType.NORMAL;
-			String physicalOption = "ENGINE=InnoDB DEFAULT CHARSET=utf8";
-
-			tableDomain.setCreateDate(createDate);
-			tableDomain.setUpdateDate(updateDate);
-			tableDomain.setObjectCode(objectCode);
-			tableDomain.setObjectComment(objectComment);
-			tableDomain.setObjectId(objectId);
-			tableDomain.setObjectName(objectName);
-			tableDomain.setObjectType(objectType);
-			tableDomain.setPhysicalOption(physicalOption);
-			tableDomain.setSystemCode(systemCode);
-			tableDomain.setVersion(version);
-
-		}
 	}
 
 }

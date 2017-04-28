@@ -136,8 +136,8 @@ public class DatabaseToDicXmlService {
 		word.setName(column.getComment());
 		word.setComment(column.getComment());
 		word.setDisplayName(column.getComment());
-		word.setEnumKey(null);
-		word.setEnumValue(null);
+//		word.setEnumKey(null);
+//		word.setEnumValue(null);
 		word.setIsEnum(0);
 		word.setMaxValue(null);
 		word.setMinValue(null);

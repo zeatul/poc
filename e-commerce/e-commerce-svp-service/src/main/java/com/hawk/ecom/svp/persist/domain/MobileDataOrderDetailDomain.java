@@ -76,6 +76,21 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	private Date scheduleExecDate;
 	
 	/**
+	 * 当前执行机器 current_exec_computer
+	 */
+	private String currentExecComputer;
+	
+	/**
+	 * 当前执行进程ID current_exec_process_id
+	 */
+	private String currentExecProcessId;
+	
+	/**
+	 * 当前任务启动时间 current_exec_start_date
+	 */
+	private Date currentExecStartDate;
+	
+	/**
 	 * 创建日期 create_date
 	 */
 	private Date createDate;
@@ -281,6 +296,54 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 */	
 	public void setScheduleExecDate (Date scheduleExecDate) {
 		this.scheduleExecDate = scheduleExecDate;
+	}
+	
+	/**
+	 * 
+	 * @return 当前执行机器 current_exec_computer
+	 */
+	public String getCurrentExecComputer(){
+		return currentExecComputer;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecComputer 当前执行机器 current_exec_computer
+	 */	
+	public void setCurrentExecComputer (String currentExecComputer) {
+		this.currentExecComputer = currentExecComputer;
+	}
+	
+	/**
+	 * 
+	 * @return 当前执行进程ID current_exec_process_id
+	 */
+	public String getCurrentExecProcessId(){
+		return currentExecProcessId;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecProcessId 当前执行进程ID current_exec_process_id
+	 */	
+	public void setCurrentExecProcessId (String currentExecProcessId) {
+		this.currentExecProcessId = currentExecProcessId;
+	}
+	
+	/**
+	 * 
+	 * @return 当前任务启动时间 current_exec_start_date
+	 */
+	public Date getCurrentExecStartDate(){
+		return currentExecStartDate;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecStartDate 当前任务启动时间 current_exec_start_date
+	 */	
+	public void setCurrentExecStartDate (Date currentExecStartDate) {
+		this.currentExecStartDate = currentExecStartDate;
 	}
 	
 	/**

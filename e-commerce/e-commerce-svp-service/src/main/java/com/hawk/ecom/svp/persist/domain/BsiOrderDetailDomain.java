@@ -36,36 +36,6 @@ public class BsiOrderDetailDomain implements Serializable {
 	private Integer bsiTaskStatus;
 	
 	/**
-	 * 已经执行次数 exec_times
-	 */
-	private Integer execTimes;
-	
-	/**
-	 * 最大允许执行次数 max_exec_times
-	 */
-	private Integer maxExecTimes;
-	
-	/**
-	 * 最后一次执行错误代码 last_exec_err_code
-	 */
-	private String lastExecErrCode;
-	
-	/**
-	 * 最后一次执行错误原因 last_exec_err_msg
-	 */
-	private String lastExecErrMsg;
-	
-	/**
-	 * 最后一次执行时间 last_exec_date
-	 */
-	private Date lastExecDate;
-	
-	/**
-	 * 计划执行时间 schedule_exec_date
-	 */
-	private Date scheduleExecDate;
-	
-	/**
 	 * 手机型号ID bsi_phone_model_id
 	 */
 	private Integer bsiPhoneModelId;
@@ -119,6 +89,51 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 小宝订单编号 bsi_insurance_code
 	 */
 	private String bsiInsuranceCode;
+	
+	/**
+	 * 已经执行次数 exec_times
+	 */
+	private Integer execTimes;
+	
+	/**
+	 * 最大允许执行次数 max_exec_times
+	 */
+	private Integer maxExecTimes;
+	
+	/**
+	 * 最后一次执行错误代码 last_exec_err_code
+	 */
+	private String lastExecErrCode;
+	
+	/**
+	 * 最后一次执行错误原因 last_exec_err_msg
+	 */
+	private String lastExecErrMsg;
+	
+	/**
+	 * 最后一次执行时间 last_exec_date
+	 */
+	private Date lastExecDate;
+	
+	/**
+	 * 计划执行时间 schedule_exec_date
+	 */
+	private Date scheduleExecDate;
+	
+	/**
+	 * 当前执行机器 current_exec_computer
+	 */
+	private String currentExecComputer;
+	
+	/**
+	 * 当前执行进程ID current_exec_process_id
+	 */
+	private String currentExecProcessId;
+	
+	/**
+	 * 当前任务启动时间 current_exec_start_date
+	 */
+	private Date currentExecStartDate;
 	
 	/**
 	 * 创建日期 create_date
@@ -198,102 +213,6 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiTaskStatus (Integer bsiTaskStatus) {
 		this.bsiTaskStatus = bsiTaskStatus;
-	}
-	
-	/**
-	 * 
-	 * @return 已经执行次数 exec_times
-	 */
-	public Integer getExecTimes(){
-		return execTimes;
-	}
-	
-	/**
-	 * 
-	 * @param execTimes 已经执行次数 exec_times
-	 */	
-	public void setExecTimes (Integer execTimes) {
-		this.execTimes = execTimes;
-	}
-	
-	/**
-	 * 
-	 * @return 最大允许执行次数 max_exec_times
-	 */
-	public Integer getMaxExecTimes(){
-		return maxExecTimes;
-	}
-	
-	/**
-	 * 
-	 * @param maxExecTimes 最大允许执行次数 max_exec_times
-	 */	
-	public void setMaxExecTimes (Integer maxExecTimes) {
-		this.maxExecTimes = maxExecTimes;
-	}
-	
-	/**
-	 * 
-	 * @return 最后一次执行错误代码 last_exec_err_code
-	 */
-	public String getLastExecErrCode(){
-		return lastExecErrCode;
-	}
-	
-	/**
-	 * 
-	 * @param lastExecErrCode 最后一次执行错误代码 last_exec_err_code
-	 */	
-	public void setLastExecErrCode (String lastExecErrCode) {
-		this.lastExecErrCode = lastExecErrCode;
-	}
-	
-	/**
-	 * 
-	 * @return 最后一次执行错误原因 last_exec_err_msg
-	 */
-	public String getLastExecErrMsg(){
-		return lastExecErrMsg;
-	}
-	
-	/**
-	 * 
-	 * @param lastExecErrMsg 最后一次执行错误原因 last_exec_err_msg
-	 */	
-	public void setLastExecErrMsg (String lastExecErrMsg) {
-		this.lastExecErrMsg = lastExecErrMsg;
-	}
-	
-	/**
-	 * 
-	 * @return 最后一次执行时间 last_exec_date
-	 */
-	public Date getLastExecDate(){
-		return lastExecDate;
-	}
-	
-	/**
-	 * 
-	 * @param lastExecDate 最后一次执行时间 last_exec_date
-	 */	
-	public void setLastExecDate (Date lastExecDate) {
-		this.lastExecDate = lastExecDate;
-	}
-	
-	/**
-	 * 
-	 * @return 计划执行时间 schedule_exec_date
-	 */
-	public Date getScheduleExecDate(){
-		return scheduleExecDate;
-	}
-	
-	/**
-	 * 
-	 * @param scheduleExecDate 计划执行时间 schedule_exec_date
-	 */	
-	public void setScheduleExecDate (Date scheduleExecDate) {
-		this.scheduleExecDate = scheduleExecDate;
 	}
 	
 	/**
@@ -470,6 +389,150 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiInsuranceCode (String bsiInsuranceCode) {
 		this.bsiInsuranceCode = bsiInsuranceCode;
+	}
+	
+	/**
+	 * 
+	 * @return 已经执行次数 exec_times
+	 */
+	public Integer getExecTimes(){
+		return execTimes;
+	}
+	
+	/**
+	 * 
+	 * @param execTimes 已经执行次数 exec_times
+	 */	
+	public void setExecTimes (Integer execTimes) {
+		this.execTimes = execTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最大允许执行次数 max_exec_times
+	 */
+	public Integer getMaxExecTimes(){
+		return maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @param maxExecTimes 最大允许执行次数 max_exec_times
+	 */	
+	public void setMaxExecTimes (Integer maxExecTimes) {
+		this.maxExecTimes = maxExecTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次执行错误代码 last_exec_err_code
+	 */
+	public String getLastExecErrCode(){
+		return lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrCode 最后一次执行错误代码 last_exec_err_code
+	 */	
+	public void setLastExecErrCode (String lastExecErrCode) {
+		this.lastExecErrCode = lastExecErrCode;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次执行错误原因 last_exec_err_msg
+	 */
+	public String getLastExecErrMsg(){
+		return lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecErrMsg 最后一次执行错误原因 last_exec_err_msg
+	 */	
+	public void setLastExecErrMsg (String lastExecErrMsg) {
+		this.lastExecErrMsg = lastExecErrMsg;
+	}
+	
+	/**
+	 * 
+	 * @return 最后一次执行时间 last_exec_date
+	 */
+	public Date getLastExecDate(){
+		return lastExecDate;
+	}
+	
+	/**
+	 * 
+	 * @param lastExecDate 最后一次执行时间 last_exec_date
+	 */	
+	public void setLastExecDate (Date lastExecDate) {
+		this.lastExecDate = lastExecDate;
+	}
+	
+	/**
+	 * 
+	 * @return 计划执行时间 schedule_exec_date
+	 */
+	public Date getScheduleExecDate(){
+		return scheduleExecDate;
+	}
+	
+	/**
+	 * 
+	 * @param scheduleExecDate 计划执行时间 schedule_exec_date
+	 */	
+	public void setScheduleExecDate (Date scheduleExecDate) {
+		this.scheduleExecDate = scheduleExecDate;
+	}
+	
+	/**
+	 * 
+	 * @return 当前执行机器 current_exec_computer
+	 */
+	public String getCurrentExecComputer(){
+		return currentExecComputer;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecComputer 当前执行机器 current_exec_computer
+	 */	
+	public void setCurrentExecComputer (String currentExecComputer) {
+		this.currentExecComputer = currentExecComputer;
+	}
+	
+	/**
+	 * 
+	 * @return 当前执行进程ID current_exec_process_id
+	 */
+	public String getCurrentExecProcessId(){
+		return currentExecProcessId;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecProcessId 当前执行进程ID current_exec_process_id
+	 */	
+	public void setCurrentExecProcessId (String currentExecProcessId) {
+		this.currentExecProcessId = currentExecProcessId;
+	}
+	
+	/**
+	 * 
+	 * @return 当前任务启动时间 current_exec_start_date
+	 */
+	public Date getCurrentExecStartDate(){
+		return currentExecStartDate;
+	}
+	
+	/**
+	 * 
+	 * @param currentExecStartDate 当前任务启动时间 current_exec_start_date
+	 */	
+	public void setCurrentExecStartDate (Date currentExecStartDate) {
+		this.currentExecStartDate = currentExecStartDate;
 	}
 	
 	/**

@@ -12,7 +12,10 @@
 		object_name AS "objectName" ,
 		object_comment AS "objectComment" ,
 		object_display_name AS "objectDisplayName" ,
+		object_pattern AS "objectPattern" ,
+		object_pattern_comment AS "objectPatternComment" ,
 		regex AS "regex" ,
+		object_extra_validation AS "objectExtraValidation" ,
 		char_max_length AS "charMaxLength" ,
 		char_min_length AS "charMinLength" ,
 		is_only_ascii AS "isOnlyAscii" ,
@@ -22,8 +25,7 @@
 		numeric_precision AS "numericPrecision" ,
 		numeric_scale AS "numericScale" ,
 		is_enum AS "isEnum" ,
-		enum_key AS "enumKey" ,
-		enum_value AS "enumValue" ,
+		enum_values AS "enumValues" ,
 		system_code AS "systemCode" ,
 		version AS "version" ,
 		create_date AS "createDate" ,
@@ -40,7 +42,10 @@
 			<if test="objectName != null"> AND object_name = #{objectName}  </if>
 			<if test="objectComment != null"> AND object_comment = #{objectComment}  </if>
 			<if test="objectDisplayName != null"> AND object_display_name = #{objectDisplayName}  </if>
+			<if test="objectPattern != null"> AND object_pattern = #{objectPattern}  </if>
+			<if test="objectPatternComment != null"> AND object_pattern_comment = #{objectPatternComment}  </if>
 			<if test="regex != null"> AND regex = #{regex}  </if>
+			<if test="objectExtraValidation != null"> AND object_extra_validation = #{objectExtraValidation}  </if>
 			<if test="charMaxLength != null"> AND char_max_length = #{charMaxLength}  </if>
 			<if test="charMinLength != null"> AND char_min_length = #{charMinLength}  </if>
 			<if test="isOnlyAscii != null"> AND is_only_ascii = #{isOnlyAscii}  </if>
@@ -50,8 +55,7 @@
 			<if test="numericPrecision != null"> AND numeric_precision = #{numericPrecision}  </if>
 			<if test="numericScale != null"> AND numeric_scale = #{numericScale}  </if>
 			<if test="isEnum != null"> AND is_enum = #{isEnum}  </if>
-			<if test="enumKey != null"> AND enum_key = #{enumKey}  </if>
-			<if test="enumValue != null"> AND enum_value = #{enumValue}  </if>
+			<if test="enumValues != null"> AND enum_values = #{enumValues}  </if>
 			<if test="systemCode != null"> AND system_code = #{systemCode}  </if>
 			<if test="version != null"> AND version = #{version}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -69,7 +73,10 @@
 			AND object_name = #{old_objectName}
 			AND object_comment = #{old_objectComment}
 			AND object_display_name = #{old_objectDisplayName}
+			AND object_pattern = #{old_objectPattern}
+			AND object_pattern_comment = #{old_objectPatternComment}
 			AND regex = #{old_regex}
+			AND object_extra_validation = #{old_objectExtraValidation}
 			AND char_max_length = #{old_charMaxLength}
 			AND char_min_length = #{old_charMinLength}
 			AND is_only_ascii = #{old_isOnlyAscii}
@@ -79,8 +86,7 @@
 			AND numeric_precision = #{old_numericPrecision}
 			AND numeric_scale = #{old_numericScale}
 			AND is_enum = #{old_isEnum}
-			AND enum_key = #{old_enumKey}
-			AND enum_value = #{old_enumValue}
+			AND enum_values = #{old_enumValues}
 			AND system_code = #{old_systemCode}
 			AND version = #{old_version}
 			AND create_date = #{old_createDate}
@@ -98,7 +104,10 @@
 			object_name = #{objectName},
 			object_comment = #{objectComment},
 			object_display_name = #{objectDisplayName},
+			object_pattern = #{objectPattern},
+			object_pattern_comment = #{objectPatternComment},
 			regex = #{regex},
+			object_extra_validation = #{objectExtraValidation},
 			char_max_length = #{charMaxLength},
 			char_min_length = #{charMinLength},
 			is_only_ascii = #{isOnlyAscii},
@@ -108,8 +117,7 @@
 			numeric_precision = #{numericPrecision},
 			numeric_scale = #{numericScale},
 			is_enum = #{isEnum},
-			enum_key = #{enumKey},
-			enum_value = #{enumValue},
+			enum_values = #{enumValues},
 			system_code = #{systemCode},
 			version = #{version},
 			create_date = #{createDate},
@@ -127,7 +135,10 @@
 			<if test="objectName != null">object_name = #{objectName},</if>
 			<if test="objectComment != null">object_comment = #{objectComment},</if>
 			<if test="objectDisplayName != null">object_display_name = #{objectDisplayName},</if>
+			<if test="objectPattern != null">object_pattern = #{objectPattern},</if>
+			<if test="objectPatternComment != null">object_pattern_comment = #{objectPatternComment},</if>
 			<if test="regex != null">regex = #{regex},</if>
+			<if test="objectExtraValidation != null">object_extra_validation = #{objectExtraValidation},</if>
 			<if test="charMaxLength != null">char_max_length = #{charMaxLength},</if>
 			<if test="charMinLength != null">char_min_length = #{charMinLength},</if>
 			<if test="isOnlyAscii != null">is_only_ascii = #{isOnlyAscii},</if>
@@ -137,8 +148,7 @@
 			<if test="numericPrecision != null">numeric_precision = #{numericPrecision},</if>
 			<if test="numericScale != null">numeric_scale = #{numericScale},</if>
 			<if test="isEnum != null">is_enum = #{isEnum},</if>
-			<if test="enumKey != null">enum_key = #{enumKey},</if>
-			<if test="enumValue != null">enum_value = #{enumValue},</if>
+			<if test="enumValues != null">enum_values = #{enumValues},</if>
 			<if test="systemCode != null">system_code = #{systemCode},</if>
 			<if test="version != null">version = #{version},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -189,7 +199,10 @@
 				object_name,				
 				object_comment,				
 				object_display_name,				
+				object_pattern,				
+				object_pattern_comment,				
 				regex,				
+				object_extra_validation,				
 				char_max_length,				
 				char_min_length,				
 				is_only_ascii,				
@@ -199,8 +212,7 @@
 				numeric_precision,				
 				numeric_scale,				
 				is_enum,				
-				enum_key,				
-				enum_value,				
+				enum_values,				
 				system_code,				
 				version,				
 				create_date,				
@@ -215,7 +227,10 @@
 			#{objectName},
 			#{objectComment},
 			#{objectDisplayName},
+			#{objectPattern},
+			#{objectPatternComment},
 			#{regex},
+			#{objectExtraValidation},
 			#{charMaxLength},
 			#{charMinLength},
 			#{isOnlyAscii},
@@ -225,8 +240,7 @@
 			#{numericPrecision},
 			#{numericScale},
 			#{isEnum},
-			#{enumKey},
-			#{enumValue},
+			#{enumValues},
 			#{systemCode},
 			#{version},
 			#{createDate},

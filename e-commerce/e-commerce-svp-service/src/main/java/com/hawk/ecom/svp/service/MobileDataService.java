@@ -21,7 +21,7 @@ import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapper.OrderMapper;
-import com.hawk.ecom.svp.persist.mapperex.OrderMapperEx;
+import com.hawk.ecom.svp.persist.mapperex.OrderExMapper;
 import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.ecom.svp.request.UnicomNotifyParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
@@ -35,7 +35,7 @@ public class MobileDataService {
 	private final Logger logger = LoggerFactory.getLogger(MobileDataService.class);
 
 	@Autowired
-	private OrderMapperEx orderMapperEx;
+	private OrderExMapper orderMapperEx;
 	
 	@Autowired
 	@Qualifier("pkGenService")

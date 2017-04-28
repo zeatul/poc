@@ -7,7 +7,8 @@
 	<sql id="columns">	
 				bsi_phone_brand AS "bsiPhoneBrand" ,
 		spell_abbr AS "spellAbbr" ,
-		object_order AS "objectOrder" 
+		object_order AS "objectOrder" ,
+		bsi_phone_brand_status AS "bsiPhoneBrandStatus" 
 	</sql>
 	
 	<sql id="where">
@@ -15,6 +16,7 @@
 			<if test="bsiPhoneBrand != null"> AND bsi_phone_brand = #{bsiPhoneBrand}  </if>
 			<if test="spellAbbr != null"> AND spell_abbr = #{spellAbbr}  </if>
 			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
+			<if test="bsiPhoneBrandStatus != null"> AND bsi_phone_brand_status = #{bsiPhoneBrandStatus}  </if>
 		</trim>	
 	</sql>
 	
@@ -23,6 +25,7 @@
 			AND bsi_phone_brand = #{old_bsiPhoneBrand}
 			AND spell_abbr = #{old_spellAbbr}
 			AND object_order = #{old_objectOrder}
+			AND bsi_phone_brand_status = #{old_bsiPhoneBrandStatus}
 		</trim>
 	</sql>
 	
@@ -31,6 +34,7 @@
 			bsi_phone_brand = #{bsiPhoneBrand},
 			spell_abbr = #{spellAbbr},
 			object_order = #{objectOrder},
+			bsi_phone_brand_status = #{bsiPhoneBrandStatus},
 		</set>
 	</sql>
 	
@@ -39,6 +43,7 @@
 			<if test="bsiPhoneBrand != null">bsi_phone_brand = #{bsiPhoneBrand},</if>
 			<if test="spellAbbr != null">spell_abbr = #{spellAbbr},</if>
 			<if test="objectOrder != null">object_order = #{objectOrder},</if>
+			<if test="bsiPhoneBrandStatus != null">bsi_phone_brand_status = #{bsiPhoneBrandStatus},</if>
 		</set>
 	</sql>
 	
@@ -79,12 +84,14 @@
 		INSERT INTO t_svp_bsi_phone_brand (			
 				bsi_phone_brand,				
 				spell_abbr,				
-				object_order				
+				object_order,				
+				bsi_phone_brand_status				
 		)		
 		VALUES (	
 			#{bsiPhoneBrand},
 			#{spellAbbr},
-			#{objectOrder}
+			#{objectOrder},
+			#{bsiPhoneBrandStatus}
 		) 
 	</insert>
 	

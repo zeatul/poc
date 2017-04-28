@@ -6,7 +6,7 @@
 
 	<sql id="columns">	
 				object_id AS "objectId" ,
-		origin_object_code AS "originObjectCode" ,
+		origin_object_id AS "originObjectId" ,
 		synonym_object_code AS "synonymObjectCode" ,
 		synonym_display_name AS "synonymDisplayName" ,
 		synonym_type AS "synonymType" ,
@@ -20,7 +20,7 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="objectId != null"> AND object_id = #{objectId}  </if>
-			<if test="originObjectCode != null"> AND origin_object_code = #{originObjectCode}  </if>
+			<if test="originObjectId != null"> AND origin_object_id = #{originObjectId}  </if>
 			<if test="synonymObjectCode != null"> AND synonym_object_code = #{synonymObjectCode}  </if>
 			<if test="synonymDisplayName != null"> AND synonym_display_name = #{synonymDisplayName}  </if>
 			<if test="synonymType != null"> AND synonym_type = #{synonymType}  </if>
@@ -35,7 +35,7 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND object_id = #{old_objectId}
-			AND origin_object_code = #{old_originObjectCode}
+			AND origin_object_id = #{old_originObjectId}
 			AND synonym_object_code = #{old_synonymObjectCode}
 			AND synonym_display_name = #{old_synonymDisplayName}
 			AND synonym_type = #{old_synonymType}
@@ -50,7 +50,7 @@
 	<sql id="update">
 		<set>
 			object_id = #{objectId},
-			origin_object_code = #{originObjectCode},
+			origin_object_id = #{originObjectId},
 			synonym_object_code = #{synonymObjectCode},
 			synonym_display_name = #{synonymDisplayName},
 			synonym_type = #{synonymType},
@@ -65,7 +65,7 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="objectId != null">object_id = #{objectId},</if>
-			<if test="originObjectCode != null">origin_object_code = #{originObjectCode},</if>
+			<if test="originObjectId != null">origin_object_id = #{originObjectId},</if>
 			<if test="synonymObjectCode != null">synonym_object_code = #{synonymObjectCode},</if>
 			<if test="synonymDisplayName != null">synonym_display_name = #{synonymDisplayName},</if>
 			<if test="synonymType != null">synonym_type = #{synonymType},</if>
@@ -113,7 +113,7 @@
 	<insert id="insert"  parameterType="SynonymDomain">
 		INSERT INTO t_dic_synonym (			
 				object_id,				
-				origin_object_code,				
+				origin_object_id,				
 				synonym_object_code,				
 				synonym_display_name,				
 				synonym_type,				
@@ -125,7 +125,7 @@
 		)		
 		VALUES (	
 			#{objectId},
-			#{originObjectCode},
+			#{originObjectId},
 			#{synonymObjectCode},
 			#{synonymDisplayName},
 			#{synonymType},

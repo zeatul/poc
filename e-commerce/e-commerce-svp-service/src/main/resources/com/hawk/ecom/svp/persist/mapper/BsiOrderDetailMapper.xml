@@ -9,12 +9,6 @@
 		order_id AS "orderId" ,
 		bsi_task_code AS "bsiTaskCode" ,
 		bsi_task_status AS "bsiTaskStatus" ,
-		exec_times AS "execTimes" ,
-		max_exec_times AS "maxExecTimes" ,
-		last_exec_err_code AS "lastExecErrCode" ,
-		last_exec_err_msg AS "lastExecErrMsg" ,
-		last_exec_date AS "lastExecDate" ,
-		schedule_exec_date AS "scheduleExecDate" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
 		bsi_product_id AS "bsiProductId" ,
 		imei AS "imei" ,
@@ -26,6 +20,15 @@
 		bsi_benef_mobile_number AS "bsiBenefMobileNumber" ,
 		bsi_cash_coupon_code AS "bsiCashCouponCode" ,
 		bsi_insurance_code AS "bsiInsuranceCode" ,
+		exec_times AS "execTimes" ,
+		max_exec_times AS "maxExecTimes" ,
+		last_exec_err_code AS "lastExecErrCode" ,
+		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_date AS "lastExecDate" ,
+		schedule_exec_date AS "scheduleExecDate" ,
+		current_exec_computer AS "currentExecComputer" ,
+		current_exec_process_id AS "currentExecProcessId" ,
+		current_exec_start_date AS "currentExecStartDate" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -37,12 +40,6 @@
 			<if test="orderId != null"> AND order_id = #{orderId}  </if>
 			<if test="bsiTaskCode != null"> AND bsi_task_code = #{bsiTaskCode}  </if>
 			<if test="bsiTaskStatus != null"> AND bsi_task_status = #{bsiTaskStatus}  </if>
-			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
-			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
-			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
-			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
-			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
-			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
@@ -54,6 +51,15 @@
 			<if test="bsiBenefMobileNumber != null"> AND bsi_benef_mobile_number = #{bsiBenefMobileNumber}  </if>
 			<if test="bsiCashCouponCode != null"> AND bsi_cash_coupon_code = #{bsiCashCouponCode}  </if>
 			<if test="bsiInsuranceCode != null"> AND bsi_insurance_code = #{bsiInsuranceCode}  </if>
+			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
+			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
+			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
+			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecDate != null"> AND last_exec_date = #{lastExecDate}  </if>
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
+			<if test="currentExecComputer != null"> AND current_exec_computer = #{currentExecComputer}  </if>
+			<if test="currentExecProcessId != null"> AND current_exec_process_id = #{currentExecProcessId}  </if>
+			<if test="currentExecStartDate != null"> AND current_exec_start_date = #{currentExecStartDate}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -66,12 +72,6 @@
 			AND order_id = #{old_orderId}
 			AND bsi_task_code = #{old_bsiTaskCode}
 			AND bsi_task_status = #{old_bsiTaskStatus}
-			AND exec_times = #{old_execTimes}
-			AND max_exec_times = #{old_maxExecTimes}
-			AND last_exec_err_code = #{old_lastExecErrCode}
-			AND last_exec_err_msg = #{old_lastExecErrMsg}
-			AND last_exec_date = #{old_lastExecDate}
-			AND schedule_exec_date = #{old_scheduleExecDate}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
 			AND bsi_product_id = #{old_bsiProductId}
 			AND imei = #{old_imei}
@@ -83,6 +83,15 @@
 			AND bsi_benef_mobile_number = #{old_bsiBenefMobileNumber}
 			AND bsi_cash_coupon_code = #{old_bsiCashCouponCode}
 			AND bsi_insurance_code = #{old_bsiInsuranceCode}
+			AND exec_times = #{old_execTimes}
+			AND max_exec_times = #{old_maxExecTimes}
+			AND last_exec_err_code = #{old_lastExecErrCode}
+			AND last_exec_err_msg = #{old_lastExecErrMsg}
+			AND last_exec_date = #{old_lastExecDate}
+			AND schedule_exec_date = #{old_scheduleExecDate}
+			AND current_exec_computer = #{old_currentExecComputer}
+			AND current_exec_process_id = #{old_currentExecProcessId}
+			AND current_exec_start_date = #{old_currentExecStartDate}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -95,12 +104,6 @@
 			order_id = #{orderId},
 			bsi_task_code = #{bsiTaskCode},
 			bsi_task_status = #{bsiTaskStatus},
-			exec_times = #{execTimes},
-			max_exec_times = #{maxExecTimes},
-			last_exec_err_code = #{lastExecErrCode},
-			last_exec_err_msg = #{lastExecErrMsg},
-			last_exec_date = #{lastExecDate},
-			schedule_exec_date = #{scheduleExecDate},
 			bsi_phone_model_id = #{bsiPhoneModelId},
 			bsi_product_id = #{bsiProductId},
 			imei = #{imei},
@@ -112,6 +115,15 @@
 			bsi_benef_mobile_number = #{bsiBenefMobileNumber},
 			bsi_cash_coupon_code = #{bsiCashCouponCode},
 			bsi_insurance_code = #{bsiInsuranceCode},
+			exec_times = #{execTimes},
+			max_exec_times = #{maxExecTimes},
+			last_exec_err_code = #{lastExecErrCode},
+			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_date = #{lastExecDate},
+			schedule_exec_date = #{scheduleExecDate},
+			current_exec_computer = #{currentExecComputer},
+			current_exec_process_id = #{currentExecProcessId},
+			current_exec_start_date = #{currentExecStartDate},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -124,12 +136,6 @@
 			<if test="orderId != null">order_id = #{orderId},</if>
 			<if test="bsiTaskCode != null">bsi_task_code = #{bsiTaskCode},</if>
 			<if test="bsiTaskStatus != null">bsi_task_status = #{bsiTaskStatus},</if>
-			<if test="execTimes != null">exec_times = #{execTimes},</if>
-			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
-			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
-			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
-			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
-			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="imei != null">imei = #{imei},</if>
@@ -141,6 +147,15 @@
 			<if test="bsiBenefMobileNumber != null">bsi_benef_mobile_number = #{bsiBenefMobileNumber},</if>
 			<if test="bsiCashCouponCode != null">bsi_cash_coupon_code = #{bsiCashCouponCode},</if>
 			<if test="bsiInsuranceCode != null">bsi_insurance_code = #{bsiInsuranceCode},</if>
+			<if test="execTimes != null">exec_times = #{execTimes},</if>
+			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
+			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
+			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecDate != null">last_exec_date = #{lastExecDate},</if>
+			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
+			<if test="currentExecComputer != null">current_exec_computer = #{currentExecComputer},</if>
+			<if test="currentExecProcessId != null">current_exec_process_id = #{currentExecProcessId},</if>
+			<if test="currentExecStartDate != null">current_exec_start_date = #{currentExecStartDate},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -186,12 +201,6 @@
 				order_id,				
 				bsi_task_code,				
 				bsi_task_status,				
-				exec_times,				
-				max_exec_times,				
-				last_exec_err_code,				
-				last_exec_err_msg,				
-				last_exec_date,				
-				schedule_exec_date,				
 				bsi_phone_model_id,				
 				bsi_product_id,				
 				imei,				
@@ -203,6 +212,15 @@
 				bsi_benef_mobile_number,				
 				bsi_cash_coupon_code,				
 				bsi_insurance_code,				
+				exec_times,				
+				max_exec_times,				
+				last_exec_err_code,				
+				last_exec_err_msg,				
+				last_exec_date,				
+				schedule_exec_date,				
+				current_exec_computer,				
+				current_exec_process_id,				
+				current_exec_start_date,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -212,12 +230,6 @@
 			#{orderId},
 			#{bsiTaskCode},
 			#{bsiTaskStatus},
-			#{execTimes},
-			#{maxExecTimes},
-			#{lastExecErrCode},
-			#{lastExecErrMsg},
-			#{lastExecDate},
-			#{scheduleExecDate},
 			#{bsiPhoneModelId},
 			#{bsiProductId},
 			#{imei},
@@ -229,6 +241,15 @@
 			#{bsiBenefMobileNumber},
 			#{bsiCashCouponCode},
 			#{bsiInsuranceCode},
+			#{execTimes},
+			#{maxExecTimes},
+			#{lastExecErrCode},
+			#{lastExecErrMsg},
+			#{lastExecDate},
+			#{scheduleExecDate},
+			#{currentExecComputer},
+			#{currentExecProcessId},
+			#{currentExecStartDate},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}

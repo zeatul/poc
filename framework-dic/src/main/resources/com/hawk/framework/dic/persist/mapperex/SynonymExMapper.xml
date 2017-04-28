@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.framework.dic.persist.mapperex.SynonymExMapper">
+
+	
+	<select id="querySynonymEx"  resultType="SynonymExDomain">
+		SELECT a.object_code AS "originObjectCode",
+		       b.synonym_object_code AS "synonymObjectCode",
+		       b.synonym_type AS "synonymType",
+		       b.synonym_display_name AS "synonymDisplayName"
+		FROM t_dic_word a, t_dic_synonym b 
+		WHERE a.object_id = b.object_id 
+		AND a.system_code = b.system_code 
+		AND a.version = b.version	
+		AND a.system_code = #{systemCode}
+		AND a.version = #{version}
+	</select>
+	
+	
+
+	
+	
+</mapper>
