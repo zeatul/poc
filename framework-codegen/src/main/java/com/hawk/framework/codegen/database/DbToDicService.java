@@ -29,8 +29,10 @@ import com.hawk.framework.dic.design.constant.ConstTableType;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import com.hawk.framework.dic.design.data.Synonym;
 import com.hawk.framework.dic.design.data.Word;
+import com.hawk.framework.dic.persist.domain.ColumnDomain;
 import com.hawk.framework.dic.persist.domain.TableDomain;
 import com.hawk.framework.dic.service.SynonymService;
+import com.hawk.framework.dic.service.TableService;
 import com.hawk.framework.dic.service.WordService;
 import com.hawk.framework.utility.tools.ClassPathTools;
 
@@ -60,6 +62,10 @@ public class DbToDicService {
 	private final WordService wordService;
 
 	private final SynonymService synonymService;
+	
+	private final TableService tableService;
+	
+	
 
 	public DbToDicService(String packageName) throws Throwable {
 		PACKAGE_NAME = packageName;
@@ -84,6 +90,8 @@ public class DbToDicService {
 		 * 启动Spring;
 		 */
 		context = new AnnotationConfigApplicationContext(CodeGenConfig.class);
+		
+		tableService = context.getBean(TableService.class);
 
 		wordService = context.getBean(WordService.class);
 
@@ -97,45 +105,65 @@ public class DbToDicService {
 
 		writeWord();
 		WriteSynonym();
-		WriteTable();
 	}
 
-	private void WriteTable() {
-		Date createDate = new Date();
-		Date updateDate = createDate;
-		List<TableDomain> tableDomainList = new ArrayList<TableDomain>();
-		for (Table table : database.getTableList()) {
-			System.out.println(table.getCode());
-
-			TableDomain tableDomain = new TableDomain();
-			tableDomainList.add(tableDomain);
-			String objectCode = table.getCode();
-			String objectComment = table.getComment();
-			String objectId = UUID.randomUUID().toString();
-			String objectName = table.getComment();
-			String objectType = ConstTableType.NORMAL;
-			String physicalOption = "ENGINE=InnoDB DEFAULT CHARSET=utf8";
-
-			tableDomain.setCreateDate(createDate);
-			tableDomain.setUpdateDate(updateDate);
-			tableDomain.setObjectCode(objectCode);
-			tableDomain.setObjectComment(objectComment);
-			tableDomain.setObjectId(objectId);
-			tableDomain.setObjectName(objectName);
-			tableDomain.setObjectType(objectType);
-			tableDomain.setPhysicalOption(physicalOption);
-			tableDomain.setSystemCode(systemCode);
-			tableDomain.setVersion(version);
-
-		}
-	}
+	
+	
+	
 
 	private void WriteSynonym() {
 		SynonymHelper.save(synonymService, wordService, systemCode, version);
 	}
+	
+	
+	private TableDomain buildTableDomain(Table table){
+		TableDomain tableDomain = new TableDomain();
+		String objectCode = table.getCode();
+		String objectComment = table.getComment();
+		String objectId = UUID.randomUUID().toString();
+		String objectName = table.getComment();
+		String objectType = ConstTableType.NORMAL;
+		String physicalOption = "ENGINE=InnoDB DEFAULT CHARSET=utf8";
+
+		tableDomain.setCreateDate(new Date());
+		tableDomain.setUpdateDate(tableDomain.getCreateDate());
+		tableDomain.setObjectCode(objectCode);
+		tableDomain.setObjectComment(objectComment);
+		tableDomain.setObjectId(objectId);
+		tableDomain.setObjectName(objectName);
+		tableDomain.setObjectType(objectType);
+		tableDomain.setPhysicalOption(physicalOption);
+		tableDomain.setSystemCode(systemCode);
+		tableDomain.setVersion(version);
+		return tableDomain;
+	}
+	
+	private ColumnDomain buildColumnDomain(){
+		ColumnDomain columnDomain = new ColumnDomain();
+		
+		columnDomain.setCreateDate(new Date());
+		columnDomain.setIsPk(isPk);
+		columnDomain.setNullable(nullable);
+		columnDomain.setObjectCode(objectCode);
+		columnDomain.setObjectComment(objectComment);
+		columnDomain.setObjectId(objectId);
+		columnDomain.setObjectName(objectName);
+		columnDomain.setObjectOrder(objectOrder);
+		columnDomain.setOperators(operators);
+		columnDomain.setSystemCode(systemCode);
+		columnDomain.setTableObjectId(tableObjectId);
+		columnDomain.setUpdateDate(updateDate);
+		columnDomain.setVersion(version);
+		columnDomain.setWordObjectId(wordObjectId);
+	}
 
 	private void writeWord() {
-		List<Word> wordList = new ArrayList<Word>();
+		
+		List<TableDomain> tableDomainList = new ArrayList<TableDomain>();
+		List<ColumnDomain> columnDomainList = new ArrayList<ColumnDomain>();
+		List<Word> wordList = new ArrayList<Word>(); 
+		
+		
 		Map<String, Word> filterWordMap = new HashMap<String, Word>();
 		wordService.loadWord(systemCode, version).forEach(word -> {
 			filterWordMap.put(word.getCode(), word);
@@ -143,6 +171,9 @@ public class DbToDicService {
 
 		for (Table table : database.getTableList()) {
 			System.out.println("---" + table.getCode() + "---");
+			TableDomain tableDomain = buildTableDomain(table);
+			tableDomainList.add(tableDomain);
+			
 			for (Column column : table.getColumnList()) {
 				String columnCode = column.getCode();
 				System.out.println("columnCode=" + columnCode);
@@ -169,6 +200,9 @@ public class DbToDicService {
 					wordList.add(word);
 					filterWordMap.put(word.getCode(), word);
 				}
+				
+				ColumnDomain columnDomain = buildColumnDomain();
+				columnDomainList.add(columnDomain);
 
 			}
 		}
@@ -177,6 +211,11 @@ public class DbToDicService {
 		wordList.forEach(word -> {
 			wordService.insertOrUpdateWord(word, systemCode, version);
 		});
+		
+		System.out.println("talbeDomainList.size()="+tableDomainList.size());
+		tableDomainList.forEach(tableDomain->{tableService.insertOrUpdate(tableDomain);});
+		
+		columnDomainList.forEach(columnDomain->{columnService.insertOrUpdate(columnDomain)});
 	}
 
 	/**
