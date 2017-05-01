@@ -13,7 +13,7 @@ public class TableService {
 	private TableMapper tableMapper;
 	
 	public void insertOrUpdate(TableDomain tableDomain){
-		tableMapper.insert(tableDomain);
+		this.tableMapper.insert(tableDomain);
 	}
 	
 
