@@ -185,16 +185,16 @@ public class BsiService {
 			throw new RuntimeException("代金券所有者不是当前用户");
 		}
 		
-		/**
-		 * 检查手机是否是新机
-		 */
-		Date first = bsiTalkingDataService.first(activateCouponParam.getImei());
-		if (first != null){
-			Date curDate = new Date();
-			if (DateTools.addDays(first, 10).before(curDate)){
-				throw new RuntimeException("当前手机购买超过10天，不符合投保条件");
-			}
-		}
+//		/**
+//		 * 检查手机是否是新机
+//		 */
+//		Date first = bsiTalkingDataService.first(activateCouponParam.getImei());
+//		if (first != null){
+//			Date curDate = new Date();
+//			if (DateTools.addDays(first, 10).before(curDate)){
+//				throw new RuntimeException("当前手机购买超过10天，不符合投保条件");
+//			}
+//		}
 			
 		/**
 		 * 符合条件,下单

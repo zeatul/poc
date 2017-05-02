@@ -24,7 +24,7 @@ drop index ui_dic_fk on t_dic_fk_map;
 
 drop table if exists t_dic_fk_map;
 
-drop index ui_di_1 on t_dic_index;
+drop index ui_dic_index_code on t_dic_index;
 
 drop table if exists t_dic_index;
 
@@ -277,13 +277,14 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_dic_index comment '索引';
 
 /*==============================================================*/
-/* Index: ui_di_1                                               */
+/* Index: ui_dic_index_code                                     */
 /*==============================================================*/
-create unique index ui_di_1 on t_dic_index
+create unique index ui_dic_index_code on t_dic_index
 (
    object_code,
    system_code,
-   version
+   version,
+   table_object_id
 );
 
 /*==============================================================*/
