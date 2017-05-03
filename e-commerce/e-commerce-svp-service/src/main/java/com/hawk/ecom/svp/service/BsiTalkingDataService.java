@@ -86,7 +86,45 @@ public class BsiTalkingDataService {
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("id", imei));
 		params.add(new HttpParam("type", "imei"));
+		
+		if (imei.length() != 15)
+			throw new RuntimeException("imei 必须是 15位");
+		
+		Map<String,Object> trinfoMap = new HashMap<String,Object>();
+		List<Map<String,Object>> trinfoList = new ArrayList<Map<String,Object>>();
+		trinfoMap.put("trinfo", trinfoList);
+		Map<String,Object> trinfo = new HashMap<String,Object>();
+		trinfoList.add(trinfo);
+		trinfo.put("time", System.currentTimeMillis());
+		trinfo.put("starttime", System.currentTimeMillis());
+		trinfo.put("endtime", System.currentTimeMillis());
+		trinfo.put("BSSID", "0E:39:6C:4F:B0:CC");
+		trinfo.put("SSID", "宜昌德龙店");
+		trinfo.put("RSSI", 37);
+		trinfo.put("APNO", "WAP22000000089E");
+		trinfo.put("POIID", "13890");
+		trinfo.put("POI", "宜昌德龙特展厅 宜昌德龙特展厅");
+		trinfo.put("type", "4S店");
+		trinfo.put("brand", "");
+		trinfo.put("adress", "宜昌市南京路 宜昌市南京路 128 号");
+		trinfo.put("loc", "31.894,120.345");
+		params.add(new HttpParam("trinfo", JsonTools.toJsonString(trinfoMap)));
+		
+		
+		System.out.println(JsonTools.toJsonString(trinfoMap));
 
+//		url = url + "?" + "id="+imei;
+//		url = url + "&" + "type=imei";
+//		try {
+//			url = url + "&" + "trinfo=" + URLEncoder.encode(JsonTools.toJsonString(trinfoMap),"utf-8");
+//		} catch (UnsupportedEncodingException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		params = null;
+//		
+//		System.out.println(url);
+		
 		logger.info("first param={}", JsonTools.toJsonString(params));
 		String result = httpExecutor.get(url, params);
 		logger.info("first()={}", result);
@@ -106,7 +144,7 @@ public class BsiTalkingDataService {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(new BsiTalkingDataService().first("1111"));
+		System.out.println(new BsiTalkingDataService().first("111111111111111"));
 	}
 
 }
