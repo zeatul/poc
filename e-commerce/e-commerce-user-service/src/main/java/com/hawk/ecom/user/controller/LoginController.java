@@ -32,6 +32,8 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = POST)
 	public WebResponse<LoginResponse> login(HttpServletRequest request) throws Exception {
 		LoginParam loginParam = HttpRequestTools.parse(request, LoginParam.class);
+		loginParam.setLoginIp(AuthThreadLocal.getHttpRequestInfo().getIp());
+		loginParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
 		String token = loginService.login(loginParam);
 		LoginResponse loginResponse = new LoginResponse();
 

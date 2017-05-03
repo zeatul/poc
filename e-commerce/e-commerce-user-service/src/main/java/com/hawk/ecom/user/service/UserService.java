@@ -69,9 +69,7 @@ public class UserService {
 		userDomain.setLastAccessDate(curDate);
 
 		String userCode = generateUserCode();
-		/**
-		 * TODO:签名
-		 */
+		
 		String loginPwd = createUserParam.getLoginPwd();
 		loginPwd = password(loginPwd,userCode,curDate);
 		userDomain.setLoginPwd(loginPwd);

@@ -16,7 +16,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.hawk.framework.dic.design.data.Word;
-import com.hawk.framework.dic.service.ParseXmlService;
+import com.hawk.framework.dic.service.deprecated.ParseXmlService;
 import com.hawk.framework.utility.tools.ClassPathTools;
 import com.hawk.framework.utility.tools.PackageTools;
 import com.hawk.framework.utility.tools.PackageTools.FileFilter;

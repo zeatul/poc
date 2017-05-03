@@ -30,7 +30,7 @@ import com.hawk.framework.codegen.database.parse.IDatabaseParser;
 import com.hawk.framework.codegen.utils.ProjectTools;
 import com.hawk.framework.dic.design.Application;
 import com.hawk.framework.dic.design.data.Word;
-import com.hawk.framework.dic.service.ParseXmlService;
+import com.hawk.framework.dic.service.deprecated.ParseXmlService;
 import com.hawk.framework.dic.design.data.EnumDataType;
 import freemarker.template.Configuration;
 import freemarker.template.Template;

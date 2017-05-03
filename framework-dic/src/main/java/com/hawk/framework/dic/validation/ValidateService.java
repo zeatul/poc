@@ -5,21 +5,16 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.dic.validation.validator.ConstraintValidator;
+import com.hawk.framework.pub.spring.FrameworkContext;
 
-public class ValidateService implements ApplicationContextAware {
+@Service
+public class ValidateService  {
 
-	private ApplicationContext applicationContext;
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-
-	}
+	
 
 	/**
 	 * 校验函数所有参数
@@ -49,7 +44,7 @@ public class ValidateService implements ApplicationContextAware {
 
 				for (int j =0; j<c.validatedBy().length; j++){
 					Class<?> clazz  = c.validatedBy()[j] ;
-					((ConstraintValidator<Annotation,Object>)(applicationContext.getBean(clazz))).valid(annotation, value);
+					((ConstraintValidator<Annotation,Object>)(FrameworkContext.getBean(clazz))).valid(annotation, value);
 					
 				}
 			}

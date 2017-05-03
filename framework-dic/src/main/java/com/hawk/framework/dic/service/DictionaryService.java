@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hawk.framework.dic.design.constant.ConstSynonymType;
+import com.hawk.framework.dic.design.data.Synonym;
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.utility.tools.CamelNameTools;
 
@@ -15,9 +21,17 @@ import com.hawk.framework.utility.tools.CamelNameTools;
  */
 public class DictionaryService {
 
-	private List<String> packageNames;
+	private String systemCode;
+	
+	private int version;
+	
+	@Autowired
+	private WordService wordService;
+	
+	@Autowired
+	private SynonymService synonymService;
 
-	private ParseXmlService parseXmlService;
+	
 
 	private Map<String, Word> codeWordMap = new HashMap<String, Word>();
 
@@ -29,28 +43,34 @@ public class DictionaryService {
 	 * @param packageNames
 	 * @throws Exception 
 	 */
-	public DictionaryService(List<String> packageNames, ParseXmlService parseXmlService) throws Exception {
-		this.packageNames = packageNames;
-		this.parseXmlService = parseXmlService;
-		init();
+	public DictionaryService(String systemCode ,int version) throws Exception {
+		this.systemCode = systemCode;
+		this.version = version;
 	}
+	
+	
 
+	@PostConstruct
 	private void init() throws Exception {
-		String[] packageNameArray = packageNames.toArray(new String[] {});
+		/**
+		 * synonym
+		 */
+		List<Synonym> synonymList = synonymService.loadSynonym(ConstSynonymType.WORD, systemCode, version);
+		synonymList.forEach(synonym->{
+			synonymMap.put(synonym.getSynonymCode(), synonym.getOriginCode());
+		});
+		
 		/*
 		 * word
 		 */
-		List<Word> wordList = parseXmlService.parseWordByPackageName(packageNameArray);
+		List<Word> wordList = wordService.loadWord(systemCode, version);
+		
+		
 		wordList.forEach(e -> {
 			this.codeWordMap.put(CamelNameTools.camelName(e.getCode()), e);
 			this.codeWordMap.put(e.getCode(), e);
 		});
 
-		/**
-		 * 
-		 */
-		Map<String, String> map = parseXmlService.parseWordMapByPackageNames(packageNameArray);
-		this.synonymMap.putAll(map);
 	}
 	
 	/**

@@ -21,6 +21,8 @@ public class AuthThreadLocal {
 	
 	private static ThreadLocal<String> threadLocalMobileNumber = new ThreadLocal<String>();
 	
+	private static ThreadLocal<HttpRequestInfo> threadLocalHttpRequestInfo = new ThreadLocal<HttpRequestInfo>();
+	
 	public static Long getUserId(){
 		return threadLoaclUserId.get();
 	}
@@ -37,6 +39,12 @@ public class AuthThreadLocal {
 		threadLocalToken.set(token);
 	}
 	
+	public static HttpRequestInfo getHttpRequestInfo(){
+		return threadLocalHttpRequestInfo.get();
+	}
 	
+	public static void setHttpRequestInfo(HttpRequestInfo httpRequestInfo){
+		threadLocalHttpRequestInfo.set(httpRequestInfo);
+	}
 
 }

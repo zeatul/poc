@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.user.constant.ConstLoginType;
-import com.hawk.ecom.user.exception.TokenEmptyException;
 import com.hawk.ecom.user.exception.TokenTimeoutException;
 import com.hawk.ecom.user.exception.UnMatchedPasswordRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
@@ -68,7 +67,7 @@ public class LoginService {
 		
 	@Valid
 	public String login(@Valid LoginParam loginParam){
-		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd());
+		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd(),loginParam.getLoginIp(),loginParam.getUserAgent());
 	}
 	
 	private String buildLongTokenKey(String token){
@@ -90,7 +89,7 @@ public class LoginService {
 		return userDomain;
 	}
 	
-	public String login(String mobileNumber, String password){
+	public String login(String mobileNumber, String password,String loginIp ,String userAgent){
 		UserDomain userDomain = checkPassword(mobileNumber,password);
 		
 		LoginDomain loginDomain = new LoginDomain();
@@ -102,6 +101,8 @@ public class LoginService {
 		loginDomain.setUserId(userDomain.getId());
 		loginDomain.setUserCode(userDomain.getUserCode());
 		loginDomain.setMobileNumber(mobileNumber);
+		loginDomain.setLoginIp(loginIp);
+		loginDomain.setUserAgent(userAgent);
 		Date expireDate = DateTools.addMinutes(curDate, 240);
 		loginDomain.setExpireDate(expireDate);
 		
@@ -123,6 +124,8 @@ public class LoginService {
 		
 		String loginTokenKey = buildLongTokenKey(token);
 		cacheService.put(loginTokenKey, cachedLoginToken, 240);
+		
+		logger.info("{} login success",mobileNumber);
 		
 		return token;
 	}

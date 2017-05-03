@@ -1,3 +1,4 @@
+package com.hawk.framework.dic.service.deprecated;
 //package com.hawk.framework.dic.service;
 //
 //import java.util.Iterator;

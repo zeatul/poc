@@ -12,7 +12,6 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.pub.web.HttpRequestInfo;
 import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
-import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class AccessInterceptor extends HandlerInterceptorAdapter {

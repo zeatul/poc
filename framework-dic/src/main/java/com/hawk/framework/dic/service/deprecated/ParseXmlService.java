@@ -1,4 +1,4 @@
-package com.hawk.framework.dic.service;
+package com.hawk.framework.dic.service.deprecated;
 
 import java.beans.PropertyDescriptor;
 import java.io.InputStream;

@@ -6,12 +6,15 @@ import java.lang.reflect.Field;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.validation.ValidateException;
 import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.spring.FrameworkContext;
 
-public class SingleObjectValidator implements ConstraintValidator<Valid, Object> ,ApplicationContextAware{
+@Service
+public class SingleObjectValidator implements ConstraintValidator<Valid, Object> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -41,7 +44,7 @@ public class SingleObjectValidator implements ConstraintValidator<Valid, Object>
 
 				for (int j =0; j<c.validatedBy().length; j++){
 					Class<?> clazz  = c.validatedBy()[j] ;
-					((ConstraintValidator<Annotation,Object>)(applicationContext.getBean(clazz))).valid(fieldAnnotation, o);
+					((ConstraintValidator<Annotation,Object>)(FrameworkContext.getBean(clazz))).valid(fieldAnnotation, o);
 					
 				}
 			}
@@ -49,12 +52,6 @@ public class SingleObjectValidator implements ConstraintValidator<Valid, Object>
 		
 	}
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-		
-	}
 	
-	private ApplicationContext applicationContext;
 
 }

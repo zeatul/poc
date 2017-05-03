@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.sms.service.SmsService;
+import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.RegisterUserParam;
@@ -59,10 +61,13 @@ public class UserController {
 		
 		createUserParam.setLoginPwd(loginPwd);
 		createUserParam.setMobileNumber(mobileNumber);
+		createUserParam.setRegisterChannel(ConstRegisterChannel.SELF_REG);
+		createUserParam.setRegisterIp(AuthThreadLocal.getHttpRequestInfo().getIp());
+		createUserParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
 		
 		userService.createUser(createUserParam);
 		
-		String  token = loginService.login(mobileNumber, loginPwd);
+		String  token = loginService.login(mobileNumber, loginPwd,createUserParam.getRegisterIp(),createUserParam.getUserAgent());
 		
 		LoginResponse loginResponse = new LoginResponse();
 		

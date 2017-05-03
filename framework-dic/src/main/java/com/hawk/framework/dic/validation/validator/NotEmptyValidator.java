@@ -3,6 +3,7 @@ package com.hawk.framework.dic.validation.validator;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.design.data.Word;
 import com.hawk.framework.dic.service.DictionaryService;
@@ -10,6 +11,7 @@ import com.hawk.framework.dic.validation.ValidateException;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.utility.tools.StringTools;
 
+@Service
 public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 	
 	@Autowired
