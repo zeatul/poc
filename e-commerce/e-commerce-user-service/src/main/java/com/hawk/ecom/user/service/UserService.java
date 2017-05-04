@@ -1,6 +1,8 @@
 package com.hawk.ecom.user.service;
 
 import java.util.Date;
+import java.util.UUID;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import com.hawk.ecom.pub.constant.ConstBoolean;
 import com.hawk.ecom.sms.service.SmsService;
+import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.constant.ConstUserStatus;
 import com.hawk.ecom.user.exception.MobileNumberRegisteredRuntimeException;
 import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
@@ -19,8 +21,10 @@ import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.UserMapper;
 import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.ResetPasswordParam;
+import com.hawk.ecom.user.request.SsoParam;
 import com.hawk.ecom.user.request.UpdatePasswordParam;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
@@ -47,6 +51,8 @@ public class UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+	
+	
 
 	public UserDomain queryUserByMobileNumber(String mobileNumber) {
 		MybatisParam params = new MybatisParam().put("mobileNumber", mobileNumber);
@@ -55,6 +61,28 @@ public class UserService {
 	
 	public String password(String loginPwd,String userCode,Date curDate){
 		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,userCode,curDate.getTime()));
+	}
+	
+	@Valid
+	public String sso(@Valid SsoParam ssoParam){
+		String mobileNumber = ssoParam.getMobileNumber();
+		String password = UUID.randomUUID().toString().replaceAll("-", "");
+		String registerIp = ssoParam.getRegisterIp();
+		String userAgent = ssoParam.getUserAgent();
+		String registerChannel = ConstRegisterChannel.SSO + "_" + ssoParam.getAppid();
+		
+		UserDomain userDomain = queryUserByMobileNumber(mobileNumber);
+		
+		if (userDomain == null){
+			CreateUserParam createUserParam = new CreateUserParam();
+			password = password.substring(0, 16);
+			createUserParam.setMobileNumber(mobileNumber);
+			createUserParam.setRegisterIp(registerIp);
+			createUserParam.setRegisterChannel(registerChannel);
+			createUserParam.setUserAgent(userAgent);
+			createUser(createUserParam);
+		}
+		return loginService.login(mobileNumber, password, registerIp, userAgent);
 	}
 
 	@Valid

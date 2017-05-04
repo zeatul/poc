@@ -36,6 +36,15 @@ public class LoginService {
 	@Autowired
 	private CacheService cacheService;
 	
+	private String ssoPwdKey(String mobileNumber){
+		return StringTools.concatWithSymbol(":", getClass().getName(),"sso",mobileNumber);
+	}
+	
+	public void cacheSsoPassword(String mobileNumber ,String password){
+		String key = ssoPwdKey(mobileNumber);
+		cacheService.put(key, password, 60);
+	}
+	
 	
 	public UserInfoResponse loginInfo(String token){
 		if (StringTools.isNullOrEmpty(token)){
@@ -79,6 +88,17 @@ public class LoginService {
 		if (userDomain == null){
 			throw new UserNotFoundRuntimeException();
 		}
+		
+		/**
+		 * sso临时密码判断
+		 */
+		if (password.length() == UUID.randomUUID().toString().replaceAll("-", "").length()){
+			String cachedPassword = cacheService.get(mobileNumber, String.class);
+			if (password.equals(cachedPassword)){
+				return userDomain;
+			}
+		}
+		
 		password = userService.password(password, userDomain.getUserCode(), userDomain.getCreateDate());
 		if (!password.equals(userDomain.getLoginPwd())){
 			/**

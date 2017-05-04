@@ -17,14 +17,18 @@ import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.RegisterUserParam;
 import com.hawk.ecom.user.request.ResetPasswordParam;
+import com.hawk.ecom.user.request.SsoParam;
 import com.hawk.ecom.user.request.UpdatePasswordParam;
 import com.hawk.ecom.user.response.LoginResponse;
+import com.hawk.ecom.user.response.SsoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.ecom.user.service.UserService;
+import com.hawk.ecom.user.utils.SsoToolsForSignature;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
+import com.hawk.framework.utility.tools.JsonTools;
 
 @RestController
 @RequestMapping("/user")
@@ -46,6 +50,23 @@ public class UserController {
 	@Autowired
 	private SmsService smsService;
 	
+	public static void main(String[] args){
+		String token = "111111111111";
+		SsoResponse ssoResponse = new SsoResponse();
+		ssoResponse.setToken(token);
+		System.out.println(JsonTools.toJsonString(SuccessResponse.build(ssoResponse)));
+	}
+	
+	@RequestMapping(value = "/sso", method = {POST,GET})
+	public WebResponse<SsoResponse> sso(HttpServletRequest request) throws Exception{
+		SsoParam ssoParam = SsoToolsForSignature.parse(request, SsoParam.class);
+		ssoParam.setRegisterIp(AuthThreadLocal.getHttpRequestInfo().getIp());
+		ssoParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
+		String token = userService.sso(ssoParam);
+		SsoResponse ssoResponse = new SsoResponse();
+		ssoResponse.setToken(token);
+		return  SuccessResponse.build(ssoResponse);
+	}
 	
 	@RequestMapping(value = "/register", method = POST)
 	public WebResponse<LoginResponse> register(HttpServletRequest request) throws Exception{

@@ -1,9 +1,8 @@
 package com.hawk.ecom.user.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hawk.framework.dic.validation.annotation.ExternalImplicitParam;
-import com.hawk.framework.dic.validation.annotation.ExternalInputParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 
 public class CreateUserParam {
 	
@@ -43,7 +42,7 @@ public class CreateUserParam {
 	/**
 	 * 手机号,校验非空,长度,正则
 	 */
-	@ExternalInputParam(name="手机号")
+	@ValidWord("mobileNumber")
 	@NotEmpty("mobileNumber")
 	private String mobileNumber;
 	
@@ -51,21 +50,20 @@ public class CreateUserParam {
 	/**
 	 * 密码,校验非空,长度,正则
 	 */
-	@ExternalInputParam(name="登录密码")
+	@ValidWord("loginPwd")
 	@NotEmpty("loginPwd")
 	@JsonIgnore
 	private String loginPwd;
 	
 	/**
 	 * 为空的话,读取http请求的ip地址
-	 */
-	@ExternalImplicitParam
+	 */	
 	private String registerIp;
 	
 	/**
 	 * 读取http请求的userAgent
 	 */
-	@ExternalImplicitParam	
+	
 	private String userAgent;
 	
 	

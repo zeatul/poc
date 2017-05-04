@@ -7,6 +7,7 @@ import java.lang.reflect.Parameter;
 import org.springframework.beans.BeansException;
 import org.springframework.stereotype.Service;
 
+import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.dic.validation.validator.ConstraintValidator;
 import com.hawk.framework.pub.spring.FrameworkContext;
@@ -20,11 +21,11 @@ public class ValidateService  {
 	 * 校验函数所有参数
 	 * @param methodAnnotations 参数注解
 	 * @param values 参数值
-	 * @throws ValidateException 
+	 * @throws EmptyParameterRuntimeException 
 	 * @throws BeansException 
 	 */
 	@SuppressWarnings("unchecked")
-	public void validMethodParameters (Method method ,Object[] values) throws ValidateException{
+	public void validMethodParameters (Method method ,Object[] values) throws EmptyParameterRuntimeException{
 		if (values == null || values.length == 0)
 			return ;
 		
@@ -44,7 +45,7 @@ public class ValidateService  {
 
 				for (int j =0; j<c.validatedBy().length; j++){
 					Class<?> clazz  = c.validatedBy()[j] ;
-					((ConstraintValidator<Annotation,Object>)(FrameworkContext.getBean(clazz))).valid(annotation, value);
+					((ConstraintValidator<Annotation,Object>)(FrameworkContext.getBean(clazz))).valid(annotation, value,null);
 					
 				}
 			}

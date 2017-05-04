@@ -16,6 +16,32 @@ import com.hawk.framework.utility.tools.StringTools;
  */
 public class Word implements IDictionaryObject {
 
+	
+
+	public String getExtraValidation() {
+		return extraValidation;
+	}
+
+	public void setExtraValidation(String extraValidation) {
+		this.extraValidation = extraValidation;
+	}
+
+	public String getPattern() {
+		return pattern;
+	}
+
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
+	}
+
+	public String getPatternComment() {
+		return patternComment;
+	}
+
+	public void setPatternComment(String patternComment) {
+		this.patternComment = patternComment;
+	}
+
 	public Map<String, String> getEnumValues() {
 		return enumValues;
 	}
@@ -249,6 +275,21 @@ public class Word implements IDictionaryObject {
 	 * 枚举值
 	 */
 	private Map<String, String> enumValues;
+	
+	/**
+	 * 格式描述
+	 */
+	private String patternComment ;
+	
+	/**
+	 * 格式
+	 */
+	private String pattern;
+	
+	/**
+	 * 扩展校验
+	 */
+	private String extraValidation;
 
 	public void setEnumValues(String enumValuesStr) {
 		if (StringTools.isNullOrEmpty(enumValuesStr))

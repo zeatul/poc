@@ -459,7 +459,7 @@ create table t_dic_word
    object_comment       varchar(1024) comment '描述',
    object_display_name  varchar(200) comment '显示名称',
    object_pattern       varchar(200) comment '格式',
-   object_pattern_comment varchar(200) comment '格式描述',
+   object_pattern_comment varchar(1000) comment '格式描述',
    regex                varchar(1000) comment '正则表达式',
    object_extra_validation varchar(1000) comment '扩展校验',
    char_max_length      integer comment '最大长度',

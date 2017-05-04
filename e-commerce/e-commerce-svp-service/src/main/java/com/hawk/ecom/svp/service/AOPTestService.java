@@ -2,7 +2,7 @@ package com.hawk.ecom.svp.service;
 
 import java.util.Date;
 
-import com.hawk.framework.dic.validation.ValidateException;
+import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -10,7 +10,7 @@ import com.hawk.framework.dic.validation.annotation.Valid;
 public class AOPTestService {
 	
 	@Valid
-	public void exec(@NotEmpty("mobileNumber") String mobileNumber) throws ValidateException{
+	public void exec(@NotEmpty("mobileNumber") String mobileNumber) throws EmptyParameterRuntimeException{
 		System.out.println(mobileNumber);
 		System.out.println("AOPTestService");
 	}
@@ -52,7 +52,7 @@ public class AOPTestService {
 	}
 	
 	@Valid
-	public void exec(@Valid ComplexParam param) throws ValidateException{
+	public void exec(@Valid ComplexParam param) throws EmptyParameterRuntimeException{
 		System.out.println("AOPTestService.exec2 ComplexParam");
 	}
 

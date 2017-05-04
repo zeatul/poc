@@ -1,8 +1,8 @@
 package com.hawk.ecom.sms.exception;
 
-import com.hawk.framework.pub.exception.BasicRuntimException;
+import com.hawk.framework.pub.exception.BasicRuntimeException;
 
-public class OverSpeedException extends BasicRuntimException{
+public class OverSpeedException extends BasicRuntimeException{
 
 	/**
 	 * 

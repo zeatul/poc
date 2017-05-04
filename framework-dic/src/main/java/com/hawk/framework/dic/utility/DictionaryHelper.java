@@ -22,6 +22,10 @@ public class DictionaryHelper {
 		word.setDatetimePrecision(wordDomain.getDatetimePrecision());
 		word.setDisplayName(wordDomain.getObjectDisplayName());
 		
+		word.setPatternComment(wordDomain.getObjectPatternComment());
+		word.setPattern(wordDomain.getObjectPattern());
+		word.setExtraValidation(wordDomain.getObjectExtraValidation());
+		
 		word.setEnumValues(wordDomain.getEnumValues());
 		
 		
@@ -61,6 +65,10 @@ public class DictionaryHelper {
 		wordDomain.setUseType(word.getUseType());
 		wordDomain.setSystemCode(systemCode);
 		wordDomain.setVersion(version);
+		
+		wordDomain.setObjectPattern(word.getPattern());
+		wordDomain.setObjectPatternComment(word.getPatternComment());
+		wordDomain.setObjectExtraValidation(word.getExtraValidation());
 		
 		wordDomain.setCreateDate(new Date());
 		wordDomain.setUpdateDate(wordDomain.getCreateDate());

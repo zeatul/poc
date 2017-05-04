@@ -12,8 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.service.DictionaryService;
-import com.hawk.framework.dic.validation.ValidateException;
 import com.hawk.framework.dic.validation.ValidateService;
 
 @Configuration
@@ -52,7 +52,7 @@ public class ValidateConfig {
 		}
 		
 		@Before("methodOfValidateParameter()")
-		public void validate(JoinPoint jp) throws ValidateException{
+		public void validate(JoinPoint jp) throws EmptyParameterRuntimeException{
 						
 			MethodSignature signature = (MethodSignature) jp.getSignature();
 			Method method = signature.getMethod();			

@@ -1,8 +1,8 @@
 package com.hawk.ecom.user.request;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.hawk.framework.dic.validation.annotation.ExternalInputParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 
 public class RegisterUserParam {
@@ -32,21 +32,20 @@ public class RegisterUserParam {
 	/**
 	 * 手机号,校验非空,长度,正则
 	 */
-	@ExternalInputParam(name="手机号")
-	@NotEmpty("mobileNumber")
+	@ValidWord
+	@NotEmpty
 	private String mobileNumber;
 	
 	
 	/**
 	 * 密码,校验非空,长度,正则
 	 */
-	@ExternalInputParam(name="登录密码")
-	@NotEmpty("loginPwd")
+	@NotEmpty
 	@JsonSerialize(using=PasswordSerializer.class)
 	private String loginPwd;
 
 	
-	@NotEmpty(value="veriCode",name="验证码")
+	@NotEmpty(name="验证码")
 	private String veriCode;
 
 

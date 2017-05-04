@@ -1,8 +1,8 @@
 package com.hawk.ecom.user.exception;
 
-import com.hawk.framework.pub.exception.BasicRuntimException;
+import com.hawk.framework.pub.exception.BasicRuntimeException;
 
-public class UnMatchedPasswordRuntimeException extends BasicRuntimException{
+public class UnMatchedPasswordRuntimeException extends BasicRuntimeException{
 
 	private final static int  code = 100002;
 	/**

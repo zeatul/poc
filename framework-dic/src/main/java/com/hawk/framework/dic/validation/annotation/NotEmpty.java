@@ -24,7 +24,7 @@ public @interface NotEmpty {
 	 * 数据字典定义的code	
 	 * @return
 	 */
-	String value() ;
+	String value() default "";
 	
 	/**
 	 * 自定义的字段名

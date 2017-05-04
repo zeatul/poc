@@ -1,7 +1,7 @@
 package com.hawk.framework.utility.tools;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class StringTools {
@@ -68,7 +68,7 @@ public class StringTools {
 	 * @param objects
 	 * @return
 	 */
-	public static String concatWithSymbol(String symbol ,List<?> objects){
+	public static String concatWithSymbol(String symbol ,Collection<?> objects){
 		StringBuilder sb = getThreadSafeStringBuilder();
 		for (Object o : objects){
 			sb.append(o);

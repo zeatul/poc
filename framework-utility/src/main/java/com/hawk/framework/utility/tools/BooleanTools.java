@@ -2,7 +2,9 @@ package com.hawk.framework.utility.tools;
 
 public class BooleanTools {
 
-	public static boolean parse(int v) {
+	public static boolean parse(Integer v) {
+		if (v == null)
+			return false;
 		if (v <= 0)
 			return false;
 		else
@@ -10,6 +12,8 @@ public class BooleanTools {
 	}
 
 	public static boolean parse(String str) {
+		if (StringTools.isNullOrEmpty(str))
+			return false;
 		if (str.trim().equalsIgnoreCase("yes"))
 			return true;
 		if (str.trim().equalsIgnoreCase("no"))

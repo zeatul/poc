@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.design.data.Word;
+import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.service.DictionaryService;
-import com.hawk.framework.dic.validation.ValidateException;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -18,7 +18,7 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 	private DictionaryService dictionaryService;
 	
 	@Override
-	public void valid(NotEmpty annotation, Object value) throws ValidateException {
+	public void valid(NotEmpty annotation, Object value,String code) throws EmptyParameterRuntimeException {
 		boolean isValid = isValid(annotation,value);
 		if (!isValid){
 			
@@ -26,22 +26,26 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 			
 			if (StringTools.isNullOrEmpty(name)){
 				
-				Word word = dictionaryService.queryWord(annotation.value());
+				String wordCode = annotation.value();
+				
+				if (StringTools.isNullOrEmpty(wordCode)){
+					wordCode = code;
+				}
+				Word word = dictionaryService.queryWord(wordCode);
+				
 				if (word == null){
-					name = annotation.value();
+					name = wordCode ;
 				}else{
 					name = word.getName();
 				}
 			}
 			
 			
-			
-			
-			throw new ValidateException(-1,name +"不能为空");
+			throw new EmptyParameterRuntimeException(name);
 		}
 	}
 
-	private boolean isValid(NotEmpty annotation, Object value ) throws ValidateException {
+	private boolean isValid(NotEmpty annotation, Object value ) throws EmptyParameterRuntimeException {
 		if (value == null)
 			return false;
 		
@@ -67,7 +71,7 @@ public class NotEmptyValidator implements ConstraintValidator<NotEmpty, Object>{
 				return true;
 		}
 		
-		throw new ValidateException(-1,"unsupport object type for empty checking");
+		throw new RuntimeException("unsupport object type for empty checking");
 	}
 
 	

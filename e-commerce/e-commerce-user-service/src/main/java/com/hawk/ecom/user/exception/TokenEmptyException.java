@@ -1,8 +1,8 @@
 package com.hawk.ecom.user.exception;
 
-import com.hawk.framework.pub.exception.BasicRuntimException;
+import com.hawk.framework.pub.exception.BasicRuntimeException;
 
-public class TokenEmptyException extends BasicRuntimException{
+public class TokenEmptyException extends BasicRuntimeException{
 
 	/**
 	 * 
