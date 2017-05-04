@@ -17,4 +17,7 @@ public class IndexService {
 	public void insertOrUpdate(IndexDomain indexDomain){
 		indexMapper.insert(indexDomain);
 	}
+	
+	
+	mysqldump --no-defaults -uroot -p  dic t_svp_bsi_phone_model > c:/createdb.sql;
 }
