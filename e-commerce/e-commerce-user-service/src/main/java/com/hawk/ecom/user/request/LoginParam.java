@@ -48,7 +48,6 @@ public class LoginParam {
 	/**
 	 * 密码,校验非空,长度,正则
 	 */
-	@ValidWord
 	@NotEmpty
 	private String loginPwd;
 	

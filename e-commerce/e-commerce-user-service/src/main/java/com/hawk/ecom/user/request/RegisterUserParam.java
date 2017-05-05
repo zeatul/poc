@@ -41,6 +41,7 @@ public class RegisterUserParam {
 	 * 密码,校验非空,长度,正则
 	 */
 	@NotEmpty
+	@ValidWord
 	@JsonSerialize(using=PasswordSerializer.class)
 	private String loginPwd;
 

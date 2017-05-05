@@ -1,6 +1,7 @@
 package com.hawk.ecom.svp.request;
 
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 
 public class SignInParam {
 	
@@ -12,7 +13,8 @@ public class SignInParam {
 		this.mobileNumber = mobileNumber;
 	}
 
-	@NotEmpty("mobile_number")
+	@ValidWord
+	@NotEmpty
 	private String mobileNumber;
 
 }

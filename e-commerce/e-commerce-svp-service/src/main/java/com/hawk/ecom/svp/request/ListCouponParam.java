@@ -12,7 +12,7 @@ public class ListCouponParam {
 		this.mobileNumber = mobileNumber;
 	}
 
-	@NotEmpty("mobile_number")
+	@NotEmpty
 	private String mobileNumber;
 
 }

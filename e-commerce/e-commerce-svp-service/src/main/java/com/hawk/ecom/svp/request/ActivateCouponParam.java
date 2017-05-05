@@ -2,6 +2,7 @@ package com.hawk.ecom.svp.request;
 
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 
 public class ActivateCouponParam {
 	
@@ -102,7 +103,8 @@ public class ActivateCouponParam {
 	/**
 	 * 代金券的使用者的手机号
 	 */
-	@NotEmpty(value="",name="ticket")
+	@ValidWord(value="mobileNumber",name="ticket")
+	@NotEmpty(name="ticket")
 	private String ticket;
 	
 	/**
@@ -114,18 +116,21 @@ public class ActivateCouponParam {
 	/**
 	 * 投保者手机号
 	 */
+	@ValidWord("bsi_benef_mobile_number")
 	@NotEmpty("bsi_benef_mobile_number")
 	private String mobileNumber;
 	
 	/**
 	 * 投保者证件类型
 	 */
-	@NotNull("bsi_benef_id_typ")
+	@ValidWord("bsi_benef_id_typ")
+	@NotNull("bsi_benef_id_typ")	
 	private Integer idType;
 	
 	/**
 	 * 投保者证件号码
 	 */
+	@ValidWord("bsi_benef_id_number")
 	@NotEmpty("bsi_benef_id_number")
 	private String idNumber;
 	
@@ -144,11 +149,12 @@ public class ActivateCouponParam {
 	/**
 	 * 投保手机串号
 	 */
-	@NotEmpty("imei")
+	@ValidWord
+	@NotEmpty
 	private String imei;
 	
 	/**
-	 * 投保者身份证号
+	 * 投保者出生日期
 	 */
 	
 	private String birthday;

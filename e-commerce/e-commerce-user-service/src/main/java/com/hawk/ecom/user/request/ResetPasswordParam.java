@@ -2,6 +2,7 @@ package com.hawk.ecom.user.request;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 import com.hawk.framework.utility.tools.JsonTools;
 
@@ -26,11 +27,15 @@ public class ResetPasswordParam {
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
 	}
+	@ValidWord
 	@NotEmpty("mobileNumber")
 	private String mobileNumber;
-	@NotEmpty(value="veriCode",name="验证码")
+	
+	@NotEmpty(name="验证码")
 	private String veriCode;
-	@NotEmpty(value="loginPwd",name="新密码")
+	
+	@ValidWord("loginPwd")
+	@NotEmpty("loginPwd")
 	@JsonSerialize(using=PasswordSerializer.class)
 	private String newPassword;
 	

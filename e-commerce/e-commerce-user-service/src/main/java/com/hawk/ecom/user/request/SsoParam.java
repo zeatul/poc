@@ -1,5 +1,8 @@
 package com.hawk.ecom.user.request;
 
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
+
 public class SsoParam {
 	
 	public String getRegisterIp() {
@@ -34,8 +37,11 @@ public class SsoParam {
 		this.mobileNumber = mobileNumber;
 	}
 
+	@ValidWord
+	@NotEmpty("mobileNumber")
 	private String mobileNumber;
 	
+	@NotEmpty
 	private String appid;
 	
 	private String registerIp;

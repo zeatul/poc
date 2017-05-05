@@ -1,1 +1,8 @@
 生产环境 重构t_usr_login_history表 ，login_typ类型错误 ,重构t_usr_login_fail表
+
+// 同义词
+//	oldPassword loginPwd
+//	newPassword loginPwd
+//	veriCode 新词
+	
+	定时作业 quartz

@@ -15,6 +15,7 @@ import com.hawk.framework.dic.exception.WordNotFoundRuntimeException;
 import com.hawk.framework.dic.service.DictionaryService;
 import com.hawk.framework.dic.validation.annotation.ValidWord;
 import com.hawk.framework.utility.tools.BooleanTools;
+import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -79,7 +80,27 @@ public class ValidWordValidator implements ConstraintValidator<ValidWord, Object
 	}
 
 	private void checkValue(Word word, Date value, String displayName) {
-
+		String strMax = word.getMaxValue();
+		String patternComment = word.getPatternComment();
+		String localComment = "";
+		if (StringTools.isNotNullOrEmpty(strMax)){
+			Date maxDate = DateTools.parse(strMax, DateTools.DATETIME_PATTERN);
+			if (value.after(maxDate)){
+				localComment = "不能大于"+strMax;
+				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
+			}
+		}
+		
+		String strMin = word.getMinValue();
+		patternComment = word.getPatternComment();
+		localComment = "";
+		if (StringTools.isNotNullOrEmpty(strMin)){
+			Date minDate = DateTools.parse(strMin, DateTools.DATETIME_PATTERN);
+			if (value.before(minDate)){
+				localComment = "不能小于"+strMin;
+				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
+			}
+		}
 	}
 	
 	public static void main(String[] args ){
