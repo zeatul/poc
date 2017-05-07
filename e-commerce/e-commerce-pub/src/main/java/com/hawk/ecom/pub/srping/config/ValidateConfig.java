@@ -8,17 +8,18 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 
 import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.service.DictionaryService;
+import com.hawk.framework.dic.spring.config.DicRootConfig;
 import com.hawk.framework.dic.validation.ValidateService;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(basePackageClasses = { ValidateService.class })
+@Import({DicRootConfig.class})
 public class ValidateConfig {
 	
 	

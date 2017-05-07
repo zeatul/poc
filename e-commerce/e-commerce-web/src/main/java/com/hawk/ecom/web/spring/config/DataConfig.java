@@ -22,12 +22,16 @@ import com.hawk.ecom.svp.persist.mapperex.BsiPhoneModelExMapper;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.UserMapper;
 import com.hawk.ecom.user.persist.mapperex.UserExMapper;
+import com.hawk.framework.dic.persist.domain.WordDomain;
+import com.hawk.framework.dic.persist.mapper.WordMapper;
+import com.hawk.framework.dic.persist.mapperex.WordExMapper;
 import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = {TaskMapper.class,TaskExMapper.class,UserMapper.class,UserExMapper.class, BsiPhoneModelExMapper.class, BsiPhoneModelMapper.class })
+@MapperScan(basePackageClasses = { TaskMapper.class, TaskExMapper.class, UserMapper.class, UserExMapper.class, BsiPhoneModelExMapper.class,
+		BsiPhoneModelMapper.class, WordExMapper.class, WordMapper.class })
 public class DataConfig {
 
 	@Autowired
@@ -130,12 +134,14 @@ public class DataConfig {
 
 	}
 
-//	@Bean
-//	public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-//		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
-//		return transactionManager;
-//
-//	}
+	// @Bean
+	// public DataSourceTransactionManager transactionManager(DataSource
+	// dataSource) {
+	// DataSourceTransactionManager transactionManager = new
+	// DataSourceTransactionManager(dataSource);
+	// return transactionManager;
+	//
+	// }
 
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
@@ -144,9 +150,11 @@ public class DataConfig {
 		String svpPackageName = BsiPhoneModelDomain.class.getPackage().getName();
 		String userPackageName = UserDomain.class.getPackage().getName();
 		String smsPackageName = TaskDomain.class.getPackage().getName();
-		String str = StringTools.concatWithSymbol(";", svpPackageName, svpPackageName + "ex",//
-				userPackageName,userPackageName+ "ex",//
-				smsPackageName,smsPackageName+"ex");
+		String dicPackageName = WordDomain.class.getPackage().getName();
+		String str = StringTools.concatWithSymbol(";", svpPackageName, svpPackageName + "ex", //
+				userPackageName, userPackageName + "ex", //
+				smsPackageName, smsPackageName + "ex" ,//
+				dicPackageName, dicPackageName+ "ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}
