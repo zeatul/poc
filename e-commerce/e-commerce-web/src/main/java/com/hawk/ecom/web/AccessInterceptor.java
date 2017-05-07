@@ -25,7 +25,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("AccessInterceptor Start");	
 		HttpRequestInfo httpRequestInfo= HttpRequestInfo.parse(request);
 		logger.info(JsonTools.toJsonString(httpRequestInfo));
-		
+		AuthThreadLocal.setHttpRequestInfo(httpRequestInfo);
 		String token = httpRequestInfo.getToken();
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
 		if (userInfoResponse !=null){		

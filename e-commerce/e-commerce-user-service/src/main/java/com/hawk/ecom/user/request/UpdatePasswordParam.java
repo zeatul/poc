@@ -34,7 +34,7 @@ public class UpdatePasswordParam {
 	@NotEmpty(value="mobileNumber")
 	private String mobileNumber;
 
-	@NotEmpty(value="loginPwd",name="新密码")
+	@NotEmpty(value="loginPwd",name="旧密码")
 	@JsonSerialize(using=PasswordSerializer.class)
 	private String oldPassword;
 	

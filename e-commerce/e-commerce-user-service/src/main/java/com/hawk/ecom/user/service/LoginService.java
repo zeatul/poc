@@ -45,6 +45,10 @@ public class LoginService {
 		cacheService.put(key, password, 60);
 	}
 	
+	public String cachedSsoPassword(String mobileNumber){
+		String key = ssoPwdKey(mobileNumber);
+		return cacheService.get(key, String.class);
+	}
 	
 	public UserInfoResponse loginInfo(String token){
 		if (StringTools.isNullOrEmpty(token)){
@@ -93,7 +97,7 @@ public class LoginService {
 		 * sso临时密码判断
 		 */
 		if (password.length() == UUID.randomUUID().toString().replaceAll("-", "").length()){
-			String cachedPassword = cacheService.get(mobileNumber, String.class);
+			String cachedPassword = cachedSsoPassword(mobileNumber);
 			if (password.equals(cachedPassword)){
 				return userDomain;
 			}

@@ -11,11 +11,12 @@
 		       b.synonym_type AS "synonymType",
 		       b.synonym_display_name AS "synonymDisplayName"
 		FROM t_dic_word a, t_dic_synonym b 
-		WHERE a.object_id = b.object_id 
+		WHERE a.object_id = b.origin_object_id  
 		AND a.system_code = b.system_code 
 		AND a.version = b.version	
 		AND a.system_code = #{systemCode}
 		AND a.version = #{version}
+		And b.synonym_type = #{synonymType}
 	</select>
 	
 	

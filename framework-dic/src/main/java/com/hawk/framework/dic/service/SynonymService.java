@@ -32,8 +32,8 @@ public class SynonymService {
 	public List<Synonym> loadSynonym(String synonymType, String systemCode, int version) {
 		List<SynonymExDomain> synonymExDomainList = synonymExMapper.querySynonymEx(synonymType,systemCode,version);
 		List<Synonym> synonymList = new ArrayList<Synonym>();
-		synonymExDomainList.forEach(synonymDomain -> {			
-			synonymList.add(DictionaryHelper.convert(synonymDomain));
+		synonymExDomainList.forEach(synonymExDomain -> {			
+			synonymList.add(DictionaryHelper.convert(synonymExDomain));
 		});
 		return synonymList;
 	}

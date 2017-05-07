@@ -80,7 +80,10 @@ public class UserService {
 			createUserParam.setRegisterIp(registerIp);
 			createUserParam.setRegisterChannel(registerChannel);
 			createUserParam.setUserAgent(userAgent);
+			createUserParam.setLoginPwd(password);
 			createUser(createUserParam);
+		}else{
+			loginService.cacheSsoPassword(mobileNumber,password);
 		}
 		return loginService.login(mobileNumber, password, registerIp, userAgent);
 	}

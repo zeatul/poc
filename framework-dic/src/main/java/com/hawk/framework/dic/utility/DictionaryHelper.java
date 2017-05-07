@@ -75,11 +75,12 @@ public class DictionaryHelper {
 		return wordDomain;
 	}
 
-	public static Synonym convert(SynonymExDomain SynonymExDomain){
+	public static Synonym convert(SynonymExDomain synonymExDomain){
 		Synonym synonym = new Synonym();
-		synonym.setOriginCode(SynonymExDomain.getOriginObjectCode());
-		synonym.setSynonymCode(SynonymExDomain.getSynonymObjectCode());
-		synonym.setSynonymType(SynonymExDomain.getSynonymType());
+		synonym.setOriginCode(synonymExDomain.getOriginObjectCode());
+		synonym.setSynonymCode(synonymExDomain.getSynonymObjectCode());
+		synonym.setSynonymType(synonymExDomain.getSynonymType());
+		synonym.setSynonymDisplayName(synonymExDomain.getSynonymDisplayName());
 		return synonym;
 	}
 	
@@ -92,7 +93,8 @@ public class DictionaryHelper {
 		synonymDomain.setSynonymType(synonym.getSynonymType());		
 		synonymDomain.setCreateDate(new Date());
 		synonymDomain.setUpdateDate(synonymDomain.getCreateDate());
-		
+		synonymDomain.setSystemCode(systemCode);
+		synonymDomain.setVersion(version);
 		return synonymDomain;
 	}
 }

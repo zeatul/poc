@@ -18,7 +18,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class BsiControllerTest extends AbstractControllerTest {
 
-	@Test
+//	@Test
 	public void testHome() {
 		String url = getUrl("/svp/bsi/home");
 		String result = httpExecutor.get(url, null);
@@ -32,7 +32,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testQueryBsiOrderDetail(){
 		String bsiCashCouponCode = "755d76d6-fed7-4a8b-9d9e-5294d141ac6f";
 		String url = getUrl("/svp/bsi/orderDetail/couponCode/"+bsiCashCouponCode);
@@ -62,7 +62,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 	public void testRegisterPresentCoupon(){
 //		https://url?version=1.0&channel=1&store=STO00000001&timestamp=1490921495127&reqhash=5d41402abc4b2a76b9719d911017c592
 		RegisterPresentCouponParam registerForCouponParam = new RegisterPresentCouponParam ();
-		registerForCouponParam.setMobileNumber("13916082481");
+		registerForCouponParam.setMobileNumber("139160824811");
 		String req = JsonTools.toJsonString(registerForCouponParam);
 		
 		String url =getUrl("/svp/bsi/coupon/register/present");
@@ -80,7 +80,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-//	@Test
+	@Test
 	public void testActivateCoupon(){
 		String url =getUrl("/svp/bsi/coupon/activate");
 		ActivateCouponParam activateCouponParam =new ActivateCouponParam();
@@ -89,12 +89,12 @@ public class BsiControllerTest extends AbstractControllerTest {
 		activateCouponParam.setIdType(ConstBsiIdType.IDENTITY_CARD);
 		activateCouponParam.setIdNumber("320109200011071232");
 		activateCouponParam.setImei("91891888");
-		activateCouponParam.setMobileNumber("13916082481");
+		activateCouponParam.setMobileNumber("139160824811");
 		activateCouponParam.setName("黄大仙");
 		activateCouponParam.setPhoneModelId(1073);
 		activateCouponParam.setProductId(11246);
 		activateCouponParam.setSex(ConstBsiSex.MALE);
-		activateCouponParam.setTicket("13916082481");
+		activateCouponParam.setTicket("13919082481");
 		
 		System.out.println("request="+JsonTools.toJsonString(activateCouponParam));
 		String result = httpExecutor.post(url, activateCouponParam, null);
