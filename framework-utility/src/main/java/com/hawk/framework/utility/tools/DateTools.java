@@ -154,5 +154,11 @@ public class DateTools {
 	public static void main(String[] args){
 		System.out.println(firstDayOfMonth(new Date()));
 		System.out.println(firstDayOfNextMonth(new Date()));
+		
+		Date date = parse("1847-02-31",DATE_PATTERN);
+		
+		System.out.println(convert(date,DATE_PATTERN));
+		System.out.println(date.getTime());
+		System.out.println(new Date().getTime());
 	}
 }
