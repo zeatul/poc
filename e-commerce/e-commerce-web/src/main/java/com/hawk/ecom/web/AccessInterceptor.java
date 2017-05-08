@@ -28,14 +28,17 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		AuthThreadLocal.setHttpRequestInfo(httpRequestInfo);
 		String token = httpRequestInfo.getToken();
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
+		
 		if (userInfoResponse !=null){		
 			AuthThreadLocal.setMobileNumber(userInfoResponse.getMobileNumber());
 			AuthThreadLocal.setToken(token);
-			AuthThreadLocal.setUserId(userInfoResponse.getUserId());		
+			AuthThreadLocal.setUserId(userInfoResponse.getUserId());	
+			AuthThreadLocal.setUserCode(userInfoResponse.getUserCode());
 		}else{
 			AuthThreadLocal.setMobileNumber(null);
 			AuthThreadLocal.setToken(null);
-			AuthThreadLocal.setUserId(null);		
+			AuthThreadLocal.setUserId(null);	
+			AuthThreadLocal.setUserCode(null);
 		}
 		return super.preHandle(request, response, handler);
 	}

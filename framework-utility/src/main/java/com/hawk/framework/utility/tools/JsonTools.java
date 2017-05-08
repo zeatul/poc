@@ -83,27 +83,21 @@ public class JsonTools {
 			this.date = date;
 		}
 
-		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+		@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 		private Date date;
 	}
 
 	public static void main(String[] args){
-		List<Object> list = new ArrayList<Object>();
-		
-		list.add("onDxbt5qLOjAdkqE9E_1MOhzayHU");
-		list.add("onDxbt5qLOjAdkqE9E_1MOh123HU");
-		
-		list.add(new Date());
-		
+	
 		T t = new T();
 		t.setDate(new Date());
 		
-		list.add(t);
+		System.out.println(JsonTools.toJsonString(t));
 		
-		String str = JsonTools.toJsonString(list);
-		System.out.println(str);
+		String s= JsonTools.toJsonString(t);
 		
+		T x = JsonTools.toObject(s, T.class);
 		
-		
+		System.out.println(x);
 	}
 }

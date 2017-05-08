@@ -18,6 +18,7 @@
 		user_nickname AS "userNickname" ,
 		user_name AS "userName" ,
 		user_sex AS "userSex" ,
+		user_birthday AS "userBirthday" ,
 		user_level AS "userLevel" ,
 		user_activeness AS "userActiveness" ,
 		register_ip AS "registerIp" ,
@@ -55,6 +56,7 @@
 			<if test="userNickname != null"> AND user_nickname = #{userNickname}  </if>
 			<if test="userName != null"> AND user_name = #{userName}  </if>
 			<if test="userSex != null"> AND user_sex = #{userSex}  </if>
+			<if test="userBirthday != null"> AND user_birthday = #{userBirthday}  </if>
 			<if test="userLevel != null"> AND user_level = #{userLevel}  </if>
 			<if test="userActiveness != null"> AND user_activeness = #{userActiveness}  </if>
 			<if test="registerIp != null"> AND register_ip = #{registerIp}  </if>
@@ -93,6 +95,7 @@
 			AND user_nickname = #{old_userNickname}
 			AND user_name = #{old_userName}
 			AND user_sex = #{old_userSex}
+			AND user_birthday = #{old_userBirthday}
 			AND user_level = #{old_userLevel}
 			AND user_activeness = #{old_userActiveness}
 			AND register_ip = #{old_registerIp}
@@ -131,6 +134,7 @@
 			user_nickname = #{userNickname},
 			user_name = #{userName},
 			user_sex = #{userSex},
+			user_birthday = #{userBirthday},
 			user_level = #{userLevel},
 			user_activeness = #{userActiveness},
 			register_ip = #{registerIp},
@@ -169,6 +173,7 @@
 			<if test="userNickname != null">user_nickname = #{userNickname},</if>
 			<if test="userName != null">user_name = #{userName},</if>
 			<if test="userSex != null">user_sex = #{userSex},</if>
+			<if test="userBirthday != null">user_birthday = #{userBirthday},</if>
 			<if test="userLevel != null">user_level = #{userLevel},</if>
 			<if test="userActiveness != null">user_activeness = #{userActiveness},</if>
 			<if test="registerIp != null">register_ip = #{registerIp},</if>
@@ -240,6 +245,7 @@
 				user_nickname,				
 				user_name,				
 				user_sex,				
+				user_birthday,				
 				user_level,				
 				user_activeness,				
 				register_ip,				
@@ -275,6 +281,7 @@
 			#{userNickname},
 			#{userName},
 			#{userSex},
+			#{userBirthday},
 			#{userLevel},
 			#{userActiveness},
 			#{registerIp},

@@ -1,4 +1,4 @@
-package com.hawk.framework.dic.validation.annotation;
+package com.hawk.ecom.user.annotation;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
@@ -11,15 +11,16 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.hawk.framework.dic.validation.validator.NotNullValidator;
+import com.hawk.ecom.user.service.NotLoginValidator;
+import com.hawk.framework.dic.validation.annotation.Constraint;
 
 
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy={NotNullValidator.class})
-public @interface NotNull {
+@Constraint(validatedBy={NotLoginValidator.class})
+public @interface NotLogin {
 	
 	String value() default "";
 	String name() default "";

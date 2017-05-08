@@ -8,6 +8,15 @@
 				id AS "id" ,
 		user_code AS "userCode" ,
 		mobile_number AS "mobileNumber" ,
+		login_ip AS "loginIp" ,
+		login_type AS "loginType" ,
+		login_date AS "loginDate" ,
+		imei AS "imei" ,
+		operating_system AS "operatingSystem" ,
+		operating_system_version AS "operatingSystemVersion" ,
+		device_brand AS "deviceBrand" ,
+		device_model AS "deviceModel" ,
+		user_agent AS "userAgent" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -18,6 +27,15 @@
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
+			<if test="loginIp != null"> AND login_ip = #{loginIp}  </if>
+			<if test="loginType != null"> AND login_type = #{loginType}  </if>
+			<if test="loginDate != null"> AND login_date = #{loginDate}  </if>
+			<if test="imei != null"> AND imei = #{imei}  </if>
+			<if test="operatingSystem != null"> AND operating_system = #{operatingSystem}  </if>
+			<if test="operatingSystemVersion != null"> AND operating_system_version = #{operatingSystemVersion}  </if>
+			<if test="deviceBrand != null"> AND device_brand = #{deviceBrand}  </if>
+			<if test="deviceModel != null"> AND device_model = #{deviceModel}  </if>
+			<if test="userAgent != null"> AND user_agent = #{userAgent}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -29,6 +47,15 @@
 			AND id = #{old_id}
 			AND user_code = #{old_userCode}
 			AND mobile_number = #{old_mobileNumber}
+			AND login_ip = #{old_loginIp}
+			AND login_type = #{old_loginType}
+			AND login_date = #{old_loginDate}
+			AND imei = #{old_imei}
+			AND operating_system = #{old_operatingSystem}
+			AND operating_system_version = #{old_operatingSystemVersion}
+			AND device_brand = #{old_deviceBrand}
+			AND device_model = #{old_deviceModel}
+			AND user_agent = #{old_userAgent}
 			AND create_date = #{old_createDate}
 			AND update_date = #{old_updateDate}
 			AND delete_date = #{old_deleteDate}
@@ -40,6 +67,15 @@
 			id = #{id},
 			user_code = #{userCode},
 			mobile_number = #{mobileNumber},
+			login_ip = #{loginIp},
+			login_type = #{loginType},
+			login_date = #{loginDate},
+			imei = #{imei},
+			operating_system = #{operatingSystem},
+			operating_system_version = #{operatingSystemVersion},
+			device_brand = #{deviceBrand},
+			device_model = #{deviceModel},
+			user_agent = #{userAgent},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -51,6 +87,15 @@
 			<if test="id != null">id = #{id},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
+			<if test="loginIp != null">login_ip = #{loginIp},</if>
+			<if test="loginType != null">login_type = #{loginType},</if>
+			<if test="loginDate != null">login_date = #{loginDate},</if>
+			<if test="imei != null">imei = #{imei},</if>
+			<if test="operatingSystem != null">operating_system = #{operatingSystem},</if>
+			<if test="operatingSystemVersion != null">operating_system_version = #{operatingSystemVersion},</if>
+			<if test="deviceBrand != null">device_brand = #{deviceBrand},</if>
+			<if test="deviceModel != null">device_model = #{deviceModel},</if>
+			<if test="userAgent != null">user_agent = #{userAgent},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -95,6 +140,15 @@
 				id,				
 				user_code,				
 				mobile_number,				
+				login_ip,				
+				login_type,				
+				login_date,				
+				imei,				
+				operating_system,				
+				operating_system_version,				
+				device_brand,				
+				device_model,				
+				user_agent,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -103,6 +157,15 @@
 			#{id},
 			#{userCode},
 			#{mobileNumber},
+			#{loginIp},
+			#{loginType},
+			#{loginDate},
+			#{imei},
+			#{operatingSystem},
+			#{operatingSystemVersion},
+			#{deviceBrand},
+			#{deviceModel},
+			#{userAgent},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}

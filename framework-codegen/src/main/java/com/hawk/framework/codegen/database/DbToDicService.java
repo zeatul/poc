@@ -367,34 +367,34 @@ public class DbToDicService {
 	 */
 	private static boolean compareDataType(Word def, Column column, ITypeConverter typeConverter) {
 
-		if (def.getDataType() == EnumDataType.String && column.getCharMaxLength() != def.getCharMaxLength()) {
-			System.out.println("CharMaxLength is not same");
-			return false;
-		}
-		if (def.getDataType() == EnumDataType.String && column.getCharMinLength() != def.getCharMinLength()) {
-			System.out.println("CharMinLength is not same");
-			return false;
-		}
+//		if (def.getDataType() == EnumDataType.String && column.getCharMaxLength() != def.getCharMaxLength()) {
+//			System.out.println("CharMaxLength is not same");
+//			return false;
+//		}
+//		if (def.getDataType() == EnumDataType.String && column.getCharMinLength() != def.getCharMinLength()) {
+//			System.out.println("CharMinLength is not same");
+//			return false;
+//		}
 		if (EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())) != def.getDataType()) {
 			System.out.println("DataType is not same");
 			return false;
 		}
-		if (def.getDataType() == EnumDataType.Date && column.getDatetimePrecision() != def.getDatetimePrecision()) {
-			System.out.println("DatetimePrecision is not same");
-			return false;
-		}
+//		if (def.getDataType() == EnumDataType.Date && column.getDatetimePrecision() != def.getDatetimePrecision()) {
+//			System.out.println("DatetimePrecision is not same");
+//			return false;
+//		}
 		// if (!StringTools.compare(column.getComment(), def.getName())){
 		// System.out.println("Comment is not same");
 		// return false;
 		// }
-		if (def.getDataType() == EnumDataType.Numeric && column.getNumericPrecision() != def.getNumericPrecision()) {
-			System.out.println("NumericPrecision is not same");
-			return false;
-		}
-		if (def.getDataType() == EnumDataType.Numeric && column.getNumericScale() != def.getNumericScale()) {
-			System.out.println("NumericScale is not same");
-			return false;
-		}
+//		if (def.getDataType() == EnumDataType.Numeric && column.getNumericPrecision() != def.getNumericPrecision()) {
+//			System.out.println("NumericPrecision is not same");
+//			return false;
+//		}
+//		if (def.getDataType() == EnumDataType.Numeric && column.getNumericScale() != def.getNumericScale()) {
+//			System.out.println("NumericScale is not same");
+//			return false;
+//		}
 
 		return true;
 	}

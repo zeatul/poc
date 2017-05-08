@@ -2,7 +2,7 @@ package com.hawk.ecom.user.exception;
 
 import com.hawk.framework.pub.exception.BasicRuntimeException;
 
-public class TokenEmptyException extends BasicRuntimeException{
+public class TokenEmptyRuntimeException extends BasicRuntimeException{
 
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class TokenEmptyException extends BasicRuntimeException{
 	private final static int  code = 100005;
 	
 
-	public TokenEmptyException( ) {
+	public TokenEmptyRuntimeException( ) {
 		super(code,ErrorCode.getErrMsg(code));
 	}
 

@@ -17,11 +17,21 @@ public class AuthThreadLocal {
 
 	private static ThreadLocal<Long> threadLoaclUserId = new ThreadLocal<Long>();
 	
+	private static ThreadLocal<String> threadLoaclUserCode = new ThreadLocal<String>();
+	
 	private static ThreadLocal<String> threadLocalToken = new ThreadLocal<String>();
 	
 	private static ThreadLocal<String> threadLocalMobileNumber = new ThreadLocal<String>();
 	
 	private static ThreadLocal<HttpRequestInfo> threadLocalHttpRequestInfo = new ThreadLocal<HttpRequestInfo>();
+	
+	public static String getUserCode(){
+		return threadLoaclUserCode.get();
+	}
+	
+	public static void setUserCode(String userCode){
+		threadLoaclUserCode.set(userCode);
+	}
 	
 	public static Long getUserId(){
 		return threadLoaclUserId.get();

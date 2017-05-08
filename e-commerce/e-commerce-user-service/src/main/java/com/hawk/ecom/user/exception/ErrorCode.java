@@ -13,6 +13,8 @@ public class ErrorCode {
 		errorMap.put(100003, "验证码不正确");
 		errorMap.put(100004, "登陆已过期");
 		errorMap.put(100005, "登陆票据为空");
+		errorMap.put(100006, "登陆票据非法");
+		errorMap.put(100007, "用户未登录");
 		
 	}
 	

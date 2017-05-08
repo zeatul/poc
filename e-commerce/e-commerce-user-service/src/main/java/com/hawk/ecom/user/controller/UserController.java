@@ -14,13 +14,17 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
+import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
+import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.RegisterUserParam;
 import com.hawk.ecom.user.request.ResetPasswordParam;
 import com.hawk.ecom.user.request.SsoParam;
 import com.hawk.ecom.user.request.UpdatePasswordParam;
+import com.hawk.ecom.user.request.UpdateUserInfoParam;
 import com.hawk.ecom.user.response.LoginResponse;
 import com.hawk.ecom.user.response.SsoResponse;
+import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.ecom.user.service.UserService;
 import com.hawk.ecom.user.utils.SsoToolsForSignature;
@@ -110,5 +114,26 @@ public class UserController {
 		UpdatePasswordParam updatePasswordParam = HttpRequestTools.parse(request, UpdatePasswordParam.class);
 		userService.updatePassword(updatePasswordParam);
 		return SuccessResponse.build();
+	}
+	
+	@RequestMapping(value = "/info/update", method = POST)
+	public WebResponse<ResponseData> updateUserInfo(HttpServletRequest request) throws Exception{
+		UpdateUserInfoParam updateUserInfoParam = HttpRequestTools.parse(request, UpdateUserInfoParam.class);
+		updateUserInfoParam.setUserId(AuthThreadLocal.getUserId()); 
+		userService.updateUserInfo(updateUserInfoParam);		
+		return SuccessResponse.build();
+	}
+	
+	@RequestMapping(value = "/info", method = {POST,GET})
+	public WebResponse<ResponseData> userInfo(HttpServletRequest request) throws Exception{
+		UserDomain userDomain = userService.loadById(AuthThreadLocal.getUserId());
+		if (userDomain == null)
+			throw new UserNotFoundRuntimeException();
+		UserInfoResponse userInfoResponse = new UserInfoResponse();
+		userInfoResponse.setMobileNumber(userDomain.getMobileNumber());
+		userInfoResponse.setNickname(userDomain.getUserNickname());
+		userInfoResponse.setBirthday(userDomain.getUserBirthday());
+		userInfoResponse.setSex(userDomain.getUserSex());
+		return SuccessResponse.build(userInfoResponse);
 	}
 }

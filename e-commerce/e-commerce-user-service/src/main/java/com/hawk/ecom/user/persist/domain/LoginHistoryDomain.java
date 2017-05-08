@@ -43,7 +43,7 @@ public class LoginHistoryDomain implements Serializable {
 	/**
 	 * 登录类型(长期固定/短期固定/短期弹性) login_type
 	 */
-	private String loginType;
+	private Integer loginType;
 	
 	/**
 	 * 登录日期 login_date
@@ -195,7 +195,7 @@ public class LoginHistoryDomain implements Serializable {
 	 * 
 	 * @return 登录类型(长期固定/短期固定/短期弹性) login_type
 	 */
-	public String getLoginType(){
+	public Integer getLoginType(){
 		return loginType;
 	}
 	
@@ -203,7 +203,7 @@ public class LoginHistoryDomain implements Serializable {
 	 * 
 	 * @param loginType 登录类型(长期固定/短期固定/短期弹性) login_type
 	 */	
-	public void setLoginType (String loginType) {
+	public void setLoginType (Integer loginType) {
 		this.loginType = loginType;
 	}
 	

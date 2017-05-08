@@ -31,6 +31,51 @@ public class LoginFailureDomain implements Serializable {
 	private String mobileNumber;
 	
 	/**
+	 * 登录IP login_ip
+	 */
+	private String loginIp;
+	
+	/**
+	 * 登录类型(长期固定/短期固定/短期弹性) login_type
+	 */
+	private Integer loginType;
+	
+	/**
+	 * 登录日期 login_date
+	 */
+	private Date loginDate;
+	
+	/**
+	 * 设备唯一的串号 imei
+	 */
+	private String imei;
+	
+	/**
+	 * 设备操作系统 operating_system
+	 */
+	private String operatingSystem;
+	
+	/**
+	 * 设备操作系统版本号 operating_system_version
+	 */
+	private String operatingSystemVersion;
+	
+	/**
+	 * 三星/华为/苹果 device_brand
+	 */
+	private String deviceBrand;
+	
+	/**
+	 * 厂商给设备定义的编号 device_model
+	 */
+	private String deviceModel;
+	
+	/**
+	 * http请求的user_agent原始信息 user_agent
+	 */
+	private String userAgent;
+	
+	/**
 	 * 创建日期 create_date
 	 */
 	private Date createDate;
@@ -92,6 +137,150 @@ public class LoginFailureDomain implements Serializable {
 	 */	
 	public void setMobileNumber (String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 登录IP login_ip
+	 */
+	public String getLoginIp(){
+		return loginIp;
+	}
+	
+	/**
+	 * 
+	 * @param loginIp 登录IP login_ip
+	 */	
+	public void setLoginIp (String loginIp) {
+		this.loginIp = loginIp;
+	}
+	
+	/**
+	 * 
+	 * @return 登录类型(长期固定/短期固定/短期弹性) login_type
+	 */
+	public Integer getLoginType(){
+		return loginType;
+	}
+	
+	/**
+	 * 
+	 * @param loginType 登录类型(长期固定/短期固定/短期弹性) login_type
+	 */	
+	public void setLoginType (Integer loginType) {
+		this.loginType = loginType;
+	}
+	
+	/**
+	 * 
+	 * @return 登录日期 login_date
+	 */
+	public Date getLoginDate(){
+		return loginDate;
+	}
+	
+	/**
+	 * 
+	 * @param loginDate 登录日期 login_date
+	 */	
+	public void setLoginDate (Date loginDate) {
+		this.loginDate = loginDate;
+	}
+	
+	/**
+	 * 
+	 * @return 设备唯一的串号 imei
+	 */
+	public String getImei(){
+		return imei;
+	}
+	
+	/**
+	 * 
+	 * @param imei 设备唯一的串号 imei
+	 */	
+	public void setImei (String imei) {
+		this.imei = imei;
+	}
+	
+	/**
+	 * 
+	 * @return 设备操作系统 operating_system
+	 */
+	public String getOperatingSystem(){
+		return operatingSystem;
+	}
+	
+	/**
+	 * 
+	 * @param operatingSystem 设备操作系统 operating_system
+	 */	
+	public void setOperatingSystem (String operatingSystem) {
+		this.operatingSystem = operatingSystem;
+	}
+	
+	/**
+	 * 
+	 * @return 设备操作系统版本号 operating_system_version
+	 */
+	public String getOperatingSystemVersion(){
+		return operatingSystemVersion;
+	}
+	
+	/**
+	 * 
+	 * @param operatingSystemVersion 设备操作系统版本号 operating_system_version
+	 */	
+	public void setOperatingSystemVersion (String operatingSystemVersion) {
+		this.operatingSystemVersion = operatingSystemVersion;
+	}
+	
+	/**
+	 * 
+	 * @return 三星/华为/苹果 device_brand
+	 */
+	public String getDeviceBrand(){
+		return deviceBrand;
+	}
+	
+	/**
+	 * 
+	 * @param deviceBrand 三星/华为/苹果 device_brand
+	 */	
+	public void setDeviceBrand (String deviceBrand) {
+		this.deviceBrand = deviceBrand;
+	}
+	
+	/**
+	 * 
+	 * @return 厂商给设备定义的编号 device_model
+	 */
+	public String getDeviceModel(){
+		return deviceModel;
+	}
+	
+	/**
+	 * 
+	 * @param deviceModel 厂商给设备定义的编号 device_model
+	 */	
+	public void setDeviceModel (String deviceModel) {
+		this.deviceModel = deviceModel;
+	}
+	
+	/**
+	 * 
+	 * @return http请求的user_agent原始信息 user_agent
+	 */
+	public String getUserAgent(){
+		return userAgent;
+	}
+	
+	/**
+	 * 
+	 * @param userAgent http请求的user_agent原始信息 user_agent
+	 */	
+	public void setUserAgent (String userAgent) {
+		this.userAgent = userAgent;
 	}
 	
 	/**

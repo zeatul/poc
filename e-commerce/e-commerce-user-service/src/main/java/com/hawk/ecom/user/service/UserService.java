@@ -12,6 +12,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.sms.service.SmsService;
+import com.hawk.ecom.user.annotation.NotLogin;
 import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.constant.ConstUserStatus;
 import com.hawk.ecom.user.exception.MobileNumberRegisteredRuntimeException;
@@ -23,6 +24,7 @@ import com.hawk.ecom.user.request.CreateUserParam;
 import com.hawk.ecom.user.request.ResetPasswordParam;
 import com.hawk.ecom.user.request.SsoParam;
 import com.hawk.ecom.user.request.UpdatePasswordParam;
+import com.hawk.ecom.user.request.UpdateUserInfoParam;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -173,6 +175,23 @@ public class UserService {
 		updatDomain.setLastAccessDate(userDomain.getUpdateDate());
 		updatDomain.setId(userDomain.getId());
 		userMapper.updateWithoutNull(updatDomain);
+	}
+	
+	@Valid
+	public void updateUserInfo(@Valid UpdateUserInfoParam updateUserInfoParam){
+		UserDomain userDomain = new UserDomain();
+		userDomain.setId(updateUserInfoParam.getUserId());
+		userDomain.setUpdateDate(new Date());
+		userDomain.setUserName(updateUserInfoParam.getNickname());
+		userDomain.setUserSex(updateUserInfoParam.getSex());
+		userDomain.setUserBirthday(updateUserInfoParam.getBirthday());
+		userMapper.updateWithoutNull(userDomain);
+	}
+	
+	@NotLogin
+	public UserDomain loadById(@NotLogin Long userId){
+		UserDomain userDomain = userMapper.load(userId);
+		return userDomain;
 	}
 	
 	private String generateUserCode() {

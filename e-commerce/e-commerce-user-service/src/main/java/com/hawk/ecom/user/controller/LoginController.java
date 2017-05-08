@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.ecom.user.exception.TokenEmptyException;
+import com.hawk.ecom.user.exception.TokenEmptyRuntimeException;
 import com.hawk.ecom.user.request.LoginParam;
 import com.hawk.ecom.user.response.LoginResponse;
 import com.hawk.ecom.user.response.UserInfoResponse;
@@ -46,7 +46,7 @@ public class LoginController {
 	public WebResponse<UserInfoResponse> loginInfo(HttpServletRequest request) throws Exception {
 		String token = AuthThreadLocal.getToken();
 		if (StringTools.isNullOrEmpty(token)){
-			throw new TokenEmptyException();
+			throw new TokenEmptyRuntimeException();
 		}
 		loginService.loginInfo(token);
 

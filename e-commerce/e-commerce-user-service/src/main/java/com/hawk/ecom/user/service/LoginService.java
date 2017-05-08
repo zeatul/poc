@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.user.constant.ConstLoginType;
-import com.hawk.ecom.user.exception.TokenTimeoutException;
+import com.hawk.ecom.user.exception.TokenInvalidRuntimeException;
+import com.hawk.ecom.user.exception.TokenTimeoutRuntimeException;
 import com.hawk.ecom.user.exception.UnMatchedPasswordRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.LoginDomain;
@@ -59,10 +60,13 @@ public class LoginService {
 		CachedLoginToken cachedLoginToken = cacheService.get(loginTokenKey, CachedLoginToken.class);
 		if (cachedLoginToken!=null){
 			if (System.currentTimeMillis() >= cachedLoginToken.getExpireDate()){
-				throw new TokenTimeoutException();
+				throw new TokenTimeoutRuntimeException();
 			}
 		}else{		
 			LoginDomain loginDomain = loginMapper.load(token);
+			if (loginDomain == null){
+				throw new TokenInvalidRuntimeException();
+			}
 			cachedLoginToken = new CachedLoginToken();
 			cachedLoginToken.setExpireDate(loginDomain.getExpireDate().getTime());
 			cachedLoginToken.setMobileNumber(loginDomain.getMobileNumber());

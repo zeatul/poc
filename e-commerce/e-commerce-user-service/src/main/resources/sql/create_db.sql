@@ -134,6 +134,7 @@ create table t_usr_user
    user_nickname        varchar(200) comment '用户昵称',
    user_name            varchar(50) comment '用户姓名',
    user_sex             varchar(50) comment '用户性别',
+   user_birthday        timestamp(3) null comment '用户生日',
    user_level           integer comment '用户级别',
    user_activeness      integer comment '用户活跃度',
    register_ip          varchar(200) comment '注册IP',

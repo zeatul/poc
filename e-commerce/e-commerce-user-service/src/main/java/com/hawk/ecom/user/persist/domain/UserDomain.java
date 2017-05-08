@@ -81,6 +81,11 @@ public class UserDomain implements Serializable {
 	private String userSex;
 	
 	/**
+	 * 用户生日 user_birthday
+	 */
+	private Date userBirthday;
+	
+	/**
 	 * 用户级别 user_level
 	 */
 	private Integer userLevel;
@@ -387,6 +392,22 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setUserSex (String userSex) {
 		this.userSex = userSex;
+	}
+	
+	/**
+	 * 
+	 * @return 用户生日 user_birthday
+	 */
+	public Date getUserBirthday(){
+		return userBirthday;
+	}
+	
+	/**
+	 * 
+	 * @param userBirthday 用户生日 user_birthday
+	 */	
+	public void setUserBirthday (Date userBirthday) {
+		this.userBirthday = userBirthday;
 	}
 	
 	/**
