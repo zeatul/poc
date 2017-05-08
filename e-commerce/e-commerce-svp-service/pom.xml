@@ -175,6 +175,12 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
+		<!-- job -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
