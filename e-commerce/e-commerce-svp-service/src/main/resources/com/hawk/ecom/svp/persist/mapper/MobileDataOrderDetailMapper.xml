@@ -7,6 +7,7 @@
 	<sql id="columns">	
 				id AS "id" ,
 		order_id AS "orderId" ,
+		pay_status AS "payStatus" ,
 		charge_mobile_number AS "chargeMobileNumber" ,
 		charge_data_size AS "chargeDataSize" ,
 		charge_status AS "chargeStatus" ,
@@ -29,6 +30,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="orderId != null"> AND order_id = #{orderId}  </if>
+			<if test="payStatus != null"> AND pay_status = #{payStatus}  </if>
 			<if test="chargeMobileNumber != null"> AND charge_mobile_number = #{chargeMobileNumber}  </if>
 			<if test="chargeDataSize != null"> AND charge_data_size = #{chargeDataSize}  </if>
 			<if test="chargeStatus != null"> AND charge_status = #{chargeStatus}  </if>
@@ -52,6 +54,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND order_id = #{old_orderId}
+			AND pay_status = #{old_payStatus}
 			AND charge_mobile_number = #{old_chargeMobileNumber}
 			AND charge_data_size = #{old_chargeDataSize}
 			AND charge_status = #{old_chargeStatus}
@@ -75,6 +78,7 @@
 		<set>
 			id = #{id},
 			order_id = #{orderId},
+			pay_status = #{payStatus},
 			charge_mobile_number = #{chargeMobileNumber},
 			charge_data_size = #{chargeDataSize},
 			charge_status = #{chargeStatus},
@@ -98,6 +102,7 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="orderId != null">order_id = #{orderId},</if>
+			<if test="payStatus != null">pay_status = #{payStatus},</if>
 			<if test="chargeMobileNumber != null">charge_mobile_number = #{chargeMobileNumber},</if>
 			<if test="chargeDataSize != null">charge_data_size = #{chargeDataSize},</if>
 			<if test="chargeStatus != null">charge_status = #{chargeStatus},</if>
@@ -154,6 +159,7 @@
 		INSERT INTO t_svp_mobile_data_order_detail (			
 				id,				
 				order_id,				
+				pay_status,				
 				charge_mobile_number,				
 				charge_data_size,				
 				charge_status,				
@@ -174,6 +180,7 @@
 		VALUES (	
 			#{id},
 			#{orderId},
+			#{payStatus},
 			#{chargeMobileNumber},
 			#{chargeDataSize},
 			#{chargeStatus},

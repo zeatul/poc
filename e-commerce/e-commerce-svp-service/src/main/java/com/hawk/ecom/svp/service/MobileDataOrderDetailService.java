@@ -1,6 +1,7 @@
 package com.hawk.ecom.svp.service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,8 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.svp.constant.ConstChargeStatus;
+import com.hawk.ecom.svp.constant.ConstPayStatus;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
+import com.hawk.ecom.svp.persist.mapperex.MobileDataOrderDetailExMapper;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -22,6 +26,14 @@ public class MobileDataOrderDetailService {
 	
 	@Autowired
 	private MobileDataOrderDetailMapper mobileDataOrderDetailMapper;
+	
+	@Autowired
+	private MobileDataOrderDetailExMapper mobileDataOrderDetailExMapper;
+	
+	
+	public List<String> taskCodeForJob(){
+		return mobileDataOrderDetailExMapper.taskCodeForJob(ConstChargeStatus.COMPLETE_FAILED, new Date(0), ConstPayStatus.PAYED);
+	}
 	
 	public  MobileDataOrderDetailDomain loadByTaskId(String chargeTaskCode){
 		

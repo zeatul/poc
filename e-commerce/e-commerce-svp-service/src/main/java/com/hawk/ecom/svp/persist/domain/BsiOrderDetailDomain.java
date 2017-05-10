@@ -26,6 +26,11 @@ public class BsiOrderDetailDomain implements Serializable {
 	private Long orderId;
 	
 	/**
+	 * 支付状态 pay_status
+	 */
+	private Integer payStatus;
+	
+	/**
 	 * 任务号,与小宝对接用 bsi_task_code
 	 */
 	private String bsiTaskCode;
@@ -181,6 +186,22 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setOrderId (Long orderId) {
 		this.orderId = orderId;
+	}
+	
+	/**
+	 * 
+	 * @return 支付状态 pay_status
+	 */
+	public Integer getPayStatus(){
+		return payStatus;
+	}
+	
+	/**
+	 * 
+	 * @param payStatus 支付状态 pay_status
+	 */	
+	public void setPayStatus (Integer payStatus) {
+		this.payStatus = payStatus;
 	}
 	
 	/**

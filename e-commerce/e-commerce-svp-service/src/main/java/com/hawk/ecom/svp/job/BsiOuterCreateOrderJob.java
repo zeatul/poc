@@ -31,6 +31,11 @@ public class BsiOuterCreateOrderJob implements Runnable {
 	public BsiOuterCreateOrderJob(BsiOrderDetailDomain bsiOrderDetailDomain) {
 		this.bsiOrderDetailDomain = bsiOrderDetailDomain;
 	}
+	
+	private String taskCode ;
+	public BsiOuterCreateOrderJob(String taskCode){
+		this.taskCode = taskCode;
+	}
 
 	private static BsiOuterService bsiOuterService = FrameworkContext.getBean(BsiOuterService.class);
 	private static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
@@ -54,8 +59,15 @@ public class BsiOuterCreateOrderJob implements Runnable {
 
 	@Override
 	public void run() {
-		
-		logger.info("Start BsiOuterCreateOrderJob ,  " ,bsiOrderDetailDomain.getBsiTaskCode());
+		if (bsiOrderDetailDomain == null){
+			logger.info("Start BsiOuterCreateOrderJob,taskCode={}",taskCode);
+			bsiOrderDetailDomain = bsiOrderDetailService.loadByTaskcode(taskCode);
+			if (bsiOrderDetailDomain == null){
+				logger.error("Couldn't find bsiOrderDetailDomain,taskCode={}",taskCode);
+			}
+		}else{
+			logger.info("Start BsiOuterCreateOrderJob ,  bsiOrderDetailDomain.taskCode={}" ,bsiOrderDetailDomain.getBsiTaskCode());
+		}
 		int bsiTaskStatus = bsiOrderDetailDomain.getBsiTaskStatus();
 		if (bsiTaskStatus >= ConstBsiTaskStatus.COMPLETE_FAILED  ){
 			logger.error("bsiOrderDetailDomain is in closed status, bsiTaskStatus = {}",bsiTaskStatus);
@@ -63,8 +75,10 @@ public class BsiOuterCreateOrderJob implements Runnable {
 		}
 
 		/**
-		 * 数据库增加 最后执行时间 ，下次执行时间 ，
+		 * TODO:增加redis缓存锁
 		 */
+		1
+		
 
 		Order order = buildOrder(bsiOrderDetailDomain);
 		int execTimes = bsiOrderDetailDomain.getExecTimes();

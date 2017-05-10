@@ -15,6 +15,7 @@ import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.svp.constant.ConstChargeStatus;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
+import com.hawk.ecom.svp.constant.ConstPayStatus;
 import com.hawk.ecom.svp.constant.ConstStore;
 import com.hawk.ecom.svp.job.MobileUnicomChargeJob;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
@@ -125,8 +126,11 @@ public class MobileDataService {
 		mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.UN_EXEC);
 		mobileDataOrderDetailDomain.setExecTimes(0);
 		mobileDataOrderDetailDomain.setMaxExecTimes(5);
+		mobileDataOrderDetailDomain.setPayStatus(ConstPayStatus.PAYED);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
+		
+		
 		mobileDataOrderDetailDomain.setId(pkGenService.genPk());
 		
 		OrderMapper.insert(orderDomain);

@@ -59,6 +59,7 @@ public class MobileUnicomChargeJob implements Runnable{
 			/**
 			 * TODO：用乐观锁卡住只能执行一个
 			 */
+			1
 			
 			mobileDataOrderDetailDomain.setLastExecDate(new Date());
 			unicomService.chargeVirtualMobileData(chargeTaskCode, mobileDataOrderDetailDomain.getChargeMobileNumber(), mobileDataOrderDetailDomain.getChargeDataSize());

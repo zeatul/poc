@@ -26,6 +26,11 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	private Long orderId;
 	
 	/**
+	 * 支付状态 pay_status
+	 */
+	private Integer payStatus;
+	
+	/**
 	 * 手机号码 charge_mobile_number
 	 */
 	private String chargeMobileNumber;
@@ -136,6 +141,22 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 */	
 	public void setOrderId (Long orderId) {
 		this.orderId = orderId;
+	}
+	
+	/**
+	 * 
+	 * @return 支付状态 pay_status
+	 */
+	public Integer getPayStatus(){
+		return payStatus;
+	}
+	
+	/**
+	 * 
+	 * @param payStatus 支付状态 pay_status
+	 */	
+	public void setPayStatus (Integer payStatus) {
+		this.payStatus = payStatus;
 	}
 	
 	/**

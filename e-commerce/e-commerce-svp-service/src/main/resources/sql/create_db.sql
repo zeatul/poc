@@ -96,6 +96,7 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
    order_id             bigint comment '碎屏险订单id',
+   pay_status           integer comment '支付状态',
    bsi_task_code        varchar(200) comment '任务号,与小宝对接用',
    bsi_task_status      integer comment '任务状态',
    bsi_phone_model_id   integer comment '手机型号ID',
@@ -245,6 +246,7 @@ create table t_svp_mobile_data_order_detail
 (
    id                   bigint not null comment '主键',
    order_id             bigint comment '碎屏险订单id',
+   pay_status           integer comment '支付状态',
    charge_mobile_number varchar(20) comment '手机号码',
    charge_data_size     integer comment '充值流量',
    charge_status        integer comment '充值状态',

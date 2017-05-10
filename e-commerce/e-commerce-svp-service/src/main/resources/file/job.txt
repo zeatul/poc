@@ -7,3 +7,5 @@ t_usr_user 添加字段user_birthday
 //	veriCode 新词
 	
 	定时作业 quartz
+	
+	修改品牌表的方式 ,改成品牌表的维护
