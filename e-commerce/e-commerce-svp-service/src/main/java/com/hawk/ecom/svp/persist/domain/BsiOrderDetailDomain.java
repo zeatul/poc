@@ -21,14 +21,19 @@ public class BsiOrderDetailDomain implements Serializable {
 	private Long id;
 	
 	/**
-	 * 碎屏险订单id order_id
+	 * 订单编号 order_code
 	 */
-	private Long orderId;
+	private String orderCode;
 	
 	/**
-	 * 支付状态 pay_status
+	 * 商户编号 store_code
 	 */
-	private Integer payStatus;
+	private String storeCode;
+	
+	/**
+	 * 用户编号 user_code
+	 */
+	private String userCode;
 	
 	/**
 	 * 任务号,与小宝对接用 bsi_task_code
@@ -174,34 +179,50 @@ public class BsiOrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 碎屏险订单id order_id
+	 * @return 订单编号 order_code
 	 */
-	public Long getOrderId(){
-		return orderId;
+	public String getOrderCode(){
+		return orderCode;
 	}
 	
 	/**
 	 * 
-	 * @param orderId 碎屏险订单id order_id
+	 * @param orderCode 订单编号 order_code
 	 */	
-	public void setOrderId (Long orderId) {
-		this.orderId = orderId;
+	public void setOrderCode (String orderCode) {
+		this.orderCode = orderCode;
 	}
 	
 	/**
 	 * 
-	 * @return 支付状态 pay_status
+	 * @return 商户编号 store_code
 	 */
-	public Integer getPayStatus(){
-		return payStatus;
+	public String getStoreCode(){
+		return storeCode;
 	}
 	
 	/**
 	 * 
-	 * @param payStatus 支付状态 pay_status
+	 * @param storeCode 商户编号 store_code
 	 */	
-	public void setPayStatus (Integer payStatus) {
-		this.payStatus = payStatus;
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
+	}
+	
+	/**
+	 * 
+	 * @return 用户编号 user_code
+	 */
+	public String getUserCode(){
+		return userCode;
+	}
+	
+	/**
+	 * 
+	 * @param userCode 用户编号 user_code
+	 */	
+	public void setUserCode (String userCode) {
+		this.userCode = userCode;
 	}
 	
 	/**

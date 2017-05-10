@@ -28,6 +28,13 @@ public class BsiCashCouponSubJob implements Runnable{
 	public BsiCashCouponSubJob(BsiOrderDetailDomain bsiOrderDetailDomain) {
 		this.bsiOrderDetailDomain = bsiOrderDetailDomain;
 	}
+	
+	private String bsiCashCouponCode;
+	private String orderCode;
+	
+	public BsiCashCouponSubJob(String bsiCashCouponCode ,String orderCode){
+		
+	}
 
 
 	private final static BsiCashCouponService bsiCashCouponService = FrameworkContext.getBean(BsiCashCouponService.class);
@@ -43,13 +50,26 @@ public class BsiCashCouponSubJob implements Runnable{
 	@Override
 	public void run() {
 		
-		logger.info("Start BsiCashCouponSubJob with bsiOrderDetailDomain = {}",JsonTools.toJsonString(bsiOrderDetailDomain));
-		
-		if (!(bsiOrderDetailDomain.getBsiTaskStatus() >= ConstBsiTaskStatus.COMPLETE_FAILED)) {
-			logger.error("订单未完成");
+		if (bsiOrderDetailDomain != null){
+			logger.info("Start BsiCashCouponSubJob with bsiOrderDetailDomain = {}",JsonTools.toJsonString(bsiOrderDetailDomain));
+			this.bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
+		}else{
+			logger.info("Start BsiCashCouponSubJob with bsiCashCouponCode={},orderCode={}",bsiCashCouponCode,orderCode);
+			bsiOrderDetailDomain = bsiOrderDetailService.loadByOrderCode(orderCode);
 		}
 		
-		String bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
+		if(bsiOrderDetailDomain  == null){
+			logger.error("Couldn't find the bsiOrderDetailDomain with orderCode={}",orderCode);
+			return;
+		}
+		
+		
+		if (!(bsiOrderDetailDomain.getBsiTaskStatus() < ConstBsiTaskStatus.COMPLETE_FAILED)) {
+			logger.error("定单未完成");
+			return;
+		}
+		
+		
 		BsiCashCouponDomain bsiCashCouponDomain = null;
 		bsiCashCouponDomain = bsiCashCouponService.loadByCode(bsiOrderDetailDomain.getBsiCashCouponCode());
 		

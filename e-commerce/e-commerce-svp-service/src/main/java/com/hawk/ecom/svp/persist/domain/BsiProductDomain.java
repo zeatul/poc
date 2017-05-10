@@ -33,7 +33,7 @@ public class BsiProductDomain implements Serializable {
 	/**
 	 * 产品状态 bsi_product_status
 	 */
-	private String bsiProductStatus;
+	private Integer bsiProductStatus;
 	
 	/**
 	 * 显示价格 bsi_display_price
@@ -103,7 +103,7 @@ public class BsiProductDomain implements Serializable {
 	 * 
 	 * @return 产品状态 bsi_product_status
 	 */
-	public String getBsiProductStatus(){
+	public Integer getBsiProductStatus(){
 		return bsiProductStatus;
 	}
 	
@@ -111,7 +111,7 @@ public class BsiProductDomain implements Serializable {
 	 * 
 	 * @param bsiProductStatus 产品状态 bsi_product_status
 	 */	
-	public void setBsiProductStatus (String bsiProductStatus) {
+	public void setBsiProductStatus (Integer bsiProductStatus) {
 		this.bsiProductStatus = bsiProductStatus;
 	}
 	

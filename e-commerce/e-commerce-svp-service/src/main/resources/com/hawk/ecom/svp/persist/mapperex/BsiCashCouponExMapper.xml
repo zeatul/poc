@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapperex.BsiCashCouponExMapper">
+
+	
+	<select id="counponForJob"  resultType="BsiCashCouponDomain">
+		SELECT 		
+		<include refid="com.hawk.ecom.svp.persist.mapper.BsiCashCouponMapper.columns" />
+		FROM t_svp_bsi_cash_coupon
+		WHERE bsi_cash_coupon_status = #{bsiCashCouponStatus}
+		AND update_date <![CDATA[   <=  ]]> #{curDate}
+	</select>
+</mapper>

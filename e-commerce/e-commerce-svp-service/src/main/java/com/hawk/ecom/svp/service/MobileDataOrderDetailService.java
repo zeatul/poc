@@ -1,6 +1,5 @@
 package com.hawk.ecom.svp.service;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.svp.constant.ConstChargeStatus;
-import com.hawk.ecom.svp.constant.ConstPayStatus;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.persist.mapper.MobileDataOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapperex.MobileDataOrderDetailExMapper;
@@ -30,12 +28,12 @@ public class MobileDataOrderDetailService {
 	@Autowired
 	private MobileDataOrderDetailExMapper mobileDataOrderDetailExMapper;
 	
-	
 	public List<String> taskCodeForJob(){
-		return mobileDataOrderDetailExMapper.taskCodeForJob(ConstChargeStatus.COMPLETE_FAILED, new Date(0), ConstPayStatus.PAYED);
+		return mobileDataOrderDetailExMapper.taskCodeForJob(ConstChargeStatus.COMPLETE_FAILED, new Date());
 	}
 	
-	public  MobileDataOrderDetailDomain loadByTaskId(String chargeTaskCode){
+	
+	public  MobileDataOrderDetailDomain loadByTaskCode(String chargeTaskCode){
 		
 		if (StringTools.isNullOrEmpty(chargeTaskCode))
 			throw new RuntimeException("任务编号为空");
@@ -46,13 +44,13 @@ public class MobileDataOrderDetailService {
 		return MybatisTools.single(list);
 	}
 	
-	public List<MobileDataOrderDetailDomain> loadByOrderId(Long orderId){
-		if (orderId == null){
-			logger.error("The orderId is null");
-			return Collections.emptyList();
+	public MobileDataOrderDetailDomain loadByOrderCode(String orderCode){
+		if (StringTools.isNullOrEmpty(orderCode)){
+			logger.error("The orderCode is null");
+			return null;
 		}
-		MybatisParam params = new MybatisParam().put("orderId", orderId);
-		return mobileDataOrderDetailMapper.loadDynamic(params);
+		MybatisParam params = new MybatisParam().put("orderCode", orderCode);
+		return MybatisTools.single(mobileDataOrderDetailMapper.loadDynamic(params));
 	}
 	
 	public int update(MobileDataOrderDetailDomain mobileDataOrderDetailDomain){

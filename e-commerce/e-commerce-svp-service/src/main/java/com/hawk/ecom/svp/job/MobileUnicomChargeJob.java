@@ -38,7 +38,7 @@ public class MobileUnicomChargeJob implements Runnable{
 
 	@Override
 	public void run() {
-		MobileDataOrderDetailDomain mobileDataOrderDetailDomain = mobileDataOrderDetailService.loadByTaskId(chargeTaskCode);
+		MobileDataOrderDetailDomain mobileDataOrderDetailDomain = mobileDataOrderDetailService.loadByTaskCode(chargeTaskCode);
 		if (mobileDataOrderDetailDomain == null){
 			logger.error("Couldn't find mobileDataOrderDetailDomain with chargeTaskCode = {} ",chargeTaskCode);
 			return ;
@@ -94,7 +94,7 @@ public class MobileUnicomChargeJob implements Runnable{
 			 * 更新订单状态
 			 */
 			if (mobileDataOrderDetailDomain.getChargeStatus() >= ConstChargeStatus.COMPLETE_FAILED){
-				MobileDataChargeOrderSubJob mobileDataChargeOrderSubJob = new MobileDataChargeOrderSubJob(mobileDataOrderDetailDomain.getOrderId());
+				MobileDataChargeOrderSubJob mobileDataChargeOrderSubJob = new MobileDataChargeOrderSubJob(mobileDataOrderDetailDomain.getOrderCode());
 				taskPool.submit(mobileDataChargeOrderSubJob);
 			}
 		}

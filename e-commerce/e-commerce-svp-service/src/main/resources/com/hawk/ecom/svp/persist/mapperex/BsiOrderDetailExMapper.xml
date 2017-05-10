@@ -10,6 +10,5 @@
 		FROM t_svp_bsi_order_detail
 		WHERE bsi_task_status <![CDATA[   <  ]]> #{bsiTaskStatus}
 		AND schedule_exec_date  <![CDATA[   <=  ]]> #{scheduleExecDate}
-		AND pay_status = #{payStatus}
 	</select>
 </mapper>

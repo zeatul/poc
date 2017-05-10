@@ -28,7 +28,7 @@ public class OrderService {
 		return orderMapper.load(orderId);
 	}
 	
-	public OrderDomain loadByCode(String orderCode){
+	public OrderDomain loadByOrderCode(String orderCode){
 		if (StringTools.isNullOrEmpty(orderCode)){
 			logger.error("orderCode is null");
 			return null;

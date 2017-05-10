@@ -95,8 +95,9 @@ alter table t_svp_bsi_cash_coupon_sequence comment '代金券编号生成表';
 create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
-   order_id             bigint comment '碎屏险订单id',
-   pay_status           integer comment '支付状态',
+   order_code           varchar(50) comment '订单编号',
+   store_code           varchar(50) comment '商户编号',
+   user_code            varchar(50) comment '用户编号',
    bsi_task_code        varchar(200) comment '任务号,与小宝对接用',
    bsi_task_status      integer comment '任务状态',
    bsi_phone_model_id   integer comment '手机型号ID',
@@ -178,7 +179,7 @@ create table t_svp_bsi_phone_model
    bsi_phone_model_id   integer not null comment '手机型号ID',
    bsi_phone_brand      varchar(200) not null comment '手机品牌',
    bsi_phone_model      varchar(200) not null comment '手机型号',
-   bsi_phone_model_status char(1) comment '型号状态',
+   bsi_phone_model_status integer comment '型号状态',
    primary key (bsi_phone_model_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -216,7 +217,7 @@ create table t_svp_bsi_product
    bsi_product_id       integer not null comment '碎屏险产品ID',
    bsi_product_name     varchar(200) comment '产品名称',
    bsi_product_valid_period integer comment '有效期(月)',
-   bsi_product_status   char(1) comment '产品状态',
+   bsi_product_status   integer comment '产品状态',
    bsi_display_price    numeric(10,2) comment '显示价格',
    bsi_trade_price      numeric(10,2) comment '批发价格',
    bsi_retail_price     numeric(10,2) comment '销售价格',
@@ -245,8 +246,9 @@ alter table t_svp_charge_sequence comment '流量充值任务号生成表';
 create table t_svp_mobile_data_order_detail
 (
    id                   bigint not null comment '主键',
-   order_id             bigint comment '碎屏险订单id',
-   pay_status           integer comment '支付状态',
+   order_code           varchar(50) comment '订单编号',
+   store_code           varchar(50) comment '商户编号',
+   user_code            varchar(50) comment '用户编号',
    charge_mobile_number varchar(20) comment '手机号码',
    charge_data_size     integer comment '充值流量',
    charge_status        integer comment '充值状态',

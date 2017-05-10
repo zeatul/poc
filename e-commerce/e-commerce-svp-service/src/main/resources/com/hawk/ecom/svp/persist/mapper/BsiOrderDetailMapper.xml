@@ -6,8 +6,9 @@
 
 	<sql id="columns">	
 				id AS "id" ,
-		order_id AS "orderId" ,
-		pay_status AS "payStatus" ,
+		order_code AS "orderCode" ,
+		store_code AS "storeCode" ,
+		user_code AS "userCode" ,
 		bsi_task_code AS "bsiTaskCode" ,
 		bsi_task_status AS "bsiTaskStatus" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
@@ -38,8 +39,9 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
-			<if test="orderId != null"> AND order_id = #{orderId}  </if>
-			<if test="payStatus != null"> AND pay_status = #{payStatus}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="bsiTaskCode != null"> AND bsi_task_code = #{bsiTaskCode}  </if>
 			<if test="bsiTaskStatus != null"> AND bsi_task_status = #{bsiTaskStatus}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
@@ -71,8 +73,9 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
-			AND order_id = #{old_orderId}
-			AND pay_status = #{old_payStatus}
+			AND order_code = #{old_orderCode}
+			AND store_code = #{old_storeCode}
+			AND user_code = #{old_userCode}
 			AND bsi_task_code = #{old_bsiTaskCode}
 			AND bsi_task_status = #{old_bsiTaskStatus}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
@@ -104,8 +107,9 @@
 	<sql id="update">
 		<set>
 			id = #{id},
-			order_id = #{orderId},
-			pay_status = #{payStatus},
+			order_code = #{orderCode},
+			store_code = #{storeCode},
+			user_code = #{userCode},
 			bsi_task_code = #{bsiTaskCode},
 			bsi_task_status = #{bsiTaskStatus},
 			bsi_phone_model_id = #{bsiPhoneModelId},
@@ -137,8 +141,9 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
-			<if test="orderId != null">order_id = #{orderId},</if>
-			<if test="payStatus != null">pay_status = #{payStatus},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="bsiTaskCode != null">bsi_task_code = #{bsiTaskCode},</if>
 			<if test="bsiTaskStatus != null">bsi_task_status = #{bsiTaskStatus},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
@@ -203,8 +208,9 @@
 	<insert id="insert"  parameterType="BsiOrderDetailDomain">
 		INSERT INTO t_svp_bsi_order_detail (			
 				id,				
-				order_id,				
-				pay_status,				
+				order_code,				
+				store_code,				
+				user_code,				
 				bsi_task_code,				
 				bsi_task_status,				
 				bsi_phone_model_id,				
@@ -233,8 +239,9 @@
 		)		
 		VALUES (	
 			#{id},
-			#{orderId},
-			#{payStatus},
+			#{orderCode},
+			#{storeCode},
+			#{userCode},
 			#{bsiTaskCode},
 			#{bsiTaskStatus},
 			#{bsiPhoneModelId},

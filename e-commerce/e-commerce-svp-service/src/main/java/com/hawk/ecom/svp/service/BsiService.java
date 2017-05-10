@@ -1,5 +1,7 @@
 package com.hawk.ecom.svp.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,6 @@ import com.hawk.ecom.svp.constant.ConstBsiTaskStatus;
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
-import com.hawk.ecom.svp.constant.ConstPayStatus;
 import com.hawk.ecom.svp.constant.ConstStore;
 import com.hawk.ecom.svp.job.BsiOuterCreateOrderJob;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
@@ -234,7 +235,9 @@ public class BsiService {
 		bsiOrderDetailDomain.setBsiPhoneModelId(activateCouponParam.getPhoneModelId());
 		bsiOrderDetailDomain.setBsiProductId(activateCouponParam.getProductId());
 		bsiOrderDetailDomain.setImei(activateCouponParam.getImei());
-		bsiOrderDetailDomain.setOrderId(orderDomain.getId());
+		bsiOrderDetailDomain.setOrderCode(orderDomain.getOrderCode());
+		bsiOrderDetailDomain.setStoreCode(orderDomain.getStoreCode());
+		bsiOrderDetailDomain.setUserCode(orderDomain.getUserCode());
 		bsiOrderDetailDomain.setCreateDate(currentDate);
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
 		bsiOrderDetailDomain.setExecTimes(0);
@@ -242,7 +245,6 @@ public class BsiService {
 		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setBsiCashCouponCode(bsiCashCouponCode);
-		bsiOrderDetailDomain.setPayStatus(ConstPayStatus.PAYED);
 		
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
 		
@@ -270,7 +272,14 @@ public class BsiService {
 			throw new RuntimeException("订单号不存在");
 		}
 		
-		return bsiOrderDetailService.loadByOrderCode(orderCode);
+		BsiOrderDetailDomain bsiOrderDetailDomain = bsiOrderDetailService.loadByOrderCode(orderCode);
+		if (bsiOrderDetailDomain == null){
+			return Collections.emptyList();
+		}else{
+			List<BsiOrderDetailDomain> list = new ArrayList<BsiOrderDetailDomain>();
+			list.add(bsiOrderDetailDomain);
+			return list;
+		}
 		
 	}
 }

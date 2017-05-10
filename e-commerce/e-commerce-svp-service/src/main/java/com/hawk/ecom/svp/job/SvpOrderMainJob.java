@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.pub.job.TaskPool;
+import com.hawk.ecom.svp.service.BsiOrderDetailService;
+import com.hawk.ecom.svp.service.MobileDataOrderDetailService;
 import com.hawk.framework.utility.tools.DateTools;
 
 /**
@@ -19,6 +23,15 @@ import com.hawk.framework.utility.tools.DateTools;
 public class SvpOrderMainJob {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private TaskPool taskPool;
+	
+	@Autowired
+	private BsiOrderDetailService bsiOrderDetailService;
+	
+	@Autowired
+	private MobileDataOrderDetailService mobileDataOrderDetailService;
 
 	@Scheduled(initialDelay=1000*77,fixedDelay=1000*60*5) 
 	public void execute(){
@@ -30,7 +43,7 @@ public class SvpOrderMainJob {
 	         */
 	       
 	        List<String> taskCodeList = bsiOrderDetailService.taskCodeForJob();
-	        logger.info("Found taskcodeList.size()={}",taskCodeList.size());
+	        logger.info("Found bsi taskcodeList.size()={}",taskCodeList.size());
 	        for (String taskCode : taskCodeList){
 	        	BsiOuterCreateOrderJob job = new BsiOuterCreateOrderJob(taskCode);
 	    		taskPool.execute(job);
@@ -39,6 +52,12 @@ public class SvpOrderMainJob {
 	        /**
 	         * 搜索待处理的虚拟流量充值子job
 	         */
+	        List<String> chargeTaskCodeList = mobileDataOrderDetailService.taskCodeForJob();
+	        logger.info("Found mobile data taskcodeList.size()={}",taskCodeList.size());
+	        for (String taskCode : chargeTaskCodeList){
+	        	MobileUnicomChargeJob job = new MobileUnicomChargeJob(taskCode);
+	        	taskPool.execute(job);
+	        }
 	
 		 logger.info("Finish SvpOrderMainJob at " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN));
 	}

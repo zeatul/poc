@@ -1,8 +1,6 @@
 package com.hawk.ecom.svp.job;
 
 import java.util.Date;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +11,6 @@ import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.service.BsiOrderDetailService;
 import com.hawk.ecom.svp.service.OrderService;
 import com.hawk.framework.pub.spring.FrameworkContext;
-import com.hawk.framework.utility.tools.CollectionTools;
 
 /**
  * 处理订单状态
@@ -24,37 +21,33 @@ public class SvpBsiOrderSubJob implements Runnable{
 	
 	private final static Logger logger = LoggerFactory.getLogger(SvpBsiOrderSubJob.class);
 	
-	private Long orderId;
+	private String orderCode;
 	
 	private final static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
 	private final static OrderService orderService = FrameworkContext.getBean(OrderService.class);
 
-	public SvpBsiOrderSubJob(Long orderId) {
-		this.orderId = orderId;
+	public SvpBsiOrderSubJob(String  orderCode) {
+		this.orderCode = orderCode;
 	}
 
 	@Override
 	public void run() {
-		logger.info("Start SvpBsiOrderSubJob with orderId = {}",orderId);
-		List<BsiOrderDetailDomain> bsiOrderDetailDomainList =  bsiOrderDetailService.loadByOrderId(orderId);
-		if (CollectionTools.isNullOrEmpty(bsiOrderDetailDomainList)){
-			logger.error("Couldn't find any BsiOrderDetailDomain with orderId = {}",orderId);
+		logger.info("Start SvpBsiOrderSubJob with orderId = {}",orderCode);
+		BsiOrderDetailDomain bsiOrderDetailDomain =  bsiOrderDetailService.loadByOrderCode(orderCode);
+		if (bsiOrderDetailDomain == null){
+			logger.error("Couldn't find any BsiOrderDetailDomain with orderCode = {}",orderCode);
 			return ;
 		}
 		
-		OrderDomain orderDomain = orderService.loadById(orderId);
+		OrderDomain orderDomain = orderService.loadByOrderCode(orderCode);
 		
 		if (orderDomain == null){
-			logger.error("Couldn't find the order with id = {}",orderId);
+			logger.error("Couldn't find the order with orderCode = {}",orderCode);
 			return ;
 		}
 		
-		if (bsiOrderDetailDomainList.size()>1){
-			logger.error("Only support the  order which has only one detail , orderId = {}",orderId);
-			return ;
-		}
 		
-		BsiOrderDetailDomain bsiOrderDetailDomain = bsiOrderDetailDomainList.get(0);
+		
 		if (bsiOrderDetailDomain.getBsiTaskStatus() == ConstBsiTaskStatus.COMPLETE_SUCCESS){
 			orderDomain.setOrderStatus(ConstOrderStatus.SUCCESS_COMPLETED);
 			orderDomain.setOrderErrorCause(null);
@@ -70,7 +63,7 @@ public class SvpBsiOrderSubJob implements Runnable{
 		}
 		
 		
-		logger.info("Finish SvpBsiOrderSubJob with orderId = {}",orderId);
+		logger.info("Finish SvpBsiOrderSubJob with orderCode = {}",orderCode);
 	}
 
 }

@@ -32,7 +32,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	/**
 	 * 型号状态 bsi_phone_model_status
 	 */
-	private String bsiPhoneModelStatus;
+	private Integer bsiPhoneModelStatus;
 	
 	
 	/**
@@ -87,7 +87,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	 * 
 	 * @return 型号状态 bsi_phone_model_status
 	 */
-	public String getBsiPhoneModelStatus(){
+	public Integer getBsiPhoneModelStatus(){
 		return bsiPhoneModelStatus;
 	}
 	
@@ -95,7 +95,7 @@ public class BsiPhoneModelDomain implements Serializable {
 	 * 
 	 * @param bsiPhoneModelStatus 型号状态 bsi_phone_model_status
 	 */	
-	public void setBsiPhoneModelStatus (String bsiPhoneModelStatus) {
+	public void setBsiPhoneModelStatus (Integer bsiPhoneModelStatus) {
 		this.bsiPhoneModelStatus = bsiPhoneModelStatus;
 	}
 	

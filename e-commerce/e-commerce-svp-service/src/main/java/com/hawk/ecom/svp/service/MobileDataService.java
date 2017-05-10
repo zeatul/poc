@@ -15,7 +15,6 @@ import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.svp.constant.ConstChargeStatus;
 import com.hawk.ecom.svp.constant.ConstOrderStatus;
 import com.hawk.ecom.svp.constant.ConstOrderType;
-import com.hawk.ecom.svp.constant.ConstPayStatus;
 import com.hawk.ecom.svp.constant.ConstStore;
 import com.hawk.ecom.svp.job.MobileUnicomChargeJob;
 import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
@@ -122,11 +121,12 @@ public class MobileDataService {
 		mobileDataOrderDetailDomain.setChargeDataSize(10);
 		mobileDataOrderDetailDomain.setChargeMobileNumber(mobileNumber);
 		mobileDataOrderDetailDomain.setChargeTaskCode(UUID.randomUUID().toString());
-		mobileDataOrderDetailDomain.setOrderId(orderDomain.getId());
+		mobileDataOrderDetailDomain.setOrderCode(orderDomain.getOrderCode());
+		mobileDataOrderDetailDomain.setStoreCode(orderDomain.getStoreCode());
+		mobileDataOrderDetailDomain.setUserCode(orderDomain.getUserCode());
 		mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.UN_EXEC);
 		mobileDataOrderDetailDomain.setExecTimes(0);
 		mobileDataOrderDetailDomain.setMaxExecTimes(5);
-		mobileDataOrderDetailDomain.setPayStatus(ConstPayStatus.PAYED);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
 		
@@ -148,9 +148,9 @@ public class MobileDataService {
 	 * @param taskId
 	 */
 	@Valid
-	public void checkTaskId(@NotEmpty("taskId") String taskId){
+	public void checkTaskId(@NotEmpty("chargeTaskCode") String taskCode){
 		
-		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(taskId);
+		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskCode(taskCode);
 		
 		
 		if(mobileDataOrderDetailDomain == null)
@@ -162,7 +162,7 @@ public class MobileDataService {
 	
 	@Valid
 	public void notify(@Valid UnicomNotifyParam unicomNotifyParam){
-		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskId(unicomNotifyParam.getTaskId());
+		MobileDataOrderDetailDomain mobileDataOrderDetailDomain =  mobileDataOrderDetailService.loadByTaskCode(unicomNotifyParam.getTaskId());
 		if(mobileDataOrderDetailDomain == null)
 			throw new RuntimeException("任务不存在");
 		

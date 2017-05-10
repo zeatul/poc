@@ -12,7 +12,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pub.job.TaskPool;
-import com.hawk.ecom.svp.service.BsiOrderDetailService;
+import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
+import com.hawk.ecom.svp.service.BsiCashCouponService;
 import com.hawk.framework.utility.tools.DateTools;
 
 /**
@@ -26,7 +27,7 @@ public class BsiCashCouponMainJob {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	private BsiOrderDetailService bsiOrderDetailService;
+	private BsiCashCouponService bsiCashCouponService;
 	
 	@Autowired
 	private TaskPool taskPool;
@@ -35,7 +36,13 @@ public class BsiCashCouponMainJob {
 //	@Scheduled(cron="*/5 * * * * ?") 
     public void execute(){  
         logger.info("Start BsiCashCouponMainJob at " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN));
-       1
+       
+        List<BsiCashCouponDomain> list = bsiCashCouponService.counponForJob();
+        logger.info("Found {} activating coupon",list.size());
+        for (BsiCashCouponDomain bsiCashCouponDomain : list){
+        	BsiCashCouponSubJob job = new BsiCashCouponSubJob(bsiCashCouponDomain.getBsiCashCouponCode(), bsiCashCouponDomain.getOrderCode());
+        	taskPool.submit(job);
+        }
         
         logger.info("Finish BsiCashCouponMainJob at " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN));
     }  

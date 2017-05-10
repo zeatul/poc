@@ -61,7 +61,7 @@ public class GenerateSqlForInitBsiData {
 				phoneModelDomain.setBsiPhoneModelId(phoneModelId);
 				phoneModelDomain.setBsiPhoneBrand(phoneBrand);
 				phoneModelDomain.setBsiPhoneModel(phoneModel);
-				phoneModelDomain.setBsiPhoneModelStatus("1");
+				phoneModelDomain.setBsiPhoneModelStatus(1);
 				phoneList.add(phoneModelDomain);
 				phoneFilter.put(key, phoneModelDomain);
 			}
@@ -78,7 +78,7 @@ public class GenerateSqlForInitBsiData {
 				productDomain = new BsiProductDomain();
 				productDomain.setBsiProductId(productId);
 				productDomain.setBsiProductName(productName);
-				productDomain.setBsiProductStatus("1");
+				productDomain.setBsiProductStatus(1);
 				productDomain.setBsiProductValidPeriod(period);
 				productDomain.setBsiTradePrice(bsiTradePrice);
 				productDomain.setBsiDisplayPrice(bsiDisplayPrice);
@@ -96,7 +96,7 @@ public class GenerateSqlForInitBsiData {
 					.append(phoneModelDomain.getBsiPhoneModelId()).append(",")//
 					.append("'").append(phoneModelDomain.getBsiPhoneBrand()).append("'").append(",")//
 					.append("'").append(phoneModelDomain.getBsiPhoneModel()).append("'").append(",")//
-					.append("'").append(phoneModelDomain.getBsiPhoneModelStatus()).append("'")//
+					.append(phoneModelDomain.getBsiPhoneModelStatus())//
 					.append(");");
 			System.out.println(sb.toString());
 		});
@@ -109,7 +109,7 @@ public class GenerateSqlForInitBsiData {
 					.append(productDomain.getBsiProductId()).append(",")//
 					.append("'").append(productDomain.getBsiProductName()).append("'").append(",")//
 					.append(productDomain.getBsiProductValidPeriod()).append(",")//
-					.append("'").append("1").append("'").append(",")//
+					.append(1).append(",")//
 					.append(productDomain.getBsiTradePrice()).append(",")//
 					.append(productDomain.getBsiRetailPrice()).append(",")//
 					.append(productDomain.getBsiDisplayPrice())//
@@ -129,7 +129,8 @@ public class GenerateSqlForInitBsiData {
 			System.out.println(sb.toString());
 		});
 
-		System.out.println("INSERT INTO t_svp_bsi_phone_brand(bsi_phone_brand) SELECT distinct bsi_phone_brand as bsiPhoneBrand FROM t_svp_bsi_phone_model;") ;
+		System.out.println("delete from  t_svp_bsi_phone_brand;");
+		System.out.println("insert into t_svp_bsi_phone_brand(bsi_phone_brand,spell_abbr,object_order,bsi_phone_brand_status) SELECT distinct bsi_phone_brand ,'aaa',100,1 FROM t_svp_bsi_phone_model WHERE bsi_phone_model_status = 1;") ;
 	}
 
 }

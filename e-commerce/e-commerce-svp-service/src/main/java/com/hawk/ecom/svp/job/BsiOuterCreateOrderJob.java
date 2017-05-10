@@ -61,7 +61,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 	public void run() {
 		if (bsiOrderDetailDomain == null){
 			logger.info("Start BsiOuterCreateOrderJob,taskCode={}",taskCode);
-			bsiOrderDetailDomain = bsiOrderDetailService.loadByTaskcode(taskCode);
+			bsiOrderDetailDomain = bsiOrderDetailService.loadByTaskCode(taskCode);
 			if (bsiOrderDetailDomain == null){
 				logger.error("Couldn't find bsiOrderDetailDomain,taskCode={}",taskCode);
 			}
@@ -130,7 +130,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 					taskPool.submit(bsiCashCouponSubJob);
 				}
 
-				SvpBsiOrderSubJob svpOrderSubJob = new SvpBsiOrderSubJob(bsiOrderDetailDomain.getOrderId());
+				SvpBsiOrderSubJob svpOrderSubJob = new SvpBsiOrderSubJob(bsiOrderDetailDomain.getOrderCode());
 				taskPool.submit(svpOrderSubJob);
 				
 			}
