@@ -1,6 +1,5 @@
 package com.hawk.ecom.svp.service;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.svp.constant.ConstBsiTaskStatus;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
-import com.hawk.ecom.svp.persist.domain.OrderDomain;
 import com.hawk.ecom.svp.persist.mapper.BsiOrderDetailMapper;
 import com.hawk.ecom.svp.persist.mapperex.BsiOrderDetailExMapper;
 import com.hawk.framework.pub.sql.MybatisParam;

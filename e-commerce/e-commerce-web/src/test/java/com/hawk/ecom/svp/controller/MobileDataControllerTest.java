@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
-import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.ecom.svp.request.SignInParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;

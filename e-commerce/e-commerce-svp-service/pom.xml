@@ -27,11 +27,6 @@
 			<artifactId>framework-dic</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.hawk.framework</groupId>
-			<artifactId>framework-word</artifactId>
-		</dependency>
-
 		<!-- com.hawk.ecom -->
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>

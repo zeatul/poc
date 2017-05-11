@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.JavaType;
@@ -34,6 +32,7 @@ public class JsonTools {
 	}
 
 	
+	@SuppressWarnings("hiding")
 	public static <T> T toObject(String jsonStr, Class<T> clazz) {
 		try {
 			return objectMapper.readValue(jsonStr, clazz);
@@ -42,6 +41,7 @@ public class JsonTools {
 		}
 	}
 	
+	@SuppressWarnings("hiding")
 	public static <T> Collection<T> toObject (String jsonStr, Class<? extends Collection<?>> cClass,Class<T> tClass){
 		try {
 			JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(cClass, tClass);
@@ -51,6 +51,7 @@ public class JsonTools {
 		}
 	}
 	
+	@SuppressWarnings("hiding")
 	public static <T> ArrayList<T> toArrayList(String jsonStr ,Class<T> clazz){
 		JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz);
 		try {
@@ -60,6 +61,7 @@ public class JsonTools {
 		}
 	}
 	
+	@SuppressWarnings("hiding")
 	public static <T> HashSet<T> toHashSet(String jsonStr , Class<T> clazz){
 		JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(HashSet.class, clazz);
 		try {

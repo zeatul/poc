@@ -9,15 +9,10 @@
 	</parent>
 
 	<packaging>jar</packaging>
-	<artifactId>e-commerce-code-gen</artifactId>
-	<name>e-commerce-code-gen</name>
+	<artifactId>e-commerce-database</artifactId>
+	<name>e-commerce-database</name>
 	<url>http://maven.apache.org</url>
 
 
-	<dependencies>
-		<dependency>
-			<groupId>com.hawk.framework</groupId>
-			<artifactId>framework-codegen</artifactId>
-		</dependency>		
-	</dependencies>
+	
 </project>
