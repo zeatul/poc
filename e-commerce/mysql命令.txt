@@ -1,0 +1,1 @@
+mysqldump --no-defaults -uroot -p  dic t_dic_word t_dic_synonym > c:/createdb.sql
