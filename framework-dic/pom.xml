@@ -27,11 +27,6 @@
 			<artifactId>framework-pub</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.hawk.framework</groupId>
-			<artifactId>framework-word</artifactId>
-		</dependency>
-
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

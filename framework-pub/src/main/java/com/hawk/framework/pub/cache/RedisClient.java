@@ -283,10 +283,36 @@ public class RedisClient {
 			@Override
 			public <T> T exec(ShardedJedis shardedJedis) {
 				shardedJedis.del(key);
+				
 				return null;
 			}
 		});
 
+	}
+	
+	/**
+	 * 设置互斥锁
+	 * @param key
+	 * @param value
+	 * @param expire 有效时间
+	 * @return true 设置成功 ，false 设置失败
+	 */
+	public boolean setnx(final String key ,final String value,int expire){
+		return execute(new Executor() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Boolean exec(ShardedJedis shardedJedis) {
+				long result = shardedJedis.setnx(key, value);
+				if (result == 0){
+					return false;
+				}else{
+					shardedJedis.expire(key, expire);
+					return true;
+				}
+			}
+
+		});
 	}
 
 }

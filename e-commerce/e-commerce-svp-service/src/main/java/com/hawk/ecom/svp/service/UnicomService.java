@@ -1,11 +1,8 @@
 package com.hawk.ecom.svp.service;
 
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +10,6 @@ import com.hawk.ecom.svp.exception.OuterCallException;
 import com.hawk.ecom.svp.utils.DES;
 import com.hawk.framework.utility.http.HttpClientExecutorImpl;
 import com.hawk.framework.utility.http.HttpExecutor;
-import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;

@@ -12,6 +12,7 @@ import com.hawk.ecom.svp.persist.domain.MobileDataOrderDetailDomain;
 import com.hawk.ecom.svp.service.MobileDataOrderDetailService;
 import com.hawk.ecom.svp.service.UnicomService;
 import com.hawk.ecom.svp.utils.ScheduleTools;
+import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.spring.FrameworkContext;
 
 
@@ -29,7 +30,8 @@ public class MobileUnicomChargeJob implements Runnable{
 	private final static UnicomService unicomService = FrameworkContext.getBean(UnicomService.class);
 	
 	private final static MobileDataOrderDetailService mobileDataOrderDetailService = FrameworkContext.getBean(MobileDataOrderDetailService.class);
-
+	private final static RedisCacheServiceImpl cacheService = FrameworkContext.getBean(RedisCacheServiceImpl.class);
+	
 	private final static TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
 	
 	public MobileUnicomChargeJob(String chargeTaskCode) {
@@ -59,7 +61,11 @@ public class MobileUnicomChargeJob implements Runnable{
 			/**
 			 * TODO：用乐观锁卡住只能执行一个
 			 */
-			1
+			String key = "MobileUnicomChargeJob-" + chargeTaskCode;
+			if (!cacheService.setnx(key, chargeTaskCode, 300-5)){
+				logger.error("Failed to get the redis lock");
+				return ;
+			}
 			
 			mobileDataOrderDetailDomain.setLastExecDate(new Date());
 			unicomService.chargeVirtualMobileData(chargeTaskCode, mobileDataOrderDetailDomain.getChargeMobileNumber(), mobileDataOrderDetailDomain.getChargeDataSize());

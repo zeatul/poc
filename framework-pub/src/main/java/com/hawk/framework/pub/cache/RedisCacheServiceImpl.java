@@ -60,4 +60,14 @@ public class RedisCacheServiceImpl implements CacheService{
 		return JsonTools.toObject(value, clazz);
 	}
 
+	@Override
+	public void delete(String key) {
+		redisClient.delete(key);
+	}
+
+	@Override
+	public boolean setnx(String key, String value, int expire) {
+		return redisClient.setnx(key, value, expire);
+	}
+
 }

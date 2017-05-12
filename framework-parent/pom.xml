@@ -9,7 +9,7 @@
 	<modules>
 		<module>../framework-utility</module>
 		<module>../framework-dic</module>
-		<module>../framework-word</module>
+		<module>../framework-database</module>
 		<module>../framework-codegen</module>
 		<module>../framework-pub</module>
 		<!-- <module>../framework-web-example</module> -->
@@ -68,11 +68,6 @@
 			<dependency>
 				<groupId>com.hawk.framework</groupId>
 				<artifactId>framework-dic</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.hawk.framework</groupId>
-				<artifactId>framework-word</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

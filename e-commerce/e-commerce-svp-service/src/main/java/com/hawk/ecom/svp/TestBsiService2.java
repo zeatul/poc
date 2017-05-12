@@ -6,20 +6,12 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import com.hawk.framework.utility.http.HttpClientExecutorImpl;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
-import com.hawk.framework.utility.tools.JsonTools;
-
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import sun.misc.BASE64Encoder;
 
 public class TestBsiService2 {

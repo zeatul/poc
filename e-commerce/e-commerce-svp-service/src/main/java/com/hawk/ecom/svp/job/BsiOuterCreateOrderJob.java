@@ -13,6 +13,7 @@ import com.hawk.ecom.svp.service.BsiOrderDetailService;
 import com.hawk.ecom.svp.service.BsiOuterService;
 import com.hawk.ecom.svp.service.BsiOuterService.Order;
 import com.hawk.ecom.svp.utils.ScheduleTools;
+import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -37,9 +38,10 @@ public class BsiOuterCreateOrderJob implements Runnable {
 		this.taskCode = taskCode;
 	}
 
-	private static BsiOuterService bsiOuterService = FrameworkContext.getBean(BsiOuterService.class);
-	private static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
-	private static TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
+	private final static BsiOuterService bsiOuterService = FrameworkContext.getBean(BsiOuterService.class);
+	private final static BsiOrderDetailService bsiOrderDetailService = FrameworkContext.getBean(BsiOrderDetailService.class);
+	private final static TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
+	private final static RedisCacheServiceImpl cacheService = FrameworkContext.getBean(RedisCacheServiceImpl.class);
 
 	private static Order buildOrder(BsiOrderDetailDomain bsiOrderDetailDomain) {
 		Order order = new Order();
@@ -66,7 +68,8 @@ public class BsiOuterCreateOrderJob implements Runnable {
 				logger.error("Couldn't find bsiOrderDetailDomain,taskCode={}",taskCode);
 			}
 		}else{
-			logger.info("Start BsiOuterCreateOrderJob ,  bsiOrderDetailDomain.taskCode={}" ,bsiOrderDetailDomain.getBsiTaskCode());
+			taskCode = bsiOrderDetailDomain.getBsiTaskCode();
+			logger.info("Start BsiOuterCreateOrderJob ,  bsiOrderDetailDomain.taskCode={}" ,taskCode);
 		}
 		int bsiTaskStatus = bsiOrderDetailDomain.getBsiTaskStatus();
 		if (bsiTaskStatus >= ConstBsiTaskStatus.COMPLETE_FAILED  ){
@@ -77,7 +80,11 @@ public class BsiOuterCreateOrderJob implements Runnable {
 		/**
 		 * TODO:增加redis缓存锁
 		 */
-		1
+		String key = "BsiOuterCreateOrderJob-" + taskCode;
+		if (!cacheService.setnx(key, taskCode, 300-5)){
+			logger.error("Failed to get the redis lock,taskCode={}",taskCode);
+			return ;
+		}
 		
 
 		Order order = buildOrder(bsiOrderDetailDomain);
