@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.sms.constant.ConstSmsStatus;
 import com.hawk.ecom.sms.exception.OverSpeedException;
+import com.hawk.ecom.sms.exception.OverTimesException;
 import com.hawk.ecom.sms.persist.domain.TaskDomain;
 import com.hawk.ecom.sms.request.SendVeriCodeParam;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -60,13 +61,30 @@ public class SmsService {
 	public SendSmsResult sendVeriCode(@NotNull("整个参数") @Valid SendVeriCodeParam sendVeriCodeParam){
 		final String mobileNumber = sendVeriCodeParam.getMobileNumber();
 		/**
-		 * 同一个手机号，一天只能发送10次，间隔不低于1分钟
+		 * 同一个手机号，发送间隔不低于1分钟
 		 */
 		String key = StringTools.concatWithSymbol("_", "sms","veriCode","interval",mobileNumber);
 		if (cacheService.get(key, String.class)!=null){
 			throw new OverSpeedException();
 		}else{
 			cacheService.put(key, "60",60);
+		}
+		
+		/**
+		 * 同一个手机号，一天只能发送5次
+		 */
+		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);
+		String strTimes = cacheService.get(key2, String.class);
+		if (strTimes!=null){
+			int times = Integer.parseInt(strTimes);
+			if (times >= 5){
+				throw  new OverTimesException();
+			}else{
+				times = times +1;
+				cacheService.put(key2, times);
+			}
+		}else{
+			cacheService.put(key2, "1", 3600*24);
 		}
 		
 		

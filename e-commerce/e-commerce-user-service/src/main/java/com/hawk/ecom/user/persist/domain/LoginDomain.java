@@ -36,6 +36,16 @@ public class LoginDomain implements Serializable {
 	private String userCode;
 	
 	/**
+	 * 用户账号 user_account
+	 */
+	private String userAccount;
+	
+	/**
+	 * 用户邮箱 user_email
+	 */
+	private String userEmail;
+	
+	/**
 	 * 登录IP login_ip
 	 */
 	private String loginIp;
@@ -49,6 +59,16 @@ public class LoginDomain implements Serializable {
 	 * 登录日期 login_date
 	 */
 	private Date loginDate;
+	
+	/**
+	 * 登录渠道 login_channel
+	 */
+	private String loginChannel;
+	
+	/**
+	 * 登录状态 login_status
+	 */
+	private Integer loginStatus;
 	
 	/**
 	 * 最近访问日期 last_access_date
@@ -177,6 +197,38 @@ public class LoginDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 用户账号 user_account
+	 */
+	public String getUserAccount(){
+		return userAccount;
+	}
+	
+	/**
+	 * 
+	 * @param userAccount 用户账号 user_account
+	 */	
+	public void setUserAccount (String userAccount) {
+		this.userAccount = userAccount;
+	}
+	
+	/**
+	 * 
+	 * @return 用户邮箱 user_email
+	 */
+	public String getUserEmail(){
+		return userEmail;
+	}
+	
+	/**
+	 * 
+	 * @param userEmail 用户邮箱 user_email
+	 */	
+	public void setUserEmail (String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	/**
+	 * 
 	 * @return 登录IP login_ip
 	 */
 	public String getLoginIp(){
@@ -221,6 +273,38 @@ public class LoginDomain implements Serializable {
 	 */	
 	public void setLoginDate (Date loginDate) {
 		this.loginDate = loginDate;
+	}
+	
+	/**
+	 * 
+	 * @return 登录渠道 login_channel
+	 */
+	public String getLoginChannel(){
+		return loginChannel;
+	}
+	
+	/**
+	 * 
+	 * @param loginChannel 登录渠道 login_channel
+	 */	
+	public void setLoginChannel (String loginChannel) {
+		this.loginChannel = loginChannel;
+	}
+	
+	/**
+	 * 
+	 * @return 登录状态 login_status
+	 */
+	public Integer getLoginStatus(){
+		return loginStatus;
+	}
+	
+	/**
+	 * 
+	 * @param loginStatus 登录状态 login_status
+	 */	
+	public void setLoginStatus (Integer loginStatus) {
+		this.loginStatus = loginStatus;
 	}
 	
 	/**

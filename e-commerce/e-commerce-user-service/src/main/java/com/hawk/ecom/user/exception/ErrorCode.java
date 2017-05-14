@@ -15,6 +15,7 @@ public class ErrorCode {
 		errorMap.put(100005, "登陆票据为空");
 		errorMap.put(100006, "登陆票据非法");
 		errorMap.put(100007, "用户未登录");
+		errorMap.put(100008, "登录已经注销");
 		
 	}
 	

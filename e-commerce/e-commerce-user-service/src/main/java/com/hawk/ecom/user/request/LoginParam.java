@@ -7,6 +7,14 @@ import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 
 public class LoginParam {
 
+	public String getLoginChannel() {
+		return loginChannel;
+	}
+
+	public void setLoginChannel(String loginChannel) {
+		this.loginChannel = loginChannel;
+	}
+
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -63,4 +71,9 @@ public class LoginParam {
 	 * 读取http请求的userAgent
 	 */
 	private String userAgent;
+	
+	/**
+	 * 登录渠道
+	 */
+	private String loginChannel;
 }

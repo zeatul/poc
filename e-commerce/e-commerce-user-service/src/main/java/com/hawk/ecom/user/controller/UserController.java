@@ -28,11 +28,13 @@ import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.ecom.user.service.UserService;
 import com.hawk.ecom.user.utils.SsoToolsForSignature;
+import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.JsonTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @RestController
 @RequestMapping("/user")
@@ -78,6 +80,11 @@ public class UserController {
 		String veriCode = registerUserParam.getVeriCode();		
 		String mobileNumber = registerUserParam.getMobileNumber();
 		String loginPwd = registerUserParam.getLoginPwd();
+		String registerChannel = registerUserParam.getRegisterChanel();
+		if (StringTools.isNullOrEmpty(registerChannel)){
+			registerChannel = ConstRegisterChannel.HTML5;
+		}
+		
 		if (!smsService.checkVeriCode(mobileNumber, veriCode)){
 			throw new UnMatchedVeriCodeRuntimeException();
 		}
@@ -86,13 +93,13 @@ public class UserController {
 		
 		createUserParam.setLoginPwd(loginPwd);
 		createUserParam.setMobileNumber(mobileNumber);
-		createUserParam.setRegisterChannel(ConstRegisterChannel.SELF_REG);
 		createUserParam.setRegisterIp(AuthThreadLocal.getHttpRequestInfo().getIp());
 		createUserParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
+		createUserParam.setRegisterChannel(registerChannel);
 		
 		userService.createUser(createUserParam);
 		
-		String  token = loginService.login(mobileNumber, loginPwd,createUserParam.getRegisterIp(),createUserParam.getUserAgent());
+		String  token = loginService.login(mobileNumber, loginPwd,createUserParam.getRegisterIp(),createUserParam.getUserAgent(),registerChannel);
 		
 		LoginResponse loginResponse = new LoginResponse();
 		

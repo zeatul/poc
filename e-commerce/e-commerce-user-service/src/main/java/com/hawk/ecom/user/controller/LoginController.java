@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.ecom.user.constant.ConstLoginStatus;
+import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.exception.TokenEmptyRuntimeException;
 import com.hawk.ecom.user.request.LoginParam;
 import com.hawk.ecom.user.response.LoginResponse;
@@ -34,6 +36,7 @@ public class LoginController {
 		LoginParam loginParam = HttpRequestTools.parse(request, LoginParam.class);
 		loginParam.setLoginIp(AuthThreadLocal.getHttpRequestInfo().getIp());
 		loginParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
+		loginParam.setLoginChannel(ConstRegisterChannel.HTML5);
 		String token = loginService.login(loginParam);
 		LoginResponse loginResponse = new LoginResponse();
 
@@ -48,8 +51,8 @@ public class LoginController {
 		if (StringTools.isNullOrEmpty(token)){
 			throw new TokenEmptyRuntimeException();
 		}
-		loginService.loginInfo(token);
+		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
 
-		return SuccessResponse.build(null);
+		return SuccessResponse.build(userInfoResponse);
 	}
 }

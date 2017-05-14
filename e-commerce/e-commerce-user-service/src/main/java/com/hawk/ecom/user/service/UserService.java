@@ -87,7 +87,7 @@ public class UserService {
 		}else{
 			loginService.cacheSsoPassword(mobileNumber,password);
 		}
-		return loginService.login(mobileNumber, password, registerIp, userAgent);
+		return loginService.login(mobileNumber, password, registerIp, userAgent,registerChannel);
 	}
 
 	@Valid

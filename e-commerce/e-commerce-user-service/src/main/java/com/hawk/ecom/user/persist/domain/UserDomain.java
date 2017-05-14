@@ -31,6 +31,21 @@ public class UserDomain implements Serializable {
 	private String mobileNumber;
 	
 	/**
+	 * 用户账号 user_account
+	 */
+	private String userAccount;
+	
+	/**
+	 * 用户邮箱 user_email
+	 */
+	private String userEmail;
+	
+	/**
+	 * 用户邮箱是否已验证 is_email_verified
+	 */
+	private Integer isEmailVerified;
+	
+	/**
 	 * 手机号是否已经验证 is_mobile_verified
 	 */
 	private Integer isMobileVerified;
@@ -170,21 +185,6 @@ public class UserDomain implements Serializable {
 	 */
 	private Date deleteDate;
 	
-	/**
-	 * 用户账号 user_account
-	 */
-	private String userAccount;
-	
-	/**
-	 * 用户邮箱 user_email
-	 */
-	private String userEmail;
-	
-	/**
-	 * 用户邮箱是否已验证 is_email_verified
-	 */
-	private Integer isEmailVerified;
-	
 	
 	/**
 	 * 
@@ -232,6 +232,54 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setMobileNumber (String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+	
+	/**
+	 * 
+	 * @return 用户账号 user_account
+	 */
+	public String getUserAccount(){
+		return userAccount;
+	}
+	
+	/**
+	 * 
+	 * @param userAccount 用户账号 user_account
+	 */	
+	public void setUserAccount (String userAccount) {
+		this.userAccount = userAccount;
+	}
+	
+	/**
+	 * 
+	 * @return 用户邮箱 user_email
+	 */
+	public String getUserEmail(){
+		return userEmail;
+	}
+	
+	/**
+	 * 
+	 * @param userEmail 用户邮箱 user_email
+	 */	
+	public void setUserEmail (String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	/**
+	 * 
+	 * @return 用户邮箱是否已验证 is_email_verified
+	 */
+	public Integer getIsEmailVerified(){
+		return isEmailVerified;
+	}
+	
+	/**
+	 * 
+	 * @param isEmailVerified 用户邮箱是否已验证 is_email_verified
+	 */	
+	public void setIsEmailVerified (Integer isEmailVerified) {
+		this.isEmailVerified = isEmailVerified;
 	}
 	
 	/**
@@ -680,54 +728,6 @@ public class UserDomain implements Serializable {
 	 */	
 	public void setDeleteDate (Date deleteDate) {
 		this.deleteDate = deleteDate;
-	}
-	
-	/**
-	 * 
-	 * @return 用户账号 user_account
-	 */
-	public String getUserAccount(){
-		return userAccount;
-	}
-	
-	/**
-	 * 
-	 * @param userAccount 用户账号 user_account
-	 */	
-	public void setUserAccount (String userAccount) {
-		this.userAccount = userAccount;
-	}
-	
-	/**
-	 * 
-	 * @return 用户邮箱 user_email
-	 */
-	public String getUserEmail(){
-		return userEmail;
-	}
-	
-	/**
-	 * 
-	 * @param userEmail 用户邮箱 user_email
-	 */	
-	public void setUserEmail (String userEmail) {
-		this.userEmail = userEmail;
-	}
-	
-	/**
-	 * 
-	 * @return 用户邮箱是否已验证 is_email_verified
-	 */
-	public Integer getIsEmailVerified(){
-		return isEmailVerified;
-	}
-	
-	/**
-	 * 
-	 * @param isEmailVerified 用户邮箱是否已验证 is_email_verified
-	 */	
-	public void setIsEmailVerified (Integer isEmailVerified) {
-		this.isEmailVerified = isEmailVerified;
 	}
 	
 

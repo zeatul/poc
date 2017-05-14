@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.user.constant.ConstLoginStatus;
 import com.hawk.ecom.user.constant.ConstLoginType;
 import com.hawk.ecom.user.exception.TokenInvalidRuntimeException;
+import com.hawk.ecom.user.exception.TokenLogoutRuntimeException;
 import com.hawk.ecom.user.exception.TokenTimeoutRuntimeException;
 import com.hawk.ecom.user.exception.UnMatchedPasswordRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
@@ -59,20 +61,27 @@ public class LoginService {
 		String loginTokenKey = buildLongTokenKey(token);
 		CachedLoginToken cachedLoginToken = cacheService.get(loginTokenKey, CachedLoginToken.class);
 		if (cachedLoginToken!=null){
-			if (System.currentTimeMillis() >= cachedLoginToken.getExpireDate()){
-				throw new TokenTimeoutRuntimeException();
-			}
+			
 		}else{		
 			LoginDomain loginDomain = loginMapper.load(token);
 			if (loginDomain == null){
 				throw new TokenInvalidRuntimeException();
 			}
+			
+			if (loginDomain.getLoginStatus() == ConstLoginStatus.LOGOUT){
+				throw new TokenLogoutRuntimeException();
+			}
+			
 			cachedLoginToken = new CachedLoginToken();
 			cachedLoginToken.setExpireDate(loginDomain.getExpireDate().getTime());
 			cachedLoginToken.setMobileNumber(loginDomain.getMobileNumber());
 			cachedLoginToken.setUserCode(loginDomain.getUserCode());
 			cachedLoginToken.setUserId(loginDomain.getUserId());
 			cacheService.put(loginTokenKey, cachedLoginToken, 240);
+		}
+		
+		if (System.currentTimeMillis() >= cachedLoginToken.getExpireDate()){
+			throw new TokenTimeoutRuntimeException();
 		}
 		
 		UserInfoResponse userInfoResponse = new UserInfoResponse();
@@ -84,7 +93,7 @@ public class LoginService {
 		
 	@Valid
 	public String login(@Valid LoginParam loginParam){
-		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd(),loginParam.getLoginIp(),loginParam.getUserAgent());
+		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd(),loginParam.getLoginIp(),loginParam.getUserAgent(),loginParam.getLoginChannel());
 	}
 	
 	private String buildLongTokenKey(String token){
@@ -117,7 +126,7 @@ public class LoginService {
 		return userDomain;
 	}
 	
-	public String login(String mobileNumber, String password,String loginIp ,String userAgent){
+	public String login(String mobileNumber, String password,String loginIp ,String userAgent,String loginChannel){
 		UserDomain userDomain = checkPassword(mobileNumber,password);
 		
 		LoginDomain loginDomain = new LoginDomain();
@@ -131,6 +140,8 @@ public class LoginService {
 		loginDomain.setMobileNumber(mobileNumber);
 		loginDomain.setLoginIp(loginIp);
 		loginDomain.setUserAgent(userAgent);
+		loginDomain.setLoginChannel(loginChannel);
+		loginDomain.setLoginStatus(ConstLoginStatus.NORMAL);
 		Date expireDate = DateTools.addMinutes(curDate, 240);
 		loginDomain.setExpireDate(expireDate);
 		

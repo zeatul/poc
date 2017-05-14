@@ -9,6 +9,12 @@ public class RegisterUserParam {
 	
 
 	
+	public String getRegisterChanel() {
+		return registerChanel;
+	}
+	public void setRegisterChanel(String registerChanel) {
+		this.registerChanel = registerChanel;
+	}
 	public String getVeriCode() {
 		return veriCode;
 	}
@@ -50,6 +56,10 @@ public class RegisterUserParam {
 	private String veriCode;
 
 
+	/**
+	 * 注册渠道
+	 */
+	private String registerChanel;
 	
 
 }
