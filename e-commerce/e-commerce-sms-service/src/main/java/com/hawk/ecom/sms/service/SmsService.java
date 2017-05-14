@@ -147,6 +147,7 @@ public class SmsService {
 		}
 		String cachedVeriCode = cacheService.get(buildVeriCodeCacheKey(mobileNumber), String.class);
 		if (veriCode.equals(cachedVeriCode)){
+			cacheService.delete(buildVeriCodeCacheKey(mobileNumber));
 			return true;
 		}else{
 			return false;
