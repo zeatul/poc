@@ -6,8 +6,8 @@
 	
 	<select id="taskCodeForJob"  resultType="String">
 		SELECT 		
-		bsi_task_code AS "bsiTaskCode"
-		FROM t_svp_bsi_order_detail
+		charge_task_code AS "chargeTaskCode"
+		FROM t_svp_mobile_data_order_detail
 		WHERE charge_status <![CDATA[   <  ]]> #{chargeStatus}
 		AND schedule_exec_date  <![CDATA[   <=  ]]> #{scheduleExecDate}
 	</select>

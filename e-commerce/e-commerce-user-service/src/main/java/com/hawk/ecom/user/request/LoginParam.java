@@ -1,7 +1,9 @@
 package com.hawk.ecom.user.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.ValidWord;
+import com.hawk.framework.pub.json.jackson.PasswordSerializer;
 
 public class LoginParam {
 
@@ -49,6 +51,7 @@ public class LoginParam {
 	 * 密码,校验非空,长度,正则
 	 */
 	@NotEmpty
+	@JsonSerialize(using=PasswordSerializer.class)
 	private String loginPwd;
 	
 	/**
