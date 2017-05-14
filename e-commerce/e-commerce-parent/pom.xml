@@ -12,7 +12,6 @@
 		<module>../e-commerce-code-gen</module>		
 		<module>../e-commerce-svp-service</module>
 		<module>../e-commerce-store-service</module>
-		<module>../e-commerce-pay-service</module>
 		<module>../e-commerce-pub</module>
 		<module>../e-commerce-web</module>
 		<module>../e-commerce-database</module>
