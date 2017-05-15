@@ -1,4 +1,4 @@
-package com.hawk.ecom.web.spring.config;
+package com.hawk.ecom.mall.web.spring.config;
 
 import javax.sql.DataSource;
 
@@ -13,15 +13,12 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.hawk.ecom.mall.persist.domain.MallUserDomain;
+import com.hawk.ecom.mall.persist.mapper.MallUserMapper;
+import com.hawk.ecom.mall.persist.mapperex.MallUserExMapper;
 import com.hawk.ecom.sms.persist.domain.TaskDomain;
 import com.hawk.ecom.sms.persist.mapper.TaskMapper;
 import com.hawk.ecom.sms.persist.mapperex.TaskExMapper;
-import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
-import com.hawk.ecom.svp.persist.mapper.BsiPhoneModelMapper;
-import com.hawk.ecom.svp.persist.mapperex.BsiPhoneModelExMapper;
-import com.hawk.ecom.user.persist.domain.UserDomain;
-import com.hawk.ecom.user.persist.mapper.UserMapper;
-import com.hawk.ecom.user.persist.mapperex.UserExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.dic.persist.mapper.WordMapper;
 import com.hawk.framework.dic.persist.mapperex.WordExMapper;
@@ -30,10 +27,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { TaskMapper.class, TaskExMapper.class, //短消息
-		UserMapper.class, UserExMapper.class, //用户管理
-		BsiPhoneModelMapper.class, BsiPhoneModelExMapper.class, //svp
-		WordMapper.class ,WordExMapper.class  //数据字段
+@MapperScan(basePackageClasses = { MallUserMapper.class, MallUserExMapper.class, //商场管理
+		WordMapper.class, WordExMapper.class , //数据字典
+		TaskMapper.class, TaskExMapper.class, //短消息
 		})
 public class DataConfig {
 
@@ -150,12 +146,10 @@ public class DataConfig {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String svpPackageName = BsiPhoneModelDomain.class.getPackage().getName();
-		String userPackageName = UserDomain.class.getPackage().getName();
-		String smsPackageName = TaskDomain.class.getPackage().getName();
-		String dicPackageName = WordDomain.class.getPackage().getName();
-		String str = StringTools.concatWithSymbol(";", svpPackageName, svpPackageName + "ex", //
-				userPackageName, userPackageName + "ex", //
+		String mallPackageName = MallUserDomain.class.getPackage().getName();//商场管理
+		String smsPackageName = TaskDomain.class.getPackage().getName(); //消息管理
+		String dicPackageName = WordDomain.class.getPackage().getName(); //数据字典
+		String str = StringTools.concatWithSymbol(";", mallPackageName, mallPackageName + "ex", //
 				smsPackageName, smsPackageName + "ex", //
 				dicPackageName, dicPackageName + "ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);

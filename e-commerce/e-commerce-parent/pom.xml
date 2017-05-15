@@ -15,6 +15,8 @@
 		<module>../e-commerce-pub</module>
 		<module>../e-commerce-web</module>
 		<module>../e-commerce-database</module>
+		<module>../e-commerce-mall-service</module>
+		<module>../e-commerce-mall-web</module>
 	</modules>
 
 	<profiles>
@@ -114,24 +116,16 @@
 				<artifactId>e-commerce-sms-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-word</artifactId>
+				<artifactId>e-commerce-mall-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-config</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			
 
-			<dependency>
-				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-config</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			
 
 			<!-- H2 inmemroy database -->
 			<dependency>
