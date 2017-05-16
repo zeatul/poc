@@ -1,4 +1,4 @@
-package com.hawk.ecom.web.spring.config;
+package com.hawk.ecom.mall.web.spring.config;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,15 +19,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hawk.ecom.mall.spring.config.MallWebConfig;
+import com.hawk.ecom.mall.web.CommonExceptionResolver;
 import com.hawk.ecom.sms.spring.config.SmsWebConfig;
-import com.hawk.ecom.svp.spring.config.SvpWebConfig;
-import com.hawk.ecom.user.spring.config.UserWebConfig;
-import com.hawk.ecom.web.AccessInterceptor;
-import com.hawk.ecom.web.CommonExceptionResolver;
+import com.hawk.ecom.mall.web.AccessInterceptor;
 
 @Configuration
 @EnableWebMvc
-@Import({ SvpWebConfig.class, UserWebConfig.class,SmsWebConfig.class })
+@Import({ MallWebConfig.class,SmsWebConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

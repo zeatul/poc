@@ -36,6 +36,7 @@ import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
+import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @RestController
@@ -45,7 +46,7 @@ public class BsiController {
 	
 	@RequestMapping(value="/home",method = GET)
 	public String home(){
-		return "Welcome to bsi!!!";
+		return "Welcome to bsi controller!!!" +", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 
 	@Autowired

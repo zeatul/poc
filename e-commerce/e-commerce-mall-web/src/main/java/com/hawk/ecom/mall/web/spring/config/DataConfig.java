@@ -26,7 +26,7 @@ import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@PropertySource("classpath:/com/hawk/ecom/web/env/jdbc.properties")
+@PropertySource("classpath:/com/hawk/ecom/mall/web/env/jdbc.properties")
 @MapperScan(basePackageClasses = { MallUserMapper.class, MallUserExMapper.class, //商场管理
 		WordMapper.class, WordExMapper.class , //数据字典
 		TaskMapper.class, TaskExMapper.class, //短消息

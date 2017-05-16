@@ -22,9 +22,8 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("AccessInterceptor Start");	
 		HttpRequestInfo httpRequestInfo= HttpRequestInfo.parse(request);
-		logger.info(JsonTools.toJsonString(httpRequestInfo));
+		logger.info("AccessInterceptor : {}",JsonTools.toJsonString(httpRequestInfo));
 		AuthThreadLocal.setHttpRequestInfo(httpRequestInfo);
 		String token = httpRequestInfo.getToken();
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
@@ -45,7 +44,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		System.out.println("AccessInterceptor Finished");
 		super.afterCompletion(request, response, handler, ex);
 	}
 }

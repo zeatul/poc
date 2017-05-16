@@ -1,4 +1,4 @@
-package com.hawk.ecom.web.spring.config;
+package com.hawk.ecom.mall.web.spring.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -38,6 +38,8 @@ drop table if exists t_mal_mall_user;
 
 drop table if exists t_mal_mall_user_history;
 
+drop table if exists t_mal_user_code_sequence;
+
 /*==============================================================*/
 /* Table: t_mal_mall_login                                      */
 /*==============================================================*/
@@ -259,6 +261,8 @@ create table t_mal_mall_user
    user_email           varchar(200) comment '用户邮箱',
    mobile_number        varchar(20) not null comment '手机号',
    login_pwd            varchar(100) comment '登录密码',
+   pwd_update_times     integer comment '密码已经修改次数',
+   last_pwd_update_date timestamp(3) null comment '密码最近修改时间',
    user_nickname        varchar(200) comment '用户昵称',
    user_name            varchar(50) comment '用户姓名',
    user_sex             varchar(50) comment '用户性别',
@@ -334,6 +338,8 @@ create table t_mal_mall_user_history
    user_email           varchar(200) comment '用户邮箱',
    mobile_number        varchar(20) not null comment '手机号',
    login_pwd            varchar(100) comment '登录密码',
+   pwd_update_times     integer comment '密码已经修改次数',
+   last_pwd_update_date timestamp(3) null comment '密码最近修改时间',
    user_nickname        varchar(200) comment '用户昵称',
    user_name            varchar(50) comment '用户姓名',
    user_sex             varchar(50) comment '用户性别',
@@ -356,3 +362,16 @@ create table t_mal_mall_user_history
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_user_history comment '商城用户历史表';
+
+/*==============================================================*/
+/* Table: t_mal_user_code_sequence                              */
+/*==============================================================*/
+create table t_mal_user_code_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_mal_user_code_sequence comment '商城用户编号生成表';

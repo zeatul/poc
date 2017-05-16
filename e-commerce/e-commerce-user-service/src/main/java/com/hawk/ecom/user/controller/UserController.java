@@ -3,6 +3,8 @@ package com.hawk.ecom.user.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,11 @@ import com.hawk.ecom.user.response.UserInfoResponse;
 import com.hawk.ecom.user.service.LoginService;
 import com.hawk.ecom.user.service.UserService;
 import com.hawk.ecom.user.utils.SsoToolsForSignature;
-import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
+import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -50,7 +52,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to user!!!";
+		return "Welcome to user controller!!!" +", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 	
 	@Autowired
