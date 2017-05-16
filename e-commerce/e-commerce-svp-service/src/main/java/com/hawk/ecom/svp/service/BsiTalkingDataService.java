@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpResponseException;
 import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +70,8 @@ public class BsiTalkingDataService {
 			throw new RuntimeException("Failed to login talking data server");
 		}
 	}
+	
+	
 
 	@SuppressWarnings("rawtypes")
 	public Date first(String imei)  {
@@ -113,20 +117,23 @@ public class BsiTalkingDataService {
 		
 		System.out.println(JsonTools.toJsonString(trinfoMap));
 
-//		url = url + "?" + "id="+imei;
-//		url = url + "&" + "type=imei";
-//		try {
-//			url = url + "&" + "trinfo=" + URLEncoder.encode(JsonTools.toJsonString(trinfoMap),"utf-8");
-//		} catch (UnsupportedEncodingException e) {
-//			
-//			e.printStackTrace();
-//		}
-//		params = null;
-//		
-//		System.out.println(url);
+
 		
 		logger.info("first param={}", JsonTools.toJsonString(params));
-		String result = httpExecutor.get(url, params);
+		String result = null;
+		try {
+			result = httpExecutor.get(url, params);
+		} catch (Exception e) {
+			if (e.getCause() != null){
+				if (e.getCause() instanceof HttpResponseException){
+					HttpResponseException ex = (HttpResponseException)(e.getCause());
+					if (ex.getStatusCode() == HttpStatus.SC_UNAUTHORIZED) { 
+						cacheService.delete(cacheAccessTokenKey);
+					}
+				}
+			}
+			throw e;
+		}
 		logger.info("first()={}", result);
 		HashMap map = JsonTools.toObject(result, HashMap.class);
 		Integer code = (Integer) map.get("code");
