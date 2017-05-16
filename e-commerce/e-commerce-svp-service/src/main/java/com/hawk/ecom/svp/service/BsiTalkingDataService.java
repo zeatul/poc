@@ -123,7 +123,7 @@ public class BsiTalkingDataService {
 		String result = null;
 		try {
 			result = httpExecutor.get(url, params);
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			if (e.getCause() != null){
 				if (e.getCause() instanceof HttpResponseException){
 					HttpResponseException ex = (HttpResponseException)(e.getCause());
