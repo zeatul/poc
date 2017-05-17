@@ -32,9 +32,9 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-//	@Test
+	@Test
 	public void testQueryBsiOrderDetail(){
-		String bsiCashCouponCode = "755d76d6-fed7-4a8b-9d9e-5294d141ac6f";
+		String bsiCashCouponCode = "201705171000001";
 		String url = getUrl("/svp/bsi/orderDetail/couponCode/"+bsiCashCouponCode);
 		String result = httpExecutor.get(url, null);
 		System.out.println("result=" + result);
@@ -80,7 +80,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testActivateCoupon(){
 		String url =getUrl("/svp/bsi/coupon/activate");
 		ActivateCouponParam activateCouponParam =new ActivateCouponParam();

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
+import com.hawk.ecom.svp.exception.BsiOrderDetailNotFoundRuntimeException;
+import com.hawk.ecom.svp.exception.CashCouponNotFoundRuntimeException;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;
 import com.hawk.ecom.svp.persist.domain.BsiPhoneModelDomain;
@@ -23,12 +25,12 @@ import com.hawk.ecom.svp.request.QueryModelOfBrandParam;
 import com.hawk.ecom.svp.request.QueryProductParam;
 import com.hawk.ecom.svp.request.RegisterPresentCouponParam;
 import com.hawk.ecom.svp.response.MultiBrandResponse;
-import com.hawk.ecom.svp.response.MultiBsiOrderDetailResponse;
-import com.hawk.ecom.svp.response.MultiBsiOrderDetailResponse.BsiOrderDetail;
+import com.hawk.ecom.svp.response.BsiOrderDetailResponse;
 import com.hawk.ecom.svp.response.MultiCouponResponse;
 import com.hawk.ecom.svp.response.MultiCouponResponse.CashCoupon;
 import com.hawk.ecom.svp.response.MultiPhoneModelResponse;
 import com.hawk.ecom.svp.response.SingleProductResponse;
+import com.hawk.ecom.svp.service.BsiCashCouponService;
 import com.hawk.ecom.svp.service.BsiPhoneModelService;
 import com.hawk.ecom.svp.service.BsiService;
 import com.hawk.ecom.svp.utils.HttpRequestToolsForSignature;
@@ -54,6 +56,9 @@ public class BsiController {
 	
 	@Autowired
 	private BsiPhoneModelService bsiPhoneModelService;
+	
+	@Autowired
+	private BsiCashCouponService bsiCashCouponService;
 
 	@RequestMapping(value = "/brand", method = GET)
 	public WebResponse<MultiBrandResponse> brand() {
@@ -129,11 +134,44 @@ public class BsiController {
 	}
 	
 	@RequestMapping(value = "/orderDetail/couponCode/{couponCode}", method = GET)
-	public  WebResponse<MultiBsiOrderDetailResponse> queryBsiOrderDetail(@PathVariable String couponCode) throws Exception{
-		List<BsiOrderDetailDomain> bsiOrderDetailDomainList =bsiService.queryOrderDetailByCouponCode(couponCode);
-		List<BsiOrderDetail> c = DomainTools.copy(bsiOrderDetailDomainList, BsiOrderDetail.class);
-		return  SuccessResponse.build(new MultiBsiOrderDetailResponse(c));
+	public  WebResponse<BsiOrderDetailResponse> queryBsiOrderDetail(@PathVariable String couponCode) throws Exception{
+		
+		BsiCashCouponDomain bsiCashCouponDomain = bsiCashCouponService.loadByCode(couponCode);
+		if (bsiCashCouponDomain  == null){
+			throw new CashCouponNotFoundRuntimeException();
+		}
+		
+		BsiOrderDetailResponse bsiOrderDetailResponse = new BsiOrderDetailResponse();
+		
+		bsiOrderDetailResponse.setBsiCashCouponCode(bsiCashCouponDomain.getBsiCashCouponCode());
+		bsiOrderDetailResponse.setBsiCashCouponInvalidDate(bsiCashCouponDomain.getBsiCashCouponInvalidDate());
+		bsiOrderDetailResponse.setBsiCashCouponStatus(bsiCashCouponDomain.getBsiCashCouponStatus());
+		bsiOrderDetailResponse.setMobileNumber(bsiCashCouponDomain.getMobileNumber());
+		
+		BsiOrderDetailDomain bsiOrderDetailDomain =bsiService.queryOrderDetailByCouponCode(couponCode);
+		if (bsiOrderDetailDomain != null){
+			bsiOrderDetailResponse.setBsiBenefMobileNumber(bsiOrderDetailDomain.getBsiBenefMobileNumber());
+			bsiOrderDetailResponse.setBsiBenefName(bsiOrderDetailDomain.getBsiBenefName());
+		
+			bsiOrderDetailResponse.setBsiInsuranceCode(bsiOrderDetailDomain.getBsiInsuranceCode());
+			bsiOrderDetailResponse.setBsiTaskCode(bsiOrderDetailDomain.getBsiTaskCode());
+			bsiOrderDetailResponse.setBsiTaskStatus(bsiOrderDetailDomain.getBsiTaskStatus());
+			bsiOrderDetailResponse.setImei(bsiOrderDetailDomain.getImei());
+			
+			bsiOrderDetailResponse.setOrderCode(bsiOrderDetailDomain.getOrderCode());
+			bsiOrderDetailResponse.setUserCode(bsiOrderDetailDomain.getUserCode());
+			
+		}
+		
+		
+		
+		
+		
+		
+		return  SuccessResponse.build(bsiOrderDetailResponse);
 	}
+	
+	
 	
 //	@RequestMapping(value = "/coupon/job/test", method = POST)
 //	public WebResponse<ResponseData> activateCashCouponJob(HttpServletRequest request) throws Exception{

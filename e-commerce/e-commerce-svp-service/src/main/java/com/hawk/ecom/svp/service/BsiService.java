@@ -268,7 +268,7 @@ public class BsiService {
 //		taskPool.execute(bsiCashCouponSubJob);
 //	}
 	
-	public List<BsiOrderDetailDomain> queryOrderDetailByCouponCode(String couponCode){
+	public BsiOrderDetailDomain queryOrderDetailByCouponCode(String couponCode){
 		BsiCashCouponDomain bsiCashCouponDomain = bsiCashCouponService.loadByCode(couponCode);
 		if (bsiCashCouponDomain == null){
 			throw new RuntimeException("代金券未找到");
@@ -279,13 +279,8 @@ public class BsiService {
 		}
 		
 		BsiOrderDetailDomain bsiOrderDetailDomain = bsiOrderDetailService.loadByOrderCode(orderCode);
-		if (bsiOrderDetailDomain == null){
-			return Collections.emptyList();
-		}else{
-			List<BsiOrderDetailDomain> list = new ArrayList<BsiOrderDetailDomain>();
-			list.add(bsiOrderDetailDomain);
-			return list;
-		}
+
+		return bsiOrderDetailDomain;
 		
 	}
 }

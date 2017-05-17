@@ -92,7 +92,8 @@ public class BsiOuterCreateOrderJob implements Runnable {
 
 		try {
 			bsiOrderDetailDomain.setUpdateDate(new Date());
-			bsiOrderDetailDomain.setExecTimes(execTimes + 1);
+			execTimes = execTimes +1;
+			bsiOrderDetailDomain.setExecTimes(execTimes);
 
 			/**
 			 * TODO:用乐观锁卡住只能有一个执行
@@ -109,6 +110,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 		} catch (Exception e) {
 			logger.error("BsiOuterCreateOrderJob meet error",e);
+			// 大于执行次数，更新代金券状态(添加失败原因) ，更新订单状态
 			if (execTimes >= bsiOrderDetailDomain.getMaxExecTimes()) {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode("overtimes");
@@ -123,7 +125,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 				bsiOrderDetailDomain.setScheduleExecDate(scheduleExecDate);
 			}
 
-			// 大于执行次数，更新代金券状态(添加失败原因) ，更新订单状态
+			
 		} finally {
 			/**
 			 * 更新订单明细，更新订单 更新 代金券状态

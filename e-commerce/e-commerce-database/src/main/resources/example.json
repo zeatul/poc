@@ -1,7 +1,16 @@
 {
 	"data": {
-		"token": "111111111111",
-		"expire": 14400
+		"bsiTaskCode": "2017051714071000003",
+		"bsiTaskStatus": 0,
+		"bsiCashCouponCode": "201705171000001",
+		"mobileNumber": "13916082481",
+		"orderCode": "2017051714071000003",
+		"userCode": "13916082481",
+		"imei": "918918883332222",
+		"bsiBenefName": "黄大仙",
+		"bsiBenefMobileNumber": "13916082481",
+		"bsiCashCouponInvalidDate": "2017-05-27 13:05:49",
+		"bsiCashCouponStatus": 10
 	},
 	"code": 1
 }
