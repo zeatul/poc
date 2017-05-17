@@ -33,7 +33,8 @@ public class BsiCashCouponSubJob implements Runnable{
 	private String orderCode;
 	
 	public BsiCashCouponSubJob(String bsiCashCouponCode ,String orderCode){
-		
+		this.bsiCashCouponCode = bsiCashCouponCode;
+		this.orderCode = orderCode;
 	}
 
 
@@ -53,6 +54,7 @@ public class BsiCashCouponSubJob implements Runnable{
 		if (bsiOrderDetailDomain != null){
 			logger.info("Start BsiCashCouponSubJob with bsiOrderDetailDomain = {}",JsonTools.toJsonString(bsiOrderDetailDomain));
 			this.bsiCashCouponCode = bsiOrderDetailDomain.getBsiCashCouponCode();
+			this.orderCode = bsiOrderDetailDomain.getOrderCode();
 		}else{
 			logger.info("Start BsiCashCouponSubJob with bsiCashCouponCode={},orderCode={}",bsiCashCouponCode,orderCode);
 			bsiOrderDetailDomain = bsiOrderDetailService.loadByOrderCode(orderCode);
@@ -64,7 +66,7 @@ public class BsiCashCouponSubJob implements Runnable{
 		}
 		
 		
-		if (!(bsiOrderDetailDomain.getBsiTaskStatus() < ConstBsiTaskStatus.COMPLETE_FAILED)) {
+		if (bsiOrderDetailDomain.getBsiTaskStatus() < ConstBsiTaskStatus.COMPLETE_FAILED) {
 			logger.error("定单未完成");
 			return;
 		}

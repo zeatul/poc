@@ -1,0 +1,1 @@
+﻿update t_svp_bsi_cash_coupon set bsi_cash_coupon_status = 100 where bsi_cash_coupon_code = '0927b764-24d2-41e8-bee5-c44e1d08a724';

@@ -62,7 +62,7 @@ public class BsiControllerTest extends AbstractControllerTest {
 	public void testRegisterPresentCoupon(){
 //		https://url?version=1.0&channel=1&store=STO00000001&timestamp=1490921495127&reqhash=5d41402abc4b2a76b9719d911017c592
 		RegisterPresentCouponParam registerForCouponParam = new RegisterPresentCouponParam ();
-		registerForCouponParam.setMobileNumber("139160824811");
+		registerForCouponParam.setMobileNumber("13916082481");
 		String req = JsonTools.toJsonString(registerForCouponParam);
 		
 		String url =getUrl("/svp/bsi/coupon/register/present");
@@ -85,16 +85,16 @@ public class BsiControllerTest extends AbstractControllerTest {
 		String url =getUrl("/svp/bsi/coupon/activate");
 		ActivateCouponParam activateCouponParam =new ActivateCouponParam();
 		activateCouponParam.setBirthday("2000-11-07");
-		activateCouponParam.setCouponCode("755d76d6-fed7-4a8b-9d9e-5294d141ac6f");
+		activateCouponParam.setCouponCode("201705171000001");
 		activateCouponParam.setIdType(ConstBsiIdType.IDENTITY_CARD);
 		activateCouponParam.setIdNumber("320109200011071232");
-		activateCouponParam.setImei("91891888");
-		activateCouponParam.setMobileNumber("139160824811");
+		activateCouponParam.setImei("918918883332222");
+		activateCouponParam.setMobileNumber("13916082481");
 		activateCouponParam.setName("黄大仙");
 		activateCouponParam.setPhoneModelId(1073);
 		activateCouponParam.setProductId(11246);
 		activateCouponParam.setSex(ConstBsiSex.MALE);
-		activateCouponParam.setTicket("13919082481");
+		activateCouponParam.setTicket("13916082481");
 		
 		System.out.println("request="+JsonTools.toJsonString(activateCouponParam));
 		String result = httpExecutor.post(url, activateCouponParam, null);

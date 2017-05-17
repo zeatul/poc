@@ -55,6 +55,9 @@ public class MobileDataService {
 	
 	@Autowired
 	private UnicomService unicomService;
+	
+	@Autowired
+	private CodeService codeService;
 
 	/**
 	 * 签到,送流量 每个月可以签到10次，每次签到送10M流量。 只支持流通手机号。 每隔5分钟可以签到一次。 当月签到10次，即送完。
@@ -107,7 +110,9 @@ public class MobileDataService {
 		 */
 		OrderDomain orderDomain = new OrderDomain();
 		orderDomain.setMobileNumber(mobileNumber);
-		orderDomain.setOrderCode(UUID.randomUUID().toString());
+		
+		orderDomain.setOrderCode(codeService.buildOrderCode());
+		
 		orderDomain.setOrderStatus(ConstOrderStatus.PAYED);
 		orderDomain.setOrderType(orderType);
 		orderDomain.setStoreCode(ConstStore.STORE_CODE);
@@ -120,7 +125,10 @@ public class MobileDataService {
 		
 		mobileDataOrderDetailDomain.setChargeDataSize(10);
 		mobileDataOrderDetailDomain.setChargeMobileNumber(mobileNumber);
-		mobileDataOrderDetailDomain.setChargeTaskCode(UUID.randomUUID().toString());
+		
+		mobileDataOrderDetailDomain.setChargeTaskCode(codeService.buildChargeTaskCode());
+		
+		
 		mobileDataOrderDetailDomain.setOrderCode(orderDomain.getOrderCode());
 		mobileDataOrderDetailDomain.setStoreCode(orderDomain.getStoreCode());
 		mobileDataOrderDetailDomain.setUserCode(orderDomain.getUserCode());

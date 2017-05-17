@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +72,9 @@ public class BsiService {
 	@Autowired
 	private BsiOrderDetailService bsiOrderDetailService;
 	
+	@Autowired
+	private CodeService codeService;
+	
 	/**
 	 * 查询产品信息
 	 * @param queryProductParam
@@ -110,7 +111,8 @@ public class BsiService {
 		
 		Date currentDate = new Date();
 		BsiCashCouponDomain bsiCashCouponDomain = new BsiCashCouponDomain();
-		bsiCashCouponDomain.setBsiCashCouponCode(UUID.randomUUID().toString());
+		bsiCashCouponDomain.setBsiCashCouponCode(codeService.buildCashCouponCode());
+		
 		bsiCashCouponDomain.setBsiCashCouponCreateDate(currentDate);
 		Date bsiCashCouponInvalidDate = DateTools.addDays(currentDate, 10);
 		bsiCashCouponDomain.setBsiCashCouponInvalidDate(bsiCashCouponInvalidDate);
@@ -207,7 +209,11 @@ public class BsiService {
 		 */
 		OrderDomain orderDomain = new OrderDomain();
 		orderDomain.setMobileNumber(activateCouponParam.getTicket());
-		orderDomain.setOrderCode(UUID.randomUUID().toString());
+		
+		
+		orderDomain.setOrderCode(codeService.buildOrderCode());
+		
+		
 		orderDomain.setOrderStatus(ConstOrderStatus.PAYED);
 		orderDomain.setOrderType(ConstOrderType.REGISTER_PRESENT_COUPON);
 		orderDomain.setStoreCode(ConstStore.STORE_CODE);
@@ -242,7 +248,7 @@ public class BsiService {
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
 		bsiOrderDetailDomain.setExecTimes(0);
 		bsiOrderDetailDomain.setMaxExecTimes(5); // 最多请求5次
-		bsiOrderDetailDomain.setBsiTaskCode(UUID.randomUUID().toString());
+		bsiOrderDetailDomain.setBsiTaskCode(codeService.buildBsiTaskCode());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setBsiCashCouponCode(bsiCashCouponCode);
 		
