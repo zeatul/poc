@@ -56,7 +56,8 @@ public class MobileUnicomChargeJob implements Runnable{
 		
 		try {
 			mobileDataOrderDetailDomain.setUpdateDate(new Date());
-			mobileDataOrderDetailDomain.setExecTimes(execTimes + 1);
+			execTimes = execTimes +1;
+			mobileDataOrderDetailDomain.setExecTimes(execTimes);
 			
 			/**
 			 * TODO：用乐观锁卡住只能执行一个
