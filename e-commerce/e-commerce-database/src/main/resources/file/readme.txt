@@ -12,8 +12,6 @@ source /usr/local/source/poc/framework-database/src/main/resources/sql/create_db
 source /usr/local/source/poc/framework-database/src/main/resources/sql/init_data_dic.sql;
 
 
-
-
 #用户表 
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/user/create_db_user.sql;
 

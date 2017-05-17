@@ -87,7 +87,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	public HttpClientExecutorImpl() throws Exception {
 
-		requestConfig = RequestConfig.custom().setSocketTimeout(3000) // //
+		requestConfig = RequestConfig.custom().setSocketTimeout(15000) // //
 																		// 设置读取超时
 				.setConnectTimeout(3000) // / 设置连接超时
 				.setConnectionRequestTimeout(3000) // // 设置从连接池获取连接实例的超时
@@ -115,7 +115,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 		// connMgr.setMaxPerRoute(new HttpRoute(localhost), 50);
 
 		// 设置读取超时
-		SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(3000).build();
+		SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(15000).build();
 		connMgr.setDefaultSocketConfig(socketConfig);
 
 		// HttpParams httpParams = new BasicHttpParams();

@@ -15,19 +15,19 @@ public class ScheduleTools {
 			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 5);
 		}else if (execTimes == 2){
 			/**
-			 * 第2次，30分钟
+			 * 第2次，15分钟
 			 */
-			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 30);
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 15);
 		}else if (execTimes == 3){
 			/**
-			 * 第3次，120分钟
+			 * 第3次，60分钟
 			 */
-			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 120);
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 60);
 		}else if (execTimes == 4){
 			/**
 			 * 第4次，720分钟
 			 */
-			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 720);
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 360);
 		}else{
 			/**
 			 * 第5次，1440分钟

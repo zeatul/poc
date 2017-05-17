@@ -53,7 +53,7 @@ public class SvpOrderMainJob {
 		 * 搜索待处理的虚拟流量充值子job
 		 */
 		List<String> chargeTaskCodeList = mobileDataOrderDetailService.taskCodeForJob();
-		logger.info("Found mobile data taskcodeList.size()={}", taskCodeList.size());
+		logger.info("Found mobile data taskcodeList.size()={}", chargeTaskCodeList.size());
 		for (String taskCode : chargeTaskCodeList) {
 			MobileUnicomChargeJob job = new MobileUnicomChargeJob(taskCode);
 			taskPool.execute(job);
