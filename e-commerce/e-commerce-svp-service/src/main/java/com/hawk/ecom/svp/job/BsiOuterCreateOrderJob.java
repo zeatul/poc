@@ -16,6 +16,7 @@ import com.hawk.ecom.svp.utils.ScheduleTools;
 import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
+import com.hawk.framework.utility.tools.SystemTools;
 
 /**
  * 创建碎屏险外部订单job
@@ -89,6 +90,10 @@ public class BsiOuterCreateOrderJob implements Runnable {
 
 		Order order = buildOrder(bsiOrderDetailDomain);
 		int execTimes = bsiOrderDetailDomain.getExecTimes();
+		
+		bsiOrderDetailDomain.setCurrentExecComputer(SystemTools.hostname());
+		bsiOrderDetailDomain.setCurrentExecProcessId(SystemTools.processId());
+		bsiOrderDetailDomain.setCurrentExecStartDate(new Date());
 
 		try {
 			bsiOrderDetailDomain.setUpdateDate(new Date());

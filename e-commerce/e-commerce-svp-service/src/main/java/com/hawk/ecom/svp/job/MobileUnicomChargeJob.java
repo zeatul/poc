@@ -14,6 +14,7 @@ import com.hawk.ecom.svp.service.UnicomService;
 import com.hawk.ecom.svp.utils.ScheduleTools;
 import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.spring.FrameworkContext;
+import com.hawk.framework.utility.tools.SystemTools;
 
 
 /**
@@ -58,6 +59,7 @@ public class MobileUnicomChargeJob implements Runnable{
 			mobileDataOrderDetailDomain.setUpdateDate(new Date());
 			execTimes = execTimes +1;
 			mobileDataOrderDetailDomain.setExecTimes(execTimes);
+			mobileDataOrderDetailDomain.setCurrentExecStartDate(new Date());
 			
 			/**
 			 * TODO：用乐观锁卡住只能执行一个
@@ -69,6 +71,10 @@ public class MobileUnicomChargeJob implements Runnable{
 			}
 			
 			mobileDataOrderDetailDomain.setLastExecDate(new Date());
+			
+			mobileDataOrderDetailDomain.setCurrentExecComputer(SystemTools.hostname());
+			mobileDataOrderDetailDomain.setCurrentExecProcessId(SystemTools.processId());
+			
 			unicomService.chargeVirtualMobileData(chargeTaskCode, mobileDataOrderDetailDomain.getChargeMobileNumber(), mobileDataOrderDetailDomain.getChargeDataSize());
 		
 			mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.COMPLETE_SUCCESS);
