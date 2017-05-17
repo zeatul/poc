@@ -97,16 +97,16 @@ public class MobileDataService {
 		}
 		
 		
-//		boolean flag = true;
-//		try {
-//			flag = unicomService.isUnicomMobileNumber(mobileNumber);			
-//		} catch (Exception e) {
-//			logger.error("isUnicomMobileNumber meet error",e);
-//			throw new RuntimeException("判断是否是联通手机号码失败");
-//		}
-//		if (!flag){
-//			throw new RuntimeException("尊敬的用户，当前签到仅仅支持联通手机用户");
-//		}
+		boolean flag = true;
+		try {
+			flag = unicomService.isUnicomMobileNumber(mobileNumber);			
+		} catch (Exception e) {
+			logger.error("isUnicomMobileNumber meet error",e);
+			throw new RuntimeException("判断是否是联通手机号码失败");
+		}
+		if (!flag){
+			throw new RuntimeException("尊敬的用户，当前签到仅仅支持联通手机用户");
+		}
 		
 		/**
 		 * 符合签到规则,产生订单和订单明细
