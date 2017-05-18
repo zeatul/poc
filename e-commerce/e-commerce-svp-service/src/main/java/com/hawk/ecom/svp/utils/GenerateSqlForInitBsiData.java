@@ -40,6 +40,8 @@ public class GenerateSqlForInitBsiData {
 		generate();
 
 	}
+	
+	sql 添加2个序号
 
 	public static void generate() {
 
