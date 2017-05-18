@@ -80,11 +80,9 @@ public class BsiOuterService {
 		
 		if ("0".equals(result)){
 			throw new OuterCallException(-1,(String)map.get("notice"));
-		}else if ("1".equals(result)){
-			
-			String orderNo =  (String)map.get("orderid");
-			return orderNo;
-			
+		}else if ("1".equals(result)){			
+			String orderid =  (String)map.get("orderid");
+			return orderid;			
 		}else{
 			throw new RuntimeException("result code is illegal");
 		}
@@ -153,7 +151,7 @@ public class BsiOuterService {
 			List<?> list =  (List<?>)map.get("orderList");
 			@SuppressWarnings("rawtypes")
 			Map orderMap = (Map)list.get(0);
-			String orderNo =  (String)orderMap.get("orderno");
+			String orderid =  (String)orderMap.get("orderid");
 //			return orderNo;
 		}else{
 			throw new RuntimeException("result code is illegal");
