@@ -12,6 +12,28 @@ import com.hawk.ecom.svp.persist.domain.BsiProductDomain;
 import com.hawk.framework.utility.tools.ResourceTools;
 
 public class GenerateSqlForInitBsiData {
+	
+	
+	private static Map<String,Integer> brandOrderMap = new HashMap<String,Integer>();
+	static{
+
+		brandOrderMap.put("苹果", 100);
+		brandOrderMap.put("iPad", 200);
+		brandOrderMap.put("三星", 300);
+		brandOrderMap.put("华为", 400);
+		brandOrderMap.put("oppo", 500);
+		brandOrderMap.put("vivo", 600);
+		brandOrderMap.put("魅族", 700);
+		brandOrderMap.put("锤子", 800);
+	}
+	
+	private static int getBrandOrder(String brand){
+		brand = brand.toLowerCase();
+		Integer i = brandOrderMap.get(brand);
+		if (i == null)
+			i = Integer.MAX_VALUE;
+		return i;
+	}
 
 	public static void main(String[] args) {
 
@@ -23,7 +45,9 @@ public class GenerateSqlForInitBsiData {
 
 //		List<String> list = ResourceTools.readResource("/file/小宝碎屏险产品手机信号对应表20170321.csv", GenerateSqlForInitBsiData.class);
 		
-		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
+//		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
+		
+		List<String> list = ResourceTools.readResource("/file/小宝正式环境数据.csv", GenerateSqlForInitBsiData.class);
 
 		// list.forEach(e -> System.out.println(e));
 
@@ -45,8 +69,8 @@ public class GenerateSqlForInitBsiData {
 				phoneModelId = Integer.parseInt(strArray[0].trim().substring(1, strArray[0].trim().length()));
 			}
 
-			String phoneModel = strArray[1].trim();
-			String phoneBrand = strArray[2].trim();			
+			String phoneBrand = strArray[1].trim();	
+			String phoneModel = strArray[2].trim();					
 			String productName = strArray[3].trim();
 			Integer productId = Integer.parseInt(strArray[4]);
 			BigDecimal bsiTradePrice = new BigDecimal(strArray[5].trim());
