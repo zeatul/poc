@@ -81,41 +81,14 @@ public class BsiOuterService {
 		if ("0".equals(result)){
 			throw new OuterCallException(-1,(String)map.get("notice"));
 		}else if ("1".equals(result)){
-			List<?> list =  (List<?>)map.get("orderList");
-			@SuppressWarnings("rawtypes")
-			Map orderMap = (Map)list.get(0);
-			String orderNo =  (String)orderMap.get("orderno");
+			
+			String orderNo =  (String)map.get("orderid");
 			return orderNo;
 			
 		}else{
 			throw new RuntimeException("result code is illegal");
 		}
-		
-		
-//		result={
-//				  "orderlist": [
-//				    {
-//				      "orderid": 467243,
-//				      "orderno": "301678451",
-//				      "productname": "12个月碎屏保A+（联通）",
-//				      "productpartnername": null,
-//				      "goodsname": "Mate S",
-//				      "startdate": "2017-04-06",
-//				      "enddate": "2018-04-06",
-//				      "status": 2,
-//				      "mobile": "13916082482",
-//				      "username": "隔壁老王",
-//				      "certitype": 1,
-//				      "idcard": "320106198801011232",
-//				      "birthday": "1988/1/1 0:00:00",
-//				      "sex": 1,
-//				      "insuranceno": "",
-//				      "goodsserialno": "615190"
-//				    }
-//				  ],
-//				  "result": "1",
-//				  "notice": "操作成功"
-//				}
+
 		
 //		result={
 //				  "outorderid": "",
@@ -177,7 +150,11 @@ public class BsiOuterService {
 //				"result": "1",
 //				"notice": "操作成功"
 //			}
-			
+			List<?> list =  (List<?>)map.get("orderList");
+			@SuppressWarnings("rawtypes")
+			Map orderMap = (Map)list.get(0);
+			String orderNo =  (String)orderMap.get("orderno");
+//			return orderNo;
 		}else{
 			throw new RuntimeException("result code is illegal");
 		}
