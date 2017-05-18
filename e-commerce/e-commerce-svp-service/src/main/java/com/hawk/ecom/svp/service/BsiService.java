@@ -1,7 +1,5 @@
 package com.hawk.ecom.svp.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -144,7 +142,7 @@ public class BsiService {
 	@Valid
 	public void activateCoupon(@Valid ActivateCouponParam activateCouponParam){
 		
-		
+		long stdt = System.currentTimeMillis();
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		String bsiCashCouponCode = activateCouponParam.getCouponCode();
@@ -261,6 +259,9 @@ public class BsiService {
 		
 		BsiOuterCreateOrderJob job = new BsiOuterCreateOrderJob(bsiOrderDetailDomain);
 		taskPool.execute(job);
+		
+		long endt = System.currentTimeMillis();
+		logger.info("++++ BsiService.activateCoupon,cost millseconds {}",(endt-stdt));
 	}
 	
 //	public void activateCashCouponJob(String couponCode){

@@ -2,6 +2,7 @@ package com.hawk.framework.utility.http;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -50,12 +51,16 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @SuppressWarnings("deprecation")
 public class HttpClientExecutorImpl implements HttpExecutor {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private String userAgent = "httpclient4.5.1";
 
@@ -223,10 +228,13 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	public String get(String path, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
+		long stdt = System.currentTimeMillis();
+		URI uri = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-
-			HttpGet httpGet = new HttpGet(generateURIBuilder(path, params).build());
+			uri = generateURIBuilder(path, params).build();
+			
+			HttpGet httpGet = new HttpGet(uri);
 			config(httpGet);
 			response = httpClient.execute(httpGet);
 			checkResponse(response);
@@ -239,6 +247,9 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			try {
 				if (response != null)
 					response.close();
+				
+				long endt = System.currentTimeMillis();
+				logger.info("++++ Http get {} ,cost millseconds {}",(uri==null?null:uri.toURL()),(endt-stdt));
 			} catch (Exception e) {
 
 			}
@@ -251,6 +262,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 
 	public String post(String url, String content, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
+		long stdt = System.currentTimeMillis();
+		URI uri = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
 
@@ -263,8 +276,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			// url += "?" + EntityUtils.toString(new UrlEncodedFormEntity(pairs,
 			// "utf-8"));
 			// HttpPost httpPost = new HttpPost(url);
-
-			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
+			uri = generateURIBuilder(url, params).build();
+			HttpPost httpPost = new HttpPost(uri);
 
 			config(httpPost);
 			if (StringTools.isNotNullOrEmpty(content)) {
@@ -285,18 +298,25 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			try {
 				if (response != null)
 					response.close();
+				long endt = System.currentTimeMillis();
+				logger.info("++++ Http get {} ,cost millseconds {}",(uri==null?null:uri.toURL()),(endt-stdt));
 			} catch (Exception e) {
 
 			}
+			
+			
 		}
 
 	}
 
 	public String post(String url, byte[] b, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
+		long stdt = System.currentTimeMillis();
+		URI uri = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
-			HttpPost httpPost = new HttpPost(generateURIBuilder(url, params).build());
+			uri = generateURIBuilder(url, params).build();
+			HttpPost httpPost = new HttpPost(uri);
 			config(httpPost);
 			if (b != null && b.length > 0) {
 				ByteArrayEntity byteArrayEntity = new ByteArrayEntity(b);
@@ -314,6 +334,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			try {
 				if (response != null)
 					response.close();
+				long endt = System.currentTimeMillis();
+				logger.info("++++ Http get {} ,cost millseconds {}",(uri==null?null:uri.toURL()),(endt-stdt));
 			} catch (Exception e) {
 
 			}
@@ -336,6 +358,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 	@Override
 	public String postParamInBody(String url, String content, List<HttpParam> params) {
 		CloseableHttpResponse response = null;
+		long stdt = System.currentTimeMillis();
+		URI uri = null;
 		try {
 			CloseableHttpClient httpClient = buileHttpClient();
 
@@ -369,6 +393,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			try {
 				if (response != null)
 					response.close();
+				long endt = System.currentTimeMillis();
+				logger.info("++++ Http get {} ,cost millseconds {}",(uri==null?null:uri.toURL()),(endt-stdt));
 			} catch (Exception e) {
 
 			}
