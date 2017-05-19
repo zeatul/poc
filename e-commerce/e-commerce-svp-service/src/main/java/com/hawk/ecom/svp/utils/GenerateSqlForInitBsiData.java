@@ -18,22 +18,22 @@ public class GenerateSqlForInitBsiData {
 	static{
 
 		brandOrderMap.put("苹果", 100);
-		brandOrderMap.put("iPad", 200);
+		brandOrderMap.put("Ipad", 200);
 		brandOrderMap.put("三星", 300);
 		brandOrderMap.put("华为", 400);
-		brandOrderMap.put("oppo", 500);
-		brandOrderMap.put("vivo", 600);
+		brandOrderMap.put("OPPO", 500);
+		brandOrderMap.put("Vivo", 600);
 		brandOrderMap.put("魅族", 700);
 		brandOrderMap.put("锤子", 800);
 	}
 	
-	private static int getBrandOrder(String brand){
-		brand = brand.toLowerCase();
-		Integer i = brandOrderMap.get(brand);
-		if (i == null)
-			i = Integer.MAX_VALUE;
-		return i;
-	}
+//	private static int getBrandOrder(String brand){
+//		brand = brand.toLowerCase();
+//		Integer i = brandOrderMap.get(brand);
+//		if (i == null)
+//			i = Integer.MAX_VALUE;
+//		return i;
+//	}
 
 	public static void main(String[] args) {
 
@@ -41,15 +41,15 @@ public class GenerateSqlForInitBsiData {
 
 	}
 	
-	sql 添加2个序号
+	
 
 	public static void generate() {
 
 //		List<String> list = ResourceTools.readResource("/file/小宝碎屏险产品手机信号对应表20170321.csv", GenerateSqlForInitBsiData.class);
 		
-//		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
+		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
 		
-		List<String> list = ResourceTools.readResource("/file/小宝正式环境数据.csv", GenerateSqlForInitBsiData.class);
+//		List<String> list = ResourceTools.readResource("/file/小宝正式环境数据.csv", GenerateSqlForInitBsiData.class);
 
 		// list.forEach(e -> System.out.println(e));
 
@@ -88,6 +88,7 @@ public class GenerateSqlForInitBsiData {
 				phoneModelDomain.setBsiPhoneBrand(phoneBrand);
 				phoneModelDomain.setBsiPhoneModel(phoneModel);
 				phoneModelDomain.setBsiPhoneModelStatus(1);
+				phoneModelDomain.setObjectOrder(Integer.MAX_VALUE);
 				phoneList.add(phoneModelDomain);
 				phoneFilter.put(key, phoneModelDomain);
 			}
@@ -117,12 +118,13 @@ public class GenerateSqlForInitBsiData {
 		System.out.println("delete from t_svp_bsi_phone_model;");
 		phoneList.forEach(phoneModelDomain -> {
 			StringBuilder sb = new StringBuilder();
-			sb.append("insert into t_svp_bsi_phone_model(bsi_phone_model_id,bsi_phone_brand,bsi_phone_model,bsi_phone_model_status) ")//
+			sb.append("insert into t_svp_bsi_phone_model(bsi_phone_model_id,bsi_phone_brand,bsi_phone_model,bsi_phone_model_status,object_order) ")//
 					.append("values(")//
 					.append(phoneModelDomain.getBsiPhoneModelId()).append(",")//
 					.append("'").append(phoneModelDomain.getBsiPhoneBrand()).append("'").append(",")//
 					.append("'").append(phoneModelDomain.getBsiPhoneModel()).append("'").append(",")//
-					.append(phoneModelDomain.getBsiPhoneModelStatus())//
+					.append(phoneModelDomain.getBsiPhoneModelStatus()).append(",")//
+					.append(phoneModelDomain.getObjectOrder())//
 					.append(");");
 			System.out.println(sb.toString());
 		});
@@ -156,7 +158,17 @@ public class GenerateSqlForInitBsiData {
 		});
 
 		System.out.println("delete from  t_svp_bsi_phone_brand;");
-		System.out.println("insert into t_svp_bsi_phone_brand(bsi_phone_brand,spell_abbr,object_order,bsi_phone_brand_status) SELECT distinct bsi_phone_brand ,'aaa',100,1 FROM t_svp_bsi_phone_model WHERE bsi_phone_model_status = 1;") ;
+		System.out.println("insert into t_svp_bsi_phone_brand(bsi_phone_brand,spell_abbr,object_order,bsi_phone_brand_status) SELECT distinct bsi_phone_brand ,'aaa',"+Integer.MAX_VALUE+",1 FROM t_svp_bsi_phone_model WHERE bsi_phone_model_status = 1;") ;
+		brandOrderMap.forEach((k,v)->{
+			StringBuilder sb = new StringBuilder();
+			sb.append("update t_svp_bsi_phone_brand set object_order=")//
+				.append(v)//
+				.append(" where bsi_phone_brand=")
+				.append("'").append(k).append("'")//
+				.append(";");
+			System.out.println(sb.toString());
+		});
+		
 	}
 
 }

@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
-import com.hawk.framework.utility.tools.JsonTools;
 
 @RestController
-@RequestMapping("/mall/user")
+@RequestMapping("/mall/admin/user")
 @CrossOrigin
 public class MallUserController {
 	

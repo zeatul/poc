@@ -180,6 +180,7 @@ create table t_svp_bsi_phone_model
    bsi_phone_brand      varchar(200) not null comment '手机品牌',
    bsi_phone_model      varchar(200) not null comment '手机型号',
    bsi_phone_model_status integer comment '型号状态',
+   object_order         integer comment '序号',
    primary key (bsi_phone_model_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

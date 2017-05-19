@@ -96,6 +96,26 @@ public class LoginService {
 		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd(),loginParam.getLoginIp(),loginParam.getUserAgent(),loginParam.getLoginChannel());
 	}
 	
+	public void logout (String token){
+		if (StringTools.isNullOrEmpty(token)){
+			return ;
+		}
+		
+		String loginTokenKey = buildLongTokenKey(token);
+		cacheService.delete(loginTokenKey);
+		
+		LoginDomain loginDomain = loginMapper.load(token);
+		
+		if (loginDomain == null)
+			return;
+		
+		if (loginDomain.getLoginStatus() == ConstLoginStatus.NORMAL){
+			loginDomain.setLoginStatus(ConstLoginStatus.LOGOUT);
+			loginDomain.setUpdateDate(new Date());
+			loginMapper.update(loginDomain);
+		}
+	}
+	
 	private String buildLongTokenKey(String token){
 		return StringTools.concat("_","user","token",token);
 	}

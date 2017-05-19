@@ -8,7 +8,8 @@
 				bsi_phone_model_id AS "bsiPhoneModelId" ,
 		bsi_phone_brand AS "bsiPhoneBrand" ,
 		bsi_phone_model AS "bsiPhoneModel" ,
-		bsi_phone_model_status AS "bsiPhoneModelStatus" 
+		bsi_phone_model_status AS "bsiPhoneModelStatus" ,
+		object_order AS "objectOrder" 
 	</sql>
 	
 	<sql id="where">
@@ -17,6 +18,7 @@
 			<if test="bsiPhoneBrand != null"> AND bsi_phone_brand = #{bsiPhoneBrand}  </if>
 			<if test="bsiPhoneModel != null"> AND bsi_phone_model = #{bsiPhoneModel}  </if>
 			<if test="bsiPhoneModelStatus != null"> AND bsi_phone_model_status = #{bsiPhoneModelStatus}  </if>
+			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
 		</trim>	
 	</sql>
 	
@@ -26,6 +28,7 @@
 			AND bsi_phone_brand = #{old_bsiPhoneBrand}
 			AND bsi_phone_model = #{old_bsiPhoneModel}
 			AND bsi_phone_model_status = #{old_bsiPhoneModelStatus}
+			AND object_order = #{old_objectOrder}
 		</trim>
 	</sql>
 	
@@ -35,6 +38,7 @@
 			bsi_phone_brand = #{bsiPhoneBrand},
 			bsi_phone_model = #{bsiPhoneModel},
 			bsi_phone_model_status = #{bsiPhoneModelStatus},
+			object_order = #{objectOrder},
 		</set>
 	</sql>
 	
@@ -44,6 +48,7 @@
 			<if test="bsiPhoneBrand != null">bsi_phone_brand = #{bsiPhoneBrand},</if>
 			<if test="bsiPhoneModel != null">bsi_phone_model = #{bsiPhoneModel},</if>
 			<if test="bsiPhoneModelStatus != null">bsi_phone_model_status = #{bsiPhoneModelStatus},</if>
+			<if test="objectOrder != null">object_order = #{objectOrder},</if>
 		</set>
 	</sql>
 	
@@ -85,13 +90,15 @@
 				bsi_phone_model_id,				
 				bsi_phone_brand,				
 				bsi_phone_model,				
-				bsi_phone_model_status				
+				bsi_phone_model_status,				
+				object_order				
 		)		
 		VALUES (	
 			#{bsiPhoneModelId},
 			#{bsiPhoneBrand},
 			#{bsiPhoneModel},
-			#{bsiPhoneModelStatus}
+			#{bsiPhoneModelStatus},
+			#{objectOrder}
 		) 
 	</insert>
 	

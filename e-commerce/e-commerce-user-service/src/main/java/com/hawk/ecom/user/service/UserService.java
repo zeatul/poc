@@ -61,8 +61,9 @@ public class UserService {
 		return MybatisTools.single(userMapper.loadDynamic(params));
 	}
 	
-	public String password(String loginPwd,String userCode,Date curDate){
-		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,userCode,curDate.getTime()));
+	public String password(String loginPwd,String userCode,Date date){
+		final String key = "Ecom@1#!Hawk";
+		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,key,userCode,date.getTime()));
 	}
 	
 	@Valid

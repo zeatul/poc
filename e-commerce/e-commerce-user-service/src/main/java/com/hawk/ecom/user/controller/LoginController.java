@@ -45,6 +45,14 @@ public class LoginController {
 		return SuccessResponse.build(loginResponse);
 	}
 	
+	@RequestMapping(value = "/logout", method = POST)
+	public WebResponse<LoginResponse> logout(HttpServletRequest request) throws Exception {
+		String token = AuthThreadLocal.getToken();
+		loginService.logout(token);
+
+		return SuccessResponse.build(null);
+	}
+	
 	@RequestMapping(value = "/login/info", method = {POST,GET})
 	public WebResponse<UserInfoResponse> loginInfo(HttpServletRequest request) throws Exception {
 		String token = AuthThreadLocal.getToken();

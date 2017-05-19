@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
-import com.hawk.ecom.svp.exception.BsiOrderDetailNotFoundRuntimeException;
 import com.hawk.ecom.svp.exception.CashCouponNotFoundRuntimeException;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
 import com.hawk.ecom.svp.persist.domain.BsiOrderDetailDomain;

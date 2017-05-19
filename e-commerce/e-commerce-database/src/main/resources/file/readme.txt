@@ -2,6 +2,7 @@
 
 #pub
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/pub/create_db_pub.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/pub/init_data_pub.sql;
 
 #svp
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/create_db_svp.sql;
@@ -29,6 +30,7 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 
 #pub
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/pub/create_db_pub.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/pub/init_data_pub.sql;
 
 
 #svp

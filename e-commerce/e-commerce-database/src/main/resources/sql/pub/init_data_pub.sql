@@ -1,0 +1,1 @@
+insert into t_fun_global_sequence(stub,id) value('a',10000);
