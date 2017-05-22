@@ -9,8 +9,11 @@
 		user_code AS "userCode" ,
 		user_account AS "userAccount" ,
 		user_email AS "userEmail" ,
+		user_type AS "userType" ,
 		mobile_number AS "mobileNumber" ,
 		login_pwd AS "loginPwd" ,
+		pwd_update_times AS "pwdUpdateTimes" ,
+		last_pwd_update_date AS "lastPwdUpdateDate" ,
 		user_nickname AS "userNickname" ,
 		user_name AS "userName" ,
 		user_sex AS "userSex" ,
@@ -36,8 +39,11 @@
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="userAccount != null"> AND user_account = #{userAccount}  </if>
 			<if test="userEmail != null"> AND user_email = #{userEmail}  </if>
+			<if test="userType != null"> AND user_type = #{userType}  </if>
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 			<if test="loginPwd != null"> AND login_pwd = #{loginPwd}  </if>
+			<if test="pwdUpdateTimes != null"> AND pwd_update_times = #{pwdUpdateTimes}  </if>
+			<if test="lastPwdUpdateDate != null"> AND last_pwd_update_date = #{lastPwdUpdateDate}  </if>
 			<if test="userNickname != null"> AND user_nickname = #{userNickname}  </if>
 			<if test="userName != null"> AND user_name = #{userName}  </if>
 			<if test="userSex != null"> AND user_sex = #{userSex}  </if>
@@ -64,8 +70,11 @@
 			AND user_code = #{old_userCode}
 			AND user_account = #{old_userAccount}
 			AND user_email = #{old_userEmail}
+			AND user_type = #{old_userType}
 			AND mobile_number = #{old_mobileNumber}
 			AND login_pwd = #{old_loginPwd}
+			AND pwd_update_times = #{old_pwdUpdateTimes}
+			AND last_pwd_update_date = #{old_lastPwdUpdateDate}
 			AND user_nickname = #{old_userNickname}
 			AND user_name = #{old_userName}
 			AND user_sex = #{old_userSex}
@@ -92,8 +101,11 @@
 			user_code = #{userCode},
 			user_account = #{userAccount},
 			user_email = #{userEmail},
+			user_type = #{userType},
 			mobile_number = #{mobileNumber},
 			login_pwd = #{loginPwd},
+			pwd_update_times = #{pwdUpdateTimes},
+			last_pwd_update_date = #{lastPwdUpdateDate},
 			user_nickname = #{userNickname},
 			user_name = #{userName},
 			user_sex = #{userSex},
@@ -120,8 +132,11 @@
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="userAccount != null">user_account = #{userAccount},</if>
 			<if test="userEmail != null">user_email = #{userEmail},</if>
+			<if test="userType != null">user_type = #{userType},</if>
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 			<if test="loginPwd != null">login_pwd = #{loginPwd},</if>
+			<if test="pwdUpdateTimes != null">pwd_update_times = #{pwdUpdateTimes},</if>
+			<if test="lastPwdUpdateDate != null">last_pwd_update_date = #{lastPwdUpdateDate},</if>
 			<if test="userNickname != null">user_nickname = #{userNickname},</if>
 			<if test="userName != null">user_name = #{userName},</if>
 			<if test="userSex != null">user_sex = #{userSex},</if>
@@ -181,8 +196,11 @@
 				user_code,				
 				user_account,				
 				user_email,				
+				user_type,				
 				mobile_number,				
 				login_pwd,				
+				pwd_update_times,				
+				last_pwd_update_date,				
 				user_nickname,				
 				user_name,				
 				user_sex,				
@@ -206,8 +224,11 @@
 			#{userCode},
 			#{userAccount},
 			#{userEmail},
+			#{userType},
 			#{mobileNumber},
 			#{loginPwd},
+			#{pwdUpdateTimes},
+			#{lastPwdUpdateDate},
 			#{userNickname},
 			#{userName},
 			#{userSex},

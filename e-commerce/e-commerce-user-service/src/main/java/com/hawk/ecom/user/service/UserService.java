@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.ecom.user.annotation.NotLogin;
 import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.constant.ConstUserStatus;
 import com.hawk.ecom.user.exception.MobileNumberRegisteredRuntimeException;
-import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.UserMapper;
@@ -173,7 +173,7 @@ public class UserService {
 		
 		updatDomain.setLoginPwd(password(newPassword,userDomain.getUserCode(),userDomain.getCreateDate()));
 		updatDomain.setUpdateDate(new Date());
-		updatDomain.setLastAccessDate(userDomain.getUpdateDate());
+		updatDomain.setLastAccessDate(updatDomain.getUpdateDate());
 		updatDomain.setId(userDomain.getId());
 		userMapper.updateWithoutNull(updatDomain);
 	}

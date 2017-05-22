@@ -21,14 +21,19 @@ public class MallRoleDomain implements Serializable {
 	private Long id;
 	
 	/**
-	 * 角色编号 rolde_code
+	 * 角色编号 role_code
 	 */
-	private String roldeCode;
+	private String roleCode;
 	
 	/**
 	 * 角色名称 role_name
 	 */
 	private String roleName;
+	
+	/**
+	 * 角色类型 role_type
+	 */
+	private Integer roleType;
 	
 	/**
 	 * 创建者 create_user_code
@@ -79,18 +84,18 @@ public class MallRoleDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 角色编号 rolde_code
+	 * @return 角色编号 role_code
 	 */
-	public String getRoldeCode(){
-		return roldeCode;
+	public String getRoleCode(){
+		return roleCode;
 	}
 	
 	/**
 	 * 
-	 * @param roldeCode 角色编号 rolde_code
+	 * @param roleCode 角色编号 role_code
 	 */	
-	public void setRoldeCode (String roldeCode) {
-		this.roldeCode = roldeCode;
+	public void setRoleCode (String roleCode) {
+		this.roleCode = roleCode;
 	}
 	
 	/**
@@ -107,6 +112,22 @@ public class MallRoleDomain implements Serializable {
 	 */	
 	public void setRoleName (String roleName) {
 		this.roleName = roleName;
+	}
+	
+	/**
+	 * 
+	 * @return 角色类型 role_type
+	 */
+	public Integer getRoleType(){
+		return roleType;
+	}
+	
+	/**
+	 * 
+	 * @param roleType 角色类型 role_type
+	 */	
+	public void setRoleType (Integer roleType) {
+		this.roleType = roleType;
 	}
 	
 	/**

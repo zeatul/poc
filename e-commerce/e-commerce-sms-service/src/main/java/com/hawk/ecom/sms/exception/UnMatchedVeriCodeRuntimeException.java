@@ -1,16 +1,18 @@
-package com.hawk.ecom.user.exception;
+package com.hawk.ecom.sms.exception;
 
 import com.hawk.framework.pub.exception.BasicRuntimeException;
 
 public class UnMatchedVeriCodeRuntimeException extends BasicRuntimeException{
-	private final static int  code = 100003;
+	
+	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 680466207820870766L;
+	private static final long serialVersionUID = -6249886100744802715L;
 
 	public UnMatchedVeriCodeRuntimeException() {
-		super(code,ErrorCode.getErrMsg(code));
+		super(200003, "验证码不正确");
 	}
 
 }
