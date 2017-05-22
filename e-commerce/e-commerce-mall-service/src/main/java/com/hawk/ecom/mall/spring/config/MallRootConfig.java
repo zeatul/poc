@@ -27,8 +27,8 @@ public class MallRootConfig {
 		}
 	}
 	
-	@Bean("userCodeSequenceService")
-	public PkGenService userCodeSequenceService(JdbcTemplate jdbcTemplate){
+	@Bean("mallUserCodeSequenceService")
+	public PkGenService mallUserCodeSequenceService(JdbcTemplate jdbcTemplate){
 		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_mal_user_code_sequence(stub) values('a')");

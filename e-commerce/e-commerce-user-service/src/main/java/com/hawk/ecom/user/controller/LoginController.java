@@ -58,7 +58,6 @@ public class LoginController {
 			throw new TokenEmptyRuntimeException();
 		}
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
-		userInfoResponse.setUserId(null);
 
 		return SuccessResponse.build(userInfoResponse);
 	}

@@ -56,6 +56,7 @@ public class MallUserInfoResponse implements ResponseData{
 	/**
 	 * 用户Id
 	 */
+	@JsonIgnore
 	private Long userId;
 	
 

@@ -7,11 +7,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.mall.constant.ConstMallLoginStatus;
 import com.hawk.ecom.mall.constant.ConstMallLoginType;
+import com.hawk.ecom.mall.constant.ConstMallUserStatus;
+import com.hawk.ecom.mall.exception.DuplicateMallUserRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenInvalidRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenLogoutRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenTimeoutRuntimeException;
@@ -28,9 +31,9 @@ import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
 import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
-import com.hawk.ecom.user.exception.MobileNumberRegisteredRuntimeException;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.cache.CacheService;
+import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DateTools;
@@ -50,6 +53,15 @@ public class MallUserService {
 	
 	@Autowired
 	private CacheService cacheService;
+	
+	@Autowired
+	@Qualifier("pkGenService")
+	private PkGenService pkGenService;
+
+	
+	@Autowired
+	@Qualifier("mallUserCodeSequenceService")
+	private PkGenService mallUserCodeSequenceService;
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -219,40 +231,60 @@ public class MallUserService {
 		return mallUserInfoResponse;
 	}
 	
+	private String generateMallUserCode() {
+		/**
+		 * 8位及8位以上的数字构成的字符串
+		 */
+		return new Long(mallUserCodeSequenceService.genPk() + 100000).toString();
+
+	}
+	
 	/**
-	 * 控制权限
+	 * 创建商城用户
 	 * @param mallCreateUserParam
 	 */
 	@Valid
-	public void createUser(@Valid MallCreateUserParam mallCreateUserParam){
+	public MallUserDomain createUser(@Valid MallCreateUserParam mallCreateUserParam){
+		/**
+		 * TODO:控制系统权限
+		 */
+		
 		logger.info("Start to create user, mobileNumber={}",mallCreateUserParam.getMobileNumber());
 		MallUserDomain mallUserDomain = new MallUserDomain();
 		Date curDate = new Date();
 		mallUserDomain.setCreateDate(curDate);
-		mallUserDomain.setCreateUserCode(mallCreateUserParam.getOperatorCode());
+		mallUserDomain.setCreateUserCode(mallCreateUserParam.getOperatorCode());		
+		mallUserDomain.setIdNumber(mallCreateUserParam.getIdNumber());
+		mallUserDomain.setIdType(mallCreateUserParam.getIdType());
 		
-		mallUserDomain.setIdNumber(idNumber);
-		mallUserDomain.setIdType(idType);
+		mallUserDomain.setMobileNumber(mallCreateUserParam.getMobileNumber());
+		mallUserDomain.setUpdateDate(curDate);
+		mallUserDomain.setUpdateUserCode(mallCreateUserParam.getOperatorCode());
+		
+		mallUserDomain.setUserBirthday(null);
+		
+		
+		mallUserDomain.setUserName(mallCreateUserParam.getUserName());
+		mallUserDomain.setUserSex(mallCreateUserParam.getUserSex());
+		mallUserDomain.setUserStatus(ConstMallUserStatus.NORMAL);
+		
+		
+		String mallUserCode = generateMallUserCode();
+		mallUserDomain.setUserEmail(StringTools.concat(mallUserCode, "@email"));
+		mallUserDomain.setUserAccount(StringTools.concat(mallUserCode, "@account"));
+		String loginPwd = UUID.randomUUID().toString().replaceAll("-", "").substring(5, 15)+"@Hawk.master";
+		loginPwd = password(loginPwd, mallUserCode, curDate);
 		mallUserDomain.setLoginPwd(loginPwd);
-		mallUserDomain.setMobileNumber(mobileNumber);
-		mallUserDomain.setUpdateDate(updateDate);
-		mallUserDomain.setUpdateUserCode(updateUserCode);
-		mallUserDomain.setUserAccount(userAccount);
-		mallUserDomain.setUserBirthday(userBirthday);
-		
-		mallUserDomain.setUserEmail(userEmail);
-		mallUserDomain.setUserName(userName);
-		mallUserDomain.setUserSex(userSex);
-		mallUserDomain.setUserStatus(userStatus);
-		
-		mallUserDomain.setUserCode(userCode);
-		mallUserDomain.setId(id);
+		mallUserDomain.setUserCode(mallUserCode);
+		mallUserDomain.setId(pkGenService.genPk());
 		
 		try {
-			userMapper.insert(userDomain);
+			mallUserMapper.insert(mallUserDomain);
 		} catch (DuplicateKeyException ex) {
-			throw new MobileNumberRegisteredRuntimeException();
+			throw new DuplicateMallUserRuntimeException();
 		}
+		
+		return mallUserDomain;
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.hawk.ecom.user.response;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hawk.framework.pub.web.ResponseData;
 
 public class UserInfoResponse implements ResponseData{
@@ -48,6 +49,7 @@ public class UserInfoResponse implements ResponseData{
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private String nickname;
+	@JsonIgnore
 	private Long userId;
 	
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.constant.ConstLoginChannel;
 import com.hawk.ecom.mall.exception.MallTokenEmptyRuntimeException;
+import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.request.MallCreateUserParam;
 import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
@@ -68,7 +69,6 @@ public class MallUserController {
 			throw new MallTokenEmptyRuntimeException();
 		}
 		MallUserInfoResponse mallUserInfoResponse = mallUserService.loginInfo(token);
-		mallUserInfoResponse.setUserId(null);
 
 		return SuccessResponse.build(mallUserInfoResponse);
 	}
@@ -89,9 +89,14 @@ public class MallUserController {
 	}
 	
 	@RequestMapping(value = "/create", method = POST)
-	public WebResponse<ResponseData> createUser(HttpServletRequest request) throws Exception{
+	public WebResponse<MallUserInfoResponse> createUser(HttpServletRequest request) throws Exception{
 		MallCreateUserParam mallCreateUserParam = HttpRequestTools.parse(request, MallCreateUserParam.class);
-		
-		return null;
+		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
+		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
+		mallUserInfoResponse.setMobileNumber(mallUserDomain.getMobileNumber());
+		mallUserInfoResponse.setUserCode(mallUserDomain.getUserCode());
+		mallUserInfoResponse.setUserId(mallUserDomain.getId());
+		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
+		return SuccessResponse.build();
 	} 
 }
