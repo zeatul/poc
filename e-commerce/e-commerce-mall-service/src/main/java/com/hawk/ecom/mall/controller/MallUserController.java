@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,11 +17,14 @@ import com.hawk.ecom.mall.constant.ConstLoginChannel;
 import com.hawk.ecom.mall.exception.MallTokenEmptyRuntimeException;
 import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.request.MallCreateUserParam;
+import com.hawk.ecom.mall.request.MallListUserParam;
 import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
 import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
 import com.hawk.ecom.mall.response.MallLoginResponse;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
+import com.hawk.ecom.mall.response.MultiUserInfoResponse;
+import com.hawk.ecom.mall.response.MultiUserInfoResponse.UserInfo;
 import com.hawk.ecom.mall.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -28,6 +32,7 @@ import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @RestController
@@ -101,14 +106,11 @@ public class MallUserController {
 	} 
 	
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MallUserInfoResponse> listUser(HttpServletRequest request) throws Exception{
-		MallCreateUserParam mallCreateUserParam = HttpRequestTools.parse(request, MallCreateUserParam.class);
-		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
-		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
-		mallUserInfoResponse.setMobileNumber(mallUserDomain.getMobileNumber());
-		mallUserInfoResponse.setUserCode(mallUserDomain.getUserCode());
-		mallUserInfoResponse.setUserId(mallUserDomain.getId());
-		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
-		return SuccessResponse.build();
+	public WebResponse<MultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception{
+		MallListUserParam mallListUserParam = HttpRequestTools.parse(request, MallListUserParam.class);
+		List<MallUserDomain> mallUserDomainList = mallUserService.listMallUser(mallListUserParam);
+		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, UserInfo.class)
+				);
+		return SuccessResponse.build(result);
 	} 
 }

@@ -30,6 +30,7 @@ import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.persist.mapper.MallLoginMapper;
 import com.hawk.ecom.mall.persist.mapper.MallUserMapper;
 import com.hawk.ecom.mall.request.MallCreateUserParam;
+import com.hawk.ecom.mall.request.MallListUserParam;
 import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
 import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
@@ -298,4 +299,12 @@ public class MallUserService {
 		return mallUserDomain;
 	}
 	
+	@Valid
+	public List<MallUserDomain> listMallUser(@Valid MallListUserParam mallListUserParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		MybatisParam params = MybatisTools.page(new MybatisParam(), mallListUserParam);
+		return mallUserMapper.loadDynamicPaging(params);
+	}
 }
