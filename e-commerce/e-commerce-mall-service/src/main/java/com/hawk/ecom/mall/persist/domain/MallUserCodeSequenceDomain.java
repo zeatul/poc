@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 /**
  * 商城用户编号生成表
- * The class is mapped to the table t_mal_user_code_sequence 
+ * The class is mapped to the table t_mal_mall_user_code_sequence 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class UserCodeSequenceDomain implements Serializable {
+public class MallUserCodeSequenceDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	

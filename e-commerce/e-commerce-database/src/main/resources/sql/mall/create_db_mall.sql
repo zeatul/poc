@@ -36,9 +36,9 @@ drop index ui_mall_user_code on t_mal_mall_user;
 
 drop table if exists t_mal_mall_user;
 
-drop table if exists t_mal_mall_user_history;
+drop table if exists t_mal_mall_user_code_sequence;
 
-drop table if exists t_mal_user_code_sequence;
+drop table if exists t_mal_mall_user_history;
 
 /*==============================================================*/
 /* Table: t_mal_mall_login                                      */
@@ -330,6 +330,19 @@ create unique index ui_mall_id_number on t_mal_mall_user
 );
 
 /*==============================================================*/
+/* Table: t_mal_mall_user_code_sequence                         */
+/*==============================================================*/
+create table t_mal_mall_user_code_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_mal_mall_user_code_sequence comment '商城用户编号生成表';
+
+/*==============================================================*/
 /* Table: t_mal_mall_user_history                               */
 /*==============================================================*/
 create table t_mal_mall_user_history
@@ -365,16 +378,3 @@ create table t_mal_mall_user_history
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_user_history comment '商城用户历史表';
-
-/*==============================================================*/
-/* Table: t_mal_user_code_sequence                              */
-/*==============================================================*/
-create table t_mal_user_code_sequence
-(
-   stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
-   primary key (id)
-)
-engine=myisam default charset=utf8;
-
-alter table t_mal_user_code_sequence comment '商城用户编号生成表';

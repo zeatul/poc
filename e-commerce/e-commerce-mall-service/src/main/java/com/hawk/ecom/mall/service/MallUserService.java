@@ -1,6 +1,10 @@
 package com.hawk.ecom.mall.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -15,6 +19,7 @@ import com.hawk.ecom.mall.constant.ConstMallLoginStatus;
 import com.hawk.ecom.mall.constant.ConstMallLoginType;
 import com.hawk.ecom.mall.constant.ConstMallUserStatus;
 import com.hawk.ecom.mall.exception.DuplicateMallUserRuntimeException;
+import com.hawk.ecom.mall.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenInvalidRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenLogoutRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenTimeoutRuntimeException;
@@ -29,6 +34,7 @@ import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
 import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -53,6 +59,9 @@ public class MallUserService {
 	
 	@Autowired
 	private CacheService cacheService;
+	
+	@Autowired
+	private AuthService authService;
 	
 	@Autowired
 	@Qualifier("pkGenService")
@@ -245,9 +254,11 @@ public class MallUserService {
 	 */
 	@Valid
 	public MallUserDomain createUser(@Valid MallCreateUserParam mallCreateUserParam){
-		/**
-		 * TODO:控制系统权限
-		 */
+		
+		
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
 		
 		logger.info("Start to create user, mobileNumber={}",mallCreateUserParam.getMobileNumber());
 		MallUserDomain mallUserDomain = new MallUserDomain();

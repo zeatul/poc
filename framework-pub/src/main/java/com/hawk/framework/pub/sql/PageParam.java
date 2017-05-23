@@ -19,6 +19,7 @@ public class PageParam {
 	public void setPageRowCount(Integer pageRowCount) {
 		this.pageRowCount = pageRowCount;
 	}
+	
 	private Integer pageIndex;
 	private String order;
 	private Integer pageRowCount;

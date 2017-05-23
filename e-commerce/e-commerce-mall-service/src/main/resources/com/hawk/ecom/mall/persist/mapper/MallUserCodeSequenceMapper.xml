@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.mall.persist.mapper.UserCodeSequenceMapper">
+<mapper namespace="com.hawk.ecom.mall.persist.mapper.MallUserCodeSequenceMapper">
 
 	<sql id="columns">	
 				stub AS "stub" ,
@@ -43,35 +43,35 @@
 		</trim>
 	</sql>
 	
-	<select id="load"  resultType="UserCodeSequenceDomain">
+	<select id="load"  resultType="MallUserCodeSequenceDomain">
 		SELECT 
 		<include refid="columns" />
-		FROM t_mal_user_code_sequence
+		FROM t_mal_mall_user_code_sequence
 		<include refid="pkwhere" />		
 	</select>
 	
-	<select id="loadDynamic" parameterType="hashmap" resultType="UserCodeSequenceDomain">
+	<select id="loadDynamic" parameterType="hashmap" resultType="MallUserCodeSequenceDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_mal_user_code_sequence
+		FROM t_mal_mall_user_code_sequence
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM t_mal_user_code_sequence
+		FROM t_mal_mall_user_code_sequence
 		<include refid="where" />
 	</select>
 	
 	<select id="countByPK"  resultType="integer">
 		SELECT count(1) 
-		FROM t_mal_user_code_sequence
+		FROM t_mal_mall_user_code_sequence
 		<include refid="pkwhere" />		
 	</select>
 	
-	<insert id="insert"  parameterType="UserCodeSequenceDomain">
-		INSERT INTO t_mal_user_code_sequence (			
+	<insert id="insert"  parameterType="MallUserCodeSequenceDomain">
+		INSERT INTO t_mal_mall_user_code_sequence (			
 				stub,				
 				id				
 		)		
@@ -82,37 +82,37 @@
 	</insert>
 	
 	<delete id="delete" >
-		DELETE FROM t_mal_user_code_sequence
+		DELETE FROM t_mal_mall_user_code_sequence
 		<include refid="pkwhere" />	
 	</delete>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM t_mal_user_code_sequence
+		DELETE FROM t_mal_mall_user_code_sequence
 		<include refid="where" />
 	</delete>
 
-	<update id="update" parameterType="UserCodeSequenceDomain">
-		UPDATE t_mal_user_code_sequence	
+	<update id="update" parameterType="MallUserCodeSequenceDomain">
+		UPDATE t_mal_mall_user_code_sequence	
 		<include refid="update" />
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateWithoutNull" parameterType="UserCodeSequenceDomain">
-		UPDATE t_mal_user_code_sequence
+	<update id="updateWithoutNull" parameterType="MallUserCodeSequenceDomain">
+		UPDATE t_mal_mall_user_code_sequence
 		<include refid="updateWithoutNull"/>
 		<include refid="pkwhere" />	
 	</update>
 	
 	<update id="updateDynamic" parameterType="hashmap">
-		UPDATE t_mal_user_code_sequence	
+		UPDATE t_mal_mall_user_code_sequence	
 		<include refid="update" />
 		<include refid="where_old" />
 	</update>
 	
-	<select id="loadDynamicPaging" parameterType="hashmap" resultType="UserCodeSequenceDomain">
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="MallUserCodeSequenceDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_mal_user_code_sequence
+		FROM t_mal_mall_user_code_sequence
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	

@@ -99,4 +99,16 @@ public class MallUserController {
 		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
 		return SuccessResponse.build();
 	} 
+	
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MallUserInfoResponse> listUser(HttpServletRequest request) throws Exception{
+		MallCreateUserParam mallCreateUserParam = HttpRequestTools.parse(request, MallCreateUserParam.class);
+		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
+		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
+		mallUserInfoResponse.setMobileNumber(mallUserDomain.getMobileNumber());
+		mallUserInfoResponse.setUserCode(mallUserDomain.getUserCode());
+		mallUserInfoResponse.setUserId(mallUserDomain.getId());
+		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
+		return SuccessResponse.build();
+	} 
 }
