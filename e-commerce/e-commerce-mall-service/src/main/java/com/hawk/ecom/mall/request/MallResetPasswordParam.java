@@ -19,7 +19,7 @@ public class MallResetPasswordParam {
 		this.veriCode = veriCode;
 	}
 	
-//	@JsonIgnore
+
 	public String getNewPassword() {
 		return newPassword;
 	}

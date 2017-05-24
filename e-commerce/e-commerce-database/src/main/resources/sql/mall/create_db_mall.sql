@@ -146,7 +146,8 @@ create table t_mal_mall_right
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_right comment '商城权限表';
 
@@ -182,7 +183,8 @@ create table t_mal_mall_role
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role comment '商城角色表';
 
@@ -210,7 +212,8 @@ create table t_mal_mall_role_right
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role_right comment '商城角色权限表';
 
@@ -238,7 +241,8 @@ create table t_mal_mall_role_user
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role_user comment '商城角色用户表';
 

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapper.SupplierMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		supplier_code AS "supplierCode" ,
+		supplier_name AS "supplierName" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
+			<if test="supplierName != null"> AND supplier_name = #{supplierName}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND supplier_code = #{old_supplierCode}
+			AND supplier_name = #{old_supplierName}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			supplier_code = #{supplierCode},
+			supplier_name = #{supplierName},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
+			<if test="supplierName != null">supplier_name = #{supplierName},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="SupplierDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_svp_supplier
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="SupplierDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_supplier
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_supplier
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_svp_supplier
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="SupplierDomain">
+		INSERT INTO t_svp_supplier (			
+				id,				
+				supplier_code,				
+				supplier_name				
+		)		
+		VALUES (	
+			#{id},
+			#{supplierCode},
+			#{supplierName}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_svp_supplier
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_svp_supplier
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="SupplierDomain">
+		UPDATE t_svp_supplier	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="SupplierDomain">
+		UPDATE t_svp_supplier
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_svp_supplier	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="SupplierDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_supplier
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

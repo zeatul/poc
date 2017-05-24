@@ -7,6 +7,7 @@
 	<sql id="columns">	
 				id AS "id" ,
 		order_code AS "orderCode" ,
+		supplier_code AS "supplierCode" ,
 		store_code AS "storeCode" ,
 		user_code AS "userCode" ,
 		charge_mobile_number AS "chargeMobileNumber" ,
@@ -31,6 +32,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="chargeMobileNumber != null"> AND charge_mobile_number = #{chargeMobileNumber}  </if>
@@ -56,6 +58,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND order_code = #{old_orderCode}
+			AND supplier_code = #{old_supplierCode}
 			AND store_code = #{old_storeCode}
 			AND user_code = #{old_userCode}
 			AND charge_mobile_number = #{old_chargeMobileNumber}
@@ -81,6 +84,7 @@
 		<set>
 			id = #{id},
 			order_code = #{orderCode},
+			supplier_code = #{supplierCode},
 			store_code = #{storeCode},
 			user_code = #{userCode},
 			charge_mobile_number = #{chargeMobileNumber},
@@ -106,6 +110,7 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="chargeMobileNumber != null">charge_mobile_number = #{chargeMobileNumber},</if>
@@ -164,6 +169,7 @@
 		INSERT INTO t_svp_mobile_data_order_detail (			
 				id,				
 				order_code,				
+				supplier_code,				
 				store_code,				
 				user_code,				
 				charge_mobile_number,				
@@ -186,6 +192,7 @@
 		VALUES (	
 			#{id},
 			#{orderCode},
+			#{supplierCode},
 			#{storeCode},
 			#{userCode},
 			#{chargeMobileNumber},

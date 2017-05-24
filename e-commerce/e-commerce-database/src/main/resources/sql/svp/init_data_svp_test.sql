@@ -3554,7 +3554,7 @@ insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_pr
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11247,468,12);
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11248,468,12);
 insert into t_svp_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) values(11240,4109,1);
-delete from  t_svp_bsi_phone_brand;
+delete from t_svp_bsi_phone_brand;
 insert into t_svp_bsi_phone_brand(bsi_phone_brand,spell_abbr,object_order,bsi_phone_brand_status) SELECT distinct bsi_phone_brand ,'aaa',2147483647,1 FROM t_svp_bsi_phone_model WHERE bsi_phone_model_status = 1;
 update t_svp_bsi_phone_brand set object_order=100 where bsi_phone_brand='苹果';
 update t_svp_bsi_phone_brand set object_order=600 where bsi_phone_brand='Vivo';
@@ -3564,3 +3564,4 @@ update t_svp_bsi_phone_brand set object_order=200 where bsi_phone_brand='Ipad';
 update t_svp_bsi_phone_brand set object_order=700 where bsi_phone_brand='魅族';
 update t_svp_bsi_phone_brand set object_order=800 where bsi_phone_brand='锤子';
 update t_svp_bsi_phone_brand set object_order=300 where bsi_phone_brand='三星';
+insert into t_svp_supplier(id,supplier_code,supplier_name) value (1,'00001' ,'小保');

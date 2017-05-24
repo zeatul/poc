@@ -34,6 +34,10 @@ drop table if exists t_svp_order;
 
 drop table if exists t_svp_order_sequence;
 
+drop index ui_svp_supplier_code on t_svp_supplier;
+
+drop table if exists t_svp_supplier;
+
 /*==============================================================*/
 /* Table: t_svp_bsi_cash_coupon                                 */
 /*==============================================================*/
@@ -96,6 +100,7 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
    order_code           varchar(50) comment '订单编号',
+   supplier_code        varchar(50) not null comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    user_code            varchar(50) comment '用户编号',
    bsi_task_code        varchar(200) comment '任务号,与小宝对接用',
@@ -248,6 +253,7 @@ create table t_svp_mobile_data_order_detail
 (
    id                   bigint not null comment '主键',
    order_code           varchar(50) comment '订单编号',
+   supplier_code        varchar(50) not null comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    user_code            varchar(50) comment '用户编号',
    charge_mobile_number varchar(20) comment '手机号码',
@@ -315,3 +321,23 @@ create table t_svp_order_sequence
 engine=myisam default charset=utf8;
 
 alter table t_svp_order_sequence comment '订单编号生成表';
+
+/*==============================================================*/
+/* Table: t_svp_supplier                                        */
+/*==============================================================*/
+create table t_svp_supplier
+(
+   id                   bigint not null comment '主键',
+   supplier_code        varchar(50) not null comment '供应商编号',
+   supplier_name        varchar(200) not null comment '供应商名称',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*==============================================================*/
+/* Index: ui_svp_supplier_code                                  */
+/*==============================================================*/
+create unique index ui_svp_supplier_code on t_svp_supplier
+(
+   supplier_code
+);

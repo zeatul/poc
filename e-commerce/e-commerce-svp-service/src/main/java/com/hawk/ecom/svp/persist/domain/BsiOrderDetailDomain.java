@@ -26,6 +26,11 @@ public class BsiOrderDetailDomain implements Serializable {
 	private String orderCode;
 	
 	/**
+	 * 供应商编号 supplier_code
+	 */
+	private String supplierCode;
+	
+	/**
 	 * 商户编号 store_code
 	 */
 	private String storeCode;
@@ -191,6 +196,22 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setOrderCode (String orderCode) {
 		this.orderCode = orderCode;
+	}
+	
+	/**
+	 * 
+	 * @return 供应商编号 supplier_code
+	 */
+	public String getSupplierCode(){
+		return supplierCode;
+	}
+	
+	/**
+	 * 
+	 * @param supplierCode 供应商编号 supplier_code
+	 */	
+	public void setSupplierCode (String supplierCode) {
+		this.supplierCode = supplierCode;
 	}
 	
 	/**

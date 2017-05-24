@@ -47,9 +47,9 @@ public class GenerateSqlForInitBsiData {
 
 //		List<String> list = ResourceTools.readResource("/file/小宝碎屏险产品手机信号对应表20170321.csv", GenerateSqlForInitBsiData.class);
 		
-		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
+//		List<String> list = ResourceTools.readResource("/file/小宝测试环境数据.csv", GenerateSqlForInitBsiData.class);
 		
-//		List<String> list = ResourceTools.readResource("/file/小宝正式环境数据.csv", GenerateSqlForInitBsiData.class);
+		List<String> list = ResourceTools.readResource("/file/小宝正式环境数据.csv", GenerateSqlForInitBsiData.class);
 
 		// list.forEach(e -> System.out.println(e));
 
@@ -157,7 +157,7 @@ public class GenerateSqlForInitBsiData {
 			System.out.println(sb.toString());
 		});
 
-		System.out.println("delete from  t_svp_bsi_phone_brand;");
+		System.out.println("delete from t_svp_bsi_phone_brand;");
 		System.out.println("insert into t_svp_bsi_phone_brand(bsi_phone_brand,spell_abbr,object_order,bsi_phone_brand_status) SELECT distinct bsi_phone_brand ,'aaa',"+Integer.MAX_VALUE+",1 FROM t_svp_bsi_phone_model WHERE bsi_phone_model_status = 1;") ;
 		brandOrderMap.forEach((k,v)->{
 			StringBuilder sb = new StringBuilder();
@@ -168,6 +168,9 @@ public class GenerateSqlForInitBsiData {
 				.append(";");
 			System.out.println(sb.toString());
 		});
+		
+		
+		System.out.println("insert into t_svp_supplier(id,supplier_code,supplier_name) value (1,'0001' ,'小保');");
 		
 	}
 

@@ -1,8 +1,6 @@
 package com.hawk.ecom.mall.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -78,6 +76,11 @@ public class MallUserService {
 	public String password(String loginPwd,String userCode,Date date){
 		final String key = "Mall@2#%Hawk";
 		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,key,userCode,date.getTime()));
+	}
+	
+	public static void main(String[] args){
+		Date date = DateTools.parse("2017-05-24 00:00:00", DateTools.DATETIME_PATTERN);
+		System.out.println(new MallUserService().password("hawk@1234","000001",date));
 	}
 	
 	public MallUserDomain queryMallUserByMobileNumber(String mobileNumber){
@@ -168,7 +171,8 @@ public class MallUserService {
 		mallLoginDomain.setUserAgent(mallLoginParam.getUserAgent());
 		mallLoginDomain.setUserEmail(mallUserDomain.getUserEmail());
 		mallLoginDomain.setUserId(mallUserDomain.getId());
-		mallUserMapper.insert(mallUserDomain);
+		mallLoginDomain.setUserCode(mallUserDomain.getUserCode());
+		mallLoginMapper.insert(mallLoginDomain);
 		return mallLoginDomain.getToken();
 	}
 	

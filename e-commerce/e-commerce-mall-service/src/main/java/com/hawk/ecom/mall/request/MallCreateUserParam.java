@@ -105,7 +105,6 @@ public class MallCreateUserParam {
 	 * 用户性别 user_sex
 	 */
 	@ValidWord
-	@NotEmpty
 	private String userSex;
 	
 	/**

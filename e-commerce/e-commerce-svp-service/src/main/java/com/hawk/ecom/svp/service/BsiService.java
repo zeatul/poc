@@ -231,6 +231,7 @@ public class BsiService {
 		 */
 		BsiOrderDetailDomain bsiOrderDetailDomain = new BsiOrderDetailDomain();
 		bsiOrderDetailDomain.setBsiBenefBirthday(activateCouponParam.getBirthday());
+		bsiOrderDetailDomain.setSupplierCode("00001");
 		bsiOrderDetailDomain.setBsiBenefIdNumber(activateCouponParam.getIdNumber());
 		bsiOrderDetailDomain.setBsiBenefIdTyp(activateCouponParam.getIdType());
 		bsiOrderDetailDomain.setBsiBenefMobileNumber(activateCouponParam.getMobileNumber());

@@ -2,6 +2,12 @@ package com.hawk.framework.pub.web;
 
 public class ExceptionResponseData implements ResponseData{
 	
+	public int getErrCode() {
+		return errCode;
+	}
+	public void setErrCode(int errCode) {
+		this.errCode = errCode;
+	}
 	public String getException() {
 		return exception;
 	}
@@ -14,14 +20,9 @@ public class ExceptionResponseData implements ResponseData{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getErrCode() {
-		return errCode;
-	}
-	public void setErrCode(String errCode) {
-		this.errCode = errCode;
-	}
+	
 	private String exception;
 	private String message;
-	private String errCode;
+	private int errCode;
 
 }

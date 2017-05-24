@@ -2,17 +2,168 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.mall.persist.mapperex.MallRoleUserExMapper">
+<mapper namespace="com.hawk.ecom.mall.persist.mapper.MallRoleUserMapper">
 
-	<select id="hasAnyRole" resultType="integer">
-		select count(1)
-		from t_mal_mall_user a ,t_mal_mall_role_user b , t_mal_mall_role c
-		where a.id = b.user_id and b.role_id = c.id
-		and a.user_code = #{userCode}
-		and c.role_code in
-		<foreach item="roles" index="index" collection="list" open="(" separator="," close=")">
-			#{roles}
-		</foreach>
+	<sql id="columns">	
+				id AS "id" ,
+		role_id AS "roleId" ,
+		user_id AS "userId" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="roleId != null"> AND role_id = #{roleId}  </if>
+			<if test="userId != null"> AND user_id = #{userId}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND role_id = #{old_roleId}
+			AND user_id = #{old_userId}
+			AND create_user_code = #{old_createUserCode}
+			AND create_date = #{old_createDate}
+			AND update_user_code = #{old_updateUserCode}
+			AND update_date = #{old_updateDate}
+			AND delete_user_code = #{old_deleteUserCode}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			role_id = #{roleId},
+			user_id = #{userId},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="roleId != null">role_id = #{roleId},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="MallRoleUserDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_mal_mall_role_user
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="MallRoleUserDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_mal_mall_role_user
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_mal_mall_role_user
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_mal_mall_role_user
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="MallRoleUserDomain">
+		INSERT INTO t_mal_mall_role_user (			
+				id,				
+				role_id,				
+				user_id,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{roleId},
+			#{userId},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_mal_mall_role_user
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_mal_mall_role_user
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="MallRoleUserDomain">
+		UPDATE t_mal_mall_role_user	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="MallRoleUserDomain">
+		UPDATE t_mal_mall_role_user
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_mal_mall_role_user	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="MallRoleUserDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_mal_mall_role_user
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
 </mapper>
