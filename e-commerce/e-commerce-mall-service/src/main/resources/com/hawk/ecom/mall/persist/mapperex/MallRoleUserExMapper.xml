@@ -10,8 +10,8 @@
 		where a.id = b.user_id and b.role_id = c.id
 		and a.user_code = #{userCode}
 		and c.role_code in
-		<foreach item="roles" index="index" collection="list" open="(" separator="," close=")">
-			#{roles}
+		<foreach item="item" index="index" collection="roles" open="(" separator="," close=")">
+			#{item}
 		</foreach>
 	</select>
 

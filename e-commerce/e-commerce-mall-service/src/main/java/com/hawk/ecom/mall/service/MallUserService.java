@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.hawk.ecom.mall.constant.ConstMallLoginStatus;
 import com.hawk.ecom.mall.constant.ConstMallLoginType;
 import com.hawk.ecom.mall.constant.ConstMallUserStatus;
+import com.hawk.ecom.mall.constant.ConstMallUserType;
 import com.hawk.ecom.mall.exception.DuplicateMallUserRuntimeException;
 import com.hawk.ecom.mall.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenInvalidRuntimeException;
@@ -283,7 +284,7 @@ public class MallUserService {
 		mallUserDomain.setUserName(mallCreateUserParam.getUserName());
 		mallUserDomain.setUserSex(mallCreateUserParam.getUserSex());
 		mallUserDomain.setUserStatus(ConstMallUserStatus.NORMAL);
-		
+		mallUserDomain.setUserType(ConstMallUserType.NORMAL);
 		
 		String mallUserCode = generateMallUserCode();
 		mallUserDomain.setUserEmail(StringTools.concat(mallUserCode, "@email"));

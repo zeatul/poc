@@ -112,7 +112,7 @@ public class MallCreateUserParam {
 	 */
 	@ValidWord
 	@NotEmpty
-	private Integer idType;
+	private Integer idType = 1;
 	
 	/**
 	 * 证件号码 id_number
