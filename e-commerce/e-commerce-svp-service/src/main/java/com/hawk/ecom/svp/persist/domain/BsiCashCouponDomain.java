@@ -66,6 +66,18 @@ public class BsiCashCouponDomain implements Serializable {
 	private Integer bsiCashCouponPeriod;
 	
 	/**
+	 * 促销活动描述 promotion_activity_desc
+	 */
+	private String promotionActivityDesc;
+	
+	/**
+	 * 促销活动编号
+            
+             promotion_activity_code
+	 */
+	private String promotionActivityCode;
+	
+	/**
 	 * 代金券激活失败原因 bsi_cash_coupon_activate_error
 	 */
 	private String bsiCashCouponActivateError;
@@ -249,6 +261,42 @@ public class BsiCashCouponDomain implements Serializable {
 	 */	
 	public void setBsiCashCouponPeriod (Integer bsiCashCouponPeriod) {
 		this.bsiCashCouponPeriod = bsiCashCouponPeriod;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动描述 promotion_activity_desc
+	 */
+	public String getPromotionActivityDesc(){
+		return promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityDesc 促销活动描述 promotion_activity_desc
+	 */	
+	public void setPromotionActivityDesc (String promotionActivityDesc) {
+		this.promotionActivityDesc = promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动编号
+            
+             promotion_activity_code
+	 */
+	public String getPromotionActivityCode(){
+		return promotionActivityCode;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityCode 促销活动编号
+            
+             promotion_activity_code
+	 */	
+	public void setPromotionActivityCode (String promotionActivityCode) {
+		this.promotionActivityCode = promotionActivityCode;
 	}
 	
 	/**

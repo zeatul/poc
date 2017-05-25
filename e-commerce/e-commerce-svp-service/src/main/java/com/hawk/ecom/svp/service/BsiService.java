@@ -123,6 +123,8 @@ public class BsiService {
 		bsiCashCouponDomain.setUserCode(mobileNumber);
 		bsiCashCouponDomain.setCreateDate(currentDate);
 		bsiCashCouponDomain.setUpdateDate(currentDate);
+		bsiCashCouponDomain.setPromotionActivityCode("00001");
+		bsiCashCouponDomain.setPromotionActivityDesc("新用户注册赠送");
 		bsiCashCouponDomain.setId(pkGenService.genPk());
 		bsiCashCouponMapper.insert(bsiCashCouponDomain);
 	}
@@ -250,6 +252,8 @@ public class BsiService {
 		bsiOrderDetailDomain.setBsiTaskCode(codeService.buildBsiTaskCode());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setBsiCashCouponCode(bsiCashCouponCode);
+		bsiOrderDetailDomain.setPromotionActivityCode("00001");
+		bsiOrderDetailDomain.setPromotionActivityDesc("新用户注册赠送");
 		
 		bsiOrderDetailDomain.setId(pkGenService.genPk());
 		

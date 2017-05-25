@@ -41,6 +41,21 @@ public class BsiOrderDetailDomain implements Serializable {
 	private String userCode;
 	
 	/**
+	 * 商品编号 goods_code
+	 */
+	private String goodsCode;
+	
+	/**
+	 * 商品名称 goods_name
+	 */
+	private String goodsName;
+	
+	/**
+	 * 商品后处理类别 goods_post_deal
+	 */
+	private String goodsPostDeal;
+	
+	/**
 	 * 任务号,与小宝对接用 bsi_task_code
 	 */
 	private String bsiTaskCode;
@@ -99,6 +114,16 @@ public class BsiOrderDetailDomain implements Serializable {
 	 * 代金券编号 bsi_cash_coupon_code
 	 */
 	private String bsiCashCouponCode;
+	
+	/**
+	 * 促销活动描述 promotion_activity_desc
+	 */
+	private String promotionActivityDesc;
+	
+	/**
+	 * 促销活动编号 promotion_activity_code
+	 */
+	private String promotionActivityCode;
 	
 	/**
 	 * 小宝订单编号 bsi_insurance_code
@@ -244,6 +269,54 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setUserCode (String userCode) {
 		this.userCode = userCode;
+	}
+	
+	/**
+	 * 
+	 * @return 商品编号 goods_code
+	 */
+	public String getGoodsCode(){
+		return goodsCode;
+	}
+	
+	/**
+	 * 
+	 * @param goodsCode 商品编号 goods_code
+	 */	
+	public void setGoodsCode (String goodsCode) {
+		this.goodsCode = goodsCode;
+	}
+	
+	/**
+	 * 
+	 * @return 商品名称 goods_name
+	 */
+	public String getGoodsName(){
+		return goodsName;
+	}
+	
+	/**
+	 * 
+	 * @param goodsName 商品名称 goods_name
+	 */	
+	public void setGoodsName (String goodsName) {
+		this.goodsName = goodsName;
+	}
+	
+	/**
+	 * 
+	 * @return 商品后处理类别 goods_post_deal
+	 */
+	public String getGoodsPostDeal(){
+		return goodsPostDeal;
+	}
+	
+	/**
+	 * 
+	 * @param goodsPostDeal 商品后处理类别 goods_post_deal
+	 */	
+	public void setGoodsPostDeal (String goodsPostDeal) {
+		this.goodsPostDeal = goodsPostDeal;
 	}
 	
 	/**
@@ -436,6 +509,38 @@ public class BsiOrderDetailDomain implements Serializable {
 	 */	
 	public void setBsiCashCouponCode (String bsiCashCouponCode) {
 		this.bsiCashCouponCode = bsiCashCouponCode;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动描述 promotion_activity_desc
+	 */
+	public String getPromotionActivityDesc(){
+		return promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityDesc 促销活动描述 promotion_activity_desc
+	 */	
+	public void setPromotionActivityDesc (String promotionActivityDesc) {
+		this.promotionActivityDesc = promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动编号 promotion_activity_code
+	 */
+	public String getPromotionActivityCode(){
+		return promotionActivityCode;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityCode 促销活动编号 promotion_activity_code
+	 */	
+	public void setPromotionActivityCode (String promotionActivityCode) {
+		this.promotionActivityCode = promotionActivityCode;
 	}
 	
 	/**

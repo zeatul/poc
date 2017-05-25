@@ -140,7 +140,8 @@ public class MobileDataService {
 		mobileDataOrderDetailDomain.setMaxExecTimes(5);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
-		
+		mobileDataOrderDetailDomain.setPromotionActivityCode("00002");
+		mobileDataOrderDetailDomain.setPromotionActivityDesc("用户签到赠送");
 		
 		mobileDataOrderDetailDomain.setId(pkGenService.genPk());
 		
