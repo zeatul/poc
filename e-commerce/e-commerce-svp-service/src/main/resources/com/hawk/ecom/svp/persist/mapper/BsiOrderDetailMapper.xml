@@ -7,8 +7,12 @@
 	<sql id="columns">	
 				id AS "id" ,
 		order_code AS "orderCode" ,
+		supplier_code AS "supplierCode" ,
 		store_code AS "storeCode" ,
 		user_code AS "userCode" ,
+		goods_code AS "goodsCode" ,
+		goods_name AS "goodsName" ,
+		goods_post_deal AS "goodsPostDeal" ,
 		bsi_task_code AS "bsiTaskCode" ,
 		bsi_task_status AS "bsiTaskStatus" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
@@ -21,6 +25,8 @@
 		bsi_benef_name AS "bsiBenefName" ,
 		bsi_benef_mobile_number AS "bsiBenefMobileNumber" ,
 		bsi_cash_coupon_code AS "bsiCashCouponCode" ,
+		promotion_activity_desc AS "promotionActivityDesc" ,
+		promotion_activity_code AS "promotionActivityCode" ,
 		bsi_insurance_code AS "bsiInsuranceCode" ,
 		exec_times AS "execTimes" ,
 		max_exec_times AS "maxExecTimes" ,
@@ -40,8 +46,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="goodsCode != null"> AND goods_code = #{goodsCode}  </if>
+			<if test="goodsName != null"> AND goods_name = #{goodsName}  </if>
+			<if test="goodsPostDeal != null"> AND goods_post_deal = #{goodsPostDeal}  </if>
 			<if test="bsiTaskCode != null"> AND bsi_task_code = #{bsiTaskCode}  </if>
 			<if test="bsiTaskStatus != null"> AND bsi_task_status = #{bsiTaskStatus}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
@@ -54,6 +64,8 @@
 			<if test="bsiBenefName != null"> AND bsi_benef_name = #{bsiBenefName}  </if>
 			<if test="bsiBenefMobileNumber != null"> AND bsi_benef_mobile_number = #{bsiBenefMobileNumber}  </if>
 			<if test="bsiCashCouponCode != null"> AND bsi_cash_coupon_code = #{bsiCashCouponCode}  </if>
+			<if test="promotionActivityDesc != null"> AND promotion_activity_desc = #{promotionActivityDesc}  </if>
+			<if test="promotionActivityCode != null"> AND promotion_activity_code = #{promotionActivityCode}  </if>
 			<if test="bsiInsuranceCode != null"> AND bsi_insurance_code = #{bsiInsuranceCode}  </if>
 			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
@@ -74,8 +86,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND order_code = #{old_orderCode}
+			AND supplier_code = #{old_supplierCode}
 			AND store_code = #{old_storeCode}
 			AND user_code = #{old_userCode}
+			AND goods_code = #{old_goodsCode}
+			AND goods_name = #{old_goodsName}
+			AND goods_post_deal = #{old_goodsPostDeal}
 			AND bsi_task_code = #{old_bsiTaskCode}
 			AND bsi_task_status = #{old_bsiTaskStatus}
 			AND bsi_phone_model_id = #{old_bsiPhoneModelId}
@@ -88,6 +104,8 @@
 			AND bsi_benef_name = #{old_bsiBenefName}
 			AND bsi_benef_mobile_number = #{old_bsiBenefMobileNumber}
 			AND bsi_cash_coupon_code = #{old_bsiCashCouponCode}
+			AND promotion_activity_desc = #{old_promotionActivityDesc}
+			AND promotion_activity_code = #{old_promotionActivityCode}
 			AND bsi_insurance_code = #{old_bsiInsuranceCode}
 			AND exec_times = #{old_execTimes}
 			AND max_exec_times = #{old_maxExecTimes}
@@ -108,8 +126,12 @@
 		<set>
 			id = #{id},
 			order_code = #{orderCode},
+			supplier_code = #{supplierCode},
 			store_code = #{storeCode},
 			user_code = #{userCode},
+			goods_code = #{goodsCode},
+			goods_name = #{goodsName},
+			goods_post_deal = #{goodsPostDeal},
 			bsi_task_code = #{bsiTaskCode},
 			bsi_task_status = #{bsiTaskStatus},
 			bsi_phone_model_id = #{bsiPhoneModelId},
@@ -122,6 +144,8 @@
 			bsi_benef_name = #{bsiBenefName},
 			bsi_benef_mobile_number = #{bsiBenefMobileNumber},
 			bsi_cash_coupon_code = #{bsiCashCouponCode},
+			promotion_activity_desc = #{promotionActivityDesc},
+			promotion_activity_code = #{promotionActivityCode},
 			bsi_insurance_code = #{bsiInsuranceCode},
 			exec_times = #{execTimes},
 			max_exec_times = #{maxExecTimes},
@@ -142,8 +166,12 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="goodsCode != null">goods_code = #{goodsCode},</if>
+			<if test="goodsName != null">goods_name = #{goodsName},</if>
+			<if test="goodsPostDeal != null">goods_post_deal = #{goodsPostDeal},</if>
 			<if test="bsiTaskCode != null">bsi_task_code = #{bsiTaskCode},</if>
 			<if test="bsiTaskStatus != null">bsi_task_status = #{bsiTaskStatus},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
@@ -156,6 +184,8 @@
 			<if test="bsiBenefName != null">bsi_benef_name = #{bsiBenefName},</if>
 			<if test="bsiBenefMobileNumber != null">bsi_benef_mobile_number = #{bsiBenefMobileNumber},</if>
 			<if test="bsiCashCouponCode != null">bsi_cash_coupon_code = #{bsiCashCouponCode},</if>
+			<if test="promotionActivityDesc != null">promotion_activity_desc = #{promotionActivityDesc},</if>
+			<if test="promotionActivityCode != null">promotion_activity_code = #{promotionActivityCode},</if>
 			<if test="bsiInsuranceCode != null">bsi_insurance_code = #{bsiInsuranceCode},</if>
 			<if test="execTimes != null">exec_times = #{execTimes},</if>
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
@@ -209,8 +239,12 @@
 		INSERT INTO t_svp_bsi_order_detail (			
 				id,				
 				order_code,				
+				supplier_code,				
 				store_code,				
 				user_code,				
+				goods_code,				
+				goods_name,				
+				goods_post_deal,				
 				bsi_task_code,				
 				bsi_task_status,				
 				bsi_phone_model_id,				
@@ -223,6 +257,8 @@
 				bsi_benef_name,				
 				bsi_benef_mobile_number,				
 				bsi_cash_coupon_code,				
+				promotion_activity_desc,				
+				promotion_activity_code,				
 				bsi_insurance_code,				
 				exec_times,				
 				max_exec_times,				
@@ -240,8 +276,12 @@
 		VALUES (	
 			#{id},
 			#{orderCode},
+			#{supplierCode},
 			#{storeCode},
 			#{userCode},
+			#{goodsCode},
+			#{goodsName},
+			#{goodsPostDeal},
 			#{bsiTaskCode},
 			#{bsiTaskStatus},
 			#{bsiPhoneModelId},
@@ -254,6 +294,8 @@
 			#{bsiBenefName},
 			#{bsiBenefMobileNumber},
 			#{bsiCashCouponCode},
+			#{promotionActivityDesc},
+			#{promotionActivityCode},
 			#{bsiInsuranceCode},
 			#{execTimes},
 			#{maxExecTimes},

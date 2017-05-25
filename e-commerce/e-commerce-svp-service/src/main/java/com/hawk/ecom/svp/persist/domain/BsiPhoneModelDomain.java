@@ -34,6 +34,11 @@ public class BsiPhoneModelDomain implements Serializable {
 	 */
 	private Integer bsiPhoneModelStatus;
 	
+	/**
+	 * 序号 object_order
+	 */
+	private Integer objectOrder;
+	
 	
 	/**
 	 * 
@@ -97,6 +102,22 @@ public class BsiPhoneModelDomain implements Serializable {
 	 */	
 	public void setBsiPhoneModelStatus (Integer bsiPhoneModelStatus) {
 		this.bsiPhoneModelStatus = bsiPhoneModelStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 序号 object_order
+	 */
+	public Integer getObjectOrder(){
+		return objectOrder;
+	}
+	
+	/**
+	 * 
+	 * @param objectOrder 序号 object_order
+	 */	
+	public void setObjectOrder (Integer objectOrder) {
+		this.objectOrder = objectOrder;
 	}
 	
 

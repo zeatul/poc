@@ -14,4 +14,36 @@ public class MybatisTools {
 		
 		return list.get(0);
 	}
+	
+	/**
+	 * 注入分页参数
+	 * @param mybatisParam
+	 * @param pageParam
+	 * @return
+	 */
+	public static MybatisParam page(MybatisParam mybatisParam , PageParam pageParam){
+		if (pageParam == null)
+			return mybatisParam;
+		int pageIndex = 1;
+		if (pageParam.getPageIndex() != null &&  pageParam.getPageIndex() > 0){
+			pageIndex = pageParam.getPageIndex();
+		}
+		
+		int pageRowCount = 10;
+		if (pageParam.getPageRowCount() != null && pageParam.getPageRowCount() > 0){
+			pageRowCount =pageParam.getPageRowCount();
+		}
+		
+		if (pageRowCount > 200)
+			throw new RuntimeException("每页不能超过200条记录");
+		
+		int offset = (pageIndex-1)*pageRowCount;
+		int limit = pageRowCount;
+		
+		mybatisParam.put("_offset", offset);
+		mybatisParam.put("_limit", limit);
+		mybatisParam.put("_orderby", pageParam.getOrder());
+		return mybatisParam;
+		
+	}
 }

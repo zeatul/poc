@@ -36,9 +36,9 @@ drop index ui_mall_user_code on t_mal_mall_user;
 
 drop table if exists t_mal_mall_user;
 
-drop table if exists t_mal_mall_user_history;
+drop table if exists t_mal_mall_user_code_sequence;
 
-drop table if exists t_mal_user_code_sequence;
+drop table if exists t_mal_mall_user_history;
 
 /*==============================================================*/
 /* Table: t_mal_mall_login                                      */
@@ -146,7 +146,8 @@ create table t_mal_mall_right
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_right comment '商城权限表';
 
@@ -172,8 +173,9 @@ create unique index ui_mall_right_id_path on t_mal_mall_right
 create table t_mal_mall_role
 (
    id                   bigint not null comment '主键',
-   rolde_code           varchar(50) not null comment '角色编号',
+   role_code            varchar(50) not null comment '角色编号',
    role_name            varchar(200) not null comment '角色名称',
+   role_type            integer not null comment '角色类型',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -181,7 +183,8 @@ create table t_mal_mall_role
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role comment '商城角色表';
 
@@ -190,7 +193,7 @@ alter table t_mal_mall_role comment '商城角色表';
 /*==============================================================*/
 create unique index ui_role_code on t_mal_mall_role
 (
-   rolde_code
+   role_code
 );
 
 /*==============================================================*/
@@ -209,7 +212,8 @@ create table t_mal_mall_role_right
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role_right comment '商城角色权限表';
 
@@ -237,7 +241,8 @@ create table t_mal_mall_role_user
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_role_user comment '商城角色用户表';
 
@@ -259,6 +264,7 @@ create table t_mal_mall_user
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
+   user_type            integer not null comment '用户类型',
    mobile_number        varchar(20) not null comment '手机号',
    login_pwd            varchar(100) comment '登录密码',
    pwd_update_times     integer comment '密码已经修改次数',
@@ -268,17 +274,17 @@ create table t_mal_mall_user
    user_sex             varchar(50) comment '用户性别',
    user_birthday        timestamp(3) null comment '用户生日',
    user_picture         varchar(1000) comment '用户头像',
-   id_type              integer comment '证件类型',
+   id_type              integer not null comment '证件类型',
    id_number            varchar(50) not null comment '证件号码',
    user_status          integer comment '用户状态',
    user_status_change_cause varchar(1000) comment '状态变更原因',
    user_status_change_date timestamp(3) null comment '状态变更日期',
    last_access_date     timestamp(3) null comment '最近访问日期',
-   create_user_code     bigint comment '创建者',
+   create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
-   update_user_code     bigint comment '更新者',
+   update_user_code     varchar(50) comment '更新者',
    update_date          timestamp(3) null comment '更新日期',
-   delete_user_code     bigint comment '删除者',
+   delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
@@ -328,6 +334,19 @@ create unique index ui_mall_id_number on t_mal_mall_user
 );
 
 /*==============================================================*/
+/* Table: t_mal_mall_user_code_sequence                         */
+/*==============================================================*/
+create table t_mal_mall_user_code_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_mal_mall_user_code_sequence comment '商城用户编号生成表';
+
+/*==============================================================*/
 /* Table: t_mal_mall_user_history                               */
 /*==============================================================*/
 create table t_mal_mall_user_history
@@ -336,6 +355,7 @@ create table t_mal_mall_user_history
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
+   user_type            integer comment '用户类型',
    mobile_number        varchar(20) not null comment '手机号',
    login_pwd            varchar(100) comment '登录密码',
    pwd_update_times     integer comment '密码已经修改次数',
@@ -351,27 +371,14 @@ create table t_mal_mall_user_history
    user_status_change_cause varchar(1000) comment '状态变更原因',
    user_status_change_date timestamp(3) null comment '状态变更日期',
    last_access_date     timestamp(3) null comment '最近访问日期',
-   create_user_code     bigint comment '创建者',
+   create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
-   update_user_code     bigint comment '更新者',
+   update_user_code     varchar(50) comment '更新者',
    update_date          timestamp(3) null comment '更新日期',
-   delete_user_code     bigint comment '删除者',
+   delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_user_history comment '商城用户历史表';
-
-/*==============================================================*/
-/* Table: t_mal_user_code_sequence                              */
-/*==============================================================*/
-create table t_mal_user_code_sequence
-(
-   stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
-   primary key (id)
-)
-engine=myisam default charset=utf8;
-
-alter table t_mal_user_code_sequence comment '商城用户编号生成表';

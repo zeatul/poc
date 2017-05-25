@@ -15,6 +15,8 @@
 		bsi_cash_coupon_status AS "bsiCashCouponStatus" ,
 		bsi_cash_coupon_type AS "bsiCashCouponType" ,
 		bsi_cash_coupon_period AS "bsiCashCouponPeriod" ,
+		promotion_activity_desc AS "promotionActivityDesc" ,
+		promotion_activity_code AS "promotionActivityCode" ,
 		bsi_cash_coupon_activate_error AS "bsiCashCouponActivateError" ,
 		order_code AS "orderCode" ,
 		create_date AS "createDate" ,
@@ -34,6 +36,8 @@
 			<if test="bsiCashCouponStatus != null"> AND bsi_cash_coupon_status = #{bsiCashCouponStatus}  </if>
 			<if test="bsiCashCouponType != null"> AND bsi_cash_coupon_type = #{bsiCashCouponType}  </if>
 			<if test="bsiCashCouponPeriod != null"> AND bsi_cash_coupon_period = #{bsiCashCouponPeriod}  </if>
+			<if test="promotionActivityDesc != null"> AND promotion_activity_desc = #{promotionActivityDesc}  </if>
+			<if test="promotionActivityCode != null"> AND promotion_activity_code = #{promotionActivityCode}  </if>
 			<if test="bsiCashCouponActivateError != null"> AND bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError}  </if>
 			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -54,6 +58,8 @@
 			AND bsi_cash_coupon_status = #{old_bsiCashCouponStatus}
 			AND bsi_cash_coupon_type = #{old_bsiCashCouponType}
 			AND bsi_cash_coupon_period = #{old_bsiCashCouponPeriod}
+			AND promotion_activity_desc = #{old_promotionActivityDesc}
+			AND promotion_activity_code = #{old_promotionActivityCode}
 			AND bsi_cash_coupon_activate_error = #{old_bsiCashCouponActivateError}
 			AND order_code = #{old_orderCode}
 			AND create_date = #{old_createDate}
@@ -74,6 +80,8 @@
 			bsi_cash_coupon_status = #{bsiCashCouponStatus},
 			bsi_cash_coupon_type = #{bsiCashCouponType},
 			bsi_cash_coupon_period = #{bsiCashCouponPeriod},
+			promotion_activity_desc = #{promotionActivityDesc},
+			promotion_activity_code = #{promotionActivityCode},
 			bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},
 			order_code = #{orderCode},
 			create_date = #{createDate},
@@ -94,6 +102,8 @@
 			<if test="bsiCashCouponStatus != null">bsi_cash_coupon_status = #{bsiCashCouponStatus},</if>
 			<if test="bsiCashCouponType != null">bsi_cash_coupon_type = #{bsiCashCouponType},</if>
 			<if test="bsiCashCouponPeriod != null">bsi_cash_coupon_period = #{bsiCashCouponPeriod},</if>
+			<if test="promotionActivityDesc != null">promotion_activity_desc = #{promotionActivityDesc},</if>
+			<if test="promotionActivityCode != null">promotion_activity_code = #{promotionActivityCode},</if>
 			<if test="bsiCashCouponActivateError != null">bsi_cash_coupon_activate_error = #{bsiCashCouponActivateError},</if>
 			<if test="orderCode != null">order_code = #{orderCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -147,6 +157,8 @@
 				bsi_cash_coupon_status,				
 				bsi_cash_coupon_type,				
 				bsi_cash_coupon_period,				
+				promotion_activity_desc,				
+				promotion_activity_code,				
 				bsi_cash_coupon_activate_error,				
 				order_code,				
 				create_date,				
@@ -164,6 +176,8 @@
 			#{bsiCashCouponStatus},
 			#{bsiCashCouponType},
 			#{bsiCashCouponPeriod},
+			#{promotionActivityDesc},
+			#{promotionActivityCode},
 			#{bsiCashCouponActivateError},
 			#{orderCode},
 			#{createDate},

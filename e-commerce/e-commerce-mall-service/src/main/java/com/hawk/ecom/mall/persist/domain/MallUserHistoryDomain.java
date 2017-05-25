@@ -36,6 +36,11 @@ public class MallUserHistoryDomain implements Serializable {
 	private String userEmail;
 	
 	/**
+	 * 用户类型 user_type
+	 */
+	private Integer userType;
+	
+	/**
 	 * 手机号 mobile_number
 	 */
 	private String mobileNumber;
@@ -44,6 +49,16 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 登录密码 login_pwd
 	 */
 	private String loginPwd;
+	
+	/**
+	 * 密码已经修改次数 pwd_update_times
+	 */
+	private Integer pwdUpdateTimes;
+	
+	/**
+	 * 密码最近修改时间 last_pwd_update_date
+	 */
+	private Date lastPwdUpdateDate;
 	
 	/**
 	 * 用户昵称 user_nickname
@@ -103,7 +118,7 @@ public class MallUserHistoryDomain implements Serializable {
 	/**
 	 * 创建者 create_user_code
 	 */
-	private Long createUserCode;
+	private String createUserCode;
 	
 	/**
 	 * 创建日期 create_date
@@ -113,7 +128,7 @@ public class MallUserHistoryDomain implements Serializable {
 	/**
 	 * 更新者 update_user_code
 	 */
-	private Long updateUserCode;
+	private String updateUserCode;
 	
 	/**
 	 * 更新日期 update_date
@@ -123,7 +138,7 @@ public class MallUserHistoryDomain implements Serializable {
 	/**
 	 * 删除者 delete_user_code
 	 */
-	private Long deleteUserCode;
+	private String deleteUserCode;
 	
 	/**
 	 * 删除日期 delete_date
@@ -197,6 +212,22 @@ public class MallUserHistoryDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 用户类型 user_type
+	 */
+	public Integer getUserType(){
+		return userType;
+	}
+	
+	/**
+	 * 
+	 * @param userType 用户类型 user_type
+	 */	
+	public void setUserType (Integer userType) {
+		this.userType = userType;
+	}
+	
+	/**
+	 * 
 	 * @return 手机号 mobile_number
 	 */
 	public String getMobileNumber(){
@@ -225,6 +256,38 @@ public class MallUserHistoryDomain implements Serializable {
 	 */	
 	public void setLoginPwd (String loginPwd) {
 		this.loginPwd = loginPwd;
+	}
+	
+	/**
+	 * 
+	 * @return 密码已经修改次数 pwd_update_times
+	 */
+	public Integer getPwdUpdateTimes(){
+		return pwdUpdateTimes;
+	}
+	
+	/**
+	 * 
+	 * @param pwdUpdateTimes 密码已经修改次数 pwd_update_times
+	 */	
+	public void setPwdUpdateTimes (Integer pwdUpdateTimes) {
+		this.pwdUpdateTimes = pwdUpdateTimes;
+	}
+	
+	/**
+	 * 
+	 * @return 密码最近修改时间 last_pwd_update_date
+	 */
+	public Date getLastPwdUpdateDate(){
+		return lastPwdUpdateDate;
+	}
+	
+	/**
+	 * 
+	 * @param lastPwdUpdateDate 密码最近修改时间 last_pwd_update_date
+	 */	
+	public void setLastPwdUpdateDate (Date lastPwdUpdateDate) {
+		this.lastPwdUpdateDate = lastPwdUpdateDate;
 	}
 	
 	/**
@@ -407,7 +470,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @return 创建者 create_user_code
 	 */
-	public Long getCreateUserCode(){
+	public String getCreateUserCode(){
 		return createUserCode;
 	}
 	
@@ -415,7 +478,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @param createUserCode 创建者 create_user_code
 	 */	
-	public void setCreateUserCode (Long createUserCode) {
+	public void setCreateUserCode (String createUserCode) {
 		this.createUserCode = createUserCode;
 	}
 	
@@ -439,7 +502,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @return 更新者 update_user_code
 	 */
-	public Long getUpdateUserCode(){
+	public String getUpdateUserCode(){
 		return updateUserCode;
 	}
 	
@@ -447,7 +510,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @param updateUserCode 更新者 update_user_code
 	 */	
-	public void setUpdateUserCode (Long updateUserCode) {
+	public void setUpdateUserCode (String updateUserCode) {
 		this.updateUserCode = updateUserCode;
 	}
 	
@@ -471,7 +534,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @return 删除者 delete_user_code
 	 */
-	public Long getDeleteUserCode(){
+	public String getDeleteUserCode(){
 		return deleteUserCode;
 	}
 	
@@ -479,7 +542,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @param deleteUserCode 删除者 delete_user_code
 	 */	
-	public void setDeleteUserCode (Long deleteUserCode) {
+	public void setDeleteUserCode (String deleteUserCode) {
 		this.deleteUserCode = deleteUserCode;
 	}
 	

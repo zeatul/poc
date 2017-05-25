@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.ecom.user.constant.ConstLoginStatus;
 import com.hawk.ecom.user.constant.ConstRegisterChannel;
 import com.hawk.ecom.user.exception.TokenEmptyRuntimeException;
 import com.hawk.ecom.user.request.LoginParam;
@@ -43,6 +42,13 @@ public class LoginController {
 		loginResponse.setToken(token);
 
 		return SuccessResponse.build(loginResponse);
+	}
+	
+	@RequestMapping(value = "/logout", method = POST)
+	public WebResponse<LoginResponse> logout(HttpServletRequest request) throws Exception {
+		String token = AuthThreadLocal.getToken();
+		loginService.logout(token);
+		return SuccessResponse.build(null);
 	}
 	
 	@RequestMapping(value = "/login/info", method = {POST,GET})

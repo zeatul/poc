@@ -34,6 +34,10 @@ drop table if exists t_svp_order;
 
 drop table if exists t_svp_order_sequence;
 
+drop index ui_svp_supplier_code on t_svp_supplier;
+
+drop table if exists t_svp_supplier;
+
 /*==============================================================*/
 /* Table: t_svp_bsi_cash_coupon                                 */
 /*==============================================================*/
@@ -49,6 +53,10 @@ create table t_svp_bsi_cash_coupon
    bsi_cash_coupon_status integer comment '代金券状态',
    bsi_cash_coupon_type varchar(50) comment '代金券类型',
    bsi_cash_coupon_period integer comment '代金券保险月份数',
+   promotion_activity_desc varchar(200) comment '促销活动描述',
+   promotion_activity_code varchar(50) comment '促销活动编号
+            
+            ',
    bsi_cash_coupon_activate_error varchar(1000) comment '代金券激活失败原因',
    order_code           varchar(50) comment '订单编号',
    create_date          timestamp(3) null comment '创建日期',
@@ -96,8 +104,12 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint not null comment '主键',
    order_code           varchar(50) comment '订单编号',
+   supplier_code        varchar(50) not null comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    user_code            varchar(50) comment '用户编号',
+   goods_code           varchar(50) comment '商品编号',
+   goods_name           varchar(200) comment '商品名称',
+   goods_post_deal      varchar(50) comment '商品后处理类别',
    bsi_task_code        varchar(200) comment '任务号,与小宝对接用',
    bsi_task_status      integer comment '任务状态',
    bsi_phone_model_id   integer comment '手机型号ID',
@@ -110,6 +122,8 @@ create table t_svp_bsi_order_detail
    bsi_benef_name       varchar(50) comment '投保者姓名',
    bsi_benef_mobile_number varchar(20) comment '投保者手机号',
    bsi_cash_coupon_code varchar(50) comment '代金券编号',
+   promotion_activity_desc varchar(200) comment '促销活动描述',
+   promotion_activity_code varchar(50) comment '促销活动编号',
    bsi_insurance_code   varchar(50) comment '小宝订单编号',
    exec_times           integer comment '已经执行次数',
    max_exec_times       integer comment '最大允许执行次数',
@@ -180,6 +194,7 @@ create table t_svp_bsi_phone_model
    bsi_phone_brand      varchar(200) not null comment '手机品牌',
    bsi_phone_model      varchar(200) not null comment '手机型号',
    bsi_phone_model_status integer comment '型号状态',
+   object_order         integer comment '序号',
    primary key (bsi_phone_model_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -247,12 +262,20 @@ create table t_svp_mobile_data_order_detail
 (
    id                   bigint not null comment '主键',
    order_code           varchar(50) comment '订单编号',
+   supplier_code        varchar(50) not null comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
+   goods_code           varchar(50) comment '商品编号',
+   goods_name           varchar(200) comment '商品名称',
+   goods_post_deal      varchar(50) comment '商品后处理类别',
    user_code            varchar(50) comment '用户编号',
    charge_mobile_number varchar(20) comment '手机号码',
    charge_data_size     integer comment '充值流量',
    charge_status        integer comment '充值状态',
    charge_task_code     varchar(200) comment '充值任务号',
+   promotion_activity_desc varchar(200) comment '促销活动描述',
+   promotion_activity_code varchar(50) comment '促销活动编号
+            
+            ',
    exec_times           integer comment '已经执行次数',
    max_exec_times       integer comment '最大允许执行次数',
    last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
@@ -314,3 +337,23 @@ create table t_svp_order_sequence
 engine=myisam default charset=utf8;
 
 alter table t_svp_order_sequence comment '订单编号生成表';
+
+/*==============================================================*/
+/* Table: t_svp_supplier                                        */
+/*==============================================================*/
+create table t_svp_supplier
+(
+   id                   bigint not null comment '主键',
+   supplier_code        varchar(50) not null comment '供应商编号',
+   supplier_name        varchar(200) not null comment '供应商名称',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*==============================================================*/
+/* Index: ui_svp_supplier_code                                  */
+/*==============================================================*/
+create unique index ui_svp_supplier_code on t_svp_supplier
+(
+   supplier_code
+);

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.ecom.user.constant.ConstRegisterChannel;
-import com.hawk.ecom.user.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.user.exception.UserNotFoundRuntimeException;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.request.CreateUserParam;

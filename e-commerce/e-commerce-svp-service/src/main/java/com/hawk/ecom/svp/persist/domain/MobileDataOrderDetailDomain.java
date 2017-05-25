@@ -26,9 +26,29 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	private String orderCode;
 	
 	/**
+	 * 供应商编号 supplier_code
+	 */
+	private String supplierCode;
+	
+	/**
 	 * 商户编号 store_code
 	 */
 	private String storeCode;
+	
+	/**
+	 * 商品编号 goods_code
+	 */
+	private String goodsCode;
+	
+	/**
+	 * 商品名称 goods_name
+	 */
+	private String goodsName;
+	
+	/**
+	 * 商品后处理类别 goods_post_deal
+	 */
+	private String goodsPostDeal;
 	
 	/**
 	 * 用户编号 user_code
@@ -54,6 +74,18 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 * 充值任务号 charge_task_code
 	 */
 	private String chargeTaskCode;
+	
+	/**
+	 * 促销活动描述 promotion_activity_desc
+	 */
+	private String promotionActivityDesc;
+	
+	/**
+	 * 促销活动编号
+            
+             promotion_activity_code
+	 */
+	private String promotionActivityCode;
 	
 	/**
 	 * 已经执行次数 exec_times
@@ -150,6 +182,22 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 供应商编号 supplier_code
+	 */
+	public String getSupplierCode(){
+		return supplierCode;
+	}
+	
+	/**
+	 * 
+	 * @param supplierCode 供应商编号 supplier_code
+	 */	
+	public void setSupplierCode (String supplierCode) {
+		this.supplierCode = supplierCode;
+	}
+	
+	/**
+	 * 
 	 * @return 商户编号 store_code
 	 */
 	public String getStoreCode(){
@@ -162,6 +210,54 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 */	
 	public void setStoreCode (String storeCode) {
 		this.storeCode = storeCode;
+	}
+	
+	/**
+	 * 
+	 * @return 商品编号 goods_code
+	 */
+	public String getGoodsCode(){
+		return goodsCode;
+	}
+	
+	/**
+	 * 
+	 * @param goodsCode 商品编号 goods_code
+	 */	
+	public void setGoodsCode (String goodsCode) {
+		this.goodsCode = goodsCode;
+	}
+	
+	/**
+	 * 
+	 * @return 商品名称 goods_name
+	 */
+	public String getGoodsName(){
+		return goodsName;
+	}
+	
+	/**
+	 * 
+	 * @param goodsName 商品名称 goods_name
+	 */	
+	public void setGoodsName (String goodsName) {
+		this.goodsName = goodsName;
+	}
+	
+	/**
+	 * 
+	 * @return 商品后处理类别 goods_post_deal
+	 */
+	public String getGoodsPostDeal(){
+		return goodsPostDeal;
+	}
+	
+	/**
+	 * 
+	 * @param goodsPostDeal 商品后处理类别 goods_post_deal
+	 */	
+	public void setGoodsPostDeal (String goodsPostDeal) {
+		this.goodsPostDeal = goodsPostDeal;
 	}
 	
 	/**
@@ -242,6 +338,42 @@ public class MobileDataOrderDetailDomain implements Serializable {
 	 */	
 	public void setChargeTaskCode (String chargeTaskCode) {
 		this.chargeTaskCode = chargeTaskCode;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动描述 promotion_activity_desc
+	 */
+	public String getPromotionActivityDesc(){
+		return promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityDesc 促销活动描述 promotion_activity_desc
+	 */	
+	public void setPromotionActivityDesc (String promotionActivityDesc) {
+		this.promotionActivityDesc = promotionActivityDesc;
+	}
+	
+	/**
+	 * 
+	 * @return 促销活动编号
+            
+             promotion_activity_code
+	 */
+	public String getPromotionActivityCode(){
+		return promotionActivityCode;
+	}
+	
+	/**
+	 * 
+	 * @param promotionActivityCode 促销活动编号
+            
+             promotion_activity_code
+	 */	
+	public void setPromotionActivityCode (String promotionActivityCode) {
+		this.promotionActivityCode = promotionActivityCode;
 	}
 	
 	/**

@@ -58,7 +58,7 @@ public class LoginService {
 //			throw new TokenEmptyException();
 			return null;
 		}
-		String loginTokenKey = buildLongTokenKey(token);
+		String loginTokenKey = buildUserLoginTokenKey(token);
 		CachedLoginToken cachedLoginToken = cacheService.get(loginTokenKey, CachedLoginToken.class);
 		if (cachedLoginToken!=null){
 			
@@ -96,7 +96,27 @@ public class LoginService {
 		return login(loginParam.getMobileNumber(),loginParam.getLoginPwd(),loginParam.getLoginIp(),loginParam.getUserAgent(),loginParam.getLoginChannel());
 	}
 	
-	private String buildLongTokenKey(String token){
+	public void logout (String token){
+		if (StringTools.isNullOrEmpty(token)){
+			return ;
+		}
+		
+		String loginTokenKey = buildUserLoginTokenKey(token);
+		cacheService.delete(loginTokenKey);
+		
+		LoginDomain loginDomain = loginMapper.load(token);
+		
+		if (loginDomain == null)
+			return;
+		
+		if (loginDomain.getLoginStatus() == ConstLoginStatus.NORMAL){
+			loginDomain.setLoginStatus(ConstLoginStatus.LOGOUT);
+			loginDomain.setUpdateDate(new Date());
+			loginMapper.update(loginDomain);
+		}
+	}
+	
+	private String buildUserLoginTokenKey(String token){
 		return StringTools.concat("_","user","token",token);
 	}
 	
@@ -161,7 +181,7 @@ public class LoginService {
 		cachedLoginToken.setUserCode(userDomain.getUserCode());
 		cachedLoginToken.setUserId(userDomain.getId());
 		
-		String loginTokenKey = buildLongTokenKey(token);
+		String loginTokenKey = buildUserLoginTokenKey(token);
 		cacheService.put(loginTokenKey, cachedLoginToken, 240);
 		
 		logger.info("{} login success",mobileNumber);
