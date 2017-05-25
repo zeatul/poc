@@ -102,7 +102,7 @@ public class MallUserController {
 		mallUserInfoResponse.setUserCode(mallUserDomain.getUserCode());
 		mallUserInfoResponse.setUserId(mallUserDomain.getId());
 		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
-		return SuccessResponse.build();
+		return SuccessResponse.build(mallUserInfoResponse);
 	} 
 	
 	@RequestMapping(value = "/list", method = POST)

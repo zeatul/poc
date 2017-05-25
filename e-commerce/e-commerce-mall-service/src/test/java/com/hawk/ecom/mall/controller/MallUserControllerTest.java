@@ -72,8 +72,8 @@ public class MallUserControllerTest extends AbstractControllerTest{
 		String url = getUrl("/mall/admin/user/create"); 
 		MallCreateUserParam request = new MallCreateUserParam();
 		request.setIdType(ConstIdType.IDENTITY_CARD);
-		request.setIdNumber("320109198809091234");
-		request.setMobileNumber("13916082481");
+		request.setIdNumber("320109198809091233");
+		request.setMobileNumber("13916082482");
 		request.setUserName("隔壁老黄");
 		request.setUserSex(ConstSex.MALE);
 		List<HttpParam> params = new ArrayList<HttpParam>();
