@@ -6,8 +6,8 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 
 #svp
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/create_db_svp.sql;
-##source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/init_data_svp_test.sql;
-source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/init_data_svp_prod.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/init_data_svp_test.sql;
+##source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/init_data_svp_prod.sql;
 
 #数据字典
 source /usr/local/source/poc/framework-database/src/main/resources/sql/create_db_dic.sql;
