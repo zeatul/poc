@@ -10,8 +10,8 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 ##source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/svp/init_data_svp_prod.sql;
 
 #数据字典
-source /usr/local/source/poc/framework-database/src/main/resources/sql/create_db_dic.sql;
-source /usr/local/source/poc/framework-database/src/main/resources/sql/init_data_dic.sql;
+source /usr/local/source/poc/framework-database/src/main/resources/sql/dic/create_db_dic.sql;
+source /usr/local/source/poc/framework-database/src/main/resources/sql/dic/init_data_dic.sql;
 
 
 #用户表 
