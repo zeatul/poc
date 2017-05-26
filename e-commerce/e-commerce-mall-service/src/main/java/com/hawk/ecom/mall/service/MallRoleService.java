@@ -20,9 +20,9 @@ import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.persist.mapper.MallRoleMapper;
 import com.hawk.ecom.mall.persist.mapper.MallRoleUserMapper;
 import com.hawk.ecom.mall.persist.mapperex.MallRoleUserExMapper;
-import com.hawk.ecom.mall.request.MallAddAdminMembersParam;
-import com.hawk.ecom.mall.request.MallListAdminMembersParam;
-import com.hawk.ecom.mall.request.MallRemoveAdminMembersParam;
+import com.hawk.ecom.mall.request.MallAddRoleMembersParam;
+import com.hawk.ecom.mall.request.MallListRoleMembersParam;
+import com.hawk.ecom.mall.request.MallRemoveRoleMembersParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -69,17 +69,20 @@ public class MallRoleService {
 
 	@Valid
 	@Transactional
-	public void addAdminMembers(@NotNull("参数") @Valid MallAddAdminMembersParam mallAddAdminMembersParam) {
+	public void addRoleMembers(@NotNull("参数") @Valid MallAddRoleMembersParam mallAddRoleMembersParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin", "admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
-		String operator = mallAddAdminMembersParam.getOperatorCode();
-		String roleCode = "admin";
+		String operator = mallAddRoleMembersParam.getOperatorCode();
+		String roleCode = mallAddRoleMembersParam.getRoleCode();
 		MallRoleDomain mallRoleDomain = queryRoleByRoleCode(roleCode);
 		if (mallRoleDomain == null)
 			throw new MallRoleNotFoundRuntimeException();
-		for (String userCode : mallAddAdminMembersParam.getUserCodes()) {
-			if ("superadmin".equals(userCode)){
+		if (roleCode.equals("superadmin")){
+			throw new RuntimeException("superadmin角色不能加入任何成员");
+		}
+		for (String userCode : mallAddRoleMembersParam.getUserCodes()) {
+			if ("superadmin".equals(userCode) ){
 				/**
 				 * superadmin只能创建用户和设置管理员
 				 */
@@ -110,17 +113,19 @@ public class MallRoleService {
 
 	@Valid
 	@Transactional
-	public void removeAdminMembers(@NotNull("参数") @Valid MallRemoveAdminMembersParam mallRemoveAdminMembersParam) {
+	public void removeRoleMembers(@NotNull("参数") @Valid MallRemoveRoleMembersParam mallRemoveRoleMembersParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin", "admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
-		String operator = mallRemoveAdminMembersParam.getOperatorCode();
-		String roleCode = "admin";
+		String operator = mallRemoveRoleMembersParam.getOperatorCode();
+		String roleCode = mallRemoveRoleMembersParam.getRoleCode();
 		MallRoleDomain mallRoleDomain = queryRoleByRoleCode(roleCode);
 		if (mallRoleDomain == null)
 			throw new MallRoleNotFoundRuntimeException();
-		
-		for (String userCode : mallRemoveAdminMembersParam.getUserCodes()) {
+		if (roleCode.equals("superadmin")){
+			throw new RuntimeException("superadmin角色不能移除任何成员");
+		}
+		for (String userCode : mallRemoveRoleMembersParam.getUserCodes()) {
 			MallUserDomain mallUserDomain = mallUserService.queryMallUserByUserCode(userCode);
 			if (mallUserDomain == null)
 				throw new MallUserNotLoginRuntimeException();
@@ -134,16 +139,16 @@ public class MallRoleService {
 	}
 
 	@Valid
-	public List<MallUserDomain> listAdminMembers(@NotNull("参数") @Valid MallListAdminMembersParam mallListAdminMembersParam) {
+	public List<MallUserDomain> listRoleMembers(@NotNull("参数") @Valid MallListRoleMembersParam mallListRoleMembersParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin", "admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		if (StringTools.isNullOrEmpty(mallListAdminMembersParam.getOrder())){
-			mallListAdminMembersParam.setOrder("c.create_date desc");
+		if (StringTools.isNullOrEmpty(mallListRoleMembersParam.getOrder())){
+			mallListRoleMembersParam.setOrder("c.create_date desc");
 		}
 		
-		MybatisParam params = MybatisTools.page(new MybatisParam().put("roleCode", "admin"), mallListAdminMembersParam);
+		MybatisParam params = MybatisTools.page(new MybatisParam().put("roleCode", "admin"), mallListRoleMembersParam);
 
 		return mallRoleUserExMapper.listMembersInRole(params);
 	}
