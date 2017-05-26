@@ -4,9 +4,18 @@ import java.util.List;
 
 import com.hawk.ecom.mall.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidWord;
 
-public class MallAddAdminMembersParam {
+public class MallRemoveRoleMembersParam {
 	
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+
 	public List<String> getUserCodes() {
 		return userCodes;
 	}
@@ -26,8 +35,11 @@ public class MallAddAdminMembersParam {
 	/**
 	 * 用户编号集合
 	 */
-	@NotEmpty("用户编号集合")
 	private List<String> userCodes;
+	
+	@NotEmpty
+	@ValidWord
+	private String roleCode;
 	
 	/**
 	 * 操作员编号

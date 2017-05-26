@@ -68,24 +68,24 @@ public class MallUserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	// @Test
+//	 @Test
 	public void testCreate() {
 		String url = getUrl("/mall/admin/user/create");
 		MallCreateUserParam request = new MallCreateUserParam();
 		request.setIdType(ConstIdType.IDENTITY_CARD);
-		request.setIdNumber("320109198809091233");
-		request.setMobileNumber("13916082482");
-		request.setUserName("隔壁老黄");
+		request.setIdNumber("320103198809091236");
+		request.setMobileNumber("13816082486");
+		request.setUserName("隔壁老刘");
 		request.setUserSex(ConstSex.MALE);
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
-		params.add(new HttpParam("t", "e85c38fd-a218-4542-bc50-9d5da64b57f3"));
+		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
 		System.out.println("result=" + result);
 	}
 
-	@Test
+//	@Test
 	public void testList() {
 		String url = getUrl("/mall/admin/user/list");
 		MallListUserParam request = new MallListUserParam();

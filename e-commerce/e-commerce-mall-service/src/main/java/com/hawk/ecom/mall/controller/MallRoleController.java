@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.persist.domain.MallUserDomain;
-import com.hawk.ecom.mall.request.MallAddAdminMembersParam;
-import com.hawk.ecom.mall.request.MallListAdminMembersParam;
-import com.hawk.ecom.mall.request.MallRemoveAdminMembersParam;
+import com.hawk.ecom.mall.request.MallAddRoleMembersParam;
+import com.hawk.ecom.mall.request.MallListRoleMembersParam;
+import com.hawk.ecom.mall.request.MallRemoveRoleMembersParam;
 import com.hawk.ecom.mall.response.MultiUserInfoResponse;
 import com.hawk.ecom.mall.response.MultiUserInfoResponse.UserInfo;
 import com.hawk.ecom.mall.service.MallRoleService;
@@ -41,27 +41,30 @@ public class MallRoleController {
 		return "Welcome to mall role controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 
-	@RequestMapping(value = "/member/admin/add", method = POST)
+	@RequestMapping(value = "/member/add", method = POST)
 	public WebResponse<ResponseData> addAdminMembers(HttpServletRequest request) throws Exception {
-		MallAddAdminMembersParam param = HttpRequestTools.parse(request, MallAddAdminMembersParam.class);
+		MallAddRoleMembersParam param = HttpRequestTools.parse(request, MallAddRoleMembersParam.class);
+		param.setRoleCode("admin");
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		mallRoleService.addAdminMembers(param);
+		mallRoleService.addRoleMembers(param);
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/member/admin/remove", method = POST)
+	@RequestMapping(value = "/member/remove", method = POST)
 	public WebResponse<ResponseData> removeAdminMembers(HttpServletRequest request) throws Exception {
-		MallRemoveAdminMembersParam param = HttpRequestTools.parse(request, MallRemoveAdminMembersParam.class);
+		MallRemoveRoleMembersParam param = HttpRequestTools.parse(request, MallRemoveRoleMembersParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		mallRoleService.removeAdminMembers(param);
+		param.setRoleCode("admin");
+		mallRoleService.removeRoleMembers(param);
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/member/admin/list", method = POST)
+	@RequestMapping(value = "/member/list", method = POST)
 	public WebResponse<ResponseData> listAdminMembers(HttpServletRequest request) throws Exception {
-		MallListAdminMembersParam param = HttpRequestTools.parse(request, MallListAdminMembersParam.class);
+		MallListRoleMembersParam param = HttpRequestTools.parse(request, MallListRoleMembersParam.class);
+		param.setRoleCode("admin");
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		List<MallUserDomain> list = mallRoleService.listAdminMembers(param);
+		List<MallUserDomain> list = mallRoleService.listRoleMembers(param);
 		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(list, UserInfo.class));
 		return SuccessResponse.build(result);
 	}
