@@ -39,24 +39,24 @@ import com.hawk.framework.utility.tools.StringTools;
 @RequestMapping("/mall/admin/user")
 @CrossOrigin
 public class MallUserController {
-	
+
 	@Autowired
 	private MallUserService mallUserService;
-	
-	@RequestMapping(value="/home",method = GET)
-	public String home(){
-		return "Welcome to mall user controller!!!" +", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+
+	@RequestMapping(value = "/home", method = GET)
+	public String home() {
+		return "Welcome to mall user controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
-	
+
 	@RequestMapping(value = "/logout", method = POST)
-	public WebResponse<ResponseData> logout(HttpServletRequest request) throws Exception{
+	public WebResponse<ResponseData> logout(HttpServletRequest request) throws Exception {
 		String token = AuthThreadLocal.getToken();
 		mallUserService.logout(token);
 		return SuccessResponse.build(null);
-	}  
-	
+	}
+
 	@RequestMapping(value = "/login", method = POST)
-	public WebResponse<ResponseData> login(HttpServletRequest request) throws Exception{
+	public WebResponse<ResponseData> login(HttpServletRequest request) throws Exception {
 		MallLoginParam mallLoginParam = HttpRequestTools.parse(request, MallLoginParam.class);
 		mallLoginParam.setLoginIp(AuthThreadLocal.getHttpRequestInfo().getIp());
 		mallLoginParam.setUserAgent(AuthThreadLocal.getHttpRequestInfo().getUserAgent());
@@ -65,36 +65,36 @@ public class MallUserController {
 		MallLoginResponse mallLoginResponse = new MallLoginResponse();
 		mallLoginResponse.setToken(token);
 		return SuccessResponse.build(mallLoginResponse);
-	}  
-	
-	@RequestMapping(value = "/login/info", method = {POST,GET})
+	}
+
+	@RequestMapping(value = "/login/info", method = { POST, GET })
 	public WebResponse<MallUserInfoResponse> loginInfo(HttpServletRequest request) throws Exception {
 		String token = AuthThreadLocal.getToken();
-		if (StringTools.isNullOrEmpty(token)){
+		if (StringTools.isNullOrEmpty(token)) {
 			throw new MallTokenEmptyRuntimeException();
 		}
 		MallUserInfoResponse mallUserInfoResponse = mallUserService.loginInfo(token);
 
 		return SuccessResponse.build(mallUserInfoResponse);
 	}
-	
+
 	@RequestMapping(value = "/pwd/reset", method = POST)
-	public WebResponse<ResponseData> resetPassword(HttpServletRequest request) throws Exception{
+	public WebResponse<ResponseData> resetPassword(HttpServletRequest request) throws Exception {
 		MallResetPasswordParam resetPasswordParam = HttpRequestTools.parse(request, MallResetPasswordParam.class);
 		mallUserService.resetPassword(resetPasswordParam);
 		return SuccessResponse.build();
-		
+
 	}
-	
+
 	@RequestMapping(value = "/pwd/update", method = POST)
-	public WebResponse<ResponseData> updatePassword(HttpServletRequest request) throws Exception{
+	public WebResponse<ResponseData> updatePassword(HttpServletRequest request) throws Exception {
 		MallUpdatePasswordParam updatePasswordParam = HttpRequestTools.parse(request, MallUpdatePasswordParam.class);
 		mallUserService.updatePassword(updatePasswordParam);
 		return SuccessResponse.build();
 	}
-	
+
 	@RequestMapping(value = "/create", method = POST)
-	public WebResponse<MallUserInfoResponse> createUser(HttpServletRequest request) throws Exception{
+	public WebResponse<MallUserInfoResponse> createUser(HttpServletRequest request) throws Exception {
 		MallCreateUserParam mallCreateUserParam = HttpRequestTools.parse(request, MallCreateUserParam.class);
 		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
 		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
@@ -103,14 +103,14 @@ public class MallUserController {
 		mallUserInfoResponse.setUserId(mallUserDomain.getId());
 		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
 		return SuccessResponse.build(mallUserInfoResponse);
-	} 
-	
+	}
+
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception{
+	public WebResponse<MultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception {
 		MallListUserParam mallListUserParam = HttpRequestTools.parse(request, MallListUserParam.class);
+		
 		List<MallUserDomain> mallUserDomainList = mallUserService.listMallUser(mallListUserParam);
-		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, UserInfo.class)
-				);
+		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, UserInfo.class));
 		return SuccessResponse.build(result);
-	} 
+	}
 }

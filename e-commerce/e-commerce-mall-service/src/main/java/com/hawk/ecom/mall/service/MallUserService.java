@@ -37,6 +37,7 @@ import com.hawk.ecom.mall.response.MallUserInfoResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -74,7 +75,7 @@ public class MallUserService {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	public String password(String loginPwd,String userCode,Date date){
+	private String password(String loginPwd,String userCode,Date date){
 		final String key = "Mall@2#%Hawk";
 		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,key,userCode,date.getTime()));
 	}
@@ -82,6 +83,13 @@ public class MallUserService {
 	public static void main(String[] args){
 		Date date = DateTools.parse("2017-05-24 00:00:00", DateTools.DATETIME_PATTERN);
 		System.out.println(new MallUserService().password("hawk@1234","000001",date));
+	}
+	
+	public MallUserDomain queryMallUserByUserCode(String userCode){
+		if (StringTools.isNullOrEmpty(userCode))
+			return null;
+		MybatisParam params = new MybatisParam().put("userCode", userCode);
+		return MybatisTools.single(mallUserMapper.loadDynamic(params));
 	}
 	
 	public MallUserDomain queryMallUserByMobileNumber(String mobileNumber){
@@ -305,11 +313,16 @@ public class MallUserService {
 	}
 	
 	@Valid
-	public List<MallUserDomain> listMallUser(@Valid MallListUserParam mallListUserParam){
+	public List<MallUserDomain> listMallUser(@NotNull("参数") @Valid MallListUserParam mallListUserParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
 			throw new IllegalAccessRuntimeException();
+		}
+		if (StringTools.isNullOrEmpty(mallListUserParam.getOrder())){
+			mallListUserParam.setOrder("create_date desc");
 		}
 		MybatisParam params = MybatisTools.page(new MybatisParam(), mallListUserParam);
 		return mallUserMapper.loadDynamicPaging(params);
 	}
+	
+	
 }

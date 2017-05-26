@@ -137,7 +137,6 @@ public class MultiUserInfoResponse implements ResponseData{
 		private String userSex;
 		
 		
-		
 		/**
 		 * 用户状态 user_status
 		 */
@@ -149,7 +148,6 @@ public class MultiUserInfoResponse implements ResponseData{
 		 * 创建日期 create_date
 		 */
 		private Date createDate;
-		
 		
 		
 	}
