@@ -19,6 +19,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.MALL+7, "商城用户已经存在，相同的手机号或者身份证件号");
 		errorMap.put(ErrorCodeAllocation.MALL+8, "用户无权执行该操作");
 		errorMap.put(ErrorCodeAllocation.MALL+9, "角色不存在");
+		errorMap.put(ErrorCodeAllocation.MALL+10, "资源不存在");
 	}
 	
 

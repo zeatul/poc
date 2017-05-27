@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
+import com.hawk.ecom.mall.service.SystemResourceService;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
 
@@ -19,6 +20,8 @@ import com.hawk.framework.utility.tools.DateTools;
 @RequestMapping("/mall/admin/resource")
 @CrossOrigin
 public class SystemResourceController {
+	
+	private SystemResourceService  systemResourceService;
 
 
 	@RequestMapping(value = "/home", method = GET)
