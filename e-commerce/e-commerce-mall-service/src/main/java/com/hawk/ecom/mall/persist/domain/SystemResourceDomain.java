@@ -68,7 +68,7 @@ public class SystemResourceDomain implements Serializable {
 	/**
 	 * 节点值类型 node_value_type
 	 */
-	private String nodeValueType;
+	private Integer nodeValueType;
 	
 	/**
 	 * 节点值 node_value
@@ -76,9 +76,9 @@ public class SystemResourceDomain implements Serializable {
 	private String nodeValue;
 	
 	/**
-	 * 节点序号 node_order
+	 * 节点序号 object_order
 	 */
-	private String nodeOrder;
+	private Integer objectOrder;
 	
 	/**
 	 * 节点状态 node_status
@@ -305,7 +305,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @return 节点值类型 node_value_type
 	 */
-	public String getNodeValueType(){
+	public Integer getNodeValueType(){
 		return nodeValueType;
 	}
 	
@@ -313,7 +313,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @param nodeValueType 节点值类型 node_value_type
 	 */	
-	public void setNodeValueType (String nodeValueType) {
+	public void setNodeValueType (Integer nodeValueType) {
 		this.nodeValueType = nodeValueType;
 	}
 	
@@ -335,18 +335,18 @@ public class SystemResourceDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 节点序号 node_order
+	 * @return 节点序号 object_order
 	 */
-	public String getNodeOrder(){
-		return nodeOrder;
+	public Integer getObjectOrder(){
+		return objectOrder;
 	}
 	
 	/**
 	 * 
-	 * @param nodeOrder 节点序号 node_order
+	 * @param objectOrder 节点序号 object_order
 	 */	
-	public void setNodeOrder (String nodeOrder) {
-		this.nodeOrder = nodeOrder;
+	public void setObjectOrder (Integer objectOrder) {
+		this.objectOrder = objectOrder;
 	}
 	
 	/**

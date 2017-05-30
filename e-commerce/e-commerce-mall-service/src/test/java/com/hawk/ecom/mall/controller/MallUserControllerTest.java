@@ -16,7 +16,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class MallUserControllerTest extends AbstractControllerTest {
 
-//	 @Test
+	 @Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();

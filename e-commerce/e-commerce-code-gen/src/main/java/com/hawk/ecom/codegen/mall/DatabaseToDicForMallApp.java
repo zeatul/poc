@@ -19,6 +19,7 @@ public class DatabaseToDicForMallApp {
 			SynonymHelper.addWord("id", "role_id", "角色id");
 			SynonymHelper.addWord("id", "pid", "父id");
 			SynonymHelper.addWord("id", "right_id", "权限id");
+			
 			new DbToDicService("com.hawk.ecom.codegen.mall").execute();
 		} catch (Throwable e) {
 			e.printStackTrace();

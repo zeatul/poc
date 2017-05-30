@@ -34,4 +34,12 @@ public class MallRootConfig {
 		mysqlPkGenerator.setSql( "replace into t_mal_mall_user_code_sequence(stub) values('a')");
 		return mysqlPkGenerator;
 	}
+	
+	@Bean("systemShorkPkSequenceService")
+	public PkGenService systemShorkPkSequenceService(JdbcTemplate jdbcTemplate){
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
+		mysqlPkGenerator.setSql( "replace into t_mal_short_sequence(stub) values('a')");
+		return mysqlPkGenerator;
+	}
 }

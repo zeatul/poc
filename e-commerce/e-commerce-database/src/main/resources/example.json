@@ -1,24 +1,12 @@
 {
 	"data": {
-		"count": 2,
-		"userInfos": [
-			{
-				"userCode": "100003",
-				"mobileNumber": "13816082486",
-				"userName": "隔壁老刘",
-				"userSex": "M",
-				"userStatus": 100,
-				"createDate": "2017-05-26 23:39:20"
-			},
-			{
-				"userCode": "100002",
-				"mobileNumber": "13816082483",
-				"userName": "隔壁老张",
-				"userSex": "M",
-				"userStatus": 100,
-				"createDate": "2017-05-26 23:38:44"
-			}
-		]
+		"nodeCode": "wts",
+		"nodeName": "五台山",
+		"nodeValue": "http://",
+		"objectOrder": 100,
+		"nodeStatus": 10,
+		"nodeDesc": "hello",
+		"createDate": "2017-05-31 01:13:35"
 	},
 	"code": 1
 }

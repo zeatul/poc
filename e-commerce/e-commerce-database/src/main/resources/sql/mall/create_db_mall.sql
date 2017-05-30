@@ -42,11 +42,11 @@ drop table if exists t_mal_mall_user_history;
 
 drop table if exists t_mal_short_sequence;
 
-drop index ui_mal_ri_code on t_mal_system_resource;
+drop index ui_mal_sr_code on t_mal_system_resource;
 
-drop index ui_mal_rt_code_path on t_mal_system_resource;
+drop index ui_mal_sr_code_path on t_mal_system_resource;
 
-drop index ui_mal_rt_id_path on t_mal_system_resource;
+drop index ui_mal_sr_id_path on t_mal_system_resource;
 
 drop table if exists t_mal_system_resource;
 
@@ -422,9 +422,9 @@ create table t_mal_system_resource
    node_name            varchar(50) comment '节点名称',
    node_type            integer comment '节点类型',
    node_sub_type        integer comment '节点子类型',
-   node_value_type      varchar(200) comment '节点值类型',
+   node_value_type      integer comment '节点值类型',
    node_value           varchar(200) comment '节点值',
-   node_order           varchar(20) not null comment '节点序号',
+   object_order         integer not null comment '节点序号',
    node_status          integer comment '节点状态',
    node_desc            varchar(200) comment '节点描述',
    node_ico             varchar(200) comment '节点图标',
@@ -444,25 +444,25 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_mal_system_resource comment '导航类资源管理';
 
 /*==============================================================*/
-/* Index: ui_mal_rt_id_path                                     */
+/* Index: ui_mal_sr_id_path                                     */
 /*==============================================================*/
-create unique index ui_mal_rt_id_path on t_mal_system_resource
+create unique index ui_mal_sr_id_path on t_mal_system_resource
 (
    id_path
 );
 
 /*==============================================================*/
-/* Index: ui_mal_rt_code_path                                   */
+/* Index: ui_mal_sr_code_path                                   */
 /*==============================================================*/
-create unique index ui_mal_rt_code_path on t_mal_system_resource
+create unique index ui_mal_sr_code_path on t_mal_system_resource
 (
    code_path
 );
 
 /*==============================================================*/
-/* Index: ui_mal_ri_code                                        */
+/* Index: ui_mal_sr_code                                        */
 /*==============================================================*/
-create unique index ui_mal_ri_code on t_mal_system_resource
+create unique index ui_mal_sr_code on t_mal_system_resource
 (
    node_code
 );

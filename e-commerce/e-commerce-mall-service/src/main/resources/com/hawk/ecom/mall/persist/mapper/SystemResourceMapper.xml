@@ -17,7 +17,7 @@
 		node_sub_type AS "nodeSubType" ,
 		node_value_type AS "nodeValueType" ,
 		node_value AS "nodeValue" ,
-		node_order AS "nodeOrder" ,
+		object_order AS "objectOrder" ,
 		node_status AS "nodeStatus" ,
 		node_desc AS "nodeDesc" ,
 		node_ico AS "nodeIco" ,
@@ -46,7 +46,7 @@
 			<if test="nodeSubType != null"> AND node_sub_type = #{nodeSubType}  </if>
 			<if test="nodeValueType != null"> AND node_value_type = #{nodeValueType}  </if>
 			<if test="nodeValue != null"> AND node_value = #{nodeValue}  </if>
-			<if test="nodeOrder != null"> AND node_order = #{nodeOrder}  </if>
+			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
 			<if test="nodeStatus != null"> AND node_status = #{nodeStatus}  </if>
 			<if test="nodeDesc != null"> AND node_desc = #{nodeDesc}  </if>
 			<if test="nodeIco != null"> AND node_ico = #{nodeIco}  </if>
@@ -76,7 +76,7 @@
 			AND node_sub_type = #{old_nodeSubType}
 			AND node_value_type = #{old_nodeValueType}
 			AND node_value = #{old_nodeValue}
-			AND node_order = #{old_nodeOrder}
+			AND object_order = #{old_objectOrder}
 			AND node_status = #{old_nodeStatus}
 			AND node_desc = #{old_nodeDesc}
 			AND node_ico = #{old_nodeIco}
@@ -106,7 +106,7 @@
 			node_sub_type = #{nodeSubType},
 			node_value_type = #{nodeValueType},
 			node_value = #{nodeValue},
-			node_order = #{nodeOrder},
+			object_order = #{objectOrder},
 			node_status = #{nodeStatus},
 			node_desc = #{nodeDesc},
 			node_ico = #{nodeIco},
@@ -136,7 +136,7 @@
 			<if test="nodeSubType != null">node_sub_type = #{nodeSubType},</if>
 			<if test="nodeValueType != null">node_value_type = #{nodeValueType},</if>
 			<if test="nodeValue != null">node_value = #{nodeValue},</if>
-			<if test="nodeOrder != null">node_order = #{nodeOrder},</if>
+			<if test="objectOrder != null">object_order = #{objectOrder},</if>
 			<if test="nodeStatus != null">node_status = #{nodeStatus},</if>
 			<if test="nodeDesc != null">node_desc = #{nodeDesc},</if>
 			<if test="nodeIco != null">node_ico = #{nodeIco},</if>
@@ -199,7 +199,7 @@
 				node_sub_type,				
 				node_value_type,				
 				node_value,				
-				node_order,				
+				object_order,				
 				node_status,				
 				node_desc,				
 				node_ico,				
@@ -226,7 +226,7 @@
 			#{nodeSubType},
 			#{nodeValueType},
 			#{nodeValue},
-			#{nodeOrder},
+			#{objectOrder},
 			#{nodeStatus},
 			#{nodeDesc},
 			#{nodeIco},

@@ -1,10 +1,37 @@
 package com.hawk.ecom.mall.request;
 
+import com.hawk.ecom.mall.annotation.MallNotLogin;
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
+
 public class SystemCreateResourceParam {
 
 	
 
 	
+	public Integer getNodeValueType() {
+		return nodeValueType;
+	}
+
+	public void setNodeValueType(Integer nodeValueType) {
+		this.nodeValueType = nodeValueType;
+	}
+
+	public Integer getObjectOrder() {
+		return objectOrder;
+	}
+
+	public void setObjectOrder(Integer objectOrder) {
+		this.objectOrder = objectOrder;
+	}
+
+	public String getOperatorCode() {
+		return operatorCode;
+	}
+
+	public void setOperatorCode(String operatorCode) {
+		this.operatorCode = operatorCode;
+	}
+
 	public String getParentNodeCode() {
 		return parentNodeCode;
 	}
@@ -45,13 +72,7 @@ public class SystemCreateResourceParam {
 		this.nodeSubType = nodeSubType;
 	}
 
-	public String getNodeValueType() {
-		return nodeValueType;
-	}
-
-	public void setNodeValueType(String nodeValueType) {
-		this.nodeValueType = nodeValueType;
-	}
+	
 
 	public String getNodeValue() {
 		return nodeValue;
@@ -61,13 +82,7 @@ public class SystemCreateResourceParam {
 		this.nodeValue = nodeValue;
 	}
 
-	public String getNodeOrder() {
-		return nodeOrder;
-	}
-
-	public void setNodeOrder(String nodeOrder) {
-		this.nodeOrder = nodeOrder;
-	}
+	
 
 	public String getNodeDesc() {
 		return nodeDesc;
@@ -98,6 +113,7 @@ public class SystemCreateResourceParam {
 	/**
 	 * 节点名称 node_name
 	 */
+	@NotEmpty
 	private String nodeName;
 
 	/**
@@ -113,18 +129,18 @@ public class SystemCreateResourceParam {
 	/**
 	 * 节点值类型 node_value_type
 	 */
-	private String nodeValueType;
+	private Integer nodeValueType;
 
 	/**
 	 * 节点值 node_value
 	 */
+	@NotEmpty
 	private String nodeValue;
 
 	/**
-	 * 节点序号 node_order
+	 * 节点序号 object_order
 	 */
-	private String nodeOrder;
-
+	private Integer objectOrder;
 	
 
 	/**
@@ -138,5 +154,11 @@ public class SystemCreateResourceParam {
 	private String nodeIco;
 
 	
+
+	/**
+	 * 操作员编号
+	 */
+	@MallNotLogin
+	private String operatorCode;
 
 }
