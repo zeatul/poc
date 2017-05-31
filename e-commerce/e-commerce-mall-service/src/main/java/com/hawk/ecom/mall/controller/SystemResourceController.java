@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
+import com.hawk.ecom.mall.response.MultiSystemResourceInfoResponse;
 import com.hawk.ecom.mall.response.SystemResourceInfoResponse;
 import com.hawk.ecom.mall.service.SystemResourceService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
-import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -50,12 +52,18 @@ public class SystemResourceController {
 	
 	@RequestMapping(value = "/remove", method = POST)
 	public WebResponse<MallUserInfoResponse> removeResource(HttpServletRequest request) throws Exception {
+		
+		
 		return null;
 	}
 	
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MallUserInfoResponse> listResource(HttpServletRequest request) throws Exception {
-		return null;
+	public WebResponse<MultiSystemResourceInfoResponse> listResource(HttpServletRequest request) throws Exception {
+		SystemListResourceParam param = HttpRequestTools.parse(request, SystemListResourceParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		List<SystemResourceDomain> systemResourceDomainList = systemResourceService.listResource(param);
+		MultiSystemResourceInfoResponse result = new MultiSystemResourceInfoResponse(DomainTools.copy(systemResourceDomainList, SystemResourceInfoResponse.class));
+		return SuccessResponse.build(result);
 	}
 	
 	@RequestMapping(value = "/update", method = POST)

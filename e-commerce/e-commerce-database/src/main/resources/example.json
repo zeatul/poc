@@ -1,12 +1,32 @@
 {
 	"data": {
-		"nodeCode": "wts",
-		"nodeName": "五台山",
-		"nodeValue": "http://",
-		"objectOrder": 100,
-		"nodeStatus": 10,
-		"nodeDesc": "hello",
-		"createDate": "2017-05-31 01:13:35"
+		"count": 2,
+		"systemResources": [
+			{
+				"nodeCode": "5",
+				"nodeName": "五台山_111123",
+				"nodeValue": "http://",
+				"objectOrder": 100,
+				"nodeStatus": 1,
+				"nodeDesc": "hello",
+				"nodeType": 10,
+				"nodeSubType": 100,
+				"nodeValueType": 10,
+				"createDate": "2017-05-31 12:16:28"
+			},
+			{
+				"nodeCode": "6",
+				"nodeName": "五台山_111123111",
+				"nodeValue": "http://",
+				"objectOrder": 100,
+				"nodeStatus": 1,
+				"nodeDesc": "hello",
+				"nodeType": 10,
+				"nodeSubType": 100,
+				"nodeValueType": 10,
+				"createDate": "2017-05-31 12:16:57"
+			}
+		]
 	},
 	"code": 1
 }

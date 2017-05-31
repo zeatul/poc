@@ -7,6 +7,48 @@ import com.hawk.framework.pub.web.ResponseData;
 public class SystemResourceInfoResponse implements ResponseData{
 	
 	
+	public Integer getNodeType() {
+		return nodeType;
+	}
+
+
+
+
+	public void setNodeType(Integer nodeType) {
+		this.nodeType = nodeType;
+	}
+
+
+
+
+	public Integer getNodeSubType() {
+		return nodeSubType;
+	}
+
+
+
+
+	public void setNodeSubType(Integer nodeSubType) {
+		this.nodeSubType = nodeSubType;
+	}
+
+
+
+
+	public Integer getNodeValueType() {
+		return nodeValueType;
+	}
+
+
+
+
+	public void setNodeValueType(Integer nodeValueType) {
+		this.nodeValueType = nodeValueType;
+	}
+
+
+
+
 	public String getNodeCode() {
 		return nodeCode;
 	}
@@ -137,6 +179,20 @@ public class SystemResourceInfoResponse implements ResponseData{
 	private String nodeDesc;
 	
 	
+	/**
+	 * 节点类型 node_type
+	 */
+	private Integer nodeType;
+	
+	/**
+	 * 节点子类型 node_sub_type
+	 */
+	private Integer nodeSubType;
+	
+	/**
+	 * 节点值类型 node_value_type
+	 */
+	private Integer nodeValueType;
 	
 	
 	/**

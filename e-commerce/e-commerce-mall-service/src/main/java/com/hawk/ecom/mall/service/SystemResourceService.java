@@ -2,6 +2,7 @@ package com.hawk.ecom.mall.service;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.mall.constant.ConstSystemResource;
 import com.hawk.ecom.mall.exception.DuplicateMallUserRuntimeException;
@@ -19,8 +21,11 @@ import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.persist.mapper.SystemResourceMapper;
 import com.hawk.ecom.mall.persist.mapperex.SystemResourceExMapper;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemListResourceParam;
+import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -65,6 +70,22 @@ public class SystemResourceService {
 		MybatisParam params = new MybatisParam().put("nodeCode", nodeCode);
 		return MybatisTools.single(systemResourceMapper.loadDynamic(params));
 	}
+	
+	private SystemResourceDomain queryParentSystemResourceByNodeCode(String parentNodeCode){
+		SystemResourceDomain parent = ROOT;
+		if (StringTools.isNotNullOrEmpty(parentNodeCode) && !parentNodeCode.equalsIgnoreCase(ROOT.getNodeCode())) {
+			parent = querySystemResourceByNodeCode(parentNodeCode);
+			if (parent == null) {
+				throw new SystemResourceNotFoundRuntimeException();
+			}
+		}
+		return parent;
+	}
+	
+	private int countSub(long pid){
+		MybatisParam params = new MybatisParam().put("pid", pid);
+		return systemResourceMapper.count(params);
+	}
 
 	@Valid
 	public SystemResourceDomain createResource(@NotEmpty("参数") @Valid SystemCreateResourceParam systemCreateResourceParam) {
@@ -73,14 +94,7 @@ public class SystemResourceService {
 		}
 		
 		
-		String parentNodeCode = systemCreateResourceParam.getParentNodeCode();
-		SystemResourceDomain parent = ROOT;
-		if (StringTools.isNotNullOrEmpty(parentNodeCode) && !parentNodeCode.equalsIgnoreCase(ROOT.getNodeCode())) {
-			parent = querySystemResourceByNodeCode(parentNodeCode);
-			if (parent == null) {
-				throw new SystemResourceNotFoundRuntimeException();
-			}
-		}
+		SystemResourceDomain parent =  queryParentSystemResourceByNodeCode(systemCreateResourceParam.getParentNodeCode());
 
 		String nodeCode = systemCreateResourceParam.getNodeCode();
 		if ("root".equalsIgnoreCase(nodeCode)) {
@@ -107,7 +121,7 @@ public class SystemResourceService {
 		systemResourceDomain.setNodeName(systemCreateResourceParam.getNodeName());
 
 		systemResourceDomain.setNodeRiseIco(null);
-		systemResourceDomain.setNodeStatus(ConstSystemResource.NodeStatus.NORMAL);
+		systemResourceDomain.setNodeStatus(ConstSystemResource.NodeStatus.EDITING);
 		systemResourceDomain.setNodeSubType(ConstSystemResource.NodeSubType.OTHER);
 		systemResourceDomain.setNodeType(ConstSystemResource.NodeType.MENU);
 		systemResourceDomain.setNodeValue(systemCreateResourceParam.getNodeValue());
@@ -152,4 +166,41 @@ public class SystemResourceService {
 		return systemResourceDomain;
 	}
 
+	@Valid
+	public List<SystemResourceDomain> listResource(@NotNull("参数") @Valid SystemListResourceParam systemListResourceParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		if (StringTools.isNullOrEmpty(systemListResourceParam.getOrder())){
+			systemListResourceParam.setOrder("object_order asc");
+		}
+		
+		SystemResourceDomain parent =  queryParentSystemResourceByNodeCode(systemListResourceParam.getParentNodeCode());
+		
+		MybatisParam params = MybatisTools.page(new MybatisParam().put("pid", parent.getId()), systemListResourceParam);
+		return systemResourceMapper.loadDynamicPaging(params);
+	}
+	
+	@Valid
+	@Transactional
+	public void removeResource(@NotNull("参数") @Valid SystemRemoveResourceParam systemRemoveResourceParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		for(String nodeCode :systemRemoveResourceParam.getNodeCodes()){
+			SystemResourceDomain node = querySystemResourceByNodeCode(nodeCode);
+			if (node == null){
+				throw new SystemResourceNotFoundRuntimeException();
+			}
+			/**
+			 * 查询有没有子节点
+			 */
+			if (countSub(node.getId())>0){
+				
+			}
+		}
+		
+	}
 }
