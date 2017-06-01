@@ -11,13 +11,13 @@ import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
-public class SystemResourceControllerTest extends AbstractControllerTest{
-	
-//	@Test
-	public void testCreate(){
+public class SystemResourceControllerTest extends AbstractControllerTest {
+
+	// @Test
+	public void testCreate() {
 		String url = getUrl("/mall/admin/resource/create");
 		SystemCreateResourceParam request = new SystemCreateResourceParam();
-//		request.setNodeCode("wts_2");
+		// request.setNodeCode("wts_2");
 		request.setNodeDesc("hello");
 		request.setNodeName("五台山_111123111");
 		request.setNodeSubType(ConstSystemResource.NodeSubType.OTHER);
@@ -27,7 +27,7 @@ public class SystemResourceControllerTest extends AbstractControllerTest{
 		request.setNodeIco("100");
 		request.setObjectOrder(100);
 		request.setParentNodeCode("wts");
-		
+
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		params.add(new HttpParam("t", "24bb9c96-63ea-42a1-ada2-0f35e3505580"));
@@ -35,21 +35,31 @@ public class SystemResourceControllerTest extends AbstractControllerTest{
 		String result = httpExecutor.post(url, request, params);
 		System.out.println("result=" + result);
 	}
-	
-	@Test
-	public void testList(){
+
+	// @Test
+	public void testList() {
 		String url = getUrl("/mall/admin/resource/list");
 		SystemListResourceParam request = new SystemListResourceParam();
-		request.setParentNodeCode("wts");
+		request.setParentNodeCode("root");
 		request.setPageIndex(1);
 		request.setPageRowCount(100);
 		request.setOrder("object_order asc");
-		
+
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		params.add(new HttpParam("t", "24bb9c96-63ea-42a1-ada2-0f35e3505580"));
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+
+	@Test
+	public void testLoad() {
+		String url = getUrl("/mall/admin/resource/nodeCode/wst");
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", "24bb9c96-63ea-42a1-ada2-0f35e3505580"));
+		String result = httpExecutor.get(url, params);
 		System.out.println("result=" + result);
 	}
 
