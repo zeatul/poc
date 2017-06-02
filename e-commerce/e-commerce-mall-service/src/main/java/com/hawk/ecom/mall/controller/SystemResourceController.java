@@ -96,4 +96,7 @@ public class SystemResourceController {
 		systemResourceService.updateResource(param);
 		return SuccessResponse.build(null);
 	} 
+	
+	@RequestMapping(value = "/status/update", method = POST)
+	public WebResponse<MallUserInfoResponse> exchangeResourceOrder(HttpServletRequest request) throws Exception 
 }
