@@ -46,9 +46,14 @@ public class MallRightDomain implements Serializable {
 	private String namePath;
 	
 	/**
-	 * 树深度 tree_depth
+	 * 编号PATH code_path
 	 */
-	private Integer treeDepth;
+	private String codePath;
+	
+	/**
+	 * 深度 depth
+	 */
+	private Integer depth;
 	
 	/**
 	 * 创建者 create_user_code
@@ -179,18 +184,34 @@ public class MallRightDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 树深度 tree_depth
+	 * @return 编号PATH code_path
 	 */
-	public Integer getTreeDepth(){
-		return treeDepth;
+	public String getCodePath(){
+		return codePath;
 	}
 	
 	/**
 	 * 
-	 * @param treeDepth 树深度 tree_depth
+	 * @param codePath 编号PATH code_path
 	 */	
-	public void setTreeDepth (Integer treeDepth) {
-		this.treeDepth = treeDepth;
+	public void setCodePath (String codePath) {
+		this.codePath = codePath;
+	}
+	
+	/**
+	 * 
+	 * @return 深度 depth
+	 */
+	public Integer getDepth(){
+		return depth;
+	}
+	
+	/**
+	 * 
+	 * @param depth 深度 depth
+	 */	
+	public void setDepth (Integer depth) {
+		this.depth = depth;
 	}
 	
 	/**

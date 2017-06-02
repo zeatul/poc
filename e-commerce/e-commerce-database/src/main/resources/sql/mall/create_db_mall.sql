@@ -40,6 +40,16 @@ drop table if exists t_mal_mall_user_code_sequence;
 
 drop table if exists t_mal_mall_user_history;
 
+drop table if exists t_mal_short_sequence;
+
+drop index ui_mal_sr_code on t_mal_system_resource;
+
+drop index ui_mal_sr_code_path on t_mal_system_resource;
+
+drop index ui_mal_sr_id_path on t_mal_system_resource;
+
+drop table if exists t_mal_system_resource;
+
 /*==============================================================*/
 /* Table: t_mal_mall_login                                      */
 /*==============================================================*/
@@ -138,7 +148,8 @@ create table t_mal_mall_right
    right_name           varchar(200) not null comment '权限名称',
    id_path              varchar(200) not null comment '主键PATH',
    name_path            varchar(1000) not null comment '名称PATH',
-   tree_depth           integer not null comment '树深度',
+   code_path            char(10) comment '编号PATH',
+   depth                integer not null comment '深度',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -264,7 +275,7 @@ create table t_mal_mall_user
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
-   user_type            integer not null comment '用户类型',
+   user_type            integer comment '用户类型',
    mobile_number        varchar(20) not null comment '手机号',
    login_pwd            varchar(100) comment '登录密码',
    pwd_update_times     integer comment '密码已经修改次数',
@@ -382,3 +393,76 @@ create table t_mal_mall_user_history
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_mal_mall_user_history comment '商城用户历史表';
+
+/*==============================================================*/
+/* Table: t_mal_short_sequence                                  */
+/*==============================================================*/
+create table t_mal_short_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_mal_short_sequence comment '商场短ID生成表';
+
+/*==============================================================*/
+/* Table: t_mal_system_resource                                 */
+/*==============================================================*/
+create table t_mal_system_resource
+(
+   id                   bigint not null comment '主键',
+   pid                  bigint not null comment '父ID',
+   id_path              varchar(200) not null comment '主键PATH',
+   name_path            varchar(1000) not null comment '名称PATH',
+   code_path            varchar(200) comment '编号PATH',
+   depth                integer not null comment '深度',
+   node_code            varchar(50) not null comment '节点编号',
+   node_name            varchar(50) comment '节点名称',
+   node_type            integer comment '节点类型',
+   node_sub_type        integer comment '节点子类型',
+   node_value_type      integer comment '节点值类型',
+   node_value           varchar(200) comment '节点值',
+   object_order         integer not null comment '节点序号',
+   node_status          integer comment '节点状态',
+   node_desc            varchar(200) comment '节点描述',
+   node_ico             varchar(200) comment '节点图标',
+   node_checked_ico     varchar(200) comment '节点选中图标',
+   node_grey_ico        varchar(200) comment '节点禁用图标',
+   node_rise_ico        varchar(200) comment '节点鼠标浮动图标',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_mal_system_resource comment '导航类资源管理';
+
+/*==============================================================*/
+/* Index: ui_mal_sr_id_path                                     */
+/*==============================================================*/
+create unique index ui_mal_sr_id_path on t_mal_system_resource
+(
+   id_path
+);
+
+/*==============================================================*/
+/* Index: ui_mal_sr_code_path                                   */
+/*==============================================================*/
+create unique index ui_mal_sr_code_path on t_mal_system_resource
+(
+   code_path
+);
+
+/*==============================================================*/
+/* Index: ui_mal_sr_code                                        */
+/*==============================================================*/
+create unique index ui_mal_sr_code on t_mal_system_resource
+(
+   node_code
+);
