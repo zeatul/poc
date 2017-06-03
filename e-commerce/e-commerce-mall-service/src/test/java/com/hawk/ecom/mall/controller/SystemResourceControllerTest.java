@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.hawk.ecom.mall.constant.ConstSystemResource;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
@@ -102,14 +103,29 @@ public class SystemResourceControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testUpdateStatus() {
-		String url = getUrl("/mall/admin/status/update");
+		String url = getUrl("/mall/admin/resource/status/update");
 		SystemUpdateResourceStatusParam request = new SystemUpdateResourceStatusParam();
 		request.setNodeCodes(Arrays.asList("a","b","c"));
 		request.setNodeStatus(ConstSystemResource.NodeStatus.FORBIDDEN);
 		
 		
+		
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", "24bb9c96-63ea-42a1-ada2-0f35e3505580"));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testOrderExchange(){
+		String url = getUrl("/mall/admin/resource/order/exchange");
+		SystemExchangeResourceOrderParam request = new SystemExchangeResourceOrderParam();
+		request.setNodeCodeA("a1");
+		request.setNodeCodeB("b1");
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));

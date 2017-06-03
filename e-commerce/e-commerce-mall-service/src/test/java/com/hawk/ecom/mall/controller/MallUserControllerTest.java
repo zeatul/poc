@@ -1,14 +1,19 @@
 package com.hawk.ecom.mall.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 
+import com.hawk.ecom.mall.constant.ConstMallUserStatus;
 import com.hawk.ecom.mall.request.MallCreateUserParam;
 import com.hawk.ecom.mall.request.MallListUserParam;
+import com.hawk.ecom.mall.request.MallUpdateUserParam;
+import com.hawk.ecom.mall.request.MallUpdateUserStatusParam;
 import com.hawk.ecom.pub.constant.ConstIdType;
 import com.hawk.ecom.pub.constant.ConstSex;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
@@ -16,7 +21,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class MallUserControllerTest extends AbstractControllerTest {
 
-	 @Test
+//	 @Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();
@@ -77,6 +82,38 @@ public class MallUserControllerTest extends AbstractControllerTest {
 		request.setMobileNumber("13816082486");
 		request.setUserName("隔壁老刘");
 		request.setUserSex(ConstSex.MALE);
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+//	@Test
+	public void testUpdate(){
+		String url = getUrl("/mall/admin/user/update");
+		MallUpdateUserParam request = new MallUpdateUserParam();
+		request.setUserCode("1111");
+		request.setUserName("hlllo");
+		request.setUserSex(ConstSex.MALE);
+		request.setUserBirthday(new Date());
+		
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testUpdateStatus(){
+		String url = getUrl("/mall/admin/user/status/update");
+		MallUpdateUserStatusParam request = new MallUpdateUserStatusParam();
+		request.setUserStatus(ConstMallUserStatus.FORBIDDEN);
+		request.setUserCodes(Arrays.asList("u1","u2"));
+		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));

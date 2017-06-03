@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemLoadResourceParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
@@ -90,13 +91,18 @@ public class SystemResourceController {
 	}
 	
 	@RequestMapping(value = "/status/update", method = POST)
-	public WebResponse<MallUserInfoResponse> updateResourceStatus(HttpServletRequest request) throws Exception {
+	public WebResponse<ResponseData> updateResourceStatus(HttpServletRequest request) throws Exception {
 		SystemUpdateResourceParam param = HttpRequestTools.parse(request, SystemUpdateResourceParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		systemResourceService.updateResource(param);
 		return SuccessResponse.build(null);
 	} 
 	
-	@RequestMapping(value = "/status/update", method = POST)
-	public WebResponse<MallUserInfoResponse> exchangeResourceOrder(HttpServletRequest request) throws Exception 
+	@RequestMapping(value = "/order/exchange", method = POST)
+	public WebResponse<ResponseData> exchangeResourceOrder(HttpServletRequest request) throws Exception {
+		SystemExchangeResourceOrderParam param = HttpRequestTools.parse(request, SystemExchangeResourceOrderParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		systemResourceService.exchangeResourceOrder(param);
+		return SuccessResponse.build(null);
+	}
 }

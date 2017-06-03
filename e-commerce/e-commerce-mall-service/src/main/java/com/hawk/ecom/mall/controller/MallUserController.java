@@ -21,10 +21,11 @@ import com.hawk.ecom.mall.request.MallListUserParam;
 import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
 import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
+import com.hawk.ecom.mall.request.MallUpdateUserParam;
+import com.hawk.ecom.mall.request.MallUpdateUserStatusParam;
 import com.hawk.ecom.mall.response.MallLoginResponse;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
 import com.hawk.ecom.mall.response.MultiUserInfoResponse;
-import com.hawk.ecom.mall.response.MultiUserInfoResponse.UserInfo;
 import com.hawk.ecom.mall.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -73,9 +74,9 @@ public class MallUserController {
 		if (StringTools.isNullOrEmpty(token)) {
 			throw new MallTokenEmptyRuntimeException();
 		}
-		MallUserInfoResponse mallUserInfoResponse = mallUserService.loginInfo(token);
+		MallUserDomain mallUserDomain = mallUserService.loginInfo(token);
 
-		return SuccessResponse.build(mallUserInfoResponse);
+		return SuccessResponse.build(DomainTools.copy(mallUserDomain, MallUserInfoResponse.class));
 	}
 
 	@RequestMapping(value = "/pwd/reset", method = POST)
@@ -96,21 +97,37 @@ public class MallUserController {
 	@RequestMapping(value = "/create", method = POST)
 	public WebResponse<MallUserInfoResponse> createUser(HttpServletRequest request) throws Exception {
 		MallCreateUserParam mallCreateUserParam = HttpRequestTools.parse(request, MallCreateUserParam.class);
+		mallCreateUserParam.setOperatorCode(AuthThreadLocal.getUserCode());
+		
 		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
-		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
-		mallUserInfoResponse.setMobileNumber(mallUserDomain.getMobileNumber());
-		mallUserInfoResponse.setUserCode(mallUserDomain.getUserCode());
-		mallUserInfoResponse.setUserId(mallUserDomain.getId());
-		mallUserInfoResponse.setUserName(mallUserDomain.getUserName());
+		MallUserInfoResponse mallUserInfoResponse = DomainTools.copy(mallUserDomain, MallUserInfoResponse.class);
 		return SuccessResponse.build(mallUserInfoResponse);
 	}
+	
+	@RequestMapping(value = "/update", method = POST)
+	public WebResponse<MallUserInfoResponse> updateUser(HttpServletRequest request) throws Exception {
+		MallUpdateUserParam param = HttpRequestTools.parse(request, MallUpdateUserParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		
+		mallUserService.updateUser(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/status/update", method = POST)
+	public WebResponse<ResponseData> updateUserStatus(HttpServletRequest request) throws Exception {
+		MallUpdateUserStatusParam param = HttpRequestTools.parse(request, MallUpdateUserStatusParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		mallUserService.updateUserStatus(param);
+		return SuccessResponse.build(null);
+	} 
 
 	@RequestMapping(value = "/list", method = POST)
 	public WebResponse<MultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception {
-		MallListUserParam mallListUserParam = HttpRequestTools.parse(request, MallListUserParam.class);
+		MallListUserParam param = HttpRequestTools.parse(request, MallListUserParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		
-		List<MallUserDomain> mallUserDomainList = mallUserService.listMallUser(mallListUserParam);
-		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, UserInfo.class));
+		List<MallUserDomain> mallUserDomainList = mallUserService.listMallUser(param);
+		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, MallUserInfoResponse.class));
 		return SuccessResponse.build(result);
 	}
 }

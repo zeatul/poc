@@ -17,8 +17,8 @@ import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.request.MallAddRoleMembersParam;
 import com.hawk.ecom.mall.request.MallListRoleMembersParam;
 import com.hawk.ecom.mall.request.MallRemoveRoleMembersParam;
+import com.hawk.ecom.mall.response.MallUserInfoResponse;
 import com.hawk.ecom.mall.response.MultiUserInfoResponse;
-import com.hawk.ecom.mall.response.MultiUserInfoResponse.UserInfo;
 import com.hawk.ecom.mall.service.MallRoleService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -65,7 +65,7 @@ public class MallRoleController {
 		param.setRoleCode("admin");
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		List<MallUserDomain> list = mallRoleService.listRoleMembers(param);
-		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(list, UserInfo.class));
+		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(list, MallUserInfoResponse.class));
 		return SuccessResponse.build(result);
 	}
 

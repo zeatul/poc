@@ -1,8 +1,7 @@
 {
-	"nodeCodes": [
-		"a",
-		"b",
-		"c"
+	"userCodes": [
+		"u1",
+		"u2"
 	],
-	"nodeStatus": 99
+	"userStatus": 99
 }

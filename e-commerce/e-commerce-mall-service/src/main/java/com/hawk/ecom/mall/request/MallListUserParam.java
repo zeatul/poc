@@ -7,6 +7,12 @@ import com.hawk.framework.pub.sql.PageParam;
 public class MallListUserParam implements PageParam{
 	
 
+	public String getOperatorCode() {
+		return operatorCode;
+	}
+	public void setOperatorCode(String operatorCode) {
+		this.operatorCode = operatorCode;
+	}
 	public Integer getPageIndex() {
 		return pageIndex;
 	}
@@ -45,7 +51,6 @@ public class MallListUserParam implements PageParam{
 	 * 操作员编号
 	 */
 	@MallNotLogin
-	@JsonIgnore
 	private String operatorCode;
 
 }
