@@ -12,6 +12,7 @@
 		code_path AS "codePath" ,
 		depth AS "depth" ,
 		node_code AS "nodeCode" ,
+		reserved AS "reserved" ,
 		node_name AS "nodeName" ,
 		node_type AS "nodeType" ,
 		node_sub_type AS "nodeSubType" ,
@@ -41,6 +42,7 @@
 			<if test="codePath != null"> AND code_path = #{codePath}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
 			<if test="nodeCode != null"> AND node_code = #{nodeCode}  </if>
+			<if test="reserved != null"> AND reserved = #{reserved}  </if>
 			<if test="nodeName != null"> AND node_name = #{nodeName}  </if>
 			<if test="nodeType != null"> AND node_type = #{nodeType}  </if>
 			<if test="nodeSubType != null"> AND node_sub_type = #{nodeSubType}  </if>
@@ -71,6 +73,7 @@
 			AND code_path = #{old_codePath}
 			AND depth = #{old_depth}
 			AND node_code = #{old_nodeCode}
+			AND reserved = #{old_reserved}
 			AND node_name = #{old_nodeName}
 			AND node_type = #{old_nodeType}
 			AND node_sub_type = #{old_nodeSubType}
@@ -101,6 +104,7 @@
 			code_path = #{codePath},
 			depth = #{depth},
 			node_code = #{nodeCode},
+			reserved = #{reserved},
 			node_name = #{nodeName},
 			node_type = #{nodeType},
 			node_sub_type = #{nodeSubType},
@@ -131,6 +135,7 @@
 			<if test="codePath != null">code_path = #{codePath},</if>
 			<if test="depth != null">depth = #{depth},</if>
 			<if test="nodeCode != null">node_code = #{nodeCode},</if>
+			<if test="reserved != null">reserved = #{reserved},</if>
 			<if test="nodeName != null">node_name = #{nodeName},</if>
 			<if test="nodeType != null">node_type = #{nodeType},</if>
 			<if test="nodeSubType != null">node_sub_type = #{nodeSubType},</if>
@@ -194,6 +199,7 @@
 				code_path,				
 				depth,				
 				node_code,				
+				reserved,				
 				node_name,				
 				node_type,				
 				node_sub_type,				
@@ -221,6 +227,7 @@
 			#{codePath},
 			#{depth},
 			#{nodeCode},
+			#{reserved},
 			#{nodeName},
 			#{nodeType},
 			#{nodeSubType},

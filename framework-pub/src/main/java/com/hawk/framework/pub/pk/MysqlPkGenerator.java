@@ -42,7 +42,15 @@ public class MysqlPkGenerator implements PkGenService{
 	
 	private String sql ;
 	
+	private long start = 0l ;
 	
+	/**
+	 * 
+	 * @param start 起点
+	 */
+	public MysqlPkGenerator(long start){
+		this.start = start;
+	}
 	
 //	private final static String sql = "replace into t_km_global_sequence(stub) values('a')";
 
@@ -59,7 +67,7 @@ public class MysqlPkGenerator implements PkGenService{
 		},keyHolder);
 		
 				
-		return (Long)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));
+		return start + (Long)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));
 		
 		
 

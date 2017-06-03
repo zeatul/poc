@@ -21,13 +21,14 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class MallUserControllerTest extends AbstractControllerTest {
 
-//	 @Test
+	@Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		Map<String, String> request = new HashMap<String, String>();
-		request.put("mobileNumber", "10000000000");
+//		request.put("mobileNumber", "10000000000"); // superadmin
+		request.put("mobileNumber", "10000000001"); // admin
 		request.put("loginPwd", "hawk@1234");
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
@@ -73,7 +74,7 @@ public class MallUserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-//	 @Test
+	// @Test
 	public void testCreate() {
 		String url = getUrl("/mall/admin/user/create");
 		MallCreateUserParam request = new MallCreateUserParam();
@@ -89,31 +90,16 @@ public class MallUserControllerTest extends AbstractControllerTest {
 		String result = httpExecutor.post(url, request, params);
 		System.out.println("result=" + result);
 	}
-	
-//	@Test
-	public void testUpdate(){
+
+	// @Test
+	public void testUpdate() {
 		String url = getUrl("/mall/admin/user/update");
 		MallUpdateUserParam request = new MallUpdateUserParam();
 		request.setUserCode("1111");
 		request.setUserName("hlllo");
 		request.setUserSex(ConstSex.MALE);
 		request.setUserBirthday(new Date());
-		
-		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("version", "1.0"));
-		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
-		System.out.println("request=" + JsonTools.toJsonString(request));
-		String result = httpExecutor.post(url, request, params);
-		System.out.println("result=" + result);
-	}
-	
-	@Test
-	public void testUpdateStatus(){
-		String url = getUrl("/mall/admin/user/status/update");
-		MallUpdateUserStatusParam request = new MallUpdateUserStatusParam();
-		request.setUserStatus(ConstMallUserStatus.FORBIDDEN);
-		request.setUserCodes(Arrays.asList("u1","u2"));
-		
+
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
@@ -123,6 +109,21 @@ public class MallUserControllerTest extends AbstractControllerTest {
 	}
 
 //	@Test
+	public void testUpdateStatus() {
+		String url = getUrl("/mall/admin/user/status/update");
+		MallUpdateUserStatusParam request = new MallUpdateUserStatusParam();
+		request.setUserStatus(ConstMallUserStatus.FORBIDDEN);
+		request.setUserCodes(Arrays.asList("u1", "u2"));
+
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", "c6618ace-5d19-48f6-affb-e4174b0c9cec"));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+
+	// @Test
 	public void testList() {
 		String url = getUrl("/mall/admin/user/list");
 		MallListUserParam request = new MallListUserParam();

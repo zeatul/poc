@@ -32,6 +32,7 @@ import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
+import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
 
 @RestController
 @RequestMapping("/mall/admin/resource")
@@ -85,6 +86,8 @@ public class SystemResourceController {
 	public WebResponse<SystemResourceInfoResponse> loadResource(@PathVariable String nodeCode) throws Exception {
 		SystemLoadResourceParam param = new SystemLoadResourceParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		
+		param.setNodeCode(nodeCode);
 		SystemResourceDomain systemResourceDomain = systemResourceService.loadSystemResource(param);
 		SystemResourceInfoResponse result = DomainTools.copy(systemResourceDomain, SystemResourceInfoResponse.class);
 		return SuccessResponse.build(result);
@@ -92,9 +95,9 @@ public class SystemResourceController {
 	
 	@RequestMapping(value = "/status/update", method = POST)
 	public WebResponse<ResponseData> updateResourceStatus(HttpServletRequest request) throws Exception {
-		SystemUpdateResourceParam param = HttpRequestTools.parse(request, SystemUpdateResourceParam.class);
+		SystemUpdateResourceStatusParam param = HttpRequestTools.parse(request, SystemUpdateResourceStatusParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		systemResourceService.updateResource(param);
+		systemResourceService.updateResourceStatus(param);
 		return SuccessResponse.build(null);
 	} 
 	

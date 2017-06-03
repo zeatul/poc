@@ -84,7 +84,7 @@ public class MallUserService {
 	
 	public static void main(String[] args){
 		Date date = DateTools.parse("2017-05-24 00:00:00", DateTools.DATETIME_PATTERN);
-		System.out.println(new MallUserService().password("hawk@1234","000001",date));
+		System.out.println(new MallUserService().password("hawk@1234","000002",date));
 	}
 	
 	public MallUserDomain queryMallUserByUserCode(String userCode){
@@ -265,7 +265,7 @@ public class MallUserService {
 		/**
 		 * 8位及8位以上的数字构成的字符串
 		 */
-		return new Long(mallUserCodeSequenceService.genPk() + 100000).toString();
+		return new Long(mallUserCodeSequenceService.genPk() ).toString();
 
 	}
 	

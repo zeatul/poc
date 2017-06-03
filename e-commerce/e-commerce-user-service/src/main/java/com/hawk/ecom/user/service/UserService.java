@@ -199,7 +199,7 @@ public class UserService {
 		/**
 		 * 8位及8位以上的数字构成的字符串
 		 */
-		return new Long(userCodeSequenceService.genPk() + 10000000).toString();
+		return new Long(userCodeSequenceService.genPk() ).toString();
 
 	}
 }

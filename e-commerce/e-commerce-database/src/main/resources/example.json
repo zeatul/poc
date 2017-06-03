@@ -1,7 +1,4 @@
 {
-	"userCodes": [
-		"u1",
-		"u2"
-	],
-	"userStatus": 99
+	"nodeCodeA": "10002",
+	"nodeCodeB": "10004"
 }
