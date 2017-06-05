@@ -29,7 +29,7 @@ public class MallRootConfig {
 	
 	@Bean("mallUserCodeSequenceService")
 	public PkGenService mallUserCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(100000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_mal_mall_user_code_sequence(stub) values('a')");
 		return mysqlPkGenerator;
@@ -37,9 +37,9 @@ public class MallRootConfig {
 	
 	@Bean("systemShorkPkSequenceService")
 	public PkGenService systemShorkPkSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(10000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
-		mysqlPkGenerator.setSql( "replace into t_mal_short_sequence(stub) values('a')");
+		mysqlPkGenerator.setSql( "replace into t_mal_system_short_sequence(stub) values('a')");
 		return mysqlPkGenerator;
 	}
 }

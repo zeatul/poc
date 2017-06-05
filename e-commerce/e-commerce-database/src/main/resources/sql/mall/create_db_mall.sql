@@ -40,8 +40,6 @@ drop table if exists t_mal_mall_user_code_sequence;
 
 drop table if exists t_mal_mall_user_history;
 
-drop table if exists t_mal_short_sequence;
-
 drop index ui_mal_sr_code on t_mal_system_resource;
 
 drop index ui_mal_sr_code_path on t_mal_system_resource;
@@ -49,6 +47,8 @@ drop index ui_mal_sr_code_path on t_mal_system_resource;
 drop index ui_mal_sr_id_path on t_mal_system_resource;
 
 drop table if exists t_mal_system_resource;
+
+drop table if exists t_mal_system_short_sequence;
 
 /*==============================================================*/
 /* Table: t_mal_mall_login                                      */
@@ -395,19 +395,6 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_mal_mall_user_history comment '商城用户历史表';
 
 /*==============================================================*/
-/* Table: t_mal_short_sequence                                  */
-/*==============================================================*/
-create table t_mal_short_sequence
-(
-   stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
-   primary key (id)
-)
-engine=myisam default charset=utf8;
-
-alter table t_mal_short_sequence comment '商场短ID生成表';
-
-/*==============================================================*/
 /* Table: t_mal_system_resource                                 */
 /*==============================================================*/
 create table t_mal_system_resource
@@ -419,6 +406,7 @@ create table t_mal_system_resource
    code_path            varchar(200) comment '编号PATH',
    depth                integer not null comment '深度',
    node_code            varchar(50) not null comment '节点编号',
+   reserved             integer not null comment '系统保留',
    node_name            varchar(50) comment '节点名称',
    node_type            integer comment '节点类型',
    node_sub_type        integer comment '节点子类型',
@@ -466,3 +454,16 @@ create unique index ui_mal_sr_code on t_mal_system_resource
 (
    node_code
 );
+
+/*==============================================================*/
+/* Table: t_mal_system_short_sequence                           */
+/*==============================================================*/
+create table t_mal_system_short_sequence
+(
+   stub                 char(1) comment 'stub',
+   id                   bigint not null auto_increment comment '主键',
+   primary key (id)
+)
+engine=myisam default charset=utf8;
+
+alter table t_mal_system_short_sequence comment '商场短ID生成表';

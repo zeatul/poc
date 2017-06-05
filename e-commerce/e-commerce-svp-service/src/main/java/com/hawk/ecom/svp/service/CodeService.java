@@ -29,20 +29,20 @@ public class CodeService {
 	private PkGenService bsiTaskCodeSequenceService;
 
 	public String buildCashCouponCode(){
-		return DateTools.convert(new Date(), "yyyyMMdd")+(cashCouponCodeSequenceService.genPk()+1000000);
+		return DateTools.convert(new Date(), "yyyyMMdd")+(cashCouponCodeSequenceService.genPk());
 		 
 	}
 	
 	public String buildOrderCode(){
-		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(orderCodeSequenceService.genPk()+1000000);
+		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(orderCodeSequenceService.genPk());
 	}
 	
 	public String buildChargeTaskCode(){
-		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(chargeCodeSequenceService.genPk()+1000000);
+		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(chargeCodeSequenceService.genPk());
 	}
 	
 	public String buildBsiTaskCode(){
-		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(bsiTaskCodeSequenceService.genPk()+1000000);
+		return DateTools.convert(new Date(), "yyyyMMddHHmm")+(bsiTaskCodeSequenceService.genPk());
 	}
 	
 	

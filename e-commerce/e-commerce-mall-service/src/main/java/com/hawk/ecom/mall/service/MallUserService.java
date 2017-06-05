@@ -19,6 +19,7 @@ import com.hawk.ecom.mall.constant.ConstMallUserStatus;
 import com.hawk.ecom.mall.constant.ConstMallUserType;
 import com.hawk.ecom.mall.exception.DuplicateMallUserRuntimeException;
 import com.hawk.ecom.mall.exception.IllegalAccessRuntimeException;
+import com.hawk.ecom.mall.exception.MallForbiddenUserStatusRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenInvalidRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenLogoutRuntimeException;
 import com.hawk.ecom.mall.exception.MallTokenTimeoutRuntimeException;
@@ -33,8 +34,9 @@ import com.hawk.ecom.mall.request.MallListUserParam;
 import com.hawk.ecom.mall.request.MallLoginParam;
 import com.hawk.ecom.mall.request.MallResetPasswordParam;
 import com.hawk.ecom.mall.request.MallUpdatePasswordParam;
+import com.hawk.ecom.mall.request.MallUpdateUserParam;
+import com.hawk.ecom.mall.request.MallUpdateUserStatusParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
-import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -82,7 +84,7 @@ public class MallUserService {
 	
 	public static void main(String[] args){
 		Date date = DateTools.parse("2017-05-24 00:00:00", DateTools.DATETIME_PATTERN);
-		System.out.println(new MallUserService().password("hawk@1234","000001",date));
+		System.out.println(new MallUserService().password("hawk@1234","000002",date));
 	}
 	
 	public MallUserDomain queryMallUserByUserCode(String userCode){
@@ -157,6 +159,10 @@ public class MallUserService {
 	@Valid
 	public String login(@Valid MallLoginParam mallLoginParam){
 		MallUserDomain mallUserDomain = checkPassword(mallLoginParam.getMobileNumber(),mallLoginParam.getLoginPwd());
+		if (mallUserDomain.getUserStatus() == ConstMallUserStatus.FORBIDDEN){
+			throw new MallForbiddenUserStatusRuntimeException();
+		}
+		
 		MallLoginDomain mallLoginDomain = new MallLoginDomain();
 		Date curDate = new Date();
 		mallLoginDomain.setCreateDate(curDate);
@@ -209,14 +215,19 @@ public class MallUserService {
 		return StringTools.concat("_","mall","user","token",token);
 	}
 	
-	public MallUserInfoResponse loginInfo(String token){
+	public MallUserDomain loginInfo(String token){
 		if (StringTools.isNullOrEmpty(token)){
 			return null;
 		}
+		MallUserDomain mallUserDomain = null;
 		String loginTokenKey = buildMallUserLongTokenKey(token);
 		CachedMallLoginToken cachedMallLoginToken = cacheService.get(loginTokenKey, CachedMallLoginToken.class);
 		if (cachedMallLoginToken!=null){
-			
+			mallUserDomain = new MallUserDomain();
+			mallUserDomain.setMobileNumber(cachedMallLoginToken.getMobileNumber());
+			mallUserDomain.setUserCode(cachedMallLoginToken.getUserCode());
+			mallUserDomain.setUserName(cachedMallLoginToken.getUserName());
+			mallUserDomain.setId(cachedMallLoginToken.getUserId());
 		}else{		
 			MallLoginDomain mallLoginDomain = mallLoginMapper.load(token);
 			if (mallLoginDomain == null){
@@ -233,7 +244,7 @@ public class MallUserService {
 			cachedMallLoginToken.setUserCode(mallLoginDomain.getUserCode());
 			cachedMallLoginToken.setUserId(mallLoginDomain.getUserId());
 			
-			MallUserDomain mallUserDomain = mallUserMapper.load(mallLoginDomain.getUserId());
+			mallUserDomain = mallUserMapper.load(mallLoginDomain.getUserId());
 			if (mallUserDomain == null)
 				throw new MallUserNotFoundRuntimeException();
 			
@@ -246,19 +257,15 @@ public class MallUserService {
 			throw new MallTokenTimeoutRuntimeException();
 		}
 		
-		MallUserInfoResponse mallUserInfoResponse = new MallUserInfoResponse();
-		mallUserInfoResponse.setMobileNumber(cachedMallLoginToken.getMobileNumber());
-		mallUserInfoResponse.setUserCode(cachedMallLoginToken.getUserCode());
-		mallUserInfoResponse.setUserId(cachedMallLoginToken.getUserId());
-		mallUserInfoResponse.setUserName(cachedMallLoginToken.getUserName());
-		return mallUserInfoResponse;
+		
+		return mallUserDomain;
 	}
 	
 	private String generateMallUserCode() {
 		/**
 		 * 8位及8位以上的数字构成的字符串
 		 */
-		return new Long(mallUserCodeSequenceService.genPk() + 100000).toString();
+		return new Long(mallUserCodeSequenceService.genPk() ).toString();
 
 	}
 	
@@ -270,7 +277,7 @@ public class MallUserService {
 	public MallUserDomain createUser(@Valid MallCreateUserParam mallCreateUserParam){
 		
 		
-		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+		if (!authService.hasAnyRole(mallCreateUserParam.getOperatorCode(), Arrays.asList("superadmin","admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
 		
@@ -313,8 +320,30 @@ public class MallUserService {
 	}
 	
 	@Valid
+	public void updateUser(@NotNull("参数") @Valid MallUpdateUserParam mallUpdateUserParam){
+		if (!authService.hasAnyRole(mallUpdateUserParam.getOperatorCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		MallUserDomain mallUserDomain = queryMallUserByUserCode(mallUpdateUserParam.getUserCode());
+		
+		if (mallUserDomain  == null){
+			throw new MallUserNotFoundRuntimeException();
+		}
+		
+		MallUserDomain update = new MallUserDomain();
+		update.setId(mallUserDomain.getId());
+		update.setUserName(mallUpdateUserParam.getUserName());
+		update.setUserSex(mallUpdateUserParam.getUserSex());
+		update.setUserBirthday(mallUpdateUserParam.getUserBirthday());
+		update.setUpdateDate(new Date());
+		update.setUpdateUserCode(mallUpdateUserParam.getOperatorCode());
+		mallUserMapper.updateWithoutNull(update);
+	}
+	
+	@Valid
 	public List<MallUserDomain> listMallUser(@NotNull("参数") @Valid MallListUserParam mallListUserParam){
-		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("superadmin","admin"))){
+		if (!authService.hasAnyRole(mallListUserParam.getOperatorCode(), Arrays.asList("superadmin","admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
 		if (StringTools.isNullOrEmpty(mallListUserParam.getOrder())){
@@ -324,5 +353,26 @@ public class MallUserService {
 		return mallUserMapper.loadDynamicPaging(params);
 	}
 	
+	@Valid
+	public void updateUserStatus(@NotNull("参数") @Valid MallUpdateUserStatusParam mallUpdateUserStatusParam){
+		if (!authService.hasAnyRole(mallUpdateUserStatusParam.getOperatorCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		for (String userCode : mallUpdateUserStatusParam.getUserCodes()){
+			MallUserDomain mallUserDomain = queryMallUserByUserCode(userCode);
+			
+			if (mallUserDomain  == null){
+				throw new MallUserNotFoundRuntimeException();
+			}
+			
+			MallUserDomain update = new MallUserDomain();
+			update.setId(mallUserDomain.getId());
+			update.setUserStatus(mallUpdateUserStatusParam.getUserStatus());
+			update.setUpdateDate(new Date());
+			update.setUpdateUserCode(mallUpdateUserStatusParam.getOperatorCode());
+			mallUserMapper.updateWithoutNull(update);
+		}
+	}
 	
 }

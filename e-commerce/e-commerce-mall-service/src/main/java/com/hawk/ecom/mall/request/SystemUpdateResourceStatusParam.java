@@ -42,7 +42,7 @@ public class SystemUpdateResourceStatusParam {
 	/**
 	 * 要删除的节点编号集合
 	 */
-	@NotEmpty
+	@NotEmpty("资源节点编号集合")
 	private List<String> nodeCodes;
 	
 	/**

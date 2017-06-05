@@ -28,9 +28,26 @@ public class ScheduleTools {
 			 * 第4次，720分钟
 			 */
 			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 360);
-		}else{
+		}else if (execTimes == 5){
 			/**
 			 * 第5次，1440分钟
+			 */
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 1440);
+		}else if (execTimes == 6){
+			/**
+			 * 第6次，1440分钟
+			 */
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 1440);
+		}
+		else if (execTimes == 7){
+			/**
+			 * 第7次，1440分钟
+			 */
+			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 1440);
+		}
+		else{
+			/**
+			 * 第8次，1440分钟
 			 */
 			scheduleExecDate = DateTools.addMinutes(scheduleExecDate, 1440);
 		}

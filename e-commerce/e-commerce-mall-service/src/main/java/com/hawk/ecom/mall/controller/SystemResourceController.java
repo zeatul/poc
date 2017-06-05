@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemLoadResourceParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
@@ -31,6 +32,7 @@ import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
+import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
 
 @RestController
 @RequestMapping("/mall/admin/resource")
@@ -43,7 +45,7 @@ public class SystemResourceController {
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to mall resource controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+		return "Welcome to mall resource admin controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 	
 	@RequestMapping(value = "/create", method = POST)
@@ -84,16 +86,26 @@ public class SystemResourceController {
 	public WebResponse<SystemResourceInfoResponse> loadResource(@PathVariable String nodeCode) throws Exception {
 		SystemLoadResourceParam param = new SystemLoadResourceParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		
+		param.setNodeCode(nodeCode);
 		SystemResourceDomain systemResourceDomain = systemResourceService.loadSystemResource(param);
 		SystemResourceInfoResponse result = DomainTools.copy(systemResourceDomain, SystemResourceInfoResponse.class);
 		return SuccessResponse.build(result);
 	}
 	
 	@RequestMapping(value = "/status/update", method = POST)
-	public WebResponse<MallUserInfoResponse> updateResourceStatus(HttpServletRequest request) throws Exception {
-		SystemUpdateResourceParam param = HttpRequestTools.parse(request, SystemUpdateResourceParam.class);
+	public WebResponse<ResponseData> updateResourceStatus(HttpServletRequest request) throws Exception {
+		SystemUpdateResourceStatusParam param = HttpRequestTools.parse(request, SystemUpdateResourceStatusParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		systemResourceService.updateResource(param);
+		systemResourceService.updateResourceStatus(param);
 		return SuccessResponse.build(null);
 	} 
+	
+	@RequestMapping(value = "/order/exchange", method = POST)
+	public WebResponse<ResponseData> exchangeResourceOrder(HttpServletRequest request) throws Exception {
+		SystemExchangeResourceOrderParam param = HttpRequestTools.parse(request, SystemExchangeResourceOrderParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		systemResourceService.exchangeResourceOrder(param);
+		return SuccessResponse.build(null);
+	}
 }

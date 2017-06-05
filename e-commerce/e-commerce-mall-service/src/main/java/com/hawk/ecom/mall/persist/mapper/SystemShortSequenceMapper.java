@@ -1,37 +1,37 @@
 package com.hawk.ecom.mall.persist.mapper;
 import java.util.List;
 import java.util.Map;
-import com.hawk.ecom.mall.persist.domain.ShortSequenceDomain;
+import com.hawk.ecom.mall.persist.domain.SystemShortSequenceDomain;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * table = t_mal_short_sequence
+ * table = t_mal_system_short_sequence
  * desc = 商场短ID生成表
  * 
  * @author Gen
  */
-public interface ShortSequenceMapper  {
+public interface SystemShortSequenceMapper  {
 
 	/**
 	 * 根据主键加载记录
 	 * @param id 主键
 	 * @return 查询到的记录
 	 */
-	ShortSequenceDomain load(@Param("id")Long id );
+	SystemShortSequenceDomain load(@Param("id")Long id );
 	
 	/**
 	 * 动态条件加载记录
 	 * @param params 查询条件
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<ShortSequenceDomain> loadDynamic(Map<String,Object> params);
+	List<SystemShortSequenceDomain> loadDynamic(Map<String,Object> params);
 	
 	/**
 	 * 需要传入分页参数，请使用对应的工具类注入分页参数
 	 * @param params
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<ShortSequenceDomain> loadDynamicPaging(Map<String,Object> params);
+	List<SystemShortSequenceDomain> loadDynamicPaging(Map<String,Object> params);
 	
 	/**
 	 * 计算符合条件的记录数
@@ -50,10 +50,10 @@ public interface ShortSequenceMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param ShortSequenceDomain 商场短ID生成表
+	 * @param SystemShortSequenceDomain 商场短ID生成表
 	 * @return 插入的记录数
 	 */
-	int insert(ShortSequenceDomain shortSequenceDomain);
+	int insert(SystemShortSequenceDomain systemShortSequenceDomain);
 	
 	/**
 	 * 根据主键删除记录
@@ -71,17 +71,17 @@ public interface ShortSequenceMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param ShortSequenceDomain 商场短ID生成表
+	 * @param SystemShortSequenceDomain 商场短ID生成表
 	 * @return 更新的记录数
 	 */
-	int update(ShortSequenceDomain shortSequenceDomain);
+	int update(SystemShortSequenceDomain systemShortSequenceDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param ShortSequenceDomain 商场短ID生成表
+	 * @param SystemShortSequenceDomain 商场短ID生成表
 	 * @return 更新的记录数
 	 */
-	int updateWithoutNull(ShortSequenceDomain shortSequenceDomain);
+	int updateWithoutNull(SystemShortSequenceDomain systemShortSequenceDomain);
 	
 	/**
 	 * 更新,要跟新的字段使用字段名，更新条件使用old_字段名，用来适配某些批量更新记录的情况

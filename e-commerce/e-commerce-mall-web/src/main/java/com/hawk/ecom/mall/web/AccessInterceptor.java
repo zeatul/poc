@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.hawk.ecom.mall.persist.domain.MallUserDomain;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
 import com.hawk.ecom.mall.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
@@ -26,18 +27,18 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		logger.info("AccessInterceptor : {}",JsonTools.toJsonString(httpRequestInfo));
 		AuthThreadLocal.setHttpRequestInfo(httpRequestInfo);
 		String token = httpRequestInfo.getToken();
-		MallUserInfoResponse mallUserInfoResponse = mallUserService.loginInfo(token);
+		MallUserDomain mallUserDomain = mallUserService.loginInfo(token);
 		
 		String version = request.getParameter("version");
 		if (version == null || !"1.0".equals(version)){
 			throw new RuntimeException("version不对");
 		}
 		
-		if (mallUserInfoResponse !=null){		
-			AuthThreadLocal.setMobileNumber(mallUserInfoResponse.getMobileNumber());
+		if (mallUserDomain !=null){		
+			AuthThreadLocal.setMobileNumber(mallUserDomain.getMobileNumber());
 			AuthThreadLocal.setToken(token);
-			AuthThreadLocal.setUserId(mallUserInfoResponse.getUserId());	
-			AuthThreadLocal.setUserCode(mallUserInfoResponse.getUserCode());
+			AuthThreadLocal.setUserId(mallUserDomain.getId());	
+			AuthThreadLocal.setUserCode(mallUserDomain.getUserCode());
 		}else{
 			AuthThreadLocal.setMobileNumber(null);
 			AuthThreadLocal.setToken(null);

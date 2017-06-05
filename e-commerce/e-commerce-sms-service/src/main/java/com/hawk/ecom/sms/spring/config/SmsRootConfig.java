@@ -29,7 +29,7 @@ public class SmsRootConfig {
 	
 	@Bean("smsBatchCodeSequenceService")
 	public PkGenService batchCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(0);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_sms_batch_codel_sequence(stub) values('a')");
 		return mysqlPkGenerator;

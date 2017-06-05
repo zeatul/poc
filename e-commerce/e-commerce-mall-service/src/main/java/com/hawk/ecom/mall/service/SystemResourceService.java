@@ -20,6 +20,7 @@ import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.persist.mapper.SystemResourceMapper;
 import com.hawk.ecom.mall.persist.mapperex.SystemResourceExMapper;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
+import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemLoadResourceParam;
 import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
@@ -29,12 +30,14 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 import com.hawk.ecom.mall.exception.SystemResourceHasChildRuntimeException;
+import com.hawk.ecom.mall.exception.SystemResourceHasDifferentParentRuntimeException;
 
 @Service
 public class SystemResourceService {
@@ -148,6 +151,7 @@ public class SystemResourceService {
 		systemResourceDomain.setNodeValueType(ConstSystemResource.NodeValueType.HTTP);
 		systemResourceDomain.setPid(parent.getId());
 		systemResourceDomain.setUpdateDate(curDate);
+		systemResourceDomain.setReserved(ConstBoolean.FALSE);
 		systemResourceDomain.setUpdateUserCode(systemCreateResourceParam.getOperatorCode());
 
 		Long id = systemShorkPkSequenceService.genPk();
@@ -217,9 +221,10 @@ public class SystemResourceService {
 		}
 		SystemResourceDomain update = new SystemResourceDomain();
 		DomainTools.copy(systemUpdateResourceParam, update);
+		update.setId(node.getId());
 		update.setUpdateDate(new Date());
 		update.setUpdateUserCode(systemUpdateResourceParam.getOperatorCode());
-		systemResourceMapper.update(update);
+		systemResourceMapper.updateWithoutNull(update);
 	}
 	
 	@Valid
@@ -240,7 +245,13 @@ public class SystemResourceService {
 			if (ROOT.getNodeCode().equalsIgnoreCase(nodeCode)) {
 				throw new RuntimeException("nodeCode shouldn't be root");
 			}
-
+			
+			/**
+			 * 查询是不是保留节点
+			 */
+			if (ConstBoolean.parse(node.getReserved())){
+				throw new RuntimeException("系统保留节点,不能删除");
+			}
 			
 			/**
 			 * 查询有没有子节点
@@ -284,8 +295,50 @@ public class SystemResourceService {
 			update.setNodeStatus(newNodeStatus);
 			update.setUpdateDate(new Date());
 			update.setUpdateUserCode(systemUpdateResourceStatusParam.getOperatorCode());
+			systemResourceMapper.updateWithoutNull(update);
 			
 		}
 		
+	}
+	
+	@Valid
+	@Transactional
+	public void exchangeResourceOrder(SystemExchangeResourceOrderParam systemExchangeResourceOrderParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		if (ROOT.getNodeCode().equalsIgnoreCase(systemExchangeResourceOrderParam.getNodeCodeA())) {
+			throw new RuntimeException("nodeCode shouldn't be root");
+		}
+		
+		if (ROOT.getNodeCode().equalsIgnoreCase(systemExchangeResourceOrderParam.getNodeCodeB())) {
+			throw new RuntimeException("nodeCode shouldn't be root");
+		}
+		
+		SystemResourceDomain nodeA = querySystemResourceByNodeCode(systemExchangeResourceOrderParam.getNodeCodeA());
+		if (nodeA == null){
+			throw new SystemResourceNotFoundRuntimeException();
+		}		
+		
+		SystemResourceDomain nodeB = querySystemResourceByNodeCode(systemExchangeResourceOrderParam.getNodeCodeB());
+		if (nodeB == null){
+			throw new SystemResourceNotFoundRuntimeException();
+		}
+		
+		if (!nodeA.getPid().equals(nodeB.getPid())){
+			throw new SystemResourceHasDifferentParentRuntimeException();
+		}
+		
+		SystemResourceDomain update = new SystemResourceDomain();
+		update.setId(nodeA.getId());
+		update.setObjectOrder(nodeB.getObjectOrder());
+		update.setUpdateDate(new Date());
+		update.setUpdateUserCode(systemExchangeResourceOrderParam.getOperatorCode());
+		systemResourceMapper.updateWithoutNull(update);
+		
+		update.setId(nodeB.getId());
+		update.setObjectOrder(nodeA.getObjectOrder());
+		systemResourceMapper.updateWithoutNull(update);
 	}
 }

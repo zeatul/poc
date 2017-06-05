@@ -28,6 +28,11 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		String token = httpRequestInfo.getToken();
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
 		
+		String version = request.getParameter("version");
+		if (version == null || !"1.0".equals(version)){
+			throw new RuntimeException("version不对");
+		}
+		
 		if (userInfoResponse !=null){		
 			AuthThreadLocal.setMobileNumber(userInfoResponse.getMobileNumber());
 			AuthThreadLocal.setToken(token);

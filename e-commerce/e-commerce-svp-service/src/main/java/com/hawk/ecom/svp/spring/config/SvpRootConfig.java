@@ -32,7 +32,7 @@ public class SvpRootConfig {
 	
 	@Bean("cashCouponCodeSequenceService")
 	public PkGenService cashCouponCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(1000000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_svp_bsi_cash_coupon_sequence(stub) values('a')");
 		return mysqlPkGenerator;
@@ -40,7 +40,7 @@ public class SvpRootConfig {
 	
 	@Bean("orderCodeSequenceService")
 	public PkGenService orderCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(1000000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_svp_order_sequence(stub) values('a')");
 		return mysqlPkGenerator;
@@ -48,7 +48,7 @@ public class SvpRootConfig {
 	
 	@Bean("chargeCodeSequenceService")
 	public PkGenService chargeCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(1000000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_svp_charge_sequence(stub) values('a')");
 		return mysqlPkGenerator;
@@ -56,7 +56,7 @@ public class SvpRootConfig {
 	
 	@Bean("bsiTaskCodeSequenceService")
 	public PkGenService bsiTaskCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator();
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(1000000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_svp_bsi_out_order_sequence(stub) values('a')");
 		return mysqlPkGenerator;

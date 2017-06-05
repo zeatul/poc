@@ -31,13 +31,7 @@ public class MallCreateUserParam {
 		this.registerChannel = registerChannel;
 	}
 
-	public Long getOperatorId() {
-		return operatorId;
-	}
-
-	public void setOperatorId(Long operatorId) {
-		this.operatorId = operatorId;
-	}
+	
 
 	public String getOperatorCode() {
 		return operatorCode;
@@ -138,11 +132,7 @@ public class MallCreateUserParam {
 	 */
 	private String registerChannel;
 	
-	/**
-	 * 操作员id
-	 */
-	@MallNotLogin
-	private Long operatorId;
+	
 	
 	/**
 	 * 操作员编号

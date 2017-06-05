@@ -1,8 +1,16 @@
 {
-	"nodeCodes": [
-		"a",
-		"b",
-		"c"
-	],
-	"nodeStatus": 99
+	"data": {
+		"records": [
+			{
+				"nodeName": "北京",
+				"nodeValue": "http://beijing.com"
+			},
+			{
+				"nodeName": "北京",
+				"nodeValue": "http://beijing.com"
+			}
+		],
+		"count": 2
+	},
+	"code": 1
 }

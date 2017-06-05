@@ -151,6 +151,26 @@ public class DateTools {
 		return c.getTime();
 	}
 	
+	
+	/**
+	 * 去掉日期的时，分，秒，返回改日的最早时刻
+	 * @param date
+	 * @return
+	 */
+	public static Date firstTimeOfDay(Date date){
+		return parse( convert(date,DATE_PATTERN),DATE_PATTERN);
+	}
+	
+	/**
+	 * 去掉日期的时，分，秒，返回下一天的的最早时刻
+	 * @param date
+	 * @return
+	 */
+	public static Date firstTimeOfNextDay(Date date){
+		Date d = parse( convert(date,DATE_PATTERN),DATE_PATTERN);
+		return addDays(d,1);
+	}
+	
 	public static void main(String[] args){
 		System.out.println(firstDayOfMonth(new Date()));
 		System.out.println(firstDayOfNextMonth(new Date()));
