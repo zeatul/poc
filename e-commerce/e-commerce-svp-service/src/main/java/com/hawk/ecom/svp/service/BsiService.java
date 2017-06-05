@@ -248,7 +248,7 @@ public class BsiService {
 		bsiOrderDetailDomain.setCreateDate(currentDate);
 		bsiOrderDetailDomain.setUpdateDate(currentDate);
 		bsiOrderDetailDomain.setExecTimes(0);
-		bsiOrderDetailDomain.setMaxExecTimes(5); // 最多请求5次
+		bsiOrderDetailDomain.setMaxExecTimes(8); // 最多请求8次
 		bsiOrderDetailDomain.setBsiTaskCode(codeService.buildBsiTaskCode());
 		bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.UN_EXEC);
 		bsiOrderDetailDomain.setBsiCashCouponCode(bsiCashCouponCode);

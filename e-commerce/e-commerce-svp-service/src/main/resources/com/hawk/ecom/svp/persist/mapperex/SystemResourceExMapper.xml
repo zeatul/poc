@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.svp.persist.mapperex.SystemResourceExMapper">
+
+	
+	
+
+	<select id="h5main"   resultType="SystemResourceExDomain">
+		select node_name as "nodeName",
+			node_value as "nodeValue"
+		from t_mal_system_resource 
+		WHERE pid = 1 and node_status = 100
+		order by object_order asc
+	</select>
+	
+	
+</mapper>

@@ -45,7 +45,7 @@ public class SystemResourceController {
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to mall resource controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+		return "Welcome to mall resource admin controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 	
 	@RequestMapping(value = "/create", method = POST)

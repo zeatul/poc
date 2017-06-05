@@ -1,0 +1,10 @@
+#切换数据库
+use dic;
+
+#查询所有联通订单明细
+select * from t_svp_mobile_data_order_detail;
+
+#修改失败次数超限变成完全失败状态的记录 为可以重新执行状态;
+update t_svp_mobile_data_order_detail
+set exec_times  =0,charge_status = 0
+where charge_status = 99  and last_exec_err_code = 'overtimes';

@@ -119,7 +119,7 @@ public class BsiOuterCreateOrderJob implements Runnable {
 			if (execTimes >= bsiOrderDetailDomain.getMaxExecTimes()) {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.COMPLETE_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode("overtimes");
-				bsiOrderDetailDomain.setLastExecErrMsg("达到最大执行次数");
+				bsiOrderDetailDomain.setLastExecErrMsg("达到最大执行次数;"+e.getClass().getName()+";"+e.getMessage());
 			} else {
 				bsiOrderDetailDomain.setBsiTaskStatus(ConstBsiTaskStatus.EXEC_FAILED);
 				bsiOrderDetailDomain.setLastExecErrCode(e.getClass().getName());

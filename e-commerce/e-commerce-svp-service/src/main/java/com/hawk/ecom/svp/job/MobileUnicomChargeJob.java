@@ -81,7 +81,7 @@ public class MobileUnicomChargeJob implements Runnable{
 		
 		}catch (OuterCallException  e){
 			logger.error("MobileUnicomChargeJob meet error",e);
-			mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.EXEC_FAILED);
+			mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.COMPLETE_FAILED);
 			mobileDataOrderDetailDomain.setLastExecErrCode(new Integer(e.getCode()).toString());
 			mobileDataOrderDetailDomain.setLastExecErrMsg(e.getMessage());
 		}
@@ -90,7 +90,7 @@ public class MobileUnicomChargeJob implements Runnable{
 			if (execTimes >= mobileDataOrderDetailDomain.getMaxExecTimes()) {
 				mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.COMPLETE_FAILED);
 				mobileDataOrderDetailDomain.setLastExecErrCode("overtimes");
-				mobileDataOrderDetailDomain.setLastExecErrMsg("达到最大执行次数");
+				mobileDataOrderDetailDomain.setLastExecErrMsg("达到最大执行次数;"+e.getClass().getName()+";"+e.getMessage());
 			} else {
 				mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.EXEC_FAILED);
 				mobileDataOrderDetailDomain.setLastExecErrCode(e.getClass().getName());

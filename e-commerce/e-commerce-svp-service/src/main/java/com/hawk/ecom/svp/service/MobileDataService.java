@@ -137,7 +137,7 @@ public class MobileDataService {
 		mobileDataOrderDetailDomain.setUserCode(orderDomain.getUserCode());
 		mobileDataOrderDetailDomain.setChargeStatus(ConstChargeStatus.UN_EXEC);
 		mobileDataOrderDetailDomain.setExecTimes(0);
-		mobileDataOrderDetailDomain.setMaxExecTimes(5);
+		mobileDataOrderDetailDomain.setMaxExecTimes(8);
 		mobileDataOrderDetailDomain.setCreateDate(currentDt);
 		mobileDataOrderDetailDomain.setUpdateDate(currentDt);
 		mobileDataOrderDetailDomain.setPromotionActivityCode("00002");
