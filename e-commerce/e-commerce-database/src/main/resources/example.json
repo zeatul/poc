@@ -1,16 +1,8 @@
 {
 	"data": {
-		"records": [
-			{
-				"nodeName": "北京",
-				"nodeValue": "http://beijing.com"
-			},
-			{
-				"nodeName": "北京",
-				"nodeValue": "http://beijing.com"
-			}
-		],
-		"count": 2
+		"userCode": "000001",
+		"mobileNumber": "10000000000",
+		"userName": "superadmin"
 	},
 	"code": 1
 }
