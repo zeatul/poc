@@ -20,7 +20,7 @@ import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemLoadResourceParam;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
-import com.hawk.ecom.mall.response.MultiSystemResourceInfoResponse;
+import com.hawk.ecom.mall.response.SystemMultiResourceInfoResponse;
 import com.hawk.ecom.mall.response.SystemResourceInfoResponse;
 import com.hawk.ecom.mall.service.SystemResourceService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
@@ -66,11 +66,11 @@ public class SystemResourceController {
 	}
 	
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiSystemResourceInfoResponse> listResource(HttpServletRequest request) throws Exception {
+	public WebResponse<SystemMultiResourceInfoResponse> listResource(HttpServletRequest request) throws Exception {
 		SystemListResourceParam param = HttpRequestTools.parse(request, SystemListResourceParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		List<SystemResourceDomain> systemResourceDomainList = systemResourceService.listResource(param);
-		MultiSystemResourceInfoResponse result = new MultiSystemResourceInfoResponse(DomainTools.copy(systemResourceDomainList, SystemResourceInfoResponse.class));
+		SystemMultiResourceInfoResponse result = new SystemMultiResourceInfoResponse(DomainTools.copy(systemResourceDomainList, SystemResourceInfoResponse.class));
 		return SuccessResponse.build(result);
 	}
 	

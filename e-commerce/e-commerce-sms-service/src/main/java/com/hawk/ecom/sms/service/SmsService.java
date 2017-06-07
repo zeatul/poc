@@ -110,7 +110,7 @@ public class SmsService {
 		taskDomain.setMaxExecTimes(1);
 		taskDomain.setMobileNumber(mobileNumber);
 		taskDomain.setSmsBatchNo(batchNo);
-		taskDomain.setSmsIsBatch(ConstBoolean.FALSE);
+		taskDomain.setIsBatch(ConstBoolean.FALSE);
 		taskDomain.setSmsModelCode("000001");
 		taskDomain.setSmsMsgData(veriCode);
 		taskDomain.setSmsOperatorCode("0001");

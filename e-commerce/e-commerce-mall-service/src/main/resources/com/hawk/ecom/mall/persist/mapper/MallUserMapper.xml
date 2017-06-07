@@ -25,6 +25,7 @@
 		user_status_change_cause AS "userStatusChangeCause" ,
 		user_status_change_date AS "userStatusChangeDate" ,
 		last_access_date AS "lastAccessDate" ,
+		is_reserved AS "isReserved" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -55,6 +56,7 @@
 			<if test="userStatusChangeCause != null"> AND user_status_change_cause = #{userStatusChangeCause}  </if>
 			<if test="userStatusChangeDate != null"> AND user_status_change_date = #{userStatusChangeDate}  </if>
 			<if test="lastAccessDate != null"> AND last_access_date = #{lastAccessDate}  </if>
+			<if test="isReserved != null"> AND is_reserved = #{isReserved}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -86,6 +88,7 @@
 			AND user_status_change_cause = #{old_userStatusChangeCause}
 			AND user_status_change_date = #{old_userStatusChangeDate}
 			AND last_access_date = #{old_lastAccessDate}
+			AND is_reserved = #{old_isReserved}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -117,6 +120,7 @@
 			user_status_change_cause = #{userStatusChangeCause},
 			user_status_change_date = #{userStatusChangeDate},
 			last_access_date = #{lastAccessDate},
+			is_reserved = #{isReserved},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -148,6 +152,7 @@
 			<if test="userStatusChangeCause != null">user_status_change_cause = #{userStatusChangeCause},</if>
 			<if test="userStatusChangeDate != null">user_status_change_date = #{userStatusChangeDate},</if>
 			<if test="lastAccessDate != null">last_access_date = #{lastAccessDate},</if>
+			<if test="isReserved != null">is_reserved = #{isReserved},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -212,6 +217,7 @@
 				user_status_change_cause,				
 				user_status_change_date,				
 				last_access_date,				
+				is_reserved,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -240,6 +246,7 @@
 			#{userStatusChangeCause},
 			#{userStatusChangeDate},
 			#{lastAccessDate},
+			#{isReserved},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

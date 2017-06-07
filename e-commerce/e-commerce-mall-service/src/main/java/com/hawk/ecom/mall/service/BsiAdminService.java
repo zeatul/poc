@@ -24,7 +24,7 @@ import com.hawk.framework.utility.tools.DateTools;
 public class BsiAdminService {
 	
 	@Autowired
-	private AuthService authService;
+	private MallAuthService authService;
 	
 	@Autowired
 	private BsiAdminExMapper bsiAdminExMapper;

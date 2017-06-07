@@ -64,7 +64,7 @@ public class MallUserService {
 	private CacheService cacheService;
 	
 	@Autowired
-	private AuthService authService;
+	private MallAuthService authService;
 	
 	@Autowired
 	@Qualifier("pkGenService")
@@ -221,7 +221,7 @@ public class MallUserService {
 		}
 		MallUserDomain mallUserDomain = null;
 		String loginTokenKey = buildMallUserLongTokenKey(token);
-		CachedMallLoginToken cachedMallLoginToken = cacheService.get(loginTokenKey, CachedMallLoginToken.class);
+		MallCachedLoginToken cachedMallLoginToken = cacheService.get(loginTokenKey, MallCachedLoginToken.class);
 		if (cachedMallLoginToken!=null){
 			mallUserDomain = new MallUserDomain();
 			mallUserDomain.setMobileNumber(cachedMallLoginToken.getMobileNumber());
@@ -238,7 +238,7 @@ public class MallUserService {
 				throw new MallTokenLogoutRuntimeException();
 			}
 			
-			cachedMallLoginToken = new CachedMallLoginToken();
+			cachedMallLoginToken = new MallCachedLoginToken();
 			cachedMallLoginToken.setExpireDate(mallLoginDomain.getExpireDate().getTime());
 			cachedMallLoginToken.setMobileNumber(mallLoginDomain.getMobileNumber());
 			cachedMallLoginToken.setUserCode(mallLoginDomain.getUserCode());

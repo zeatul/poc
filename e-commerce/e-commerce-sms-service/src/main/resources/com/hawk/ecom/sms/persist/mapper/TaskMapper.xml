@@ -8,7 +8,7 @@
 				id AS "id" ,
 		sms_operator_code AS "smsOperatorCode" ,
 		sms_batch_no AS "smsBatchNo" ,
-		sms_is_batch AS "smsIsBatch" ,
+		is_batch AS "isBatch" ,
 		mobile_number AS "mobileNumber" ,
 		sms_status AS "smsStatus" ,
 		sms_model_code AS "smsModelCode" ,
@@ -32,7 +32,7 @@
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="smsOperatorCode != null"> AND sms_operator_code = #{smsOperatorCode}  </if>
 			<if test="smsBatchNo != null"> AND sms_batch_no = #{smsBatchNo}  </if>
-			<if test="smsIsBatch != null"> AND sms_is_batch = #{smsIsBatch}  </if>
+			<if test="isBatch != null"> AND is_batch = #{isBatch}  </if>
 			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
 			<if test="smsStatus != null"> AND sms_status = #{smsStatus}  </if>
 			<if test="smsModelCode != null"> AND sms_model_code = #{smsModelCode}  </if>
@@ -57,7 +57,7 @@
 			AND id = #{old_id}
 			AND sms_operator_code = #{old_smsOperatorCode}
 			AND sms_batch_no = #{old_smsBatchNo}
-			AND sms_is_batch = #{old_smsIsBatch}
+			AND is_batch = #{old_isBatch}
 			AND mobile_number = #{old_mobileNumber}
 			AND sms_status = #{old_smsStatus}
 			AND sms_model_code = #{old_smsModelCode}
@@ -82,7 +82,7 @@
 			id = #{id},
 			sms_operator_code = #{smsOperatorCode},
 			sms_batch_no = #{smsBatchNo},
-			sms_is_batch = #{smsIsBatch},
+			is_batch = #{isBatch},
 			mobile_number = #{mobileNumber},
 			sms_status = #{smsStatus},
 			sms_model_code = #{smsModelCode},
@@ -107,7 +107,7 @@
 			<if test="id != null">id = #{id},</if>
 			<if test="smsOperatorCode != null">sms_operator_code = #{smsOperatorCode},</if>
 			<if test="smsBatchNo != null">sms_batch_no = #{smsBatchNo},</if>
-			<if test="smsIsBatch != null">sms_is_batch = #{smsIsBatch},</if>
+			<if test="isBatch != null">is_batch = #{isBatch},</if>
 			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
 			<if test="smsStatus != null">sms_status = #{smsStatus},</if>
 			<if test="smsModelCode != null">sms_model_code = #{smsModelCode},</if>
@@ -165,7 +165,7 @@
 				id,				
 				sms_operator_code,				
 				sms_batch_no,				
-				sms_is_batch,				
+				is_batch,				
 				mobile_number,				
 				sms_status,				
 				sms_model_code,				
@@ -187,7 +187,7 @@
 			#{id},
 			#{smsOperatorCode},
 			#{smsBatchNo},
-			#{smsIsBatch},
+			#{isBatch},
 			#{mobileNumber},
 			#{smsStatus},
 			#{smsModelCode},

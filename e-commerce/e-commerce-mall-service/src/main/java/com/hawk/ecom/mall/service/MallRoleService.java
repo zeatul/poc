@@ -35,7 +35,7 @@ import com.hawk.framework.utility.tools.StringTools;
 public class MallRoleService {
 
 	@Autowired
-	private AuthService authService;
+	private MallAuthService authService;
 
 	@Autowired
 	private MallUserService mallUserService;

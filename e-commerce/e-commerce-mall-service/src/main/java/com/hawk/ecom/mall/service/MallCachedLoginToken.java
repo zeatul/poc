@@ -1,6 +1,6 @@
 package com.hawk.ecom.mall.service;
 
-public class CachedMallLoginToken {
+public class MallCachedLoginToken {
 	public String getUserName() {
 		return userName;
 	}
