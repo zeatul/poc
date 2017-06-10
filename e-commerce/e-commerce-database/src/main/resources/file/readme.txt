@@ -53,3 +53,30 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/create_db_mall.sql;
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/init_data_mall.sql;
 
+##########################################
+
+#pub
+source /home/mysql/sql/create_db_pub.sql;
+source /home/mysql/sql/init_data_pub.sql;
+
+
+#svp
+source /home/mysql/sql/create_db_svp.sql;
+source /home/mysql/sql/init_data_svp_prod.sql;
+
+
+#数据字典 
+source /home/mysql/sql/create_db_dic.sql;
+source /home/mysql/sql/init_data_dic.sql;
+
+#用户表 
+source /home/mysql/sql/create_db_user.sql;
+
+#短信表
+source /home/mysql/sql/create_db_sms.sql;
+source /home/mysql/sql/init_data_sms.sql;
+
+#商城
+source /home/mysql/sql/create_db_mall.sql;
+source /home/mysql/sql/init_data_mall.sql;
+

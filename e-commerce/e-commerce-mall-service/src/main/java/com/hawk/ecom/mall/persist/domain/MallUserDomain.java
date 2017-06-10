@@ -116,6 +116,11 @@ public class MallUserDomain implements Serializable {
 	private Date lastAccessDate;
 	
 	/**
+	 * 系统保留 is_reserved
+	 */
+	private Integer isReserved;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -464,6 +469,22 @@ public class MallUserDomain implements Serializable {
 	 */	
 	public void setLastAccessDate (Date lastAccessDate) {
 		this.lastAccessDate = lastAccessDate;
+	}
+	
+	/**
+	 * 
+	 * @return 系统保留 is_reserved
+	 */
+	public Integer getIsReserved(){
+		return isReserved;
+	}
+	
+	/**
+	 * 
+	 * @param isReserved 系统保留 is_reserved
+	 */	
+	public void setIsReserved (Integer isReserved) {
+		this.isReserved = isReserved;
 	}
 	
 	/**

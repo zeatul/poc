@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hawk.ecom.mall.persist.mapperex.MallRoleUserExMapper;
 
 @Service
-public class AuthService {
+public class MallAuthService {
 	
 	@Autowired
 	private MallRoleUserExMapper mallRoleUserExMapper;

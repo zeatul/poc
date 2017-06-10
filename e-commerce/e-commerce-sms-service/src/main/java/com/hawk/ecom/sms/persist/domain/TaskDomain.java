@@ -31,9 +31,9 @@ public class TaskDomain implements Serializable {
 	private String smsBatchNo;
 	
 	/**
-	 * 是否是批量发送 sms_is_batch
+	 * 是否是批量发送 is_batch
 	 */
-	private Integer smsIsBatch;
+	private Integer isBatch;
 	
 	/**
 	 * 手机号码 mobile_number
@@ -166,18 +166,18 @@ public class TaskDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是否是批量发送 sms_is_batch
+	 * @return 是否是批量发送 is_batch
 	 */
-	public Integer getSmsIsBatch(){
-		return smsIsBatch;
+	public Integer getIsBatch(){
+		return isBatch;
 	}
 	
 	/**
 	 * 
-	 * @param smsIsBatch 是否是批量发送 sms_is_batch
+	 * @param isBatch 是否是批量发送 is_batch
 	 */	
-	public void setSmsIsBatch (Integer smsIsBatch) {
-		this.smsIsBatch = smsIsBatch;
+	public void setIsBatch (Integer isBatch) {
+		this.isBatch = isBatch;
 	}
 	
 	/**

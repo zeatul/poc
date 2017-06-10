@@ -53,7 +53,7 @@ public class SystemResourceService {
 	private SystemResourceMapper systemResourceMapper;
 	
 	@Autowired
-	private AuthService authService;
+	private MallAuthService authService;
 
 	private final static SystemResourceDomain ROOT = new SystemResourceDomain();
 	static {

@@ -9,6 +9,7 @@
 		role_code AS "roleCode" ,
 		role_name AS "roleName" ,
 		role_type AS "roleType" ,
+		is_reserved AS "isReserved" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -23,6 +24,7 @@
 			<if test="roleCode != null"> AND role_code = #{roleCode}  </if>
 			<if test="roleName != null"> AND role_name = #{roleName}  </if>
 			<if test="roleType != null"> AND role_type = #{roleType}  </if>
+			<if test="isReserved != null"> AND is_reserved = #{isReserved}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -38,6 +40,7 @@
 			AND role_code = #{old_roleCode}
 			AND role_name = #{old_roleName}
 			AND role_type = #{old_roleType}
+			AND is_reserved = #{old_isReserved}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -53,6 +56,7 @@
 			role_code = #{roleCode},
 			role_name = #{roleName},
 			role_type = #{roleType},
+			is_reserved = #{isReserved},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -68,6 +72,7 @@
 			<if test="roleCode != null">role_code = #{roleCode},</if>
 			<if test="roleName != null">role_name = #{roleName},</if>
 			<if test="roleType != null">role_type = #{roleType},</if>
+			<if test="isReserved != null">is_reserved = #{isReserved},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -116,6 +121,7 @@
 				role_code,				
 				role_name,				
 				role_type,				
+				is_reserved,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -128,6 +134,7 @@
 			#{roleCode},
 			#{roleName},
 			#{roleType},
+			#{isReserved},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

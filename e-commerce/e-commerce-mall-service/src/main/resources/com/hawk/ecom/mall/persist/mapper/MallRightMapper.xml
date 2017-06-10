@@ -13,6 +13,7 @@
 		name_path AS "namePath" ,
 		code_path AS "codePath" ,
 		depth AS "depth" ,
+		is_reserved AS "isReserved" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -31,6 +32,7 @@
 			<if test="namePath != null"> AND name_path = #{namePath}  </if>
 			<if test="codePath != null"> AND code_path = #{codePath}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
+			<if test="isReserved != null"> AND is_reserved = #{isReserved}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -50,6 +52,7 @@
 			AND name_path = #{old_namePath}
 			AND code_path = #{old_codePath}
 			AND depth = #{old_depth}
+			AND is_reserved = #{old_isReserved}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -69,6 +72,7 @@
 			name_path = #{namePath},
 			code_path = #{codePath},
 			depth = #{depth},
+			is_reserved = #{isReserved},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -88,6 +92,7 @@
 			<if test="namePath != null">name_path = #{namePath},</if>
 			<if test="codePath != null">code_path = #{codePath},</if>
 			<if test="depth != null">depth = #{depth},</if>
+			<if test="isReserved != null">is_reserved = #{isReserved},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -140,6 +145,7 @@
 				name_path,				
 				code_path,				
 				depth,				
+				is_reserved,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -156,6 +162,7 @@
 			#{namePath},
 			#{codePath},
 			#{depth},
+			#{isReserved},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

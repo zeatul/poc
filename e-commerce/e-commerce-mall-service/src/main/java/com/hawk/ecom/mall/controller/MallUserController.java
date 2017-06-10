@@ -25,7 +25,7 @@ import com.hawk.ecom.mall.request.MallUpdateUserParam;
 import com.hawk.ecom.mall.request.MallUpdateUserStatusParam;
 import com.hawk.ecom.mall.response.MallLoginResponse;
 import com.hawk.ecom.mall.response.MallUserInfoResponse;
-import com.hawk.ecom.mall.response.MultiUserInfoResponse;
+import com.hawk.ecom.mall.response.MallMultiUserInfoResponse;
 import com.hawk.ecom.mall.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -122,12 +122,12 @@ public class MallUserController {
 	} 
 
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception {
+	public WebResponse<MallMultiUserInfoResponse> listUser(HttpServletRequest request) throws Exception {
 		MallListUserParam param = HttpRequestTools.parse(request, MallListUserParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		
 		List<MallUserDomain> mallUserDomainList = mallUserService.listMallUser(param);
-		MultiUserInfoResponse result = new MultiUserInfoResponse(DomainTools.copy(mallUserDomainList, MallUserInfoResponse.class));
+		MallMultiUserInfoResponse result = new MallMultiUserInfoResponse(DomainTools.copy(mallUserDomainList, MallUserInfoResponse.class));
 		return SuccessResponse.build(result);
 	}
 }

@@ -20,18 +20,31 @@ import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class MallUserControllerTest extends AbstractControllerTest {
+	
+	private String token = "e8c23558-5ed2-42cd-873a-6bf63dfee155";
 
-	@Test
+//	@Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		Map<String, String> request = new HashMap<String, String>();
-//		request.put("mobileNumber", "10000000000"); // superadmin
-		request.put("mobileNumber", "10000000001"); // admin
+		request.put("mobileNumber", "10000000000"); // superadmin
+//		request.put("mobileNumber", "10000000001"); // admin
 		request.put("loginPwd", "hawk@1234");
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+	
+	@Test
+	public void testMallLoginInfo(){
+		String url = getUrl("/mall/admin/user/login/info");
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		String result = httpExecutor.get(url, params);
 		System.out.println("result=" + result);
 	}
 

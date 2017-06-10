@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class MultiSystemResourceInfoResponse implements ResponseData{
+public class SystemMultiResourceInfoResponse implements ResponseData{
 	public List<SystemResourceInfoResponse> getSystemResources() {
 		return systemResources;
 	}
@@ -16,7 +16,7 @@ public class MultiSystemResourceInfoResponse implements ResponseData{
 	}
 
 
-	public MultiSystemResourceInfoResponse(List<SystemResourceInfoResponse> systemResources) {
+	public SystemMultiResourceInfoResponse(List<SystemResourceInfoResponse> systemResources) {
 		setSystemResources(systemResources);
 	}
 

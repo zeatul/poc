@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class MultiUserInfoResponse implements ResponseData{
+public class MallMultiUserInfoResponse implements ResponseData{
 	
-	public MultiUserInfoResponse(List<MallUserInfoResponse> userInfos) {
+	public MallMultiUserInfoResponse(List<MallUserInfoResponse> userInfos) {
 		setUserInfos(userInfos);
 	}
 

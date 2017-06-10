@@ -56,6 +56,11 @@ public class MallRightDomain implements Serializable {
 	private Integer depth;
 	
 	/**
+	 * 系统保留 is_reserved
+	 */
+	private Integer isReserved;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -212,6 +217,22 @@ public class MallRightDomain implements Serializable {
 	 */	
 	public void setDepth (Integer depth) {
 		this.depth = depth;
+	}
+	
+	/**
+	 * 
+	 * @return 系统保留 is_reserved
+	 */
+	public Integer getIsReserved(){
+		return isReserved;
+	}
+	
+	/**
+	 * 
+	 * @param isReserved 系统保留 is_reserved
+	 */	
+	public void setIsReserved (Integer isReserved) {
+		this.isReserved = isReserved;
 	}
 	
 	/**
