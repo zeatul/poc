@@ -15,8 +15,12 @@
 		<module>../e-commerce-pub</module>
 		<module>../e-commerce-web</module>
 		<module>../e-commerce-database</module>
-		<module>../e-commerce-mall-service</module>
-		<module>../e-commerce-mall-web</module>
+		<module>../e-commerce-mall-admin-service</module>		
+		<module>../e-commerce-mall-user-service</module>
+		<module>../e-commerce-mall-product-service</module>
+		<module>../e-commerce-mall-admin-web</module>
+		<module>../e-commerce-ecom-query-web</module>
+		<module>../e-commerce-ecom-trans-web</module>
 	</modules>
 
 	<profiles>
@@ -119,7 +123,19 @@
 			
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-mall-service</artifactId>
+				<artifactId>e-commerce-mall-admin-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-mall-user-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-mall-product-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

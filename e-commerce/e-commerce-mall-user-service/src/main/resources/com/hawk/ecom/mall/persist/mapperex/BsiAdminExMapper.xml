@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.mall.persist.mapperex.BsiAdminExMapper">
+
+	<sql id="columns">	
+		order_code AS "orderCode" ,
+		user_code AS "userCode" ,
+		bsi_task_status AS "bsiTaskStatus" ,
+		bsi_cash_coupon_code AS "bsiCashCouponCode" ,
+		bsi_insurance_code AS "bsiInsuranceCode" ,	
+		last_exec_err_code AS "lastExecErrCode" ,
+		last_exec_err_msg AS "lastExecErrMsg" ,	
+		create_date AS "createDate" 
+	</sql>
+	
+
+	
+	<select id="reportOrderDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_svp_bsi_order_detail
+		WHERE create_date &gt;= #{stdt}
+		AND create_date &lt; #{endt}
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+	
+	<select id="statCoupon" parameterType="hashmap"  resultType="hashmap">
+		select date , 
+			   count(1) as count 
+		from (
+			select bsi_cash_coupon_code ,
+				DATE_FORMAT(bsi_cash_coupon_create_date,'%Y-%m-%d') as date 
+			from t_svp_bsi_cash_coupon 
+			where bsi_cash_coupon_create_date &gt;= #{stdt}
+			and bsi_cash_coupon_create_date &lt; #{endt}
+			) t 
+		group by date
+		order by date desc
+	</select>
+	
+	<select id="statBsiOrderDetail" parameterType="hashmap"  resultType="hashmap">
+		select date , count(1) as count 
+		from (
+			select order_code ,DATE_FORMAT(create_date,'%Y-%m-%d') as date 
+			from t_svp_bsi_order_detail 
+			where create_date &gt;= #{stdt}
+			and create_date &lt; #{endt}
+			) t 
+		group by date
+		order by date desc
+	</select>
+	
+	
+</mapper>

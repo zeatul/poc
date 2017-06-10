@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.mall.persist.mapper.MallLoginMapper">
+
+	<sql id="columns">	
+				token AS "token" ,
+		user_id AS "userId" ,
+		user_code AS "userCode" ,
+		user_account AS "userAccount" ,
+		user_email AS "userEmail" ,
+		mobile_number AS "mobileNumber" ,
+		login_ip AS "loginIp" ,
+		login_type AS "loginType" ,
+		login_date AS "loginDate" ,
+		login_status AS "loginStatus" ,
+		login_channel AS "loginChannel" ,
+		last_access_date AS "lastAccessDate" ,
+		duration_second AS "durationSecond" ,
+		expire_date AS "expireDate" ,
+		imei AS "imei" ,
+		operating_system AS "operatingSystem" ,
+		operating_system_version AS "operatingSystemVersion" ,
+		device_brand AS "deviceBrand" ,
+		device_model AS "deviceModel" ,
+		user_agent AS "userAgent" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="token != null"> AND token = #{token}  </if>
+			<if test="userId != null"> AND user_id = #{userId}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="userAccount != null"> AND user_account = #{userAccount}  </if>
+			<if test="userEmail != null"> AND user_email = #{userEmail}  </if>
+			<if test="mobileNumber != null"> AND mobile_number = #{mobileNumber}  </if>
+			<if test="loginIp != null"> AND login_ip = #{loginIp}  </if>
+			<if test="loginType != null"> AND login_type = #{loginType}  </if>
+			<if test="loginDate != null"> AND login_date = #{loginDate}  </if>
+			<if test="loginStatus != null"> AND login_status = #{loginStatus}  </if>
+			<if test="loginChannel != null"> AND login_channel = #{loginChannel}  </if>
+			<if test="lastAccessDate != null"> AND last_access_date = #{lastAccessDate}  </if>
+			<if test="durationSecond != null"> AND duration_second = #{durationSecond}  </if>
+			<if test="expireDate != null"> AND expire_date = #{expireDate}  </if>
+			<if test="imei != null"> AND imei = #{imei}  </if>
+			<if test="operatingSystem != null"> AND operating_system = #{operatingSystem}  </if>
+			<if test="operatingSystemVersion != null"> AND operating_system_version = #{operatingSystemVersion}  </if>
+			<if test="deviceBrand != null"> AND device_brand = #{deviceBrand}  </if>
+			<if test="deviceModel != null"> AND device_model = #{deviceModel}  </if>
+			<if test="userAgent != null"> AND user_agent = #{userAgent}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND token = #{old_token}
+			AND user_id = #{old_userId}
+			AND user_code = #{old_userCode}
+			AND user_account = #{old_userAccount}
+			AND user_email = #{old_userEmail}
+			AND mobile_number = #{old_mobileNumber}
+			AND login_ip = #{old_loginIp}
+			AND login_type = #{old_loginType}
+			AND login_date = #{old_loginDate}
+			AND login_status = #{old_loginStatus}
+			AND login_channel = #{old_loginChannel}
+			AND last_access_date = #{old_lastAccessDate}
+			AND duration_second = #{old_durationSecond}
+			AND expire_date = #{old_expireDate}
+			AND imei = #{old_imei}
+			AND operating_system = #{old_operatingSystem}
+			AND operating_system_version = #{old_operatingSystemVersion}
+			AND device_brand = #{old_deviceBrand}
+			AND device_model = #{old_deviceModel}
+			AND user_agent = #{old_userAgent}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			token = #{token},
+			user_id = #{userId},
+			user_code = #{userCode},
+			user_account = #{userAccount},
+			user_email = #{userEmail},
+			mobile_number = #{mobileNumber},
+			login_ip = #{loginIp},
+			login_type = #{loginType},
+			login_date = #{loginDate},
+			login_status = #{loginStatus},
+			login_channel = #{loginChannel},
+			last_access_date = #{lastAccessDate},
+			duration_second = #{durationSecond},
+			expire_date = #{expireDate},
+			imei = #{imei},
+			operating_system = #{operatingSystem},
+			operating_system_version = #{operatingSystemVersion},
+			device_brand = #{deviceBrand},
+			device_model = #{deviceModel},
+			user_agent = #{userAgent},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="token != null">token = #{token},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="userAccount != null">user_account = #{userAccount},</if>
+			<if test="userEmail != null">user_email = #{userEmail},</if>
+			<if test="mobileNumber != null">mobile_number = #{mobileNumber},</if>
+			<if test="loginIp != null">login_ip = #{loginIp},</if>
+			<if test="loginType != null">login_type = #{loginType},</if>
+			<if test="loginDate != null">login_date = #{loginDate},</if>
+			<if test="loginStatus != null">login_status = #{loginStatus},</if>
+			<if test="loginChannel != null">login_channel = #{loginChannel},</if>
+			<if test="lastAccessDate != null">last_access_date = #{lastAccessDate},</if>
+			<if test="durationSecond != null">duration_second = #{durationSecond},</if>
+			<if test="expireDate != null">expire_date = #{expireDate},</if>
+			<if test="imei != null">imei = #{imei},</if>
+			<if test="operatingSystem != null">operating_system = #{operatingSystem},</if>
+			<if test="operatingSystemVersion != null">operating_system_version = #{operatingSystemVersion},</if>
+			<if test="deviceBrand != null">device_brand = #{deviceBrand},</if>
+			<if test="deviceModel != null">device_model = #{deviceModel},</if>
+			<if test="userAgent != null">user_agent = #{userAgent},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND token = #{token}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="MallLoginDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_mal_mall_login
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="MallLoginDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_mal_mall_login
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_mal_mall_login
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_mal_mall_login
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="MallLoginDomain">
+		INSERT INTO t_mal_mall_login (			
+				token,				
+				user_id,				
+				user_code,				
+				user_account,				
+				user_email,				
+				mobile_number,				
+				login_ip,				
+				login_type,				
+				login_date,				
+				login_status,				
+				login_channel,				
+				last_access_date,				
+				duration_second,				
+				expire_date,				
+				imei,				
+				operating_system,				
+				operating_system_version,				
+				device_brand,				
+				device_model,				
+				user_agent,				
+				create_date,				
+				update_date,				
+				delete_date				
+		)		
+		VALUES (	
+			#{token},
+			#{userId},
+			#{userCode},
+			#{userAccount},
+			#{userEmail},
+			#{mobileNumber},
+			#{loginIp},
+			#{loginType},
+			#{loginDate},
+			#{loginStatus},
+			#{loginChannel},
+			#{lastAccessDate},
+			#{durationSecond},
+			#{expireDate},
+			#{imei},
+			#{operatingSystem},
+			#{operatingSystemVersion},
+			#{deviceBrand},
+			#{deviceModel},
+			#{userAgent},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_mal_mall_login
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_mal_mall_login
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="MallLoginDomain">
+		UPDATE t_mal_mall_login	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="MallLoginDomain">
+		UPDATE t_mal_mall_login
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_mal_mall_login	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="MallLoginDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_mal_mall_login
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

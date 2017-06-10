@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.mall.persist.mapperex.MallRoleUserExMapper">
+
+	<select id="hasAnyRole" resultType="integer">
+		select count(1)
+		from t_mal_mall_user a ,t_mal_mall_role_user b , t_mal_mall_role c
+		where a.id = b.user_id and b.role_id = c.id
+		and a.user_code = #{userCode}
+		and
+		c.role_code in
+		<foreach item="item" index="index" collection="roles" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="listMembersInRole" parameterType="hashmap" resultType="MallUserDomain">
+		select a.user_code AS "userCode" ,
+		a.mobile_number AS "mobileNumber" ,
+		a.user_name AS "userName" ,
+		a.user_sex AS "userSex" ,
+		a.user_status AS "userStatus" ,
+		a.create_date AS "createDate"
+		from t_mal_mall_user a , t_mal_mall_role b ,t_mal_mall_role_user c
+		where a.id = c.user_id
+		and b.id = c.role_id
+		and b.role_code = #{roleCode}
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>
+	</select>
+
+</mapper>

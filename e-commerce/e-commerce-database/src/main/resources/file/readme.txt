@@ -22,9 +22,17 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/sms/init_data_sms.sql;
 
 #商城
-source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/create_db_mall.sql;
-source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/init_data_mall.sql;
-######code_gen 删文件有bug
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/muser/create_db_mall.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/muser/init_data_mall.sql;
+
+#商城用户
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/muser/create_db_muser.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/muser/init_data_muser.sql;
+
+#产品
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/create_db_product.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/init_data_product.sql;
+
 
 #################local##########################
 
@@ -53,6 +61,17 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/create_db_mall.sql;
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/init_data_mall.sql;
 
+#商城用户
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/create_db_muser.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/mall/init_data_muser.sql;
+
+#产品
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/create_database_product.sql
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/init_data_product.sql
+
+
+
+
 ##########################################
 
 #pub
@@ -80,3 +99,6 @@ source /home/mysql/sql/init_data_sms.sql;
 source /home/mysql/sql/create_db_mall.sql;
 source /home/mysql/sql/init_data_mall.sql;
 
+#商城用户
+source /home/mysql/sql/create_db_muser.sql;
+source /home/mysql/sql/init_data_muser.sql;
