@@ -18,7 +18,7 @@ public class BsiAdminControllerTest extends AbstractControllerTest {
 	
 //	@Test
 	public void testReportOrderDetail(){
-		String url = getUrl("/mall/admin/svp/bsi/report/orderDetail");
+		String url = getUrl("/mall/admin/report/svp/bsi/orderDetail");
 		
 		
 		BsiOrderDetailReportParam request = new BsiOrderDetailReportParam();
@@ -39,7 +39,7 @@ public class BsiAdminControllerTest extends AbstractControllerTest {
 	
 //	@Test
 	public void testStatCoupon(){
-		String url = getUrl("/mall/admin/svp/bsi/report/coupon/stat");
+		String url = getUrl("/mall/admin/report/svp/bsi/coupon/stat");
 		
 		BsiStatCouponParam request = new BsiStatCouponParam();
 		request.setStdt(new Date());
@@ -56,7 +56,7 @@ public class BsiAdminControllerTest extends AbstractControllerTest {
 	
 	@Test
 	public void testStatBsiOrderDetail(){
-		String url = getUrl("/mall/admin/svp/bsi/report/orderDetail/stat");
+		String url = getUrl("/mall/admin/report/svp/bsi/orderDetail/stat");
 		
 		BsiStatOrderDetailParam request = new BsiStatOrderDetailParam();
 		request.setStdt(new Date());

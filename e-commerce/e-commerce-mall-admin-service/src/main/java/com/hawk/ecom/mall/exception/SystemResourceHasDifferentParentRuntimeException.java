@@ -11,7 +11,7 @@ public class SystemResourceHasDifferentParentRuntimeException extends BasicRunti
 	 * 
 	 */
 	private static final long serialVersionUID = -1582832413168807407L;
-	final static int  code = ErrorCodeAllocation.MALL+13;
+	final static int  code = ErrorCodeAllocation.MALL_ADMIN+3;
 	
 	public SystemResourceHasDifferentParentRuntimeException( ) {
 		super(code,ErrorCode.getErrMsg(code));

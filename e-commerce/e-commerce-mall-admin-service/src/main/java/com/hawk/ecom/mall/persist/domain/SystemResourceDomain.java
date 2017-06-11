@@ -51,9 +51,9 @@ public class SystemResourceDomain implements Serializable {
 	private String nodeCode;
 	
 	/**
-	 * 系统保留 reserved
+	 * 系统保留 is_reserved
 	 */
-	private Integer reserved;
+	private Integer isReserved;
 	
 	/**
 	 * 节点名称 node_name
@@ -260,18 +260,18 @@ public class SystemResourceDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 系统保留 reserved
+	 * @return 系统保留 is_reserved
 	 */
-	public Integer getReserved(){
-		return reserved;
+	public Integer getIsReserved(){
+		return isReserved;
 	}
 	
 	/**
 	 * 
-	 * @param reserved 系统保留 reserved
+	 * @param isReserved 系统保留 is_reserved
 	 */	
-	public void setReserved (Integer reserved) {
-		this.reserved = reserved;
+	public void setIsReserved (Integer isReserved) {
+		this.isReserved = isReserved;
 	}
 	
 	/**

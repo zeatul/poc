@@ -11,7 +11,7 @@ public class SystemResourceNotFoundRuntimeException extends BasicRuntimeExceptio
 	 * 
 	 */
 	private static final long serialVersionUID = 7995749346620466840L;
-	private final static int  code = ErrorCodeAllocation.MALL+10;
+	private final static int  code = ErrorCodeAllocation.MALL_ADMIN+0;
 	
 	public SystemResourceNotFoundRuntimeException( ) {
 		super(code,ErrorCode.getErrMsg(code));

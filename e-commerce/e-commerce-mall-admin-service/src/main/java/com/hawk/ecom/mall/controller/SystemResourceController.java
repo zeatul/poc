@@ -65,7 +65,7 @@ public class SystemResourceController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/list", method = POST)
+	@RequestMapping(value = "/listSub", method = POST)
 	public WebResponse<SystemMultiResourceInfoResponse> listResource(HttpServletRequest request) throws Exception {
 		SystemListResourceParam param = HttpRequestTools.parse(request, SystemListResourceParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());

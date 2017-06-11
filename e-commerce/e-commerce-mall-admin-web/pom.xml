@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-mall-admin-service</artifactId>
-		</dependency>
+		</dependency> 
 		
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-mall-product-service</artifactId>
-		</dependency>
+		</dependency> 
 
 
 		<!-- mybatis -->

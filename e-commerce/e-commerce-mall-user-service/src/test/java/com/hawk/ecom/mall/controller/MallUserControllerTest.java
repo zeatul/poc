@@ -9,11 +9,11 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.hawk.ecom.mall.constant.ConstMallUserStatus;
-import com.hawk.ecom.mall.request.MallCreateUserParam;
-import com.hawk.ecom.mall.request.MallListUserParam;
-import com.hawk.ecom.mall.request.MallUpdateUserParam;
-import com.hawk.ecom.mall.request.MallUpdateUserStatusParam;
+import com.hawk.ecom.muser.constant.ConstMallUserStatus;
+import com.hawk.ecom.muser.request.MallCreateUserParam;
+import com.hawk.ecom.muser.request.MallListUserParam;
+import com.hawk.ecom.muser.request.MallUpdateUserParam;
+import com.hawk.ecom.muser.request.MallUpdateUserStatusParam;
 import com.hawk.ecom.pub.constant.ConstIdType;
 import com.hawk.ecom.pub.constant.ConstSex;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
@@ -23,14 +23,14 @@ public class MallUserControllerTest extends AbstractControllerTest {
 	
 	private String token = "e8c23558-5ed2-42cd-873a-6bf63dfee155";
 
-//	@Test
+	@Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		Map<String, String> request = new HashMap<String, String>();
-		request.put("mobileNumber", "10000000000"); // superadmin
-//		request.put("mobileNumber", "10000000001"); // admin
+//		request.put("mobileNumber", "10000000000"); // superadmin
+		request.put("mobileNumber", "10000000001"); // admin
 		request.put("loginPwd", "hawk@1234");
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
@@ -38,7 +38,7 @@ public class MallUserControllerTest extends AbstractControllerTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testMallLoginInfo(){
 		String url = getUrl("/mall/admin/user/login/info");
 		List<HttpParam> params = new ArrayList<HttpParam>();

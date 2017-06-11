@@ -1,3 +1,9 @@
+drop index i_msr_user_login on t_msr_mall_login;
+
+drop index ui_msr_user_token on t_msr_mall_login;
+
+drop table if exists t_msr_mall_login;
+
 drop table if exists t_msr_mall_login_history;
 
 drop index ui_msr_right_id_path on t_msr_mall_right;
@@ -10,7 +16,7 @@ drop index ui_msr_role_code on t_msr_mall_role;
 
 drop table if exists t_msr_mall_role;
 
-drop index ui_msrl_role_right on t_msr_mall_role_right;
+drop index ui_msr_role_right on t_msr_mall_role_right;
 
 drop table if exists t_msr_mall_role_right;
 
@@ -34,11 +40,58 @@ drop table if exists t_msr_mall_user_code_sequence;
 
 drop table if exists t_msr_mall_user_history;
 
-drop index i_msrl_user_login on t_msr_malll_login;
+/*==============================================================*/
+/* Table: t_msr_mall_login                                      */
+/*==============================================================*/
+create table t_msr_mall_login
+(
+   token                varchar(100) not null comment 'token',
+   user_id              bigint unsigned comment '用户ID',
+   user_code            varchar(50) not null comment '用户编号',
+   user_account         varchar(50) comment '用户账号',
+   user_email           varchar(200) comment '用户邮箱',
+   mobile_number        varchar(20) not null comment '手机号',
+   login_ip             varchar(200) comment '登录IP',
+   login_type           tinyint unsigned comment '登录类型(长期固定/短期固定/短期弹性)',
+   login_date           timestamp(3) null comment '登录日期',
+   login_status         tinyint unsigned comment '登录状态',
+   login_channel        varchar(200) comment '登录渠道',
+   last_access_date     timestamp(3) null comment '最近访问日期',
+   duration_second      integer unsigned comment '有效时间(秒)',
+   expire_date          timestamp(3) null comment '失效日期',
+   imei                 varchar(200) comment '设备唯一的串号',
+   operating_system     varchar(200) comment '设备操作系统',
+   operating_system_version varchar(200) comment '设备操作系统版本号',
+   device_brand         varchar(200) comment '三星/华为/苹果',
+   device_model         varchar(200) comment '厂商给设备定义的编号',
+   user_agent           varchar(1000) comment 'http请求的user_agent原始信息',
+   create_date          timestamp(3) null comment '创建日期',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (token)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-drop index ui_msr_user_token on t_msr_malll_login;
+alter table t_msr_mall_login comment '商城用户登录表';
 
-drop table if exists t_msr_malll_login;
+/*==============================================================*/
+/* Index: ui_msr_user_token                                     */
+/*==============================================================*/
+create unique index ui_msr_user_token on t_msr_mall_login
+(
+   token
+);
+
+/*==============================================================*/
+/* Index: i_msr_user_login                                      */
+/*==============================================================*/
+create index i_msr_user_login on t_msr_mall_login
+(
+   user_code,
+   user_account,
+   user_email,
+   mobile_number
+);
 
 /*==============================================================*/
 /* Table: t_msr_mall_login_history                              */
@@ -168,9 +221,9 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_msr_mall_role_right comment '商城角色权限表';
 
 /*==============================================================*/
-/* Index: ui_msrl_role_right                                    */
+/* Index: ui_msr_role_right                                     */
 /*==============================================================*/
-create unique index ui_msrl_role_right on t_msr_mall_role_right
+create unique index ui_msr_role_right on t_msr_mall_role_right
 (
    role_id,
    right_id
@@ -334,56 +387,3 @@ create table t_msr_mall_user_history
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_msr_mall_user_history comment '商城用户历史表';
-
-/*==============================================================*/
-/* Table: t_msr_malll_login                                     */
-/*==============================================================*/
-create table t_msr_malll_login
-(
-   token                varchar(100) not null comment 'token',
-   user_id              bigint unsigned comment '用户ID',
-   user_code            varchar(50) not null comment '用户编号',
-   user_account         varchar(50) comment '用户账号',
-   user_email           varchar(200) comment '用户邮箱',
-   mobile_number        varchar(20) not null comment '手机号',
-   login_ip             varchar(200) comment '登录IP',
-   login_type           tinyint unsigned comment '登录类型(长期固定/短期固定/短期弹性)',
-   login_date           timestamp(3) null comment '登录日期',
-   login_status         tinyint unsigned comment '登录状态',
-   login_channel        varchar(200) comment '登录渠道',
-   last_access_date     timestamp(3) null comment '最近访问日期',
-   duration_second      integer unsigned comment '有效时间(秒)',
-   expire_date          timestamp(3) null comment '失效日期',
-   imei                 varchar(200) comment '设备唯一的串号',
-   operating_system     varchar(200) comment '设备操作系统',
-   operating_system_version varchar(200) comment '设备操作系统版本号',
-   device_brand         varchar(200) comment '三星/华为/苹果',
-   device_model         varchar(200) comment '厂商给设备定义的编号',
-   user_agent           varchar(1000) comment 'http请求的user_agent原始信息',
-   create_date          timestamp(3) null comment '创建日期',
-   update_date          timestamp(3) null comment '更新日期',
-   delete_date          timestamp(3) null comment '删除日期',
-   primary key (token)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-alter table t_msr_malll_login comment '商城用户登录表';
-
-/*==============================================================*/
-/* Index: ui_msr_user_token                                     */
-/*==============================================================*/
-create unique index ui_msr_user_token on t_msr_malll_login
-(
-   token
-);
-
-/*==============================================================*/
-/* Index: i_msrl_user_login                                     */
-/*==============================================================*/
-create index i_msrl_user_login on t_msr_malll_login
-(
-   user_code,
-   user_account,
-   user_email,
-   mobile_number
-);

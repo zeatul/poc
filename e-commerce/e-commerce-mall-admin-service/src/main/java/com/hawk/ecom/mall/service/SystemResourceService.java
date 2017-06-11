@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.mall.constant.ConstSystemResource;
 import com.hawk.ecom.mall.exception.DuplicateSystemResourceRuntimeException;
-import com.hawk.ecom.mall.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.mall.exception.SystemResourceNotFoundRuntimeException;
 import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
 import com.hawk.ecom.mall.persist.mapper.SystemResourceMapper;
@@ -26,6 +25,8 @@ import com.hawk.ecom.mall.request.SystemLoadResourceParam;
 import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
+import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
+import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -151,7 +152,7 @@ public class SystemResourceService {
 		systemResourceDomain.setNodeValueType(ConstSystemResource.NodeValueType.HTTP);
 		systemResourceDomain.setPid(parent.getId());
 		systemResourceDomain.setUpdateDate(curDate);
-		systemResourceDomain.setReserved(ConstBoolean.FALSE);
+		systemResourceDomain.setIsReserved(ConstBoolean.FALSE);
 		systemResourceDomain.setUpdateUserCode(systemCreateResourceParam.getOperatorCode());
 
 		Long id = systemShorkPkSequenceService.genPk();
@@ -249,7 +250,7 @@ public class SystemResourceService {
 			/**
 			 * 查询是不是保留节点
 			 */
-			if (ConstBoolean.parse(node.getReserved())){
+			if (ConstBoolean.parse(node.getIsReserved())){
 				throw new RuntimeException("系统保留节点,不能删除");
 			}
 			

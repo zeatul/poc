@@ -23,14 +23,14 @@ import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 
 @RestController
-@RequestMapping("/mall/admin/svp/bsi")
+@RequestMapping("/mall/admin/report/svp/bsi")
 @CrossOrigin
 public class BsiAdminController {
 
 	@Autowired
 	private BsiAdminService bsiAdminService;
 
-	@RequestMapping(value = "/report/orderDetail", method = POST)
+	@RequestMapping(value = "/orderDetail", method = POST)
 	public WebResponse<MultiResponse<HashMap<String, Object>>> reportOrderDetail(HttpServletRequest request) throws Exception {
 
 		BsiOrderDetailReportParam param = HttpRequestTools.parse(request, BsiOrderDetailReportParam.class);
@@ -39,7 +39,7 @@ public class BsiAdminController {
 		return SuccessResponse.build(new MultiResponse<HashMap<String, Object>>(list));
 	}
 
-	@RequestMapping(value = "/report/orderDetail/stat", method = POST)
+	@RequestMapping(value = "/orderDetail/stat", method = POST)
 	public WebResponse<MultiResponse<HashMap<String, Object>>> statOrderDetail(HttpServletRequest request) throws Exception {
 
 		BsiStatOrderDetailParam param = HttpRequestTools.parse(request, BsiStatOrderDetailParam.class);
@@ -48,7 +48,7 @@ public class BsiAdminController {
 		return SuccessResponse.build(new MultiResponse<HashMap<String, Object>>(list));
 	}
 
-	@RequestMapping(value = "/report/coupon/stat", method = POST)
+	@RequestMapping(value = "/coupon/stat", method = POST)
 	public WebResponse<MultiResponse<HashMap<String, Object>>> statCoupon(HttpServletRequest request) throws Exception {
 
 		BsiStatCouponParam param = HttpRequestTools.parse(request, BsiStatCouponParam.class);

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.product.persist.mapper.StockMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		sku_id AS "skuId" ,
+		warehouse_code AS "warehouseCode" ,
+		stock_item_code AS "stockItemCode" ,
+		stock_quantity AS "stockQuantity" ,
+		stock_memo AS "stockMemo" ,
+		stock_operation AS "stockOperation" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="warehouseCode != null"> AND warehouse_code = #{warehouseCode}  </if>
+			<if test="stockItemCode != null"> AND stock_item_code = #{stockItemCode}  </if>
+			<if test="stockQuantity != null"> AND stock_quantity = #{stockQuantity}  </if>
+			<if test="stockMemo != null"> AND stock_memo = #{stockMemo}  </if>
+			<if test="stockOperation != null"> AND stock_operation = #{stockOperation}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND sku_id = #{old_skuId}
+			AND warehouse_code = #{old_warehouseCode}
+			AND stock_item_code = #{old_stockItemCode}
+			AND stock_quantity = #{old_stockQuantity}
+			AND stock_memo = #{old_stockMemo}
+			AND stock_operation = #{old_stockOperation}
+			AND create_user_code = #{old_createUserCode}
+			AND create_date = #{old_createDate}
+			AND update_user_code = #{old_updateUserCode}
+			AND update_date = #{old_updateDate}
+			AND delete_user_code = #{old_deleteUserCode}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			sku_id = #{skuId},
+			warehouse_code = #{warehouseCode},
+			stock_item_code = #{stockItemCode},
+			stock_quantity = #{stockQuantity},
+			stock_memo = #{stockMemo},
+			stock_operation = #{stockOperation},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="warehouseCode != null">warehouse_code = #{warehouseCode},</if>
+			<if test="stockItemCode != null">stock_item_code = #{stockItemCode},</if>
+			<if test="stockQuantity != null">stock_quantity = #{stockQuantity},</if>
+			<if test="stockMemo != null">stock_memo = #{stockMemo},</if>
+			<if test="stockOperation != null">stock_operation = #{stockOperation},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="StockDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_prd_stock
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="StockDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_stock
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_stock
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_stock
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="StockDomain">
+		INSERT INTO t_prd_stock (			
+				id,				
+				sku_id,				
+				warehouse_code,				
+				stock_item_code,				
+				stock_quantity,				
+				stock_memo,				
+				stock_operation,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{skuId},
+			#{warehouseCode},
+			#{stockItemCode},
+			#{stockQuantity},
+			#{stockMemo},
+			#{stockOperation},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_prd_stock
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_prd_stock
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="StockDomain">
+		UPDATE t_prd_stock	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="StockDomain">
+		UPDATE t_prd_stock
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_prd_stock	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="StockDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_stock
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

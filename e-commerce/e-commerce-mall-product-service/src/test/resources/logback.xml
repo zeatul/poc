@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+
+	<contextName>e-commerce-mall-product-service</contextName>
+	<!-- <property resource="com/hante/weixin/cinema/env/configure.properties" /> -->
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	
+	
+	<logger name="com.hawk" additivity="false" level="info">
+		<appender-ref ref="stdout" />
+	</logger>
+	
+	
+	
+	
+
+	<root level="error">
+		<appender-ref ref="stdout" />
+	</root>
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+	
+	<!-- sends logs to logback-beagle -->
+  <!-- <consolePlugin /> -->
+
+</configuration>

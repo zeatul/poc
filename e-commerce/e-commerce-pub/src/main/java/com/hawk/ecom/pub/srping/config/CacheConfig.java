@@ -14,6 +14,7 @@ import org.springframework.core.env.Environment;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.cache.RedisClient;
+import com.hawk.framework.utility.tools.JsonTools;
 
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
@@ -51,6 +52,8 @@ public class CacheConfig {
 		List<JedisShardInfo> JedisShardInfoList = new ArrayList<JedisShardInfo>();
 		
 		String nodes = env.getProperty("redis.nodes", String.class);
+		logger.info("redis nodes = {}",nodes);
+		
 		String[] nodeStrArray = nodes.split(";");
 		for (String nodeStr : nodeStrArray){
 			String[] strArray = nodeStr.split(":");
@@ -62,7 +65,7 @@ public class CacheConfig {
 				jedisShardInfo.setPassword(strArray[2]);
 				
 			}
-			
+			logger.info("jedisShardInfo = {}",JsonTools.toJsonString(jedisShardInfo));
 			JedisShardInfoList.add(jedisShardInfo);
 		}
 

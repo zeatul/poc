@@ -8,9 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.hawk.ecom.mall.persist.domain.MallUserDomain;
-import com.hawk.ecom.mall.response.MallUserInfoResponse;
-import com.hawk.ecom.mall.service.MallUserService;
+import com.hawk.ecom.muser.persist.domain.MallUserDomain;
+import com.hawk.ecom.muser.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.pub.web.HttpRequestInfo;
 import com.hawk.framework.utility.tools.JsonTools;

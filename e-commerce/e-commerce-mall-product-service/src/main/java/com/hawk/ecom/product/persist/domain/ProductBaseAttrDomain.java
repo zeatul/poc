@@ -1,0 +1,231 @@
+package com.hawk.ecom.product.persist.domain;
+import java.io.Serializable;
+import java.util.Date;
+
+
+
+
+/**
+ * 产品基本属性表
+ * The class is mapped to the table t_prd_product_base_attr 
+ * Don't modify this file as it will be regenerated frequently.
+ * @author Code-Gen 
+ */
+public class ProductBaseAttrDomain implements Serializable {
+
+	private static final long serialVersionUID = -1L;
+	
+	/**
+	 * 主键 id
+	 */
+	private Long id;
+	
+	/**
+	 * 产品主键 product_id
+	 */
+	private Long productId;
+	
+	/**
+	 * 属性名主键 attr_name_id
+	 */
+	private Long attrNameId;
+	
+	/**
+	 * 属性值主键 attr_value_id
+	 */
+	private Long attrValueId;
+	
+	/**
+	 * 创建者 create_user_code
+	 */
+	private String createUserCode;
+	
+	/**
+	 * 创建日期 create_date
+	 */
+	private Date createDate;
+	
+	/**
+	 * 更新者 update_user_code
+	 */
+	private String updateUserCode;
+	
+	/**
+	 * 更新日期 update_date
+	 */
+	private Date updateDate;
+	
+	/**
+	 * 删除者 delete_user_code
+	 */
+	private String deleteUserCode;
+	
+	/**
+	 * 删除日期 delete_date
+	 */
+	private Date deleteDate;
+	
+	
+	/**
+	 * 
+	 * @return 主键 id
+	 */
+	public Long getId(){
+		return id;
+	}
+	
+	/**
+	 * 
+	 * @param id 主键 id
+	 */	
+	public void setId (Long id) {
+		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 产品主键 product_id
+	 */
+	public Long getProductId(){
+		return productId;
+	}
+	
+	/**
+	 * 
+	 * @param productId 产品主键 product_id
+	 */	
+	public void setProductId (Long productId) {
+		this.productId = productId;
+	}
+	
+	/**
+	 * 
+	 * @return 属性名主键 attr_name_id
+	 */
+	public Long getAttrNameId(){
+		return attrNameId;
+	}
+	
+	/**
+	 * 
+	 * @param attrNameId 属性名主键 attr_name_id
+	 */	
+	public void setAttrNameId (Long attrNameId) {
+		this.attrNameId = attrNameId;
+	}
+	
+	/**
+	 * 
+	 * @return 属性值主键 attr_value_id
+	 */
+	public Long getAttrValueId(){
+		return attrValueId;
+	}
+	
+	/**
+	 * 
+	 * @param attrValueId 属性值主键 attr_value_id
+	 */	
+	public void setAttrValueId (Long attrValueId) {
+		this.attrValueId = attrValueId;
+	}
+	
+	/**
+	 * 
+	 * @return 创建者 create_user_code
+	 */
+	public String getCreateUserCode(){
+		return createUserCode;
+	}
+	
+	/**
+	 * 
+	 * @param createUserCode 创建者 create_user_code
+	 */	
+	public void setCreateUserCode (String createUserCode) {
+		this.createUserCode = createUserCode;
+	}
+	
+	/**
+	 * 
+	 * @return 创建日期 create_date
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+	
+	/**
+	 * 
+	 * @param createDate 创建日期 create_date
+	 */	
+	public void setCreateDate (Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	/**
+	 * 
+	 * @return 更新者 update_user_code
+	 */
+	public String getUpdateUserCode(){
+		return updateUserCode;
+	}
+	
+	/**
+	 * 
+	 * @param updateUserCode 更新者 update_user_code
+	 */	
+	public void setUpdateUserCode (String updateUserCode) {
+		this.updateUserCode = updateUserCode;
+	}
+	
+	/**
+	 * 
+	 * @return 更新日期 update_date
+	 */
+	public Date getUpdateDate(){
+		return updateDate;
+	}
+	
+	/**
+	 * 
+	 * @param updateDate 更新日期 update_date
+	 */	
+	public void setUpdateDate (Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	/**
+	 * 
+	 * @return 删除者 delete_user_code
+	 */
+	public String getDeleteUserCode(){
+		return deleteUserCode;
+	}
+	
+	/**
+	 * 
+	 * @param deleteUserCode 删除者 delete_user_code
+	 */	
+	public void setDeleteUserCode (String deleteUserCode) {
+		this.deleteUserCode = deleteUserCode;
+	}
+	
+	/**
+	 * 
+	 * @return 删除日期 delete_date
+	 */
+	public Date getDeleteDate(){
+		return deleteDate;
+	}
+	
+	/**
+	 * 
+	 * @param deleteDate 删除日期 delete_date
+	 */	
+	public void setDeleteDate (Date deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+	
+
+
+}

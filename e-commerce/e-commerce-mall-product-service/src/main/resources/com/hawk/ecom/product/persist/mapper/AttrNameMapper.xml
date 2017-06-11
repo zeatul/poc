@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.product.persist.mapper.AttrNameMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		category_id AS "categoryId" ,
+		pid AS "pid" ,
+		pvid AS "pvid" ,
+		attr_name_code AS "attrNameCode" ,
+		attr_name_business_type AS "attrNameBusinessType" ,
+		attr_name_type AS "attrNameType" ,
+		attr_value_type AS "attrValueType" ,
+		attr_name AS "attrName" ,
+		is_search AS "isSearch" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
+			<if test="pid != null"> AND pid = #{pid}  </if>
+			<if test="pvid != null"> AND pvid = #{pvid}  </if>
+			<if test="attrNameCode != null"> AND attr_name_code = #{attrNameCode}  </if>
+			<if test="attrNameBusinessType != null"> AND attr_name_business_type = #{attrNameBusinessType}  </if>
+			<if test="attrNameType != null"> AND attr_name_type = #{attrNameType}  </if>
+			<if test="attrValueType != null"> AND attr_value_type = #{attrValueType}  </if>
+			<if test="attrName != null"> AND attr_name = #{attrName}  </if>
+			<if test="isSearch != null"> AND is_search = #{isSearch}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND category_id = #{old_categoryId}
+			AND pid = #{old_pid}
+			AND pvid = #{old_pvid}
+			AND attr_name_code = #{old_attrNameCode}
+			AND attr_name_business_type = #{old_attrNameBusinessType}
+			AND attr_name_type = #{old_attrNameType}
+			AND attr_value_type = #{old_attrValueType}
+			AND attr_name = #{old_attrName}
+			AND is_search = #{old_isSearch}
+			AND create_user_code = #{old_createUserCode}
+			AND create_date = #{old_createDate}
+			AND update_user_code = #{old_updateUserCode}
+			AND update_date = #{old_updateDate}
+			AND delete_user_code = #{old_deleteUserCode}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			category_id = #{categoryId},
+			pid = #{pid},
+			pvid = #{pvid},
+			attr_name_code = #{attrNameCode},
+			attr_name_business_type = #{attrNameBusinessType},
+			attr_name_type = #{attrNameType},
+			attr_value_type = #{attrValueType},
+			attr_name = #{attrName},
+			is_search = #{isSearch},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="categoryId != null">category_id = #{categoryId},</if>
+			<if test="pid != null">pid = #{pid},</if>
+			<if test="pvid != null">pvid = #{pvid},</if>
+			<if test="attrNameCode != null">attr_name_code = #{attrNameCode},</if>
+			<if test="attrNameBusinessType != null">attr_name_business_type = #{attrNameBusinessType},</if>
+			<if test="attrNameType != null">attr_name_type = #{attrNameType},</if>
+			<if test="attrValueType != null">attr_value_type = #{attrValueType},</if>
+			<if test="attrName != null">attr_name = #{attrName},</if>
+			<if test="isSearch != null">is_search = #{isSearch},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="AttrNameDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_prd_attr_name
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="AttrNameDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_attr_name
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_attr_name
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_attr_name
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="AttrNameDomain">
+		INSERT INTO t_prd_attr_name (			
+				id,				
+				category_id,				
+				pid,				
+				pvid,				
+				attr_name_code,				
+				attr_name_business_type,				
+				attr_name_type,				
+				attr_value_type,				
+				attr_name,				
+				is_search,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{categoryId},
+			#{pid},
+			#{pvid},
+			#{attrNameCode},
+			#{attrNameBusinessType},
+			#{attrNameType},
+			#{attrValueType},
+			#{attrName},
+			#{isSearch},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_prd_attr_name
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_prd_attr_name
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="AttrNameDomain">
+		UPDATE t_prd_attr_name	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="AttrNameDomain">
+		UPDATE t_prd_attr_name
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_prd_attr_name	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="AttrNameDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_attr_name
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

@@ -2,7 +2,7 @@ package com.hawk.ecom.mall.request;
 
 import java.util.List;
 
-import com.hawk.ecom.mall.annotation.MallNotLogin;
+import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 

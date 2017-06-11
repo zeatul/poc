@@ -11,7 +11,7 @@ public class SystemResourceHasChildRuntimeException extends BasicRuntimeExceptio
 	 * 
 	 */
 	private static final long serialVersionUID = -8181615688165017408L;
-	private final static int  code = ErrorCodeAllocation.MALL+12;
+	private final static int  code = ErrorCodeAllocation.MALL_ADMIN+2;
 	
 	public SystemResourceHasChildRuntimeException( ) {
 		super(code,ErrorCode.getErrMsg(code));

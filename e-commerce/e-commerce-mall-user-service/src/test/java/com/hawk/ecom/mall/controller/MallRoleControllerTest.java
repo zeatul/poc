@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
-import com.hawk.ecom.mall.request.MallAddRoleMembersParam;
-import com.hawk.ecom.mall.request.MallListRoleMembersParam;
+import com.hawk.ecom.muser.request.MallAddRoleMembersParam;
+import com.hawk.ecom.muser.request.MallListRoleMembersParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 

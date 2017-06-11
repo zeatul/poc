@@ -8,11 +8,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hawk.ecom.mall.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.mall.persist.mapperex.BsiAdminExMapper;
 import com.hawk.ecom.mall.request.BsiOrderDetailReportParam;
 import com.hawk.ecom.mall.request.BsiStatCouponParam;
 import com.hawk.ecom.mall.request.BsiStatOrderDetailParam;
+import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
+import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.Valid;
