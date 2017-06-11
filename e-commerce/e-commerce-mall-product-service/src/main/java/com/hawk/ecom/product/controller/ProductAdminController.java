@@ -35,10 +35,11 @@ public class ProductAdminController {
 	
 	@RequestMapping(value = "/create", method = POST)
 	public WebResponse<ProductInfoResponse> createProduct(HttpServletRequest request) throws Exception {
-		CreateProductParam param = HttpRequestTools.parse(request, CreateProductParam.class);
-		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		CategoryDomain categoryDomain =  categoryService.createCategory(param);
-		CategoryInfoResponse result = DomainTools.copy(categoryDomain, CategoryInfoResponse.class);
-		return SuccessResponse.build(result);
+//		CreateProductParam param = HttpRequestTools.parse(request, CreateProductParam.class);
+//		param.setOperatorCode(AuthThreadLocal.getUserCode());
+//		CategoryDomain categoryDomain =  categoryService.createCategory(param);
+//		CategoryInfoResponse result = DomainTools.copy(categoryDomain, CategoryInfoResponse.class);
+//		return SuccessResponse.build(result);
+		return null;
 	}
 }

@@ -19,8 +19,8 @@
 		<module>../e-commerce-mall-user-service</module>
 		<module>../e-commerce-mall-product-service</module>
 		<module>../e-commerce-mall-admin-web</module>
-		<module>../e-commerce-ecom-query-web</module>
-		<module>../e-commerce-ecom-trans-web</module>
+		<!-- <module>../e-commerce-ecom-query-web</module>
+		<module>../e-commerce-ecom-trans-web</module> -->
 	</modules>
 
 	<profiles>

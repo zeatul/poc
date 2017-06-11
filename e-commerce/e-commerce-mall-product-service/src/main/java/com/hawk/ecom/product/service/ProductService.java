@@ -19,12 +19,12 @@ public class ProductService {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@Valid
-	public ProductDomain createProduct(@Valid @NotEmpty("参数") CreateProductParam createProdcutParam){
-		
-		/**
-		 * 校验
-		 */
-		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId()) ;
-	}
+//	@Valid
+//	public ProductDomain createProduct(@Valid @NotEmpty("参数") CreateProductParam createProdcutParam){
+//		
+//		/**
+//		 * 校验
+//		 */
+//		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId()) ;
+//	}
 }
