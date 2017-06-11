@@ -170,7 +170,7 @@ public class CategoryService {
 		return loadCategory(loadCategoryParam.getId());
 	}
 	
-	private CategoryDomain loadCategory(long id){
+	public CategoryDomain loadCategory(long id){
 		
 		CategoryDomain categoryDomain =  categoryMapper.load(id);
 		
