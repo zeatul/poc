@@ -44,6 +44,8 @@ public class CacheConfig {
 		jedisPoolConfig.setTestOnBorrow(testOnBorrow);
 		jedisPoolConfig.setTestOnReturn(testOnReturn);
 		
+		
+		
 		return jedisPoolConfig;
 	}
 	
@@ -58,8 +60,9 @@ public class CacheConfig {
 		for (String nodeStr : nodeStrArray){
 			String[] strArray = nodeStr.split(":");
 			
-			JedisShardInfo jedisShardInfo = new JedisShardInfo(strArray[0], strArray[1]);
-			
+			JedisShardInfo jedisShardInfo = new JedisShardInfo (strArray[0], Integer.valueOf(strArray[1]));
+//			jedisShardInfo.setConnectionTimeout(10000);
+//			jedisShardInfo.setSoTimeout(10000);
 			
 			if (strArray.length >2){
 				jedisShardInfo.setPassword(strArray[2]);
@@ -72,7 +75,8 @@ public class CacheConfig {
 		
 		
 		
-		ShardedJedisPool shardedJedisPool = new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);	
+		ShardedJedisPool shardedJedisPool =  new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);	
+		
 		
 		
 		return shardedJedisPool;

@@ -38,11 +38,13 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 			AuthThreadLocal.setToken(token);
 			AuthThreadLocal.setUserId(mallUserDomain.getId());	
 			AuthThreadLocal.setUserCode(mallUserDomain.getUserCode());
+			AuthThreadLocal.setStoreCode("ST000001");
 		}else{
 			AuthThreadLocal.setMobileNumber(null);
 			AuthThreadLocal.setToken(null);
 			AuthThreadLocal.setUserId(null);	
 			AuthThreadLocal.setUserCode(null);
+			AuthThreadLocal.setStoreCode(null);
 		}
 		return super.preHandle(request, response, handler);
 	}

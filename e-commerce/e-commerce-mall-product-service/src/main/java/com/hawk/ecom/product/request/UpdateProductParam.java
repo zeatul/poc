@@ -7,85 +7,104 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 
-public class CreateProductParam {
+public class UpdateProductParam {
 	
-	public String getOperatorCode() {
-		return operatorCode;
+	public Long getId() {
+		return id;
 	}
 
-	public void setOperatorCode(String operatorCode) {
-		this.operatorCode = operatorCode;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Long getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	public String getProductCode() {
 		return productCode;
 	}
 
+
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
+
 
 	public String getProductName() {
 		return productName;
 	}
 
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 
 	public String getProductHomePage() {
 		return productHomePage;
 	}
 
+
 	public void setProductHomePage(String productHomePage) {
 		this.productHomePage = productHomePage;
 	}
+
 
 	public String getProductDesc() {
 		return productDesc;
 	}
 
+
 	public void setProductDesc(String productDesc) {
 		this.productDesc = productDesc;
 	}
+
 
 	public String getProductMemo() {
 		return productMemo;
 	}
 
+
 	public void setProductMemo(String productMemo) {
 		this.productMemo = productMemo;
 	}
+
 
 	public Integer getIsVirtual() {
 		return isVirtual;
 	}
 
+
 	public void setIsVirtual(Integer isVirtual) {
 		this.isVirtual = isVirtual;
 	}
+
 
 	public List<CreateProductAttrParam> getAttrs() {
 		return attrs;
 	}
 
+
 	public void setAttrs(List<CreateProductAttrParam> attrs) {
 		this.attrs = attrs;
 	}
 
+
+	public String getOperatorCode() {
+		return operatorCode;
+	}
+
+
+	public void setOperatorCode(String operatorCode) {
+		this.operatorCode = operatorCode;
+	}
+
+
 	/**
-	 * 产品目录主键 category_id
+	 * 主键 id
 	 */
 	@NotNull
-	private Long categoryId;
+	private Long id;
+	
 
 	/**
 	 * 产品编号 product_code
