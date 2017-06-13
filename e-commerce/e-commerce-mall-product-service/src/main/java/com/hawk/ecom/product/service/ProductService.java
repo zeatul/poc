@@ -26,6 +26,7 @@ import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.mapper.ProductMapper;
 import com.hawk.ecom.product.request.CreateProductParam;
+import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
@@ -33,7 +34,10 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
+import com.hawk.framework.pub.sql.MybatisParam;
+import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DomainTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class ProductService {
@@ -216,10 +220,16 @@ public class ProductService {
 	}
 	
 	@Valid
-	@Transactional
-	public List<ProductDomain> listProduct(@Valid @NotEmpty("参数") RemoveProductParam removeProductParam){
+	public List<ProductDomain> listProduct(@Valid @NotEmpty("参数") ListProductParam listProductParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
+		
+		if (StringTools.isNullOrEmpty(listProductParam.getOrder())){
+			listProductParam.setOrder("create_date desc");
+		}
+		
+		MybatisParam params = MybatisTools.page(new MybatisParam(), listProductParam);
+		return productMapper.loadDynamicPaging(params);
 	}
 }

@@ -26,6 +26,7 @@ import com.hawk.ecom.product.request.CreateCategoryParam;
 import com.hawk.ecom.product.request.ListSubCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
+import com.hawk.ecom.product.request.UpdateCategoryParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -34,6 +35,7 @@ import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -64,6 +66,24 @@ public class CategoryService {
 		ROOT.setCategoryName("root");
 		ROOT.setIsLeaf(0);
 
+	}
+	
+	/**
+	 * 根据主键查询记录，找不到就抛异常
+	 * @param id
+	 * @return
+	 */
+	public CategoryDomain loadCategory(Long id){
+		CategoryDomain categoryDomain = null; 
+		if (id != null){
+			categoryDomain = categoryMapper.load(id);
+		}else{
+			logger.error("loadCategory param id is null");
+		}
+		if (categoryDomain == null){
+			throw new CategoryNotFoundRuntimeException();
+		}
+		return categoryDomain;
 	}
 	
 	public CategoryDomain queryCategoryDomainById(Long id){
@@ -147,6 +167,20 @@ public class CategoryService {
 	}
 	
 	@Valid
+	public void updateCategory(@NotNull("参数") @Valid UpdateCategoryParam updateCategoryParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		CategoryDomain categoryDomain = loadCategory(updateCategoryParam.getId());
+		
+		CategoryDomain updateDomain = new CategoryDomain();
+		DomainTools.copy(updateCategoryParam, updateDomain);
+		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+		updateDomain.setUpdateDate(new Date());
+		categoryMapper.update(updateDomain);
+	}
+	
+	@Valid
 	public List<CategoryDomain> listSubCategory(@NotNull("参数") @Valid ListSubCategoryParam listSubCategoryParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
@@ -170,16 +204,7 @@ public class CategoryService {
 		return loadCategory(loadCategoryParam.getId());
 	}
 	
-	public CategoryDomain loadCategory(long id){
-		
-		CategoryDomain categoryDomain =  categoryMapper.load(id);
-		
-		if (categoryDomain == null) {
-			throw new CategoryNotFoundRuntimeException();
-		}
-		
-		return categoryDomain;
-	}
+	
 	
 	private int countSub(long pid){
 		MybatisParam params = new MybatisParam().put("pid", pid);
