@@ -24,11 +24,9 @@ drop index ui_prd_store_product on t_prd_product;
 
 drop table if exists t_prd_product;
 
-drop table if exists t_prd_product_base_attr;
+drop index i_prd_attr on t_prd_product_attr;
 
-drop index ui_prd_sku_attr on t_prd_product_sku_attr;
-
-drop table if exists t_prd_product_sku_attr;
+drop table if exists t_prd_product_attr;
 
 drop table if exists t_prd_sku;
 
@@ -249,32 +247,12 @@ create unique index ui_prd_store_product on t_prd_product
 );
 
 /*==============================================================*/
-/* Table: t_prd_product_base_attr                               */
+/* Table: t_prd_product_attr                                    */
 /*==============================================================*/
-create table t_prd_product_base_attr
+create table t_prd_product_attr
 (
    id                   bigint unsigned not null comment '主键',
-   product_id           bigint unsigned not null comment '产品主键',
-   attr_name_id         bigint unsigned not null comment '属性名主键',
-   attr_value_id        bigint unsigned not null comment '属性值主键',
-   create_user_code     varchar(50) comment '创建者',
-   create_date          timestamp(3) null comment '创建日期',
-   update_user_code     varchar(50) comment '更新者',
-   update_date          timestamp(3) null comment '更新日期',
-   delete_user_code     varchar(50) comment '删除者',
-   delete_date          timestamp(3) null comment '删除日期',
-   primary key (id)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-alter table t_prd_product_base_attr comment '产品基本属性表';
-
-/*==============================================================*/
-/* Table: t_prd_product_sku_attr                                */
-/*==============================================================*/
-create table t_prd_product_sku_attr
-(
-   id                   bigint unsigned not null comment '主键',
+   product_id           tinyint unsigned not null comment '产品主键',
    sku_id               bigint unsigned not null comment '产品SKU主键',
    attr_name_id         bigint unsigned not null comment '属性名主键',
    attr_value_id        bigint unsigned not null comment '属性值主键',
@@ -288,15 +266,15 @@ create table t_prd_product_sku_attr
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table t_prd_product_sku_attr comment '产品SKU属性';
-
 /*==============================================================*/
-/* Index: ui_prd_sku_attr                                       */
+/* Index: i_prd_attr                                            */
 /*==============================================================*/
-create unique index ui_prd_sku_attr on t_prd_product_sku_attr
+create index i_prd_attr on t_prd_product_attr
 (
+   product_id,
    sku_id,
-   attr_name_id
+   attr_name_id,
+   attr_value_id
 );
 
 /*==============================================================*/

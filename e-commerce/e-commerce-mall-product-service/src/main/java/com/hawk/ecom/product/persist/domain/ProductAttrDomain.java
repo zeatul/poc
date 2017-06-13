@@ -6,12 +6,12 @@ import java.util.Date;
 
 
 /**
- * 产品SKU属性
- * The class is mapped to the table t_prd_product_sku_attr 
+ * 
+ * The class is mapped to the table t_prd_product_attr 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class ProductSkuAttrDomain implements Serializable {
+public class ProductAttrDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -19,6 +19,11 @@ public class ProductSkuAttrDomain implements Serializable {
 	 * 主键 id
 	 */
 	private Long id;
+	
+	/**
+	 * 产品主键 product_id
+	 */
+	private Integer productId;
 	
 	/**
 	 * 产品SKU主键 sku_id
@@ -80,6 +85,22 @@ public class ProductSkuAttrDomain implements Serializable {
 	 */	
 	public void setId (Long id) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 产品主键 product_id
+	 */
+	public Integer getProductId(){
+		return productId;
+	}
+	
+	/**
+	 * 
+	 * @param productId 产品主键 product_id
+	 */	
+	public void setProductId (Integer productId) {
+		this.productId = productId;
 	}
 	
 	/**

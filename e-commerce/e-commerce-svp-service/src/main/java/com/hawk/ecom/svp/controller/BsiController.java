@@ -2,6 +2,7 @@ package com.hawk.ecom.svp.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.svp.constant.ConstCouponParameter;
 import com.hawk.ecom.svp.exception.CashCouponNotFoundRuntimeException;
 import com.hawk.ecom.svp.persist.domain.BsiCashCouponDomain;
@@ -32,6 +34,7 @@ import com.hawk.ecom.svp.response.SingleProductResponse;
 import com.hawk.ecom.svp.service.BsiCashCouponService;
 import com.hawk.ecom.svp.service.BsiPhoneModelService;
 import com.hawk.ecom.svp.service.BsiService;
+import com.hawk.ecom.svp.service.BsiTalkingDataService;
 import com.hawk.ecom.svp.utils.HttpRequestToolsForSignature;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
@@ -58,6 +61,9 @@ public class BsiController {
 	
 	@Autowired
 	private BsiCashCouponService bsiCashCouponService;
+	
+	@Autowired
+	private BsiTalkingDataService bsiTalkingDataService;
 
 	@RequestMapping(value = "/brand", method = GET)
 	public WebResponse<MultiBrandResponse> brand() {
@@ -66,6 +72,20 @@ public class BsiController {
 		WebResponse<MultiBrandResponse> response = SuccessResponse.build(new MultiBrandResponse(brandList));
 		
 		return response;
+	}
+	
+	@RequestMapping(value = "/talkingData/first/{imei}", method = {GET,POST})
+	public WebResponse<ResponseData> testTalkingDataService(@PathVariable String imei) {
+		
+		Date dt = bsiTalkingDataService.first(imei);
+		String result = "";
+		if (dt == null){
+			result = "新机";
+		}else{
+			result= "旧机："+DateTools.convert(dt, DateTools.DATETIME_SSS_PATTERN);
+		}
+		
+		return SuccessResponse.build(new MultiResponse<String>(Arrays.asList(result)));
 	}
 	
 	@RequestMapping(value = "/brand/{brand}", method = GET)

@@ -1,37 +1,37 @@
 package com.hawk.ecom.product.persist.mapper;
 import java.util.List;
 import java.util.Map;
-import com.hawk.ecom.product.persist.domain.ProductSkuAttrDomain;
+import com.hawk.ecom.product.persist.domain.ProductAttrDomain;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * table = t_prd_product_sku_attr
- * desc = 产品SKU属性
+ * table = t_prd_product_attr
+ * desc = 
  * 
  * @author Gen
  */
-public interface ProductSkuAttrMapper  {
+public interface ProductAttrMapper  {
 
 	/**
 	 * 根据主键加载记录
 	 * @param id 主键
 	 * @return 查询到的记录
 	 */
-	ProductSkuAttrDomain load(@Param("id")Long id );
+	ProductAttrDomain load(@Param("id")Long id );
 	
 	/**
 	 * 动态条件加载记录
 	 * @param params 查询条件
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<ProductSkuAttrDomain> loadDynamic(Map<String,Object> params);
+	List<ProductAttrDomain> loadDynamic(Map<String,Object> params);
 	
 	/**
 	 * 需要传入分页参数，请使用对应的工具类注入分页参数
 	 * @param params
 	 * @return 符合条件的记录，如果查询不到记录，返回的是空记录数的List
 	 */
-	List<ProductSkuAttrDomain> loadDynamicPaging(Map<String,Object> params);
+	List<ProductAttrDomain> loadDynamicPaging(Map<String,Object> params);
 	
 	/**
 	 * 计算符合条件的记录数
@@ -50,10 +50,10 @@ public interface ProductSkuAttrMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param ProductSkuAttrDomain 产品SKU属性
+	 * @param ProductAttrDomain 
 	 * @return 插入的记录数
 	 */
-	int insert(ProductSkuAttrDomain productSkuAttrDomain);
+	int insert(ProductAttrDomain productAttrDomain);
 	
 	/**
 	 * 根据主键删除记录
@@ -71,17 +71,17 @@ public interface ProductSkuAttrMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param ProductSkuAttrDomain 产品SKU属性
+	 * @param ProductAttrDomain 
 	 * @return 更新的记录数
 	 */
-	int update(ProductSkuAttrDomain productSkuAttrDomain);
+	int update(ProductAttrDomain productAttrDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param ProductSkuAttrDomain 产品SKU属性
+	 * @param ProductAttrDomain 
 	 * @return 更新的记录数
 	 */
-	int updateWithoutNull(ProductSkuAttrDomain productSkuAttrDomain);
+	int updateWithoutNull(ProductAttrDomain productAttrDomain);
 	
 	/**
 	 * 更新,要跟新的字段使用字段名，更新条件使用old_字段名，用来适配某些批量更新记录的情况

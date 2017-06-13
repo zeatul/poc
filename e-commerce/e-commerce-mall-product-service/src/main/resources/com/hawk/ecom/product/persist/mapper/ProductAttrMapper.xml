@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.product.persist.mapper.ProductBaseAttrMapper">
+<mapper namespace="com.hawk.ecom.product.persist.mapper.ProductAttrMapper">
 
 	<sql id="columns">	
 				id AS "id" ,
 		product_id AS "productId" ,
+		sku_id AS "skuId" ,
 		attr_name_id AS "attrNameId" ,
 		attr_value_id AS "attrValueId" ,
 		create_user_code AS "createUserCode" ,
@@ -21,6 +22,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
 			<if test="attrNameId != null"> AND attr_name_id = #{attrNameId}  </if>
 			<if test="attrValueId != null"> AND attr_value_id = #{attrValueId}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
@@ -36,6 +38,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND product_id = #{old_productId}
+			AND sku_id = #{old_skuId}
 			AND attr_name_id = #{old_attrNameId}
 			AND attr_value_id = #{old_attrValueId}
 			AND create_user_code = #{old_createUserCode}
@@ -51,6 +54,7 @@
 		<set>
 			id = #{id},
 			product_id = #{productId},
+			sku_id = #{skuId},
 			attr_name_id = #{attrNameId},
 			attr_value_id = #{attrValueId},
 			create_user_code = #{createUserCode},
@@ -66,6 +70,7 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
+			<if test="skuId != null">sku_id = #{skuId},</if>
 			<if test="attrNameId != null">attr_name_id = #{attrNameId},</if>
 			<if test="attrValueId != null">attr_value_id = #{attrValueId},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
@@ -83,37 +88,38 @@
 		</trim>
 	</sql>
 	
-	<select id="load"  resultType="ProductBaseAttrDomain">
+	<select id="load"  resultType="ProductAttrDomain">
 		SELECT 
 		<include refid="columns" />
-		FROM t_prd_product_base_attr
+		FROM t_prd_product_attr
 		<include refid="pkwhere" />		
 	</select>
 	
-	<select id="loadDynamic" parameterType="hashmap" resultType="ProductBaseAttrDomain">
+	<select id="loadDynamic" parameterType="hashmap" resultType="ProductAttrDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_prd_product_base_attr
+		FROM t_prd_product_attr
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM t_prd_product_base_attr
+		FROM t_prd_product_attr
 		<include refid="where" />
 	</select>
 	
 	<select id="countByPK"  resultType="integer">
 		SELECT count(1) 
-		FROM t_prd_product_base_attr
+		FROM t_prd_product_attr
 		<include refid="pkwhere" />		
 	</select>
 	
-	<insert id="insert"  parameterType="ProductBaseAttrDomain">
-		INSERT INTO t_prd_product_base_attr (			
+	<insert id="insert"  parameterType="ProductAttrDomain">
+		INSERT INTO t_prd_product_attr (			
 				id,				
 				product_id,				
+				sku_id,				
 				attr_name_id,				
 				attr_value_id,				
 				create_user_code,				
@@ -126,6 +132,7 @@
 		VALUES (	
 			#{id},
 			#{productId},
+			#{skuId},
 			#{attrNameId},
 			#{attrValueId},
 			#{createUserCode},
@@ -138,37 +145,37 @@
 	</insert>
 	
 	<delete id="delete" >
-		DELETE FROM t_prd_product_base_attr
+		DELETE FROM t_prd_product_attr
 		<include refid="pkwhere" />	
 	</delete>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM t_prd_product_base_attr
+		DELETE FROM t_prd_product_attr
 		<include refid="where" />
 	</delete>
 
-	<update id="update" parameterType="ProductBaseAttrDomain">
-		UPDATE t_prd_product_base_attr	
+	<update id="update" parameterType="ProductAttrDomain">
+		UPDATE t_prd_product_attr	
 		<include refid="update" />
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateWithoutNull" parameterType="ProductBaseAttrDomain">
-		UPDATE t_prd_product_base_attr
+	<update id="updateWithoutNull" parameterType="ProductAttrDomain">
+		UPDATE t_prd_product_attr
 		<include refid="updateWithoutNull"/>
 		<include refid="pkwhere" />	
 	</update>
 	
 	<update id="updateDynamic" parameterType="hashmap">
-		UPDATE t_prd_product_base_attr	
+		UPDATE t_prd_product_attr	
 		<include refid="update" />
 		<include refid="where_old" />
 	</update>
 	
-	<select id="loadDynamicPaging" parameterType="hashmap" resultType="ProductBaseAttrDomain">
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="ProductAttrDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_prd_product_base_attr
+		FROM t_prd_product_attr
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	

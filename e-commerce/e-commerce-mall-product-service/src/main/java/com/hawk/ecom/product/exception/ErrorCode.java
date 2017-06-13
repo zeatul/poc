@@ -16,6 +16,8 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+4, "类型是不是最终分类的产品目录，不允许用来生成实际商品");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+5, "产品目录状态不符合当前操作的要求");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+6, "产品已经存在,商店编号和产品编号组合唯一");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+7, "产品未找到");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+8, "产品状态不符合当前操作的要求");
 //		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
 		
 	}
