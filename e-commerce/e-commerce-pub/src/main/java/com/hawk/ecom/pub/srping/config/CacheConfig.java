@@ -14,6 +14,7 @@ import org.springframework.core.env.Environment;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.cache.RedisCacheServiceImpl;
 import com.hawk.framework.pub.cache.RedisClient;
+import com.hawk.framework.utility.tools.JsonTools;
 
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
@@ -43,6 +44,8 @@ public class CacheConfig {
 		jedisPoolConfig.setTestOnBorrow(testOnBorrow);
 		jedisPoolConfig.setTestOnReturn(testOnReturn);
 		
+		
+		
 		return jedisPoolConfig;
 	}
 	
@@ -51,25 +54,29 @@ public class CacheConfig {
 		List<JedisShardInfo> JedisShardInfoList = new ArrayList<JedisShardInfo>();
 		
 		String nodes = env.getProperty("redis.nodes", String.class);
+		logger.info("redis nodes = {}",nodes);
+		
 		String[] nodeStrArray = nodes.split(";");
 		for (String nodeStr : nodeStrArray){
 			String[] strArray = nodeStr.split(":");
 			
-			JedisShardInfo jedisShardInfo = new JedisShardInfo(strArray[0], strArray[1]);
-			
+			JedisShardInfo jedisShardInfo = new JedisShardInfo (strArray[0], Integer.valueOf(strArray[1]));
+//			jedisShardInfo.setConnectionTimeout(10000);
+//			jedisShardInfo.setSoTimeout(10000);
 			
 			if (strArray.length >2){
 				jedisShardInfo.setPassword(strArray[2]);
 				
 			}
-			
+			logger.info("jedisShardInfo = {}",JsonTools.toJsonString(jedisShardInfo));
 			JedisShardInfoList.add(jedisShardInfo);
 		}
 
 		
 		
 		
-		ShardedJedisPool shardedJedisPool = new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);	
+		ShardedJedisPool shardedJedisPool =  new ShardedJedisPool(jedisPoolConfig, JedisShardInfoList);	
+		
 		
 		
 		return shardedJedisPool;

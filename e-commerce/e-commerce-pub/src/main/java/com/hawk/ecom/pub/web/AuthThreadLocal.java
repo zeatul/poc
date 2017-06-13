@@ -23,7 +23,17 @@ public class AuthThreadLocal {
 	
 	private static ThreadLocal<String> threadLocalMobileNumber = new ThreadLocal<String>();
 	
+	private static ThreadLocal<String> threadLocalStoreCode = new ThreadLocal<String>();
+	
 	private static ThreadLocal<HttpRequestInfo> threadLocalHttpRequestInfo = new ThreadLocal<HttpRequestInfo>();
+	
+	public static void setStoreCode(String storeCode){
+		threadLocalStoreCode.set(storeCode);
+	}
+	
+	public static String getStoreCode(){
+		return threadLocalStoreCode.get();
+	}
 	
 	public static String getUserCode(){
 		return threadLoaclUserCode.get();

@@ -104,7 +104,7 @@ create table t_svp_bsi_order_detail
 (
    id                   bigint unsigned not null comment '主键',
    order_code           varchar(50) comment '订单编号',
-   supplier_code        varchar(50) not null comment '供应商编号',
+   supplier_code        varchar(50) comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    user_code            varchar(50) comment '用户编号',
    goods_code           varchar(50) comment '商品编号',
@@ -262,7 +262,7 @@ create table t_svp_mobile_data_order_detail
 (
    id                   bigint unsigned not null comment '主键',
    order_code           varchar(50) comment '订单编号',
-   supplier_code        varchar(50) not null comment '供应商编号',
+   supplier_code        varchar(50)  comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    goods_code           varchar(50) comment '商品编号',
    goods_name           varchar(200) comment '商品名称',
@@ -273,9 +273,7 @@ create table t_svp_mobile_data_order_detail
    charge_status        tinyint unsigned comment '充值状态',
    charge_task_code     varchar(200) comment '充值任务号',
    promotion_activity_desc varchar(200) comment '促销活动描述',
-   promotion_activity_code varchar(50) comment '促销活动编号
-            
-            ',
+   promotion_activity_code varchar(50) comment '促销活动编号',
    exec_times           tinyint unsigned comment '已经执行次数',
    max_exec_times       tinyint unsigned comment '最大允许执行次数',
    last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
