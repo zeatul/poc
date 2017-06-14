@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateSkuParam {
 	
@@ -149,7 +150,7 @@ public class CreateSkuParam {
 	 */
 	private String sku备注;	
 	
-	
+	@ValidCollection
 	List<CreateProductAttrParam> attrs;
 	
 	
