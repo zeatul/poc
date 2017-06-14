@@ -28,6 +28,10 @@ drop index i_prd_attr on t_prd_product_attr;
 
 drop table if exists t_prd_product_attr;
 
+drop index ui_prd_sku_st_sku_code on t_prd_sku;
+
+drop index I_prd_prd_id on t_prd_sku;
+
 drop table if exists t_prd_sku;
 
 drop table if exists t_prd_small_number_sequence;
@@ -252,7 +256,7 @@ create unique index ui_prd_store_product on t_prd_product
 create table t_prd_product_attr
 (
    id                   bigint unsigned not null comment '主键',
-   product_id           tinyint unsigned not null comment '产品主键',
+   product_id           bigint unsigned not null comment '产品主键',
    sku_id               bigint unsigned not null comment '产品SKU主键',
    attr_name_id         bigint unsigned not null comment '属性名主键',
    attr_value_id        bigint unsigned not null comment '属性值主键',
@@ -284,6 +288,7 @@ create table t_prd_sku
 (
    id                   bigint unsigned not null comment '主键',
    product_id           bigint unsigned not null comment '产品主键',
+   store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
    market_price         decimal(15,4) comment '市场价',
@@ -307,6 +312,23 @@ create table t_prd_sku
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_prd_sku comment '产品SKU';
+
+/*==============================================================*/
+/* Index: I_prd_prd_id                                          */
+/*==============================================================*/
+create index I_prd_prd_id on t_prd_sku
+(
+   product_id
+);
+
+/*==============================================================*/
+/* Index: ui_prd_sku_st_sku_code                                */
+/*==============================================================*/
+create unique index ui_prd_sku_st_sku_code on t_prd_sku
+(
+   store_code,
+   sku_code
+);
 
 /*==============================================================*/
 /* Table: t_prd_small_number_sequence                           */

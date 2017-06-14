@@ -86,6 +86,15 @@ public class CategoryService {
 		return categoryDomain;
 	}
 	
+	public boolean existCategory(Long id){
+		if (id == null){
+			logger.error("queryCategoryDomainById param id is null");
+			return false;
+		}
+		MybatisParam params = new MybatisParam().put("id", id);
+		return categoryMapper.count(params) > 0;
+	}
+	
 	public CategoryDomain queryCategoryDomainById(Long id){
 		if (id == null){
 			logger.error("queryCategoryDomainById param id is null");
@@ -171,7 +180,11 @@ public class CategoryService {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
-		CategoryDomain categoryDomain = loadCategory(updateCategoryParam.getId());
+		
+		if(!existCategory(updateCategoryParam.getId())){
+			throw new CategoryNotFoundRuntimeException();
+		}
+		
 		
 		CategoryDomain updateDomain = new CategoryDomain();
 		DomainTools.copy(updateCategoryParam, updateDomain);

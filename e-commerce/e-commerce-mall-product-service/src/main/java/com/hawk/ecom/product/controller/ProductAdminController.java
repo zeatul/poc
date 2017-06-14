@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,15 +13,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
-import com.hawk.ecom.product.request.CreateCategoryParam;
 import com.hawk.ecom.product.request.CreateProductParam;
-import com.hawk.ecom.product.response.CategoryInfoResponse;
+import com.hawk.ecom.product.request.ListProductParam;
+import com.hawk.ecom.product.request.RemoveProductParam;
+import com.hawk.ecom.product.request.UpdateProductParam;
 import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.ecom.product.service.ProductService;
+import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
+import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -47,5 +50,29 @@ public class ProductAdminController {
 		return SuccessResponse.build(DomainTools.copy(productDomain, ProductInfoResponse.class));
 	}
 	
-	public  WebResponse<ResponseData> createProduct(HttpServletRequest request) throws Exception 
+	@RequestMapping(value = "/update", method = POST)
+	public  WebResponse<ResponseData> updateProduct(HttpServletRequest request) throws Exception {
+		UpdateProductParam param = HttpRequestTools.parse(request, UpdateProductParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		productService.updateProduct(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/remove", method = POST)
+	public WebResponse<ResponseData> removeProduct(HttpServletRequest request) throws Exception {
+		RemoveProductParam param = HttpRequestTools.parse(request, RemoveProductParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		productService.removeProduct(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MultiResponse<ProductInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
+		ListProductParam param = HttpRequestTools.parse(request, ListProductParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		List<ProductDomain> categoryDomainList =  productService.listProduct(param);
+		
+		MultiResponse<ProductInfoResponse> result = new MultiResponse<ProductInfoResponse>(DomainTools.copy(categoryDomainList, ProductInfoResponse.class));
+		return SuccessResponse.build(result);
+	} 
 }

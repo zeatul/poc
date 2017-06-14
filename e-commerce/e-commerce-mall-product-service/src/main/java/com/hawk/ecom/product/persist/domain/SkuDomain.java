@@ -27,6 +27,11 @@ public class SkuDomain implements Serializable {
 	private Long productId;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * SKU编号 sku_code
 	 */
 	private String skuCode;
@@ -147,6 +152,22 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setProductId (Long productId) {
 		this.productId = productId;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**

@@ -7,6 +7,7 @@
 	<sql id="columns">	
 				id AS "id" ,
 		product_id AS "productId" ,
+		store_code AS "storeCode" ,
 		sku_code AS "skuCode" ,
 		sku_name AS "skuName" ,
 		market_price AS "marketPrice" ,
@@ -31,6 +32,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="skuCode != null"> AND sku_code = #{skuCode}  </if>
 			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
@@ -56,6 +58,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND product_id = #{old_productId}
+			AND store_code = #{old_storeCode}
 			AND sku_code = #{old_skuCode}
 			AND sku_name = #{old_skuName}
 			AND market_price = #{old_marketPrice}
@@ -81,6 +84,7 @@
 		<set>
 			id = #{id},
 			product_id = #{productId},
+			store_code = #{storeCode},
 			sku_code = #{skuCode},
 			sku_name = #{skuName},
 			market_price = #{marketPrice},
@@ -106,6 +110,7 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="skuCode != null">sku_code = #{skuCode},</if>
 			<if test="skuName != null">sku_name = #{skuName},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
@@ -164,6 +169,7 @@
 		INSERT INTO t_prd_sku (			
 				id,				
 				product_id,				
+				store_code,				
 				sku_code,				
 				sku_name,				
 				market_price,				
@@ -186,6 +192,7 @@
 		VALUES (	
 			#{id},
 			#{productId},
+			#{storeCode},
 			#{skuCode},
 			#{skuName},
 			#{marketPrice},

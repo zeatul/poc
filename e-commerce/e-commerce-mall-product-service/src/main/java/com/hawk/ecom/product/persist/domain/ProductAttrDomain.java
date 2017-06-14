@@ -23,7 +23,7 @@ public class ProductAttrDomain implements Serializable {
 	/**
 	 * 产品主键 product_id
 	 */
-	private Integer productId;
+	private Long productId;
 	
 	/**
 	 * 产品SKU主键 sku_id
@@ -91,7 +91,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 产品主键 product_id
 	 */
-	public Integer getProductId(){
+	public Long getProductId(){
 		return productId;
 	}
 	
@@ -99,7 +99,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param productId 产品主键 product_id
 	 */	
-	public void setProductId (Integer productId) {
+	public void setProductId (Long productId) {
 		this.productId = productId;
 	}
 	
