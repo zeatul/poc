@@ -27,6 +27,11 @@ public class SkuDomain implements Serializable {
 	private Long productId;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * SKU编号 sku_code
 	 */
 	private String skuCode;
@@ -35,6 +40,21 @@ public class SkuDomain implements Serializable {
 	 * SKU名称 sku_name
 	 */
 	private String skuName;
+	
+	/**
+	 * SKU属性ID和值ID组合 sk_attr_Id_comp
+	 */
+	private String skAttrIdComp;
+	
+	/**
+	 * SKU属性值组合 sku_attr_value_comp
+	 */
+	private String skuAttrValueComp;
+	
+	/**
+	 * SKU状态 sku_status
+	 */
+	private Integer skuStatus;
 	
 	/**
 	 * 市场价 market_price
@@ -82,9 +102,9 @@ public class SkuDomain implements Serializable {
 	private Integer weightUnit;
 	
 	/**
-	 * SKU备注 SKU备注
+	 * SKU备注 sku_memo
 	 */
-	private String sku备注;
+	private String skuMemo;
 	
 	/**
 	 * 创建者 create_user_code
@@ -151,6 +171,22 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
+	}
+	
+	/**
+	 * 
 	 * @return SKU编号 sku_code
 	 */
 	public String getSkuCode(){
@@ -179,6 +215,54 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSkuName (String skuName) {
 		this.skuName = skuName;
+	}
+	
+	/**
+	 * 
+	 * @return SKU属性ID和值ID组合 sk_attr_Id_comp
+	 */
+	public String getSkAttrIdComp(){
+		return skAttrIdComp;
+	}
+	
+	/**
+	 * 
+	 * @param skAttrIdComp SKU属性ID和值ID组合 sk_attr_Id_comp
+	 */	
+	public void setSkAttrIdComp (String skAttrIdComp) {
+		this.skAttrIdComp = skAttrIdComp;
+	}
+	
+	/**
+	 * 
+	 * @return SKU属性值组合 sku_attr_value_comp
+	 */
+	public String getSkuAttrValueComp(){
+		return skuAttrValueComp;
+	}
+	
+	/**
+	 * 
+	 * @param skuAttrValueComp SKU属性值组合 sku_attr_value_comp
+	 */	
+	public void setSkuAttrValueComp (String skuAttrValueComp) {
+		this.skuAttrValueComp = skuAttrValueComp;
+	}
+	
+	/**
+	 * 
+	 * @return SKU状态 sku_status
+	 */
+	public Integer getSkuStatus(){
+		return skuStatus;
+	}
+	
+	/**
+	 * 
+	 * @param skuStatus SKU状态 sku_status
+	 */	
+	public void setSkuStatus (Integer skuStatus) {
+		this.skuStatus = skuStatus;
 	}
 	
 	/**
@@ -327,18 +411,18 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU备注 SKU备注
+	 * @return SKU备注 sku_memo
 	 */
-	public String getSku备注(){
-		return sku备注;
+	public String getSkuMemo(){
+		return skuMemo;
 	}
 	
 	/**
 	 * 
-	 * @param sku备注 SKU备注 SKU备注
+	 * @param skuMemo SKU备注 sku_memo
 	 */	
-	public void setSku备注 (String sku备注) {
-		this.sku备注 = sku备注;
+	public void setSkuMemo (String skuMemo) {
+		this.skuMemo = skuMemo;
 	}
 	
 	/**

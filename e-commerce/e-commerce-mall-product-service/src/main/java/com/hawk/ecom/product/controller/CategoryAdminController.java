@@ -19,6 +19,7 @@ import com.hawk.ecom.product.request.CreateCategoryParam;
 import com.hawk.ecom.product.request.ListSubCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
+import com.hawk.ecom.product.request.UpdateCategoryParam;
 import com.hawk.ecom.product.response.CategoryInfoResponse;
 import com.hawk.ecom.product.service.CategoryService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -51,6 +52,15 @@ public class CategoryAdminController {
 		CategoryInfoResponse result = DomainTools.copy(categoryDomain, CategoryInfoResponse.class);
 		return SuccessResponse.build(result);
 	}
+	
+	@RequestMapping(value = "/update", method = POST)
+	public WebResponse<CategoryInfoResponse> updateCategory(HttpServletRequest request) throws Exception {
+		UpdateCategoryParam param = HttpRequestTools.parse(request, UpdateCategoryParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		categoryService.updateCategory(param);
+		return SuccessResponse.build(null);
+	}
+	
 	
 	@RequestMapping(value = "/listSub", method = POST)
 	public WebResponse<MultiResponse<CategoryInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {

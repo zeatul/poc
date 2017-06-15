@@ -7,8 +7,12 @@
 	<sql id="columns">	
 				id AS "id" ,
 		product_id AS "productId" ,
+		store_code AS "storeCode" ,
 		sku_code AS "skuCode" ,
 		sku_name AS "skuName" ,
+		sk_attr_Id_comp AS "skAttrIdComp" ,
+		sku_attr_value_comp AS "skuAttrValueComp" ,
+		sku_status AS "skuStatus" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
 		is_special AS "isSpecial" ,
@@ -18,7 +22,7 @@
 		length_unit AS "lengthUnit" ,
 		weight AS "weight" ,
 		weight_unit AS "weightUnit" ,
-		SKU备注 AS "sku备注" ,
+		sku_memo AS "skuMemo" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -31,8 +35,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="skuCode != null"> AND sku_code = #{skuCode}  </if>
 			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
+			<if test="skAttrIdComp != null"> AND sk_attr_Id_comp = #{skAttrIdComp}  </if>
+			<if test="skuAttrValueComp != null"> AND sku_attr_value_comp = #{skuAttrValueComp}  </if>
+			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
 			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
@@ -42,7 +50,7 @@
 			<if test="lengthUnit != null"> AND length_unit = #{lengthUnit}  </if>
 			<if test="weight != null"> AND weight = #{weight}  </if>
 			<if test="weightUnit != null"> AND weight_unit = #{weightUnit}  </if>
-			<if test="sku备注 != null"> AND SKU备注 = #{sku备注}  </if>
+			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -56,8 +64,12 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND product_id = #{old_productId}
+			AND store_code = #{old_storeCode}
 			AND sku_code = #{old_skuCode}
 			AND sku_name = #{old_skuName}
+			AND sk_attr_Id_comp = #{old_skAttrIdComp}
+			AND sku_attr_value_comp = #{old_skuAttrValueComp}
+			AND sku_status = #{old_skuStatus}
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
 			AND is_special = #{old_isSpecial}
@@ -67,7 +79,7 @@
 			AND length_unit = #{old_lengthUnit}
 			AND weight = #{old_weight}
 			AND weight_unit = #{old_weightUnit}
-			AND SKU备注 = #{old_sku备注}
+			AND sku_memo = #{old_skuMemo}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -81,8 +93,12 @@
 		<set>
 			id = #{id},
 			product_id = #{productId},
+			store_code = #{storeCode},
 			sku_code = #{skuCode},
 			sku_name = #{skuName},
+			sk_attr_Id_comp = #{skAttrIdComp},
+			sku_attr_value_comp = #{skuAttrValueComp},
+			sku_status = #{skuStatus},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
 			is_special = #{isSpecial},
@@ -92,7 +108,7 @@
 			length_unit = #{lengthUnit},
 			weight = #{weight},
 			weight_unit = #{weightUnit},
-			SKU备注 = #{sku备注},
+			sku_memo = #{skuMemo},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -106,8 +122,12 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="skuCode != null">sku_code = #{skuCode},</if>
 			<if test="skuName != null">sku_name = #{skuName},</if>
+			<if test="skAttrIdComp != null">sk_attr_Id_comp = #{skAttrIdComp},</if>
+			<if test="skuAttrValueComp != null">sku_attr_value_comp = #{skuAttrValueComp},</if>
+			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
 			<if test="isSpecial != null">is_special = #{isSpecial},</if>
@@ -117,7 +137,7 @@
 			<if test="lengthUnit != null">length_unit = #{lengthUnit},</if>
 			<if test="weight != null">weight = #{weight},</if>
 			<if test="weightUnit != null">weight_unit = #{weightUnit},</if>
-			<if test="sku备注 != null">SKU备注 = #{sku备注},</if>
+			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -164,8 +184,12 @@
 		INSERT INTO t_prd_sku (			
 				id,				
 				product_id,				
+				store_code,				
 				sku_code,				
 				sku_name,				
+				sk_attr_Id_comp,				
+				sku_attr_value_comp,				
+				sku_status,				
 				market_price,				
 				sale_price,				
 				is_special,				
@@ -175,7 +199,7 @@
 				length_unit,				
 				weight,				
 				weight_unit,				
-				SKU备注,				
+				sku_memo,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -186,8 +210,12 @@
 		VALUES (	
 			#{id},
 			#{productId},
+			#{storeCode},
 			#{skuCode},
 			#{skuName},
+			#{skAttrIdComp},
+			#{skuAttrValueComp},
+			#{skuStatus},
 			#{marketPrice},
 			#{salePrice},
 			#{isSpecial},
@@ -197,7 +225,7 @@
 			#{lengthUnit},
 			#{weight},
 			#{weightUnit},
-			#{sku备注},
+			#{skuMemo},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

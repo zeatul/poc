@@ -34,6 +34,13 @@ public interface HttpExecutor {
 	
 	public String post(String url, byte[] b, List<HttpParam> params);
 	
+	/**
+	 * 小宝专用 ，将参数以特殊格式放在post请求里
+	 * @param url
+	 * @param content
+	 * @param params
+	 * @return
+	 */
 	public String postParamInBody(String url, String content, List<HttpParam> params);
 	
 	public String buildUrl(String url,List<HttpParam> params);

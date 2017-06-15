@@ -18,6 +18,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+6, "产品已经存在,商店编号和产品编号组合唯一");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+7, "产品未找到");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+8, "产品状态不符合当前操作的要求");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+9, "SkU已经存在，Sku编号唯一 ，Sku属性集合组合唯一");
 //		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
 		
 	}

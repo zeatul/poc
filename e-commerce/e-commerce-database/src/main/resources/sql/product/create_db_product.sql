@@ -28,6 +28,12 @@ drop index i_prd_attr on t_prd_product_attr;
 
 drop table if exists t_prd_product_attr;
 
+drop index ui_prd_sku_attr_ids on t_prd_sku;
+
+drop index ui_prd_sku_st_sku_code on t_prd_sku;
+
+drop index I_prd_prd_id on t_prd_sku;
+
 drop table if exists t_prd_sku;
 
 drop table if exists t_prd_small_number_sequence;
@@ -252,7 +258,7 @@ create unique index ui_prd_store_product on t_prd_product
 create table t_prd_product_attr
 (
    id                   bigint unsigned not null comment '主键',
-   product_id           tinyint unsigned not null comment '产品主键',
+   product_id           bigint unsigned not null comment '产品主键',
    sku_id               bigint unsigned not null comment '产品SKU主键',
    attr_name_id         bigint unsigned not null comment '属性名主键',
    attr_value_id        bigint unsigned not null comment '属性值主键',
@@ -284,8 +290,12 @@ create table t_prd_sku
 (
    id                   bigint unsigned not null comment '主键',
    product_id           bigint unsigned not null comment '产品主键',
+   store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
+   sk_attr_Id_comp      varchar(200) not null comment 'SKU属性ID和值ID组合',
+   sku_attr_value_comp  varchar(1000) comment 'SKU属性值组合',
+   sku_status           tinyint unsigned not null comment 'SKU状态',
    market_price         decimal(15,4) comment '市场价',
    sale_price           decimal(15,4) comment '销售价',
    is_special           decimal(15,4) not null comment '是否有特价',
@@ -295,7 +305,7 @@ create table t_prd_sku
    length_unit          tinyint unsigned comment '长度单位',
    weight               smallint unsigned not null comment '重量',
    weight_unit          tinyint unsigned not null comment '重量单位',
-   SKU备注                varchar(200) comment 'SKU备注',
+   sku_memo             varchar(200) comment 'SKU备注',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -307,6 +317,32 @@ create table t_prd_sku
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_prd_sku comment '产品SKU';
+
+/*==============================================================*/
+/* Index: I_prd_prd_id                                          */
+/*==============================================================*/
+create index I_prd_prd_id on t_prd_sku
+(
+   product_id
+);
+
+/*==============================================================*/
+/* Index: ui_prd_sku_st_sku_code                                */
+/*==============================================================*/
+create unique index ui_prd_sku_st_sku_code on t_prd_sku
+(
+   store_code,
+   sku_code
+);
+
+/*==============================================================*/
+/* Index: ui_prd_sku_attr_ids                                   */
+/*==============================================================*/
+create unique index ui_prd_sku_attr_ids on t_prd_sku
+(
+   product_id,
+   sk_attr_Id_comp
+);
 
 /*==============================================================*/
 /* Table: t_prd_small_number_sequence                           */
