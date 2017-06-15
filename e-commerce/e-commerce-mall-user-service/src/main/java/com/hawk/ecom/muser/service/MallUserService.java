@@ -295,6 +295,8 @@ public class MallUserService {
 		
 		mallUserDomain.setUserBirthday(null);
 		
+		mallUserDomain.setIsReserved(0);
+		
 		
 		mallUserDomain.setUserName(mallCreateUserParam.getUserName());
 		mallUserDomain.setUserSex(mallCreateUserParam.getUserSex());
