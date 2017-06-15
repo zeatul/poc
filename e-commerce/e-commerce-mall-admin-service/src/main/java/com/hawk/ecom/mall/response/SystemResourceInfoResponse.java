@@ -200,5 +200,9 @@ public class SystemResourceInfoResponse implements ResponseData{
 	 */
 	private Date createDate;
 	
+	/**
+	 * 更新日期 update_date;
+	 */
+	private Date updateDate;
 	
 }

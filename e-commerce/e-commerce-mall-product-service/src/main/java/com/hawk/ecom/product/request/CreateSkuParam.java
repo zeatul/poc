@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateSkuParam {
@@ -100,6 +101,7 @@ public class CreateSkuParam {
 	/**
 	 * 产品主键 product_id
 	 */
+	@NotNull
 	private Long productId;
 	
 	/**
