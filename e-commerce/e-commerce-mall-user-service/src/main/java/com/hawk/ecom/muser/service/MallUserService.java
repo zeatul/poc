@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.muser.exception.DuplicateMallUserRuntimeException;
 import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
@@ -20,6 +21,7 @@ import com.hawk.ecom.muser.exception.MallTokenInvalidRuntimeException;
 import com.hawk.ecom.muser.exception.MallTokenLogoutRuntimeException;
 import com.hawk.ecom.muser.exception.MallTokenTimeoutRuntimeException;
 import com.hawk.ecom.muser.exception.MallUnMatchedPasswordRuntimeException;
+import com.hawk.ecom.muser.exception.MallUserIsReservedRuntimeException;
 import com.hawk.ecom.muser.exception.MallUserNotFoundRuntimeException;
 import com.hawk.ecom.muser.constant.ConstMallLoginStatus;
 import com.hawk.ecom.muser.constant.ConstMallLoginType;
@@ -27,11 +29,14 @@ import com.hawk.ecom.muser.constant.ConstMallUserStatus;
 import com.hawk.ecom.muser.constant.ConstMallUserType;
 import com.hawk.ecom.muser.persist.domain.MallLoginDomain;
 import com.hawk.ecom.muser.persist.domain.MallUserDomain;
+import com.hawk.ecom.muser.persist.domain.MallUserHistoryDomain;
 import com.hawk.ecom.muser.persist.mapper.MallLoginMapper;
+import com.hawk.ecom.muser.persist.mapper.MallUserHistoryMapper;
 import com.hawk.ecom.muser.persist.mapper.MallUserMapper;
 import com.hawk.ecom.muser.request.MallCreateUserParam;
 import com.hawk.ecom.muser.request.MallListUserParam;
 import com.hawk.ecom.muser.request.MallLoginParam;
+import com.hawk.ecom.muser.request.MallRemoveUserParam;
 import com.hawk.ecom.muser.request.MallResetPasswordParam;
 import com.hawk.ecom.muser.request.MallUpdatePasswordParam;
 import com.hawk.ecom.muser.request.MallUpdateUserParam;
@@ -42,10 +47,12 @@ import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.cache.CacheService;
+import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -56,6 +63,8 @@ public class MallUserService {
 	
 	@Autowired
 	private MallUserMapper mallUserMapper;
+	
+	private MallUserHistoryMapper mallUserHistoryMapper;
 	
 	@Autowired
 	private MallLoginMapper mallLoginMapper;
@@ -92,6 +101,13 @@ public class MallUserService {
 			return null;
 		MybatisParam params = new MybatisParam().put("userCode", userCode);
 		return MybatisTools.single(mallUserMapper.loadDynamic(params));
+	}
+	
+	public MallUserDomain loadMallUserByUserCode(String userCode){
+		MallUserDomain mallUserDomain = queryMallUserByUserCode(userCode);
+		if(mallUserDomain == null)
+			throw new MallUserNotFoundRuntimeException();
+		return mallUserDomain;
 	}
 	
 	public MallUserDomain queryMallUserByMobileNumber(String mobileNumber){
@@ -295,6 +311,8 @@ public class MallUserService {
 		
 		mallUserDomain.setUserBirthday(null);
 		
+		mallUserDomain.setIsReserved(0);
+		
 		
 		mallUserDomain.setUserName(mallCreateUserParam.getUserName());
 		mallUserDomain.setUserSex(mallCreateUserParam.getUserSex());
@@ -351,6 +369,38 @@ public class MallUserService {
 		}
 		MybatisParam params = MybatisTools.page(new MybatisParam(), mallListUserParam);
 		return mallUserMapper.loadDynamicPaging(params);
+	}
+	
+	/**
+	 * 创建商城用户
+	 * @param mallCreateUserParam
+	 */
+	@Valid
+	@Transactional
+	public void removeUser(@Valid MallRemoveUserParam mallRemoveUserParam){
+		if (!authService.hasAnyRole(mallRemoveUserParam.getOperatorCode(), Arrays.asList("superadmin","admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		for (String userCode : mallRemoveUserParam.getUserCodes()){
+			MallUserDomain mallUserDomain = loadMallUserByUserCode(userCode);
+			if (ConstBoolean.parse(mallUserDomain.getIsReserved())){
+				throw new MallUserIsReservedRuntimeException();
+			}
+			
+			/**
+			 * 转入历史库
+			 */
+			MallUserHistoryDomain mallUserHistoryDomain = new MallUserHistoryDomain();
+			DomainTools.copy(mallUserDomain, mallUserHistoryDomain);
+			
+			mallUserHistoryMapper.insert(mallUserHistoryDomain);
+			
+			/**
+			 * 删除
+			 */
+			mallUserMapper.delete(mallUserDomain.getId());
+		}
 	}
 	
 	@Valid

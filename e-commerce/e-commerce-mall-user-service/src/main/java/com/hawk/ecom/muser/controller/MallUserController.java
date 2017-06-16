@@ -19,6 +19,7 @@ import com.hawk.ecom.muser.persist.domain.MallUserDomain;
 import com.hawk.ecom.muser.request.MallCreateUserParam;
 import com.hawk.ecom.muser.request.MallListUserParam;
 import com.hawk.ecom.muser.request.MallLoginParam;
+import com.hawk.ecom.muser.request.MallRemoveUserParam;
 import com.hawk.ecom.muser.request.MallResetPasswordParam;
 import com.hawk.ecom.muser.request.MallUpdatePasswordParam;
 import com.hawk.ecom.muser.request.MallUpdateUserParam;
@@ -102,6 +103,15 @@ public class MallUserController {
 		MallUserDomain mallUserDomain = mallUserService.createUser(mallCreateUserParam);
 		MallUserInfoResponse mallUserInfoResponse = DomainTools.copy(mallUserDomain, MallUserInfoResponse.class);
 		return SuccessResponse.build(mallUserInfoResponse);
+	}
+	
+	@RequestMapping(value = "/remove", method = POST)
+	public WebResponse<MallUserInfoResponse> removeUser(HttpServletRequest request) throws Exception {
+		MallRemoveUserParam param = HttpRequestTools.parse(request, MallRemoveUserParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		
+		mallUserService.removeUser(param);
+		return SuccessResponse.build(null);
 	}
 	
 	@RequestMapping(value = "/update", method = POST)
