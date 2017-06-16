@@ -15,3 +15,5 @@
 	安装nginx https支持模块
 	
 	开通443端口
+	
+	redis set命令和getset命令会消除缓存失效时间，需要优化 。

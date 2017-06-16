@@ -20,6 +20,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.MALL_USER+8, "用户无权执行该操作");
 		errorMap.put(ErrorCodeAllocation.MALL_USER+9, "角色不存在");
 		errorMap.put(ErrorCodeAllocation.MALL_USER+10, "用户被禁止");
+		errorMap.put(ErrorCodeAllocation.MALL_USER+11, "系统保留用户，不能被删除");
 	}
 	
 

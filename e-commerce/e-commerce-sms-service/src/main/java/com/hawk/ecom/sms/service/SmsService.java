@@ -73,6 +73,8 @@ public class SmsService {
 		/**
 		 * 同一个手机号，一天只能发送5次
 		 */
+
+		
 		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);
 		String strTimes = cacheService.get(key2, String.class);
 		if (strTimes!=null){
@@ -81,7 +83,7 @@ public class SmsService {
 				throw  new OverTimesException();
 			}else{
 				times = times +1;
-				cacheService.put(key2, times);
+				cacheService.put(key2, times,3600*24);
 			}
 		}else{
 			cacheService.put(key2, "1", 3600*24);
