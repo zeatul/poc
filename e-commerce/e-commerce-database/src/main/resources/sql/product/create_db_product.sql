@@ -20,6 +20,8 @@ drop table if exists t_prd_category_supplier_map;
 
 drop table if exists t_prd_pic;
 
+drop index ui_prd_store_prod_attr on t_prd_product;
+
 drop index ui_prd_store_product on t_prd_product;
 
 drop table if exists t_prd_product;
@@ -133,7 +135,8 @@ create table t_prd_category
    category_desc        varchar(200) comment '产品目录描述',
    category_logo        varchar(200) comment '产品目录logo',
    category_home_page   varchar(200) comment '产品目录主页',
-   is_leaf              tinyint unsigned not null comment '是否为最终目录分类，最终目录分类才能有商品模板',
+   is_leaf              tinyint unsigned not null comment '是否为最终产品目录分类，最终产品目录分类才能有商品模板',
+   category_template_status tinyint unsigned not null comment '最终产品目录模板状态',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -224,6 +227,8 @@ create table t_prd_product
    store_code           varchar(50) not null comment '商户编号',
    product_code         varchar(50) not null comment '产品编号',
    product_name         varchar(200) not null comment '产品名称',
+   product_attr_id_comp char(10) not null comment '产品关键属性名ID和属性值ID集合',
+   product_attr_value_comp char(10) comment '产品关键属性值集合',
    product_status       tinyint unsigned not null comment '产品状态',
    product_home_page    varchar(200) comment '产品主页',
    product_desc         varchar(1000) comment '产品描述',
@@ -250,6 +255,15 @@ create unique index ui_prd_store_product on t_prd_product
 (
    store_code,
    product_code
+);
+
+/*==============================================================*/
+/* Index: ui_prd_store_prod_attr                                */
+/*==============================================================*/
+create unique index ui_prd_store_prod_attr on t_prd_product
+(
+   store_code,
+   product_attr_id_comp
 );
 
 /*==============================================================*/
@@ -293,12 +307,12 @@ create table t_prd_sku
    store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
-   sk_attr_Id_comp      varchar(200) not null comment 'SKU属性ID和值ID组合',
+   sku_attr_id_comp     varchar(200) not null comment 'SKU属性ID和值ID组合',
    sku_attr_value_comp  varchar(1000) comment 'SKU属性值组合',
    sku_status           tinyint unsigned not null comment 'SKU状态',
    market_price         decimal(15,4) comment '市场价',
    sale_price           decimal(15,4) comment '销售价',
-   is_special           decimal(15,4) not null comment '是否有特价',
+   is_special           tinyint unsigned not null comment '是否有特价',
    width                smallint unsigned comment '宽度',
    depth                smallint unsigned comment '深度',
    heigh                smallint unsigned comment '高度',
@@ -341,7 +355,7 @@ create unique index ui_prd_sku_st_sku_code on t_prd_sku
 create unique index ui_prd_sku_attr_ids on t_prd_sku
 (
    product_id,
-   sk_attr_Id_comp
+   sku_attr_id_comp
 );
 
 /*==============================================================*/

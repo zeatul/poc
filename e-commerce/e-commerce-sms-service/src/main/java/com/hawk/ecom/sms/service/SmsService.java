@@ -71,22 +71,47 @@ public class SmsService {
 		}
 		
 		/**
-		 * 同一个手机号，一天只能发送5次
+		 * 同一个手机号，一天只能发送5次 ,从第一次发送开始的时间开始计算
 		 */
 
 		
 		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);
-		String strTimes = cacheService.get(key2, String.class);
-		if (strTimes!=null){
-			int times = Integer.parseInt(strTimes);
+		
+		class V {
+			public long getStdt() {
+				return stdt;
+			}
+			public void setStdt(long stdt) {
+				this.stdt = stdt;
+			}
+			public int getTimes() {
+				return times;
+			}
+			public void setTimes(int times) {
+				this.times = times;
+			}
+			
+			private int times;
+			private long stdt;
+		}
+		
+		V v = cacheService.get(key2, V.class);
+		if (v!=null){
+			int times = v.getTimes();
 			if (times >= 5){
 				throw  new OverTimesException();
 			}else{
 				times = times +1;
-				cacheService.put(key2, times,3600*24);
+				v.setTimes(times);
+				Long expire = 3600*24 - (System.currentTimeMillis()-v.getStdt())/1000;
+				cacheService.put(key2, v,Integer.parseInt(expire.toString()));
 			}
 		}else{
-			cacheService.put(key2, "1", 3600*24);
+			v = new V();
+			v.setTimes(1);
+			v.setStdt(System.currentTimeMillis());
+			
+			cacheService.put(key2, v, 3600*24);
 		}
 		
 		

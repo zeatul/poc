@@ -42,9 +42,9 @@ public class SkuDomain implements Serializable {
 	private String skuName;
 	
 	/**
-	 * SKU属性ID和值ID组合 sk_attr_Id_comp
+	 * SKU属性ID和值ID组合 sku_attr_id_comp
 	 */
-	private String skAttrIdComp;
+	private String skuAttrIdComp;
 	
 	/**
 	 * SKU属性值组合 sku_attr_value_comp
@@ -69,7 +69,7 @@ public class SkuDomain implements Serializable {
 	/**
 	 * 是否有特价 is_special
 	 */
-	private BigDecimal isSpecial;
+	private Integer isSpecial;
 	
 	/**
 	 * 宽度 width
@@ -219,18 +219,18 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU属性ID和值ID组合 sk_attr_Id_comp
+	 * @return SKU属性ID和值ID组合 sku_attr_id_comp
 	 */
-	public String getSkAttrIdComp(){
-		return skAttrIdComp;
+	public String getSkuAttrIdComp(){
+		return skuAttrIdComp;
 	}
 	
 	/**
 	 * 
-	 * @param skAttrIdComp SKU属性ID和值ID组合 sk_attr_Id_comp
+	 * @param skuAttrIdComp SKU属性ID和值ID组合 sku_attr_id_comp
 	 */	
-	public void setSkAttrIdComp (String skAttrIdComp) {
-		this.skAttrIdComp = skAttrIdComp;
+	public void setSkuAttrIdComp (String skuAttrIdComp) {
+		this.skuAttrIdComp = skuAttrIdComp;
 	}
 	
 	/**
@@ -301,7 +301,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @return 是否有特价 is_special
 	 */
-	public BigDecimal getIsSpecial(){
+	public Integer getIsSpecial(){
 		return isSpecial;
 	}
 	
@@ -309,7 +309,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @param isSpecial 是否有特价 is_special
 	 */	
-	public void setIsSpecial (BigDecimal isSpecial) {
+	public void setIsSpecial (Integer isSpecial) {
 		this.isSpecial = isSpecial;
 	}
 	

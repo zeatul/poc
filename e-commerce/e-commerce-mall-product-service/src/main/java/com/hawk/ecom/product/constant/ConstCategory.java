@@ -4,9 +4,25 @@ public class ConstCategory {
 	
 	public static interface CategoryStatus{
 		
+		/**
+		 * 禁用
+		 */
 		public final int FORBIDDEN = 99;
-		public final int NORMAL = 100;
+		/**
+		 * 发布状态
+		 */
+		public final int AVAILABLE = 100;		
 		
+		
+	}
+	
+	public static interface CategoryTemplateStatus extends CategoryStatus{
+		
+		/**
+		 * 编辑
+		 */
+		
+		public final int EDITING = 1;
 	}
 
 }

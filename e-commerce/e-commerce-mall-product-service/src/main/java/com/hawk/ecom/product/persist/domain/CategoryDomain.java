@@ -71,9 +71,14 @@ public class CategoryDomain implements Serializable {
 	private String categoryHomePage;
 	
 	/**
-	 * 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */
 	private Integer isLeaf;
+	
+	/**
+	 * 最终产品目录模板状态 category_template_status
+	 */
+	private Integer categoryTemplateStatus;
 	
 	/**
 	 * 创建者 create_user_code
@@ -284,7 +289,7 @@ public class CategoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * @return 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */
 	public Integer getIsLeaf(){
 		return isLeaf;
@@ -292,10 +297,26 @@ public class CategoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param isLeaf 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * @param isLeaf 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */	
 	public void setIsLeaf (Integer isLeaf) {
 		this.isLeaf = isLeaf;
+	}
+	
+	/**
+	 * 
+	 * @return 最终产品目录模板状态 category_template_status
+	 */
+	public Integer getCategoryTemplateStatus(){
+		return categoryTemplateStatus;
+	}
+	
+	/**
+	 * 
+	 * @param categoryTemplateStatus 最终产品目录模板状态 category_template_status
+	 */	
+	public void setCategoryTemplateStatus (Integer categoryTemplateStatus) {
+		this.categoryTemplateStatus = categoryTemplateStatus;
 	}
 	
 	/**

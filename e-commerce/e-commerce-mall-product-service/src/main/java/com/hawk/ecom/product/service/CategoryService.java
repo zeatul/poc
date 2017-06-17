@@ -18,6 +18,7 @@ import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.exception.CategoryHasChildRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
+import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateCategoryRuntimeException;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.mapper.CategoryMapper;
@@ -27,6 +28,8 @@ import com.hawk.ecom.product.request.ListSubCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
+import com.hawk.ecom.product.request.UpdateCategoryStatusParam;
+import com.hawk.ecom.product.request.UpdateCategoryTemplateStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -140,8 +143,10 @@ public class CategoryService {
 		categoryDomain.setUpdateDate(now);
 		categoryDomain.setUpdateUserCode(createCategoryParam.getOperatorCode());
 				
-		categoryDomain.setPid(parent.getId());		
-		categoryDomain.setCategoryStatus(ConstCategory.CategoryStatus.NORMAL);
+		categoryDomain.setPid(parent.getId());	
+		
+		categoryDomain.setCategoryStatus(ConstCategory.CategoryStatus.AVAILABLE);
+		categoryDomain.setCategoryTemplateStatus(ConstCategory.CategoryTemplateStatus.EDITING);
 		
 		Integer objectOrder = createCategoryParam.getObjectOrder();
 		if (objectOrder == null) {
@@ -175,13 +180,19 @@ public class CategoryService {
 		
 	}
 	
+	/**
+	 * 只有编辑状态的节点才允许更新
+	 * @param updateCategoryParam
+	 */
 	@Valid
 	public void updateCategory(@NotNull("参数") @Valid UpdateCategoryParam updateCategoryParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		if(!existCategory(updateCategoryParam.getId())){
+//		CategoryDomain categoryDomain = loadCategory(updateCategoryParam.getId());
+		
+		if (!existCategory(updateCategoryParam.getId())){
 			throw new CategoryNotFoundRuntimeException();
 		}
 		
@@ -190,7 +201,52 @@ public class CategoryService {
 		DomainTools.copy(updateCategoryParam, updateDomain);
 		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 		updateDomain.setUpdateDate(new Date());
-		categoryMapper.update(updateDomain);
+		categoryMapper.updateWithoutNull(updateDomain);
+	}
+	
+	@Valid
+	@Transactional
+	public void updateCategoryStatus(@NotNull("参数") @Valid UpdateCategoryStatusParam updateCategoryStatusParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		int status = updateCategoryStatusParam.getCategoryStatus();
+		for(Long id  : updateCategoryStatusParam.getIds()){
+			CategoryDomain categoryDomain = loadCategory(id);
+			if (categoryDomain.getCategoryStatus() != status){
+				CategoryDomain updateDomain = new CategoryDomain();
+				updateDomain.setId(id);
+				updateDomain.setCategoryStatus(status);
+				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+				updateDomain.setUpdateDate(new Date());
+				categoryMapper.updateWithoutNull(updateDomain);
+			}
+		}
+	}
+	
+	@Valid
+	@Transactional
+	public void updateCategoryTemplateStatus(@NotNull("参数") @Valid UpdateCategoryTemplateStatusParam updateCategoryTemplateStatusParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		int status = updateCategoryTemplateStatusParam.getCategoryTemplateStatus();
+		for(Long id  : updateCategoryTemplateStatusParam.getIds()){
+			CategoryDomain categoryDomain = loadCategory(id);
+			if (categoryDomain.getCategoryTemplateStatus() != status){
+				/**
+				 * TODO:检测是否符合模板发布条件
+				 */
+				CategoryDomain updateDomain = new CategoryDomain();
+				updateDomain.setId(id);
+				updateDomain.setCategoryTemplateStatus(status);
+				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+				updateDomain.setUpdateDate(new Date());
+				categoryMapper.updateWithoutNull(updateDomain);
+			}
+		}
 	}
 	
 	@Valid
@@ -246,6 +302,12 @@ public class CategoryService {
 			/**
 			 * TODO：查询有没有模板
 			 */
+			
+			/**
+			 * TODO:查询有没有产品
+			 */
+			
+			
 			
 			categoryMapper.delete(id);
 			

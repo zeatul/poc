@@ -110,6 +110,8 @@ public class ProductService {
 		
 		productDomain.setIsVirtual(createProdcutParam.getIsVirtual());
 	
+		productDomain.setProductAttrIdComp(null);
+		productDomain.setProductAttrValueComp(null);
 		productDomain.setProductCode(createProdcutParam.getProductCode());
 		productDomain.setProductDesc(createProdcutParam.getProductDesc());
 		productDomain.setProductHomePage(createProdcutParam.getProductHomePage());
@@ -163,7 +165,7 @@ public class ProductService {
 		 */
 		
 		try {
-			productMapper.update(updateDomain);
+			productMapper.updateWithoutNull(updateDomain);
 		} catch (DuplicateKeyException ex) {
 			throw new DuplicateProductRuntimeException();
 		}
