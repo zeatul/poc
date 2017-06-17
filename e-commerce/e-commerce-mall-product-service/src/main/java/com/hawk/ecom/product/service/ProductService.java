@@ -20,6 +20,7 @@ import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
+import com.hawk.ecom.product.exception.ProductIsNotAcceptableForOnSaleRuntimeException;
 import com.hawk.ecom.product.exception.ProductNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.ProductStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
@@ -29,6 +30,7 @@ import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -170,6 +172,53 @@ public class ProductService {
 			throw new DuplicateProductRuntimeException();
 		}
 	} 
+	
+	/**
+	 * 只能修改用户自己商铺的产品状态
+	 * 改为上架状态时，必须填写上架时间，下架时间 
+	 * @param updateProdcutStatusParam
+	 */
+	@Valid
+	@Transactional
+	public void updateProductStatus(@Valid @NotEmpty("参数") UpdateProductStatusParam updateProdcutStatusParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		int status = updateProdcutStatusParam.getProductStatus();
+		for (Long id : updateProdcutStatusParam.getIds()){
+			ProductDomain productDomain = loadProduct(id);
+			if (status != productDomain.getProductStatus()){
+				ProductDomain updateDomain = new ProductDomain();
+				if (productDomain.getProductStatus() != ConstProduct.ProductStatus.EDITING){
+					throw new ProductStatusIsNotAcceptableRuntimeException();
+				}
+				
+				updateDomain.setProductStatus(status);
+				updateDomain.setUpdateDate(new Date());
+				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+				
+				if (status == ConstProduct.ProductStatus.ON_SALE){
+					/**
+					 * 检测时间
+					 */
+					Date stdt = updateProdcutStatusParam.getOnSaleStdt();
+					Date endt = updateProdcutStatusParam.getOnSaleEndt();
+					if (stdt == null || endt == null || stdt.after(endt) || endt.before(new Date()))
+						throw new ProductIsNotAcceptableForOnSaleRuntimeException();
+					
+					/**
+					 * TODO:检测是否有上架的产品SKU
+					 */
+					
+					updateDomain.setOnSaleStdt(stdt);
+					updateDomain.setOnSaleEndt(endt);
+				}
+				
+				productMapper.updateWithoutNull(updateDomain);
+			}
+		}
+	}
 	
 	/**
 	 * 上架不能删，

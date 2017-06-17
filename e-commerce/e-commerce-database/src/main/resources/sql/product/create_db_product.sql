@@ -312,6 +312,7 @@ create table t_prd_sku
    sku_status           tinyint unsigned not null comment 'SKU状态',
    market_price         decimal(15,4) comment '市场价',
    sale_price           decimal(15,4) comment '销售价',
+   sku_stock_amount     integer not null comment 'SKU库存数量',
    is_special           tinyint unsigned not null comment '是否有特价',
    width                smallint unsigned comment '宽度',
    depth                smallint unsigned comment '深度',

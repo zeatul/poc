@@ -15,6 +15,7 @@
 		sku_status AS "skuStatus" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
+		sku_stock_amount AS "skuStockAmount" ,
 		is_special AS "isSpecial" ,
 		width AS "width" ,
 		depth AS "depth" ,
@@ -43,6 +44,7 @@
 			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
+			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
 			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
 			<if test="width != null"> AND width = #{width}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
@@ -72,6 +74,7 @@
 			AND sku_status = #{old_skuStatus}
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
+			AND sku_stock_amount = #{old_skuStockAmount}
 			AND is_special = #{old_isSpecial}
 			AND width = #{old_width}
 			AND depth = #{old_depth}
@@ -101,6 +104,7 @@
 			sku_status = #{skuStatus},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
+			sku_stock_amount = #{skuStockAmount},
 			is_special = #{isSpecial},
 			width = #{width},
 			depth = #{depth},
@@ -130,6 +134,7 @@
 			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
+			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
 			<if test="isSpecial != null">is_special = #{isSpecial},</if>
 			<if test="width != null">width = #{width},</if>
 			<if test="depth != null">depth = #{depth},</if>
@@ -192,6 +197,7 @@
 				sku_status,				
 				market_price,				
 				sale_price,				
+				sku_stock_amount,				
 				is_special,				
 				width,				
 				depth,				
@@ -218,6 +224,7 @@
 			#{skuStatus},
 			#{marketPrice},
 			#{salePrice},
+			#{skuStockAmount},
 			#{isSpecial},
 			#{width},
 			#{depth},

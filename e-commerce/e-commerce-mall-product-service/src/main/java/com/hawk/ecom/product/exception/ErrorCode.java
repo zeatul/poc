@@ -22,6 +22,8 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+10, "用户只能管理自己商铺的物品");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+11, "产品SKU不存在");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+12, "产品SKU状态不符合当前操作的要求");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+13, "产品SKU不符合上架条件,Sku销售价格必须大于0");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+14, "产品不符合上架条件,必须有处于上架状态的产品SKU,上架开始时间不能小于上架结束时间，上架结束时间必须大于当前时间");
 //		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
 		
 	}

@@ -67,6 +67,11 @@ public class SkuDomain implements Serializable {
 	private BigDecimal salePrice;
 	
 	/**
+	 * SKU库存数量 sku_stock_amount
+	 */
+	private Integer skuStockAmount;
+	
+	/**
 	 * 是否有特价 is_special
 	 */
 	private Integer isSpecial;
@@ -295,6 +300,22 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSalePrice (BigDecimal salePrice) {
 		this.salePrice = salePrice;
+	}
+	
+	/**
+	 * 
+	 * @return SKU库存数量 sku_stock_amount
+	 */
+	public Integer getSkuStockAmount(){
+		return skuStockAmount;
+	}
+	
+	/**
+	 * 
+	 * @param skuStockAmount SKU库存数量 sku_stock_amount
+	 */	
+	public void setSkuStockAmount (Integer skuStockAmount) {
+		this.skuStockAmount = skuStockAmount;
 	}
 	
 	/**

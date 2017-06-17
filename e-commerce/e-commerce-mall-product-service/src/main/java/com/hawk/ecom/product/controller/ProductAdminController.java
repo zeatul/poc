@@ -18,6 +18,7 @@ import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.ecom.product.service.ProductService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -55,6 +56,14 @@ public class ProductAdminController {
 		UpdateProductParam param = HttpRequestTools.parse(request, UpdateProductParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		productService.updateProduct(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/status/update", method = POST)
+	public  WebResponse<ResponseData> updateProductStatus(HttpServletRequest request) throws Exception {
+		UpdateProductStatusParam param = HttpRequestTools.parse(request, UpdateProductStatusParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		productService.updateProductStatus(param);
 		return SuccessResponse.build(null);
 	}
 	
