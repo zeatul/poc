@@ -9,11 +9,10 @@
 		category_id AS "categoryId" ,
 		pid AS "pid" ,
 		pvid AS "pvid" ,
-		attr_name_code AS "attrNameCode" ,
 		attr_name_business_type AS "attrNameBusinessType" ,
-		attr_name_type AS "attrNameType" ,
 		attr_value_type AS "attrValueType" ,
 		attr_name AS "attrName" ,
+		attr_name_status AS "attrNameStatus" ,
 		is_search AS "isSearch" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -29,11 +28,10 @@
 			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
 			<if test="pid != null"> AND pid = #{pid}  </if>
 			<if test="pvid != null"> AND pvid = #{pvid}  </if>
-			<if test="attrNameCode != null"> AND attr_name_code = #{attrNameCode}  </if>
 			<if test="attrNameBusinessType != null"> AND attr_name_business_type = #{attrNameBusinessType}  </if>
-			<if test="attrNameType != null"> AND attr_name_type = #{attrNameType}  </if>
 			<if test="attrValueType != null"> AND attr_value_type = #{attrValueType}  </if>
 			<if test="attrName != null"> AND attr_name = #{attrName}  </if>
+			<if test="attrNameStatus != null"> AND attr_name_status = #{attrNameStatus}  </if>
 			<if test="isSearch != null"> AND is_search = #{isSearch}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -50,11 +48,10 @@
 			AND category_id = #{old_categoryId}
 			AND pid = #{old_pid}
 			AND pvid = #{old_pvid}
-			AND attr_name_code = #{old_attrNameCode}
 			AND attr_name_business_type = #{old_attrNameBusinessType}
-			AND attr_name_type = #{old_attrNameType}
 			AND attr_value_type = #{old_attrValueType}
 			AND attr_name = #{old_attrName}
+			AND attr_name_status = #{old_attrNameStatus}
 			AND is_search = #{old_isSearch}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
@@ -71,11 +68,10 @@
 			category_id = #{categoryId},
 			pid = #{pid},
 			pvid = #{pvid},
-			attr_name_code = #{attrNameCode},
 			attr_name_business_type = #{attrNameBusinessType},
-			attr_name_type = #{attrNameType},
 			attr_value_type = #{attrValueType},
 			attr_name = #{attrName},
+			attr_name_status = #{attrNameStatus},
 			is_search = #{isSearch},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -92,11 +88,10 @@
 			<if test="categoryId != null">category_id = #{categoryId},</if>
 			<if test="pid != null">pid = #{pid},</if>
 			<if test="pvid != null">pvid = #{pvid},</if>
-			<if test="attrNameCode != null">attr_name_code = #{attrNameCode},</if>
 			<if test="attrNameBusinessType != null">attr_name_business_type = #{attrNameBusinessType},</if>
-			<if test="attrNameType != null">attr_name_type = #{attrNameType},</if>
 			<if test="attrValueType != null">attr_value_type = #{attrValueType},</if>
 			<if test="attrName != null">attr_name = #{attrName},</if>
+			<if test="attrNameStatus != null">attr_name_status = #{attrNameStatus},</if>
 			<if test="isSearch != null">is_search = #{isSearch},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -146,11 +141,10 @@
 				category_id,				
 				pid,				
 				pvid,				
-				attr_name_code,				
 				attr_name_business_type,				
-				attr_name_type,				
 				attr_value_type,				
 				attr_name,				
+				attr_name_status,				
 				is_search,				
 				create_user_code,				
 				create_date,				
@@ -164,11 +158,10 @@
 			#{categoryId},
 			#{pid},
 			#{pvid},
-			#{attrNameCode},
 			#{attrNameBusinessType},
-			#{attrNameType},
 			#{attrValueType},
 			#{attrName},
+			#{attrNameStatus},
 			#{isSearch},
 			#{createUserCode},
 			#{createDate},

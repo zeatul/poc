@@ -23,6 +23,8 @@ public class ConstCategory {
 		 */
 		
 		public final int EDITING = 1;
+		
+		
 	}
 
 }

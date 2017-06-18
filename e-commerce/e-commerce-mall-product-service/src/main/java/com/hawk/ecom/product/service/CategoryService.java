@@ -18,7 +18,6 @@ import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.exception.CategoryHasChildRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
-import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateCategoryRuntimeException;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.mapper.CategoryMapper;
@@ -63,7 +62,7 @@ public class CategoryService {
 	private final static CategoryDomain ROOT = new CategoryDomain();
 	static {
 		ROOT.setCategoryCode("root");
-		ROOT.setId(0l);
+		ROOT.setId(0);
 		ROOT.setDepth(0);
 		ROOT.setIdPath("/0");
 		ROOT.setCategoryName("root");
@@ -76,7 +75,7 @@ public class CategoryService {
 	 * @param id
 	 * @return
 	 */
-	public CategoryDomain loadCategory(Long id){
+	public CategoryDomain loadCategory(Integer id){
 		CategoryDomain categoryDomain = null; 
 		if (id != null){
 			categoryDomain = categoryMapper.load(id);
@@ -89,7 +88,7 @@ public class CategoryService {
 		return categoryDomain;
 	}
 	
-	public boolean existCategory(Long id){
+	public boolean existCategory(Integer  id){
 		if (id == null){
 			logger.error("queryCategoryDomainById param id is null");
 			return false;
@@ -98,7 +97,7 @@ public class CategoryService {
 		return categoryMapper.count(params) > 0;
 	}
 	
-	public CategoryDomain queryCategoryDomainById(Long id){
+	public CategoryDomain queryCategoryDomainById(Integer  id){
 		if (id == null){
 			logger.error("queryCategoryDomainById param id is null");
 			return null;
@@ -106,7 +105,7 @@ public class CategoryService {
 		return categoryMapper.load(id);
 	}
 	
-	private CategoryDomain queryParentCategoryById(Long pid){
+	private CategoryDomain queryParentCategoryById(Integer  pid){
 		if (pid == null || pid == 0)
 			return ROOT;
 		CategoryDomain parent =  queryCategoryDomainById(pid);
@@ -159,7 +158,7 @@ public class CategoryService {
 		}
 		categoryDomain.setObjectOrder(objectOrder);
 		
-		Long id = pkGenService.genPk();
+		Integer  id = pkGenService.genPk();
 		String categoryCode = createCategoryParam.getCategoryCode();
 		if (StringTools.isNullOrEmpty(categoryCode)){
 			categoryCode = id.toString();
@@ -212,7 +211,7 @@ public class CategoryService {
 		}
 		
 		int status = updateCategoryStatusParam.getCategoryStatus();
-		for(Long id  : updateCategoryStatusParam.getIds()){
+		for(Integer  id  : updateCategoryStatusParam.getIds()){
 			CategoryDomain categoryDomain = loadCategory(id);
 			if (categoryDomain.getCategoryStatus() != status){
 				CategoryDomain updateDomain = new CategoryDomain();
@@ -233,7 +232,7 @@ public class CategoryService {
 		}
 		
 		int status = updateCategoryTemplateStatusParam.getCategoryTemplateStatus();
-		for(Long id  : updateCategoryTemplateStatusParam.getIds()){
+		for(Integer  id  : updateCategoryTemplateStatusParam.getIds()){
 			CategoryDomain categoryDomain = loadCategory(id);
 			if (categoryDomain.getCategoryTemplateStatus() != status){
 				/**
@@ -289,7 +288,7 @@ public class CategoryService {
 		
 		
 		
-		for(Long id :removeCategoryParam.getIds()){
+		for(Integer id :removeCategoryParam.getIds()){
 						
 			
 			/**

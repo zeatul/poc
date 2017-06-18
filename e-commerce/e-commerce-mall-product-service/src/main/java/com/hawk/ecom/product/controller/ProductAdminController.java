@@ -76,7 +76,7 @@ public class ProductAdminController {
 	}
 	
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiResponse<ProductInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
+	public WebResponse<MultiResponse<ProductInfoResponse>> ListProduct(HttpServletRequest request) throws Exception {
 		ListProductParam param = HttpRequestTools.parse(request, ListProductParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		List<ProductDomain> categoryDomainList =  productService.listProduct(param);

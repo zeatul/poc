@@ -55,7 +55,7 @@ public class SkuService {
 	@Autowired
 	private SkuMapper skuMapper;
 
-	public SkuDomain loadSkuById(Long id) {
+	public SkuDomain loadSkuById(Integer  id) {
 		SkuDomain skuDomain = null;
 		if (id != null) {
 			skuDomain = skuMapper.load(id);
@@ -228,7 +228,7 @@ public class SkuService {
 			throw new IllegalAccessRuntimeException();
 		}
 		int status = updateSkuStatusParam.getSkuStatus();
-		for (Long id : updateSkuStatusParam.getIds()) {
+		for (Integer  id : updateSkuStatusParam.getIds()) {
 			SkuDomain skuDomain = loadSkuById(id);
 
 			if (status != skuDomain.getSkuStatus()) {
@@ -256,7 +256,7 @@ public class SkuService {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		Long productId = listSkuOfProductParam.getProductId();
+		Integer  productId = listSkuOfProductParam.getProductId();
 		ProductDomain productDomain = productService.loadProduct(productId);
 
 		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getUserCode())) {
@@ -278,6 +278,10 @@ public class SkuService {
 			listSkuParam.setOrder("create_date desc");
 		}
 
+		if (StringTools.isNullOrEmpty(listSkuParam.getOrder())){
+			listSkuParam.setOrder("create_date desc");
+		}
+		
 		MybatisParam params = MybatisTools.page(new MybatisParam().put("storeCode", AuthThreadLocal.getStoreCode()), listSkuParam);
 		return skuMapper.loadDynamicPaging(params);
 	}
@@ -311,7 +315,7 @@ public class SkuService {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		for (Long id : removeSkuParam.getIds()) {
+		for (Integer  id : removeSkuParam.getIds()) {
 			SkuDomain skuDomain = loadSkuById(id);
 			if (skuDomain.getSkuStatus() != ConstProduct.SkuStatus.EDITING) {
 				throw new SkuStatusIsNotAcceptableRuntimeException();

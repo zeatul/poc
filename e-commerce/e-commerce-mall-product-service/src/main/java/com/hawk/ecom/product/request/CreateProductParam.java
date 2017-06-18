@@ -17,11 +17,11 @@ public class CreateProductParam {
 		this.operatorCode = operatorCode;
 	}
 
-	public Long getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(Long categoryId) {
+	public void setCategoryId(Integer  categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -85,7 +85,7 @@ public class CreateProductParam {
 	 * 产品目录主键 category_id
 	 */
 	@NotNull
-	private Long categoryId;
+	private Integer categoryId;
 
 	/**
 	 * 产品编号 product_code

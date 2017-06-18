@@ -19,6 +19,7 @@ import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.product.exception.ProductIsNotAcceptableForOnSaleRuntimeException;
 import com.hawk.ecom.product.exception.ProductNotFoundRuntimeException;
@@ -60,7 +61,7 @@ public class ProductService {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	public ProductDomain loadProduct(Long id){
+	public ProductDomain loadProduct(Integer  id){
 		ProductDomain productDomain = null;
 		if (id != null){
 			logger.error("product id is null");
@@ -75,6 +76,7 @@ public class ProductService {
 	/**
 	 * 同一个商铺的商品编号不能重复
 	 * 新建立的商品默认是编辑状态
+	 * 创建商品时，对应的产品目录模板状态必须是 available
 	 * 商品的关键属性和非关键属性只能有一个
 	 * 商品的SKU属性可以是组合多个
 	 * @param createProdcutParam
@@ -91,7 +93,7 @@ public class ProductService {
 		}
 		
 		/**
-		 * 校验
+		 * 校验,产品目录必须存在，产品目录必须是叶子节点，产品目录模板状态必须是可用的。
 		 */
 		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId()) ;
 		if (category == null){
@@ -100,9 +102,13 @@ public class ProductService {
 		if (!ConstBoolean.parse(category.getIsLeaf())){
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		if (category.getCategoryStatus() == ConstCategory.CategoryStatus.FORBIDDEN){
-			throw new CategoryStatusIsNotAcceptableRuntimeException();
+//		if (category.getCategoryStatus() != ConstCategory.CategoryStatus.FORBIDDEN){
+//			throw new CategoryStatusIsNotAcceptableRuntimeException();
+//		}
+		if (category.getCategoryTemplateStatus() != ConstCategory.CategoryTemplateStatus.AVAILABLE){
+			throw new CategoryTemplateStatusIsNotAcceptableRuntimeException();
 		}
+		
 		
 		Date now = new Date();
 		ProductDomain productDomain = new ProductDomain();
@@ -186,7 +192,7 @@ public class ProductService {
 		}
 		
 		int status = updateProdcutStatusParam.getProductStatus();
-		for (Long id : updateProdcutStatusParam.getIds()){
+		for (Integer  id : updateProdcutStatusParam.getIds()){
 			ProductDomain productDomain = loadProduct(id);
 			if (status != productDomain.getProductStatus()){
 				ProductDomain updateDomain = new ProductDomain();
@@ -234,7 +240,7 @@ public class ProductService {
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		for (Long id : removeProductParam.getIds()){
+		for (Integer  id : removeProductParam.getIds()){
 			if (id == null){
 				break;
 			}

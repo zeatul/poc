@@ -7,11 +7,11 @@ import com.hawk.ecom.user.annotation.NotLogin;
 
 public class UpdateUserInfoParam {
 	
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(Integer  userId) {
 		this.userId = userId;
 	}
 
@@ -47,6 +47,6 @@ public class UpdateUserInfoParam {
 	private String sex;
 	
 	@NotLogin
-	private Long userId;
+	private Integer userId;
 
 }

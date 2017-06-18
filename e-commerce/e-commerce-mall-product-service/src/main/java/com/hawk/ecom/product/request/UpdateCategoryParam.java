@@ -4,13 +4,13 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 
 public class UpdateCategoryParam {
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(Integer  id) {
 		this.id = id;
 	}
 
@@ -91,7 +91,7 @@ public class UpdateCategoryParam {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录序号 object_order

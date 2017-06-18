@@ -18,12 +18,12 @@ public class ProductDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录主键 category_id
 	 */
-	private Long categoryId;
+	private Integer categoryId;
 	
 	/**
 	 * 商户编号 store_code
@@ -120,7 +120,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -128,7 +128,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -136,7 +136,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @return 产品目录主键 category_id
 	 */
-	public Long getCategoryId(){
+	public Integer getCategoryId(){
 		return categoryId;
 	}
 	
@@ -144,7 +144,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @param categoryId 产品目录主键 category_id
 	 */	
-	public void setCategoryId (Long categoryId) {
+	public void setCategoryId (Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	

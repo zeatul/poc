@@ -18,12 +18,12 @@ public class SystemResourceDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 父ID pid
 	 */
-	private Long pid;
+	private Integer pid;
 	
 	/**
 	 * 主键PATH id_path
@@ -150,7 +150,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -158,7 +158,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	
@@ -166,7 +166,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @return 父ID pid
 	 */
-	public Long getPid(){
+	public Integer getPid(){
 		return pid;
 	}
 	
@@ -174,7 +174,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @param pid 父ID pid
 	 */	
-	public void setPid (Long pid) {
+	public void setPid (Integer  pid) {
 		this.pid = pid;
 	}
 	

@@ -18,37 +18,27 @@ public class AttrNameDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录主键 category_id
 	 */
-	private Long categoryId;
+	private Integer categoryId;
 	
 	/**
 	 * 父属性名主键 pid
 	 */
-	private Long pid;
+	private Integer pid;
 	
 	/**
 	 * 父属性值主键 pvid
 	 */
-	private Long pvid;
-	
-	/**
-	 * 属性名编号 attr_name_code
-	 */
-	private String attrNameCode;
+	private Integer pvid;
 	
 	/**
 	 * 属性名业务功能分类(品牌,供应商,其它) attr_name_business_type
 	 */
 	private Integer attrNameBusinessType;
-	
-	/**
-	 * 属性类型（关键属性,销售属性,一般属性） attr_name_type
-	 */
-	private Integer attrNameType;
 	
 	/**
 	 * 属性值类型 attr_value_type
@@ -59,6 +49,11 @@ public class AttrNameDomain implements Serializable {
 	 * 属性名名称 attr_name
 	 */
 	private String attrName;
+	
+	/**
+	 * 属性名状态 attr_name_status
+	 */
+	private Integer attrNameStatus;
 	
 	/**
 	 * 是否搜索 is_search
@@ -100,7 +95,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -108,7 +103,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -116,7 +111,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @return 产品目录主键 category_id
 	 */
-	public Long getCategoryId(){
+	public Integer getCategoryId(){
 		return categoryId;
 	}
 	
@@ -124,7 +119,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @param categoryId 产品目录主键 category_id
 	 */	
-	public void setCategoryId (Long categoryId) {
+	public void setCategoryId (Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	
@@ -132,7 +127,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @return 父属性名主键 pid
 	 */
-	public Long getPid(){
+	public Integer getPid(){
 		return pid;
 	}
 	
@@ -140,7 +135,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @param pid 父属性名主键 pid
 	 */	
-	public void setPid (Long pid) {
+	public void setPid (Integer pid) {
 		this.pid = pid;
 	}
 	
@@ -148,7 +143,7 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @return 父属性值主键 pvid
 	 */
-	public Long getPvid(){
+	public Integer getPvid(){
 		return pvid;
 	}
 	
@@ -156,24 +151,8 @@ public class AttrNameDomain implements Serializable {
 	 * 
 	 * @param pvid 父属性值主键 pvid
 	 */	
-	public void setPvid (Long pvid) {
+	public void setPvid (Integer pvid) {
 		this.pvid = pvid;
-	}
-	
-	/**
-	 * 
-	 * @return 属性名编号 attr_name_code
-	 */
-	public String getAttrNameCode(){
-		return attrNameCode;
-	}
-	
-	/**
-	 * 
-	 * @param attrNameCode 属性名编号 attr_name_code
-	 */	
-	public void setAttrNameCode (String attrNameCode) {
-		this.attrNameCode = attrNameCode;
 	}
 	
 	/**
@@ -190,22 +169,6 @@ public class AttrNameDomain implements Serializable {
 	 */	
 	public void setAttrNameBusinessType (Integer attrNameBusinessType) {
 		this.attrNameBusinessType = attrNameBusinessType;
-	}
-	
-	/**
-	 * 
-	 * @return 属性类型（关键属性,销售属性,一般属性） attr_name_type
-	 */
-	public Integer getAttrNameType(){
-		return attrNameType;
-	}
-	
-	/**
-	 * 
-	 * @param attrNameType 属性类型（关键属性,销售属性,一般属性） attr_name_type
-	 */	
-	public void setAttrNameType (Integer attrNameType) {
-		this.attrNameType = attrNameType;
 	}
 	
 	/**
@@ -238,6 +201,22 @@ public class AttrNameDomain implements Serializable {
 	 */	
 	public void setAttrName (String attrName) {
 		this.attrName = attrName;
+	}
+	
+	/**
+	 * 
+	 * @return 属性名状态 attr_name_status
+	 */
+	public Integer getAttrNameStatus(){
+		return attrNameStatus;
+	}
+	
+	/**
+	 * 
+	 * @param attrNameStatus 属性名状态 attr_name_status
+	 */	
+	public void setAttrNameStatus (Integer attrNameStatus) {
+		this.attrNameStatus = attrNameStatus;
 	}
 	
 	/**

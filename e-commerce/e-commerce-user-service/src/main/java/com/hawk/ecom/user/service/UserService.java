@@ -190,16 +190,17 @@ public class UserService {
 	}
 	
 	@NotLogin
-	public UserDomain loadById(@NotLogin Long userId){
+	public UserDomain loadById(@NotLogin Integer userId){
 		UserDomain userDomain = userMapper.load(userId);
 		return userDomain;
 	}
 	
+	private final static String USER_CODE_HEAD = "usr";
 	private String generateUserCode() {
 		/**
 		 * 8位及8位以上的数字构成的字符串
 		 */
-		return new Long(userCodeSequenceService.genPk() ).toString();
+		return StringTools.concat(USER_CODE_HEAD,userCodeSequenceService.genPk());
 
 	}
 }

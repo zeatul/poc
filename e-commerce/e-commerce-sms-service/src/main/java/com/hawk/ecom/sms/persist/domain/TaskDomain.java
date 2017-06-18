@@ -18,7 +18,7 @@ public class TaskDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 短信运营商编号 sms_operator_code
@@ -120,7 +120,7 @@ public class TaskDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -128,7 +128,7 @@ public class TaskDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	

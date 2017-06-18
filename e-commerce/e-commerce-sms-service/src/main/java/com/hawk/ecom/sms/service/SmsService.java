@@ -103,7 +103,7 @@ public class SmsService {
 			}else{
 				times = times +1;
 				v.setTimes(times);
-				Long expire = 3600*24 - (System.currentTimeMillis()-v.getStdt())/1000;
+				Long  expire = 3600*24 - (System.currentTimeMillis()-v.getStdt())/1000;
 				cacheService.put(key2, v,Integer.parseInt(expire.toString()));
 			}
 		}else{

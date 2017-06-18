@@ -18,11 +18,11 @@ public class UpdateSkuStatusParam {
 		this.skuStatus = skuStatus;
 	}
 
-	public List<Long> getIds() {
+	public List<Integer>   getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Long> ids) {
+	public void setIds(List<Integer>   ids) {
 		this.ids = ids;
 	}
 
@@ -37,7 +37,7 @@ public class UpdateSkuStatusParam {
 	}
 
 	@NotEmpty("产品SKU主键集合")
-	private List<Long> ids;
+	private List<Integer>   ids;
 	
 	@NotNull
 	@ValidWord

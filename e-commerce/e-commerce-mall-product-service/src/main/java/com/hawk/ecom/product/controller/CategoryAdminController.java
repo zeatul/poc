@@ -91,7 +91,7 @@ public class CategoryAdminController {
 	} 
 	
 	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})
-	public WebResponse<CategoryInfoResponse> loadCategory(@PathVariable Long id) throws Exception {
+	public WebResponse<CategoryInfoResponse> loadCategory(@PathVariable Integer id) throws Exception {
 		LoadCategoryParam param = new LoadCategoryParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setId(id);

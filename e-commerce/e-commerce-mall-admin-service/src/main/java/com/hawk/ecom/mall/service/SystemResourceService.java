@@ -59,7 +59,7 @@ public class SystemResourceService {
 	private final static SystemResourceDomain ROOT = new SystemResourceDomain();
 	static {
 		ROOT.setNodeCode("root");
-		ROOT.setId(0l);
+		ROOT.setId(0);
 		ROOT.setDepth(0);
 		ROOT.setIdPath("/0");
 		ROOT.setNodeName("root");
@@ -155,7 +155,7 @@ public class SystemResourceService {
 		systemResourceDomain.setIsReserved(ConstBoolean.FALSE);
 		systemResourceDomain.setUpdateUserCode(systemCreateResourceParam.getOperatorCode());
 
-		Long id = systemShorkPkSequenceService.genPk();
+		Integer  id = systemShorkPkSequenceService.genPk();
 		systemResourceDomain.setId(id);
 		if (StringTools.isNullOrEmpty(nodeCode)) {
 			nodeCode = systemResourceDomain.getId().toString();

@@ -5,19 +5,19 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 
 public class UpdateProductAttrParam {
 	
-	public Long getAttrNameId() {
+	public Integer getAttrNameId() {
 		return attrNameId;
 	}
 
-	public void setAttrNameId(Long attrNameId) {
+	public void setAttrNameId(Integer  attrNameId) {
 		this.attrNameId = attrNameId;
 	}
 
-	public Long getAttrValueId() {
+	public Integer getAttrValueId() {
 		return attrValueId;
 	}
 
-	public void setAttrValueId(Long attrValueId) {
+	public void setAttrValueId(Integer  attrValueId) {
 		this.attrValueId = attrValueId;
 	}
 
@@ -25,12 +25,12 @@ public class UpdateProductAttrParam {
 	 * 属性名主键 attr_name_id
 	 */
 	@NotNull
-	private Long attrNameId;
+	private Integer attrNameId;
 	
 	/**
 	 * 属性值主键 attr_value_id
 	 */
 	@NotNull
-	private Long attrValueId;
+	private Integer attrValueId;
 
 }

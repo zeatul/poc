@@ -18,27 +18,32 @@ public class ProductAttrDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品主键 product_id
 	 */
-	private Long productId;
+	private Integer productId;
 	
 	/**
 	 * 产品SKU主键 sku_id
 	 */
-	private Long skuId;
+	private Integer skuId;
 	
 	/**
 	 * 属性名主键 attr_name_id
 	 */
-	private Long attrNameId;
+	private Integer attrNameId;
 	
 	/**
 	 * 属性值主键 attr_value_id
 	 */
-	private Long attrValueId;
+	private Integer attrValueId;
+	
+	/**
+	 * 属性类型（关键属性,销售属性,一般属性） attr_name_type
+	 */
+	private Integer attrNameType;
 	
 	/**
 	 * 创建者 create_user_code
@@ -75,7 +80,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -83,7 +88,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -91,7 +96,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 产品主键 product_id
 	 */
-	public Long getProductId(){
+	public Integer getProductId(){
 		return productId;
 	}
 	
@@ -99,7 +104,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param productId 产品主键 product_id
 	 */	
-	public void setProductId (Long productId) {
+	public void setProductId (Integer productId) {
 		this.productId = productId;
 	}
 	
@@ -107,7 +112,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 产品SKU主键 sku_id
 	 */
-	public Long getSkuId(){
+	public Integer getSkuId(){
 		return skuId;
 	}
 	
@@ -115,7 +120,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param skuId 产品SKU主键 sku_id
 	 */	
-	public void setSkuId (Long skuId) {
+	public void setSkuId (Integer skuId) {
 		this.skuId = skuId;
 	}
 	
@@ -123,7 +128,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 属性名主键 attr_name_id
 	 */
-	public Long getAttrNameId(){
+	public Integer getAttrNameId(){
 		return attrNameId;
 	}
 	
@@ -131,7 +136,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param attrNameId 属性名主键 attr_name_id
 	 */	
-	public void setAttrNameId (Long attrNameId) {
+	public void setAttrNameId (Integer attrNameId) {
 		this.attrNameId = attrNameId;
 	}
 	
@@ -139,7 +144,7 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @return 属性值主键 attr_value_id
 	 */
-	public Long getAttrValueId(){
+	public Integer getAttrValueId(){
 		return attrValueId;
 	}
 	
@@ -147,8 +152,24 @@ public class ProductAttrDomain implements Serializable {
 	 * 
 	 * @param attrValueId 属性值主键 attr_value_id
 	 */	
-	public void setAttrValueId (Long attrValueId) {
+	public void setAttrValueId (Integer attrValueId) {
 		this.attrValueId = attrValueId;
+	}
+	
+	/**
+	 * 
+	 * @return 属性类型（关键属性,销售属性,一般属性） attr_name_type
+	 */
+	public Integer getAttrNameType(){
+		return attrNameType;
+	}
+	
+	/**
+	 * 
+	 * @param attrNameType 属性类型（关键属性,销售属性,一般属性） attr_name_type
+	 */	
+	public void setAttrNameType (Integer attrNameType) {
+		this.attrNameType = attrNameType;
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 	
-	public OrderDomain loadById(Long orderId){
+	public OrderDomain loadById(Integer  orderId){
 		if (orderId == null){
 			logger.error("orderId is null");
 			return null;

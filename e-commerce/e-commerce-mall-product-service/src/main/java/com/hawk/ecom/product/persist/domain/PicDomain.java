@@ -18,7 +18,7 @@ public class PicDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 所有者类型 owner_type
@@ -28,7 +28,7 @@ public class PicDomain implements Serializable {
 	/**
 	 * 所有者主键 ownert_id
 	 */
-	private Long ownertId;
+	private Integer ownertId;
 	
 	/**
 	 * 图片名称 pic_name
@@ -80,7 +80,7 @@ public class PicDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -88,7 +88,7 @@ public class PicDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -112,7 +112,7 @@ public class PicDomain implements Serializable {
 	 * 
 	 * @return 所有者主键 ownert_id
 	 */
-	public Long getOwnertId(){
+	public Integer getOwnertId(){
 		return ownertId;
 	}
 	
@@ -120,7 +120,7 @@ public class PicDomain implements Serializable {
 	 * 
 	 * @param ownertId 所有者主键 ownert_id
 	 */	
-	public void setOwnertId (Long ownertId) {
+	public void setOwnertId (Integer ownertId) {
 		this.ownertId = ownertId;
 	}
 	

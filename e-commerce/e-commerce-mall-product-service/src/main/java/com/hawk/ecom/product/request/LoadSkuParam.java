@@ -12,14 +12,14 @@ public class LoadSkuParam {
 
 
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
 
 
-	public void setId(Long id) {
+	public void setId(Integer  id) {
 		this.id = id;
 	}
 
@@ -44,7 +44,7 @@ public class LoadSkuParam {
 	 * 目录主键
 	 */
 	@NotNull
-	private Long id;
+	private Integer id;
 
 	
 	

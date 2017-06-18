@@ -8,12 +8,12 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 public class UpdateSkuParam {
 	
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(Integer  id) {
 		this.id = id;
 	}
 
@@ -142,7 +142,7 @@ public class UpdateSkuParam {
 	 * 主键 id
 	 */
 	@NotNull
-	private Long id;
+	private Integer id;
 	
 	
 	/**

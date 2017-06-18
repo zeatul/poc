@@ -18,17 +18,17 @@ public class MallRoleUserDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 角色主键 role_id
 	 */
-	private Long roleId;
+	private Integer roleId;
 	
 	/**
 	 * 用户主键 user_id
 	 */
-	private Long userId;
+	private Integer userId;
 	
 	/**
 	 * 创建者 create_user_code
@@ -65,7 +65,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -73,7 +73,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	
@@ -81,7 +81,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @return 角色主键 role_id
 	 */
-	public Long getRoleId(){
+	public Integer getRoleId(){
 		return roleId;
 	}
 	
@@ -89,7 +89,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @param roleId 角色主键 role_id
 	 */	
-	public void setRoleId (Long roleId) {
+	public void setRoleId (Integer  roleId) {
 		this.roleId = roleId;
 	}
 	
@@ -97,7 +97,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @return 用户主键 user_id
 	 */
-	public Long getUserId(){
+	public Integer getUserId(){
 		return userId;
 	}
 	
@@ -105,7 +105,7 @@ public class MallRoleUserDomain implements Serializable {
 	 * 
 	 * @param userId 用户主键 user_id
 	 */	
-	public void setUserId (Long userId) {
+	public void setUserId (Integer  userId) {
 		this.userId = userId;
 	}
 	

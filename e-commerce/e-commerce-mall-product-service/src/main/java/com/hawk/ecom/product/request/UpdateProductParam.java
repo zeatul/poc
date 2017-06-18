@@ -8,11 +8,11 @@ import com.hawk.ecom.product.request.UpdateProductAttrParam;
 
 public class UpdateProductParam {
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer  id) {
 		this.id = id;
 	}
 
@@ -91,7 +91,7 @@ public class UpdateProductParam {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 
 	/**
 	 * 商户编号 store_code

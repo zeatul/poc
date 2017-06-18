@@ -18,17 +18,17 @@ public class MallRoleRightDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 角色ID role_id
 	 */
-	private Long roleId;
+	private Integer roleId;
 	
 	/**
 	 * 权限ID right_id
 	 */
-	private Long rightId;
+	private Integer rightId;
 	
 	/**
 	 * 访问行为 right_op
@@ -70,7 +70,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -78,7 +78,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	
@@ -86,7 +86,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @return 角色ID role_id
 	 */
-	public Long getRoleId(){
+	public Integer getRoleId(){
 		return roleId;
 	}
 	
@@ -94,7 +94,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param roleId 角色ID role_id
 	 */	
-	public void setRoleId (Long roleId) {
+	public void setRoleId (Integer  roleId) {
 		this.roleId = roleId;
 	}
 	
@@ -102,7 +102,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @return 权限ID right_id
 	 */
-	public Long getRightId(){
+	public Integer getRightId(){
 		return rightId;
 	}
 	
@@ -110,7 +110,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param rightId 权限ID right_id
 	 */	
-	public void setRightId (Long rightId) {
+	public void setRightId (Integer  rightId) {
 		this.rightId = rightId;
 	}
 	

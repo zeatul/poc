@@ -17,7 +17,7 @@ public class StoreDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 商户编号 store_code
@@ -39,7 +39,7 @@ public class StoreDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -47,7 +47,7 @@ public class StoreDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	

@@ -172,7 +172,7 @@ public class BsiOuterService {
 		order.setGoodId(goodId);
 		order.setGoodsSerialNo(UUID.randomUUID().toString());
 		order.setIdCard("320106198801011232");
-		order.setMobile(13916082484L);
+		order.setMobile(13916082484l);
 		order.setOutOrderID("132234567");
 		order.setProductId(productId);
 //		order.setSex(1);
@@ -237,7 +237,7 @@ public class BsiOuterService {
 		public Long getMobile() {
 			return mobile;
 		}
-		public void setMobile(Long mobile) {
+		public void setMobile(Long  mobile) {
 			this.mobile = mobile;
 		}
 		public String getUsername() {

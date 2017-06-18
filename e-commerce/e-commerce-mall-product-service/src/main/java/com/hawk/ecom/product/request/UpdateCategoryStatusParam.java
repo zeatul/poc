@@ -10,11 +10,11 @@ import com.hawk.framework.dic.validation.annotation.ValidWord;
 public class UpdateCategoryStatusParam {
 	
 
-	public List<Long> getIds() {
+	public List<Integer>   getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Long> ids) {
+	public void setIds(List<Integer>   ids) {
 		this.ids = ids;
 	}
 
@@ -35,7 +35,7 @@ public class UpdateCategoryStatusParam {
 	}
 
 	@NotEmpty("产品目录主键集合")
-	private List<Long> ids;
+	private List<Integer>   ids;
 	
 	@NotNull
 	@ValidWord

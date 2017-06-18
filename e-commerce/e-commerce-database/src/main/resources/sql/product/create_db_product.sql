@@ -1,18 +1,26 @@
+drop index ui_prd_attr_name on t_prd_attr_name;
+
 drop index i_prd_attr_name_pvid on t_prd_attr_name;
 
 drop index i_prd_attr_name_pid on t_prd_attr_name;
 
 drop table if exists t_prd_attr_name;
 
-drop index i_prd_attr_value_cat on t_prd_attr_value;
+drop index ui_prd_attr_value on t_prd_attr_value;
 
 drop table if exists t_prd_attr_value;
+
+drop table if exists t_prd_brand;
 
 drop index ui_prd_category_code on t_prd_category;
 
 drop index ui_prd_category_id_path on t_prd_category;
 
 drop table if exists t_prd_category;
+
+drop index ui_prd_category_brand on t_prd_category_brand_map;
+
+drop table if exists t_prd_category_brand_map;
 
 drop index ui_prd_c_s_m on t_prd_category_supplier_map;
 
@@ -51,15 +59,14 @@ drop table if exists t_prd_supplier;
 /*==============================================================*/
 create table t_prd_attr_name
 (
-   id                   bigint unsigned not null comment '主键',
-   category_id          bigint unsigned not null comment '产品目录主键',
-   pid                  bigint unsigned not null comment '父属性名主键',
-   pvid                 bigint unsigned not null comment '父属性值主键',
-   attr_name_code       varchar(50) not null comment '属性名编号',
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
+   pid                  integer unsigned not null comment '父属性名主键',
+   pvid                 integer unsigned not null comment '父属性值主键',
    attr_name_business_type smallint unsigned not null comment '属性名业务功能分类(品牌,供应商,其它)',
-   attr_name_type       tinyint unsigned not null comment '属性类型（关键属性,销售属性,一般属性）',
    attr_value_type      tinyint unsigned not null comment '属性值类型',
    attr_name            varchar(200) not null comment '属性名名称',
+   attr_name_status     tinyint unsigned not null comment '属性名状态',
    is_search            tinyint unsigned not null comment '是否搜索',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
@@ -90,15 +97,25 @@ create index i_prd_attr_name_pvid on t_prd_attr_name
 );
 
 /*==============================================================*/
+/* Index: ui_prd_attr_name                                      */
+/*==============================================================*/
+create unique index ui_prd_attr_name on t_prd_attr_name
+(
+   category_id,
+   attr_name
+);
+
+/*==============================================================*/
 /* Table: t_prd_attr_value                                      */
 /*==============================================================*/
 create table t_prd_attr_value
 (
-   id                   bigint unsigned not null comment '主键',
-   category_id          bigint unsigned not null comment '产品目录主键',
-   attr_name_id         bigint unsigned not null comment '属性名主键',
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
+   attr_name_id         integer unsigned not null comment '属性名主键',
    attr_value           varchar(50) not null comment '属性值',
-   attr_display_value   varchar(50) comment '属性值别名',
+   attr_display_value   varchar(50) comment '属性值显示名称',
+   attr_value_status    tinyint unsigned comment '属性值状态',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -112,20 +129,42 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_prd_attr_value comment '属性值表';
 
 /*==============================================================*/
-/* Index: i_prd_attr_value_cat                                  */
+/* Index: ui_prd_attr_value                                     */
 /*==============================================================*/
-create index i_prd_attr_value_cat on t_prd_attr_value
+create unique index ui_prd_attr_value on t_prd_attr_value
 (
-   category_id
+   attr_name_id,
+   attr_value
 );
+
+/*==============================================================*/
+/* Table: t_prd_brand                                           */
+/*==============================================================*/
+create table t_prd_brand
+(
+   id                   integer unsigned not null comment '主键',
+   brand_cname          varchar(200) not null comment '品牌中文名',
+   brand_ename          varchar(200) not null comment '品牌英文名',
+   brand_home_page      varchar(200) comment '品牌主页',
+   brand_home_logo      varchar(200) comment '品牌logo',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+);
+
+alter table t_prd_brand comment '产品品牌';
 
 /*==============================================================*/
 /* Table: t_prd_category                                        */
 /*==============================================================*/
 create table t_prd_category
 (
-   id                   bigint unsigned not null comment '主键',
-   pid                  bigint unsigned not null comment '父ID',
+   id                   integer unsigned not null comment '主键',
+   pid                  integer unsigned not null comment '父ID',
    id_path              varchar(200) not null comment '主键PATH',
    object_order         integer unsigned not null comment '产品目录序号',
    depth                tinyint unsigned not null comment '产品目录深度',
@@ -166,13 +205,41 @@ create unique index ui_prd_category_code on t_prd_category
 );
 
 /*==============================================================*/
+/* Table: t_prd_category_brand_map                              */
+/*==============================================================*/
+create table t_prd_category_brand_map
+(
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
+   brand_id             integer unsigned not null comment '品牌主键',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+);
+
+alter table t_prd_category_brand_map comment '品牌和产品目录的对应关系';
+
+/*==============================================================*/
+/* Index: ui_prd_category_brand                                 */
+/*==============================================================*/
+create unique index ui_prd_category_brand on t_prd_category_brand_map
+(
+   category_id,
+   brand_id
+);
+
+/*==============================================================*/
 /* Table: t_prd_category_supplier_map                           */
 /*==============================================================*/
 create table t_prd_category_supplier_map
 (
-   id                   bigint unsigned not null comment '主键',
-   category_id          bigint unsigned not null comment '产品目录主键',
-   supplier_id          bigint unsigned not null comment '供应商主键',
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
+   supplier_id          integer unsigned not null comment '供应商主键',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -199,9 +266,9 @@ create unique index ui_prd_c_s_m on t_prd_category_supplier_map
 /*==============================================================*/
 create table t_prd_pic
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    owner_type           tinyint unsigned not null comment '所有者类型',
-   ownert_id            bigint unsigned not null comment '所有者主键',
+   ownert_id            integer unsigned not null comment '所有者主键',
    pic_name             varchar(50) comment '图片名称',
    pic_url              varchar(200) not null comment '图片地址',
    pic_type             tinyint unsigned not null comment '图片类型',
@@ -222,13 +289,13 @@ alter table t_prd_pic comment '图片表';
 /*==============================================================*/
 create table t_prd_product
 (
-   id                   bigint unsigned not null comment '主键',
-   category_id          bigint unsigned not null comment '产品目录主键',
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
    store_code           varchar(50) not null comment '商户编号',
    product_code         varchar(50) not null comment '产品编号',
    product_name         varchar(200) not null comment '产品名称',
-   product_attr_id_comp char(10) not null comment '产品关键属性名ID和属性值ID集合',
-   product_attr_value_comp char(10) comment '产品关键属性值集合',
+   product_attr_id_comp varchar(200) not null comment '产品关键属性名ID和属性值ID集合',
+   product_attr_value_comp varchar(1000) comment '产品关键属性值集合',
    product_status       tinyint unsigned not null comment '产品状态',
    product_home_page    varchar(200) comment '产品主页',
    product_desc         varchar(1000) comment '产品描述',
@@ -271,11 +338,12 @@ create unique index ui_prd_store_prod_attr on t_prd_product
 /*==============================================================*/
 create table t_prd_product_attr
 (
-   id                   bigint unsigned not null comment '主键',
-   product_id           bigint unsigned not null comment '产品主键',
-   sku_id               bigint unsigned not null comment '产品SKU主键',
-   attr_name_id         bigint unsigned not null comment '属性名主键',
-   attr_value_id        bigint unsigned not null comment '属性值主键',
+   id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
+   sku_id               integer unsigned not null comment '产品SKU主键',
+   attr_name_id         integer unsigned not null comment '属性名主键',
+   attr_value_id        integer unsigned not null comment '属性值主键',
+   attr_name_type       tinyint unsigned not null comment '属性类型（关键属性,销售属性,一般属性）',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -302,8 +370,8 @@ create index i_prd_attr on t_prd_product_attr
 /*==============================================================*/
 create table t_prd_sku
 (
-   id                   bigint unsigned not null comment '主键',
-   product_id           bigint unsigned not null comment '产品主键',
+   id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
    store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
@@ -365,7 +433,7 @@ create unique index ui_prd_sku_attr_ids on t_prd_sku
 create table t_prd_small_number_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -377,8 +445,8 @@ alter table t_prd_small_number_sequence comment '商品模块非流水类数据�
 /*==============================================================*/
 create table t_prd_stock
 (
-   id                   bigint unsigned not null comment '主键',
-   sku_id               bigint unsigned not null comment '产品SKU主键',
+   id                   integer unsigned not null comment '主键',
+   sku_id               integer unsigned not null comment '产品SKU主键',
    warehouse_code       varchar(50) comment '仓库编号',
    stock_item_code      varchar(50) comment '仓库货物编号',
    stock_quantity       integer not null comment '库存数量',
@@ -401,7 +469,7 @@ alter table t_prd_stock comment '库存';
 /*==============================================================*/
 create table t_prd_supplier
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    supplier_code        varchar(50) not null comment '供应商编号',
    supplier_name        varchar(200) not null comment '供应商名称',
    store_code           varchar(50) not null comment '商户编号',

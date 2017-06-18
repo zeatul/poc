@@ -29,7 +29,7 @@ public class UserRootConfig {
 	
 	@Bean("userCodeSequenceService")
 	public PkGenService userCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(10000000);
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(100000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_usr_user_code_sequence(stub) values('a')");
 		return mysqlPkGenerator;

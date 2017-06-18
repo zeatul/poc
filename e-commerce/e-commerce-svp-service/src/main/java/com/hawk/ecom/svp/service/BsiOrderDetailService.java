@@ -29,7 +29,7 @@ public class BsiOrderDetailService {
 	
 	
 	
-	public BsiOrderDetailDomain loadById(Long id){
+	public BsiOrderDetailDomain loadById(Integer  id){
 		return bsiOrderDetailMapper.load(id);
 	}
 	

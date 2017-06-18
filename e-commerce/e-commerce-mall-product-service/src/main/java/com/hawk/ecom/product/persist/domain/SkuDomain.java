@@ -19,12 +19,12 @@ public class SkuDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品主键 product_id
 	 */
-	private Long productId;
+	private Integer productId;
 	
 	/**
 	 * 商户编号 store_code
@@ -146,7 +146,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -154,7 +154,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -162,7 +162,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @return 产品主键 product_id
 	 */
-	public Long getProductId(){
+	public Integer getProductId(){
 		return productId;
 	}
 	
@@ -170,7 +170,7 @@ public class SkuDomain implements Serializable {
 	 * 
 	 * @param productId 产品主键 product_id
 	 */	
-	public void setProductId (Long productId) {
+	public void setProductId (Integer productId) {
 		this.productId = productId;
 	}
 	

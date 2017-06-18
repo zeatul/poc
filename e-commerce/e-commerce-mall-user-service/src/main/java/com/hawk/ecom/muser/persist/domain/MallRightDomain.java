@@ -18,12 +18,12 @@ public class MallRightDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 父ID pid
 	 */
-	private Long pid;
+	private Integer pid;
 	
 	/**
 	 * 权限编号 right_code
@@ -95,7 +95,7 @@ public class MallRightDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -103,7 +103,7 @@ public class MallRightDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	
@@ -111,7 +111,7 @@ public class MallRightDomain implements Serializable {
 	 * 
 	 * @return 父ID pid
 	 */
-	public Long getPid(){
+	public Integer getPid(){
 		return pid;
 	}
 	
@@ -119,7 +119,7 @@ public class MallRightDomain implements Serializable {
 	 * 
 	 * @param pid 父ID pid
 	 */	
-	public void setPid (Long pid) {
+	public void setPid (Integer  pid) {
 		this.pid = pid;
 	}
 	

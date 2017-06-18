@@ -35,11 +35,11 @@ public class UpdateProductStatusParam {
 		this.onSaleEndt = onSaleEndt;
 	}
 
-	public List<Long> getIds() {
+	public List<Integer>   getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Long> ids) {
+	public void setIds(List<Integer>   ids) {
 		this.ids = ids;
 	}
 
@@ -54,7 +54,7 @@ public class UpdateProductStatusParam {
 	}
 
 	@NotEmpty("产品主键集合")
-	private List<Long> ids;
+	private List<Integer>   ids;
 	
 	@NotNull
 	@ValidWord

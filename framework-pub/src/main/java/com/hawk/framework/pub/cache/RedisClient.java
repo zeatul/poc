@@ -131,11 +131,11 @@ public class RedisClient {
 	 * @param key
 	 * @return
 	 */
-	public Long hlen(final String key) {
+	public Long  hlen(final String key) {
 		return execute(new Executor() {
 			@SuppressWarnings("unchecked")
 			@Override
-			public Long exec(ShardedJedis shardedJedis) {
+			public Long  exec(ShardedJedis shardedJedis) {
 				return shardedJedis.hlen(key);
 			}
 

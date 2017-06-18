@@ -7,11 +7,11 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 
 public class RemoveSkuParam {
 
-	public List<Long> getIds() {
+	public List<Integer>   getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Long> ids) {
+	public void setIds(List<Integer>   ids) {
 		this.ids = ids;
 	}
 
@@ -24,7 +24,7 @@ public class RemoveSkuParam {
 	}
 
 	@NotEmpty("产品SKU主键集合")
-	List<Long> ids;
+	List<Integer>   ids;
 	
 	/**
 	 * 操作员编号

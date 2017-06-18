@@ -78,7 +78,7 @@ public class SkuAdminController {
 	}
 	
 	@RequestMapping(value = "/listOfProduct/productId/{productId}", method = {GET,POST})
-	public WebResponse<MultiResponse<SkuInfoResponse>> listSkuOfProduct (@PathVariable Long productId) throws Exception {
+	public WebResponse<MultiResponse<SkuInfoResponse>> listSkuOfProduct (@PathVariable Integer productId) throws Exception {
 		ListSkuOfProductParam param = new ListSkuOfProductParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setProductId(productId);
@@ -93,7 +93,7 @@ public class SkuAdminController {
 	}
 	
 	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})
-	public WebResponse<SkuInfoResponse> loadSku (@PathVariable Long id) throws Exception {
+	public WebResponse<SkuInfoResponse> loadSku (@PathVariable Integer id) throws Exception {
 		LoadSkuParam param = new LoadSkuParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setId(id);
