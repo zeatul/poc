@@ -3,7 +3,7 @@ package com.hawk.ecom.product.request;
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.pub.sql.PageParam;
 
-public class ListAttrNameParam implements PageParam{
+public class ListAttrValueParam implements PageParam{
 
 
 	public Integer getPageIndex() {
@@ -37,17 +37,6 @@ public class ListAttrNameParam implements PageParam{
 	public void setOperatorCode(String operatorCode) {
 		this.operatorCode = operatorCode;
 	}
-	
-	
-	/**
-	 * 属性名主键
-	 */
-	private Integer attrNameId;
-	
-	/**
-	 * 产品目录主键
-	 */
-	private Integer categoryId;
 
 	/**
 	 * 页码

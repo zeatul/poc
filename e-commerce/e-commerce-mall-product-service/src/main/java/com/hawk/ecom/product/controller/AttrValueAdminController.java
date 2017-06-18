@@ -20,6 +20,8 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
+
+import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 
@@ -44,15 +46,37 @@ public class AttrValueAdminController {
 		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
 	}
 	
-	list(attrname category )
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MultiResponse<AttrValueInfoResponse>> listAttrValue(HttpServletRequest request) throws Exception {
+		ListAttrValueParam param = HttpRequestTools.parse(request, ListAttrValueParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		AttrValueDomain attrValueDomain =  attrValueService.listAttrValue(param);		
+		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
+	}
 	
-	listOfAttrName
+	@RequestMapping(value = "/load/id/{id}", method = POST)
+	public WebResponse<AttrValueInfoResponse> loadAttrValue(HttpServletRequest request) throws Exception {
+		ListAttrValueParam param = HttpRequestTools.parse(request, setOperatorCode.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		AttrValueDomain attrValueDomain =  attrValueService.createAttrValue(param);		
+		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
+	}
+	
+	@RequestMapping(value = "/update", method = POST)
+	public WebResponse<AttrValueInfoResponse> updateAttrValue(HttpServletRequest request) throws Exception {
+		ListAttrValueParam param = HttpRequestTools.parse(request, setOperatorCode.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		AttrValueDomain attrValueDomain =  attrValueService.createAttrValue(param);		
+		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
+	}
 	
 	
 	
-	load
-	
-	update
-	
-	remove
+	@RequestMapping(value = "/update", method = POST)
+	public WebResponse<AttrValueInfoResponse> removeAttrValue(HttpServletRequest request) throws Exception {
+		ListAttrValueParam param = HttpRequestTools.parse(request, setOperatorCode.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		AttrValueDomain attrValueDomain =  attrValueService.createAttrValue(param);		
+		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
+	}
 }
