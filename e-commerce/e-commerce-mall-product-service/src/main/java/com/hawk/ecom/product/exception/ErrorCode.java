@@ -10,7 +10,7 @@ public class ErrorCode {
 	private static Map<Integer,String> errorMap = new HashMap<Integer,String>();
 	static{
 		errorMap.put(ErrorCodeAllocation.PRODUCT+0, "产品目录未找到");
-		errorMap.put(ErrorCodeAllocation.PRODUCT+1, "产品目录已经存在,[产品目录编号唯一]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+1, "产品目录已经存在,[产品目录编号唯一],[产品目录名称+父产品目录主键,唯一]");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+2, "类型是最终分类的产品目录，不允许创建下级产品目录");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+3, "产品目录含有下级产品目录，不允许删除");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+4, "类型是不是最终分类的产品目录，不允许用来生成实际商品");
@@ -30,6 +30,10 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+18, "属性名已经使用,不能删除");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+19, "属性名状态不符合当前操作要求");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+20, "属性值已经存在,[属性名主键+属性值,唯一]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+21, "属性值不存在");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+22, "属性值已经被使用,不能删除");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+23, "产品目录已经被使用,[属性,品牌,产品,供应商],不能删除");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+24, "操作的产品目录的父目录必须一致");
 //		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
 		
 	}

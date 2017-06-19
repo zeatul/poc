@@ -39,15 +39,7 @@ public class ListAttrNameParam implements PageParam{
 	}
 	
 	
-	/**
-	 * 属性名主键
-	 */
-	private Integer attrNameId;
 	
-	/**
-	 * 产品目录主键
-	 */
-	private Integer categoryId;
 
 	/**
 	 * 页码

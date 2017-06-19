@@ -3,6 +3,7 @@ package com.hawk.ecom.product.service;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale.Category;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,14 +17,21 @@ import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.exception.CategoryHasChildRuntimeException;
+import com.hawk.ecom.product.exception.CategoryHasDifferentParentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsLeafRuntimeException;
+import com.hawk.ecom.product.exception.CategoryIsUsedRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateCategoryRuntimeException;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
+import com.hawk.ecom.product.persist.mapper.AttrNameMapper;
+import com.hawk.ecom.product.persist.mapper.CategoryBrandMapMapper;
 import com.hawk.ecom.product.persist.mapper.CategoryMapper;
+import com.hawk.ecom.product.persist.mapper.CategorySupplierMapMapper;
+import com.hawk.ecom.product.persist.mapper.ProductMapper;
 import com.hawk.ecom.product.persist.mapperex.CategoryExMapper;
 import com.hawk.ecom.product.request.CreateCategoryParam;
-import com.hawk.ecom.product.request.ListSubCategoryParam;
+import com.hawk.ecom.product.request.ExchangeCategoryOrderParam;
+import com.hawk.ecom.product.request.ListCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
@@ -53,6 +61,18 @@ public class CategoryService {
 	private CategoryExMapper categoryExMapper;
 	
 	@Autowired
+	private AttrNameMapper attrNameMapper;
+	
+	@Autowired
+	private ProductMapper productMapper;
+	
+	@Autowired
+	private CategoryBrandMapMapper categoryBrandMapMapper;
+	
+	@Autowired
+	private CategorySupplierMapMapper categorySupplierMapMapper;
+	
+	@Autowired
 	@Qualifier("smallNumberSequenceService")
 	private PkGenService pkGenService;
 	
@@ -68,6 +88,40 @@ public class CategoryService {
 		ROOT.setCategoryName("root");
 		ROOT.setIsLeaf(0);
 
+	}
+	
+	public boolean isCategoryUsed(Integer id){
+		if (id == null){
+			throw new RuntimeException("isCategoryUsed : id is null");
+		}
+		
+		/**
+		 * TODO：查询有没有该分录下的属性集合
+		 */
+		MybatisParam params = new MybatisParam().put("categoryId",id);
+		if (attrNameMapper.count(params)>0)
+			return true;
+		
+		/**
+		 * TODO:查询有没有产品记录
+		 */
+		if (productMapper.count(params)>0)
+			return true;
+		
+		/**
+		 * TODO:查询有没有对应的品牌记录
+		 */
+		if (categoryBrandMapMapper.count(params)>0)
+			return true;
+		
+		/**
+		 * TODO:查询有没有对应的供应商记录
+		 */
+		if (categorySupplierMapMapper.count(params)>0)
+			return true;
+		
+		return false;
+		
 	}
 	
 	/**
@@ -88,7 +142,12 @@ public class CategoryService {
 		return categoryDomain;
 	}
 	
-	public boolean existCategory(Integer  id){
+	/**
+	 * 产品目录主键
+	 * @param id
+	 * @return
+	 */
+	public boolean exists(Integer  id){
 		if (id == null){
 			logger.error("queryCategoryDomainById param id is null");
 			return false;
@@ -180,7 +239,7 @@ public class CategoryService {
 	}
 	
 	/**
-	 * 只有编辑状态的节点才允许更新
+	 * 
 	 * @param updateCategoryParam
 	 */
 	@Valid
@@ -191,7 +250,7 @@ public class CategoryService {
 		
 //		CategoryDomain categoryDomain = loadCategory(updateCategoryParam.getId());
 		
-		if (!existCategory(updateCategoryParam.getId())){
+		if (!exists(updateCategoryParam.getId())){
 			throw new CategoryNotFoundRuntimeException();
 		}
 		
@@ -249,16 +308,22 @@ public class CategoryService {
 	}
 	
 	@Valid
-	public List<CategoryDomain> listSubCategory(@NotNull("参数") @Valid ListSubCategoryParam listSubCategoryParam){
+	public List<CategoryDomain> listCategory(@NotNull("参数") @Valid ListCategoryParam listCategoryParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		if (StringTools.isNullOrEmpty(listSubCategoryParam.getOrder())){
-			listSubCategoryParam.setOrder("object_order asc");
+		if (StringTools.isNullOrEmpty(listCategoryParam.getOrder())){
+			listCategoryParam.setOrder("pid asc , object_order asc");
 		}
 		
-		MybatisParam params = MybatisTools.page(new MybatisParam().put("pid", listSubCategoryParam.getPid()), listSubCategoryParam);
+		MybatisParam params = new MybatisParam() ;
+		params.put("pid", listCategoryParam.getPid());
+		params.put("categoryStatus", listCategoryParam.getCategoryStatus());
+		params.put("categoryTemplateStatus", listCategoryParam.getCategoryTemplateStatus());
+		params.put("isLeaf", listCategoryParam.getIsLeaf());
+		
+		params = MybatisTools.page(params, listCategoryParam);
 		return categoryMapper.loadDynamicPaging(params);
 	}
 	
@@ -281,6 +346,35 @@ public class CategoryService {
 	
 	@Valid
 	@Transactional
+	public void exchangeCategoryOrder(@NotNull("参数") @Valid ExchangeCategoryOrderParam exchangeCategoryOrderParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		CategoryDomain a = loadCategory(exchangeCategoryOrderParam.getCategoryIdA());
+		CategoryDomain b = loadCategory(exchangeCategoryOrderParam.getCategoryIdA());
+		
+		if (!a.getPid().equals(b.getPid())){
+			throw new CategoryHasDifferentParentRuntimeException();
+		}
+		
+		CategoryDomain updateDomain = new CategoryDomain();
+		updateDomain.setUpdateDate(new Date());
+		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+		
+		updateDomain.setId(a.getId());
+		updateDomain.setObjectOrder(b.getObjectOrder());
+		
+		categoryMapper.updateWithoutNull(updateDomain);
+		
+		updateDomain.setId(b.getId());
+		updateDomain.setObjectOrder(a.getObjectOrder());
+		
+		categoryMapper.updateWithoutNull(updateDomain);
+	}
+	
+	@Valid
+	@Transactional
 	public void removeCategory(@NotNull("参数") @Valid RemoveCategoryParam removeCategoryParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
@@ -290,6 +384,9 @@ public class CategoryService {
 		
 		for(Integer id :removeCategoryParam.getIds()){
 						
+			if (!exists(id)){
+				throw new CategoryNotFoundRuntimeException();
+			}
 			
 			/**
 			 * 查询有没有子节点
@@ -298,13 +395,10 @@ public class CategoryService {
 				throw new CategoryHasChildRuntimeException();
 			}
 			
-			/**
-			 * TODO：查询有没有模板
-			 */
 			
-			/**
-			 * TODO:查询有没有产品
-			 */
+			if (isCategoryUsed(id)){
+				throw new CategoryIsUsedRuntimeException();
+			}
 			
 			
 			

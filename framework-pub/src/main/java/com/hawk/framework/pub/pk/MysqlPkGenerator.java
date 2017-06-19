@@ -66,9 +66,27 @@ public class MysqlPkGenerator implements PkGenService{
 			}
 		},keyHolder);
 		
+		Object o = keyHolder.getKeyList().get(0).get("GENERATED_KEY");
 				
-		return start + (Integer)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));
+		return start + Integer.parseInt((o.toString()));		
 		
+
+	}
+	
+	public long genLongPk(){
+		KeyHolder keyHolder = new GeneratedKeyHolder();  
+		
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);  
+		        return ps;
+			}
+		},keyHolder);
+		
+				
+		return start + (Integer)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));		
 		
 
 	}

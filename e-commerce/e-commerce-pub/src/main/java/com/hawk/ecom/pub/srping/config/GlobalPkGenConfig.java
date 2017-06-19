@@ -22,7 +22,7 @@ public class GlobalPkGenConfig {
 	
 	@Bean("pkGenService")
 	public PkGenService pkGenService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(0);
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(1000000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_fun_global_sequence(stub) values('a')");
 		return mysqlPkGenerator;

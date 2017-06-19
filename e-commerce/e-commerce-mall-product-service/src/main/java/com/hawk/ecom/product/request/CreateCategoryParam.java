@@ -92,7 +92,6 @@ public class CreateCategoryParam {
 	private Integer pid;
 	
 	
-	
 	/**
 	 * 产品目录序号 object_order
 	 */

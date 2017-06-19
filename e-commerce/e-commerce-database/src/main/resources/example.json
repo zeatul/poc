@@ -1,15 +1,4 @@
 {
-	"data": {
-		"id": 1100001,
-		"pid": 0,
-		"objectOrder": 100,
-		"categoryCode": "3C",
-		"categoryName": "数码产品",
-		"categoryStatus": 100,
-		"categoryDesc": "desc",
-		"categoryLogo": "http://logo",
-		"categoryHomePage": "http://home",
-		"isLeaf": 0
-	},
-	"code": 1
+	"categoryIdA": 10003,
+	"categoryIdB": 10004
 }

@@ -375,9 +375,15 @@ public class DbToDicService {
 //			System.out.println("CharMinLength is not same");
 //			return false;
 //		}
-		if (EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType())) != def.getDataType()) {
-			System.out.println("DataType is not same");
-			return false;
+		EnumDataType a1 = EnumDataType.parse(typeConverter.convertFromDbToJava(column.getDataType()));
+		EnumDataType a2 = def.getDataType();
+		if (a1 != a2) {
+			if ((a1 == EnumDataType.Long && a2 == EnumDataType.Integer) || (a2 == EnumDataType.Long && a1 == EnumDataType.Integer) ){ 
+				System.out.println("Compatiable type");
+			}else{
+				System.out.println("DataType is not same");
+				return false;
+			}
 		}
 //		if (def.getDataType() == EnumDataType.Date && column.getDatetimePrecision() != def.getDatetimePrecision()) {
 //			System.out.println("DatetimePrecision is not same");

@@ -36,7 +36,7 @@ public class AttrValueDomain implements Serializable {
 	private String attrValue;
 	
 	/**
-	 * 属性值显示名 attr_display_value
+	 * 属性值显示名称 attr_display_value
 	 */
 	private String attrDisplayValue;
 	
@@ -142,7 +142,7 @@ public class AttrValueDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 属性值显示名 attr_display_value
+	 * @return 属性值显示名称 attr_display_value
 	 */
 	public String getAttrDisplayValue(){
 		return attrDisplayValue;
@@ -150,7 +150,7 @@ public class AttrValueDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param attrDisplayValue 属性值显示名 attr_display_value
+	 * @param attrDisplayValue 属性值显示名称 attr_display_value
 	 */	
 	public void setAttrDisplayValue (String attrDisplayValue) {
 		this.attrDisplayValue = attrDisplayValue;

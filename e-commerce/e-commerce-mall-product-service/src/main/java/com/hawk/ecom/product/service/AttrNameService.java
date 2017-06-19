@@ -24,6 +24,7 @@ import com.hawk.ecom.product.exception.DuplicateAttrNameRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.mapper.AttrNameMapper;
+import com.hawk.ecom.product.persist.mapper.AttrValueMapper;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
 import com.hawk.ecom.product.request.ListAttrNameOfCategoryParam;
 import com.hawk.ecom.product.request.ListAttrNameParam;
@@ -53,19 +54,31 @@ public class AttrNameService {
 	@Autowired
 	private AttrNameMapper  attrNameMapper;
 	
+	@Autowired
+	private AttrValueMapper attrValueMapper;
 	
 	@Autowired
 	@Qualifier("smallNumberSequenceService")
 	private PkGenService pkGenService;
 	
-	@Autowired
-	private AttrValueService attrValueService;
+	
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	public boolean isAttrNameUsed(Integer attrNameId) {
+		if (attrNameId == null) {
+			throw new RuntimeException("attrNameId is null");
+		}
+		MybatisParam params = new MybatisParam().put("attrNameId", attrNameId);
+
+		return attrValueMapper.count(params) > 0;
+	}
+	
 	public boolean exists(Integer  id){
-		if (id == null)
+		if (id == null){
+			logger.error("exists : id is null");
 			return false;
+		}
 		
 		MybatisParam params = new MybatisParam().put("id", id);
 		
@@ -266,7 +279,7 @@ public class AttrNameService {
 			/**
 			 * 校验，是否已经有attr_value 存在
 			 */
-			if (attrValueService.isAttrNameUsed(id)){
+			if (isAttrNameUsed(id)){
 				throw new AttrNameIsUsedRuntimeException();
 			}
 			

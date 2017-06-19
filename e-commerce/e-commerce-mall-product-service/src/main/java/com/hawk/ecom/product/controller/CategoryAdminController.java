@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.request.CreateCategoryParam;
-import com.hawk.ecom.product.request.ListSubCategoryParam;
+import com.hawk.ecom.product.request.ExchangeCategoryOrderParam;
+import com.hawk.ecom.product.request.ListCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
@@ -80,11 +81,11 @@ public class CategoryAdminController {
 	}
 	
 	
-	@RequestMapping(value = "/listSub", method = POST)
-	public WebResponse<MultiResponse<CategoryInfoResponse>> ListSubCategory(HttpServletRequest request) throws Exception {
-		ListSubCategoryParam param = HttpRequestTools.parse(request, ListSubCategoryParam.class);
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MultiResponse<CategoryInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
+		ListCategoryParam param = HttpRequestTools.parse(request, ListCategoryParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		List<CategoryDomain> categoryDomainList =  categoryService.listSubCategory(param);
+		List<CategoryDomain> categoryDomainList =  categoryService.listCategory(param);
 		
 		MultiResponse<CategoryInfoResponse> result = new MultiResponse<CategoryInfoResponse>(DomainTools.copy(categoryDomainList, CategoryInfoResponse.class));
 		return SuccessResponse.build(result);
@@ -105,6 +106,14 @@ public class CategoryAdminController {
 		RemoveCategoryParam param = HttpRequestTools.parse(request, RemoveCategoryParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		categoryService.removeCategory(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/order/exchange", method = POST)
+	public WebResponse<ResponseData> exchangeCategoryOrder(HttpServletRequest request) throws Exception {
+		ExchangeCategoryOrderParam param = HttpRequestTools.parse(request, ExchangeCategoryOrderParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		categoryService.exchangeCategoryOrder(param);
 		return SuccessResponse.build(null);
 	}
 }
