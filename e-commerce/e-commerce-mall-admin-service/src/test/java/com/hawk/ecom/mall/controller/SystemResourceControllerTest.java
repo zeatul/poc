@@ -18,15 +18,15 @@ import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 
 public class SystemResourceControllerTest extends AbstractControllerTest {
 
-	private String token = "2adf8b11-a1ee-48e3-9384-0158d2516810";
+	private String token = "a0b93e35-09ca-41cc-9755-d7af10854844";
 
-	// @Test
+//	 @Test
 	public void testCreate() {
 		String url = getUrl("/mall/admin/resource/create");
 		SystemCreateResourceParam request = new SystemCreateResourceParam();
 		// request.setNodeCode("wts_2");
 		request.setNodeDesc("hello");
-		request.setNodeName("北京");
+		request.setNodeName("上海");
 		request.setNodeSubType(ConstSystemResource.NodeSubType.OTHER);
 		request.setNodeType(ConstSystemResource.NodeType.MENU);
 		request.setNodeValue("http://beijing.com");
@@ -43,7 +43,7 @@ public class SystemResourceControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	// @Test
+	 @Test
 	public void testList() {
 		String url = getUrl("/mall/admin/resource/list");
 		SystemListResourceParam request = new SystemListResourceParam();
@@ -118,12 +118,12 @@ public class SystemResourceControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	 @Test
+//	 @Test
 	public void testOrderExchange() {
 		String url = getUrl("/mall/admin/resource/order/exchange");
 		SystemExchangeResourceOrderParam request = new SystemExchangeResourceOrderParam();
-		request.setNodeCodeA("10002");
-		request.setNodeCodeB("10004");
+		request.setNodeCodeA("100001");
+		request.setNodeCodeB("100002");
 
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));

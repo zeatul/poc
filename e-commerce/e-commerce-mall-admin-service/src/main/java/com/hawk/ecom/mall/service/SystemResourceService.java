@@ -198,12 +198,21 @@ public class SystemResourceService {
 		}
 		
 		if (StringTools.isNullOrEmpty(systemListResourceParam.getOrder())){
-			systemListResourceParam.setOrder("object_order asc");
+			systemListResourceParam.setOrder("pid desc , object_order asc");
 		}
 		
-		SystemResourceDomain parent =  queryParentSystemResourceByNodeCode(systemListResourceParam.getParentNodeCode());
+		MybatisParam params = new MybatisParam();
+		if (StringTools.isNotNullOrEmpty(systemListResourceParam.getParentNodeCode())){
+			SystemResourceDomain parent = 	queryParentSystemResourceByNodeCode(systemListResourceParam.getParentNodeCode());
+			params.put("pid", parent.getId());
+		}
 		
-		MybatisParam params = MybatisTools.page(new MybatisParam().put("pid", parent.getId()), systemListResourceParam);
+		params.put("nodeStatus", systemListResourceParam.getNodeStatus());
+		params.put("nodeSubType", systemListResourceParam.getNodeSubType());
+		params.put("dodeType", systemListResourceParam.getNodeType());
+		params.put("nodeValueType", systemListResourceParam.getNodeValueType());
+		
+		params = MybatisTools.page(params, systemListResourceParam);
 		return systemResourceMapper.loadDynamicPaging(params);
 	}
 	
