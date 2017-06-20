@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
-import com.hawk.ecom.product.request.ListAttrNameOfCategoryParam;
 import com.hawk.ecom.product.request.ListAttrNameParam;
 import com.hawk.ecom.product.request.LoadAttrNameParam;
 import com.hawk.ecom.product.request.RemoveAttrNameParam;
@@ -61,13 +60,7 @@ public class AttrNameAdminController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/listOfCategory/categoryId/{categoryId}", method = {POST,GET})
-	public WebResponse<MultiResponse<AttrNameInfoResponse>> listAttrNameOfCategory(@PathVariable Integer categoryId) throws Exception {
-		ListAttrNameOfCategoryParam param = new ListAttrNameOfCategoryParam();
-		param.setCategoryId(categoryId);
-		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		return SuccessResponse.build(new MultiResponse<AttrNameInfoResponse>(DomainTools.copy(attrNameService.listAttrNameOfCategory(param), AttrNameInfoResponse.class)));
-	} 
+	
 	
 	@RequestMapping(value = "/list", method = {POST})
 	public WebResponse<MultiResponse<AttrNameInfoResponse>> listAttrName(HttpServletRequest request) throws Exception {
@@ -80,6 +73,7 @@ public class AttrNameAdminController {
 	public WebResponse<AttrNameInfoResponse> listAttrName(@PathVariable Integer id) throws Exception {
 		LoadAttrNameParam param = new LoadAttrNameParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		param.setId(id);
 		AttrNameDomain attrNameDomain =  attrNameService.loadAttrName(param);		
 		return SuccessResponse.build(DomainTools.copy(attrNameDomain, AttrNameInfoResponse.class));
 	} 

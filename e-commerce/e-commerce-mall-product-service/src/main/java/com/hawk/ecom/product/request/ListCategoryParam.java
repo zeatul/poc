@@ -1,7 +1,6 @@
 package com.hawk.ecom.product.request;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
-import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.pub.sql.PageParam;
 
 public class ListCategoryParam implements PageParam{
