@@ -34,16 +34,12 @@ drop table if exists t_svp_order;
 
 drop table if exists t_svp_order_sequence;
 
-drop index ui_svp_supplier_code on t_svp_supplier;
-
-drop table if exists t_svp_supplier;
-
 /*==============================================================*/
 /* Table: t_svp_bsi_cash_coupon                                 */
 /*==============================================================*/
 create table t_svp_bsi_cash_coupon
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) not null comment '用户编号',
    mobile_number        varchar(20) comment '手机号码',
    bsi_cash_coupon_code varchar(50) not null comment '代金券编号',
@@ -90,7 +86,7 @@ create index i_bsi_user_code on t_svp_bsi_cash_coupon
 create table t_svp_bsi_cash_coupon_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -102,7 +98,7 @@ alter table t_svp_bsi_cash_coupon_sequence comment '代金券编号生成表';
 /*==============================================================*/
 create table t_svp_bsi_order_detail
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    order_code           varchar(50) comment '订单编号',
    supplier_code        varchar(50) comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
@@ -165,7 +161,7 @@ create index i_bsi_coupon_code on t_svp_bsi_order_detail
 create table t_svp_bsi_out_order_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -248,7 +244,7 @@ alter table t_svp_bsi_product comment '碎屏险产品';
 create table t_svp_charge_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -260,9 +256,9 @@ alter table t_svp_charge_sequence comment '流量充值任务号生成表';
 /*==============================================================*/
 create table t_svp_mobile_data_order_detail
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    order_code           varchar(50) comment '订单编号',
-   supplier_code        varchar(50)  comment '供应商编号',
+   supplier_code        varchar(50) comment '供应商编号',
    store_code           varchar(50) comment '商户编号',
    goods_code           varchar(50) comment '商品编号',
    goods_name           varchar(200) comment '商品名称',
@@ -273,7 +269,9 @@ create table t_svp_mobile_data_order_detail
    charge_status        tinyint unsigned comment '充值状态',
    charge_task_code     varchar(200) comment '充值任务号',
    promotion_activity_desc varchar(200) comment '促销活动描述',
-   promotion_activity_code varchar(50) comment '促销活动编号',
+   promotion_activity_code varchar(50) comment '促销活动编号
+            
+            ',
    exec_times           tinyint unsigned comment '已经执行次数',
    max_exec_times       tinyint unsigned comment '最大允许执行次数',
    last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
@@ -305,7 +303,7 @@ create unique index ui_od_task_code on t_svp_mobile_data_order_detail
 /*==============================================================*/
 create table t_svp_order
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    order_code           varchar(50) comment '订单编号',
    store_code           varchar(50) comment '商户编号',
    user_code            varchar(50) comment '用户编号',
@@ -329,29 +327,9 @@ alter table t_svp_order comment '碎屏险订单';
 create table t_svp_order_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
 
 alter table t_svp_order_sequence comment '订单编号生成表';
-
-/*==============================================================*/
-/* Table: t_svp_supplier                                        */
-/*==============================================================*/
-create table t_svp_supplier
-(
-   id                   bigint unsigned not null comment '主键',
-   supplier_code        varchar(50) not null comment '供应商编号',
-   supplier_name        varchar(200) not null comment '供应商名称',
-   primary key (id)
-)
-ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*==============================================================*/
-/* Index: ui_svp_supplier_code                                  */
-/*==============================================================*/
-create unique index ui_svp_supplier_code on t_svp_supplier
-(
-   supplier_code
-);

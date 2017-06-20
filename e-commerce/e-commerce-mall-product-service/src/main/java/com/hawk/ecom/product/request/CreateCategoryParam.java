@@ -21,11 +21,11 @@ public class CreateCategoryParam {
 		this.operatorCode = operatorCode;
 	}
 
-	public Long getPid() {
+	public Integer getPid() {
 		return pid;
 	}
 
-	public void setPid(Long pid) {
+	public void setPid(Integer  pid) {
 		this.pid = pid;
 	}
 
@@ -89,8 +89,7 @@ public class CreateCategoryParam {
 	/**
 	 * 父ID pid
 	 */
-	private Long pid;
-	
+	private Integer pid;
 	
 	
 	/**

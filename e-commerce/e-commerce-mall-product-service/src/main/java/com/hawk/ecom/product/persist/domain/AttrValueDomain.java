@@ -18,17 +18,17 @@ public class AttrValueDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录主键 category_id
 	 */
-	private Long categoryId;
+	private Integer categoryId;
 	
 	/**
 	 * 属性名主键 attr_name_id
 	 */
-	private Long attrNameId;
+	private Integer attrNameId;
 	
 	/**
 	 * 属性值 attr_value
@@ -36,9 +36,14 @@ public class AttrValueDomain implements Serializable {
 	private String attrValue;
 	
 	/**
-	 * 属性值别名 attr_display_value
+	 * 属性值显示名称 attr_display_value
 	 */
 	private String attrDisplayValue;
+	
+	/**
+	 * 属性值状态 attr_value_status
+	 */
+	private Integer attrValueStatus;
 	
 	/**
 	 * 创建者 create_user_code
@@ -75,7 +80,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -83,7 +88,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -91,7 +96,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @return 产品目录主键 category_id
 	 */
-	public Long getCategoryId(){
+	public Integer getCategoryId(){
 		return categoryId;
 	}
 	
@@ -99,7 +104,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @param categoryId 产品目录主键 category_id
 	 */	
-	public void setCategoryId (Long categoryId) {
+	public void setCategoryId (Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	
@@ -107,7 +112,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @return 属性名主键 attr_name_id
 	 */
-	public Long getAttrNameId(){
+	public Integer getAttrNameId(){
 		return attrNameId;
 	}
 	
@@ -115,7 +120,7 @@ public class AttrValueDomain implements Serializable {
 	 * 
 	 * @param attrNameId 属性名主键 attr_name_id
 	 */	
-	public void setAttrNameId (Long attrNameId) {
+	public void setAttrNameId (Integer attrNameId) {
 		this.attrNameId = attrNameId;
 	}
 	
@@ -137,7 +142,7 @@ public class AttrValueDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 属性值别名 attr_display_value
+	 * @return 属性值显示名称 attr_display_value
 	 */
 	public String getAttrDisplayValue(){
 		return attrDisplayValue;
@@ -145,10 +150,26 @@ public class AttrValueDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param attrDisplayValue 属性值别名 attr_display_value
+	 * @param attrDisplayValue 属性值显示名称 attr_display_value
 	 */	
 	public void setAttrDisplayValue (String attrDisplayValue) {
 		this.attrDisplayValue = attrDisplayValue;
+	}
+	
+	/**
+	 * 
+	 * @return 属性值状态 attr_value_status
+	 */
+	public Integer getAttrValueStatus(){
+		return attrValueStatus;
+	}
+	
+	/**
+	 * 
+	 * @param attrValueStatus 属性值状态 attr_value_status
+	 */	
+	public void setAttrValueStatus (Integer attrValueStatus) {
+		this.attrValueStatus = attrValueStatus;
 	}
 	
 	/**

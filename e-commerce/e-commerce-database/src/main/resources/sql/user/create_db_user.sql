@@ -28,7 +28,7 @@ drop table if exists t_usr_user_history;
 create table t_usr_login
 (
    token                varchar(100) not null comment 'token',
-   user_id              bigint unsigned comment '用户ID',
+   user_id              integer unsigned comment '用户ID',
    mobile_number        varchar(20) comment '手机号',
    user_code            varchar(50) comment '用户编号',
    user_account         varchar(50) comment '用户账号',
@@ -61,7 +61,7 @@ alter table t_usr_login comment '用户登录表';
 /*==============================================================*/
 create table t_usr_login_failure
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) comment '用户编号',
    mobile_number        varchar(20) comment '手机号',
    login_ip             varchar(200) comment '登录IP',
@@ -96,7 +96,7 @@ create index i_login_failure on t_usr_login_failure
 create table t_usr_login_history
 (
    token                varchar(100) not null comment 'token',
-   user_id              bigint unsigned comment '用户ID',
+   user_id              integer unsigned comment '用户ID',
    mobile_number        varchar(20) comment '手机号',
    user_code            varchar(50) comment '用户编号',
    user_account         varchar(50) comment '用户账号',
@@ -129,7 +129,7 @@ alter table t_usr_login_history comment '用户登录历史表';
 /*==============================================================*/
 create table t_usr_user
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) not null comment '用户编号',
    mobile_number        varchar(20) not null comment '手机号',
    user_account         varchar(50) comment '用户账号',
@@ -207,7 +207,7 @@ create unique index ui_user_email on t_usr_user
 create table t_usr_user_code_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -219,7 +219,7 @@ alter table t_usr_user_code_sequence comment '用户编号生成表';
 /*==============================================================*/
 create table t_usr_user_history
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) not null comment '用户编号',
    mobile_number        varchar(20) not null comment '手机号',
    is_mobile_verified   tinyint unsigned comment '手机号是否已经验证',

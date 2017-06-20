@@ -4,5 +4,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface SystemResourceExMapper {
 
-	public Integer maxObjectOrder(@Param("pid") Long pid);
+	public Integer maxObjectOrder(@Param("pid") Integer pid);
 }

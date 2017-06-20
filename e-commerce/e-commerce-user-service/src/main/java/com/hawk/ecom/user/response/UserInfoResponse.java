@@ -25,10 +25,10 @@ public class UserInfoResponse implements ResponseData{
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(Integer  userId) {
 		this.userId = userId;
 	}
 	public String getUserCode() {
@@ -50,7 +50,7 @@ public class UserInfoResponse implements ResponseData{
 	private Date birthday;
 	private String nickname;
 	@JsonIgnore
-	private Long userId;
+	private Integer userId;
 	
 	
 }

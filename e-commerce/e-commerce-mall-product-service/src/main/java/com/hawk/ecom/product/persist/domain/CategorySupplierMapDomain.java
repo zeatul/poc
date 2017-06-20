@@ -18,17 +18,17 @@ public class CategorySupplierMapDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录主键 category_id
 	 */
-	private Long categoryId;
+	private Integer categoryId;
 	
 	/**
 	 * 供应商主键 supplier_id
 	 */
-	private Long supplierId;
+	private Integer supplierId;
 	
 	/**
 	 * 创建者 create_user_code
@@ -65,7 +65,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -73,7 +73,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -81,7 +81,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @return 产品目录主键 category_id
 	 */
-	public Long getCategoryId(){
+	public Integer getCategoryId(){
 		return categoryId;
 	}
 	
@@ -89,7 +89,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @param categoryId 产品目录主键 category_id
 	 */	
-	public void setCategoryId (Long categoryId) {
+	public void setCategoryId (Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	
@@ -97,7 +97,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @return 供应商主键 supplier_id
 	 */
-	public Long getSupplierId(){
+	public Integer getSupplierId(){
 		return supplierId;
 	}
 	
@@ -105,7 +105,7 @@ public class CategorySupplierMapDomain implements Serializable {
 	 * 
 	 * @param supplierId 供应商主键 supplier_id
 	 */	
-	public void setSupplierId (Long supplierId) {
+	public void setSupplierId (Integer supplierId) {
 		this.supplierId = supplierId;
 	}
 	

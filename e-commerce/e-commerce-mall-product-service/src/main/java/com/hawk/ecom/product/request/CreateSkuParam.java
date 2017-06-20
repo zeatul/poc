@@ -10,11 +10,27 @@ import com.hawk.framework.dic.validation.annotation.ValidCollection;
 public class CreateSkuParam {
 	
 	
-	public Long getProductId() {
+	public String getSkuMemo() {
+		return skuMemo;
+	}
+
+	public void setSkuMemo(String skuMemo) {
+		this.skuMemo = skuMemo;
+	}
+
+	public List<CreateProductAttrParam> getAttrs() {
+		return attrs;
+	}
+
+	public void setAttrs(List<CreateProductAttrParam> attrs) {
+		this.attrs = attrs;
+	}
+
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setProductId(Long productId) {
+	public void setProductId(Integer  productId) {
 		this.productId = productId;
 	}
 
@@ -82,13 +98,7 @@ public class CreateSkuParam {
 		this.weightUnit = weightUnit;
 	}
 
-	public String getSku备注() {
-		return sku备注;
-	}
-
-	public void setSku备注(String sku备注) {
-		this.sku备注 = sku备注;
-	}
+	
 
 	public String getOperatorCode() {
 		return operatorCode;
@@ -102,7 +112,7 @@ public class CreateSkuParam {
 	 * 产品主键 product_id
 	 */
 	@NotNull
-	private Long productId;
+	private Integer productId;
 	
 	/**
 	 * SKU编号 sku_code
@@ -120,37 +130,43 @@ public class CreateSkuParam {
 	/**
 	 * 宽度 width
 	 */
+	@NotNull
 	private Integer width;
 	
 	/**
 	 * 深度 depth
 	 */
+	@NotNull
 	private Integer depth;
 	
 	/**
 	 * 高度 heigh
 	 */
+	@NotNull
 	private Integer heigh;
 	
 	/**
 	 * 长度单位 length_unit
 	 */
+	@NotNull
 	private Integer lengthUnit;
 	
 	/**
 	 * 重量 weight
 	 */
+	@NotNull
 	private Integer weight;
 	
 	/**
 	 * 重量单位 weight_unit
 	 */
+	@NotNull
 	private Integer weightUnit;
 	
 	/**
-	 * SKU备注 SKU备注
+	 * SKU备注 sku_memo
 	 */
-	private String sku备注;	
+	private String skuMemo;	
 	
 	@ValidCollection
 	List<CreateProductAttrParam> attrs;

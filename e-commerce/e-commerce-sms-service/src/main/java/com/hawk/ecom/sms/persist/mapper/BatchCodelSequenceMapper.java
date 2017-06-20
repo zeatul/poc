@@ -17,7 +17,7 @@ public interface BatchCodelSequenceMapper  {
 	 * @param id 主键
 	 * @return 查询到的记录
 	 */
-	BatchCodelSequenceDomain load(@Param("id")Long id );
+	BatchCodelSequenceDomain load(@Param("id")Integer id );
 	
 	/**
 	 * 动态条件加载记录
@@ -45,7 +45,7 @@ public interface BatchCodelSequenceMapper  {
 	 * @param id 主键
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("id")Long id );
+	int countByPK(@Param("id")Integer id );
 	
 	
 	/**
@@ -60,7 +60,7 @@ public interface BatchCodelSequenceMapper  {
 	 * @param id 主键
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("id")Long id );
+	int delete(@Param("id")Integer id );
 	
 	/**
 	 * 动态删除记录

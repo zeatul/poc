@@ -46,7 +46,7 @@ drop table if exists t_msr_mall_user_history;
 create table t_msr_mall_login
 (
    token                varchar(100) not null comment 'token',
-   user_id              bigint unsigned comment '用户ID',
+   user_id              integer unsigned comment '用户ID',
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
@@ -99,7 +99,7 @@ create index i_msr_user_login on t_msr_mall_login
 create table t_msr_mall_login_history
 (
    token                varchar(100) not null comment 'token',
-   user_id              bigint unsigned comment '用户ID',
+   user_id              integer unsigned comment '用户ID',
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
@@ -132,8 +132,8 @@ alter table t_msr_mall_login_history comment '商城用户登录历史表';
 /*==============================================================*/
 create table t_msr_mall_right
 (
-   id                   bigint unsigned not null comment '主键',
-   pid                  bigint unsigned not null comment '父ID',
+   id                   integer unsigned not null comment '主键',
+   pid                  integer unsigned not null comment '父ID',
    right_code           varchar(50) not null comment '权限编号',
    right_name           varchar(200) not null comment '权限名称',
    id_path              varchar(200) not null comment '主键PATH',
@@ -174,7 +174,7 @@ create unique index ui_msr_right_id_path on t_msr_mall_right
 /*==============================================================*/
 create table t_msr_mall_role
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    role_code            varchar(50) not null comment '角色编号',
    role_name            varchar(200) not null comment '角色名称',
    role_type            tinyint unsigned not null comment '角色类型',
@@ -204,9 +204,9 @@ create unique index ui_msr_role_code on t_msr_mall_role
 /*==============================================================*/
 create table t_msr_mall_role_right
 (
-   id                   bigint unsigned not null comment '主键',
-   role_id              bigint unsigned not null comment '角色ID',
-   right_id             bigint unsigned not null comment '权限ID',
+   id                   integer unsigned not null comment '主键',
+   role_id              integer unsigned not null comment '角色ID',
+   right_id             integer unsigned not null comment '权限ID',
    right_op             tinyint unsigned not null comment '访问行为',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
@@ -234,9 +234,9 @@ create unique index ui_msr_role_right on t_msr_mall_role_right
 /*==============================================================*/
 create table t_msr_mall_role_user
 (
-   id                   bigint unsigned not null comment '主键',
-   role_id              bigint unsigned not null comment '角色主键',
-   user_id              bigint unsigned not null comment '用户主键',
+   id                   integer unsigned not null comment '主键',
+   role_id              integer unsigned not null comment '角色主键',
+   user_id              integer unsigned not null comment '用户主键',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -263,7 +263,7 @@ create unique index ui_msr_role_user on t_msr_mall_role_user
 /*==============================================================*/
 create table t_msr_mall_user
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',
@@ -343,7 +343,7 @@ create unique index ui_msr_id_number on t_msr_mall_user
 create table t_msr_mall_user_code_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -355,7 +355,7 @@ alter table t_msr_mall_user_code_sequence comment '商城用户编号生成表';
 /*==============================================================*/
 create table t_msr_mall_user_history
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    user_code            varchar(50) not null comment '用户编号',
    user_account         varchar(50) comment '用户账号',
    user_email           varchar(200) comment '用户邮箱',

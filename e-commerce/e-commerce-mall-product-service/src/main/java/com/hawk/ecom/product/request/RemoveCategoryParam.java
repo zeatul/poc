@@ -8,15 +8,15 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 public class RemoveCategoryParam {
 
 
-	
 
 
-	public List<Long> getIds() {
+
+	public List<Integer> getIds() {
 		return ids;
 	}
 
 
-	public void setIds(List<Long> ids) {
+	public void setIds(List<Integer> ids) {
 		this.ids = ids;
 	}
 
@@ -35,7 +35,7 @@ public class RemoveCategoryParam {
 	 * 要删除的产品目录集合
 	 */
 	@NotEmpty("产品目录主键集合")
-	private List<Long> ids;
+	private List<Integer> ids;
 	
 
 	/**

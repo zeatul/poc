@@ -5,19 +5,27 @@ import com.hawk.framework.pub.web.ResponseData;
 public class CategoryInfoResponse implements ResponseData{
 	
 	
-	public Long getId() {
+	public Integer getCategoryTemplateStatus() {
+		return categoryTemplateStatus;
+	}
+
+	public void setCategoryTemplateStatus(Integer categoryTemplateStatus) {
+		this.categoryTemplateStatus = categoryTemplateStatus;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer  id) {
 		this.id = id;
 	}
 
-	public Long getPid() {
+	public Integer getPid() {
 		return pid;
 	}
 
-	public void setPid(Long pid) {
+	public void setPid(Integer  pid) {
 		this.pid = pid;
 	}
 
@@ -88,12 +96,12 @@ public class CategoryInfoResponse implements ResponseData{
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 父ID pid
 	 */
-	private Long pid;	
+	private Integer pid;	
 	
 	/**
 	 * 产品目录序号 object_order
@@ -136,7 +144,10 @@ public class CategoryInfoResponse implements ResponseData{
 	 */
 	private Integer isLeaf;
 	
-
+	/**
+	 * 最终产品目录模板状态 category_template_status
+	 */
+	private Integer categoryTemplateStatus;
 	
 	
 }

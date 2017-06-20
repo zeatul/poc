@@ -30,22 +30,22 @@ public class TestBsiService2 {
 		public void setOutOrderID(String outOrderID) {
 			this.outOrderID = outOrderID;
 		}
-		public Long getProductId() {
+		public Integer getProductId() {
 			return productId;
 		}
-		public void setProductId(Long productId) {
+		public void setProductId(Integer  productId) {
 			this.productId = productId;
 		}
-		public Long getGoodId() {
+		public Integer getGoodId() {
 			return goodId;
 		}
-		public void setGoodId(Long goodId) {
+		public void setGoodId(Integer  goodId) {
 			this.goodId = goodId;
 		}
 		public Long getMobile() {
 			return mobile;
 		}
-		public void setMobile(Long mobile) {
+		public void setMobile(Long  mobile) {
 			this.mobile = mobile;
 		}
 		public String getUsername() {
@@ -85,8 +85,8 @@ public class TestBsiService2 {
 			this.goodsSerialNo = goodsSerialNo;
 		}
 		private String outOrderID ;//	必填	字符	100	外部订单号，必须保合作方系统中唯一，后续对账唯一凭证
-		private Long productId ;//	必填	数字	5	产品ID(固定值)
-		private Long goodId	;//必填	数字	5	手机型号ID
+		private Integer productId ;//	必填	数字	5	产品ID(固定值)
+		private Integer goodId	;//必填	数字	5	手机型号ID
 		private Long mobile ;//	必填	数字	24	投保人手机号
 		private String username	;//必填	字符	128	投保人姓名
 		private String certiType ; //	必填	数字	1	证件类型		[身份证:1, 护照:2, 军官证:3, 港澳回乡证或台胞证:5,其他:7]
@@ -98,8 +98,8 @@ public class TestBsiService2 {
 	
 	public Order createOrder(){
 		
-		Long goodId = 304L;
-		Long productId = 10260L;
+		Integer  goodId = 304;
+		Integer  productId = 10260;
 		
 		Order order = new Order();
 		order.setBirthday("1988-01-01");

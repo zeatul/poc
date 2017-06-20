@@ -10,6 +10,7 @@
 		sku_id AS "skuId" ,
 		attr_name_id AS "attrNameId" ,
 		attr_value_id AS "attrValueId" ,
+		attr_name_type AS "attrNameType" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -25,6 +26,7 @@
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
 			<if test="attrNameId != null"> AND attr_name_id = #{attrNameId}  </if>
 			<if test="attrValueId != null"> AND attr_value_id = #{attrValueId}  </if>
+			<if test="attrNameType != null"> AND attr_name_type = #{attrNameType}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -41,6 +43,7 @@
 			AND sku_id = #{old_skuId}
 			AND attr_name_id = #{old_attrNameId}
 			AND attr_value_id = #{old_attrValueId}
+			AND attr_name_type = #{old_attrNameType}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -57,6 +60,7 @@
 			sku_id = #{skuId},
 			attr_name_id = #{attrNameId},
 			attr_value_id = #{attrValueId},
+			attr_name_type = #{attrNameType},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -73,6 +77,7 @@
 			<if test="skuId != null">sku_id = #{skuId},</if>
 			<if test="attrNameId != null">attr_name_id = #{attrNameId},</if>
 			<if test="attrValueId != null">attr_value_id = #{attrValueId},</if>
+			<if test="attrNameType != null">attr_name_type = #{attrNameType},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -122,6 +127,7 @@
 				sku_id,				
 				attr_name_id,				
 				attr_value_id,				
+				attr_name_type,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -135,6 +141,7 @@
 			#{skuId},
 			#{attrNameId},
 			#{attrValueId},
+			#{attrNameType},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

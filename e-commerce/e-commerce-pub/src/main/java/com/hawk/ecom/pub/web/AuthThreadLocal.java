@@ -15,7 +15,7 @@ public class AuthThreadLocal {
 		threadLocalMobileNumber.set(mobileNumber);
 	}
 
-	private static ThreadLocal<Long> threadLoaclUserId = new ThreadLocal<Long>();
+	private static ThreadLocal<Integer>   threadLoaclUserId = new ThreadLocal<Integer>  ();
 	
 	private static ThreadLocal<String> threadLoaclUserCode = new ThreadLocal<String>();
 	
@@ -43,11 +43,11 @@ public class AuthThreadLocal {
 		threadLoaclUserCode.set(userCode);
 	}
 	
-	public static Long getUserId(){
+	public static Integer getUserId(){
 		return threadLoaclUserId.get();
 	}
 	
-	public static void setUserId(Long userId){
+	public static void setUserId(Integer  userId){
 		threadLoaclUserId.set(userId);
 	}
 	

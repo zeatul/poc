@@ -23,7 +23,7 @@ public class MallLoginHistoryDomain implements Serializable {
 	/**
 	 * 用户ID user_id
 	 */
-	private Long userId;
+	private Integer userId;
 	
 	/**
 	 * 用户编号 user_code
@@ -151,7 +151,7 @@ public class MallLoginHistoryDomain implements Serializable {
 	 * 
 	 * @return 用户ID user_id
 	 */
-	public Long getUserId(){
+	public Integer getUserId(){
 		return userId;
 	}
 	
@@ -159,7 +159,7 @@ public class MallLoginHistoryDomain implements Serializable {
 	 * 
 	 * @param userId 用户ID user_id
 	 */	
-	public void setUserId (Long userId) {
+	public void setUserId (Integer userId) {
 		this.userId = userId;
 	}
 	

@@ -29,7 +29,7 @@ public class ProductRootConfig {
 	
 	@Bean("smallNumberSequenceService")
 	public PkGenService mallUserCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(100000);
+		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(10000);
 		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
 		mysqlPkGenerator.setSql( "replace into t_prd_small_number_sequence(stub) values('a')");
 		return mysqlPkGenerator;

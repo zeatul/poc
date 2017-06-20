@@ -34,8 +34,8 @@ public class MybatisTools {
 			pageRowCount =pageParam.getPageRowCount();
 		}
 		
-		if (pageRowCount > 200)
-			throw new RuntimeException("每页不能超过200条记录");
+		if (pageRowCount > 500)
+			throw new RuntimeException("每页不能超过500条记录");
 		
 		int offset = (pageIndex-1)*pageRowCount;
 		int limit = pageRowCount;

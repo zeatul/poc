@@ -18,12 +18,12 @@ public class StockDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品SKU主键 sku_id
 	 */
-	private Long skuId;
+	private Integer skuId;
 	
 	/**
 	 * 仓库编号 warehouse_code
@@ -85,7 +85,7 @@ public class StockDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -93,7 +93,7 @@ public class StockDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -101,7 +101,7 @@ public class StockDomain implements Serializable {
 	 * 
 	 * @return 产品SKU主键 sku_id
 	 */
-	public Long getSkuId(){
+	public Integer getSkuId(){
 		return skuId;
 	}
 	
@@ -109,7 +109,7 @@ public class StockDomain implements Serializable {
 	 * 
 	 * @param skuId 产品SKU主键 sku_id
 	 */	
-	public void setSkuId (Long skuId) {
+	public void setSkuId (Integer skuId) {
 		this.skuId = skuId;
 	}
 	

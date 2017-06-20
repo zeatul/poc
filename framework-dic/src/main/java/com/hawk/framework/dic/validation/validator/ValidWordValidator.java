@@ -63,14 +63,24 @@ public class ValidWordValidator implements ConstraintValidator<ValidWord, Object
 
 		if (word.getDataType() == EnumDataType.String) {
 			checkValue(word, (String) value, displayName);
-		} else if (word.getDataType() == EnumDataType.Long) {
+			return;
+		}
+
+		if (word.getDataType() == EnumDataType.Long) {
 			checkValue(word, (Long) value, displayName);
-		} else if (word.getDataType() == EnumDataType.Integer) {
+			return;
+		}
+		if (word.getDataType() == EnumDataType.Integer) {
 			checkValue(word, (Integer) value, displayName);
-		} else if (word.getDataType() == EnumDataType.Numeric) {
+			return;
+		}
+		if (word.getDataType() == EnumDataType.Numeric) {
 			checkValue(word, (BigDecimal) value, displayName);
-		} else if (word.getDataType() == EnumDataType.Date) {
+			return;
+		}
+		if (word.getDataType() == EnumDataType.Date) {
 			checkValue(word, (Date) value, displayName);
+			return;
 		}
 
 	}
@@ -83,65 +93,65 @@ public class ValidWordValidator implements ConstraintValidator<ValidWord, Object
 		String strMax = word.getMaxValue();
 		String patternComment = word.getPatternComment();
 		String localComment = "";
-		if (StringTools.isNotNullOrEmpty(strMax)){
+		if (StringTools.isNotNullOrEmpty(strMax)) {
 			Date maxDate = DateTools.parse(strMax, DateTools.DATETIME_PATTERN);
-			if (value.after(maxDate)){
-				localComment = "不能大于"+strMax;
+			if (value.after(maxDate)) {
+				localComment = "不能大于" + strMax;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
-		
+
 		String strMin = word.getMinValue();
 		patternComment = word.getPatternComment();
 		localComment = "";
-		if (StringTools.isNotNullOrEmpty(strMin)){
+		if (StringTools.isNotNullOrEmpty(strMin)) {
 			Date minDate = DateTools.parse(strMin, DateTools.DATETIME_PATTERN);
-			if (value.before(minDate)){
-				localComment = "不能小于"+strMin;
+			if (value.before(minDate)) {
+				localComment = "不能小于" + strMin;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
 	}
-	
-	public static void main(String[] args ){
+
+	public static void main(String[] args) {
 		BigDecimal b = new BigDecimal("100.0000");
 		System.out.println("scale = " + b.scale());
 		System.out.println("precision = " + b.precision());
 	}
 
 	private void checkValue(Word word, BigDecimal value, String displayName) {
-		Integer precision = word.getNumericPrecision(); //有效数字
-		Integer scale = word.getNumericScale(); //小数位数 
+		Integer precision = word.getNumericPrecision(); // 有效数字
+		Integer scale = word.getNumericScale(); // 小数位数
 		String patternComment = word.getPatternComment();
 		String localComment = "";
-		if (scale != null){
-			if (value.scale() > scale){
-				localComment = "小数位数不能大于"+scale;
+		if (scale != null) {
+			if (value.scale() > scale) {
+				localComment = "小数位数不能大于" + scale;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
-		
-		if (precision != null){
-			if (value.precision() > precision){
-				localComment = "有效 位数不能大于"+precision;
+
+		if (precision != null) {
+			if (value.precision() > precision) {
+				localComment = "有效 位数不能大于" + precision;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
 		String strMax = word.getMaxValue();
-		if (StringTools.isNotNullOrEmpty(strMax)){
-			if (value.compareTo(new BigDecimal(strMax))>0){
-				localComment = "不能大于"+strMax;
+		if (StringTools.isNotNullOrEmpty(strMax)) {
+			if (value.compareTo(new BigDecimal(strMax)) > 0) {
+				localComment = "不能大于" + strMax;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
 		String strMin = word.getMinValue();
-		if (StringTools.isNotNullOrEmpty(strMin)){
-			if (value.compareTo(new BigDecimal(strMin))<0){
-				localComment = "不能小于"+strMin;
+		if (StringTools.isNotNullOrEmpty(strMin)) {
+			if (value.compareTo(new BigDecimal(strMin)) < 0) {
+				localComment = "不能小于" + strMin;
 				throw new InvalidWordRuntimeException(buildMessage(displayName, patternComment, localComment));
 			}
 		}
-		
+
 	}
 
 	private void checkValue(Word word, Integer value, String displayName) {

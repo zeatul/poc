@@ -54,7 +54,7 @@ public class ModelDomain implements Serializable {
 	/**
 	 * 长整型主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 拼首 spell_abbr
@@ -253,7 +253,7 @@ public class ModelDomain implements Serializable {
 	 * 
 	 * @return 长整型主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -261,7 +261,7 @@ public class ModelDomain implements Serializable {
 	 * 
 	 * @param id 长整型主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer  id) {
 		this.id = id;
 	}
 	

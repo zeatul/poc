@@ -10,11 +10,12 @@
 		store_code AS "storeCode" ,
 		sku_code AS "skuCode" ,
 		sku_name AS "skuName" ,
-		sk_attr_Id_comp AS "skAttrIdComp" ,
+		sku_attr_id_comp AS "skuAttrIdComp" ,
 		sku_attr_value_comp AS "skuAttrValueComp" ,
 		sku_status AS "skuStatus" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
+		sku_stock_amount AS "skuStockAmount" ,
 		is_special AS "isSpecial" ,
 		width AS "width" ,
 		depth AS "depth" ,
@@ -38,11 +39,12 @@
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="skuCode != null"> AND sku_code = #{skuCode}  </if>
 			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
-			<if test="skAttrIdComp != null"> AND sk_attr_Id_comp = #{skAttrIdComp}  </if>
+			<if test="skuAttrIdComp != null"> AND sku_attr_id_comp = #{skuAttrIdComp}  </if>
 			<if test="skuAttrValueComp != null"> AND sku_attr_value_comp = #{skuAttrValueComp}  </if>
 			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
+			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
 			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
 			<if test="width != null"> AND width = #{width}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
@@ -67,11 +69,12 @@
 			AND store_code = #{old_storeCode}
 			AND sku_code = #{old_skuCode}
 			AND sku_name = #{old_skuName}
-			AND sk_attr_Id_comp = #{old_skAttrIdComp}
+			AND sku_attr_id_comp = #{old_skuAttrIdComp}
 			AND sku_attr_value_comp = #{old_skuAttrValueComp}
 			AND sku_status = #{old_skuStatus}
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
+			AND sku_stock_amount = #{old_skuStockAmount}
 			AND is_special = #{old_isSpecial}
 			AND width = #{old_width}
 			AND depth = #{old_depth}
@@ -96,11 +99,12 @@
 			store_code = #{storeCode},
 			sku_code = #{skuCode},
 			sku_name = #{skuName},
-			sk_attr_Id_comp = #{skAttrIdComp},
+			sku_attr_id_comp = #{skuAttrIdComp},
 			sku_attr_value_comp = #{skuAttrValueComp},
 			sku_status = #{skuStatus},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
+			sku_stock_amount = #{skuStockAmount},
 			is_special = #{isSpecial},
 			width = #{width},
 			depth = #{depth},
@@ -125,11 +129,12 @@
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="skuCode != null">sku_code = #{skuCode},</if>
 			<if test="skuName != null">sku_name = #{skuName},</if>
-			<if test="skAttrIdComp != null">sk_attr_Id_comp = #{skAttrIdComp},</if>
+			<if test="skuAttrIdComp != null">sku_attr_id_comp = #{skuAttrIdComp},</if>
 			<if test="skuAttrValueComp != null">sku_attr_value_comp = #{skuAttrValueComp},</if>
 			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
+			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
 			<if test="isSpecial != null">is_special = #{isSpecial},</if>
 			<if test="width != null">width = #{width},</if>
 			<if test="depth != null">depth = #{depth},</if>
@@ -187,11 +192,12 @@
 				store_code,				
 				sku_code,				
 				sku_name,				
-				sk_attr_Id_comp,				
+				sku_attr_id_comp,				
 				sku_attr_value_comp,				
 				sku_status,				
 				market_price,				
 				sale_price,				
+				sku_stock_amount,				
 				is_special,				
 				width,				
 				depth,				
@@ -213,11 +219,12 @@
 			#{storeCode},
 			#{skuCode},
 			#{skuName},
-			#{skAttrIdComp},
+			#{skuAttrIdComp},
 			#{skuAttrValueComp},
 			#{skuStatus},
 			#{marketPrice},
 			#{salePrice},
+			#{skuStockAmount},
 			#{isSpecial},
 			#{width},
 			#{depth},

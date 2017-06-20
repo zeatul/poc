@@ -19,7 +19,9 @@ import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
+import com.hawk.ecom.product.exception.ProductIsNotAcceptableForOnSaleRuntimeException;
 import com.hawk.ecom.product.exception.ProductNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.ProductStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
@@ -29,6 +31,7 @@ import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -58,7 +61,7 @@ public class ProductService {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	public ProductDomain loadProduct(Long id){
+	public ProductDomain loadProduct(Integer  id){
 		ProductDomain productDomain = null;
 		if (id != null){
 			logger.error("product id is null");
@@ -73,6 +76,7 @@ public class ProductService {
 	/**
 	 * 同一个商铺的商品编号不能重复
 	 * 新建立的商品默认是编辑状态
+	 * 创建商品时，对应的产品目录模板状态必须是 available
 	 * 商品的关键属性和非关键属性只能有一个
 	 * 商品的SKU属性可以是组合多个
 	 * @param createProdcutParam
@@ -89,7 +93,7 @@ public class ProductService {
 		}
 		
 		/**
-		 * 校验
+		 * 校验,产品目录必须存在，产品目录必须是叶子节点，产品目录模板状态必须是可用的。
 		 */
 		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId()) ;
 		if (category == null){
@@ -98,9 +102,13 @@ public class ProductService {
 		if (!ConstBoolean.parse(category.getIsLeaf())){
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		if (category.getCategoryStatus() == ConstCategory.CategoryStatus.FORBIDDEN){
-			throw new CategoryStatusIsNotAcceptableRuntimeException();
+//		if (category.getCategoryStatus() != ConstCategory.CategoryStatus.FORBIDDEN){
+//			throw new CategoryStatusIsNotAcceptableRuntimeException();
+//		}
+		if (category.getCategoryTemplateStatus() != ConstCategory.CategoryTemplateStatus.AVAILABLE){
+			throw new CategoryTemplateStatusIsNotAcceptableRuntimeException();
 		}
+		
 		
 		Date now = new Date();
 		ProductDomain productDomain = new ProductDomain();
@@ -110,6 +118,8 @@ public class ProductService {
 		
 		productDomain.setIsVirtual(createProdcutParam.getIsVirtual());
 	
+		productDomain.setProductAttrIdComp(null);
+		productDomain.setProductAttrValueComp(null);
 		productDomain.setProductCode(createProdcutParam.getProductCode());
 		productDomain.setProductDesc(createProdcutParam.getProductDesc());
 		productDomain.setProductHomePage(createProdcutParam.getProductHomePage());
@@ -163,11 +173,58 @@ public class ProductService {
 		 */
 		
 		try {
-			productMapper.update(updateDomain);
+			productMapper.updateWithoutNull(updateDomain);
 		} catch (DuplicateKeyException ex) {
 			throw new DuplicateProductRuntimeException();
 		}
 	} 
+	
+	/**
+	 * 只能修改用户自己商铺的产品状态
+	 * 改为上架状态时，必须填写上架时间，下架时间 
+	 * @param updateProdcutStatusParam
+	 */
+	@Valid
+	@Transactional
+	public void updateProductStatus(@Valid @NotEmpty("参数") UpdateProductStatusParam updateProdcutStatusParam){
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		int status = updateProdcutStatusParam.getProductStatus();
+		for (Integer  id : updateProdcutStatusParam.getIds()){
+			ProductDomain productDomain = loadProduct(id);
+			if (status != productDomain.getProductStatus()){
+				ProductDomain updateDomain = new ProductDomain();
+				if (productDomain.getProductStatus() != ConstProduct.ProductStatus.EDITING){
+					throw new ProductStatusIsNotAcceptableRuntimeException();
+				}
+				
+				updateDomain.setProductStatus(status);
+				updateDomain.setUpdateDate(new Date());
+				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+				
+				if (status == ConstProduct.ProductStatus.ON_SALE){
+					/**
+					 * 检测时间
+					 */
+					Date stdt = updateProdcutStatusParam.getOnSaleStdt();
+					Date endt = updateProdcutStatusParam.getOnSaleEndt();
+					if (stdt == null || endt == null || stdt.after(endt) || endt.before(new Date()))
+						throw new ProductIsNotAcceptableForOnSaleRuntimeException();
+					
+					/**
+					 * TODO:检测是否有上架的产品SKU
+					 */
+					
+					updateDomain.setOnSaleStdt(stdt);
+					updateDomain.setOnSaleEndt(endt);
+				}
+				
+				productMapper.updateWithoutNull(updateDomain);
+			}
+		}
+	}
 	
 	/**
 	 * 上架不能删，
@@ -183,7 +240,7 @@ public class ProductService {
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		for (Long id : removeProductParam.getIds()){
+		for (Integer  id : removeProductParam.getIds()){
 			if (id == null){
 				break;
 			}

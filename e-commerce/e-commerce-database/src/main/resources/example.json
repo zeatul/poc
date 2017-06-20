@@ -1,15 +1,32 @@
 {
 	"data": {
-		"id": 1100001,
-		"pid": 0,
-		"objectOrder": 100,
-		"categoryCode": "3C",
-		"categoryName": "数码产品",
-		"categoryStatus": 100,
-		"categoryDesc": "desc",
-		"categoryLogo": "http://logo",
-		"categoryHomePage": "http://home",
-		"isLeaf": 0
+		"count": 2,
+		"systemResources": [
+			{
+				"nodeCode": "100002",
+				"nodeName": "上海",
+				"nodeValue": "http://beijing.com",
+				"objectOrder": 100,
+				"nodeStatus": 1,
+				"nodeDesc": "hello",
+				"nodeType": 10,
+				"nodeSubType": 100,
+				"nodeValueType": 10,
+				"createDate": "2017-06-19 18:24:00"
+			},
+			{
+				"nodeCode": "100001",
+				"nodeName": "北京",
+				"nodeValue": "http://beijing.com",
+				"objectOrder": 200,
+				"nodeStatus": 1,
+				"nodeDesc": "hello",
+				"nodeType": 10,
+				"nodeSubType": 100,
+				"nodeValueType": 10,
+				"createDate": "2017-06-19 18:22:46"
+			}
+		]
 	},
 	"code": 1
 }

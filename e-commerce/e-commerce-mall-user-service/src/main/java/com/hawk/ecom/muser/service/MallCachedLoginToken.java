@@ -25,11 +25,11 @@ public class MallCachedLoginToken {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
@@ -43,7 +43,7 @@ public class MallCachedLoginToken {
 
 	private String userCode;
 	private String mobileNumber;
-	private long userId;
+	private int userId;
 	private String userName;
 	private long expireDate;
 }

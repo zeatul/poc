@@ -18,6 +18,7 @@ import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.ecom.product.service.ProductService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -58,6 +59,14 @@ public class ProductAdminController {
 		return SuccessResponse.build(null);
 	}
 	
+	@RequestMapping(value = "/status/update", method = POST)
+	public  WebResponse<ResponseData> updateProductStatus(HttpServletRequest request) throws Exception {
+		UpdateProductStatusParam param = HttpRequestTools.parse(request, UpdateProductStatusParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		productService.updateProductStatus(param);
+		return SuccessResponse.build(null);
+	}
+	
 	@RequestMapping(value = "/remove", method = POST)
 	public WebResponse<ResponseData> removeProduct(HttpServletRequest request) throws Exception {
 		RemoveProductParam param = HttpRequestTools.parse(request, RemoveProductParam.class);
@@ -67,7 +76,7 @@ public class ProductAdminController {
 	}
 	
 	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiResponse<ProductInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
+	public WebResponse<MultiResponse<ProductInfoResponse>> ListProduct(HttpServletRequest request) throws Exception {
 		ListProductParam param = HttpRequestTools.parse(request, ListProductParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		List<ProductDomain> categoryDomainList =  productService.listProduct(param);

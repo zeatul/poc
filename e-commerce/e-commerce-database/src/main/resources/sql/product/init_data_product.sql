@@ -1,1 +1,0 @@
-insert into t_prd_small_number_sequence(stub,id) value('a',1000000);

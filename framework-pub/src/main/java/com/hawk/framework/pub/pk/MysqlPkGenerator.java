@@ -42,19 +42,38 @@ public class MysqlPkGenerator implements PkGenService{
 	
 	private String sql ;
 	
-	private long start = 0l ;
+	private int start = 0 ;
 	
 	/**
 	 * 
 	 * @param start 起点
 	 */
-	public MysqlPkGenerator(long start){
+	public MysqlPkGenerator(int start){
 		this.start = start;
 	}
 	
 //	private final static String sql = "replace into t_km_global_sequence(stub) values('a')";
 
-	public long genPk(){
+	public int genPk(){
+		KeyHolder keyHolder = new GeneratedKeyHolder();  
+		
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);  
+		        return ps;
+			}
+		},keyHolder);
+		
+		Object o = keyHolder.getKeyList().get(0).get("GENERATED_KEY");
+				
+		return start + Integer.parseInt((o.toString()));		
+		
+
+	}
+	
+	public long genLongPk(){
 		KeyHolder keyHolder = new GeneratedKeyHolder();  
 		
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -67,8 +86,7 @@ public class MysqlPkGenerator implements PkGenService{
 		},keyHolder);
 		
 				
-		return start + (Long)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));
-		
+		return start + (Integer)(keyHolder.getKeyList().get(0).get("GENERATED_KEY"));		
 		
 
 	}

@@ -13,8 +13,8 @@ drop table if exists t_mal_system_short_sequence;
 /*==============================================================*/
 create table t_mal_system_resource
 (
-   id                   bigint unsigned not null comment '主键',
-   pid                  bigint unsigned not null comment '父ID',
+   id                   integer unsigned not null comment '主键',
+   pid                  integer unsigned not null comment '父ID',
    id_path              varchar(200) not null comment '主键PATH',
    name_path            varchar(1000) not null comment '名称PATH',
    code_path            varchar(200) comment '编号PATH',
@@ -75,7 +75,7 @@ create unique index ui_mal_sr_code on t_mal_system_resource
 create table t_mal_system_short_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;

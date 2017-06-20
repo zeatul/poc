@@ -18,12 +18,12 @@ public class ProductDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 产品目录主键 category_id
 	 */
-	private Long categoryId;
+	private Integer categoryId;
 	
 	/**
 	 * 商户编号 store_code
@@ -39,6 +39,16 @@ public class ProductDomain implements Serializable {
 	 * 产品名称 product_name
 	 */
 	private String productName;
+	
+	/**
+	 * 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 */
+	private String productAttrIdComp;
+	
+	/**
+	 * 产品关键属性值集合 product_attr_value_comp
+	 */
+	private String productAttrValueComp;
 	
 	/**
 	 * 产品状态 product_status
@@ -110,7 +120,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -118,7 +128,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -126,7 +136,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @return 产品目录主键 category_id
 	 */
-	public Long getCategoryId(){
+	public Integer getCategoryId(){
 		return categoryId;
 	}
 	
@@ -134,7 +144,7 @@ public class ProductDomain implements Serializable {
 	 * 
 	 * @param categoryId 产品目录主键 category_id
 	 */	
-	public void setCategoryId (Long categoryId) {
+	public void setCategoryId (Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	
@@ -184,6 +194,38 @@ public class ProductDomain implements Serializable {
 	 */	
 	public void setProductName (String productName) {
 		this.productName = productName;
+	}
+	
+	/**
+	 * 
+	 * @return 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 */
+	public String getProductAttrIdComp(){
+		return productAttrIdComp;
+	}
+	
+	/**
+	 * 
+	 * @param productAttrIdComp 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 */	
+	public void setProductAttrIdComp (String productAttrIdComp) {
+		this.productAttrIdComp = productAttrIdComp;
+	}
+	
+	/**
+	 * 
+	 * @return 产品关键属性值集合 product_attr_value_comp
+	 */
+	public String getProductAttrValueComp(){
+		return productAttrValueComp;
+	}
+	
+	/**
+	 * 
+	 * @param productAttrValueComp 产品关键属性值集合 product_attr_value_comp
+	 */	
+	public void setProductAttrValueComp (String productAttrValueComp) {
+		this.productAttrValueComp = productAttrValueComp;
 	}
 	
 	/**

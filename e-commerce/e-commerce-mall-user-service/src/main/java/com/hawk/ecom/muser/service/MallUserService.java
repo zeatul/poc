@@ -86,6 +86,8 @@ public class MallUserService {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	
+	
 	private String password(String loginPwd,String userCode,Date date){
 		final String key = "Mall@2#%Hawk";
 		return DigestUtils.md5Hex(StringTools.concatWithSymbol(":", loginPwd,key,userCode,date.getTime()));
@@ -277,11 +279,13 @@ public class MallUserService {
 		return mallUserDomain;
 	}
 	
+	
+	private final static String MUSER_CODE_HEAD = "msr";
 	private String generateMallUserCode() {
 		/**
 		 * 8位及8位以上的数字构成的字符串
 		 */
-		return new Long(mallUserCodeSequenceService.genPk() ).toString();
+		return StringTools.concat(MUSER_CODE_HEAD,mallUserCodeSequenceService.genPk());
 
 	}
 	

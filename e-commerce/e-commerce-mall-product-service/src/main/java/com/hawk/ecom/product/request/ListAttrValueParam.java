@@ -1,10 +1,35 @@
 package com.hawk.ecom.product.request;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
-import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.pub.sql.PageParam;
 
-public class ListSubCategoryParam implements PageParam{
+public class ListAttrValueParam implements PageParam{
+
+
+	public Integer getAttrValueStatus() {
+		return attrValueStatus;
+	}
+
+	public void setAttrValueStatus(Integer attrValueStatus) {
+		this.attrValueStatus = attrValueStatus;
+	}
+
+	public Integer getAttrNameId() {
+		return attrNameId;
+	}
+
+	public void setAttrNameId(Integer attrNameId) {
+		this.attrNameId = attrNameId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public Integer getPageIndex() {
 		return pageIndex;
 	}
@@ -29,14 +54,6 @@ public class ListSubCategoryParam implements PageParam{
 		this.pageRowCount = pageRowCount;
 	}
 
-	public Integer getPid() {
-		return pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
 	public String getOperatorCode() {
 		return operatorCode;
 	}
@@ -44,6 +61,24 @@ public class ListSubCategoryParam implements PageParam{
 	public void setOperatorCode(String operatorCode) {
 		this.operatorCode = operatorCode;
 	}
+	
+	
+	/**
+	 * 属性名主键
+	 */
+	private Integer attrNameId;
+	
+	/**
+	 * 产品目录主键
+	 */
+	private Integer categoryId;
+	
+	
+	/**
+	 * 属性名状态
+	 */
+	private Integer attrValueStatus;
+	
 
 	/**
 	 * 页码
@@ -59,10 +94,6 @@ public class ListSubCategoryParam implements PageParam{
 	 * 每页数量
 	 */
 	private Integer pageRowCount;
-	
-
-	@NotNull
-	private Integer pid;
 
 	/**
 	 * 操作员编号

@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.request.CreateCategoryParam;
-import com.hawk.ecom.product.request.ListSubCategoryParam;
+import com.hawk.ecom.product.request.ExchangeCategoryOrderParam;
+import com.hawk.ecom.product.request.ListCategoryParam;
 import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
+import com.hawk.ecom.product.request.UpdateCategoryStatusParam;
+import com.hawk.ecom.product.request.UpdateCategoryTemplateStatusParam;
 import com.hawk.ecom.product.response.CategoryInfoResponse;
 import com.hawk.ecom.product.service.CategoryService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -61,19 +64,35 @@ public class CategoryAdminController {
 		return SuccessResponse.build(null);
 	}
 	
-	
-	@RequestMapping(value = "/listSub", method = POST)
-	public WebResponse<MultiResponse<CategoryInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
-		ListSubCategoryParam param = HttpRequestTools.parse(request, ListSubCategoryParam.class);
+	@RequestMapping(value = "/status/update", method = POST)
+	public WebResponse<ResponseData> updateCategoryStatus(HttpServletRequest request) throws Exception {
+		UpdateCategoryStatusParam param = HttpRequestTools.parse(request, UpdateCategoryStatusParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		List<CategoryDomain> categoryDomainList =  categoryService.listSubCategory(param);
+		categoryService.updateCategoryStatus(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/template/status/update", method = POST)
+	public WebResponse<ResponseData> updateCategoryTemplateStatus(HttpServletRequest request) throws Exception {
+		UpdateCategoryTemplateStatusParam param = HttpRequestTools.parse(request, UpdateCategoryTemplateStatusParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		categoryService.updateCategoryTemplateStatus(param);
+		return SuccessResponse.build(null);
+	}
+	
+	
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MultiResponse<CategoryInfoResponse>> ListCategory(HttpServletRequest request) throws Exception {
+		ListCategoryParam param = HttpRequestTools.parse(request, ListCategoryParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		List<CategoryDomain> categoryDomainList =  categoryService.listCategory(param);
 		
 		MultiResponse<CategoryInfoResponse> result = new MultiResponse<CategoryInfoResponse>(DomainTools.copy(categoryDomainList, CategoryInfoResponse.class));
 		return SuccessResponse.build(result);
 	} 
 	
-	@RequestMapping(value = "/id/{id}", method = {GET,POST})
-	public WebResponse<CategoryInfoResponse> loadCategory(@PathVariable Long id) throws Exception {
+	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})
+	public WebResponse<CategoryInfoResponse> loadCategory(@PathVariable Integer id) throws Exception {
 		LoadCategoryParam param = new LoadCategoryParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setId(id);
@@ -87,6 +106,14 @@ public class CategoryAdminController {
 		RemoveCategoryParam param = HttpRequestTools.parse(request, RemoveCategoryParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		categoryService.removeCategory(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/order/exchange", method = POST)
+	public WebResponse<ResponseData> exchangeCategoryOrder(HttpServletRequest request) throws Exception {
+		ExchangeCategoryOrderParam param = HttpRequestTools.parse(request, ExchangeCategoryOrderParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		categoryService.exchangeCategoryOrder(param);
 		return SuccessResponse.build(null);
 	}
 }

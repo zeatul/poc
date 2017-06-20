@@ -59,7 +59,7 @@ public class SystemResourceService {
 	private final static SystemResourceDomain ROOT = new SystemResourceDomain();
 	static {
 		ROOT.setNodeCode("root");
-		ROOT.setId(0l);
+		ROOT.setId(0);
 		ROOT.setDepth(0);
 		ROOT.setIdPath("/0");
 		ROOT.setNodeName("root");
@@ -155,7 +155,7 @@ public class SystemResourceService {
 		systemResourceDomain.setIsReserved(ConstBoolean.FALSE);
 		systemResourceDomain.setUpdateUserCode(systemCreateResourceParam.getOperatorCode());
 
-		Long id = systemShorkPkSequenceService.genPk();
+		Integer  id = systemShorkPkSequenceService.genPk();
 		systemResourceDomain.setId(id);
 		if (StringTools.isNullOrEmpty(nodeCode)) {
 			nodeCode = systemResourceDomain.getId().toString();
@@ -198,12 +198,21 @@ public class SystemResourceService {
 		}
 		
 		if (StringTools.isNullOrEmpty(systemListResourceParam.getOrder())){
-			systemListResourceParam.setOrder("object_order asc");
+			systemListResourceParam.setOrder("pid desc , object_order asc");
 		}
 		
-		SystemResourceDomain parent =  queryParentSystemResourceByNodeCode(systemListResourceParam.getParentNodeCode());
+		MybatisParam params = new MybatisParam();
+		if (StringTools.isNotNullOrEmpty(systemListResourceParam.getParentNodeCode())){
+			SystemResourceDomain parent = 	queryParentSystemResourceByNodeCode(systemListResourceParam.getParentNodeCode());
+			params.put("pid", parent.getId());
+		}
 		
-		MybatisParam params = MybatisTools.page(new MybatisParam().put("pid", parent.getId()), systemListResourceParam);
+		params.put("nodeStatus", systemListResourceParam.getNodeStatus());
+		params.put("nodeSubType", systemListResourceParam.getNodeSubType());
+		params.put("dodeType", systemListResourceParam.getNodeType());
+		params.put("nodeValueType", systemListResourceParam.getNodeValueType());
+		
+		params = MybatisTools.page(params, systemListResourceParam);
 		return systemResourceMapper.loadDynamicPaging(params);
 	}
 	

@@ -18,12 +18,12 @@ public class CategoryDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 父ID pid
 	 */
-	private Long pid;
+	private Integer pid;
 	
 	/**
 	 * 主键PATH id_path
@@ -71,9 +71,14 @@ public class CategoryDomain implements Serializable {
 	private String categoryHomePage;
 	
 	/**
-	 * 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */
 	private Integer isLeaf;
+	
+	/**
+	 * 最终产品目录模板状态 category_template_status
+	 */
+	private Integer categoryTemplateStatus;
 	
 	/**
 	 * 创建者 create_user_code
@@ -110,7 +115,7 @@ public class CategoryDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -118,7 +123,7 @@ public class CategoryDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -126,7 +131,7 @@ public class CategoryDomain implements Serializable {
 	 * 
 	 * @return 父ID pid
 	 */
-	public Long getPid(){
+	public Integer getPid(){
 		return pid;
 	}
 	
@@ -134,7 +139,7 @@ public class CategoryDomain implements Serializable {
 	 * 
 	 * @param pid 父ID pid
 	 */	
-	public void setPid (Long pid) {
+	public void setPid (Integer pid) {
 		this.pid = pid;
 	}
 	
@@ -284,7 +289,7 @@ public class CategoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * @return 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */
 	public Integer getIsLeaf(){
 		return isLeaf;
@@ -292,10 +297,26 @@ public class CategoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param isLeaf 是否为最终目录分类，最终目录分类才能有商品模板 is_leaf
+	 * @param isLeaf 是否为最终产品目录分类，最终产品目录分类才能有商品模板 is_leaf
 	 */	
 	public void setIsLeaf (Integer isLeaf) {
 		this.isLeaf = isLeaf;
+	}
+	
+	/**
+	 * 
+	 * @return 最终产品目录模板状态 category_template_status
+	 */
+	public Integer getCategoryTemplateStatus(){
+		return categoryTemplateStatus;
+	}
+	
+	/**
+	 * 
+	 * @param categoryTemplateStatus 最终产品目录模板状态 category_template_status
+	 */	
+	public void setCategoryTemplateStatus (Integer categoryTemplateStatus) {
+		this.categoryTemplateStatus = categoryTemplateStatus;
 	}
 	
 	/**

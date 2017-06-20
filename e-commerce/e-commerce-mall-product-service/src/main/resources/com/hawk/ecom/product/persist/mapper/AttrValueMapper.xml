@@ -10,6 +10,7 @@
 		attr_name_id AS "attrNameId" ,
 		attr_value AS "attrValue" ,
 		attr_display_value AS "attrDisplayValue" ,
+		attr_value_status AS "attrValueStatus" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -25,6 +26,7 @@
 			<if test="attrNameId != null"> AND attr_name_id = #{attrNameId}  </if>
 			<if test="attrValue != null"> AND attr_value = #{attrValue}  </if>
 			<if test="attrDisplayValue != null"> AND attr_display_value = #{attrDisplayValue}  </if>
+			<if test="attrValueStatus != null"> AND attr_value_status = #{attrValueStatus}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -41,6 +43,7 @@
 			AND attr_name_id = #{old_attrNameId}
 			AND attr_value = #{old_attrValue}
 			AND attr_display_value = #{old_attrDisplayValue}
+			AND attr_value_status = #{old_attrValueStatus}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -57,6 +60,7 @@
 			attr_name_id = #{attrNameId},
 			attr_value = #{attrValue},
 			attr_display_value = #{attrDisplayValue},
+			attr_value_status = #{attrValueStatus},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -73,6 +77,7 @@
 			<if test="attrNameId != null">attr_name_id = #{attrNameId},</if>
 			<if test="attrValue != null">attr_value = #{attrValue},</if>
 			<if test="attrDisplayValue != null">attr_display_value = #{attrDisplayValue},</if>
+			<if test="attrValueStatus != null">attr_value_status = #{attrValueStatus},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -122,6 +127,7 @@
 				attr_name_id,				
 				attr_value,				
 				attr_display_value,				
+				attr_value_status,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -135,6 +141,7 @@
 			#{attrNameId},
 			#{attrValue},
 			#{attrDisplayValue},
+			#{attrValueStatus},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

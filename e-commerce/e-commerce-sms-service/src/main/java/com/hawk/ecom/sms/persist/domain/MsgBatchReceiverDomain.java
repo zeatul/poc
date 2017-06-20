@@ -17,12 +17,12 @@ public class MsgBatchReceiverDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Long id;
+	private Integer id;
 	
 	/**
 	 * 短信发送记录主键 sms_task_id
 	 */
-	private Long smsTaskId;
+	private Integer smsTaskId;
 	
 	/**
 	 * 批次号 sms_batch_no
@@ -54,7 +54,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Long getId(){
+	public Integer getId(){
 		return id;
 	}
 	
@@ -62,7 +62,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Long id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -70,7 +70,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @return 短信发送记录主键 sms_task_id
 	 */
-	public Long getSmsTaskId(){
+	public Integer getSmsTaskId(){
 		return smsTaskId;
 	}
 	
@@ -78,7 +78,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @param smsTaskId 短信发送记录主键 sms_task_id
 	 */	
-	public void setSmsTaskId (Long smsTaskId) {
+	public void setSmsTaskId (Integer smsTaskId) {
 		this.smsTaskId = smsTaskId;
 	}
 	
