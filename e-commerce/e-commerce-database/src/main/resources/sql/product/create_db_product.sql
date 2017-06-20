@@ -12,6 +12,8 @@ drop table if exists t_prd_attr_value;
 
 drop table if exists t_prd_brand;
 
+drop index ui_prd_category_name on t_prd_category;
+
 drop index ui_prd_category_code on t_prd_category;
 
 drop index ui_prd_category_id_path on t_prd_category;
@@ -102,7 +104,9 @@ create index i_prd_attr_name_pvid on t_prd_attr_name
 create unique index ui_prd_attr_name on t_prd_attr_name
 (
    category_id,
-   attr_name
+   attr_name,
+   pid,
+   pvid
 );
 
 /*==============================================================*/
@@ -202,6 +206,15 @@ create unique index ui_prd_category_id_path on t_prd_category
 create unique index ui_prd_category_code on t_prd_category
 (
    category_code
+);
+
+/*==============================================================*/
+/* Index: ui_prd_category_name                                  */
+/*==============================================================*/
+create unique index ui_prd_category_name on t_prd_category
+(
+   pid,
+   category_name
 );
 
 /*==============================================================*/

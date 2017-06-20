@@ -136,9 +136,11 @@ public class AttrValueService {
 		attrValueDomain.setAttrDisplayValue(createAttrValueParam.getAttrDisplayValue());
 		attrValueDomain.setAttrNameId(attrNameDomain.getId());
 		attrValueDomain.setAttrValue(createAttrValueParam.getAttrValue());
-		if (StringTools.isNullOrEmpty(attrValueDomain.getAttrDisplayValue())) {
-			attrValueDomain.setAttrDisplayValue(attrValueDomain.getAttrValue());
-		}
+		
+//		if (StringTools.isNullOrEmpty(attrValueDomain.getAttrDisplayValue())) {
+//			attrValueDomain.setAttrDisplayValue(attrValueDomain.getAttrValue());
+//		}
+		
 		attrValueDomain.setAttrValueStatus(ConstAttr.AttrValueStatus.AVAIlABLE);
 		attrValueDomain.setCategoryId(attrNameDomain.getCategoryId());
 

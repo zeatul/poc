@@ -1,32 +1,11 @@
 {
 	"data": {
-		"count": 2,
-		"systemResources": [
-			{
-				"nodeCode": "100002",
-				"nodeName": "上海",
-				"nodeValue": "http://beijing.com",
-				"objectOrder": 100,
-				"nodeStatus": 1,
-				"nodeDesc": "hello",
-				"nodeType": 10,
-				"nodeSubType": 100,
-				"nodeValueType": 10,
-				"createDate": "2017-06-19 18:24:00"
-			},
-			{
-				"nodeCode": "100001",
-				"nodeName": "北京",
-				"nodeValue": "http://beijing.com",
-				"objectOrder": 200,
-				"nodeStatus": 1,
-				"nodeDesc": "hello",
-				"nodeType": 10,
-				"nodeSubType": 100,
-				"nodeValueType": 10,
-				"createDate": "2017-06-19 18:22:46"
-			}
-		]
+		"id": 10011,
+		"categoryId": 10007,
+		"attrNameId": 10010,
+		"attrValue": "戴尔",
+		"attrDisplayValue": "戴尔",
+		"attrValueStatus": 1
 	},
 	"code": 1
 }

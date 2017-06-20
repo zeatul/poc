@@ -18,10 +18,13 @@ import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.exception.AttrNameIsUsedRuntimeException;
 import com.hawk.ecom.product.exception.AttrNameNotFoundRuntimeException;
+import com.hawk.ecom.product.exception.AttrNamePidIsDifferentWithAttrNameIdOfAttrValueRuntimeException;
+import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateAttrNameRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
+import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.mapper.AttrNameMapper;
 import com.hawk.ecom.product.persist.mapper.AttrValueMapper;
@@ -53,6 +56,9 @@ public class AttrNameService {
 
 	@Autowired
 	private AttrNameMapper  attrNameMapper;
+	
+	@Autowired
+	private AttrValueService attrValueService;
 	
 	@Autowired
 	private AttrValueMapper attrValueMapper;
@@ -137,14 +143,36 @@ public class AttrNameService {
 		
 		
 		attrNameDomain.setIsSearch(createAttrNameParam.getIsSearch());
+		
 		/**
-		 * TODO:检验PID
+		 * 检验PID,必须存在，且和产品分类目录ID必须一致
 		 */
-		attrNameDomain.setPid(createAttrNameParam.getPid());
+		Integer  pid = createAttrNameParam.getPid();
+		if (pid != 0){
+			AttrNameDomain parent = loadById(pid);
+			if (!parent.getCategoryId().equals(createAttrNameParam.getCategoryId())){
+				throw new CategoryIsDifferentRuntimeException();
+			}
+		}		
+		attrNameDomain.setPid(pid);
+		
+		
 		/**
-		 * TODO:检验PVID
+		 * 检验PVID,必须存在,且和产品分类目录ID必须一致
+		 * 且Pvid对应的值的attrNameId 必须和pid一致
 		 */
-		attrNameDomain.setPvid(createAttrNameParam.getPvid());
+		Integer pvid  = createAttrNameParam.getPvid();
+		if (pvid != 0){
+			AttrValueDomain parentValue = attrValueService.loadAttrValue(pvid);
+			if (!parentValue.getCategoryId().equals(createAttrNameParam.getCategoryId())){
+				throw new CategoryIsDifferentRuntimeException();
+			}
+			
+			if (!parentValue.getAttrNameId().equals(pid)){
+				throw new AttrNamePidIsDifferentWithAttrNameIdOfAttrValueRuntimeException();
+			}
+		}
+		attrNameDomain.setPvid(pvid);
 		
 		Date now = new Date();
 		attrNameDomain.setCreateDate(now);
