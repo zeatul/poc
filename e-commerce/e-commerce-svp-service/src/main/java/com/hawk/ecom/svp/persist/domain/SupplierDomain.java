@@ -17,7 +17,7 @@ public class SupplierDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Integer id;
+	private Long id;
 	
 	/**
 	 * 供应商编号 supplier_code
@@ -34,7 +34,7 @@ public class SupplierDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Integer getId(){
+	public Long getId(){
 		return id;
 	}
 	
@@ -42,7 +42,7 @@ public class SupplierDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Long id) {
 		this.id = id;
 	}
 	

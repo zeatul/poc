@@ -78,7 +78,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -94,7 +94,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param roleId 角色ID role_id
 	 */	
-	public void setRoleId (Integer  roleId) {
+	public void setRoleId (Integer roleId) {
 		this.roleId = roleId;
 	}
 	
@@ -110,7 +110,7 @@ public class MallRoleRightDomain implements Serializable {
 	 * 
 	 * @param rightId 权限ID right_id
 	 */	
-	public void setRightId (Integer  rightId) {
+	public void setRightId (Integer rightId) {
 		this.rightId = rightId;
 	}
 	

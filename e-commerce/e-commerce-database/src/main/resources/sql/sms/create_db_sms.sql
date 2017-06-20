@@ -22,7 +22,7 @@ drop table if exists t_sms_task;
 create table t_sms_batch_codel_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   bigint not null auto_increment comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -34,7 +34,7 @@ alter table t_sms_batch_codel_sequence comment '批次号生成表';
 /*==============================================================*/
 create table t_sms_message_model
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    sms_model_code       varchar(50) comment '模板编号',
    sms_model_name       varchar(50) comment '模板名称',
    sms_model_content    varchar(200) comment '模板内容',
@@ -62,8 +62,8 @@ create unique index ui_sms_msg_model on t_sms_message_model
 /*==============================================================*/
 create table t_sms_msg_batch_receiver
 (
-   id                   bigint unsigned not null comment '主键',
-   sms_task_id          bigint unsigned comment '短信发送记录主键',
+   id                   integer unsigned not null comment '主键',
+   sms_task_id          integer unsigned comment '短信发送记录主键',
    sms_batch_no         varchar(50) comment '批次号',
    mobile_number        varchar(20) comment '手机号码',
    sms_receipt          varchar(50) comment '短信发送回执',
@@ -89,7 +89,7 @@ create unique index ui_sms_receiver on t_sms_msg_batch_receiver
 /*==============================================================*/
 create table t_sms_operator
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    sms_operator_code    varchar(50) comment '短信运营商编号',
    sms_operator_name    varchar(200) comment '短信运营商编号',
    primary key (id)
@@ -111,7 +111,7 @@ create unique index ui_sms_operator_code on t_sms_operator
 /*==============================================================*/
 create table t_sms_task
 (
-   id                   bigint unsigned not null comment '主键',
+   id                   integer unsigned not null comment '主键',
    sms_operator_code    varchar(50) comment '短信运营商编号',
    sms_batch_no         varchar(50) comment '批次号',
    is_batch             tinyint unsigned comment '是否是批量发送',

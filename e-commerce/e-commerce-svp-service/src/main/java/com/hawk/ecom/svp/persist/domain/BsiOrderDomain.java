@@ -18,7 +18,7 @@ public class BsiOrderDomain implements Serializable {
 	/**
 	 * 主键 id
 	 */
-	private Integer id;
+	private Long id;
 	
 	/**
 	 * 订单编号 order_code
@@ -65,7 +65,7 @@ public class BsiOrderDomain implements Serializable {
 	 * 
 	 * @return 主键 id
 	 */
-	public Integer getId(){
+	public Long getId(){
 		return id;
 	}
 	
@@ -73,7 +73,7 @@ public class BsiOrderDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Long id) {
 		this.id = id;
 	}
 	

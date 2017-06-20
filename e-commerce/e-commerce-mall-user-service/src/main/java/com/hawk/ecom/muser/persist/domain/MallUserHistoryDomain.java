@@ -163,7 +163,7 @@ public class MallUserHistoryDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	

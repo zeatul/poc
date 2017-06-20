@@ -62,7 +62,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -78,7 +78,7 @@ public class MsgBatchReceiverDomain implements Serializable {
 	 * 
 	 * @param smsTaskId 短信发送记录主键 sms_task_id
 	 */	
-	public void setSmsTaskId (Integer  smsTaskId) {
+	public void setSmsTaskId (Integer smsTaskId) {
 		this.smsTaskId = smsTaskId;
 	}
 	

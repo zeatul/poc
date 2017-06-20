@@ -158,7 +158,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @param id 主键 id
 	 */	
-	public void setId (Integer  id) {
+	public void setId (Integer id) {
 		this.id = id;
 	}
 	
@@ -174,7 +174,7 @@ public class SystemResourceDomain implements Serializable {
 	 * 
 	 * @param pid 父ID pid
 	 */	
-	public void setPid (Integer  pid) {
+	public void setPid (Integer pid) {
 		this.pid = pid;
 	}
 	

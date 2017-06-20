@@ -159,7 +159,7 @@ public class MallLoginDomain implements Serializable {
 	 * 
 	 * @param userId 用户ID user_id
 	 */	
-	public void setUserId (Integer  userId) {
+	public void setUserId (Integer userId) {
 		this.userId = userId;
 	}
 	
