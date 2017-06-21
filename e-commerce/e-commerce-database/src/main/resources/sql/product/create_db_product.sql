@@ -12,6 +12,8 @@ drop table if exists t_prd_attr_value;
 
 drop table if exists t_prd_brand;
 
+drop index ui_prd_category_name on t_prd_category;
+
 drop index ui_prd_category_code on t_prd_category;
 
 drop index ui_prd_category_id_path on t_prd_category;
@@ -102,7 +104,9 @@ create index i_prd_attr_name_pvid on t_prd_attr_name
 create unique index ui_prd_attr_name on t_prd_attr_name
 (
    category_id,
-   attr_name
+   attr_name,
+   pid,
+   pvid
 );
 
 /*==============================================================*/
@@ -113,8 +117,9 @@ create table t_prd_attr_value
    id                   integer unsigned not null comment '主键',
    category_id          integer unsigned not null comment '产品目录主键',
    attr_name_id         integer unsigned not null comment '属性名主键',
-   attr_value           varchar(50) not null comment '属性值',
-   attr_display_value   varchar(50) comment '属性值显示名称',
+   attr_value           varchar(200) not null comment '属性值',
+   attr_display_value   varchar(500) comment '属性值显示名称',
+   attr_display_en_value varchar(500) comment '属性值显示英文名称',
    attr_value_status    tinyint unsigned comment '属性值状态',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
@@ -202,6 +207,15 @@ create unique index ui_prd_category_id_path on t_prd_category
 create unique index ui_prd_category_code on t_prd_category
 (
    category_code
+);
+
+/*==============================================================*/
+/* Index: ui_prd_category_name                                  */
+/*==============================================================*/
+create unique index ui_prd_category_name on t_prd_category
+(
+   pid,
+   category_name
 );
 
 /*==============================================================*/

@@ -352,7 +352,7 @@ public class CategoryService {
 		}
 		
 		CategoryDomain a = loadCategory(exchangeCategoryOrderParam.getCategoryIdA());
-		CategoryDomain b = loadCategory(exchangeCategoryOrderParam.getCategoryIdA());
+		CategoryDomain b = loadCategory(exchangeCategoryOrderParam.getCategoryIdB());
 		
 		if (!a.getPid().equals(b.getPid())){
 			throw new CategoryHasDifferentParentRuntimeException();

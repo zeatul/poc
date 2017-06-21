@@ -19,7 +19,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class CategoryAdminControllerTest extends AbstractControllerTest {
 
-	private String token = "486709a0-6185-4901-b8ce-37dc20f466a1";
+	private String token = "53ab62cb-1bef-46ab-a186-540dc554c2df";
 
 //	@Test
 	public void testCreateCategory() {
@@ -30,9 +30,9 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 		request.setCategoryDesc("desc");
 		request.setCategoryHomePage("http://apple");
 		request.setCategoryLogo("http://apple/logo");
-		request.setCategoryName("苹果");
+		request.setCategoryName("笔记本电脑");
 		request.setIsLeaf(1);
-		request.setObjectOrder(100);
+//		request.setObjectOrder();
 		request.setPid(0);
 
 		List<HttpParam> params = new ArrayList<HttpParam>();
@@ -43,22 +43,7 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-//	 @Test
-	public void testListSubCategory() {
-		String url = getUrl("/mall/admin/product/category/listSub");
-		ListCategoryParam request = new ListCategoryParam();
-		request.setOrder("object_order asc");
-		request.setPageIndex(1);
-		request.setPageRowCount(100);
-		request.setPid(10001);
 
-		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("version", "1.0"));
-		params.add(new HttpParam("t", token));
-		System.out.println("request=" + JsonTools.toJsonString(request));
-		String result = httpExecutor.post(url, request, params);
-		System.out.println("result=" + result);
-	}
 
 //	@Test
 	public void testLoadCategory() {
@@ -122,10 +107,10 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 	public void testListCategory(){
 		String url = getUrl("/mall/admin/product/category/list");
 		ListCategoryParam request = new ListCategoryParam();
-		request.setPid(0);
-		request.setIsLeaf(1);
-		request.setCategoryStatus(ConstCategory.CategoryStatus.AVAILABLE);
-		request.setCategoryTemplateStatus(ConstCategory.CategoryTemplateStatus.EDITING);
+		request.setPid(10001);
+//		request.setIsLeaf(0);
+//		request.setCategoryStatus(ConstCategory.CategoryStatus.AVAILABLE);
+//		request.setCategoryTemplateStatus(ConstCategory.CategoryTemplateStatus.EDITING);
 		request.setPageIndex(1);
 		request.setPageRowCount(100);
 		request.setOrder("object_order asc");
@@ -142,8 +127,8 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 	public void testExchangeCategoryOrder(){
 		String url = getUrl("/mall/admin/product/category/order/exchange");
 		ExchangeCategoryOrderParam request = new ExchangeCategoryOrderParam();
-		request.setCategoryIdA(10003);
-		request.setCategoryIdB(10004);
+		request.setCategoryIdA(10007);
+		request.setCategoryIdB(10008);
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));

@@ -12,7 +12,7 @@ public class AttrNameNotFoundRuntimeException extends BasicRuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = -2807413836191102335L;
-	private final static int  code = ErrorCodeAllocation.PRODUCT+16;
+	private final static int  code = ErrorCodeAllocation.PRODUCT+17;
 
 	public AttrNameNotFoundRuntimeException() {
 		super(code,ErrorCode.getErrMsg(code));
