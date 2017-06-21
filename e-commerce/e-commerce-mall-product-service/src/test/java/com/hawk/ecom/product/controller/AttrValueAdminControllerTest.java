@@ -10,6 +10,7 @@ import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
 import com.hawk.ecom.product.request.CreateAttrValueParam;
 import com.hawk.ecom.product.request.ListAttrValueParam;
+import com.hawk.ecom.product.request.RemoveAttrValueParam;
 import com.hawk.ecom.product.request.UpdateAttrValueParam;
 import com.hawk.ecom.product.request.UpdateAttrValueStatusParam;
 import com.hawk.framework.pub.constant.ConstBoolean;
@@ -18,7 +19,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class AttrValueAdminControllerTest extends AbstractControllerTest{
 	
-	private String token = "fe3a4813-4f71-48e1-abf1-2f708ef9fe55";
+	private String token = "1b07e6be-1a8a-4c61-9805-8b28a9ceacbd";
 	
 //	@Test
 	public void testCreateAttrValue(){
@@ -86,11 +87,25 @@ public class AttrValueAdminControllerTest extends AbstractControllerTest{
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testUpdateAttrValueStatus(){
 		String url = getUrl("/mall/admin/product/attr/value/status/update");
 		UpdateAttrValueStatusParam request = new UpdateAttrValueStatusParam();
 		request.setAttrValueStatus(ConstAttr.AttrValueStatus.FORBIDDEN);		
+		request.setIds(Arrays.asList(10006));
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testRemoveAttrValueStatus(){
+		String url = getUrl("/mall/admin/product/attr/value/remove");
+		RemoveAttrValueParam request = new RemoveAttrValueParam();
+			
 		request.setIds(Arrays.asList(10006));
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
