@@ -314,5 +314,22 @@ public class RedisClient {
 
 		});
 	}
+	
+	/**
+	 * 返回key的过期时间
+	 * @param key
+	 * @return
+	 */
+	public long ttl(final String key){
+		return execute(new Executor() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Long exec(ShardedJedis shardedJedis) {
+				return shardedJedis.ttl(key);
+			}
+
+		});
+	}
 
 }
