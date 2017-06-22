@@ -41,6 +41,11 @@ public class AttrValueDomain implements Serializable {
 	private String attrDisplayValue;
 	
 	/**
+	 * 属性值显示英文名称 attr_display_en_value
+	 */
+	private String attrDisplayEnValue;
+	
+	/**
 	 * 属性值状态 attr_value_status
 	 */
 	private Integer attrValueStatus;
@@ -154,6 +159,22 @@ public class AttrValueDomain implements Serializable {
 	 */	
 	public void setAttrDisplayValue (String attrDisplayValue) {
 		this.attrDisplayValue = attrDisplayValue;
+	}
+	
+	/**
+	 * 
+	 * @return 属性值显示英文名称 attr_display_en_value
+	 */
+	public String getAttrDisplayEnValue(){
+		return attrDisplayEnValue;
+	}
+	
+	/**
+	 * 
+	 * @param attrDisplayEnValue 属性值显示英文名称 attr_display_en_value
+	 */	
+	public void setAttrDisplayEnValue (String attrDisplayEnValue) {
+		this.attrDisplayEnValue = attrDisplayEnValue;
 	}
 	
 	/**

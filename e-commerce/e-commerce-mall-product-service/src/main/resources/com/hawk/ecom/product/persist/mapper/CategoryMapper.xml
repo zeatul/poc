@@ -17,7 +17,7 @@
 		category_logo AS "categoryLogo" ,
 		category_home_page AS "categoryHomePage" ,
 		is_leaf AS "isLeaf" ,
-		category_template_status AS "categoryTemplateStatus" ,
+		category_variant_status AS "categoryVariantStatus" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -40,7 +40,7 @@
 			<if test="categoryLogo != null"> AND category_logo = #{categoryLogo}  </if>
 			<if test="categoryHomePage != null"> AND category_home_page = #{categoryHomePage}  </if>
 			<if test="isLeaf != null"> AND is_leaf = #{isLeaf}  </if>
-			<if test="categoryTemplateStatus != null"> AND category_template_status = #{categoryTemplateStatus}  </if>
+			<if test="categoryVariantStatus != null"> AND category_variant_status = #{categoryVariantStatus}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -64,7 +64,7 @@
 			AND category_logo = #{old_categoryLogo}
 			AND category_home_page = #{old_categoryHomePage}
 			AND is_leaf = #{old_isLeaf}
-			AND category_template_status = #{old_categoryTemplateStatus}
+			AND category_variant_status = #{old_categoryVariantStatus}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -88,7 +88,7 @@
 			category_logo = #{categoryLogo},
 			category_home_page = #{categoryHomePage},
 			is_leaf = #{isLeaf},
-			category_template_status = #{categoryTemplateStatus},
+			category_variant_status = #{categoryVariantStatus},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -112,7 +112,7 @@
 			<if test="categoryLogo != null">category_logo = #{categoryLogo},</if>
 			<if test="categoryHomePage != null">category_home_page = #{categoryHomePage},</if>
 			<if test="isLeaf != null">is_leaf = #{isLeaf},</if>
-			<if test="categoryTemplateStatus != null">category_template_status = #{categoryTemplateStatus},</if>
+			<if test="categoryVariantStatus != null">category_variant_status = #{categoryVariantStatus},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -169,7 +169,7 @@
 				category_logo,				
 				category_home_page,				
 				is_leaf,				
-				category_template_status,				
+				category_variant_status,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -190,7 +190,7 @@
 			#{categoryLogo},
 			#{categoryHomePage},
 			#{isLeaf},
-			#{categoryTemplateStatus},
+			#{categoryVariantStatus},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

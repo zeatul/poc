@@ -19,7 +19,7 @@ import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.CategoryStatusIsNotAcceptableRuntimeException;
-import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.CategoryVariantStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.product.exception.ProductIsNotAcceptableForOnSaleRuntimeException;
 import com.hawk.ecom.product.exception.ProductNotFoundRuntimeException;
@@ -105,8 +105,8 @@ public class ProductService {
 //		if (category.getCategoryStatus() != ConstCategory.CategoryStatus.FORBIDDEN){
 //			throw new CategoryStatusIsNotAcceptableRuntimeException();
 //		}
-		if (category.getCategoryTemplateStatus() != ConstCategory.CategoryTemplateStatus.AVAILABLE){
-			throw new CategoryTemplateStatusIsNotAcceptableRuntimeException();
+		if (category.getCategoryVariantStatus() != ConstCategory.CategoryVariantStatus.AVAILABLE){
+			throw new CategoryVariantStatusIsNotAcceptableRuntimeException();
 		}
 		
 		

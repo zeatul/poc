@@ -21,7 +21,7 @@ import com.hawk.ecom.product.exception.AttrNameNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.AttrNamePidIsDifferentWithAttrNameIdOfAttrValueRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
-import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.CategoryVariantStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateAttrNameRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
@@ -123,8 +123,8 @@ public class AttrNameService {
 		if (!ConstBoolean.parse(categoryDomain.getIsLeaf())) {
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		if (categoryDomain.getCategoryTemplateStatus() != ConstCategory.CategoryTemplateStatus.EDITING) {
-			throw new CategoryTemplateStatusIsNotAcceptableRuntimeException();
+		if (categoryDomain.getCategoryVariantStatus() != ConstCategory.CategoryVariantStatus.EDITING) {
+			throw new CategoryVariantStatusIsNotAcceptableRuntimeException();
 		}
 
 		/**

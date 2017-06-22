@@ -10,6 +10,7 @@
 		attr_name_id AS "attrNameId" ,
 		attr_value AS "attrValue" ,
 		attr_display_value AS "attrDisplayValue" ,
+		attr_display_en_value AS "attrDisplayEnValue" ,
 		attr_value_status AS "attrValueStatus" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -26,6 +27,7 @@
 			<if test="attrNameId != null"> AND attr_name_id = #{attrNameId}  </if>
 			<if test="attrValue != null"> AND attr_value = #{attrValue}  </if>
 			<if test="attrDisplayValue != null"> AND attr_display_value = #{attrDisplayValue}  </if>
+			<if test="attrDisplayEnValue != null"> AND attr_display_en_value = #{attrDisplayEnValue}  </if>
 			<if test="attrValueStatus != null"> AND attr_value_status = #{attrValueStatus}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -43,6 +45,7 @@
 			AND attr_name_id = #{old_attrNameId}
 			AND attr_value = #{old_attrValue}
 			AND attr_display_value = #{old_attrDisplayValue}
+			AND attr_display_en_value = #{old_attrDisplayEnValue}
 			AND attr_value_status = #{old_attrValueStatus}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
@@ -60,6 +63,7 @@
 			attr_name_id = #{attrNameId},
 			attr_value = #{attrValue},
 			attr_display_value = #{attrDisplayValue},
+			attr_display_en_value = #{attrDisplayEnValue},
 			attr_value_status = #{attrValueStatus},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -77,6 +81,7 @@
 			<if test="attrNameId != null">attr_name_id = #{attrNameId},</if>
 			<if test="attrValue != null">attr_value = #{attrValue},</if>
 			<if test="attrDisplayValue != null">attr_display_value = #{attrDisplayValue},</if>
+			<if test="attrDisplayEnValue != null">attr_display_en_value = #{attrDisplayEnValue},</if>
 			<if test="attrValueStatus != null">attr_value_status = #{attrValueStatus},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -127,6 +132,7 @@
 				attr_name_id,				
 				attr_value,				
 				attr_display_value,				
+				attr_display_en_value,				
 				attr_value_status,				
 				create_user_code,				
 				create_date,				
@@ -141,6 +147,7 @@
 			#{attrNameId},
 			#{attrValue},
 			#{attrDisplayValue},
+			#{attrDisplayEnValue},
 			#{attrValueStatus},
 			#{createUserCode},
 			#{createDate},

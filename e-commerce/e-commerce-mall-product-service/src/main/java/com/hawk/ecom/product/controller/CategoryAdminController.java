@@ -22,7 +22,7 @@ import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryStatusParam;
-import com.hawk.ecom.product.request.UpdateCategoryTemplateStatusParam;
+import com.hawk.ecom.product.request.UpdateCategoryVariantStatusParam;
 import com.hawk.ecom.product.response.CategoryInfoResponse;
 import com.hawk.ecom.product.service.CategoryService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -72,11 +72,11 @@ public class CategoryAdminController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/template/status/update", method = POST)
-	public WebResponse<ResponseData> updateCategoryTemplateStatus(HttpServletRequest request) throws Exception {
-		UpdateCategoryTemplateStatusParam param = HttpRequestTools.parse(request, UpdateCategoryTemplateStatusParam.class);
+	@RequestMapping(value = "/variant/status/update", method = POST)
+	public WebResponse<ResponseData> updateCategoryVariantStatus(HttpServletRequest request) throws Exception {
+		UpdateCategoryVariantStatusParam param = HttpRequestTools.parse(request, UpdateCategoryVariantStatusParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		categoryService.updateCategoryTemplateStatus(param);
+		categoryService.updateCategoryVariantStatus(param);
 		return SuccessResponse.build(null);
 	}
 	

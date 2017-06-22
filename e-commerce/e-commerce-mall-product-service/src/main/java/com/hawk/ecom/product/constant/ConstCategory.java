@@ -16,7 +16,7 @@ public class ConstCategory {
 		
 	}
 	
-	public static interface CategoryTemplateStatus extends CategoryStatus{
+	public static interface CategoryVariantStatus extends CategoryStatus{
 		
 		/**
 		 * 编辑

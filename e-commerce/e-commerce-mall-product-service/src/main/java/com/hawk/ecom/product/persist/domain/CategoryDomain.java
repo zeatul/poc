@@ -76,9 +76,9 @@ public class CategoryDomain implements Serializable {
 	private Integer isLeaf;
 	
 	/**
-	 * 最终产品目录模板状态 category_template_status
+	 * 最终产品目录变式状态 category_variant_status
 	 */
-	private Integer categoryTemplateStatus;
+	private Integer categoryVariantStatus;
 	
 	/**
 	 * 创建者 create_user_code
@@ -305,18 +305,18 @@ public class CategoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 最终产品目录模板状态 category_template_status
+	 * @return 最终产品目录变式状态 category_variant_status
 	 */
-	public Integer getCategoryTemplateStatus(){
-		return categoryTemplateStatus;
+	public Integer getCategoryVariantStatus(){
+		return categoryVariantStatus;
 	}
 	
 	/**
 	 * 
-	 * @param categoryTemplateStatus 最终产品目录模板状态 category_template_status
+	 * @param categoryVariantStatus 最终产品目录变式状态 category_variant_status
 	 */	
-	public void setCategoryTemplateStatus (Integer categoryTemplateStatus) {
-		this.categoryTemplateStatus = categoryTemplateStatus;
+	public void setCategoryVariantStatus (Integer categoryVariantStatus) {
+		this.categoryVariantStatus = categoryVariantStatus;
 	}
 	
 	/**

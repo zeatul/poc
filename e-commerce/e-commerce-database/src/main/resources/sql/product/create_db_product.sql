@@ -180,7 +180,7 @@ create table t_prd_category
    category_logo        varchar(200) comment '产品目录logo',
    category_home_page   varchar(200) comment '产品目录主页',
    is_leaf              tinyint unsigned not null comment '是否为最终产品目录分类，最终产品目录分类才能有商品模板',
-   category_template_status tinyint unsigned not null comment '最终产品目录模板状态',
+   category_variant_status tinyint unsigned not null comment '最终产品目录变式状态',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',

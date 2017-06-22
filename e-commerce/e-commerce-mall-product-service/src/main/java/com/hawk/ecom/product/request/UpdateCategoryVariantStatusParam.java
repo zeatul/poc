@@ -7,15 +7,17 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.ValidWord;
 
-public class UpdateCategoryTemplateStatusParam {
+public class UpdateCategoryVariantStatusParam {
 	
 
-	public Integer getCategoryTemplateStatus() {
-		return categoryTemplateStatus;
+	
+
+	public Integer getCategoryVariantStatus() {
+		return categoryVariantStatus;
 	}
 
-	public void setCategoryTemplateStatus(Integer categoryTemplateStatus) {
-		this.categoryTemplateStatus = categoryTemplateStatus;
+	public void setCategoryVariantStatus(Integer categoryVariantStatus) {
+		this.categoryVariantStatus = categoryVariantStatus;
 	}
 
 	public List<Integer>   getIds() {
@@ -41,7 +43,10 @@ public class UpdateCategoryTemplateStatusParam {
 	
 	@NotNull
 	@ValidWord
-	private Integer categoryTemplateStatus;
+	/**
+	 * 最终产品目录变式状态 category_variant_status
+	 */
+	private Integer categoryVariantStatus;
 	
 	/**
 	 * 操作员编号

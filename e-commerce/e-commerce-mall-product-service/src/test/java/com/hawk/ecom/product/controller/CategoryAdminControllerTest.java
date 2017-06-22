@@ -13,7 +13,7 @@ import com.hawk.ecom.product.request.ExchangeCategoryOrderParam;
 import com.hawk.ecom.product.request.ListCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
-import com.hawk.ecom.product.request.UpdateCategoryTemplateStatusParam;
+import com.hawk.ecom.product.request.UpdateCategoryVariantStatusParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
@@ -89,11 +89,11 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 	}
 	
 //	@Test
-	public void testUpdateCategoryStatus(){
-		String url = getUrl("/mall/admin/product/category/template/status/update");
-		UpdateCategoryTemplateStatusParam request = new UpdateCategoryTemplateStatusParam();
+	public void testUpdateCategoryVariantStatus(){
+		String url = getUrl("/mall/admin/product/category/variant/status/update");
+		UpdateCategoryVariantStatusParam request = new UpdateCategoryVariantStatusParam();
 		request.setIds(Arrays.asList(10007));
-		request.setCategoryTemplateStatus(ConstCategory.CategoryTemplateStatus.EDITING);
+		request.setCategoryVariantStatus(ConstCategory.CategoryVariantStatus.EDITING);
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
