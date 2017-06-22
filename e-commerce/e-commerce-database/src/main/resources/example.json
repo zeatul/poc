@@ -1,14 +1,5 @@
 {
-	"data": {
-		"id": 10002,
-		"categoryId": 10001,
-		"pid": 0,
-		"pvid": 0,
-		"attrNameBusinessType": 1,
-		"attrValueType": 1,
-		"attrName": "品牌",
-		"isSearch": 1,
-		"attrNameStatus": 1
-	},
-	"code": 1
+	"ids": [
+		10006
+	]
 }

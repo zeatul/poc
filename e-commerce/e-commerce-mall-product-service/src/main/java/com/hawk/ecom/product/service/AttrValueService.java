@@ -37,7 +37,6 @@ import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DomainTools;
-import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class AttrValueService {
@@ -260,6 +259,11 @@ public class AttrValueService {
 			if (id == null){
 				continue;
 			}
+			
+			if (!exists(id)){
+				throw new AttrValueNotFoundRuntimeException();
+			}
+			
 			/**
 			 * 校验参数值有没有没引用过
 			 */

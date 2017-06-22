@@ -20,13 +20,7 @@ public class UpdateAttrNameParam {
 		this.attrNameBusinessType = attrNameBusinessType;
 	}
 
-	public Integer getAttrNameType() {
-		return attrNameType;
-	}
-
-	public void setAttrNameType(Integer attrNameType) {
-		this.attrNameType = attrNameType;
-	}
+	
 
 	public Integer getAttrValueType() {
 		return attrValueType;
@@ -72,11 +66,6 @@ public class UpdateAttrNameParam {
 	 * 属性有值后
 	 */
 	private Integer attrNameBusinessType;
-	
-	/**
-	 * 属性类型（关键属性,销售属性,一般属性） attr_name_type
-	 */
-	private Integer attrNameType;
 	
 	/**
 	 * 属性值类型 attr_value_type

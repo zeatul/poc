@@ -19,9 +19,9 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class CategoryAdminControllerTest extends AbstractControllerTest {
 
-	private String token = "53ab62cb-1bef-46ab-a186-540dc554c2df";
+	private String token = "fe3a4813-4f71-48e1-abf1-2f708ef9fe55";
 
-//	@Test
+	@Test
 	public void testCreateCategory() {
 		String url = getUrl("/mall/admin/product/category/create");
 		CreateCategoryParam request = new CreateCategoryParam();
@@ -123,7 +123,7 @@ public class CategoryAdminControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);	
 	}
 	
-	@Test
+//	@Test
 	public void testExchangeCategoryOrder(){
 		String url = getUrl("/mall/admin/product/category/order/exchange");
 		ExchangeCategoryOrderParam request = new ExchangeCategoryOrderParam();

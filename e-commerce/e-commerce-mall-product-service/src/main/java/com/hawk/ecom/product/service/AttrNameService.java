@@ -194,15 +194,29 @@ public class AttrNameService {
 			throw new IllegalAccessRuntimeException();
 		}
 
+		Integer attrNameId = updateAttrNameParam.getId();
 		/**
 		 * 存在性
 		 */
-		if (!exists(updateAttrNameParam.getId())) {
+		if (!exists(attrNameId)) {
 			throw new AttrNameNotFoundRuntimeException();
 		}
+		
+		/**
+		 * 是否被引用 
+		 */
+		boolean used = isAttrNameUsed(attrNameId);
 
 		AttrNameDomain updateDomain = new AttrNameDomain();
+		if (used){
+			if (updateAttrNameParam.getAttrNameBusinessType() != null || updateAttrNameParam.getAttrValueType() != null){
+				throw new AttrNameIsUsedRuntimeException();
+			}
+		}
+		
 		DomainTools.copy(updateAttrNameParam, updateDomain);
+
+		
 		updateDomain.setUpdateDate(new Date());
 		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 
