@@ -122,8 +122,18 @@ public class CreateProductParam {
 	@NotNull
 	private Integer isVirtual;
 	
-	@Valid
-	private List<CreateProductAttrParam> attrs;
+	/**
+	 * 关键属性值主键集合
+	 */
+	private List<Integer> keyAttrValueIds;
+	
+	/**
+	 * 普通属性值主键集合
+	 */
+	private List<Integer> normalAttrValueIds;
+	
+	
+	
 	
 	
 	/**

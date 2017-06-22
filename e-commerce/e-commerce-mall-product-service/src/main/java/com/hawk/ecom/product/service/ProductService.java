@@ -76,7 +76,7 @@ public class ProductService {
 	/**
 	 * 同一个商铺的商品编号不能重复
 	 * 新建立的商品默认是编辑状态
-	 * 创建商品时，对应的产品目录模板状态必须是 available
+	 * 创建商品时，对应的产品目录变式状态必须是 available
 	 * 商品的关键属性和非关键属性只能有一个
 	 * 商品的SKU属性可以是组合多个
 	 * @param createProdcutParam
@@ -93,7 +93,7 @@ public class ProductService {
 		}
 		
 		/**
-		 * 校验,产品目录必须存在，产品目录必须是叶子节点，产品目录模板状态必须是可用的。
+		 * 校验,产品目录必须存在，产品目录必须是叶子节点，产品目录变式状态必须是可用的。
 		 */
 		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId()) ;
 		if (category == null){
