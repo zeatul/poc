@@ -5,10 +5,35 @@ import java.util.List;
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
-import com.hawk.framework.dic.validation.annotation.Valid;
 
 public class CreateProductParam {
 	
+
+	
+	public List<Integer> getProductNormalAttrValueIds() {
+		return productNormalAttrValueIds;
+	}
+
+	public void setProductNormalAttrValueIds(List<Integer> productNormalAttrValueIds) {
+		this.productNormalAttrValueIds = productNormalAttrValueIds;
+	}
+
+	public List<Integer> getProductKeyAttrValueIds() {
+		return productKeyAttrValueIds;
+	}
+
+	public void setProductKeyAttrValueIds(List<Integer> productKeyAttrValueIds) {
+		this.productKeyAttrValueIds = productKeyAttrValueIds;
+	}
+
+	public List<Integer> getProductSkuAttrNameIds() {
+		return productSkuAttrNameIds;
+	}
+
+	public void setProductSkuAttrNameIds(List<Integer> productSkuAttrNameIds) {
+		this.productSkuAttrNameIds = productSkuAttrNameIds;
+	}
+
 	public String getOperatorCode() {
 		return operatorCode;
 	}
@@ -73,14 +98,7 @@ public class CreateProductParam {
 		this.isVirtual = isVirtual;
 	}
 
-	public List<CreateProductAttrParam> getAttrs() {
-		return attrs;
-	}
-
-	public void setAttrs(List<CreateProductAttrParam> attrs) {
-		this.attrs = attrs;
-	}
-
+	
 	/**
 	 * 产品目录主键 category_id
 	 */
@@ -122,15 +140,26 @@ public class CreateProductParam {
 	@NotNull
 	private Integer isVirtual;
 	
-	/**
-	 * 关键属性值主键集合
-	 */
-	private List<Integer> keyAttrValueIds;
+	
 	
 	/**
-	 * 普通属性值主键集合
+	 * 产品关键属性值ID集合 product_key_attr_value_ids
 	 */
-	private List<Integer> normalAttrValueIds;
+	private List<Integer> productKeyAttrValueIds;
+	
+	
+	/**
+	 * 产品普通属性值ID集合 product_key_attr_value_ids
+	 */
+	private List<Integer> productNormalAttrValueIds;
+	
+	
+	
+	/**
+	 * 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */
+	private List<Integer> productSkuAttrNameIds;
+	
 	
 	
 	

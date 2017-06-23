@@ -10,8 +10,9 @@
 		store_code AS "storeCode" ,
 		product_code AS "productCode" ,
 		product_name AS "productName" ,
-		product_attr_id_comp AS "productAttrIdComp" ,
-		product_attr_value_comp AS "productAttrValueComp" ,
+		product_key_attr_value_ids AS "productKeyAttrValueIds" ,
+		product_key_attr_value_values AS "productKeyAttrValueValues" ,
+		product_sku_attr_name_ids AS "productSkuAttrNameIds" ,
 		product_status AS "productStatus" ,
 		product_home_page AS "productHomePage" ,
 		product_desc AS "productDesc" ,
@@ -34,8 +35,9 @@
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="productCode != null"> AND product_code = #{productCode}  </if>
 			<if test="productName != null"> AND product_name = #{productName}  </if>
-			<if test="productAttrIdComp != null"> AND product_attr_id_comp = #{productAttrIdComp}  </if>
-			<if test="productAttrValueComp != null"> AND product_attr_value_comp = #{productAttrValueComp}  </if>
+			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{productKeyAttrValueIds}  </if>
+			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{productKeyAttrValueValues}  </if>
+			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{productSkuAttrNameIds}  </if>
 			<if test="productStatus != null"> AND product_status = #{productStatus}  </if>
 			<if test="productHomePage != null"> AND product_home_page = #{productHomePage}  </if>
 			<if test="productDesc != null"> AND product_desc = #{productDesc}  </if>
@@ -59,8 +61,9 @@
 			AND store_code = #{old_storeCode}
 			AND product_code = #{old_productCode}
 			AND product_name = #{old_productName}
-			AND product_attr_id_comp = #{old_productAttrIdComp}
-			AND product_attr_value_comp = #{old_productAttrValueComp}
+			AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}
+			AND product_key_attr_value_values = #{old_productKeyAttrValueValues}
+			AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}
 			AND product_status = #{old_productStatus}
 			AND product_home_page = #{old_productHomePage}
 			AND product_desc = #{old_productDesc}
@@ -84,8 +87,9 @@
 			store_code = #{storeCode},
 			product_code = #{productCode},
 			product_name = #{productName},
-			product_attr_id_comp = #{productAttrIdComp},
-			product_attr_value_comp = #{productAttrValueComp},
+			product_key_attr_value_ids = #{productKeyAttrValueIds},
+			product_key_attr_value_values = #{productKeyAttrValueValues},
+			product_sku_attr_name_ids = #{productSkuAttrNameIds},
 			product_status = #{productStatus},
 			product_home_page = #{productHomePage},
 			product_desc = #{productDesc},
@@ -109,8 +113,9 @@
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="productCode != null">product_code = #{productCode},</if>
 			<if test="productName != null">product_name = #{productName},</if>
-			<if test="productAttrIdComp != null">product_attr_id_comp = #{productAttrIdComp},</if>
-			<if test="productAttrValueComp != null">product_attr_value_comp = #{productAttrValueComp},</if>
+			<if test="productKeyAttrValueIds != null">product_key_attr_value_ids = #{productKeyAttrValueIds},</if>
+			<if test="productKeyAttrValueValues != null">product_key_attr_value_values = #{productKeyAttrValueValues},</if>
+			<if test="productSkuAttrNameIds != null">product_sku_attr_name_ids = #{productSkuAttrNameIds},</if>
 			<if test="productStatus != null">product_status = #{productStatus},</if>
 			<if test="productHomePage != null">product_home_page = #{productHomePage},</if>
 			<if test="productDesc != null">product_desc = #{productDesc},</if>
@@ -167,8 +172,9 @@
 				store_code,				
 				product_code,				
 				product_name,				
-				product_attr_id_comp,				
-				product_attr_value_comp,				
+				product_key_attr_value_ids,				
+				product_key_attr_value_values,				
+				product_sku_attr_name_ids,				
 				product_status,				
 				product_home_page,				
 				product_desc,				
@@ -189,8 +195,9 @@
 			#{storeCode},
 			#{productCode},
 			#{productName},
-			#{productAttrIdComp},
-			#{productAttrValueComp},
+			#{productKeyAttrValueIds},
+			#{productKeyAttrValueValues},
+			#{productSkuAttrNameIds},
 			#{productStatus},
 			#{productHomePage},
 			#{productDesc},

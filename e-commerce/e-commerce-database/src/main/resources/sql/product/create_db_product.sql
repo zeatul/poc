@@ -308,8 +308,9 @@ create table t_prd_product
    store_code           varchar(50) not null comment '商户编号',
    product_code         varchar(50) not null comment '产品编号',
    product_name         varchar(200) not null comment '产品名称',
-   product_attr_id_comp varchar(200) not null comment '产品关键属性名ID和属性值ID集合',
-   product_attr_value_comp varchar(1000) comment '产品关键属性值集合',
+   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
+   product_sku_attr_name_ids varchar(200) comment '产品SKU属性名ID集合',
    product_status       tinyint unsigned not null comment '产品状态',
    product_home_page    varchar(200) comment '产品主页',
    product_desc         varchar(1000) comment '产品描述',
@@ -344,7 +345,7 @@ create unique index ui_prd_store_product on t_prd_product
 create unique index ui_prd_store_prod_attr on t_prd_product
 (
    store_code,
-   product_attr_id_comp
+   product_key_attr_value_ids
 );
 
 /*==============================================================*/

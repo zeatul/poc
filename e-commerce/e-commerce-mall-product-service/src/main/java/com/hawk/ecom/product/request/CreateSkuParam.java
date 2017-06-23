@@ -10,6 +10,14 @@ import com.hawk.framework.dic.validation.annotation.ValidCollection;
 public class CreateSkuParam {
 	
 	
+	public List<Integer> getSkuAttrIds() {
+		return skuAttrIds;
+	}
+
+	public void setSkuAttrIds(List<Integer> skuAttrIds) {
+		this.skuAttrIds = skuAttrIds;
+	}
+
 	public String getSkuMemo() {
 		return skuMemo;
 	}
@@ -18,13 +26,7 @@ public class CreateSkuParam {
 		this.skuMemo = skuMemo;
 	}
 
-	public List<CreateProductAttrParam> getAttrs() {
-		return attrs;
-	}
-
-	public void setAttrs(List<CreateProductAttrParam> attrs) {
-		this.attrs = attrs;
-	}
+	
 
 	public Integer getProductId() {
 		return productId;
@@ -168,8 +170,8 @@ public class CreateSkuParam {
 	 */
 	private String skuMemo;	
 	
-	@ValidCollection
-	List<CreateProductAttrParam> attrs;
+	
+	List<Integer> skuAttrIds;
 	
 	
 	/**

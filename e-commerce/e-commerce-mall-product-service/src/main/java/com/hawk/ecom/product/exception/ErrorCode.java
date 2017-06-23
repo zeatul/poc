@@ -36,8 +36,9 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+24, "操作的产品目录的父目录必须一致");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+25, "当前操作对象的关联对象的产品分类目录必须一致");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+26, "属性名的PID必须和属性值的属性名ID一致");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+27, "产品定义关联的属性名ID必须唯一,[包括关键属性，非关键属性和sku属性]");
 //		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
-		
+	
 	}
 	
 

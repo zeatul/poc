@@ -41,14 +41,19 @@ public class ProductDomain implements Serializable {
 	private String productName;
 	
 	/**
-	 * 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * 产品关键属性值ID集合 product_key_attr_value_ids
 	 */
-	private String productAttrIdComp;
+	private String productKeyAttrValueIds;
 	
 	/**
-	 * 产品关键属性值集合 product_attr_value_comp
+	 * 产品关键属性值集合 product_key_attr_value_values
 	 */
-	private String productAttrValueComp;
+	private String productKeyAttrValueValues;
+	
+	/**
+	 * 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */
+	private String productSkuAttrNameIds;
 	
 	/**
 	 * 产品状态 product_status
@@ -198,34 +203,50 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * @return 产品关键属性值ID集合 product_key_attr_value_ids
 	 */
-	public String getProductAttrIdComp(){
-		return productAttrIdComp;
+	public String getProductKeyAttrValueIds(){
+		return productKeyAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @param productAttrIdComp 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * @param productKeyAttrValueIds 产品关键属性值ID集合 product_key_attr_value_ids
 	 */	
-	public void setProductAttrIdComp (String productAttrIdComp) {
-		this.productAttrIdComp = productAttrIdComp;
+	public void setProductKeyAttrValueIds (String productKeyAttrValueIds) {
+		this.productKeyAttrValueIds = productKeyAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @return 产品关键属性值集合 product_attr_value_comp
+	 * @return 产品关键属性值集合 product_key_attr_value_values
 	 */
-	public String getProductAttrValueComp(){
-		return productAttrValueComp;
+	public String getProductKeyAttrValueValues(){
+		return productKeyAttrValueValues;
 	}
 	
 	/**
 	 * 
-	 * @param productAttrValueComp 产品关键属性值集合 product_attr_value_comp
+	 * @param productKeyAttrValueValues 产品关键属性值集合 product_key_attr_value_values
 	 */	
-	public void setProductAttrValueComp (String productAttrValueComp) {
-		this.productAttrValueComp = productAttrValueComp;
+	public void setProductKeyAttrValueValues (String productKeyAttrValueValues) {
+		this.productKeyAttrValueValues = productKeyAttrValueValues;
+	}
+	
+	/**
+	 * 
+	 * @return 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */
+	public String getProductSkuAttrNameIds(){
+		return productSkuAttrNameIds;
+	}
+	
+	/**
+	 * 
+	 * @param productSkuAttrNameIds 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */	
+	public void setProductSkuAttrNameIds (String productSkuAttrNameIds) {
+		this.productSkuAttrNameIds = productSkuAttrNameIds;
 	}
 	
 	/**
