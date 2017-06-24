@@ -37,10 +37,21 @@ import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.persist.domain.ProductAttrDomain;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
+import com.hawk.ecom.product.persist.domain.ProductHistoryDomain;
+import com.hawk.ecom.product.persist.domain.SkuDomain;
+import com.hawk.ecom.product.persist.domain.SkuHistoryDomain;
+import com.hawk.ecom.product.persist.domain.StockDomain;
+import com.hawk.ecom.product.persist.domain.StockHistoryDomain;
 import com.hawk.ecom.product.persist.mapper.ProductAttrMapper;
+import com.hawk.ecom.product.persist.mapper.ProductHistoryMapper;
 import com.hawk.ecom.product.persist.mapper.ProductMapper;
+import com.hawk.ecom.product.persist.mapper.SkuHistoryMapper;
+import com.hawk.ecom.product.persist.mapper.SkuMapper;
+import com.hawk.ecom.product.persist.mapper.StockHistoryMapper;
+import com.hawk.ecom.product.persist.mapper.StockMapper;
 import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
+import com.hawk.ecom.product.request.LoadProductParam;
 import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
 import com.hawk.ecom.product.request.UpdateProductStatusParam;
@@ -49,6 +60,7 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.CollectionTools;
@@ -75,6 +87,24 @@ public class ProductService {
 	
 	@Autowired
 	private ProductAttrMapper productAttrMapper;
+	
+	@Autowired
+	private ProductHistoryMapper productHistoryMapper;
+	
+	@Autowired
+	private SkuService skuService;
+	
+	@Autowired
+	private SkuMapper skuMapper;
+	
+	@Autowired
+	private SkuHistoryMapper skuHistoryMapper;
+	
+	@Autowired
+	private StockMapper stockMapper;
+	
+	@Autowired
+	private StockHistoryMapper stockHistoryMapper;
 
 	@Autowired
 	@Qualifier("smallNumberSequenceService")
@@ -95,6 +125,39 @@ public class ProductService {
 			throw new ProductNotFoundRuntimeException();
 		}
 		return productDomain;
+	}
+	
+	@Valid
+	public ProductDomain loadProduct(@Valid @NotEmpty("参数") LoadProductParam loadProdcutParam) {
+		
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
+			throw new IllegalAccessRuntimeException();
+		}
+		
+		ProductDomain productDomain = loadProduct(loadProdcutParam.getId());
+		/**
+		 * 检测是否是本用户的商铺的商品
+		 */
+		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+			throw new UnMatchedStoreOperatorException();
+		}
+		
+		
+		return productDomain;
+	}
+	
+	/**
+	 * 产品是否有上架状态的sku存在
+	 * @param productId
+	 * @return
+	 */
+	public boolean hasAnyOnSaleSku(Integer productId){
+		if (productId == null){
+			logger.error("hasAnyOnSaleSku: productId is null");
+			return false;
+		}
+		MybatisParam params = new MybatisParam().put("productId", productId).put("skuStatus", ConstProduct.SkuStatus.ON_SALE);
+		return skuMapper.count(params)>0;
 	}
 
 	/**
@@ -312,7 +375,7 @@ public class ProductService {
 			throw new ProductStatusIsNotAcceptableRuntimeException();
 		}
 
-		/**productDomain
+		/**
 		 * 检测是否是本用户的商铺的商品
 		 */
 		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
@@ -582,7 +645,9 @@ public class ProductService {
 	}
 
 	/**
-	 * 只能修改用户自己商铺的产品状态 改为上架状态时，必须填写上架时间，下架时间
+	 * 只能修改用户自己商铺的产品状态 
+	 * 改为上架状态时，必须填写上架时间，下架时间
+	 * 改为上架状态时，必须有上架的Sku
 	 * 
 	 * @param updateProdcutStatusParam
 	 */
@@ -593,14 +658,19 @@ public class ProductService {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		int status = updateProdcutStatusParam.getProductStatus();
-		for (Integer id : updateProdcutStatusParam.getIds()) {
-			ProductDomain productDomain = loadProduct(id);
+		int status = updateProdcutStatusParam.getProductStatus();		
+		
+		for (Integer productId : updateProdcutStatusParam.getIds()) {
+			ProductDomain productDomain = loadProduct(productId);
+			/**
+			 * 检测是否是本用户的商铺的商品
+			 */
+			if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+				throw new UnMatchedStoreOperatorException();
+			}
+			
 			if (status != productDomain.getProductStatus()) {
-				ProductDomain updateDomain = new ProductDomain();
-				if (productDomain.getProductStatus() != ConstProduct.ProductStatus.EDITING) {
-					throw new ProductStatusIsNotAcceptableRuntimeException();
-				}
+				ProductDomain updateDomain = new ProductDomain();				
 
 				updateDomain.setProductStatus(status);
 				updateDomain.setUpdateDate(new Date());
@@ -611,13 +681,24 @@ public class ProductService {
 					 * 检测时间
 					 */
 					Date stdt = updateProdcutStatusParam.getOnSaleStdt();
+					if (stdt == null){
+						stdt = productDomain.getOnSaleStdt();
+					}
 					Date endt = updateProdcutStatusParam.getOnSaleEndt();
+					if (endt == null){
+						endt = productDomain.getOnSaleEndt();
+					}
 					if (stdt == null || endt == null || stdt.after(endt) || endt.before(new Date()))
 						throw new ProductIsNotAcceptableForOnSaleRuntimeException();
 
 					/**
-					 * TODO:检测是否有上架的产品SKU
+					 * 检测是否有上架的产品SKU
 					 */
+					if (!hasAnyOnSaleSku(productDomain.getId())){
+						throw new ProductIsNotAcceptableForOnSaleRuntimeException();
+					}
+					
+					
 
 					updateDomain.setOnSaleStdt(stdt);
 					updateDomain.setOnSaleEndt(endt);
@@ -629,27 +710,30 @@ public class ProductService {
 	}
 
 	/**
-	 * 上架不能删， 不是本用户的商铺的商品不能删 有销售记录，删除要保留快照，保留快照还得看SKU
+	 * 上架不能删， 
+	 * 不是本用户的商铺的商品不能删
+	 * 有销售记录，不能删
 	 * 
 	 * @param removeProductParam
+	 * @throws Exception 
 	 */
 	@Valid
 	@Transactional
-	public void removeProduct(@Valid @NotEmpty("参数") RemoveProductParam removeProductParam) {
+	public void removeProduct(@Valid @NotEmpty("参数") RemoveProductParam removeProductParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
+		
+		Date now = new Date();
+		String userCode = AuthThreadLocal.getUserCode();
 
-		for (Integer id : removeProductParam.getIds()) {
-			if (id == null) {
+		for (Integer productId : removeProductParam.getIds()) {
+			if (productId == null) {
 				break;
 			}
 
-			ProductDomain productDomain = loadProduct(id);
-			if (productDomain.getProductStatus() != ConstProduct.ProductStatus.EDITING) {
-				throw new ProductStatusIsNotAcceptableRuntimeException();
-			}
-
+			ProductDomain productDomain = loadProduct(productId);
+			
 			if (productDomain.getProductStatus() == ConstProduct.ProductStatus.ON_SALE) {
 				throw new ProductStatusIsNotAcceptableRuntimeException();
 			}
@@ -662,31 +746,76 @@ public class ProductService {
 			}
 
 			/**
-			 * TODO:检测有没有销售记录
+			 * TODO:检测有没有销售记录,有不能删除
 			 */
 
+			
 			/**
-			 * TODO:保留快照
+			 * TODO:删除属性,SKU属性,图片
+			 *
 			 */
-
+			
 			/**
-			 * TODO:删除,删除属性，SKU ，库存
+			 * TODO:保留产品SkU库存历史记录，并删除产品SKU库存
 			 */
-			productMapper.delete(id);
+			MybatisParam params = new MybatisParam().put("productId", productId);
+			List<StockDomain> stockDomainList = stockMapper.loadDynamic(params);
+			for (StockDomain stockDomain : stockDomainList){
+				StockHistoryDomain stockHistoryDomain = DomainTools.copy(stockDomain, StockHistoryDomain.class);
+				stockHistoryDomain.setDeleteDate(now);
+				stockHistoryDomain.setDeleteUserCode(userCode);
+				stockHistoryMapper.insert(stockHistoryDomain);
+				stockMapper.delete(stockDomain.getId());
+			}		
+			
+			
+			/**
+			 * 保留产品sku历史记录并删除产品Sku
+			 */
+			List<SkuDomain> skuDomainList = skuService.querySkuOfProduct(productId, null);
+			for (SkuDomain skuDomain : skuDomainList){
+				SkuHistoryDomain skuHistoryDomain = DomainTools.copy(skuDomain, SkuHistoryDomain.class);
+				skuHistoryDomain.setDeleteDate(now);
+				skuHistoryDomain.setDeleteUserCode(userCode);
+				skuHistoryMapper.insert(skuHistoryDomain);
+				skuMapper.delete(skuDomain.getId());
+			}
+			
+			
+			/**
+			 * 保留产品历史记录并删除产品
+			 */
+			ProductHistoryDomain productHistoryDomain = DomainTools.copy(productDomain, ProductHistoryDomain.class);
+			productHistoryDomain.setDeleteDate(now);
+			productHistoryDomain.setDeleteUserCode(userCode);
+			productHistoryMapper.insert(productHistoryDomain);			
+			productMapper.delete(productId);
 		}
 	}
 
 	@Valid
-	public List<ProductDomain> listProduct(@Valid @NotEmpty("参数") ListProductParam listProductParam) {
+	public PagingQueryResultWrap<ProductDomain> listProduct(@Valid @NotEmpty("参数") ListProductParam listProductParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
+		
+		
 
 		if (StringTools.isNullOrEmpty(listProductParam.getOrder())) {
 			listProductParam.setOrder("create_date desc");
 		}
 
 		MybatisParam params = MybatisTools.page(new MybatisParam(), listProductParam);
-		return productMapper.loadDynamicPaging(params);
+		params.put("categoryId", listProductParam.getCategoryId());
+		params.put("isVirtual", listProductParam.getIsVirtual());
+		params.put("productStatus", listProductParam.getProductStatus());
+		
+		PagingQueryResultWrap<ProductDomain> wrap = new PagingQueryResultWrap<ProductDomain>();
+		wrap.setDbCount(productMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(productMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
 	}
 }

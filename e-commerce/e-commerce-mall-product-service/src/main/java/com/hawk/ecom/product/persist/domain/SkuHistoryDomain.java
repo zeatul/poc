@@ -8,11 +8,11 @@ import java.util.Date;
 
 /**
  * 产品SKU
- * The class is mapped to the table t_prd_sku 
+ * The class is mapped to the table t_prd_sku_history 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class SkuDomain implements Serializable {
+public class SkuHistoryDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -65,11 +65,6 @@ public class SkuDomain implements Serializable {
 	 * 销售价 sale_price
 	 */
 	private BigDecimal salePrice;
-	
-	/**
-	 * 币种 currency
-	 */
-	private Integer currency;
 	
 	/**
 	 * SKU库存数量 sku_stock_amount
@@ -310,22 +305,6 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSalePrice (BigDecimal salePrice) {
 		this.salePrice = salePrice;
-	}
-	
-	/**
-	 * 
-	 * @return 币种 currency
-	 */
-	public Integer getCurrency(){
-		return currency;
-	}
-	
-	/**
-	 * 
-	 * @param currency 币种 currency
-	 */	
-	public void setCurrency (Integer currency) {
-		this.currency = currency;
 	}
 	
 	/**

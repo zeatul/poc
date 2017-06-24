@@ -8,11 +8,11 @@ import java.util.Date;
 
 /**
  * 产品
- * The class is mapped to the table t_prd_product 
+ * The class is mapped to the table t_prd_product_history 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class ProductDomain implements Serializable {
+public class ProductHistoryDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	

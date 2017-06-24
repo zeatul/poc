@@ -21,14 +21,14 @@ public class PicDomain implements Serializable {
 	private Integer id;
 	
 	/**
-	 * 所有者类型 owner_type
+	 * 产品SKU主键 sku_id
 	 */
-	private Integer ownerType;
+	private Integer skuId;
 	
 	/**
-	 * 所有者主键 ownert_id
+	 * 产品主键 product_id
 	 */
-	private Integer ownertId;
+	private Integer productId;
 	
 	/**
 	 * 图片名称 pic_name
@@ -94,34 +94,34 @@ public class PicDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 所有者类型 owner_type
+	 * @return 产品SKU主键 sku_id
 	 */
-	public Integer getOwnerType(){
-		return ownerType;
+	public Integer getSkuId(){
+		return skuId;
 	}
 	
 	/**
 	 * 
-	 * @param ownerType 所有者类型 owner_type
+	 * @param skuId 产品SKU主键 sku_id
 	 */	
-	public void setOwnerType (Integer ownerType) {
-		this.ownerType = ownerType;
+	public void setSkuId (Integer skuId) {
+		this.skuId = skuId;
 	}
 	
 	/**
 	 * 
-	 * @return 所有者主键 ownert_id
+	 * @return 产品主键 product_id
 	 */
-	public Integer getOwnertId(){
-		return ownertId;
+	public Integer getProductId(){
+		return productId;
 	}
 	
 	/**
 	 * 
-	 * @param ownertId 所有者主键 ownert_id
+	 * @param productId 产品主键 product_id
 	 */	
-	public void setOwnertId (Integer ownertId) {
-		this.ownertId = ownertId;
+	public void setProductId (Integer productId) {
+		this.productId = productId;
 	}
 	
 	/**

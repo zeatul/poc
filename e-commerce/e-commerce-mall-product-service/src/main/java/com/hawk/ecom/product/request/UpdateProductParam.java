@@ -2,7 +2,6 @@ package com.hawk.ecom.product.request;
 
 import java.util.List;
 
-import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 
 public class UpdateProductParam {
@@ -61,14 +60,6 @@ public class UpdateProductParam {
 
 	public void setId(Integer  id) {
 		this.id = id;
-	}
-
-	public String getStoreCode() {
-		return storeCode;
-	}
-
-	public void setStoreCode(String storeCode) {
-		this.storeCode = storeCode;
 	}
 
 	public String getProductCode() {

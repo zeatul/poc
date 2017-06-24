@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.product.persist.mapper.ProductMapper">
+<mapper namespace="com.hawk.ecom.product.persist.mapper.SkuSnapshootMapper">
 
 	<sql id="columns">	
 				id AS "id" ,
-		category_id AS "categoryId" ,
-		store_code AS "storeCode" ,
+		product_id AS "productId" ,
+		ksu_id AS "ksuId" ,
 		product_code AS "productCode" ,
 		product_name AS "productName" ,
 		product_key_attr_value_ids AS "productKeyAttrValueIds" ,
 		product_key_attr_value_values AS "productKeyAttrValueValues" ,
 		product_sku_attr_name_ids AS "productSkuAttrNameIds" ,
-		product_status AS "productStatus" ,
-		product_home_page AS "productHomePage" ,
-		product_desc AS "productDesc" ,
 		product_memo AS "productMemo" ,
-		product_min_price AS "productMinPrice" ,
-		product_max_price AS "productMaxPrice" ,
-		on_sale_stdt AS "onSaleStdt" ,
-		on_sale_endt AS "onSaleEndt" ,
-		is_virtual AS "isVirtual" ,
+		store_code AS "storeCode" ,
+		sku_code AS "skuCode" ,
+		sku_name AS "skuName" ,
+		sku_attr_value_ids AS "skuAttrValueIds" ,
+		sku_attr_value_values AS "skuAttrValueValues" ,
+		market_price AS "marketPrice" ,
+		sale_price AS "salePrice" ,
+		sku_memo AS "skuMemo" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -33,22 +33,22 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
-			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
-			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="ksuId != null"> AND ksu_id = #{ksuId}  </if>
 			<if test="productCode != null"> AND product_code = #{productCode}  </if>
 			<if test="productName != null"> AND product_name = #{productName}  </if>
 			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{productKeyAttrValueIds}  </if>
 			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{productKeyAttrValueValues}  </if>
 			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{productSkuAttrNameIds}  </if>
-			<if test="productStatus != null"> AND product_status = #{productStatus}  </if>
-			<if test="productHomePage != null"> AND product_home_page = #{productHomePage}  </if>
-			<if test="productDesc != null"> AND product_desc = #{productDesc}  </if>
 			<if test="productMemo != null"> AND product_memo = #{productMemo}  </if>
-			<if test="productMinPrice != null"> AND product_min_price = #{productMinPrice}  </if>
-			<if test="productMaxPrice != null"> AND product_max_price = #{productMaxPrice}  </if>
-			<if test="onSaleStdt != null"> AND on_sale_stdt = #{onSaleStdt}  </if>
-			<if test="onSaleEndt != null"> AND on_sale_endt = #{onSaleEndt}  </if>
-			<if test="isVirtual != null"> AND is_virtual = #{isVirtual}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="skuCode != null"> AND sku_code = #{skuCode}  </if>
+			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
+			<if test="skuAttrValueIds != null"> AND sku_attr_value_ids = #{skuAttrValueIds}  </if>
+			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{skuAttrValueValues}  </if>
+			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
+			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
+			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -61,22 +61,22 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
-			AND category_id = #{old_categoryId}
-			AND store_code = #{old_storeCode}
+			AND product_id = #{old_productId}
+			AND ksu_id = #{old_ksuId}
 			AND product_code = #{old_productCode}
 			AND product_name = #{old_productName}
 			AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}
 			AND product_key_attr_value_values = #{old_productKeyAttrValueValues}
 			AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}
-			AND product_status = #{old_productStatus}
-			AND product_home_page = #{old_productHomePage}
-			AND product_desc = #{old_productDesc}
 			AND product_memo = #{old_productMemo}
-			AND product_min_price = #{old_productMinPrice}
-			AND product_max_price = #{old_productMaxPrice}
-			AND on_sale_stdt = #{old_onSaleStdt}
-			AND on_sale_endt = #{old_onSaleEndt}
-			AND is_virtual = #{old_isVirtual}
+			AND store_code = #{old_storeCode}
+			AND sku_code = #{old_skuCode}
+			AND sku_name = #{old_skuName}
+			AND sku_attr_value_ids = #{old_skuAttrValueIds}
+			AND sku_attr_value_values = #{old_skuAttrValueValues}
+			AND market_price = #{old_marketPrice}
+			AND sale_price = #{old_salePrice}
+			AND sku_memo = #{old_skuMemo}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -89,22 +89,22 @@
 	<sql id="update">
 		<set>
 			id = #{id},
-			category_id = #{categoryId},
-			store_code = #{storeCode},
+			product_id = #{productId},
+			ksu_id = #{ksuId},
 			product_code = #{productCode},
 			product_name = #{productName},
 			product_key_attr_value_ids = #{productKeyAttrValueIds},
 			product_key_attr_value_values = #{productKeyAttrValueValues},
 			product_sku_attr_name_ids = #{productSkuAttrNameIds},
-			product_status = #{productStatus},
-			product_home_page = #{productHomePage},
-			product_desc = #{productDesc},
 			product_memo = #{productMemo},
-			product_min_price = #{productMinPrice},
-			product_max_price = #{productMaxPrice},
-			on_sale_stdt = #{onSaleStdt},
-			on_sale_endt = #{onSaleEndt},
-			is_virtual = #{isVirtual},
+			store_code = #{storeCode},
+			sku_code = #{skuCode},
+			sku_name = #{skuName},
+			sku_attr_value_ids = #{skuAttrValueIds},
+			sku_attr_value_values = #{skuAttrValueValues},
+			market_price = #{marketPrice},
+			sale_price = #{salePrice},
+			sku_memo = #{skuMemo},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -117,22 +117,22 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
-			<if test="categoryId != null">category_id = #{categoryId},</if>
-			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="productId != null">product_id = #{productId},</if>
+			<if test="ksuId != null">ksu_id = #{ksuId},</if>
 			<if test="productCode != null">product_code = #{productCode},</if>
 			<if test="productName != null">product_name = #{productName},</if>
 			<if test="productKeyAttrValueIds != null">product_key_attr_value_ids = #{productKeyAttrValueIds},</if>
 			<if test="productKeyAttrValueValues != null">product_key_attr_value_values = #{productKeyAttrValueValues},</if>
 			<if test="productSkuAttrNameIds != null">product_sku_attr_name_ids = #{productSkuAttrNameIds},</if>
-			<if test="productStatus != null">product_status = #{productStatus},</if>
-			<if test="productHomePage != null">product_home_page = #{productHomePage},</if>
-			<if test="productDesc != null">product_desc = #{productDesc},</if>
 			<if test="productMemo != null">product_memo = #{productMemo},</if>
-			<if test="productMinPrice != null">product_min_price = #{productMinPrice},</if>
-			<if test="productMaxPrice != null">product_max_price = #{productMaxPrice},</if>
-			<if test="onSaleStdt != null">on_sale_stdt = #{onSaleStdt},</if>
-			<if test="onSaleEndt != null">on_sale_endt = #{onSaleEndt},</if>
-			<if test="isVirtual != null">is_virtual = #{isVirtual},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="skuCode != null">sku_code = #{skuCode},</if>
+			<if test="skuName != null">sku_name = #{skuName},</if>
+			<if test="skuAttrValueIds != null">sku_attr_value_ids = #{skuAttrValueIds},</if>
+			<if test="skuAttrValueValues != null">sku_attr_value_values = #{skuAttrValueValues},</if>
+			<if test="marketPrice != null">market_price = #{marketPrice},</if>
+			<if test="salePrice != null">sale_price = #{salePrice},</if>
+			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -148,52 +148,52 @@
 		</trim>
 	</sql>
 	
-	<select id="load"  resultType="ProductDomain">
+	<select id="load"  resultType="SkuSnapshootDomain">
 		SELECT 
 		<include refid="columns" />
-		FROM t_prd_product
+		FROM t_prd_sku_snapshoot
 		<include refid="pkwhere" />		
 	</select>
 	
-	<select id="loadDynamic" parameterType="hashmap" resultType="ProductDomain">
+	<select id="loadDynamic" parameterType="hashmap" resultType="SkuSnapshootDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_prd_product
+		FROM t_prd_sku_snapshoot
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM t_prd_product
+		FROM t_prd_sku_snapshoot
 		<include refid="where" />
 	</select>
 	
 	<select id="countByPK"  resultType="integer">
 		SELECT count(1) 
-		FROM t_prd_product
+		FROM t_prd_sku_snapshoot
 		<include refid="pkwhere" />		
 	</select>
 	
-	<insert id="insert"  parameterType="ProductDomain">
-		INSERT INTO t_prd_product (			
+	<insert id="insert"  parameterType="SkuSnapshootDomain">
+		INSERT INTO t_prd_sku_snapshoot (			
 				id,				
-				category_id,				
-				store_code,				
+				product_id,				
+				ksu_id,				
 				product_code,				
 				product_name,				
 				product_key_attr_value_ids,				
 				product_key_attr_value_values,				
 				product_sku_attr_name_ids,				
-				product_status,				
-				product_home_page,				
-				product_desc,				
 				product_memo,				
-				product_min_price,				
-				product_max_price,				
-				on_sale_stdt,				
-				on_sale_endt,				
-				is_virtual,				
+				store_code,				
+				sku_code,				
+				sku_name,				
+				sku_attr_value_ids,				
+				sku_attr_value_values,				
+				market_price,				
+				sale_price,				
+				sku_memo,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -203,22 +203,22 @@
 		)		
 		VALUES (	
 			#{id},
-			#{categoryId},
-			#{storeCode},
+			#{productId},
+			#{ksuId},
 			#{productCode},
 			#{productName},
 			#{productKeyAttrValueIds},
 			#{productKeyAttrValueValues},
 			#{productSkuAttrNameIds},
-			#{productStatus},
-			#{productHomePage},
-			#{productDesc},
 			#{productMemo},
-			#{productMinPrice},
-			#{productMaxPrice},
-			#{onSaleStdt},
-			#{onSaleEndt},
-			#{isVirtual},
+			#{storeCode},
+			#{skuCode},
+			#{skuName},
+			#{skuAttrValueIds},
+			#{skuAttrValueValues},
+			#{marketPrice},
+			#{salePrice},
+			#{skuMemo},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},
@@ -229,37 +229,37 @@
 	</insert>
 	
 	<delete id="delete" >
-		DELETE FROM t_prd_product
+		DELETE FROM t_prd_sku_snapshoot
 		<include refid="pkwhere" />	
 	</delete>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM t_prd_product
+		DELETE FROM t_prd_sku_snapshoot
 		<include refid="where" />
 	</delete>
 
-	<update id="update" parameterType="ProductDomain">
-		UPDATE t_prd_product	
+	<update id="update" parameterType="SkuSnapshootDomain">
+		UPDATE t_prd_sku_snapshoot	
 		<include refid="update" />
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateWithoutNull" parameterType="ProductDomain">
-		UPDATE t_prd_product
+	<update id="updateWithoutNull" parameterType="SkuSnapshootDomain">
+		UPDATE t_prd_sku_snapshoot
 		<include refid="updateWithoutNull"/>
 		<include refid="pkwhere" />	
 	</update>
 	
 	<update id="updateDynamic" parameterType="hashmap">
-		UPDATE t_prd_product	
+		UPDATE t_prd_sku_snapshoot	
 		<include refid="update" />
 		<include refid="where_old" />
 	</update>
 	
-	<select id="loadDynamicPaging" parameterType="hashmap" resultType="ProductDomain">
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="SkuSnapshootDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_prd_product
+		FROM t_prd_sku_snapshoot
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	

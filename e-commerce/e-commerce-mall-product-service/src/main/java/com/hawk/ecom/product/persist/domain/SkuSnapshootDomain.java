@@ -7,12 +7,12 @@ import java.util.Date;
 
 
 /**
- * 产品
- * The class is mapped to the table t_prd_product 
+ * 
+ * The class is mapped to the table t_prd_sku_snapshoot 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class ProductDomain implements Serializable {
+public class SkuSnapshootDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -22,14 +22,14 @@ public class ProductDomain implements Serializable {
 	private Integer id;
 	
 	/**
-	 * 产品目录主键 category_id
+	 * 产品主键 product_id
 	 */
-	private Integer categoryId;
+	private Integer productId;
 	
 	/**
-	 * 商户编号 store_code
+	 * 产品sku主键 ksu_id
 	 */
-	private String storeCode;
+	private Integer ksuId;
 	
 	/**
 	 * 产品编号 product_code
@@ -57,49 +57,49 @@ public class ProductDomain implements Serializable {
 	private String productSkuAttrNameIds;
 	
 	/**
-	 * 产品状态 product_status
-	 */
-	private Integer productStatus;
-	
-	/**
-	 * 产品主页 product_home_page
-	 */
-	private String productHomePage;
-	
-	/**
-	 * 产品描述 product_desc
-	 */
-	private String productDesc;
-	
-	/**
 	 * 产品备注 product_memo
 	 */
 	private String productMemo;
 	
 	/**
-	 * 产品最低价格 product_min_price
+	 * 商户编号 store_code
 	 */
-	private BigDecimal productMinPrice;
+	private String storeCode;
 	
 	/**
-	 * 产品最高价格 product_max_price
+	 * SKU编号 sku_code
 	 */
-	private BigDecimal productMaxPrice;
+	private String skuCode;
 	
 	/**
-	 * 上架开始时间 on_sale_stdt
+	 * SKU名称 sku_name
 	 */
-	private Date onSaleStdt;
+	private String skuName;
 	
 	/**
-	 * 上架结束时间 on_sale_endt
+	 * SKU属性值ID集合 sku_attr_value_ids
 	 */
-	private Date onSaleEndt;
+	private String skuAttrValueIds;
 	
 	/**
-	 * 是否为虚拟物品 is_virtual
+	 * SKU属性值集合 sku_attr_value_values
 	 */
-	private Integer isVirtual;
+	private String skuAttrValueValues;
+	
+	/**
+	 * 市场价 market_price
+	 */
+	private BigDecimal marketPrice;
+	
+	/**
+	 * 销售价 sale_price
+	 */
+	private BigDecimal salePrice;
+	
+	/**
+	 * SKU备注 sku_memo
+	 */
+	private String skuMemo;
 	
 	/**
 	 * 创建者 create_user_code
@@ -150,34 +150,34 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品目录主键 category_id
+	 * @return 产品主键 product_id
 	 */
-	public Integer getCategoryId(){
-		return categoryId;
+	public Integer getProductId(){
+		return productId;
 	}
 	
 	/**
 	 * 
-	 * @param categoryId 产品目录主键 category_id
+	 * @param productId 产品主键 product_id
 	 */	
-	public void setCategoryId (Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setProductId (Integer productId) {
+		this.productId = productId;
 	}
 	
 	/**
 	 * 
-	 * @return 商户编号 store_code
+	 * @return 产品sku主键 ksu_id
 	 */
-	public String getStoreCode(){
-		return storeCode;
+	public Integer getKsuId(){
+		return ksuId;
 	}
 	
 	/**
 	 * 
-	 * @param storeCode 商户编号 store_code
+	 * @param ksuId 产品sku主键 ksu_id
 	 */	
-	public void setStoreCode (String storeCode) {
-		this.storeCode = storeCode;
+	public void setKsuId (Integer ksuId) {
+		this.ksuId = ksuId;
 	}
 	
 	/**
@@ -262,54 +262,6 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品状态 product_status
-	 */
-	public Integer getProductStatus(){
-		return productStatus;
-	}
-	
-	/**
-	 * 
-	 * @param productStatus 产品状态 product_status
-	 */	
-	public void setProductStatus (Integer productStatus) {
-		this.productStatus = productStatus;
-	}
-	
-	/**
-	 * 
-	 * @return 产品主页 product_home_page
-	 */
-	public String getProductHomePage(){
-		return productHomePage;
-	}
-	
-	/**
-	 * 
-	 * @param productHomePage 产品主页 product_home_page
-	 */	
-	public void setProductHomePage (String productHomePage) {
-		this.productHomePage = productHomePage;
-	}
-	
-	/**
-	 * 
-	 * @return 产品描述 product_desc
-	 */
-	public String getProductDesc(){
-		return productDesc;
-	}
-	
-	/**
-	 * 
-	 * @param productDesc 产品描述 product_desc
-	 */	
-	public void setProductDesc (String productDesc) {
-		this.productDesc = productDesc;
-	}
-	
-	/**
-	 * 
 	 * @return 产品备注 product_memo
 	 */
 	public String getProductMemo(){
@@ -326,82 +278,130 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品最低价格 product_min_price
+	 * @return 商户编号 store_code
 	 */
-	public BigDecimal getProductMinPrice(){
-		return productMinPrice;
+	public String getStoreCode(){
+		return storeCode;
 	}
 	
 	/**
 	 * 
-	 * @param productMinPrice 产品最低价格 product_min_price
+	 * @param storeCode 商户编号 store_code
 	 */	
-	public void setProductMinPrice (BigDecimal productMinPrice) {
-		this.productMinPrice = productMinPrice;
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**
 	 * 
-	 * @return 产品最高价格 product_max_price
+	 * @return SKU编号 sku_code
 	 */
-	public BigDecimal getProductMaxPrice(){
-		return productMaxPrice;
+	public String getSkuCode(){
+		return skuCode;
 	}
 	
 	/**
 	 * 
-	 * @param productMaxPrice 产品最高价格 product_max_price
+	 * @param skuCode SKU编号 sku_code
 	 */	
-	public void setProductMaxPrice (BigDecimal productMaxPrice) {
-		this.productMaxPrice = productMaxPrice;
+	public void setSkuCode (String skuCode) {
+		this.skuCode = skuCode;
 	}
 	
 	/**
 	 * 
-	 * @return 上架开始时间 on_sale_stdt
+	 * @return SKU名称 sku_name
 	 */
-	public Date getOnSaleStdt(){
-		return onSaleStdt;
+	public String getSkuName(){
+		return skuName;
 	}
 	
 	/**
 	 * 
-	 * @param onSaleStdt 上架开始时间 on_sale_stdt
+	 * @param skuName SKU名称 sku_name
 	 */	
-	public void setOnSaleStdt (Date onSaleStdt) {
-		this.onSaleStdt = onSaleStdt;
+	public void setSkuName (String skuName) {
+		this.skuName = skuName;
 	}
 	
 	/**
 	 * 
-	 * @return 上架结束时间 on_sale_endt
+	 * @return SKU属性值ID集合 sku_attr_value_ids
 	 */
-	public Date getOnSaleEndt(){
-		return onSaleEndt;
+	public String getSkuAttrValueIds(){
+		return skuAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @param onSaleEndt 上架结束时间 on_sale_endt
+	 * @param skuAttrValueIds SKU属性值ID集合 sku_attr_value_ids
 	 */	
-	public void setOnSaleEndt (Date onSaleEndt) {
-		this.onSaleEndt = onSaleEndt;
+	public void setSkuAttrValueIds (String skuAttrValueIds) {
+		this.skuAttrValueIds = skuAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @return 是否为虚拟物品 is_virtual
+	 * @return SKU属性值集合 sku_attr_value_values
 	 */
-	public Integer getIsVirtual(){
-		return isVirtual;
+	public String getSkuAttrValueValues(){
+		return skuAttrValueValues;
 	}
 	
 	/**
 	 * 
-	 * @param isVirtual 是否为虚拟物品 is_virtual
+	 * @param skuAttrValueValues SKU属性值集合 sku_attr_value_values
 	 */	
-	public void setIsVirtual (Integer isVirtual) {
-		this.isVirtual = isVirtual;
+	public void setSkuAttrValueValues (String skuAttrValueValues) {
+		this.skuAttrValueValues = skuAttrValueValues;
+	}
+	
+	/**
+	 * 
+	 * @return 市场价 market_price
+	 */
+	public BigDecimal getMarketPrice(){
+		return marketPrice;
+	}
+	
+	/**
+	 * 
+	 * @param marketPrice 市场价 market_price
+	 */	
+	public void setMarketPrice (BigDecimal marketPrice) {
+		this.marketPrice = marketPrice;
+	}
+	
+	/**
+	 * 
+	 * @return 销售价 sale_price
+	 */
+	public BigDecimal getSalePrice(){
+		return salePrice;
+	}
+	
+	/**
+	 * 
+	 * @param salePrice 销售价 sale_price
+	 */	
+	public void setSalePrice (BigDecimal salePrice) {
+		this.salePrice = salePrice;
+	}
+	
+	/**
+	 * 
+	 * @return SKU备注 sku_memo
+	 */
+	public String getSkuMemo(){
+		return skuMemo;
+	}
+	
+	/**
+	 * 
+	 * @param skuMemo SKU备注 sku_memo
+	 */	
+	public void setSkuMemo (String skuMemo) {
+		this.skuMemo = skuMemo;
 	}
 	
 	/**

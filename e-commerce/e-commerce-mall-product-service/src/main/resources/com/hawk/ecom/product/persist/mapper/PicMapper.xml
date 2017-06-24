@@ -6,8 +6,8 @@
 
 	<sql id="columns">	
 				id AS "id" ,
-		owner_type AS "ownerType" ,
-		ownert_id AS "ownertId" ,
+		sku_id AS "skuId" ,
+		product_id AS "productId" ,
 		pic_name AS "picName" ,
 		pic_url AS "picUrl" ,
 		pic_type AS "picType" ,
@@ -22,8 +22,8 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
-			<if test="ownerType != null"> AND owner_type = #{ownerType}  </if>
-			<if test="ownertId != null"> AND ownert_id = #{ownertId}  </if>
+			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="picName != null"> AND pic_name = #{picName}  </if>
 			<if test="picUrl != null"> AND pic_url = #{picUrl}  </if>
 			<if test="picType != null"> AND pic_type = #{picType}  </if>
@@ -39,8 +39,8 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
-			AND owner_type = #{old_ownerType}
-			AND ownert_id = #{old_ownertId}
+			AND sku_id = #{old_skuId}
+			AND product_id = #{old_productId}
 			AND pic_name = #{old_picName}
 			AND pic_url = #{old_picUrl}
 			AND pic_type = #{old_picType}
@@ -56,8 +56,8 @@
 	<sql id="update">
 		<set>
 			id = #{id},
-			owner_type = #{ownerType},
-			ownert_id = #{ownertId},
+			sku_id = #{skuId},
+			product_id = #{productId},
 			pic_name = #{picName},
 			pic_url = #{picUrl},
 			pic_type = #{picType},
@@ -73,8 +73,8 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
-			<if test="ownerType != null">owner_type = #{ownerType},</if>
-			<if test="ownertId != null">ownert_id = #{ownertId},</if>
+			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="productId != null">product_id = #{productId},</if>
 			<if test="picName != null">pic_name = #{picName},</if>
 			<if test="picUrl != null">pic_url = #{picUrl},</if>
 			<if test="picType != null">pic_type = #{picType},</if>
@@ -123,8 +123,8 @@
 	<insert id="insert"  parameterType="PicDomain">
 		INSERT INTO t_prd_pic (			
 				id,				
-				owner_type,				
-				ownert_id,				
+				sku_id,				
+				product_id,				
 				pic_name,				
 				pic_url,				
 				pic_type,				
@@ -137,8 +137,8 @@
 		)		
 		VALUES (	
 			#{id},
-			#{ownerType},
-			#{ownertId},
+			#{skuId},
+			#{productId},
 			#{picName},
 			#{picUrl},
 			#{picType},

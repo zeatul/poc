@@ -1,9 +1,12 @@
 package com.hawk.ecom.product.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
@@ -39,6 +42,8 @@ import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
+
+
 @Service
 public class SkuService {
 
@@ -54,6 +59,8 @@ public class SkuService {
 
 	@Autowired
 	private SkuMapper skuMapper;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public SkuDomain loadSkuById(Integer  id) {
 		SkuDomain skuDomain = null;
@@ -108,7 +115,7 @@ public class SkuService {
 
 		if (ConstBoolean.parse(productDomain.getIsVirtual())) {
 			skuDomain.setDepth(0);
-			skuDomain.setHeigh(0);
+			skuDomain.setHeight(0);
 			skuDomain.setWidth(0);
 			skuDomain.setLengthUnit(ConstProduct.LengthUnit.MILLIMETER);
 
@@ -116,7 +123,7 @@ public class SkuService {
 			skuDomain.setWeightUnit(ConstProduct.WeightUnit.GRAM);
 		} else {
 			skuDomain.setDepth(createSkuParam.getDepth());
-			skuDomain.setHeigh(createSkuParam.getHeigh());
+			skuDomain.setHeight(createSkuParam.getHeigh());
 			skuDomain.setWidth(createSkuParam.getWidth());
 			skuDomain.setLengthUnit(createSkuParam.getLengthUnit());
 
@@ -244,12 +251,26 @@ public class SkuService {
 						throw new SkuIsNotAcceptableForSaleRuntimeException();
 					}
 					
-					
+					/**
+					 * TODO:记录快照
+					 */
 				}
 			}
 		}
 	}
 
+	
+	public List<SkuDomain> querySkuOfProduct(Integer productId,Integer skuStatus){
+		if (productId == null){
+			logger.error("querySkuOfProduct:productId is null!");
+			return new ArrayList<SkuDomain>();
+		}
+		
+		MybatisParam params = new MybatisParam().put("productId", productId).put("skuStatus", skuStatus);
+		
+		return skuMapper.loadDynamic(params);
+	}
+	
 	@Valid
 	public List<SkuDomain> listSkuOfProduct(@Valid @NotEmpty("参数") ListSkuOfProductParam listSkuOfProductParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {

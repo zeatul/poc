@@ -40,6 +40,8 @@ drop index i_prd_attr on t_prd_product_attr;
 
 drop table if exists t_prd_product_attr;
 
+drop table if exists t_prd_product_history;
+
 drop index ui_prd_sku_attr_ids on t_prd_sku;
 
 drop index ui_prd_sku_st_sku_code on t_prd_sku;
@@ -48,9 +50,17 @@ drop index I_prd_prd_id on t_prd_sku;
 
 drop table if exists t_prd_sku;
 
+drop table if exists t_prd_sku_history;
+
+drop index i_prd_snapshoot on t_prd_sku_snapshoot;
+
+drop table if exists t_prd_sku_snapshoot;
+
 drop table if exists t_prd_small_number_sequence;
 
 drop table if exists t_prd_stock;
+
+drop table if exists t_prd_stock_history;
 
 drop index ui_svp_supplier_code on t_prd_supplier;
 
@@ -159,7 +169,8 @@ create table t_prd_brand
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_prd_brand comment '产品品牌';
 
@@ -233,7 +244,8 @@ create table t_prd_category_brand_map
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
-);
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_prd_category_brand_map comment '品牌和产品目录的对应关系';
 
@@ -281,8 +293,8 @@ create unique index ui_prd_c_s_m on t_prd_category_supplier_map
 create table t_prd_pic
 (
    id                   integer unsigned not null comment '主键',
-   owner_type           tinyint unsigned not null comment '所有者类型',
-   ownert_id            integer unsigned not null comment '所有者主键',
+   sku_id               integer unsigned not null comment '产品SKU主键',
+   product_id           integer unsigned not null comment '产品主键',
    pic_name             varchar(50) comment '图片名称',
    pic_url              varchar(200) not null comment '图片地址',
    pic_type             tinyint unsigned not null comment '图片类型',
@@ -315,6 +327,8 @@ create table t_prd_product
    product_home_page    varchar(200) comment '产品主页',
    product_desc         varchar(1000) comment '产品描述',
    product_memo         varchar(200) comment '产品备注',
+   product_min_price    decimal(15,4) comment '产品最低价格',
+   product_max_price    decimal(15,4) comment '产品最高价格',
    on_sale_stdt         timestamp(3) null comment '上架开始时间',
    on_sale_endt         timestamp(3) null comment '上架结束时间',
    is_virtual           tinyint unsigned not null comment '是否为虚拟物品',
@@ -381,6 +395,40 @@ create index i_prd_attr on t_prd_product_attr
 );
 
 /*==============================================================*/
+/* Table: t_prd_product_history                                 */
+/*==============================================================*/
+create table t_prd_product_history
+(
+   id                   integer unsigned not null comment '主键',
+   category_id          integer unsigned not null comment '产品目录主键',
+   store_code           varchar(50) not null comment '商户编号',
+   product_code         varchar(50) not null comment '产品编号',
+   product_name         varchar(200) not null comment '产品名称',
+   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
+   product_sku_attr_name_ids varchar(200) comment '产品SKU属性名ID集合',
+   product_status       tinyint unsigned not null comment '产品状态',
+   product_home_page    varchar(200) comment '产品主页',
+   product_desc         varchar(1000) comment '产品描述',
+   product_memo         varchar(200) comment '产品备注',
+   product_min_price    decimal(15,4) comment '产品最低价格',
+   product_max_price    decimal(15,4) comment '产品最高价格',
+   on_sale_stdt         timestamp(3) null comment '上架开始时间',
+   on_sale_endt         timestamp(3) null comment '上架结束时间',
+   is_virtual           tinyint unsigned not null comment '是否为虚拟物品',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_prd_product_history comment '产品';
+
+/*==============================================================*/
 /* Table: t_prd_sku                                             */
 /*==============================================================*/
 create table t_prd_sku
@@ -390,20 +438,22 @@ create table t_prd_sku
    store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
-   sku_attr_id_comp     varchar(200) not null comment 'SKU属性ID和值ID组合',
-   sku_attr_value_comp  varchar(1000) comment 'SKU属性值组合',
+   sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
+   sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
    sku_status           tinyint unsigned not null comment 'SKU状态',
    market_price         decimal(15,4) comment '市场价',
    sale_price           decimal(15,4) comment '销售价',
+   currency             smallint unsigned comment '币种',
    sku_stock_amount     integer not null comment 'SKU库存数量',
    is_special           tinyint unsigned not null comment '是否有特价',
    width                smallint unsigned comment '宽度',
    depth                smallint unsigned comment '深度',
-   heigh                smallint unsigned comment '高度',
+   height               smallint unsigned comment '高度',
    length_unit          tinyint unsigned comment '长度单位',
    weight               smallint unsigned not null comment '重量',
    weight_unit          tinyint unsigned not null comment '重量单位',
    sku_memo             varchar(200) comment 'SKU备注',
+   sku_snapshoot_id     integer unsigned comment 'SKU快照ID',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -439,7 +489,87 @@ create unique index ui_prd_sku_st_sku_code on t_prd_sku
 create unique index ui_prd_sku_attr_ids on t_prd_sku
 (
    product_id,
-   sku_attr_id_comp
+   sku_attr_value_ids
+);
+
+/*==============================================================*/
+/* Table: t_prd_sku_history                                     */
+/*==============================================================*/
+create table t_prd_sku_history
+(
+   id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
+   store_code           varchar(50) not null comment '商户编号',
+   sku_code             varchar(50) not null comment 'SKU编号',
+   sku_name             varchar(200) comment 'SKU名称',
+   sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
+   sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
+   sku_status           tinyint unsigned not null comment 'SKU状态',
+   market_price         decimal(15,4) comment '市场价',
+   sale_price           decimal(15,4) comment '销售价',
+   sku_stock_amount     integer not null comment 'SKU库存数量',
+   is_special           tinyint unsigned not null comment '是否有特价',
+   width                smallint unsigned comment '宽度',
+   depth                smallint unsigned comment '深度',
+   height               smallint unsigned comment '高度',
+   length_unit          tinyint unsigned comment '长度单位',
+   weight               smallint unsigned not null comment '重量',
+   weight_unit          tinyint unsigned not null comment '重量单位',
+   sku_memo             varchar(200) comment 'SKU备注',
+   sku_snapshoot_id     integer unsigned comment 'SKU快照ID',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_prd_sku_history comment '产品SKU';
+
+/*==============================================================*/
+/* Table: t_prd_sku_snapshoot                                   */
+/*==============================================================*/
+create table t_prd_sku_snapshoot
+(
+   id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
+   ksu_id               integer unsigned not null comment '产品sku主键',
+   product_code         varchar(50) not null comment '产品编号',
+   product_name         varchar(200) comment '产品名称',
+   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
+   product_sku_attr_name_ids varchar(200) comment '产品SKU属性名ID集合',
+   product_memo         varchar(200) comment '产品备注',
+   store_code           varchar(50) comment '商户编号',
+   sku_code             varchar(50) comment 'SKU编号',
+   sku_name             varchar(200) comment 'SKU名称',
+   sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
+   sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
+   market_price         decimal(15,4) comment '市场价',
+   sale_price           decimal(15,4) comment '销售价',
+   sku_memo             varchar(200) comment 'SKU备注',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*==============================================================*/
+/* Index: i_prd_snapshoot                                       */
+/*==============================================================*/
+create index i_prd_snapshoot on t_prd_sku_snapshoot
+(
+   product_id,
+   ksu_id,
+   product_code,
+   sku_code
 );
 
 /*==============================================================*/
@@ -461,6 +591,7 @@ alter table t_prd_small_number_sequence comment '商品模块非流水类数据�
 create table t_prd_stock
 (
    id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
    sku_id               integer unsigned not null comment '产品SKU主键',
    warehouse_code       varchar(50) comment '仓库编号',
    stock_item_code      varchar(50) comment '仓库货物编号',
@@ -478,6 +609,31 @@ create table t_prd_stock
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_prd_stock comment '库存';
+
+/*==============================================================*/
+/* Table: t_prd_stock_history                                   */
+/*==============================================================*/
+create table t_prd_stock_history
+(
+   id                   integer unsigned not null comment '主键',
+   product_id           integer unsigned not null comment '产品主键',
+   sku_id               integer unsigned not null comment '产品SKU主键',
+   warehouse_code       varchar(50) comment '仓库编号',
+   stock_item_code      varchar(50) comment '仓库货物编号',
+   stock_quantity       integer not null comment '库存数量',
+   stock_memo           varchar(200) comment '备注',
+   stock_operation      tinyint unsigned not null comment '库存操作类型',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_prd_stock_history comment '库存';
 
 /*==============================================================*/
 /* Table: t_prd_supplier                                        */

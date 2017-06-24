@@ -1,21 +1,31 @@
 package com.hawk.ecom.product.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
-import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateSkuParam {
 	
 	
-	public List<Integer> getSkuAttrIds() {
-		return skuAttrIds;
+	
+
+	public Integer getHeight() {
+		return height;
 	}
 
-	public void setSkuAttrIds(List<Integer> skuAttrIds) {
-		this.skuAttrIds = skuAttrIds;
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
+	public List<Integer> getSkuAttrValueIds() {
+		return skuAttrValueIds;
+	}
+
+	public void setSkuAttrValueIds(List<Integer> skuAttrValueIds) {
+		this.skuAttrValueIds = skuAttrValueIds;
 	}
 
 	public String getSkuMemo() {
@@ -68,13 +78,7 @@ public class CreateSkuParam {
 		this.depth = depth;
 	}
 
-	public Integer getHeigh() {
-		return heigh;
-	}
-
-	public void setHeigh(Integer heigh) {
-		this.heigh = heigh;
-	}
+	
 
 	public Integer getLengthUnit() {
 		return lengthUnit;
@@ -145,7 +149,7 @@ public class CreateSkuParam {
 	 * 高度 heigh
 	 */
 	@NotNull
-	private Integer heigh;
+	private Integer height;
 	
 	/**
 	 * 长度单位 length_unit
@@ -171,7 +175,20 @@ public class CreateSkuParam {
 	private String skuMemo;	
 	
 	
-	List<Integer> skuAttrIds;
+	/**
+	 * sku属性值集合
+	 */
+	List<Integer> skuAttrValueIds;
+	
+	/**
+	 * 市场价 market_price
+	 */
+	private BigDecimal marketPrice;
+	
+	/**
+	 * 销售价 sale_price
+	 */
+	private BigDecimal salePrice;
 	
 	
 	/**
