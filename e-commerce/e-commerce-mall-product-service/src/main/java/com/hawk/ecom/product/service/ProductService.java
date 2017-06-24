@@ -21,7 +21,7 @@ import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.constant.ConstProduct;
-import com.hawk.ecom.product.exception.AttrNameIsNotUniqueException;
+import com.hawk.ecom.product.exception.AttrNameIsUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.AttrNameIsNotUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
@@ -168,12 +168,12 @@ public class ProductService {
 			 */
 			for (Integer attrNameId : skuAttrNameIds){
 				AttrNameDomain attrNameDomain = attrNameService.loadById(attrNameId);
-				if (categoryId.equals(attrNameDomain.getCategoryId())) {
+				if (!categoryId.equals(attrNameDomain.getCategoryId())) {
 					throw new CategoryIsDifferentRuntimeException();
 				}
 				
 				if (checkAttrNameMap.containsKey(attrNameId)) {
-					throw new AttrNameIsNotUniqueException();
+					throw new AttrNameIsUsedByProductRuntimeException();
 				} else {
 					checkAttrNameMap.put(attrNameId, attrNameId);
 				}
@@ -204,12 +204,12 @@ public class ProductService {
 				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(attrValueId);
 
 				Integer attrNameId = attrValueDomain.getAttrNameId();
-				if (categoryId.equals(attrValueDomain.getCategoryId())) {
+				if (!categoryId.equals(attrValueDomain.getCategoryId())) {
 					throw new CategoryIsDifferentRuntimeException();
 				}
 
 				if (checkAttrNameMap.containsKey(attrNameId)) {
-					throw new AttrNameIsNotUniqueException();
+					throw new AttrNameIsUsedByProductRuntimeException();
 				} else {
 					checkAttrNameMap.put(attrNameId, attrNameId);
 					attrValues.add(attrValueDomain.getAttrDisplayValue() == null ? attrValueDomain.getAttrValue() : attrValueDomain.getAttrDisplayValue());
@@ -247,12 +247,12 @@ public class ProductService {
 				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(attrValueId);
 
 				Integer attrNameId = attrValueDomain.getAttrNameId();
-				if (categoryId.equals(attrValueDomain.getCategoryId())) {
+				if (!categoryId.equals(attrValueDomain.getCategoryId())) {
 					throw new CategoryIsDifferentRuntimeException();
 				}
 
 				if (checkAttrNameMap.containsKey(attrNameId)) {
-					throw new AttrNameIsNotUniqueException();
+					throw new AttrNameIsUsedByProductRuntimeException();
 				} else {
 					checkAttrNameMap.put(attrNameId, attrNameId);
 				}
@@ -271,6 +271,11 @@ public class ProductService {
 		for (ProductAttrDomain productAttrDomain : productAttrDomainList){
 			productAttrDomain.setProductId(productDomain.getId());
 			productAttrDomain.setId(pkGenService.genPk());
+			productAttrDomain.setSkuId(0);
+			productAttrDomain.setCreateDate(productDomain.getCreateDate());
+			productAttrDomain.setCreateUserCode(productDomain.getCreateUserCode());
+			productAttrDomain.setUpdateDate(productDomain.getUpdateDate());
+			productAttrDomain.setDeleteUserCode(productDomain.getUpdateUserCode());
 			productAttrMapper.insert(productAttrDomain);
 		}
 
@@ -314,11 +319,15 @@ public class ProductService {
 			throw new UnMatchedStoreOperatorException();
 		}
 		
+		Date now = new Date();
+		String userCode = AuthThreadLocal.getUserCode();
 		/**
 		 * 复制要更新的基本属性
 		 */
 		ProductDomain updateDomain = new ProductDomain();
 		DomainTools.copy(updateProdcutParam, updateDomain);
+		updateDomain.setUpdateDate(now);
+		updateDomain.setUpdateUserCode(userCode);
 		
 		/**
 		 * 加载所有已经用到的属性名ID,
@@ -329,11 +338,13 @@ public class ProductService {
 		List<ProductAttrDomain> productAttrDomainList = productAttrMapper.loadDynamic(params);
 		Map<Integer,Integer> usedAttrNameIdMap = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> usedKeyAttrNameIdMap = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> usedKeyAttrValueIdMap = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> usedSkuAttrNameIdMap = new HashMap<Integer,Integer>();
 		productAttrDomainList.forEach(e->{
 			usedAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
 			if (e.getAttrNameType().equals(ConstAttr.AttrNameType.KEY_ATTR)){
 				usedKeyAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
+				usedKeyAttrValueIdMap.put(e.getAttrValueId(), e.getAttrValueId());
 			}
 		});
 		String skuAttrNameIdsStr = productDomain.getProductSkuAttrNameIds();
@@ -372,6 +383,7 @@ public class ProductService {
 				productAttrMapper.delete(productAttrDomain.getId());
 				usedAttrNameIdMap.remove(attrNameId);
 				usedKeyAttrNameIdMap.remove(attrNameId);
+				usedKeyAttrValueIdMap.remove(removeKeyAttrValueId);
 			}
 		}
 		/**
@@ -403,7 +415,7 @@ public class ProductService {
 				/**
 				 * 要删除的Sku属性名ID，必须已经被引用
 				 */
-				if (!usedAttrNameIdMap.containsKey(removeSkuAttrNameId) || !usedKeyAttrNameIdMap.containsKey(removeSkuAttrNameId)){
+				if (!usedAttrNameIdMap.containsKey(removeSkuAttrNameId) || !usedSkuAttrNameIdMap.containsKey(removeSkuAttrNameId)){
 					throw new AttrNameIsNotUsedByProductRuntimeException();
 				}
 				
@@ -413,19 +425,134 @@ public class ProductService {
 		}
 		
 		/**
+		 * 收集新增加的关键属性和非关键属性，在最后插入数据库
+		 */
+		List<ProductAttrDomain> addProductAttrDomainList = new ArrayList<ProductAttrDomain>();
+		/**
 		 * 新增关键属性
 		 */
-		if(CollectionTolls.)
-		
-		
-		List<Integer> addKeyAttrValueIds = updateProdcutParam.getAddKeyAttrValueIds();
-		if (CollectionTools.isNotNullOrEmpty(addKeyAttrValueIds)){
+		List<Integer> addKeyAttrValueIds  = updateProdcutParam.getAddKeyAttrValueIds();
+		if(CollectionTools.isNotNullOrEmpty(addKeyAttrValueIds)){
+			for (Integer addAttrValueId : addKeyAttrValueIds){
+				
+				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(addAttrValueId);
+
+				Integer attrNameId = attrValueDomain.getAttrNameId();
+				if (!productDomain.getCategoryId().equals(attrValueDomain.getCategoryId())) {
+					throw new CategoryIsDifferentRuntimeException();
+				}
+				
+				/**
+				 * 要新增的关键属性值对应的属性名ID，必须未被引用
+				 */
+				if  (usedKeyAttrNameIdMap.containsKey(attrNameId) || usedAttrNameIdMap.containsKey(attrNameId)){
+					throw new AttrNameIsUsedByProductRuntimeException();
+				}
+				
+				/**
+				 * 维护map
+				 */
+				usedKeyAttrNameIdMap.put(attrNameId, attrNameId);
+				usedAttrNameIdMap.put(attrNameId, attrNameId);
+				usedKeyAttrValueIdMap.put(addAttrValueId, addAttrValueId);
+				
+				/**
+				 * 创建插入值
+				 */
+				ProductAttrDomain productAttrDomain = new ProductAttrDomain();
+				productAttrDomain.setAttrNameId(attrNameId);
+				productAttrDomain.setAttrNameType(ConstAttr.AttrNameType.KEY_ATTR);
+				productAttrDomain.setAttrValueId(addAttrValueId);					
+				addProductAttrDomainList.add(productAttrDomain);
+			}
+			
+			/**
+			 * 合成
+			 */
+			if(usedKeyAttrNameIdMap.size() == 0){
+				updateDomain.setProductKeyAttrValueIds("");
+				updateDomain.setProductKeyAttrValueValues("");
+			}else{
+				List<Integer> keyAttrValueIds = new ArrayList<Integer>();
+				usedKeyAttrValueIdMap.keySet().forEach(e->{
+					keyAttrValueIds.add(e);
+				});
+				Collections.sort(keyAttrValueIds);
+				List<String> keyAttrValues = new ArrayList<String>();
+				keyAttrValueIds.forEach(e->{
+					AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(e);
+					keyAttrValues.add(attrValueDomain.getAttrDisplayValue() == null ? attrValueDomain.getAttrValue() : attrValueDomain.getAttrDisplayValue());
+				});	
+				
+				updateDomain.setProductKeyAttrValueIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, keyAttrValueIds) );
+				updateDomain.setProductKeyAttrValueValues(StringTools.concatWithSymbol(ATTR_DISPLAY_VALUE_SPLITTER,keyAttrValues));
+			}
 			
 		}
 		
-		
+		/**
+		 * 新增非关键属性
+		 */
+		List<Integer> addNormalAttrValueIds  = updateProdcutParam.getAddNormalAttrValueIds();
+		if(CollectionTools.isNotNullOrEmpty(addNormalAttrValueIds)){
+			for (Integer addAttrValueId : addNormalAttrValueIds){
+				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(addAttrValueId);
 
+				Integer attrNameId = attrValueDomain.getAttrNameId();
+				if (!productDomain.getCategoryId().equals(attrValueDomain.getCategoryId())) {
+					throw new CategoryIsDifferentRuntimeException();
+				}
+				
+				/**
+				 * 要新增的非关键属性值对应的属性名ID，必须未被引用
+				 */
+				if  (usedAttrNameIdMap.containsKey(attrNameId)){
+					throw new AttrNameIsUsedByProductRuntimeException();
+				}
+				
+				/**
+				 * 维护map
+				 */
+				usedAttrNameIdMap.put(attrNameId, attrNameId);
+				
+				/**
+				 * 创建插入值
+				 */
+				ProductAttrDomain productAttrDomain = new ProductAttrDomain();
+				productAttrDomain.setAttrNameId(attrNameId);
+				productAttrDomain.setAttrNameType(ConstAttr.AttrNameType.NORMAL_DESC_ATTR);
+				productAttrDomain.setAttrValueId(addAttrValueId);					
+				addProductAttrDomainList.add(productAttrDomain);
+			}
+		}
 		
+		
+		/**
+		 * 新增SKU属性
+		 */
+		List<Integer> addSkuAttrNameIds = updateProdcutParam.getAddSkuAttrNameIds();
+		for (Integer attrNameId : addSkuAttrNameIds){
+			/**
+			 * 要新增的Sku属性名ID，必须未被引用
+			 */
+			if  (usedSkuAttrNameIdMap.containsKey(attrNameId) || usedAttrNameIdMap.containsKey(attrNameId)){
+				throw new AttrNameIsUsedByProductRuntimeException();
+			}
+			
+			usedSkuAttrNameIdMap.put(attrNameId, attrNameId);
+			usedAttrNameIdMap.put(attrNameId, attrNameId);
+		}
+		/*合成SkU*/
+		if (usedSkuAttrNameIdMap.size() == 0){
+			updateDomain.setProductSkuAttrNameIds("");
+		}else{
+			List<Integer> skuAttrNameIds = new ArrayList<Integer>();
+			usedSkuAttrNameIdMap.keySet().forEach(e->{
+				skuAttrNameIds.add(e);
+			});
+			Collections.sort(skuAttrNameIds);
+			updateDomain.setProductSkuAttrNameIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, skuAttrNameIds));
+		}
 		
 		
 
@@ -440,6 +567,17 @@ public class ProductService {
 			productMapper.updateWithoutNull(updateDomain);
 		} catch (DuplicateKeyException ex) {
 			throw new DuplicateProductRuntimeException();
+		}
+		
+		for (ProductAttrDomain productAttrDomain:addProductAttrDomainList){
+			productAttrDomain.setCreateDate(now);
+			productAttrDomain.setCreateUserCode(userCode);
+			productAttrDomain.setId(pkGenService.genPk());
+			productAttrDomain.setProductId(productDomain.getId());
+			productAttrDomain.setSkuId(0);
+			productAttrDomain.setUpdateDate(now);
+			productAttrDomain.setUpdateUserCode(userCode);
+			productAttrMapper.insert(productAttrDomain);
 		}
 	}
 
