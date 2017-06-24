@@ -12,6 +12,30 @@ public class CreateSkuParam {
 	
 	
 
+	public Integer getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Integer currency) {
+		this.currency = currency;
+	}
+
+	public BigDecimal getMarketPrice() {
+		return marketPrice;
+	}
+
+	public void setMarketPrice(BigDecimal marketPrice) {
+		this.marketPrice = marketPrice;
+	}
+
+	public BigDecimal getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(BigDecimal salePrice) {
+		this.salePrice = salePrice;
+	}
+
 	public Integer getHeight() {
 		return height;
 	}
@@ -189,6 +213,11 @@ public class CreateSkuParam {
 	 * 销售价 sale_price
 	 */
 	private BigDecimal salePrice;
+	
+	/**
+	 * 币种 currency
+	 */
+	private Integer currency;
 	
 	
 	/**

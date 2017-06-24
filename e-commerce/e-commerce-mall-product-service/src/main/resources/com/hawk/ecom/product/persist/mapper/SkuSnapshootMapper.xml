@@ -7,7 +7,7 @@
 	<sql id="columns">	
 				id AS "id" ,
 		product_id AS "productId" ,
-		ksu_id AS "ksuId" ,
+		sku_id AS "skuId" ,
 		product_code AS "productCode" ,
 		product_name AS "productName" ,
 		product_key_attr_value_ids AS "productKeyAttrValueIds" ,
@@ -34,7 +34,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
-			<if test="ksuId != null"> AND ksu_id = #{ksuId}  </if>
+			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
 			<if test="productCode != null"> AND product_code = #{productCode}  </if>
 			<if test="productName != null"> AND product_name = #{productName}  </if>
 			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{productKeyAttrValueIds}  </if>
@@ -62,7 +62,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
 			AND product_id = #{old_productId}
-			AND ksu_id = #{old_ksuId}
+			AND sku_id = #{old_skuId}
 			AND product_code = #{old_productCode}
 			AND product_name = #{old_productName}
 			AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}
@@ -90,7 +90,7 @@
 		<set>
 			id = #{id},
 			product_id = #{productId},
-			ksu_id = #{ksuId},
+			sku_id = #{skuId},
 			product_code = #{productCode},
 			product_name = #{productName},
 			product_key_attr_value_ids = #{productKeyAttrValueIds},
@@ -118,7 +118,7 @@
 		<set>
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
-			<if test="ksuId != null">ksu_id = #{ksuId},</if>
+			<if test="skuId != null">sku_id = #{skuId},</if>
 			<if test="productCode != null">product_code = #{productCode},</if>
 			<if test="productName != null">product_name = #{productName},</if>
 			<if test="productKeyAttrValueIds != null">product_key_attr_value_ids = #{productKeyAttrValueIds},</if>
@@ -179,7 +179,7 @@
 		INSERT INTO t_prd_sku_snapshoot (			
 				id,				
 				product_id,				
-				ksu_id,				
+				sku_id,				
 				product_code,				
 				product_name,				
 				product_key_attr_value_ids,				
@@ -204,7 +204,7 @@
 		VALUES (	
 			#{id},
 			#{productId},
-			#{ksuId},
+			#{skuId},
 			#{productCode},
 			#{productName},
 			#{productKeyAttrValueIds},

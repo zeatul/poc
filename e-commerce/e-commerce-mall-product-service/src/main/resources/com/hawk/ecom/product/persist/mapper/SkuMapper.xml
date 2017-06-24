@@ -17,7 +17,7 @@
 		sale_price AS "salePrice" ,
 		currency AS "currency" ,
 		sku_stock_amount AS "skuStockAmount" ,
-		is_special AS "isSpecial" ,
+		is_special_price AS "isSpecialPrice" ,
 		width AS "width" ,
 		depth AS "depth" ,
 		height AS "height" ,
@@ -48,7 +48,7 @@
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
 			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
-			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
+			<if test="isSpecialPrice != null"> AND is_special_price = #{isSpecialPrice}  </if>
 			<if test="width != null"> AND width = #{width}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
 			<if test="height != null"> AND height = #{height}  </if>
@@ -80,7 +80,7 @@
 			AND sale_price = #{old_salePrice}
 			AND currency = #{old_currency}
 			AND sku_stock_amount = #{old_skuStockAmount}
-			AND is_special = #{old_isSpecial}
+			AND is_special_price = #{old_isSpecialPrice}
 			AND width = #{old_width}
 			AND depth = #{old_depth}
 			AND height = #{old_height}
@@ -112,7 +112,7 @@
 			sale_price = #{salePrice},
 			currency = #{currency},
 			sku_stock_amount = #{skuStockAmount},
-			is_special = #{isSpecial},
+			is_special_price = #{isSpecialPrice},
 			width = #{width},
 			depth = #{depth},
 			height = #{height},
@@ -144,7 +144,7 @@
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
 			<if test="currency != null">currency = #{currency},</if>
 			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
-			<if test="isSpecial != null">is_special = #{isSpecial},</if>
+			<if test="isSpecialPrice != null">is_special_price = #{isSpecialPrice},</if>
 			<if test="width != null">width = #{width},</if>
 			<if test="depth != null">depth = #{depth},</if>
 			<if test="height != null">height = #{height},</if>
@@ -209,7 +209,7 @@
 				sale_price,				
 				currency,				
 				sku_stock_amount,				
-				is_special,				
+				is_special_price,				
 				width,				
 				depth,				
 				height,				
@@ -238,7 +238,7 @@
 			#{salePrice},
 			#{currency},
 			#{skuStockAmount},
-			#{isSpecial},
+			#{isSpecialPrice},
 			#{width},
 			#{depth},
 			#{height},

@@ -27,9 +27,9 @@ public class SkuSnapshootDomain implements Serializable {
 	private Integer productId;
 	
 	/**
-	 * 产品sku主键 ksu_id
+	 * 产品sku主键 sku_id
 	 */
-	private Integer ksuId;
+	private Integer skuId;
 	
 	/**
 	 * 产品编号 product_code
@@ -166,18 +166,18 @@ public class SkuSnapshootDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品sku主键 ksu_id
+	 * @return 产品sku主键 sku_id
 	 */
-	public Integer getKsuId(){
-		return ksuId;
+	public Integer getSkuId(){
+		return skuId;
 	}
 	
 	/**
 	 * 
-	 * @param ksuId 产品sku主键 ksu_id
+	 * @param skuId 产品sku主键 sku_id
 	 */	
-	public void setKsuId (Integer ksuId) {
-		this.ksuId = ksuId;
+	public void setSkuId (Integer skuId) {
+		this.skuId = skuId;
 	}
 	
 	/**

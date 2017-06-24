@@ -26,5 +26,14 @@ public class ConstProduct {
 	
 	public static interface SkuStatus extends ProductStatus{
 	}
+	
+	/**
+	 * 币种
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public static interface Currency{
+		public final int RMB = 156;
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.hawk.ecom.product.request;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -8,6 +9,36 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 public class UpdateSkuParam {
 	
 	
+	public Integer getHeight() {
+		return height;
+	}
+
+
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
+
+	public List<Integer> getAddSkuAttrValueIds() {
+		return addSkuAttrValueIds;
+	}
+
+
+	public void setAddSkuAttrValueIds(List<Integer> addSkuAttrValueIds) {
+		this.addSkuAttrValueIds = addSkuAttrValueIds;
+	}
+
+
+	public List<Integer> getRemoveSkuAttrValueIds() {
+		return removeSkuAttrValueIds;
+	}
+
+
+	public void setRemoveSkuAttrValueIds(List<Integer> removeSkuAttrValueIds) {
+		this.removeSkuAttrValueIds = removeSkuAttrValueIds;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -78,14 +109,7 @@ public class UpdateSkuParam {
 	}
 
 
-	public Integer getHeigh() {
-		return heigh;
-	}
-
-
-	public void setHeigh(Integer heigh) {
-		this.heigh = heigh;
-	}
+	
 
 
 	public Integer getLengthUnit() {
@@ -179,7 +203,7 @@ public class UpdateSkuParam {
 	/**
 	 * 高度 heigh
 	 */
-	private Integer heigh;
+	private Integer height;
 	
 	/**
 	 * 长度单位 length_unit
@@ -200,6 +224,17 @@ public class UpdateSkuParam {
 	 * SKU备注 sku_memo
 	 */
 	private String skuMemo;
+	
+	/**
+	 * 新增Sku属性值
+	 */
+	private List<Integer> addSkuAttrValueIds;
+	
+	
+	/**
+	 * 删除Sku属性值
+	 */
+	private List<Integer> removeSkuAttrValueIds; 
 	
 
 	/**

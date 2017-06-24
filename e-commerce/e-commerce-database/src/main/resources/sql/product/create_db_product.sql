@@ -445,12 +445,12 @@ create table t_prd_sku
    sale_price           decimal(15,4) comment '销售价',
    currency             smallint unsigned comment '币种',
    sku_stock_amount     integer not null comment 'SKU库存数量',
-   is_special           tinyint unsigned not null comment '是否有特价',
-   width                smallint unsigned comment '宽度',
-   depth                smallint unsigned comment '深度',
-   height               smallint unsigned comment '高度',
+   is_special_price     tinyint unsigned not null comment '是否有特价',
+   width                integer unsigned comment '宽度',
+   depth                integer unsigned comment '深度',
+   height               integer unsigned comment '高度',
    length_unit          tinyint unsigned comment '长度单位',
-   weight               smallint unsigned not null comment '重量',
+   weight               integer unsigned not null comment '重量',
    weight_unit          tinyint unsigned not null comment '重量单位',
    sku_memo             varchar(200) comment 'SKU备注',
    sku_snapshoot_id     integer unsigned comment 'SKU快照ID',
@@ -536,8 +536,8 @@ create table t_prd_sku_snapshoot
 (
    id                   integer unsigned not null comment '主键',
    product_id           integer unsigned not null comment '产品主键',
-   ksu_id               integer unsigned not null comment '产品sku主键',
-   product_code         varchar(50) not null comment '产品编号',
+   sku_id               integer unsigned not null comment '产品sku主键',
+   product_code         varchar(50) comment '产品编号',
    product_name         varchar(200) comment '产品名称',
    product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
    product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
@@ -567,9 +567,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 create index i_prd_snapshoot on t_prd_sku_snapshoot
 (
    product_id,
-   ksu_id,
-   product_code,
-   sku_code
+   sku_id
 );
 
 /*==============================================================*/

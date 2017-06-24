@@ -112,8 +112,8 @@ public class ProductService {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	private final static String ATTR_NAME_ID_SPLITTER = ",";
-	private final static String ATTR_DISPLAY_VALUE_SPLITTER = " ";
+	public final static String ATTR_NAME_ID_SPLITTER = ",";
+	public final static String ATTR_DISPLAY_VALUE_SPLITTER = " ";
 
 	public ProductDomain loadProduct(Integer id) {
 		ProductDomain productDomain = null;
@@ -295,10 +295,7 @@ public class ProductService {
 		 */
 		List<Integer> normalAttrValueIds = createProdcutParam.getProductNormalAttrValueIds();	
 		if (CollectionTools.isNotNullOrEmpty(normalAttrValueIds)) {
-			/**
-			 * 必须先排序
-			 */
-			Collections.sort(normalAttrValueIds);
+			
 			/**
 			 * 产品目录分类ID
 			 */

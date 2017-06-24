@@ -77,9 +77,9 @@ public class SkuDomain implements Serializable {
 	private Integer skuStockAmount;
 	
 	/**
-	 * 是否有特价 is_special
+	 * 是否有特价 is_special_price
 	 */
-	private Integer isSpecial;
+	private Integer isSpecialPrice;
 	
 	/**
 	 * 宽度 width
@@ -346,18 +346,18 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 是否有特价 is_special
+	 * @return 是否有特价 is_special_price
 	 */
-	public Integer getIsSpecial(){
-		return isSpecial;
+	public Integer getIsSpecialPrice(){
+		return isSpecialPrice;
 	}
 	
 	/**
 	 * 
-	 * @param isSpecial 是否有特价 is_special
+	 * @param isSpecialPrice 是否有特价 is_special_price
 	 */	
-	public void setIsSpecial (Integer isSpecial) {
-		this.isSpecial = isSpecial;
+	public void setIsSpecialPrice (Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
 	}
 	
 	/**
