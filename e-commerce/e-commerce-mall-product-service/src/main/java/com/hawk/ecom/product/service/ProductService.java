@@ -22,6 +22,7 @@ import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.AttrNameIsNotUniqueException;
+import com.hawk.ecom.product.exception.AttrNameIsNotUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
 import com.hawk.ecom.product.exception.CategoryNotFoundRuntimeException;
@@ -30,6 +31,7 @@ import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.product.exception.ProductIsNotAcceptableForOnSaleRuntimeException;
 import com.hawk.ecom.product.exception.ProductNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.ProductStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.UnMatchedStoreOperatorException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
@@ -79,6 +81,9 @@ public class ProductService {
 	private PkGenService pkGenService;
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	private final static String ATTR_NAME_ID_SPLITTER = ",";
+	private final static String ATTR_DISPLAY_VALUE_SPLITTER = " ";
 
 	public ProductDomain loadProduct(Integer id) {
 		ProductDomain productDomain = null;
@@ -117,10 +122,7 @@ public class ProductService {
 		if (!ConstBoolean.parse(category.getIsLeaf())) {
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		// if (category.getCategoryStatus() !=
-		// ConstCategory.CategoryStatus.FORBIDDEN){
-		// throw new CategoryStatusIsNotAcceptableRuntimeException();
-		// }
+		
 		if (category.getCategoryVariantStatus() != ConstCategory.CategoryVariantStatus.AVAILABLE) {
 			throw new CategoryVariantStatusIsNotAcceptableRuntimeException();
 		}
@@ -177,7 +179,7 @@ public class ProductService {
 				}
 			}
 			
-			productDomain.setProductSkuAttrNameIds(StringTools.concatWithSymbol(",", skuAttrNameIds));
+			productDomain.setProductSkuAttrNameIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, skuAttrNameIds));
 		}
 
 		/**
@@ -220,8 +222,8 @@ public class ProductService {
 				productAttrDomainList.add(productAttrDomain);
 			}
 			
-			productDomain.setProductKeyAttrValueIds(StringTools.concatWithSymbol(",", keyAttrValueIds) );
-			productDomain.setProductKeyAttrValueValues(StringTools.concatWithSymbol(" ",attrValues));
+			productDomain.setProductKeyAttrValueIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, keyAttrValueIds) );
+			productDomain.setProductKeyAttrValueValues(StringTools.concatWithSymbol(ATTR_DISPLAY_VALUE_SPLITTER,attrValues));
 			
 		}
 		
@@ -241,7 +243,6 @@ public class ProductService {
 			/**
 			 * 校验属性值ID必须存在，属性值对应的属性名ID不能重复，必须有和创建的产品有相同的产品目录
 			 */
-			List<String> attrValues = new ArrayList<String>();
 			for (Integer attrValueId : normalAttrValueIds) {
 				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(attrValueId);
 
@@ -254,12 +255,11 @@ public class ProductService {
 					throw new AttrNameIsNotUniqueException();
 				} else {
 					checkAttrNameMap.put(attrNameId, attrNameId);
-					attrValues.add(attrValueDomain.getAttrDisplayValue() == null ? attrValueDomain.getAttrValue() : attrValueDomain.getAttrDisplayValue());
 				}
 
 				ProductAttrDomain productAttrDomain = new ProductAttrDomain();
 				productAttrDomain.setAttrNameId(attrNameId);
-				productAttrDomain.setAttrNameType(ConstAttr.AttrNameType.KEY_ATTR);
+				productAttrDomain.setAttrNameType(ConstAttr.AttrNameType.NORMAL_DESC_ATTR);
 				productAttrDomain.setAttrValueId(attrValueId);
 				productAttrDomainList.add(productAttrDomain);
 			}
@@ -284,7 +284,13 @@ public class ProductService {
 	}
 
 	/**
-	 * 被更新的产品必须存在，状态为编辑状态。 更新不能修改关键属性 更新是否可以修改产品编号？ 更新是否要保留上次版本，这个得看产品的销售情况
+	 * 被更新的产品必须存在，状态为编辑状态。 
+	 * 修改关键属性值时，各种校验
+	 * 修改普通属性值时，各种校验
+	 * 修改SKU属性名时，各种校验
+	 * 更新是否可以修改产品编号？
+	 * 属性值发生改变时，如何通知商品修改关键属性值集合显示内容？ 
+	 * 更新是否要保留上次版本，这个得看产品的销售情况
 	 * 不是本用户的商铺的商品，不能修改
 	 * 
 	 * @param updateProdcutParam
@@ -301,15 +307,133 @@ public class ProductService {
 			throw new ProductStatusIsNotAcceptableRuntimeException();
 		}
 
-		/**
-		 * TODO:检测是否是本用户的商铺的商品
+		/**productDomain
+		 * 检测是否是本用户的商铺的商品
 		 */
-
+		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+			throw new UnMatchedStoreOperatorException();
+		}
+		
+		/**
+		 * 复制要更新的基本属性
+		 */
 		ProductDomain updateDomain = new ProductDomain();
 		DomainTools.copy(updateProdcutParam, updateDomain);
+		
+		/**
+		 * 加载所有已经用到的属性名ID,
+		 * 先加载关键属性和非关键属性
+		 * 再加载SKU属性
+		 */
+		MybatisParam params = new MybatisParam().put("productId", productDomain.getId()).put("skuId", 0);
+		List<ProductAttrDomain> productAttrDomainList = productAttrMapper.loadDynamic(params);
+		Map<Integer,Integer> usedAttrNameIdMap = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> usedKeyAttrNameIdMap = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> usedSkuAttrNameIdMap = new HashMap<Integer,Integer>();
+		productAttrDomainList.forEach(e->{
+			usedAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
+			if (e.getAttrNameType().equals(ConstAttr.AttrNameType.KEY_ATTR)){
+				usedKeyAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
+			}
+		});
+		String skuAttrNameIdsStr = productDomain.getProductSkuAttrNameIds();
+		if (StringTools.isNotNullOrEmpty(skuAttrNameIdsStr)){
+			String[] strs = skuAttrNameIdsStr.split(ATTR_NAME_ID_SPLITTER);
+			for(String str : strs){
+				Integer attrNameId = Integer.parseInt(str);
+				usedAttrNameIdMap.put(attrNameId, attrNameId);
+				usedSkuAttrNameIdMap.put(attrNameId, attrNameId);
+			}
+		}
+		
+		/**
+		 * 首先计算要删除的关键属性值，非关键属性值，sku属性
+		 */
+		/**
+		 * 删除关键属性值ID
+		 */			
+		List<Integer> removeKeyAttrValueIds = updateProdcutParam.getRemoveKeyAttrValueIds();
+		if (CollectionTools.isNotNullOrEmpty(removeKeyAttrValueIds)){
+			for (Integer removeKeyAttrValueId : removeKeyAttrValueIds){
+				
+				
+				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(removeKeyAttrValueId);
+				Integer attrNameId = attrValueDomain.getAttrNameId();
+				
+				/**
+				 * 要删除的关键属性值ID，必须已经被引用
+				 */
+				if  (!usedKeyAttrNameIdMap.containsKey(attrNameId) || !usedAttrNameIdMap.containsKey(attrNameId)){
+					throw new AttrNameIsNotUsedByProductRuntimeException();
+				}
+				
+				params = new MybatisParam().put("productId", productDomain.getId()).put("attrNameId", attrNameId);
+				ProductAttrDomain productAttrDomain = MybatisTools.single(productAttrMapper.loadDynamic(params));
+				productAttrMapper.delete(productAttrDomain.getId());
+				usedAttrNameIdMap.remove(attrNameId);
+				usedKeyAttrNameIdMap.remove(attrNameId);
+			}
+		}
+		/**
+		 * 删除非关键属性值ID
+		 */
+		List<Integer> removeNormalKeyAttrValueIds = updateProdcutParam.getRemoveNormalAttrValueIds();
+		if (CollectionTools.isNotNullOrEmpty(removeNormalKeyAttrValueIds)){
+			for (Integer removeNormalAttrValueId : removeNormalKeyAttrValueIds){
+				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(removeNormalAttrValueId);
+				Integer attrNameId = attrValueDomain.getAttrNameId();
+				/**
+				 * 要删除的非关键属性值ID，必须已经被引用
+				 */
+				if  (!usedAttrNameIdMap.containsKey(attrNameId)){
+					throw new AttrNameIsNotUsedByProductRuntimeException();
+				}
+				params = new MybatisParam().put("productId", productDomain.getId()).put("attrNameId", attrNameId);
+				ProductAttrDomain productAttrDomain = MybatisTools.single(productAttrMapper.loadDynamic(params));
+				productAttrMapper.delete(productAttrDomain.getId());
+				usedAttrNameIdMap.remove(attrNameId);
+			}
+		}
+		/**
+		 * 删除Sku属性名ID
+		 */
+		List<Integer> removeSkuAttrNameIds = updateProdcutParam.getRemoveSkuAttrNameIds();
+		if (CollectionTools.isNotNullOrEmpty(removeSkuAttrNameIds)){
+			for (Integer removeSkuAttrNameId : removeSkuAttrNameIds){
+				/**
+				 * 要删除的Sku属性名ID，必须已经被引用
+				 */
+				if (!usedAttrNameIdMap.containsKey(removeSkuAttrNameId) || !usedKeyAttrNameIdMap.containsKey(removeSkuAttrNameId)){
+					throw new AttrNameIsNotUsedByProductRuntimeException();
+				}
+				
+				usedAttrNameIdMap.remove(removeSkuAttrNameId);
+				usedSkuAttrNameIdMap.remove(removeSkuAttrNameId);
+			}
+		}
+		
+		/**
+		 * 新增关键属性
+		 */
+		if(CollectionTolls.)
+		
+		
+		List<Integer> addKeyAttrValueIds = updateProdcutParam.getAddKeyAttrValueIds();
+		if (CollectionTools.isNotNullOrEmpty(addKeyAttrValueIds)){
+			
+		}
+		
+		
+
+		
+		
+		
 
 		/**
-		 * TODO:更新是否要保留上次版本,这个得看产品的销售情况,产品快照
+		 * TODO:更新是否要保留上次版本,这个得看产品的销售情况
+		 * 如何建立产品快照，
+		 * 也可以在商品上架的时候，建立快照，这个更好
+		 * 商品上架时候，要检验商品SkU是否匹配现在的SKU属性设置
 		 */
 
 		try {

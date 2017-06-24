@@ -4,9 +4,56 @@ import java.util.List;
 
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.ecom.muser.annotation.MallNotLogin;
-import com.hawk.ecom.product.request.UpdateProductAttrParam;
 
 public class UpdateProductParam {
+
+	public List<Integer> getAddKeyAttrValueIds() {
+		return addKeyAttrValueIds;
+	}
+
+	public void setAddKeyAttrValueIds(List<Integer> addKeyAttrValueIds) {
+		this.addKeyAttrValueIds = addKeyAttrValueIds;
+	}
+
+	public List<Integer> getRemoveKeyAttrValueIds() {
+		return removeKeyAttrValueIds;
+	}
+
+	public void setRemoveKeyAttrValueIds(List<Integer> removeKeyAttrValueIds) {
+		this.removeKeyAttrValueIds = removeKeyAttrValueIds;
+	}
+
+	public List<Integer> getAddNormalAttrValueIds() {
+		return addNormalAttrValueIds;
+	}
+
+	public void setAddNormalAttrValueIds(List<Integer> addNormalAttrValueIds) {
+		this.addNormalAttrValueIds = addNormalAttrValueIds;
+	}
+
+	public List<Integer> getRemoveNormalAttrValueIds() {
+		return removeNormalAttrValueIds;
+	}
+
+	public void setRemoveNormalAttrValueIds(List<Integer> removeNormalAttrValueIds) {
+		this.removeNormalAttrValueIds = removeNormalAttrValueIds;
+	}
+
+	public List<Integer> getAddSkuAttrNameIds() {
+		return addSkuAttrNameIds;
+	}
+
+	public void setAddSkuAttrNameIds(List<Integer> addSkuAttrNameIds) {
+		this.addSkuAttrNameIds = addSkuAttrNameIds;
+	}
+
+	public List<Integer> getRemoveSkuAttrNameIds() {
+		return removeSkuAttrNameIds;
+	}
+
+	public void setRemoveSkuAttrNameIds(List<Integer> removeSkuAttrNameIds) {
+		this.removeSkuAttrNameIds = removeSkuAttrNameIds;
+	}
 
 	public Integer getId() {
 		return id;
@@ -40,13 +87,7 @@ public class UpdateProductParam {
 		this.productName = productName;
 	}
 
-	public Integer getProductStatus() {
-		return productStatus;
-	}
-
-	public void setProductStatus(Integer productStatus) {
-		this.productStatus = productStatus;
-	}
+	
 
 	public String getProductHomePage() {
 		return productHomePage;
@@ -72,13 +113,7 @@ public class UpdateProductParam {
 		this.productMemo = productMemo;
 	}
 
-	public List<UpdateProductAttrParam> getAttrs() {
-		return attrs;
-	}
-
-	public void setAttrs(List<UpdateProductAttrParam> attrs) {
-		this.attrs = attrs;
-	}
+	
 
 	public String getOperatorCode() {
 		return operatorCode;
@@ -94,11 +129,6 @@ public class UpdateProductParam {
 	private Integer id;
 
 	/**
-	 * 商户编号 store_code
-	 */
-	private String storeCode;
-
-	/**
 	 * 产品编号 product_code
 	 */
 	private String productCode;
@@ -108,11 +138,7 @@ public class UpdateProductParam {
 	 */
 	private String productName;
 
-	/**
-	 * 产品状态 product_status
-	 */
-	private Integer productStatus;
-
+	
 	/**
 	 * 产品主页 product_home_page
 	 */
@@ -128,8 +154,36 @@ public class UpdateProductParam {
 	 */
 	private String productMemo;
 
-	@Valid
-	private List<UpdateProductAttrParam> attrs;
+	/**
+	 *  新增关键属性值
+	 */
+	private List<Integer> addKeyAttrValueIds;
+	
+	/**
+	 * 删除关键属性值
+	 */
+	private List<Integer> removeKeyAttrValueIds;
+	
+	/**
+	 * 新增非关键属性值
+	 */
+	private List<Integer> addNormalAttrValueIds;
+	
+	
+	/**
+	 * 删除非关键属性值
+	 */
+	private List<Integer> removeNormalAttrValueIds;
+	
+	/**
+	 * 新增SKU属性名
+	 */
+	private List<Integer> addSkuAttrNameIds;
+	
+	/**
+	 * 删除SKU属性名
+	 */
+	private List<Integer> removeSkuAttrNameIds;
 
 	/**
 	 * 操作员编号
