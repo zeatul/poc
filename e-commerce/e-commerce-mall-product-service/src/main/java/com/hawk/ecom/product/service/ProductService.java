@@ -107,7 +107,7 @@ public class ProductService {
 	private StockHistoryMapper stockHistoryMapper;
 
 	@Autowired
-	@Qualifier("smallNumberSequenceService")
+	@Qualifier("pkGenService")
 	private PkGenService pkGenService;
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());

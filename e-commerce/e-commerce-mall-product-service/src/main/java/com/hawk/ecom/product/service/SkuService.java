@@ -67,7 +67,7 @@ import com.hawk.framework.utility.tools.StringTools;
 public class SkuService {
 
 	@Autowired
-	@Qualifier("smallNumberSequenceService")
+	@Qualifier("pkGenService")
 	private PkGenService pkGenService;
 
 	@Autowired

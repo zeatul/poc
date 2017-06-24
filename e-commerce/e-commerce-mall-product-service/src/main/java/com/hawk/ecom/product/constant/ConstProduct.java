@@ -35,5 +35,13 @@ public class ConstProduct {
 	public static interface Currency{
 		public final int RMB = 156;
 	}
+	
+	public static interface StockOperation{
+		
+		/**
+		 * 进货
+		 */
+		public final int STOCK_IN = 1;
+	}
 
 }
