@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.persist.domain.StockDomain;
 import com.hawk.ecom.product.request.CreateStockParam;
 import com.hawk.ecom.product.request.ListStockParam;
+import com.hawk.ecom.product.request.LoadPicParam;
+import com.hawk.ecom.product.request.LoadStockParam;
 import com.hawk.ecom.product.request.UpdateStockParam;
+import com.hawk.ecom.product.response.PicInfoResponse;
 import com.hawk.ecom.product.response.StockInfoResponse;
 import com.hawk.ecom.product.service.StockService;
 import com.hawk.ecom.pub.response.MultiResponse;
@@ -68,5 +72,13 @@ public class StockAdminController {
 		MultiResponse<StockInfoResponse> result = new MultiResponse<StockInfoResponse>(MybatisTools.copy(wrap, StockInfoResponse.class));
 		return SuccessResponse.build(result);
 	} 
+	
+	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})
+	public WebResponse<StockInfoResponse> loadPic (@PathVariable Integer id) throws Exception{
+		LoadStockParam param = new LoadStockParam();
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		param.setId(id);
+		return SuccessResponse.build(DomainTools.copy(stockService.loadStock(param), StockInfoResponse.class));
+	}
 
 }

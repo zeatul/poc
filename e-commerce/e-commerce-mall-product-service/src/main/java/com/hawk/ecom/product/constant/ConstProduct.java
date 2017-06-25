@@ -43,5 +43,14 @@ public class ConstProduct {
 		 */
 		public final int STOCK_IN = 1;
 	}
+	
+	/**
+	 * 
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public static interface PicType{
+		public final int NORMAL = 1;
+	}
 
 }

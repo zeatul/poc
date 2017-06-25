@@ -8,9 +8,13 @@
 				id AS "id" ,
 		sku_id AS "skuId" ,
 		product_id AS "productId" ,
+		store_code AS "storeCode" ,
 		pic_name AS "picName" ,
+		pic_memo AS "picMemo" ,
+		pic_outer_id AS "picOuterId" ,
 		pic_url AS "picUrl" ,
 		pic_type AS "picType" ,
+		object_order AS "objectOrder" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -24,9 +28,13 @@
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="picName != null"> AND pic_name = #{picName}  </if>
+			<if test="picMemo != null"> AND pic_memo = #{picMemo}  </if>
+			<if test="picOuterId != null"> AND pic_outer_id = #{picOuterId}  </if>
 			<if test="picUrl != null"> AND pic_url = #{picUrl}  </if>
 			<if test="picType != null"> AND pic_type = #{picType}  </if>
+			<if test="objectOrder != null"> AND object_order = #{objectOrder}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -41,9 +49,13 @@
 			AND id = #{old_id}
 			AND sku_id = #{old_skuId}
 			AND product_id = #{old_productId}
+			AND store_code = #{old_storeCode}
 			AND pic_name = #{old_picName}
+			AND pic_memo = #{old_picMemo}
+			AND pic_outer_id = #{old_picOuterId}
 			AND pic_url = #{old_picUrl}
 			AND pic_type = #{old_picType}
+			AND object_order = #{old_objectOrder}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -58,9 +70,13 @@
 			id = #{id},
 			sku_id = #{skuId},
 			product_id = #{productId},
+			store_code = #{storeCode},
 			pic_name = #{picName},
+			pic_memo = #{picMemo},
+			pic_outer_id = #{picOuterId},
 			pic_url = #{picUrl},
 			pic_type = #{picType},
+			object_order = #{objectOrder},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -75,9 +91,13 @@
 			<if test="id != null">id = #{id},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
 			<if test="productId != null">product_id = #{productId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="picName != null">pic_name = #{picName},</if>
+			<if test="picMemo != null">pic_memo = #{picMemo},</if>
+			<if test="picOuterId != null">pic_outer_id = #{picOuterId},</if>
 			<if test="picUrl != null">pic_url = #{picUrl},</if>
 			<if test="picType != null">pic_type = #{picType},</if>
+			<if test="objectOrder != null">object_order = #{objectOrder},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -125,9 +145,13 @@
 				id,				
 				sku_id,				
 				product_id,				
+				store_code,				
 				pic_name,				
+				pic_memo,				
+				pic_outer_id,				
 				pic_url,				
 				pic_type,				
+				object_order,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -139,9 +163,13 @@
 			#{id},
 			#{skuId},
 			#{productId},
+			#{storeCode},
 			#{picName},
+			#{picMemo},
+			#{picOuterId},
 			#{picUrl},
 			#{picType},
+			#{objectOrder},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

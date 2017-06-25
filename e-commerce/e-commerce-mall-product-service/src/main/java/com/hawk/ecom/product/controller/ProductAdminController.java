@@ -92,7 +92,6 @@ public class ProductAdminController {
 		LoadProductParam param = new LoadProductParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setId(id);
-		productService.loadProduct(param);
-		return SuccessResponse.build(DomainTools.copy(param, ProductInfoResponse.class));
+		return SuccessResponse.build(DomainTools.copy(productService.loadProduct(param), ProductInfoResponse.class));
 	}
 }

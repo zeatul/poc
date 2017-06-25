@@ -21,6 +21,7 @@ import com.hawk.ecom.product.persist.domain.StockDomain;
 import com.hawk.ecom.product.persist.mapper.StockMapper;
 import com.hawk.ecom.product.request.CreateStockParam;
 import com.hawk.ecom.product.request.ListStockParam;
+import com.hawk.ecom.product.request.LoadStockParam;
 import com.hawk.ecom.product.request.UpdateStockParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
@@ -160,5 +161,23 @@ public class StockService {
 		}
 
 		return wrap;
+	}
+	
+	@Valid
+	public StockDomain loadStock(@Valid @NotEmpty("参数") LoadStockParam loadStockParam) {
+
+		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
+			throw new IllegalAccessRuntimeException();
+		}
+
+		StockDomain stockDomain = loadStock(loadStockParam.getId());
+		/**
+		 * 检测是否是本用户的商铺的商品
+		 */
+		if (!stockDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())) {
+			throw new UnMatchedStoreOperatorException();
+		}
+
+		return stockDomain;
 	}
 }

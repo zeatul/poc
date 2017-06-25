@@ -43,6 +43,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+31, "产品SKU用到的属性名和产品定义里的sku属性名不完全一致");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+32, "产品SKU更新库存量遇到并发冲突，请重试");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+33, "库存信息未找到");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+34, "图片未找到");
 	
 	}
 	
