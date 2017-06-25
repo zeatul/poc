@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.controller;
+package com.hawk.ecom.trans.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.hawk.ecom.pub.response.MultiResponse;
-import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
-import com.hawk.ecom.query.service.SystemResourceService;
+import com.hawk.ecom.trans.persist.domainex.SystemResourceExDomain;
+import com.hawk.ecom.trans.service.SystemResourceService;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;

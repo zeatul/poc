@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.persist.domainex;
+package com.hawk.ecom.trans.persist.domainex;
 
 public class SystemResourceExDomain {
 	public String getNodeName() {

@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.web.spring.config;
+package com.hawk.ecom.trans.web.spring.config;
 
 import javax.sql.DataSource;
 

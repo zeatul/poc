@@ -1,8 +1,9 @@
-package com.hawk.ecom.query.persist.mapperex;
+package com.hawk.ecom.trans.persist.mapperex;
 
 import java.util.List;
 
-import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
+import com.hawk.ecom.trans.persist.domainex.SystemResourceExDomain;
+
 
 public interface SystemResourceExMapper {
 	
