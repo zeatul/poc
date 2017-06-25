@@ -9,17 +9,31 @@
 	</parent>
 
 	<packaging>war</packaging>
-	<artifactId>e-commerce-ecom-trans-web</artifactId>
-	<name>e-commerce-ecom-trans-web</name>
+	<artifactId>e-commerce-ecom-query-web</artifactId>
+	<name>e-commerce-ecom-query-web</name>
 	<url>http://maven.apache.org</url>
 
 
 	<dependencies>
 
+		<!--com.hawk.framework -->
+		
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-pub</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-dic</artifactId>
+		</dependency>
 
 		<!-- com.hawk.ecom -->
-		
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-trans-service</artifactId>
+		</dependency>
 
 
 		<!-- mybatis -->

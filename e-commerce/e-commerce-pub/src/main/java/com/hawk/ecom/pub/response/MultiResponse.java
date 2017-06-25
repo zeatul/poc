@@ -7,7 +7,9 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class MultiResponse<T> implements ResponseData{
 	
-	public int getDbcount() {
+	
+
+	public Integer getDbcount() {
 		return dbcount;
 	}
 
@@ -25,7 +27,7 @@ public class MultiResponse<T> implements ResponseData{
 		
 	}
 
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
@@ -33,7 +35,7 @@ public class MultiResponse<T> implements ResponseData{
 
 	private List<T> records;
 	
-	private int count = 0;
+	private Integer count ;
 	
 	private Integer dbcount ;
 	

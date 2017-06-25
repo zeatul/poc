@@ -8,16 +8,14 @@
 		<relativePath>../e-commerce-parent/pom.xml</relativePath>
 	</parent>
 
-	<packaging>war</packaging>
-	<artifactId>e-commerce-ecom-query-web</artifactId>
-	<name>e-commerce-ecom-query-web</name>
+	<packaging>jar</packaging>
+	<artifactId>e-commerce-ecom-query-service</artifactId>
+	<name>e-commerce-ecom-query-service</name>
 	<url>http://maven.apache.org</url>
 
 
 	<dependencies>
-
 		<!--com.hawk.framework -->
-		
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-pub</artifactId>
@@ -26,15 +24,14 @@
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
-		</dependency>
+		</dependency> 
 
-		<!-- com.hawk.ecom -->
-
+		<!--com.hawk.e-commerce -->
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
-			<artifactId>e-commerce-ecom-query-service</artifactId>
-		</dependency>
-
+			<artifactId>e-commerce-pub</artifactId>
+		</dependency> 
+		
 
 		<!-- mybatis -->
 		<dependency>
@@ -45,6 +42,25 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- spring modules -->
@@ -105,54 +121,6 @@
 			<artifactId>spring-web</artifactId>
 		</dependency>
 
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- jackson -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-
-
-
-		<!-- log -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-		</dependency>
-
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -173,36 +141,4 @@
 		</dependency>
 
 	</dependencies>
-
-	<build>
-		<!-- 资源过滤 -->
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>${project.basedir}/src/main/sql</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
-		<!-- test资源过滤 -->
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-
-
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
