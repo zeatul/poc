@@ -170,6 +170,7 @@
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
 			AND id = #{id}
+			AND sku_version = #{skuVersion}
 		</trim>
 	</sql>
 	

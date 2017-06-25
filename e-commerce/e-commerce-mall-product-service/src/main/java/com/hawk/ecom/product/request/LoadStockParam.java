@@ -3,11 +3,34 @@ package com.hawk.ecom.product.request;
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
-public class ListSkuOfProductParam {
+public class LoadStockParam {
 	
+	
+
+	
+
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Integer  id) {
+		this.id = id;
+	}
+
+
+
+
 	public String getOperatorCode() {
 		return operatorCode;
 	}
+
+
 
 
 	public void setOperatorCode(String operatorCode) {
@@ -15,24 +38,22 @@ public class ListSkuOfProductParam {
 	}
 
 
-	public Integer getProductId() {
-		return productId;
-	}
 
 
-	public void setProductId(Integer  productId) {
-		this.productId = productId;
-	}
+	/**
+	 * 产品主键
+	 */
+	@NotNull
+	private Integer id;
 
+	
+	
 
 	/**
 	 * 操作员编号
 	 */
 	@MallNotLogin
 	private String operatorCode;
-	
-	
-	@NotNull
-	private Integer productId;
+
 
 }

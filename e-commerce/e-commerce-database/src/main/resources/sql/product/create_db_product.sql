@@ -52,7 +52,7 @@ drop table if exists t_prd_sku;
 
 drop table if exists t_prd_sku_history;
 
-drop index i_prd_snapshoot on t_prd_sku_snapshoot;
+drop index ui_prd_snapshoot on t_prd_sku_snapshoot;
 
 drop table if exists t_prd_sku_snapshoot;
 
@@ -424,7 +424,7 @@ create table t_prd_product_history
    update_date          timestamp(3) null comment '更新日期',
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
-   primary key (id)
+   primary key (id, product_version)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -446,7 +446,7 @@ create table t_prd_sku
    market_price         decimal(15,4) comment '市场价',
    sale_price           decimal(15,4) comment '销售价',
    currency             smallint unsigned comment '币种',
-   sku_stock_amount     integer not null comment 'SKU库存数量',
+   sku_stock_quantity   integer not null comment 'SKU库存数量',
    is_special_price     tinyint unsigned not null comment '是否有特价',
    width                integer unsigned comment '宽度',
    depth                integer unsigned comment '深度',
@@ -529,7 +529,7 @@ create table t_prd_sku_history
    update_date          timestamp(3) null comment '更新日期',
    delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
-   primary key (id)
+   primary key (id, sku_version)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -570,12 +570,14 @@ create table t_prd_sku_snapshoot
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
-/* Index: i_prd_snapshoot                                       */
+/* Index: ui_prd_snapshoot                                      */
 /*==============================================================*/
-create index i_prd_snapshoot on t_prd_sku_snapshoot
+create unique index ui_prd_snapshoot on t_prd_sku_snapshoot
 (
    product_id,
-   sku_id
+   sku_id,
+   product_version,
+   sku_version
 );
 
 /*==============================================================*/
@@ -599,6 +601,7 @@ create table t_prd_stock
    id                   integer unsigned not null comment '主键',
    product_id           integer unsigned not null comment '产品主键',
    sku_id               integer unsigned not null comment '产品SKU主键',
+   store_code           varchar(50) not null comment '商户编号',
    warehouse_code       varchar(50) comment '仓库编号',
    stock_item_code      varchar(50) comment '仓库货物编号',
    stock_quantity       integer not null comment '库存数量',

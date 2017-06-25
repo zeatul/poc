@@ -1,6 +1,7 @@
 package com.hawk.ecom.product.request;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
+import com.hawk.framework.dic.validation.annotation.Min;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
 public class CreateStockParam {
@@ -96,6 +97,7 @@ public class CreateStockParam {
 	 * 库存数量 stock_quantity
 	 */
 	@NotNull
+	@Min(minValue="0")
 	private Integer stockQuantity;
 	
 	/**

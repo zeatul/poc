@@ -25,7 +25,6 @@ import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.ecom.product.request.CreateSkuParam;
-import com.hawk.ecom.product.request.ListSkuOfProductParam;
 import com.hawk.ecom.product.request.ListSkuParam;
 import com.hawk.ecom.product.request.LoadSkuParam;
 import com.hawk.ecom.product.request.RemoveSkuParam;
@@ -77,13 +76,6 @@ public class SkuAdminController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/listOfProduct/productId/{productId}", method = {GET,POST})
-	public WebResponse<MultiResponse<SkuInfoResponse>> listSkuOfProduct (@PathVariable Integer productId) throws Exception {
-		ListSkuOfProductParam param = new ListSkuOfProductParam();
-		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		param.setProductId(productId);
-		return SuccessResponse.build(new MultiResponse<SkuInfoResponse>(DomainTools.copy(skuService.listSkuOfProduct(param), SkuInfoResponse.class)));
-	}
 	
 	@RequestMapping(value = "/list", method = {POST})
 	public WebResponse<MultiResponse<SkuInfoResponse>> listSku(HttpServletRequest request) throws Exception {

@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hawk.ecom.product.persist.domain.SkuDomain;
 import com.hawk.ecom.product.persist.domain.StockDomain;
-import com.hawk.ecom.product.request.CreateSkuParam;
 import com.hawk.ecom.product.request.CreateStockParam;
-import com.hawk.ecom.product.response.SkuInfoResponse;
+import com.hawk.ecom.product.request.ListStockParam;
+import com.hawk.ecom.product.request.UpdateStockParam;
 import com.hawk.ecom.product.response.StockInfoResponse;
-import com.hawk.ecom.product.service.SkuService;
 import com.hawk.ecom.product.service.StockService;
+import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.pub.web.HttpRequestTools;
+import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -47,6 +49,24 @@ public class StockAdminController {
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		StockDomain stockDomain = stockService.createStock(param);
 		return SuccessResponse.build(DomainTools.copy(stockDomain, StockInfoResponse.class));
+	} 
+	
+	@RequestMapping(value = "/update", method = POST)
+	public WebResponse<ResponseData> updateStock(HttpServletRequest request) throws Exception {
+		UpdateStockParam param = HttpRequestTools.parse(request, UpdateStockParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		stockService.updateStock(param);
+		return SuccessResponse.build(null);
+	}
+	
+	@RequestMapping(value = "/list", method = POST)
+	public WebResponse<MultiResponse<StockInfoResponse>> listStock(HttpServletRequest request) throws Exception {
+		ListStockParam param = HttpRequestTools.parse(request, ListStockParam.class);
+		param.setOperatorCode(AuthThreadLocal.getUserCode());
+		PagingQueryResultWrap<StockDomain> wrap = stockService.listStock(param);
+
+		MultiResponse<StockInfoResponse> result = new MultiResponse<StockInfoResponse>(MybatisTools.copy(wrap, StockInfoResponse.class));
+		return SuccessResponse.build(result);
 	} 
 
 }

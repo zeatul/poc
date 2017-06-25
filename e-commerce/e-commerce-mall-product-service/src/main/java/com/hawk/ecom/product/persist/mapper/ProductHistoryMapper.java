@@ -15,9 +15,10 @@ public interface ProductHistoryMapper  {
 	/**
 	 * 根据主键加载记录
 	 * @param id 主键
+	 * @param productVersion 产品版本号
 	 * @return 查询到的记录
 	 */
-	ProductHistoryDomain load(@Param("id")Integer id );
+	ProductHistoryDomain load(@Param("id")Integer id, @Param("productVersion")Integer productVersion );
 	
 	/**
 	 * 动态条件加载记录
@@ -43,9 +44,10 @@ public interface ProductHistoryMapper  {
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
 	 * @param id 主键
+	 * @param productVersion 产品版本号
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("id")Integer id );
+	int countByPK(@Param("id")Integer id, @Param("productVersion")Integer productVersion );
 	
 	
 	/**
@@ -58,9 +60,10 @@ public interface ProductHistoryMapper  {
 	/**
 	 * 根据主键删除记录
 	 * @param id 主键
+	 * @param productVersion 产品版本号
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("id")Integer id );
+	int delete(@Param("id")Integer id, @Param("productVersion")Integer productVersion );
 	
 	/**
 	 * 动态删除记录

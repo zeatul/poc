@@ -41,7 +41,8 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+29, "SKU属性未被产品定义");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+30, "缺少SKU属性,[比产品定义里的少]");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+31, "产品SKU用到的属性名和产品定义里的sku属性名不完全一致");
-//		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+32, "产品SKU更新库存量遇到并发冲突，请重试");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+33, "库存信息未找到");
 	
 	}
 	

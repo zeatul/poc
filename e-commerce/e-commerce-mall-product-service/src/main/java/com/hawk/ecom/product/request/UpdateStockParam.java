@@ -1,31 +1,15 @@
-package com.hawk.ecom.product.response;
+package com.hawk.ecom.product.request;
 
-import com.hawk.framework.pub.web.ResponseData;
+import com.hawk.ecom.muser.annotation.MallNotLogin;
 
-public class StockInfoResponse implements ResponseData{
-	
+public class UpdateStockParam {
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Integer productId) {
-		this.productId = productId;
-	}
-
-	public Integer getSkuId() {
-		return skuId;
-	}
-
-	public void setSkuId(Integer skuId) {
-		this.skuId = skuId;
 	}
 
 	public String getWarehouseCode() {
@@ -60,28 +44,20 @@ public class StockInfoResponse implements ResponseData{
 		this.stockMemo = stockMemo;
 	}
 
-	public Integer getStockOperation() {
-		return stockOperation;
+	public String getOperatorCode() {
+		return operatorCode;
 	}
 
-	public void setStockOperation(Integer stockOperation) {
-		this.stockOperation = stockOperation;
+	public void setOperatorCode(String operatorCode) {
+		this.operatorCode = operatorCode;
 	}
 
 	/**
 	 * 主键 id
 	 */
 	private Integer id;
+
 	
-	/**
-	 * 产品主键 product_id
-	 */
-	private Integer productId;
-	
-	/**
-	 * 产品SKU主键 sku_id
-	 */
-	private Integer skuId;
 	
 	/**
 	 * 仓库编号 warehouse_code
@@ -104,10 +80,9 @@ public class StockInfoResponse implements ResponseData{
 	private String stockMemo;
 	
 	/**
-	 * 库存操作类型 stock_operation
+	 * 操作员编号
 	 */
-	private Integer stockOperation;
-	
-	
+	@MallNotLogin
+	private String operatorCode;
 
 }

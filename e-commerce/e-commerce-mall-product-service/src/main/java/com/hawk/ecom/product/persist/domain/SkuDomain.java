@@ -72,9 +72,9 @@ public class SkuDomain implements Serializable {
 	private Integer currency;
 	
 	/**
-	 * SKU库存数量 sku_stock_amount
+	 * SKU库存数量 sku_stock_quantity
 	 */
-	private Integer skuStockAmount;
+	private Integer skuStockQuantity;
 	
 	/**
 	 * 是否有特价 is_special_price
@@ -340,18 +340,18 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU库存数量 sku_stock_amount
+	 * @return SKU库存数量 sku_stock_quantity
 	 */
-	public Integer getSkuStockAmount(){
-		return skuStockAmount;
+	public Integer getSkuStockQuantity(){
+		return skuStockQuantity;
 	}
 	
 	/**
 	 * 
-	 * @param skuStockAmount SKU库存数量 sku_stock_amount
+	 * @param skuStockQuantity SKU库存数量 sku_stock_quantity
 	 */	
-	public void setSkuStockAmount (Integer skuStockAmount) {
-		this.skuStockAmount = skuStockAmount;
+	public void setSkuStockQuantity (Integer skuStockQuantity) {
+		this.skuStockQuantity = skuStockQuantity;
 	}
 	
 	/**

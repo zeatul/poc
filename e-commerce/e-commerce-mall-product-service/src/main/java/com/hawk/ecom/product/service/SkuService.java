@@ -47,7 +47,6 @@ import com.hawk.ecom.product.persist.mapper.SkuSnapshootMapper;
 import com.hawk.ecom.product.persist.mapper.StockHistoryMapper;
 import com.hawk.ecom.product.persist.mapper.StockMapper;
 import com.hawk.ecom.product.request.CreateSkuParam;
-import com.hawk.ecom.product.request.ListSkuOfProductParam;
 import com.hawk.ecom.product.request.ListSkuParam;
 import com.hawk.ecom.product.request.LoadSkuParam;
 import com.hawk.ecom.product.request.RemoveSkuParam;
@@ -109,6 +108,34 @@ public class SkuService {
 			throw new SkuNotFoundRuntimeException();
 		}
 		return skuDomain;
+	}
+	
+	/**
+	 * 乐观锁更新产品SkU库存
+	 * @param skuDomain
+	 * @param delta
+	 * @param userCode
+	 * @param now
+	 * @return
+	 */
+	public boolean updateSkuSotckQuantity(SkuDomain skuDomain, int delta,String userCode,Date now){
+		/**
+		 * 乐观锁更新产品Sku的数量,成功后,增加库存条目
+		 */
+		MybatisParam params = new MybatisParam()//
+				.put("old_skuStockQuantity", skuDomain.getSkuStockQuantity())//
+				.put("old_updateDate", skuDomain.getUpdateDate())//
+				.put("old_id", skuDomain.getId())//
+				.put("old_updateUserCode", skuDomain.getUpdateUserCode())//
+				.put("skuStockQuantity", skuDomain.getSkuStockQuantity() + delta)//
+				.put("updateUserCode", userCode)//
+				.put("updateDate", now);
+		int updatedRowCount = skuMapper.updateDynamic(params);
+		if (updatedRowCount != 1){
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**
@@ -232,7 +259,7 @@ public class SkuService {
 		/**
 		 * 新创建的产品SKU库存数量为0
 		 */
-		skuDomain.setSkuStockAmount(0);
+		skuDomain.setSkuStockQuantity(0);
 		skuDomain.setStoreCode(productDomain.getStoreCode());
 		skuDomain.setUpdateDate(now);
 		skuDomain.setUpdateUserCode(userCode);
