@@ -26,6 +26,7 @@ import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateSkuRuntimeException;
 import com.hawk.ecom.product.exception.LackOfSkuAttrNameOfProductRuntimeException;
 import com.hawk.ecom.product.exception.ProductStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.SkuAttrNameIdsIsNotSameWithProductRuntimeException;
 import com.hawk.ecom.product.exception.SkuAttrNameIsNotDesignedByProductRuntimeException;
 import com.hawk.ecom.product.exception.SkuIsNotAcceptableForSaleRuntimeException;
 import com.hawk.ecom.product.exception.SkuNotFoundRuntimeException;
@@ -239,8 +240,10 @@ public class SkuService {
 		skuDomain.setCreateUserCode(userCode);
 
 		/**
-		 * 设置主键
+		 * 设置主键和版本号
 		 */
+		skuDomain.setSkuVersion(0);
+		skuDomain.setProductVersion(productDomain.getProductVersion());
 		skuDomain.setId(pkGenService.genPk());
 
 		try {
@@ -275,10 +278,11 @@ public class SkuService {
 	/**
 	 * 
 	 * @param updateSkuParam
+	 * @throws Exception 
 	 */
 	@Valid
 	@Transactional
-	public void updateSku(@Valid @NotEmpty("参数") UpdateSkuParam updateSkuParam) {
+	public void updateSku(@Valid @NotEmpty("参数") UpdateSkuParam updateSkuParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -440,6 +444,20 @@ public class SkuService {
 		if (ConstBoolean.parse(productDomain.getIsVirtual())) {
 			virtualSku(updateDomain);
 		}
+		
+		/**
+		 * 是否变更版本号
+		 */
+		if(needChangeSkuVersion(skuDomain, updateDomain)){
+			updateDomain.setSkuVersion(skuDomain.getSkuVersion() +1);
+			/**
+			 * 保留历史
+			 */
+			SkuHistoryDomain skuHistoryDomain = DomainTools.copy(skuDomain, SkuHistoryDomain.class);
+			skuHistoryMapper.insert(skuHistoryDomain);
+		}
+		
+		updateDomain.setProductVersion(productDomain.getProductVersion());
 
 		try {
 			skuMapper.updateWithoutNull(updateDomain);
@@ -452,6 +470,22 @@ public class SkuService {
 		 */
 		insertSkuAttr(productAttrDomainList, now, userCode, productId, skuDomain.getId());
 
+	}
+	
+	private boolean needChangeSkuVersion(SkuDomain pre ,SkuDomain next){
+		if (next.getSkuName() != null && !next.getSkuName().equals(pre.getSkuName())){
+			return true;
+		}
+		
+		if (next.getSkuCode() != null && !next.getSkuName().equals(pre.getSkuCode())){
+			return true;
+		}
+		
+		if (next.getSkuAttrValueValues() != null && !next.getSkuName().equals(pre.getSkuAttrValueValues())){
+			return true;
+		}
+		
+		return false;
 	}
 
 	private void virtualSku(SkuDomain skuDomain) {
@@ -480,6 +514,7 @@ public class SkuService {
 		String userCode = AuthThreadLocal.getUserCode();
 		for (Integer id : updateSkuStatusParam.getIds()) {
 			SkuDomain skuDomain = loadSkuById(id);
+			ProductDomain productDomain = productService.loadProduct(skuDomain.getProductId());
 
 			if (status != skuDomain.getSkuStatus()) {
 				if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getUserCode())) {
@@ -494,16 +529,30 @@ public class SkuService {
 					if (skuDomain.getSalePrice() == null || skuDomain.getSalePrice().doubleValue() <= 0) {
 						throw new SkuIsNotAcceptableForSaleRuntimeException();
 					}
+					
+					/**
+					 * SkU上架时，sku属性值对应的属性名Id集合要和产品定义的属性名Id集合完全一致
+					 */
+					if (!compareSkuAttrOfProductAndSKu(productDomain,skuDomain)){
+						throw new SkuAttrNameIdsIsNotSameWithProductRuntimeException();
+					}
 
 					/**
 					 * 记录快照
 					 */
-					SkuSnapshootDomain skuSnapshootDomain = buildSnapshoot(skuDomain,now,userCode);
-					skuSnapshootMapper.insert(skuSnapshootDomain);
-					updateDomain.setSkuSnapshootId(skuSnapshootDomain.getId());
+					try {
+						SkuSnapshootDomain skuSnapshootDomain = buildSnapshoot(skuDomain,productDomain,now,userCode);
+						skuSnapshootMapper.insert(skuSnapshootDomain);
+						updateDomain.setSkuSnapshootId(skuSnapshootDomain.getId());
+					} catch (DuplicateKeyException e) {
+						logger.error("最新快照和当前版本内容一致，无需建立快照");
+					}
 					
 				}
-				
+				/**
+				 * 产品版本号保持一致
+				 */
+				updateDomain.setProductVersion(productDomain.getProductVersion());
 				updateDomain.setSkuStatus(status);
 				updateDomain.setUpdateDate(now);
 				updateDomain.setUpdateUserCode(userCode);
@@ -512,8 +561,41 @@ public class SkuService {
 		}
 	}
 	
-	private SkuSnapshootDomain buildSnapshoot(SkuDomain skuDomain ,Date now ,String userCode){
-		ProductDomain productDomain = productService.loadProduct(skuDomain.getProductId());
+	/**
+	 * 比较产品定义的sku属性集合和实际的sku属性集合是否一致
+	 * @param productDomain
+	 * @param skuDomain
+	 * @return
+	 */
+	private boolean compareSkuAttrOfProductAndSKu(ProductDomain productDomain , SkuDomain skuDomain){
+		String skuAttrValueIdsStr = skuDomain.getSkuAttrValueIds();
+		String productSkuAttrNameIds = productDomain.getProductSkuAttrNameIds();					
+		if (StringTools.isNotNullOrEmpty(skuAttrValueIdsStr) && StringTools.isNullOrEmpty(productSkuAttrNameIds) ){
+			return false;
+		}
+		if (StringTools.isNullOrEmpty(skuAttrValueIdsStr) && StringTools.isNotNullOrEmpty(productSkuAttrNameIds) ){
+			return false;
+		}
+		
+		String[] strs = skuAttrValueIdsStr.split(ProductService.ATTR_NAME_ID_SPLITTER);
+		List<Integer> skuAttrNameIdList = new ArrayList<Integer>();
+		for (String str : strs){
+			Integer attrValueId  = Integer.parseInt(str);
+			AttrValueDomain  attrValueDomain = attrValueService.loadAttrValue(attrValueId);
+			skuAttrNameIdList.add(attrValueDomain.getAttrNameId());					
+		}
+		
+		Collections.sort(skuAttrNameIdList);
+		
+		if (StringTools.concatWithSymbol(ProductService.ATTR_NAME_ID_SPLITTER, skuAttrNameIdList).equals(productSkuAttrNameIds)){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private SkuSnapshootDomain buildSnapshoot(SkuDomain skuDomain ,ProductDomain productDomain,Date now ,String userCode){
+		
 		SkuSnapshootDomain skuSnapShootDomain = new SkuSnapshootDomain();
 		skuSnapShootDomain.setCreateDate(now);
 		skuSnapShootDomain.setCreateUserCode(userCode);
@@ -536,6 +618,11 @@ public class SkuService {
 		skuSnapShootDomain.setStoreCode(productDomain.getStoreCode());
 		skuSnapShootDomain.setUpdateUserCode(userCode);
 		skuSnapShootDomain.setUpdateDate(now);
+		/**
+		 * 产品版本号必须取 产品对象的数据，因为sku的产品版本更新有延迟
+		 */
+		skuSnapShootDomain.setProductVersion(productDomain.getProductVersion());
+		skuSnapShootDomain.setSkuVersion(skuDomain.getSkuVersion());
 		return skuSnapShootDomain;
 	}
 

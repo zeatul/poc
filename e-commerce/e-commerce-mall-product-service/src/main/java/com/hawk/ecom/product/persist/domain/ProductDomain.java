@@ -102,6 +102,11 @@ public class ProductDomain implements Serializable {
 	private Integer isVirtual;
 	
 	/**
+	 *  产品版本号 product_version
+	 */
+	private Integer productVersion;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -402,6 +407,22 @@ public class ProductDomain implements Serializable {
 	 */	
 	public void setIsVirtual (Integer isVirtual) {
 		this.isVirtual = isVirtual;
+	}
+	
+	/**
+	 * 
+	 * @return  产品版本号 product_version
+	 */
+	public Integer getProductVersion(){
+		return productVersion;
+	}
+	
+	/**
+	 * 
+	 * @param productVersion  产品版本号 product_version
+	 */	
+	public void setProductVersion (Integer productVersion) {
+		this.productVersion = productVersion;
 	}
 	
 	/**

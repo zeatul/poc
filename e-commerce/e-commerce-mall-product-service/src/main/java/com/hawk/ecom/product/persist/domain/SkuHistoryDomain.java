@@ -117,6 +117,16 @@ public class SkuHistoryDomain implements Serializable {
 	private Integer skuSnapshootId;
 	
 	/**
+	 * 产品版本号 product_version
+	 */
+	private Integer productVersion;
+	
+	/**
+	 * sku版本号 sku_version
+	 */
+	private Integer skuVersion;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -465,6 +475,38 @@ public class SkuHistoryDomain implements Serializable {
 	 */	
 	public void setSkuSnapshootId (Integer skuSnapshootId) {
 		this.skuSnapshootId = skuSnapshootId;
+	}
+	
+	/**
+	 * 
+	 * @return 产品版本号 product_version
+	 */
+	public Integer getProductVersion(){
+		return productVersion;
+	}
+	
+	/**
+	 * 
+	 * @param productVersion 产品版本号 product_version
+	 */	
+	public void setProductVersion (Integer productVersion) {
+		this.productVersion = productVersion;
+	}
+	
+	/**
+	 * 
+	 * @return sku版本号 sku_version
+	 */
+	public Integer getSkuVersion(){
+		return skuVersion;
+	}
+	
+	/**
+	 * 
+	 * @param skuVersion sku版本号 sku_version
+	 */	
+	public void setSkuVersion (Integer skuVersion) {
+		this.skuVersion = skuVersion;
 	}
 	
 	/**

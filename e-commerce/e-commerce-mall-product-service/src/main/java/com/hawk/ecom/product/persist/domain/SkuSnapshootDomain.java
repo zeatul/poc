@@ -102,6 +102,16 @@ public class SkuSnapshootDomain implements Serializable {
 	private String skuMemo;
 	
 	/**
+	 * 产品版本号 product_version
+	 */
+	private Integer productVersion;
+	
+	/**
+	 * sku版本号 sku_version
+	 */
+	private Integer skuVersion;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -402,6 +412,38 @@ public class SkuSnapshootDomain implements Serializable {
 	 */	
 	public void setSkuMemo (String skuMemo) {
 		this.skuMemo = skuMemo;
+	}
+	
+	/**
+	 * 
+	 * @return 产品版本号 product_version
+	 */
+	public Integer getProductVersion(){
+		return productVersion;
+	}
+	
+	/**
+	 * 
+	 * @param productVersion 产品版本号 product_version
+	 */	
+	public void setProductVersion (Integer productVersion) {
+		this.productVersion = productVersion;
+	}
+	
+	/**
+	 * 
+	 * @return sku版本号 sku_version
+	 */
+	public Integer getSkuVersion(){
+		return skuVersion;
+	}
+	
+	/**
+	 * 
+	 * @param skuVersion sku版本号 sku_version
+	 */	
+	public void setSkuVersion (Integer skuVersion) {
+		this.skuVersion = skuVersion;
 	}
 	
 	/**

@@ -22,6 +22,8 @@
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
 		sku_memo AS "skuMemo" ,
+		product_version AS "productVersion" ,
+		sku_version AS "skuVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -49,6 +51,8 @@
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
 			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
+			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
+			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -77,6 +81,8 @@
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
 			AND sku_memo = #{old_skuMemo}
+			AND product_version = #{old_productVersion}
+			AND sku_version = #{old_skuVersion}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -105,6 +111,8 @@
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
 			sku_memo = #{skuMemo},
+			product_version = #{productVersion},
+			sku_version = #{skuVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -133,6 +141,8 @@
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
 			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
+			<if test="productVersion != null">product_version = #{productVersion},</if>
+			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -194,6 +204,8 @@
 				market_price,				
 				sale_price,				
 				sku_memo,				
+				product_version,				
+				sku_version,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -219,6 +231,8 @@
 			#{marketPrice},
 			#{salePrice},
 			#{skuMemo},
+			#{productVersion},
+			#{skuVersion},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

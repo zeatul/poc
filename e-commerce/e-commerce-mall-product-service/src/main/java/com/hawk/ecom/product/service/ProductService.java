@@ -81,28 +81,28 @@ public class ProductService {
 
 	@Autowired
 	private AttrValueService attrValueService;
-	
+
 	@Autowired
 	private AttrNameService attrNameService;
-	
+
 	@Autowired
 	private ProductAttrMapper productAttrMapper;
-	
+
 	@Autowired
 	private ProductHistoryMapper productHistoryMapper;
-	
+
 	@Autowired
 	private SkuService skuService;
-	
+
 	@Autowired
 	private SkuMapper skuMapper;
-	
+
 	@Autowired
 	private SkuHistoryMapper skuHistoryMapper;
-	
+
 	@Autowired
 	private StockMapper stockMapper;
-	
+
 	@Autowired
 	private StockHistoryMapper stockHistoryMapper;
 
@@ -111,7 +111,7 @@ public class ProductService {
 	private PkGenService pkGenService;
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	public final static String ATTR_NAME_ID_SPLITTER = ",";
 	public final static String ATTR_DISPLAY_VALUE_SPLITTER = " ";
 
@@ -126,38 +126,38 @@ public class ProductService {
 		}
 		return productDomain;
 	}
-	
+
 	@Valid
 	public ProductDomain loadProduct(@Valid @NotEmpty("参数") LoadProductParam loadProdcutParam) {
-		
+
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
-		
+
 		ProductDomain productDomain = loadProduct(loadProdcutParam.getId());
 		/**
 		 * 检测是否是本用户的商铺的商品
 		 */
-		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+		if (!productDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())) {
 			throw new UnMatchedStoreOperatorException();
 		}
-		
-		
+
 		return productDomain;
 	}
-	
+
 	/**
 	 * 产品是否有上架状态的sku存在
+	 * 
 	 * @param productId
 	 * @return
 	 */
-	public boolean hasAnyOnSaleSku(Integer productId){
-		if (productId == null){
+	public boolean hasAnyOnSaleSku(Integer productId) {
+		if (productId == null) {
 			logger.error("hasAnyOnSaleSku: productId is null");
 			return false;
 		}
 		MybatisParam params = new MybatisParam().put("productId", productId).put("skuStatus", ConstProduct.SkuStatus.ON_SALE);
-		return skuMapper.count(params)>0;
+		return skuMapper.count(params) > 0;
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class ProductService {
 		if (!ConstBoolean.parse(category.getIsLeaf())) {
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		
+
 		if (category.getCategoryVariantStatus() != ConstCategory.CategoryVariantStatus.AVAILABLE) {
 			throw new CategoryVariantStatusIsNotAcceptableRuntimeException();
 		}
@@ -212,12 +212,12 @@ public class ProductService {
 		 * 检查所有输入的属性值对应的属性名Id和sku属性ID 不能出现相同的属性ID
 		 */
 		Map<Integer, Integer> checkAttrNameMap = new HashMap<Integer, Integer>();
-		
+
 		/**
 		 * 设置SKU属性名ID集合
 		 */
-		List<Integer> skuAttrNameIds = createProdcutParam.getProductSkuAttrNameIds();		
-		if (CollectionTools.isNotNullOrEmpty(skuAttrNameIds)){
+		List<Integer> skuAttrNameIds = createProdcutParam.getProductSkuAttrNameIds();
+		if (CollectionTools.isNotNullOrEmpty(skuAttrNameIds)) {
 			/**
 			 * 必须先排序
 			 */
@@ -229,26 +229,26 @@ public class ProductService {
 			/**
 			 * 校验属性名ID必须存在，不能重复，必须有和创建的产品有相同的产品目录
 			 */
-			for (Integer attrNameId : skuAttrNameIds){
+			for (Integer attrNameId : skuAttrNameIds) {
 				AttrNameDomain attrNameDomain = attrNameService.loadById(attrNameId);
 				if (!categoryId.equals(attrNameDomain.getCategoryId())) {
 					throw new CategoryIsDifferentRuntimeException();
 				}
-				
+
 				if (checkAttrNameMap.containsKey(attrNameId)) {
 					throw new AttrNameIsUsedByProductRuntimeException();
 				} else {
 					checkAttrNameMap.put(attrNameId, attrNameId);
 				}
 			}
-			
+
 			productDomain.setProductSkuAttrNameIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, skuAttrNameIds));
 		}
 
 		/**
 		 * 设定关键属性名值ID集合 和 关键属性值值集合
 		 */
-		List<Integer> keyAttrValueIds = createProdcutParam.getProductKeyAttrValueIds();		
+		List<Integer> keyAttrValueIds = createProdcutParam.getProductKeyAttrValueIds();
 		List<ProductAttrDomain> productAttrDomainList = new ArrayList<ProductAttrDomain>();
 		if (CollectionTools.isNotNullOrEmpty(keyAttrValueIds)) {
 			/**
@@ -284,18 +284,18 @@ public class ProductService {
 				productAttrDomain.setAttrValueId(attrValueId);
 				productAttrDomainList.add(productAttrDomain);
 			}
-			
-			productDomain.setProductKeyAttrValueIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, keyAttrValueIds) );
-			productDomain.setProductKeyAttrValueValues(StringTools.concatWithSymbol(ATTR_DISPLAY_VALUE_SPLITTER,attrValues));
-			
+
+			productDomain.setProductKeyAttrValueIds(StringTools.concatWithSymbol(ATTR_NAME_ID_SPLITTER, keyAttrValueIds));
+			productDomain.setProductKeyAttrValueValues(StringTools.concatWithSymbol(ATTR_DISPLAY_VALUE_SPLITTER, attrValues));
+
 		}
-		
+
 		/**
 		 * 设定普通属性名值ID集合 和 普通属性值值集合
 		 */
-		List<Integer> normalAttrValueIds = createProdcutParam.getProductNormalAttrValueIds();	
+		List<Integer> normalAttrValueIds = createProdcutParam.getProductNormalAttrValueIds();
 		if (CollectionTools.isNotNullOrEmpty(normalAttrValueIds)) {
-			
+
 			/**
 			 * 产品目录分类ID
 			 */
@@ -323,12 +323,13 @@ public class ProductService {
 				productAttrDomain.setAttrValueId(attrValueId);
 				productAttrDomainList.add(productAttrDomain);
 			}
-			
+
 		}
 
+		productDomain.setProductVersion(1);
 		productDomain.setId(pkGenService.genPk());
-		
-		for (ProductAttrDomain productAttrDomain : productAttrDomainList){
+
+		for (ProductAttrDomain productAttrDomain : productAttrDomainList) {
 			productAttrDomain.setProductId(productDomain.getId());
 			productAttrDomain.setId(pkGenService.genPk());
 			productAttrDomain.setSkuId(0);
@@ -359,15 +360,17 @@ public class ProductService {
 	 * 不是本用户的商铺的商品，不能修改
 	 * 
 	 * @param updateProdcutParam
+	 * @throws Exception 
 	 */
 	@Valid
 	@Transactional
-	public void updateProduct(@Valid @NotEmpty("参数") UpdateProductParam updateProdcutParam) {
+	public void updateProduct(@Valid @NotEmpty("参数") UpdateProductParam updateProdcutParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		ProductDomain productDomain = loadProduct(updateProdcutParam.getId());
+		Integer productId = updateProdcutParam.getId();
+		ProductDomain productDomain = loadProduct(productId);
 		if (productDomain.getProductStatus() != ConstProduct.ProductStatus.EDITING) {
 			throw new ProductStatusIsNotAcceptableRuntimeException();
 		}
@@ -615,13 +618,22 @@ public class ProductService {
 		}
 		
 		
-
 		/**
-		 * TODO:更新是否要保留上次版本,这个得看产品的销售情况
-		 * 如何建立产品快照，
-		 * 也可以在商品上架的时候，建立快照，这个更好
-		 * 商品上架时候，要检验商品SkU是否匹配现在的SKU属性设置
+		 * 是否需要变更版本号
 		 */
+		if (needChangeVersion(productDomain,updateDomain)){
+			updateDomain.setProductVersion(productDomain.getProductVersion()+1);
+			/*保留历史*/
+			ProductHistoryDomain productHistoryDomain = DomainTools.copy(productDomain, ProductHistoryDomain.class);
+			productHistoryMapper.insert(productHistoryDomain);
+			
+			/**
+			 * 产品发生重大变化，强迫产品sku进入编辑状态,
+			 * 后续sku上架或更新的时候，会校验对应的sku属性名集合是否一致，强迫更新成一致，才能上架
+			 */
+			forceSkuEditing(productId,now,userCode);
+		}
+		
 
 		try {
 			productMapper.updateWithoutNull(updateDomain);
@@ -639,6 +651,40 @@ public class ProductService {
 			productAttrDomain.setUpdateUserCode(userCode);
 			productAttrMapper.insert(productAttrDomain);
 		}
+	}
+	
+	private void forceSkuEditing(int productId,Date now, String userCode){
+		MybatisParam params = new MybatisParam()
+				.put("productId", productId)
+				.put("skuStatus", ConstProduct.SkuStatus.ON_SALE);
+		List<SkuDomain> skuDomainList = skuMapper.loadDynamic(params);
+		for (SkuDomain skuDomain : skuDomainList){
+			SkuDomain updateDomain = new SkuDomain();
+			updateDomain.setId(skuDomain.getId());
+			updateDomain.setSkuStatus(ConstProduct.SkuStatus.EDITING);
+			updateDomain.setUpdateDate(now);
+			updateDomain.setUpdateUserCode(userCode);
+		}
+	}
+
+	public boolean needChangeVersion(ProductDomain pre, ProductDomain next) {
+		if (next.getProductName() != null && !next.getProductName().equalsIgnoreCase(pre.getProductName())) {
+			return true;
+		}
+		
+		if (next.getProductCode() != null && !next.getProductName().equalsIgnoreCase(pre.getProductCode())) {
+			return true;
+		}
+
+		if (next.getProductKeyAttrValueValues() != null && !next.getProductKeyAttrValueValues().equalsIgnoreCase(pre.getProductKeyAttrValueValues())) {
+			return true;
+		}
+		
+		if (next.getProductSkuAttrNameIds() != null && ! next.getProductSkuAttrNameIds().equalsIgnoreCase(pre.getProductSkuAttrNameIds())){
+			return true;
+		}		
+		
+		return false;
 	}
 
 	/**

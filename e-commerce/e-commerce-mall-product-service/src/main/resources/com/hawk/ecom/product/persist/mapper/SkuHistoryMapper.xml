@@ -25,6 +25,8 @@
 		weight_unit AS "weightUnit" ,
 		sku_memo AS "skuMemo" ,
 		sku_snapshoot_id AS "skuSnapshootId" ,
+		product_version AS "productVersion" ,
+		sku_version AS "skuVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -55,6 +57,8 @@
 			<if test="weightUnit != null"> AND weight_unit = #{weightUnit}  </if>
 			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
 			<if test="skuSnapshootId != null"> AND sku_snapshoot_id = #{skuSnapshootId}  </if>
+			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
+			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -86,6 +90,8 @@
 			AND weight_unit = #{old_weightUnit}
 			AND sku_memo = #{old_skuMemo}
 			AND sku_snapshoot_id = #{old_skuSnapshootId}
+			AND product_version = #{old_productVersion}
+			AND sku_version = #{old_skuVersion}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -117,6 +123,8 @@
 			weight_unit = #{weightUnit},
 			sku_memo = #{skuMemo},
 			sku_snapshoot_id = #{skuSnapshootId},
+			product_version = #{productVersion},
+			sku_version = #{skuVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -148,6 +156,8 @@
 			<if test="weightUnit != null">weight_unit = #{weightUnit},</if>
 			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
 			<if test="skuSnapshootId != null">sku_snapshoot_id = #{skuSnapshootId},</if>
+			<if test="productVersion != null">product_version = #{productVersion},</if>
+			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -212,6 +222,8 @@
 				weight_unit,				
 				sku_memo,				
 				sku_snapshoot_id,				
+				product_version,				
+				sku_version,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -240,6 +252,8 @@
 			#{weightUnit},
 			#{skuMemo},
 			#{skuSnapshootId},
+			#{productVersion},
+			#{skuVersion},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},
