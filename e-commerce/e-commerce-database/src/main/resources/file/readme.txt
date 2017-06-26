@@ -33,6 +33,9 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/create_db_product.sql;
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/init_data_product.sql;
 
+#交易
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/trans/create_db_trans.sql;
+
 
 #################local##########################
 
@@ -68,6 +71,11 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/
 #产品
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/create_db_product.sql
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/product/init_data_product.sql
+
+
+#交易
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/trans/create_db_trans.sql
+
 
 
 

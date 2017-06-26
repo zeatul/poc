@@ -13,12 +13,12 @@ import com.hawk.ecom.trans.spring.config.EcomTransRootConfig.WebPackage;
 
 @Configuration
 @Import({})
-@ComponentScan(basePackages = { "com.hawk.ecom.query" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
+@ComponentScan(basePackages = { "com.hawk.ecom.trans" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
 public class EcomTransRootConfig {
 
 	public static class WebPackage extends RegexPatternTypeFilter {
 		public WebPackage() {
-			super(Pattern.compile("com\\.hawk\\.ecom\\.query\\.controller"));
+			super(Pattern.compile("com\\.hawk\\.ecom\\.trans\\.controller"));
 		}
 	}
 }

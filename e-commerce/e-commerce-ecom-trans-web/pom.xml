@@ -9,8 +9,8 @@
 	</parent>
 
 	<packaging>war</packaging>
-	<artifactId>e-commerce-ecom-query-web</artifactId>
-	<name>e-commerce-ecom-query-web</name>
+	<artifactId>e-commerce-ecom-trans-web</artifactId>
+	<name>e-commerce-ecom-trans-web</name>
 	<url>http://maven.apache.org</url>
 
 

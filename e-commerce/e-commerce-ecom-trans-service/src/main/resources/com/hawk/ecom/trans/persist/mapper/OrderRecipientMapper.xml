@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderRecipientMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		order_id AS "orderId" ,
+		store_code AS "storeCode" ,
+		order_code AS "orderCode" ,
+		user_code AS "userCode" ,
+		recipient_name AS "recipientName" ,
+		recipient_mobilephone AS "recipientMobilephone" ,
+		recipient_telephone AS "recipientTelephone" ,
+		recipient_address AS "recipientAddress" ,
+		recipient_post_code AS "recipientPostCode" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="orderId != null"> AND order_id = #{orderId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="recipientName != null"> AND recipient_name = #{recipientName}  </if>
+			<if test="recipientMobilephone != null"> AND recipient_mobilephone = #{recipientMobilephone}  </if>
+			<if test="recipientTelephone != null"> AND recipient_telephone = #{recipientTelephone}  </if>
+			<if test="recipientAddress != null"> AND recipient_address = #{recipientAddress}  </if>
+			<if test="recipientPostCode != null"> AND recipient_post_code = #{recipientPostCode}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND order_id = #{old_orderId}
+			AND store_code = #{old_storeCode}
+			AND order_code = #{old_orderCode}
+			AND user_code = #{old_userCode}
+			AND recipient_name = #{old_recipientName}
+			AND recipient_mobilephone = #{old_recipientMobilephone}
+			AND recipient_telephone = #{old_recipientTelephone}
+			AND recipient_address = #{old_recipientAddress}
+			AND recipient_post_code = #{old_recipientPostCode}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			order_id = #{orderId},
+			store_code = #{storeCode},
+			order_code = #{orderCode},
+			user_code = #{userCode},
+			recipient_name = #{recipientName},
+			recipient_mobilephone = #{recipientMobilephone},
+			recipient_telephone = #{recipientTelephone},
+			recipient_address = #{recipientAddress},
+			recipient_post_code = #{recipientPostCode},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="orderId != null">order_id = #{orderId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="recipientName != null">recipient_name = #{recipientName},</if>
+			<if test="recipientMobilephone != null">recipient_mobilephone = #{recipientMobilephone},</if>
+			<if test="recipientTelephone != null">recipient_telephone = #{recipientTelephone},</if>
+			<if test="recipientAddress != null">recipient_address = #{recipientAddress},</if>
+			<if test="recipientPostCode != null">recipient_post_code = #{recipientPostCode},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="OrderRecipientDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_tra_order_recipient
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="OrderRecipientDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order_recipient
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order_recipient
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order_recipient
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="OrderRecipientDomain">
+		INSERT INTO t_tra_order_recipient (			
+				id,				
+				order_id,				
+				store_code,				
+				order_code,				
+				user_code,				
+				recipient_name,				
+				recipient_mobilephone,				
+				recipient_telephone,				
+				recipient_address,				
+				recipient_post_code				
+		)		
+		VALUES (	
+			#{id},
+			#{orderId},
+			#{storeCode},
+			#{orderCode},
+			#{userCode},
+			#{recipientName},
+			#{recipientMobilephone},
+			#{recipientTelephone},
+			#{recipientAddress},
+			#{recipientPostCode}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_tra_order_recipient
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_tra_order_recipient
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="OrderRecipientDomain">
+		UPDATE t_tra_order_recipient	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="OrderRecipientDomain">
+		UPDATE t_tra_order_recipient
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_tra_order_recipient	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="OrderRecipientDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order_recipient
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

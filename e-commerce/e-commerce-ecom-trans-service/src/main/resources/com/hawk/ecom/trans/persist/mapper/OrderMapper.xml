@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		store_code AS "storeCode" ,
+		order_code AS "orderCode" ,
+		user_code AS "userCode" ,
+		order_type AS "orderType" ,
+		order_status AS "orderStatus" ,
+		order_customer_memo AS "orderCustomerMemo" ,
+		order_store_memo AS "orderStoreMemo" ,
+		order_original_total_price AS "orderOriginalTotalPrice" ,
+		order_deduction AS "orderDeduction" ,
+		order_pay_total_price AS "orderPayTotalPrice" ,
+		order_pay_expire_time AS "orderPayExpireTime" ,
+		freight_charge AS "freightCharge" ,
+		order_desc AS "orderDesc" ,
+		支付方式 AS "支付方式" ,
+		create_date AS "createDate" ,
+		update_date AS "updateDate" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="orderType != null"> AND order_type = #{orderType}  </if>
+			<if test="orderStatus != null"> AND order_status = #{orderStatus}  </if>
+			<if test="orderCustomerMemo != null"> AND order_customer_memo = #{orderCustomerMemo}  </if>
+			<if test="orderStoreMemo != null"> AND order_store_memo = #{orderStoreMemo}  </if>
+			<if test="orderOriginalTotalPrice != null"> AND order_original_total_price = #{orderOriginalTotalPrice}  </if>
+			<if test="orderDeduction != null"> AND order_deduction = #{orderDeduction}  </if>
+			<if test="orderPayTotalPrice != null"> AND order_pay_total_price = #{orderPayTotalPrice}  </if>
+			<if test="orderPayExpireTime != null"> AND order_pay_expire_time = #{orderPayExpireTime}  </if>
+			<if test="freightCharge != null"> AND freight_charge = #{freightCharge}  </if>
+			<if test="orderDesc != null"> AND order_desc = #{orderDesc}  </if>
+			<if test="支付方式 != null"> AND 支付方式 = #{支付方式}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND id = #{old_id}
+			AND store_code = #{old_storeCode}
+			AND order_code = #{old_orderCode}
+			AND user_code = #{old_userCode}
+			AND order_type = #{old_orderType}
+			AND order_status = #{old_orderStatus}
+			AND order_customer_memo = #{old_orderCustomerMemo}
+			AND order_store_memo = #{old_orderStoreMemo}
+			AND order_original_total_price = #{old_orderOriginalTotalPrice}
+			AND order_deduction = #{old_orderDeduction}
+			AND order_pay_total_price = #{old_orderPayTotalPrice}
+			AND order_pay_expire_time = #{old_orderPayExpireTime}
+			AND freight_charge = #{old_freightCharge}
+			AND order_desc = #{old_orderDesc}
+			AND 支付方式 = #{old_支付方式}
+			AND create_date = #{old_createDate}
+			AND update_date = #{old_updateDate}
+			AND delete_date = #{old_deleteDate}
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			store_code = #{storeCode},
+			order_code = #{orderCode},
+			user_code = #{userCode},
+			order_type = #{orderType},
+			order_status = #{orderStatus},
+			order_customer_memo = #{orderCustomerMemo},
+			order_store_memo = #{orderStoreMemo},
+			order_original_total_price = #{orderOriginalTotalPrice},
+			order_deduction = #{orderDeduction},
+			order_pay_total_price = #{orderPayTotalPrice},
+			order_pay_expire_time = #{orderPayExpireTime},
+			freight_charge = #{freightCharge},
+			order_desc = #{orderDesc},
+			支付方式 = #{支付方式},
+			create_date = #{createDate},
+			update_date = #{updateDate},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="orderType != null">order_type = #{orderType},</if>
+			<if test="orderStatus != null">order_status = #{orderStatus},</if>
+			<if test="orderCustomerMemo != null">order_customer_memo = #{orderCustomerMemo},</if>
+			<if test="orderStoreMemo != null">order_store_memo = #{orderStoreMemo},</if>
+			<if test="orderOriginalTotalPrice != null">order_original_total_price = #{orderOriginalTotalPrice},</if>
+			<if test="orderDeduction != null">order_deduction = #{orderDeduction},</if>
+			<if test="orderPayTotalPrice != null">order_pay_total_price = #{orderPayTotalPrice},</if>
+			<if test="orderPayExpireTime != null">order_pay_expire_time = #{orderPayExpireTime},</if>
+			<if test="freightCharge != null">freight_charge = #{freightCharge},</if>
+			<if test="orderDesc != null">order_desc = #{orderDesc},</if>
+			<if test="支付方式 != null">支付方式 = #{支付方式},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="OrderDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_tra_order
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="OrderDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="OrderDomain">
+		INSERT INTO t_tra_order (			
+				id,				
+				store_code,				
+				order_code,				
+				user_code,				
+				order_type,				
+				order_status,				
+				order_customer_memo,				
+				order_store_memo,				
+				order_original_total_price,				
+				order_deduction,				
+				order_pay_total_price,				
+				order_pay_expire_time,				
+				freight_charge,				
+				order_desc,				
+				支付方式,				
+				create_date,				
+				update_date,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{storeCode},
+			#{orderCode},
+			#{userCode},
+			#{orderType},
+			#{orderStatus},
+			#{orderCustomerMemo},
+			#{orderStoreMemo},
+			#{orderOriginalTotalPrice},
+			#{orderDeduction},
+			#{orderPayTotalPrice},
+			#{orderPayExpireTime},
+			#{freightCharge},
+			#{orderDesc},
+			#{支付方式},
+			#{createDate},
+			#{updateDate},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_tra_order
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_tra_order
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="OrderDomain">
+		UPDATE t_tra_order	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="OrderDomain">
+		UPDATE t_tra_order
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamic" parameterType="hashmap">
+		UPDATE t_tra_order	
+		<include refid="update" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="OrderDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>
