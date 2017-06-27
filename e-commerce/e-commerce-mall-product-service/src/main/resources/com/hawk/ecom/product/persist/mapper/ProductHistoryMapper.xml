@@ -24,7 +24,6 @@
 		on_sale_endt AS "onSaleEndt" ,
 		is_virtual AS "isVirtual" ,
 		delivery_type AS "deliveryType" ,
-		is_delivery_need_extra_data AS "isDeliveryNeedExtraData" ,
 		product_version AS "productVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -55,7 +54,6 @@
 			<if test="onSaleEndt != null"> AND on_sale_endt = #{onSaleEndt}  </if>
 			<if test="isVirtual != null"> AND is_virtual = #{isVirtual}  </if>
 			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
-			<if test="isDeliveryNeedExtraData != null"> AND is_delivery_need_extra_data = #{isDeliveryNeedExtraData}  </if>
 			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -87,7 +85,6 @@
 			AND on_sale_endt = #{old_onSaleEndt}
 			AND is_virtual = #{old_isVirtual}
 			AND delivery_type = #{old_deliveryType}
-			AND is_delivery_need_extra_data = #{old_isDeliveryNeedExtraData}
 			AND product_version = #{old_productVersion}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
@@ -119,7 +116,6 @@
 			on_sale_endt = #{onSaleEndt},
 			is_virtual = #{isVirtual},
 			delivery_type = #{deliveryType},
-			is_delivery_need_extra_data = #{isDeliveryNeedExtraData},
 			product_version = #{productVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -151,7 +147,6 @@
 			<if test="onSaleEndt != null">on_sale_endt = #{onSaleEndt},</if>
 			<if test="isVirtual != null">is_virtual = #{isVirtual},</if>
 			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
-			<if test="isDeliveryNeedExtraData != null">is_delivery_need_extra_data = #{isDeliveryNeedExtraData},</if>
 			<if test="productVersion != null">product_version = #{productVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -217,7 +212,6 @@
 				on_sale_endt,				
 				is_virtual,				
 				delivery_type,				
-				is_delivery_need_extra_data,				
 				product_version,				
 				create_user_code,				
 				create_date,				
@@ -246,7 +240,6 @@
 			#{onSaleEndt},
 			#{isVirtual},
 			#{deliveryType},
-			#{isDeliveryNeedExtraData},
 			#{productVersion},
 			#{createUserCode},
 			#{createDate},

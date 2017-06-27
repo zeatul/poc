@@ -207,6 +207,7 @@ public class ProductService {
 		productDomain.setProductStatus(ConstProduct.ProductStatus.EDITING);
 		productDomain.setStoreCode(AuthThreadLocal.getStoreCode());
 		productDomain.setThumbnail(createProdcutParam.getThumbnail());
+		productDomain.setDeliveryType(createProdcutParam.getDeliveryType());
 		productDomain.setUpdateDate(now);
 		productDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 

@@ -252,6 +252,7 @@ public class SkuService {
 		 * TODO:修改币种 ,写死为RMB
 		 */
 		skuDomain.setCurrency(ConstProduct.Currency.RMB);
+		skuDomain.setDeliveryType(productDomain.getDeliveryType());
 		
 		/**
 		 * 新创建的产品SKU为编辑状态

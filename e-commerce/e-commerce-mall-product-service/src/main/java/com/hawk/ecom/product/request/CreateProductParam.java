@@ -11,6 +11,14 @@ public class CreateProductParam {
 
 	
 
+	public Integer getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -154,6 +162,12 @@ public class CreateProductParam {
 	@NotNull
 	private Integer isVirtual;
 	
+	
+	/**
+	 * 交付方式 delivery_type
+	 */
+	@NotNull
+	private Integer deliveryType;
 	
 	
 	/**

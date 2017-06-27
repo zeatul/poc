@@ -29,6 +29,7 @@
 		sku_snapshoot_id AS "skuSnapshootId" ,
 		product_version AS "productVersion" ,
 		sku_version AS "skuVersion" ,
+		delivery_type AS "deliveryType" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -63,6 +64,7 @@
 			<if test="skuSnapshootId != null"> AND sku_snapshoot_id = #{skuSnapshootId}  </if>
 			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
 			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
+			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -98,6 +100,7 @@
 			AND sku_snapshoot_id = #{old_skuSnapshootId}
 			AND product_version = #{old_productVersion}
 			AND sku_version = #{old_skuVersion}
+			AND delivery_type = #{old_deliveryType}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
 			AND update_user_code = #{old_updateUserCode}
@@ -133,6 +136,7 @@
 			sku_snapshoot_id = #{skuSnapshootId},
 			product_version = #{productVersion},
 			sku_version = #{skuVersion},
+			delivery_type = #{deliveryType},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -168,6 +172,7 @@
 			<if test="skuSnapshootId != null">sku_snapshoot_id = #{skuSnapshootId},</if>
 			<if test="productVersion != null">product_version = #{productVersion},</if>
 			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
+			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -236,6 +241,7 @@
 				sku_snapshoot_id,				
 				product_version,				
 				sku_version,				
+				delivery_type,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -268,6 +274,7 @@
 			#{skuSnapshootId},
 			#{productVersion},
 			#{skuVersion},
+			#{deliveryType},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

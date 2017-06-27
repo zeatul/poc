@@ -97,6 +97,11 @@ public class SkuSnapshootDomain implements Serializable {
 	private BigDecimal salePrice;
 	
 	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * SKU备注 sku_memo
 	 */
 	private String skuMemo;
@@ -396,6 +401,22 @@ public class SkuSnapshootDomain implements Serializable {
 	 */	
 	public void setSalePrice (BigDecimal salePrice) {
 		this.salePrice = salePrice;
+	}
+	
+	/**
+	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	/**

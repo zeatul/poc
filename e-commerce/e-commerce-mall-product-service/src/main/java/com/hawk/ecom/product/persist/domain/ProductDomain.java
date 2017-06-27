@@ -112,11 +112,6 @@ public class ProductDomain implements Serializable {
 	private Integer deliveryType;
 	
 	/**
-	 * 交付是否需要额外数据 is_delivery_need_extra_data
-	 */
-	private Integer isDeliveryNeedExtraData;
-	
-	/**
 	 *  产品版本号 product_version
 	 */
 	private Integer productVersion;
@@ -454,22 +449,6 @@ public class ProductDomain implements Serializable {
 	 */	
 	public void setDeliveryType (Integer deliveryType) {
 		this.deliveryType = deliveryType;
-	}
-	
-	/**
-	 * 
-	 * @return 交付是否需要额外数据 is_delivery_need_extra_data
-	 */
-	public Integer getIsDeliveryNeedExtraData(){
-		return isDeliveryNeedExtraData;
-	}
-	
-	/**
-	 * 
-	 * @param isDeliveryNeedExtraData 交付是否需要额外数据 is_delivery_need_extra_data
-	 */	
-	public void setIsDeliveryNeedExtraData (Integer isDeliveryNeedExtraData) {
-		this.isDeliveryNeedExtraData = isDeliveryNeedExtraData;
 	}
 	
 	/**

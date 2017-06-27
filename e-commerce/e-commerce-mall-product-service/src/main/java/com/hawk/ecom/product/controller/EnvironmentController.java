@@ -3,7 +3,9 @@ package com.hawk.ecom.product.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,7 @@ import com.hawk.ecom.product.persist.domain.CategoryDomain;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
 import com.hawk.ecom.product.request.CreateAttrValueParam;
 import com.hawk.ecom.product.request.CreateCategoryParam;
+import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.service.AttrNameService;
 import com.hawk.ecom.product.service.AttrValueService;
 import com.hawk.ecom.product.service.CategoryService;
@@ -84,6 +87,7 @@ public class EnvironmentController {
 		
 		CategoryDomain mobileDataChargeCategory = categoryService.createCategory(createCategorParam);
 		
+		
 		/**
 		 * 创建产品分类流量充值的属性名和属性值 , 属性名：移动服务商(电信,移动,联通)
 		 */
@@ -98,6 +102,8 @@ public class EnvironmentController {
 		createAttrNameParam.setOperatorCode(userCode);
 		AttrNameDomain mobileSupplierAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
 		
+		List<AttrValueDomain> supplierDomainList = new ArrayList<AttrValueDomain>();
+		
 		CreateAttrValueParam createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("电信");
 		createAttrValueParam.setAttrNameId(mobileSupplierAttrNameDomain.getId());
@@ -105,6 +111,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("telecom");
 		createAttrValueParam.setAttrDisplayEnValue("telecom");
 		AttrValueDomain telecomSupplierAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		supplierDomainList.add(telecomSupplierAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("联通");
@@ -113,6 +120,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("unicom");
 		createAttrValueParam.setAttrDisplayEnValue("uniom");
 		AttrValueDomain unicomSupplierAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		supplierDomainList.add(unicomSupplierAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("移动");
@@ -121,6 +129,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("mobile");
 		createAttrValueParam.setAttrDisplayEnValue("mobile");
 		AttrValueDomain mobileSupplierAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		supplierDomainList.add(mobileSupplierAttrValueDomain);
 		
 		/**
 		 * 创建产品分类流量充值的属性名和属性值   ,属性名：流量大小(100M,1000M,5000M)
@@ -136,6 +145,8 @@ public class EnvironmentController {
 		createAttrNameParam.setOperatorCode(userCode);
 		AttrNameDomain chargeQuantityAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
 		
+		List<AttrValueDomain> chargeQuantityDomainList = new ArrayList<AttrValueDomain>();
+		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("100M");
 		createAttrValueParam.setAttrNameId(chargeQuantityAttrNameDomain.getId());
@@ -143,6 +154,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("100");
 		createAttrValueParam.setAttrDisplayEnValue("100M");
 		AttrValueDomain charge100MAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		chargeQuantityDomainList.add(charge100MAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("1000M");
@@ -151,6 +163,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("1000");
 		createAttrValueParam.setAttrDisplayEnValue("1000M");
 		AttrValueDomain charge1000MAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		chargeQuantityDomainList.add(charge1000MAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("5000M");
@@ -159,6 +172,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("5000");
 		createAttrValueParam.setAttrDisplayEnValue("5000M");
 		AttrValueDomain charge5000MAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		chargeQuantityDomainList.add(charge5000MAttrValueDomain);
 		
 		/**
 		 * 创建产品分类流量充值的属性名和属性值 , 属性名:地区(江苏,上海,广东)
@@ -175,6 +189,8 @@ public class EnvironmentController {
 		createAttrNameParam.setOperatorCode(userCode);
 		AttrNameDomain districtAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
 		
+		List<AttrValueDomain> districtDomainList = new ArrayList<AttrValueDomain>();
+		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("江苏");
 		createAttrValueParam.setAttrNameId(districtAttrNameDomain.getId());
@@ -182,6 +198,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("320000");
 		createAttrValueParam.setAttrDisplayEnValue("jiangsu");
 		AttrValueDomain jiangsuDistrictAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		districtDomainList.add(jiangsuDistrictAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("上海");
@@ -190,6 +207,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("310000");
 		createAttrValueParam.setAttrDisplayEnValue("shanghai");
 		AttrValueDomain shanghaiDistrictAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		districtDomainList.add(shanghaiDistrictAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("广东");
@@ -198,6 +216,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("440000");
 		createAttrValueParam.setAttrDisplayEnValue("guangdong");
 		AttrValueDomain guangdongDistrictAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		districtDomainList.add(guangdongDistrictAttrValueDomain);
 		
 		/**
 		 * 创建产品分类流量充值的属性名和属性值 , 属性名：流量类型(全国,本地)
@@ -213,6 +232,8 @@ public class EnvironmentController {
 		createAttrNameParam.setOperatorCode(userCode);
 		AttrNameDomain mobileDataTypeAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
 		
+		List<AttrValueDomain> mobileDataTypeDomainList = new ArrayList<AttrValueDomain>();
+		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("本地使用");
 		createAttrValueParam.setAttrNameId(mobileDataTypeAttrNameDomain.getId());
@@ -220,6 +241,7 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("province");
 		createAttrValueParam.setAttrDisplayEnValue("province");
 		AttrValueDomain provinceDataTypeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		mobileDataTypeDomainList.add(provinceDataTypeAttrValueDomain);
 		
 		createAttrValueParam = new CreateAttrValueParam();
 		createAttrValueParam.setAttrDisplayValue("全国通用");
@@ -228,6 +250,24 @@ public class EnvironmentController {
 		createAttrValueParam.setAttrValue("country");
 		createAttrValueParam.setAttrDisplayEnValue("country");
 		AttrValueDomain countryDataTypeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		mobileDataTypeDomainList.add(countryDataTypeAttrValueDomain);
+		
+		/**
+		 * 创建产品,产品Sku,产品库存
+		 * 运营商，流量大小，流量类型,地区全部为关键属性
+		 */
+		for(AttrValueDomain supplierDomain : supplierDomainList){
+			for(AttrValueDomain chargeQuantityDomain : chargeQuantityDomainList){
+				for(AttrValueDomain districtDomain : districtDomainList){
+					for(AttrValueDomain mobildDataDomain : mobileDataTypeDomainList){
+						CreateProductParam createProductParam = new CreateProductParam();
+						
+						createProductParam.setCategoryId(mobileDataChargeCategory.getId());
+						createProductParam.setIsVirtual(ConstBoolean.TRUE);
+					}
+				}
+			}
+		}
 	}
 
 }

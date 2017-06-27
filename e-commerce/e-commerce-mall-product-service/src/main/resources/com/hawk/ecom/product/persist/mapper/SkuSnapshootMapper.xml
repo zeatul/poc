@@ -21,6 +21,7 @@
 		sku_attr_value_values AS "skuAttrValueValues" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
+		thumbnail AS "thumbnail" ,
 		sku_memo AS "skuMemo" ,
 		product_version AS "productVersion" ,
 		sku_version AS "skuVersion" ,
@@ -50,6 +51,7 @@
 			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{skuAttrValueValues}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
 			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
 			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
@@ -80,6 +82,7 @@
 			AND sku_attr_value_values = #{old_skuAttrValueValues}
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
+			AND thumbnail = #{old_thumbnail}
 			AND sku_memo = #{old_skuMemo}
 			AND product_version = #{old_productVersion}
 			AND sku_version = #{old_skuVersion}
@@ -110,6 +113,7 @@
 			sku_attr_value_values = #{skuAttrValueValues},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
+			thumbnail = #{thumbnail},
 			sku_memo = #{skuMemo},
 			product_version = #{productVersion},
 			sku_version = #{skuVersion},
@@ -140,6 +144,7 @@
 			<if test="skuAttrValueValues != null">sku_attr_value_values = #{skuAttrValueValues},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
 			<if test="productVersion != null">product_version = #{productVersion},</if>
 			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
@@ -203,6 +208,7 @@
 				sku_attr_value_values,				
 				market_price,				
 				sale_price,				
+				thumbnail,				
 				sku_memo,				
 				product_version,				
 				sku_version,				
@@ -230,6 +236,7 @@
 			#{skuAttrValueValues},
 			#{marketPrice},
 			#{salePrice},
+			#{thumbnail},
 			#{skuMemo},
 			#{productVersion},
 			#{skuVersion},
