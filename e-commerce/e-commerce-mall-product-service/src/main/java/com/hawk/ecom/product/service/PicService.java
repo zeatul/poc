@@ -24,6 +24,7 @@ import com.hawk.ecom.product.request.LoadPicParam;
 import com.hawk.ecom.product.request.RemovePicParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -67,7 +68,7 @@ public class PicService {
 	}
 	
 	@Valid
-	public PicDomain createPic(@Valid @NotEmpty("参数") CreatePicParam createPicParam) throws Exception{
+	public PicDomain createPic(@Valid @NotNull("参数") CreatePicParam createPicParam) throws Exception{
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -116,7 +117,7 @@ public class PicService {
 	}
 	
 	@Valid
-	public PagingQueryResultWrap<PicDomain> listPic(@Valid @NotEmpty("参数") ListPicParam listPicParam){
+	public PagingQueryResultWrap<PicDomain> listPic(@Valid @NotNull("参数") ListPicParam listPicParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -139,7 +140,7 @@ public class PicService {
 
 	@Valid
 	@Transactional
-	public void removePic(@Valid @NotEmpty("参数") RemovePicParam removePicParam) {
+	public void removePic(@Valid @NotNull("参数") RemovePicParam removePicParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -154,7 +155,7 @@ public class PicService {
 	}
 	
 	@Valid
-	public PicDomain loadPic(@Valid @NotEmpty("参数") LoadPicParam loadPicParam) {
+	public PicDomain loadPic(@Valid @NotNull("参数") LoadPicParam loadPicParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();

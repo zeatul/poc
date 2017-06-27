@@ -9,8 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
-import com.hawk.ecom.query.persist.mapperex.SystemResourceExMapper;
+import com.hawk.ecom.trans.persist.domain.OrderDomain;
+import com.hawk.ecom.trans.persist.mapper.OrderMapper;
+import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.dic.persist.mapper.WordMapper;
 import com.hawk.framework.dic.persist.mapperex.WordExMapper;
@@ -19,7 +20,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/query/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { SystemResourceExMapper.class//
+@MapperScan(basePackageClasses = { OrderMapper.class,OrderExMapper.class//订单
 		,WordMapper.class, WordExMapper.class //数据字典
 		})
 public class DataConfig {
@@ -137,9 +138,9 @@ public class DataConfig {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String ecomQueryPackageName = SystemResourceExDomain.class.getPackage().getName(); //ecom-query-service
+		String ecomTransPackageName = OrderDomain.class.getPackage().getName(); //ecom-trans-service
 		String dicPackageName = WordDomain.class.getPackage().getName(); //数据字典
-		String str = StringTools.concatWithSymbol(";", ecomQueryPackageName,//
+		String str = StringTools.concatWithSymbol(";", ecomTransPackageName,ecomTransPackageName+"ex",//
 				dicPackageName, dicPackageName + "ex"//
 				);
 		sqlSessionFactory.setTypeAliasesPackage(str);

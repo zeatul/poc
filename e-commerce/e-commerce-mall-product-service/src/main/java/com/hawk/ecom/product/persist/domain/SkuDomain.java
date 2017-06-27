@@ -57,6 +57,11 @@ public class SkuDomain implements Serializable {
 	private Integer skuStatus;
 	
 	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * 市场价 market_price
 	 */
 	private BigDecimal marketPrice;
@@ -288,6 +293,22 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSkuStatus (Integer skuStatus) {
 		this.skuStatus = skuStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	/**

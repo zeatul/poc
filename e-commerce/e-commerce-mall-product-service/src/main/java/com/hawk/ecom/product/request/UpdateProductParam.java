@@ -6,6 +6,16 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 
 public class UpdateProductParam {
 
+	
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public List<Integer> getAddKeyAttrValueIds() {
 		return addKeyAttrValueIds;
 	}
@@ -144,6 +154,11 @@ public class UpdateProductParam {
 	 * 产品备注 product_memo
 	 */
 	private String productMemo;
+	
+	/**
+	 * 缩略图 humbnail
+	 */
+	private String thumbnail;
 
 	/**
 	 *  新增关键属性值

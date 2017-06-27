@@ -57,6 +57,7 @@ import com.hawk.ecom.product.request.UpdateProductParam;
 import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -128,7 +129,7 @@ public class ProductService {
 	}
 
 	@Valid
-	public ProductDomain loadProduct(@Valid @NotEmpty("参数") LoadProductParam loadProdcutParam) {
+	public ProductDomain loadProduct(@Valid @NotNull("参数") LoadProductParam loadProdcutParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
@@ -169,7 +170,7 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public ProductDomain createProduct(@Valid @NotEmpty("参数") CreateProductParam createProdcutParam) {
+	public ProductDomain createProduct(@Valid @NotNull("参数") CreateProductParam createProdcutParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
@@ -205,6 +206,7 @@ public class ProductService {
 		productDomain.setProductName(createProdcutParam.getProductName());
 		productDomain.setProductStatus(ConstProduct.ProductStatus.EDITING);
 		productDomain.setStoreCode(AuthThreadLocal.getStoreCode());
+		productDomain.setThumbnail(createProdcutParam.getThumbnail());
 		productDomain.setUpdateDate(now);
 		productDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 
@@ -364,7 +366,7 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public void updateProduct(@Valid @NotEmpty("参数") UpdateProductParam updateProdcutParam) throws Exception {
+	public void updateProduct(@Valid @NotNull("参数") UpdateProductParam updateProdcutParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -696,7 +698,7 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public void updateProductStatus(@Valid @NotEmpty("参数") UpdateProductStatusParam updateProdcutStatusParam) {
+	public void updateProductStatus(@Valid @NotNull("参数") UpdateProductStatusParam updateProdcutStatusParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -762,7 +764,7 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public void removeProduct(@Valid @NotEmpty("参数") RemoveProductParam removeProductParam) throws Exception {
+	public void removeProduct(@Valid @NotNull("参数") RemoveProductParam removeProductParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -837,7 +839,7 @@ public class ProductService {
 	}
 
 	@Valid
-	public PagingQueryResultWrap<ProductDomain> listProduct(@Valid @NotEmpty("参数") ListProductParam listProductParam) {
+	public PagingQueryResultWrap<ProductDomain> listProduct(@Valid @NotNull("参数") ListProductParam listProductParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}

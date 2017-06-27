@@ -8,6 +8,6 @@ import com.hawk.ecom.trans.controller.HomeController;
 
 @Configuration
 @ComponentScan(basePackageClasses = { HomeController.class })
-public class EcomTransyWebConfig extends WebMvcConfigurerAdapter {
+public class EcomTransWebConfig extends WebMvcConfigurerAdapter {
 
 }

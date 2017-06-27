@@ -15,6 +15,7 @@
 		product_sku_attr_name_ids AS "productSkuAttrNameIds" ,
 		product_status AS "productStatus" ,
 		product_home_page AS "productHomePage" ,
+		thumbnail AS "thumbnail" ,
 		product_desc AS "productDesc" ,
 		product_memo AS "productMemo" ,
 		product_min_price AS "productMinPrice" ,
@@ -22,6 +23,8 @@
 		on_sale_stdt AS "onSaleStdt" ,
 		on_sale_endt AS "onSaleEndt" ,
 		is_virtual AS "isVirtual" ,
+		delivery_type AS "deliveryType" ,
+		is_delivery_need_extra_data AS "isDeliveryNeedExtraData" ,
 		product_version AS "productVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -43,6 +46,7 @@
 			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{productSkuAttrNameIds}  </if>
 			<if test="productStatus != null"> AND product_status = #{productStatus}  </if>
 			<if test="productHomePage != null"> AND product_home_page = #{productHomePage}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="productDesc != null"> AND product_desc = #{productDesc}  </if>
 			<if test="productMemo != null"> AND product_memo = #{productMemo}  </if>
 			<if test="productMinPrice != null"> AND product_min_price = #{productMinPrice}  </if>
@@ -50,6 +54,8 @@
 			<if test="onSaleStdt != null"> AND on_sale_stdt = #{onSaleStdt}  </if>
 			<if test="onSaleEndt != null"> AND on_sale_endt = #{onSaleEndt}  </if>
 			<if test="isVirtual != null"> AND is_virtual = #{isVirtual}  </if>
+			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
+			<if test="isDeliveryNeedExtraData != null"> AND is_delivery_need_extra_data = #{isDeliveryNeedExtraData}  </if>
 			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -72,6 +78,7 @@
 			AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}
 			AND product_status = #{old_productStatus}
 			AND product_home_page = #{old_productHomePage}
+			AND thumbnail = #{old_thumbnail}
 			AND product_desc = #{old_productDesc}
 			AND product_memo = #{old_productMemo}
 			AND product_min_price = #{old_productMinPrice}
@@ -79,6 +86,8 @@
 			AND on_sale_stdt = #{old_onSaleStdt}
 			AND on_sale_endt = #{old_onSaleEndt}
 			AND is_virtual = #{old_isVirtual}
+			AND delivery_type = #{old_deliveryType}
+			AND is_delivery_need_extra_data = #{old_isDeliveryNeedExtraData}
 			AND product_version = #{old_productVersion}
 			AND create_user_code = #{old_createUserCode}
 			AND create_date = #{old_createDate}
@@ -101,6 +110,7 @@
 			product_sku_attr_name_ids = #{productSkuAttrNameIds},
 			product_status = #{productStatus},
 			product_home_page = #{productHomePage},
+			thumbnail = #{thumbnail},
 			product_desc = #{productDesc},
 			product_memo = #{productMemo},
 			product_min_price = #{productMinPrice},
@@ -108,6 +118,8 @@
 			on_sale_stdt = #{onSaleStdt},
 			on_sale_endt = #{onSaleEndt},
 			is_virtual = #{isVirtual},
+			delivery_type = #{deliveryType},
+			is_delivery_need_extra_data = #{isDeliveryNeedExtraData},
 			product_version = #{productVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -130,6 +142,7 @@
 			<if test="productSkuAttrNameIds != null">product_sku_attr_name_ids = #{productSkuAttrNameIds},</if>
 			<if test="productStatus != null">product_status = #{productStatus},</if>
 			<if test="productHomePage != null">product_home_page = #{productHomePage},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="productDesc != null">product_desc = #{productDesc},</if>
 			<if test="productMemo != null">product_memo = #{productMemo},</if>
 			<if test="productMinPrice != null">product_min_price = #{productMinPrice},</if>
@@ -137,6 +150,8 @@
 			<if test="onSaleStdt != null">on_sale_stdt = #{onSaleStdt},</if>
 			<if test="onSaleEndt != null">on_sale_endt = #{onSaleEndt},</if>
 			<if test="isVirtual != null">is_virtual = #{isVirtual},</if>
+			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
+			<if test="isDeliveryNeedExtraData != null">is_delivery_need_extra_data = #{isDeliveryNeedExtraData},</if>
 			<if test="productVersion != null">product_version = #{productVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -193,6 +208,7 @@
 				product_sku_attr_name_ids,				
 				product_status,				
 				product_home_page,				
+				thumbnail,				
 				product_desc,				
 				product_memo,				
 				product_min_price,				
@@ -200,6 +216,8 @@
 				on_sale_stdt,				
 				on_sale_endt,				
 				is_virtual,				
+				delivery_type,				
+				is_delivery_need_extra_data,				
 				product_version,				
 				create_user_code,				
 				create_date,				
@@ -219,6 +237,7 @@
 			#{productSkuAttrNameIds},
 			#{productStatus},
 			#{productHomePage},
+			#{thumbnail},
 			#{productDesc},
 			#{productMemo},
 			#{productMinPrice},
@@ -226,6 +245,8 @@
 			#{onSaleStdt},
 			#{onSaleEndt},
 			#{isVirtual},
+			#{deliveryType},
+			#{isDeliveryNeedExtraData},
 			#{productVersion},
 			#{createUserCode},
 			#{createDate},

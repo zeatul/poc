@@ -326,7 +326,7 @@ public class CategoryService {
 	}
 	
 	@Valid
-	public CategoryDomain loadCategory(@NotEmpty("参数") @Valid LoadCategoryParam loadCategoryParam) {
+	public CategoryDomain loadCategory(@NotNull("参数") @Valid LoadCategoryParam loadCategoryParam) {
 		
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();

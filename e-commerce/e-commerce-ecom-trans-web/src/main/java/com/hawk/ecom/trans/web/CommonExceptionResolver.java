@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.web;
+package com.hawk.ecom.trans.web;
 
 import java.io.IOException;
 

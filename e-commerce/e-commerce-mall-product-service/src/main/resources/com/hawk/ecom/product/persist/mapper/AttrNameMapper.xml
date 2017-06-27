@@ -6,6 +6,7 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		store_code AS "storeCode" ,
 		category_id AS "categoryId" ,
 		pid AS "pid" ,
 		pvid AS "pvid" ,
@@ -25,6 +26,7 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
 			<if test="pid != null"> AND pid = #{pid}  </if>
 			<if test="pvid != null"> AND pvid = #{pvid}  </if>
@@ -45,6 +47,7 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			AND id = #{old_id}
+			AND store_code = #{old_storeCode}
 			AND category_id = #{old_categoryId}
 			AND pid = #{old_pid}
 			AND pvid = #{old_pvid}
@@ -65,6 +68,7 @@
 	<sql id="update">
 		<set>
 			id = #{id},
+			store_code = #{storeCode},
 			category_id = #{categoryId},
 			pid = #{pid},
 			pvid = #{pvid},
@@ -85,6 +89,7 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="categoryId != null">category_id = #{categoryId},</if>
 			<if test="pid != null">pid = #{pid},</if>
 			<if test="pvid != null">pvid = #{pvid},</if>
@@ -138,6 +143,7 @@
 	<insert id="insert"  parameterType="AttrNameDomain">
 		INSERT INTO t_prd_attr_name (			
 				id,				
+				store_code,				
 				category_id,				
 				pid,				
 				pvid,				
@@ -155,6 +161,7 @@
 		)		
 		VALUES (	
 			#{id},
+			#{storeCode},
 			#{categoryId},
 			#{pid},
 			#{pvid},

@@ -54,6 +54,7 @@ import com.hawk.ecom.product.request.UpdateSkuParam;
 import com.hawk.ecom.product.request.UpdateSkuStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -147,7 +148,7 @@ public class SkuService {
 	 */
 	@Valid
 	@Transactional
-	public SkuDomain createSku(@Valid @NotEmpty("参数") CreateSkuParam createSkuParam) {
+	public SkuDomain createSku(@Valid @NotNull("参数") CreateSkuParam createSkuParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
@@ -309,7 +310,7 @@ public class SkuService {
 	 */
 	@Valid
 	@Transactional
-	public void updateSku(@Valid @NotEmpty("参数") UpdateSkuParam updateSkuParam) throws Exception {
+	public void updateSku(@Valid @NotNull("参数") UpdateSkuParam updateSkuParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -532,7 +533,7 @@ public class SkuService {
 	 */
 	@Valid
 	@Transactional
-	public void updateSkuStatus(@Valid @NotEmpty("参数") UpdateSkuStatusParam updateSkuStatusParam) {
+	public void updateSkuStatus(@Valid @NotNull("参数") UpdateSkuStatusParam updateSkuStatusParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -666,7 +667,7 @@ public class SkuService {
 	
 
 	@Valid
-	public List<SkuDomain> listSku(@Valid @NotEmpty("参数") ListSkuParam listSkuParam) {
+	public List<SkuDomain> listSku(@Valid @NotNull("参数") ListSkuParam listSkuParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -685,7 +686,7 @@ public class SkuService {
 	}
 
 	@Valid
-	public SkuDomain loadSku(@Valid @NotEmpty("参数") LoadSkuParam loadSkuParam) {
+	public SkuDomain loadSku(@Valid @NotNull("参数") LoadSkuParam loadSkuParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -709,7 +710,7 @@ public class SkuService {
 	 */
 	@Valid
 	@Transactional
-	public void removeSku(@Valid @NotEmpty("参数") RemoveSkuParam removeSkuParam) throws Exception {
+	public void removeSku(@Valid @NotNull("参数") RemoveSkuParam removeSkuParam) throws Exception {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}

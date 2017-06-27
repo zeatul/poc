@@ -31,6 +31,11 @@ public class StockHistoryDomain implements Serializable {
 	private Integer skuId;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * 仓库编号 warehouse_code
 	 */
 	private String warehouseCode;
@@ -132,6 +137,22 @@ public class StockHistoryDomain implements Serializable {
 	 */	
 	public void setSkuId (Integer skuId) {
 		this.skuId = skuId;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**

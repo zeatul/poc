@@ -8,6 +8,7 @@
 				id AS "id" ,
 		product_id AS "productId" ,
 		sku_id AS "skuId" ,
+		store_code AS "storeCode" ,
 		warehouse_code AS "warehouseCode" ,
 		stock_item_code AS "stockItemCode" ,
 		stock_quantity AS "stockQuantity" ,
@@ -26,6 +27,7 @@
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="warehouseCode != null"> AND warehouse_code = #{warehouseCode}  </if>
 			<if test="stockItemCode != null"> AND stock_item_code = #{stockItemCode}  </if>
 			<if test="stockQuantity != null"> AND stock_quantity = #{stockQuantity}  </if>
@@ -45,6 +47,7 @@
 			AND id = #{old_id}
 			AND product_id = #{old_productId}
 			AND sku_id = #{old_skuId}
+			AND store_code = #{old_storeCode}
 			AND warehouse_code = #{old_warehouseCode}
 			AND stock_item_code = #{old_stockItemCode}
 			AND stock_quantity = #{old_stockQuantity}
@@ -64,6 +67,7 @@
 			id = #{id},
 			product_id = #{productId},
 			sku_id = #{skuId},
+			store_code = #{storeCode},
 			warehouse_code = #{warehouseCode},
 			stock_item_code = #{stockItemCode},
 			stock_quantity = #{stockQuantity},
@@ -83,6 +87,7 @@
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="warehouseCode != null">warehouse_code = #{warehouseCode},</if>
 			<if test="stockItemCode != null">stock_item_code = #{stockItemCode},</if>
 			<if test="stockQuantity != null">stock_quantity = #{stockQuantity},</if>
@@ -135,6 +140,7 @@
 				id,				
 				product_id,				
 				sku_id,				
+				store_code,				
 				warehouse_code,				
 				stock_item_code,				
 				stock_quantity,				
@@ -151,6 +157,7 @@
 			#{id},
 			#{productId},
 			#{skuId},
+			#{storeCode},
 			#{warehouseCode},
 			#{stockItemCode},
 			#{stockQuantity},

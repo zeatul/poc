@@ -13,6 +13,7 @@
 		sku_attr_value_ids AS "skuAttrValueIds" ,
 		sku_attr_value_values AS "skuAttrValueValues" ,
 		sku_status AS "skuStatus" ,
+		thumbnail AS "thumbnail" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
 		sku_stock_amount AS "skuStockAmount" ,
@@ -45,6 +46,7 @@
 			<if test="skuAttrValueIds != null"> AND sku_attr_value_ids = #{skuAttrValueIds}  </if>
 			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{skuAttrValueValues}  </if>
 			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
 			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
@@ -78,6 +80,7 @@
 			AND sku_attr_value_ids = #{old_skuAttrValueIds}
 			AND sku_attr_value_values = #{old_skuAttrValueValues}
 			AND sku_status = #{old_skuStatus}
+			AND thumbnail = #{old_thumbnail}
 			AND market_price = #{old_marketPrice}
 			AND sale_price = #{old_salePrice}
 			AND sku_stock_amount = #{old_skuStockAmount}
@@ -111,6 +114,7 @@
 			sku_attr_value_ids = #{skuAttrValueIds},
 			sku_attr_value_values = #{skuAttrValueValues},
 			sku_status = #{skuStatus},
+			thumbnail = #{thumbnail},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
 			sku_stock_amount = #{skuStockAmount},
@@ -144,6 +148,7 @@
 			<if test="skuAttrValueIds != null">sku_attr_value_ids = #{skuAttrValueIds},</if>
 			<if test="skuAttrValueValues != null">sku_attr_value_values = #{skuAttrValueValues},</if>
 			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
 			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
@@ -211,6 +216,7 @@
 				sku_attr_value_ids,				
 				sku_attr_value_values,				
 				sku_status,				
+				thumbnail,				
 				market_price,				
 				sale_price,				
 				sku_stock_amount,				
@@ -241,6 +247,7 @@
 			#{skuAttrValueIds},
 			#{skuAttrValueValues},
 			#{skuStatus},
+			#{thumbnail},
 			#{marketPrice},
 			#{salePrice},
 			#{skuStockAmount},

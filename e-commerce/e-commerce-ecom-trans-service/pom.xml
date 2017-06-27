@@ -24,14 +24,19 @@
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
-		</dependency> 
+		</dependency>
 
 		<!--com.hawk.e-commerce -->
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-pub</artifactId>
-		</dependency> 
-		
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-user-service</artifactId>
+		</dependency>
+
 
 		<!-- mybatis -->
 		<dependency>

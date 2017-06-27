@@ -10,6 +10,15 @@ public class CreateProductParam {
 	
 
 	
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public List<Integer> getProductNormalAttrValueIds() {
 		return productNormalAttrValueIds;
 	}
@@ -97,6 +106,11 @@ public class CreateProductParam {
 	public void setIsVirtual(Integer isVirtual) {
 		this.isVirtual = isVirtual;
 	}
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 
 	
 	/**

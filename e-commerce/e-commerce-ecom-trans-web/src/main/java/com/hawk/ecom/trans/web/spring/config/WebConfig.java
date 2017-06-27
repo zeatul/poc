@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.web.spring.config;
+package com.hawk.ecom.trans.web.spring.config;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,13 +19,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hawk.ecom.query.spring.config.EcomQueryWebConfig;
-import com.hawk.ecom.query.web.CommonExceptionResolver;
-import com.hawk.ecom.query.web.AccessInterceptor;
+import com.hawk.ecom.trans.spring.config.EcomTransWebConfig;
+import com.hawk.ecom.trans.web.CommonExceptionResolver;
+
+import com.hawk.ecom.trans.web.AccessInterceptor;
 
 @Configuration
 @EnableWebMvc
-@Import({ EcomQueryWebConfig.class })
+@Import({ EcomTransWebConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

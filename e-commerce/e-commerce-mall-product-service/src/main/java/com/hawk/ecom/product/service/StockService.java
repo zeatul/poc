@@ -25,6 +25,7 @@ import com.hawk.ecom.product.request.LoadStockParam;
 import com.hawk.ecom.product.request.UpdateStockParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -66,7 +67,7 @@ public class StockService {
 
 	@Valid
 	@Transactional
-	public StockDomain createStock(@Valid @NotEmpty("参数") CreateStockParam createStockParam) {
+	public StockDomain createStock(@Valid @NotNull("参数") CreateStockParam createStockParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -116,7 +117,7 @@ public class StockService {
 	
 	@Valid
 	@Transactional
-	public void updateStock(@Valid @NotEmpty("参数") UpdateStockParam updateStockParam) throws Exception{
+	public void updateStock(@Valid @NotNull("参数") UpdateStockParam updateStockParam) throws Exception{
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -140,7 +141,7 @@ public class StockService {
 	}
 
 	@Valid
-	public PagingQueryResultWrap<StockDomain> listStock(@Valid @NotEmpty("参数") ListStockParam listStockParam){
+	public PagingQueryResultWrap<StockDomain> listStock(@Valid @NotNull("参数") ListStockParam listStockParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -164,7 +165,7 @@ public class StockService {
 	}
 	
 	@Valid
-	public StockDomain loadStock(@Valid @NotEmpty("参数") LoadStockParam loadStockParam) {
+	public StockDomain loadStock(@Valid @NotNull("参数") LoadStockParam loadStockParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();

@@ -67,6 +67,11 @@ public class ProductHistoryDomain implements Serializable {
 	private String productHomePage;
 	
 	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * 产品描述 product_desc
 	 */
 	private String productDesc;
@@ -100,6 +105,16 @@ public class ProductHistoryDomain implements Serializable {
 	 * 是否为虚拟物品 is_virtual
 	 */
 	private Integer isVirtual;
+	
+	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
+	
+	/**
+	 * 交付是否需要额外数据 is_delivery_need_extra_data
+	 */
+	private Integer isDeliveryNeedExtraData;
 	
 	/**
 	 * 产品版本号 product_version
@@ -299,6 +314,22 @@ public class ProductHistoryDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	/**
+	 * 
 	 * @return 产品描述 product_desc
 	 */
 	public String getProductDesc(){
@@ -407,6 +438,38 @@ public class ProductHistoryDomain implements Serializable {
 	 */	
 	public void setIsVirtual (Integer isVirtual) {
 		this.isVirtual = isVirtual;
+	}
+	
+	/**
+	 * 
+	 * @return 交付方式 delivery_type
+	 */
+	public Integer getDeliveryType(){
+		return deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryType 交付方式 delivery_type
+	 */	
+	public void setDeliveryType (Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @return 交付是否需要额外数据 is_delivery_need_extra_data
+	 */
+	public Integer getIsDeliveryNeedExtraData(){
+		return isDeliveryNeedExtraData;
+	}
+	
+	/**
+	 * 
+	 * @param isDeliveryNeedExtraData 交付是否需要额外数据 is_delivery_need_extra_data
+	 */	
+	public void setIsDeliveryNeedExtraData (Integer isDeliveryNeedExtraData) {
+		this.isDeliveryNeedExtraData = isDeliveryNeedExtraData;
 	}
 	
 	/**
