@@ -135,6 +135,7 @@ public class AttrValueService {
 		attrValueDomain.setAttrDisplayValue(createAttrValueParam.getAttrDisplayValue());
 		attrValueDomain.setAttrNameId(attrNameDomain.getId());
 		attrValueDomain.setAttrValue(createAttrValueParam.getAttrValue());
+		attrValueDomain.setAttrDisplayEnValue(createAttrValueParam.getAttrDisplayEnValue());
 		
 //		if (StringTools.isNullOrEmpty(attrValueDomain.getAttrDisplayValue())) {
 //			attrValueDomain.setAttrDisplayValue(attrValueDomain.getAttrValue());
