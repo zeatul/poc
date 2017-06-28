@@ -18,8 +18,8 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND stub = #{old_stub}
-			AND id = #{old_id}
+			<if test="stub != null"> AND stub = #{old_stub}  </if>			
+			<if test="id != null"> AND id = #{old_id}  </if>			
 		</trim>
 	</sql>
 	
@@ -103,9 +103,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_small_number_sequence	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

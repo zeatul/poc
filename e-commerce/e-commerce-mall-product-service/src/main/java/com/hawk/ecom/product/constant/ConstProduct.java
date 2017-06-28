@@ -52,5 +52,22 @@ public class ConstProduct {
 	public static interface PicType{
 		public final int NORMAL = 1;
 	}
+	
+	public static interface DeliveryType{
+		/**
+		 * 快递
+		 */
+		public final int EXPRESS = 1;
+		
+		/**
+		 * 充流量
+		 */
+		public final int CHARGE = 5000;
+		
+		/**
+		 * 碎屏险
+		 */
+		public final int BSI = 5001;
+	}
 
 }

@@ -9,6 +9,16 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 public class UpdateSkuParam {
 	
 	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+
 	public Integer getHeight() {
 		return height;
 	}
@@ -236,6 +246,11 @@ public class UpdateSkuParam {
 	 */
 	private List<Integer> removeSkuAttrValueIds; 
 	
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 
 	/**
 	 * 操作员编号

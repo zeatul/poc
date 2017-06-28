@@ -66,32 +66,32 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND product_id = #{old_productId}
-			AND sku_id = #{old_skuId}
-			AND product_code = #{old_productCode}
-			AND product_name = #{old_productName}
-			AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}
-			AND product_key_attr_value_values = #{old_productKeyAttrValueValues}
-			AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}
-			AND product_memo = #{old_productMemo}
-			AND store_code = #{old_storeCode}
-			AND sku_code = #{old_skuCode}
-			AND sku_name = #{old_skuName}
-			AND sku_attr_value_ids = #{old_skuAttrValueIds}
-			AND sku_attr_value_values = #{old_skuAttrValueValues}
-			AND market_price = #{old_marketPrice}
-			AND sale_price = #{old_salePrice}
-			AND thumbnail = #{old_thumbnail}
-			AND sku_memo = #{old_skuMemo}
-			AND product_version = #{old_productVersion}
-			AND sku_version = #{old_skuVersion}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="productId != null"> AND product_id = #{old_productId}  </if>			
+			<if test="skuId != null"> AND sku_id = #{old_skuId}  </if>			
+			<if test="productCode != null"> AND product_code = #{old_productCode}  </if>			
+			<if test="productName != null"> AND product_name = #{old_productName}  </if>			
+			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}  </if>			
+			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{old_productKeyAttrValueValues}  </if>			
+			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}  </if>			
+			<if test="productMemo != null"> AND product_memo = #{old_productMemo}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="skuCode != null"> AND sku_code = #{old_skuCode}  </if>			
+			<if test="skuName != null"> AND sku_name = #{old_skuName}  </if>			
+			<if test="skuAttrValueIds != null"> AND sku_attr_value_ids = #{old_skuAttrValueIds}  </if>			
+			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{old_skuAttrValueValues}  </if>			
+			<if test="marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
+			<if test="salePrice != null"> AND sale_price = #{old_salePrice}  </if>			
+			<if test="thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
+			<if test="skuMemo != null"> AND sku_memo = #{old_skuMemo}  </if>			
+			<if test="productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="skuVersion != null"> AND sku_version = #{old_skuVersion}  </if>			
+			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -271,9 +271,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_sku_snapshoot	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

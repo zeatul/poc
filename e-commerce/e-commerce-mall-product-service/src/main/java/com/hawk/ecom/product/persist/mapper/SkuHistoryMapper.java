@@ -91,7 +91,7 @@ public interface SkuHistoryMapper  {
 	 * @param params
 	 * @return 更新的记录数
 	 */
-	int updateDynamic(Map<String,Object> params);
+	int updateDynamicWithoutNull(Map<String,Object> params);
 	
 	
 

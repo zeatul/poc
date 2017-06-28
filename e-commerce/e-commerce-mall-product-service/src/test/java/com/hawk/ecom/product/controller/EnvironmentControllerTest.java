@@ -11,7 +11,7 @@ public class EnvironmentControllerTest extends AbstractControllerTest{
 	
 	
 	@Test
-	public void testLoadAttrName() {
+	public void testInitEnvironment() {
 		String url = getUrl("/mall/admin/product/env/init");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));

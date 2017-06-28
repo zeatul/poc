@@ -5,6 +5,14 @@ import java.util.Date;
 import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductInfoResponse implements ResponseData{
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -149,4 +157,9 @@ public class ProductInfoResponse implements ResponseData{
 	 * 是否为虚拟物品 is_virtual
 	 */
 	private Integer isVirtual;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 }

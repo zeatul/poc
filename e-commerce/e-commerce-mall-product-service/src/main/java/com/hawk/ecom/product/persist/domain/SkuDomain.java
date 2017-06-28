@@ -142,6 +142,11 @@ public class SkuDomain implements Serializable {
 	private Integer deliveryType;
 	
 	/**
+	 * 库存版本号 stock_version
+	 */
+	private Integer stockVersion;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -570,6 +575,22 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setDeliveryType (Integer deliveryType) {
 		this.deliveryType = deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @return 库存版本号 stock_version
+	 */
+	public Integer getStockVersion(){
+		return stockVersion;
+	}
+	
+	/**
+	 * 
+	 * @param stockVersion 库存版本号 stock_version
+	 */	
+	public void setStockVersion (Integer stockVersion) {
+		this.stockVersion = stockVersion;
 	}
 	
 	/**

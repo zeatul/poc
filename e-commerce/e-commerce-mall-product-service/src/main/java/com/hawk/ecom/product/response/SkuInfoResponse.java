@@ -5,6 +5,14 @@ import java.math.BigDecimal;
 import com.hawk.framework.pub.web.ResponseData;
 
 public class SkuInfoResponse implements ResponseData{
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -298,6 +306,11 @@ public class SkuInfoResponse implements ResponseData{
 	 * 产品版本号 product_version
 	 */
 	private Integer productVersion;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 	
 	/**
 	 * sku版本号 sku_version

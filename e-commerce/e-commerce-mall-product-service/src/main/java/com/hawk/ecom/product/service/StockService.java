@@ -24,7 +24,6 @@ import com.hawk.ecom.product.request.ListStockParam;
 import com.hawk.ecom.product.request.LoadStockParam;
 import com.hawk.ecom.product.request.UpdateStockParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;

@@ -3,31 +3,47 @@ package com.hawk.ecom.product.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.constant.ConstAttr;
+import com.hawk.ecom.product.constant.ConstCategory;
+import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
+import com.hawk.ecom.product.persist.domain.ProductDomain;
+import com.hawk.ecom.product.persist.domain.SkuDomain;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
 import com.hawk.ecom.product.request.CreateAttrValueParam;
 import com.hawk.ecom.product.request.CreateCategoryParam;
 import com.hawk.ecom.product.request.CreateProductParam;
+import com.hawk.ecom.product.request.CreateSkuParam;
+import com.hawk.ecom.product.request.CreateStockParam;
+import com.hawk.ecom.product.request.UpdateCategoryVariantStatusParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
+import com.hawk.ecom.product.request.UpdateSkuStatusParam;
 import com.hawk.ecom.product.service.AttrNameService;
 import com.hawk.ecom.product.service.AttrValueService;
 import com.hawk.ecom.product.service.CategoryService;
+import com.hawk.ecom.product.service.ProductService;
+import com.hawk.ecom.product.service.SkuService;
+import com.hawk.ecom.product.service.StockService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @RestController
 @RequestMapping("/mall/admin/product/env/")
@@ -42,6 +58,15 @@ public class EnvironmentController {
 	
 	@Autowired
 	private AttrValueService attrValueService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private SkuService skuService;
+	
+	@Autowired
+	private StockService stockService;
 	
 	private String userCode = "000002";
 
@@ -83,9 +108,17 @@ public class EnvironmentController {
 		createCategorParam.setCategoryName("流量充值");
 		createCategorParam.setIsLeaf(1);
 		createCategorParam.setOperatorCode(userCode);
-		createCategorParam.setPid(virtualGoodsCategory.getId());
-		
+		createCategorParam.setPid(virtualGoodsCategory.getId());		
 		CategoryDomain mobileDataChargeCategory = categoryService.createCategory(createCategorParam);
+		
+		/**
+		 * 更新变式状态为编辑状态，以创建属性名和属性值
+		 */
+		UpdateCategoryVariantStatusParam updateCategoryVariantStatusParam = new UpdateCategoryVariantStatusParam();
+		updateCategoryVariantStatusParam.setOperatorCode(userCode);
+		updateCategoryVariantStatusParam.setCategoryVariantStatus(ConstCategory.CategoryVariantStatus.EDITING);
+		updateCategoryVariantStatusParam.setIds(Arrays.asList(screenBrokenCategory.getId(),mobileDataChargeCategory.getId()));
+		categoryService.updateCategoryVariantStatus(updateCategoryVariantStatusParam);
 		
 		
 		/**
@@ -252,18 +285,114 @@ public class EnvironmentController {
 		AttrValueDomain countryDataTypeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
 		mobileDataTypeDomainList.add(countryDataTypeAttrValueDomain);
 		
+		
+		/**
+		 * 更新变式状态为可用状态，以创建产品
+		 */
+		updateCategoryVariantStatusParam = new UpdateCategoryVariantStatusParam();
+		updateCategoryVariantStatusParam.setOperatorCode(userCode);
+		updateCategoryVariantStatusParam.setCategoryVariantStatus(ConstCategory.CategoryVariantStatus.AVAILABLE);
+		updateCategoryVariantStatusParam.setIds(Arrays.asList(screenBrokenCategory.getId(),mobileDataChargeCategory.getId()));
+		categoryService.updateCategoryVariantStatus(updateCategoryVariantStatusParam);
+		
 		/**
 		 * 创建产品,产品Sku,产品库存
-		 * 运营商，流量大小，流量类型,地区全部为关键属性
+		 * 运营商，流量大小，流量类型,地区全部为关键属性.
 		 */
+//		List<ProductDomain> productDomainList = new ArrayList<ProductDomain>();
 		for(AttrValueDomain supplierDomain : supplierDomainList){
 			for(AttrValueDomain chargeQuantityDomain : chargeQuantityDomainList){
 				for(AttrValueDomain districtDomain : districtDomainList){
 					for(AttrValueDomain mobildDataDomain : mobileDataTypeDomainList){
+						
+						/**
+						 * 产品
+						 */
 						CreateProductParam createProductParam = new CreateProductParam();
 						
 						createProductParam.setCategoryId(mobileDataChargeCategory.getId());
 						createProductParam.setIsVirtual(ConstBoolean.TRUE);
+						createProductParam.setDeliveryType(ConstProduct.DeliveryType.CHARGE);
+						createProductParam.setOperatorCode(userCode);
+						createProductParam.setProductCode(null);
+						createProductParam.setProductDesc(null);
+						createProductParam.setProductHomePage("http://www.baidu.com");
+						List<Integer> productKeyAttrValueIds = Arrays.asList(supplierDomain.getId(),chargeQuantityDomain.getId(),
+								districtDomain.getId(),mobildDataDomain.getId());
+						createProductParam.setProductKeyAttrValueIds(productKeyAttrValueIds);
+						createProductParam.setProductMemo("测试");
+						String productName = StringTools.concat("流量充值",supplierDomain.getAttrDisplayValue(),
+								chargeQuantityDomain.getAttrDisplayValue(),districtDomain.getAttrDisplayValue(),
+								mobildDataDomain.getAttrDisplayValue());
+						createProductParam.setProductName(productName);
+						
+						createProductParam.setProductNormalAttrValueIds(null);
+						String thumbnailHead = StringTools.concatWithSymbol("-",supplierDomain.getAttrDisplayEnValue(),
+								chargeQuantityDomain.getAttrDisplayEnValue(),
+								districtDomain.getAttrDisplayEnValue(),
+								mobildDataDomain.getAttrDisplayEnValue());
+						String thumbnail = StringTools.concatWithSymbol(".",thumbnailHead,"jpg");
+						createProductParam.setThumbnail(thumbnail);
+						createProductParam.setProductSkuAttrNameIds(null);						
+						ProductDomain productDomain = productService.createProduct(createProductParam);
+						
+						/**
+						 * 产品SKU
+						 */
+						CreateSkuParam createSkuParam = new CreateSkuParam();
+						createSkuParam.setCurrency(ConstProduct.Currency.RMB);
+						createSkuParam.setDepth(0);
+						createSkuParam.setWidth(0);
+						createSkuParam.setLengthUnit(ConstProduct.LengthUnit.MILLIMETER);
+						createSkuParam.setMarketPrice(new BigDecimal(100));
+						createSkuParam.setOperatorCode(userCode);
+						createSkuParam.setProductId(productDomain.getId());
+						createSkuParam.setSalePrice(new BigDecimal(99));
+						createSkuParam.setSkuAttrValueIds(null);
+						createSkuParam.setSkuCode(null);
+						createSkuParam.setSkuMemo(null);
+						createSkuParam.setSkuName(productDomain.getProductName());
+						createSkuParam.setThumbnail(productDomain.getThumbnail());
+						createSkuParam.setWeight(0);
+						createSkuParam.setWeightUnit(ConstProduct.WeightUnit.GRAM);
+						createSkuParam.setWidth(0);	
+						createSkuParam.setHeight(0);
+						SkuDomain skuDomain = skuService.createSku(createSkuParam);
+						
+						/**
+						 * 库存
+						 */
+						CreateStockParam createStockParam = new CreateStockParam();
+						createStockParam.setOperatorCode(userCode);
+						createStockParam.setSkuId(skuDomain.getId());
+						createStockParam.setStockItemCode(thumbnailHead);
+						createStockParam.setStockMemo("测试");
+						createStockParam.setStockOperation(ConstProduct.StockOperation.STOCK_IN);
+						createStockParam.setStockQuantity(999999);
+						createStockParam.setWarehouseCode("warehouse1");
+						stockService.createStock(createStockParam);
+						
+						/**
+						 * sku上架
+						 */
+						UpdateSkuStatusParam updateSkuStatusParam = new UpdateSkuStatusParam();
+						updateSkuStatusParam.setIds(Arrays.asList(skuDomain.getId()));
+						updateSkuStatusParam.setOperatorCode(userCode);
+						updateSkuStatusParam.setSkuStatus(ConstProduct.SkuStatus.ON_SALE);
+						skuService.updateSkuStatus(updateSkuStatusParam);
+						
+						/**
+						 * product上架
+						 */
+						UpdateProductStatusParam updateProductStatusParam = new UpdateProductStatusParam();
+						updateProductStatusParam.setIds(Arrays.asList(productDomain.getId()));
+						Date onSaleStdt = new Date();
+						Date onSaleEndt = DateTools.addDays(onSaleStdt, 365);
+						updateProductStatusParam.setOnSaleEndt(onSaleEndt);
+						updateProductStatusParam.setOnSaleStdt(onSaleStdt);
+						updateProductStatusParam.setOperatorCode(userCode);
+						productService.updateProductStatus(updateProductStatusParam);
+						
 					}
 				}
 			}

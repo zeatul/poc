@@ -48,7 +48,7 @@ public class ValidateConfig {
 		@Autowired
 		private ValidateService validateService;
 		
-		@Pointcut("execution(** com.hawk.ecom.*.service.*.*(..)) && @annotation(com.hawk.framework.dic.validation.annotation.Valid)")
+		@Pointcut("execution(* com.hawk.ecom.*.service.*.*(..)) && @annotation(com.hawk.framework.dic.validation.annotation.Valid)")
 		public void methodOfValidateParameter() {
 		}
 		

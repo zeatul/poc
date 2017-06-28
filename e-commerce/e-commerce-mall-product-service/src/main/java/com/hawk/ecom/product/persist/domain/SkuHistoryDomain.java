@@ -132,6 +132,11 @@ public class SkuHistoryDomain implements Serializable {
 	private Integer skuVersion;
 	
 	/**
+	 * 库存版本号 stock_version
+	 */
+	private Integer stockVersion;
+	
+	/**
 	 * 交付方式 delivery_type
 	 */
 	private Integer deliveryType;
@@ -533,6 +538,22 @@ public class SkuHistoryDomain implements Serializable {
 	 */	
 	public void setSkuVersion (Integer skuVersion) {
 		this.skuVersion = skuVersion;
+	}
+	
+	/**
+	 * 
+	 * @return 库存版本号 stock_version
+	 */
+	public Integer getStockVersion(){
+		return stockVersion;
+	}
+	
+	/**
+	 * 
+	 * @param stockVersion 库存版本号 stock_version
+	 */	
+	public void setStockVersion (Integer stockVersion) {
+		this.stockVersion = stockVersion;
 	}
 	
 	/**

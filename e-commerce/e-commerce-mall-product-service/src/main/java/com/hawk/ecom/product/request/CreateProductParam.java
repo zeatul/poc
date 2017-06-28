@@ -129,8 +129,7 @@ public class CreateProductParam {
 
 	/**
 	 * 产品编号 product_code
-	 */
-	@NotEmpty
+	 */	
 	private String productCode;
 
 	/**

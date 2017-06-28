@@ -56,7 +56,6 @@ import com.hawk.ecom.product.request.RemoveProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
 import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
@@ -170,7 +169,7 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public ProductDomain createProduct(@Valid @NotNull("参数") CreateProductParam createProdcutParam) {
+	public ProductDomain createProduct(@Valid @NotNull("参数") CreateProductParam createProductParam) {
 
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
@@ -179,7 +178,7 @@ public class ProductService {
 		/**
 		 * 校验,产品目录必须存在，产品目录必须是叶子节点，产品目录变式状态必须是可用的。
 		 */
-		CategoryDomain category = categoryService.loadCategory(createProdcutParam.getCategoryId());
+		CategoryDomain category = categoryService.loadCategory(createProductParam.getCategoryId());
 		if (category == null) {
 			throw new CategoryNotFoundRuntimeException();
 		}
@@ -197,17 +196,19 @@ public class ProductService {
 		productDomain.setCreateDate(now);
 		productDomain.setCreateUserCode(AuthThreadLocal.getUserCode());
 
-		productDomain.setIsVirtual(createProdcutParam.getIsVirtual());
+		productDomain.setIsVirtual(createProductParam.getIsVirtual());
 
-		productDomain.setProductCode(createProdcutParam.getProductCode());
-		productDomain.setProductDesc(createProdcutParam.getProductDesc());
-		productDomain.setProductHomePage(createProdcutParam.getProductHomePage());
-		productDomain.setProductMemo(createProdcutParam.getProductMemo());
-		productDomain.setProductName(createProdcutParam.getProductName());
+		productDomain.setProductCode(createProductParam.getProductCode());
+		
+		
+		productDomain.setProductDesc(createProductParam.getProductDesc());
+		productDomain.setProductHomePage(createProductParam.getProductHomePage());
+		productDomain.setProductMemo(createProductParam.getProductMemo());
+		productDomain.setProductName(createProductParam.getProductName());
 		productDomain.setProductStatus(ConstProduct.ProductStatus.EDITING);
 		productDomain.setStoreCode(AuthThreadLocal.getStoreCode());
-		productDomain.setThumbnail(createProdcutParam.getThumbnail());
-		productDomain.setDeliveryType(createProdcutParam.getDeliveryType());
+		productDomain.setThumbnail(createProductParam.getThumbnail());
+		productDomain.setDeliveryType(createProductParam.getDeliveryType());
 		productDomain.setUpdateDate(now);
 		productDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 
@@ -219,7 +220,7 @@ public class ProductService {
 		/**
 		 * 设置SKU属性名ID集合
 		 */
-		List<Integer> skuAttrNameIds = createProdcutParam.getProductSkuAttrNameIds();
+		List<Integer> skuAttrNameIds = createProductParam.getProductSkuAttrNameIds();
 		if (CollectionTools.isNotNullOrEmpty(skuAttrNameIds)) {
 			/**
 			 * 必须先排序
@@ -228,7 +229,7 @@ public class ProductService {
 			/**
 			 * 产品目录分类ID
 			 */
-			Integer categoryId = createProdcutParam.getCategoryId();
+			Integer categoryId = createProductParam.getCategoryId();
 			/**
 			 * 校验属性名ID必须存在，不能重复，必须有和创建的产品有相同的产品目录
 			 */
@@ -251,7 +252,7 @@ public class ProductService {
 		/**
 		 * 设定关键属性名值ID集合 和 关键属性值值集合
 		 */
-		List<Integer> keyAttrValueIds = createProdcutParam.getProductKeyAttrValueIds();
+		List<Integer> keyAttrValueIds = createProductParam.getProductKeyAttrValueIds();
 		List<ProductAttrDomain> productAttrDomainList = new ArrayList<ProductAttrDomain>();
 		if (CollectionTools.isNotNullOrEmpty(keyAttrValueIds)) {
 			/**
@@ -261,7 +262,7 @@ public class ProductService {
 			/**
 			 * 产品目录分类ID
 			 */
-			Integer categoryId = createProdcutParam.getCategoryId();
+			Integer categoryId = createProductParam.getCategoryId();
 			/**
 			 * 校验属性值ID必须存在，属性值对应的属性名ID不能重复，必须有和创建的产品有相同的产品目录
 			 */
@@ -296,13 +297,13 @@ public class ProductService {
 		/**
 		 * 设定普通属性名值ID集合 和 普通属性值值集合
 		 */
-		List<Integer> normalAttrValueIds = createProdcutParam.getProductNormalAttrValueIds();
+		List<Integer> normalAttrValueIds = createProductParam.getProductNormalAttrValueIds();
 		if (CollectionTools.isNotNullOrEmpty(normalAttrValueIds)) {
 
 			/**
 			 * 产品目录分类ID
 			 */
-			Integer categoryId = createProdcutParam.getCategoryId();
+			Integer categoryId = createProductParam.getCategoryId();
 			/**
 			 * 校验属性值ID必须存在，属性值对应的属性名ID不能重复，必须有和创建的产品有相同的产品目录
 			 */
@@ -343,6 +344,9 @@ public class ProductService {
 			productAttrMapper.insert(productAttrDomain);
 		}
 
+		if (StringTools.isNullOrEmpty(productDomain.getProductCode())){
+			productDomain.setProductCode(productDomain.getId().toString());
+		}
 		try {
 			productMapper.insert(productDomain);
 		} catch (DuplicateKeyException ex) {
@@ -699,14 +703,14 @@ public class ProductService {
 	 */
 	@Valid
 	@Transactional
-	public void updateProductStatus(@Valid @NotNull("参数") UpdateProductStatusParam updateProdcutStatusParam) {
+	public void updateProductStatus(@Valid @NotNull("参数") UpdateProductStatusParam updateProductStatusParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		int status = updateProdcutStatusParam.getProductStatus();		
+		int status = updateProductStatusParam.getProductStatus();		
 		
-		for (Integer productId : updateProdcutStatusParam.getIds()) {
+		for (Integer productId : updateProductStatusParam.getIds()) {
 			ProductDomain productDomain = loadProduct(productId);
 			/**
 			 * 检测是否是本用户的商铺的商品
@@ -726,11 +730,11 @@ public class ProductService {
 					/**
 					 * 检测时间
 					 */
-					Date stdt = updateProdcutStatusParam.getOnSaleStdt();
+					Date stdt = updateProductStatusParam.getOnSaleStdt();
 					if (stdt == null){
 						stdt = productDomain.getOnSaleStdt();
 					}
-					Date endt = updateProdcutStatusParam.getOnSaleEndt();
+					Date endt = updateProductStatusParam.getOnSaleEndt();
 					if (endt == null){
 						endt = productDomain.getOnSaleEndt();
 					}

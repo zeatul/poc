@@ -12,6 +12,14 @@ public class CreateSkuParam {
 	
 	
 
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public Integer getCurrency() {
 		return currency;
 	}
@@ -147,7 +155,6 @@ public class CreateSkuParam {
 	/**
 	 * SKU编号 sku_code
 	 */
-	@NotEmpty
 	private String skuCode;
 	
 	/**
@@ -218,6 +225,11 @@ public class CreateSkuParam {
 	 * 币种 currency
 	 */
 	private Integer currency;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 	
 	
 	/**

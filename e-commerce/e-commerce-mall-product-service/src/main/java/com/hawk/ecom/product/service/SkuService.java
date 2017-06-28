@@ -53,7 +53,6 @@ import com.hawk.ecom.product.request.RemoveSkuParam;
 import com.hawk.ecom.product.request.UpdateSkuParam;
 import com.hawk.ecom.product.request.UpdateSkuStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
@@ -124,14 +123,13 @@ public class SkuService {
 		 * 乐观锁更新产品Sku的数量,成功后,增加库存条目
 		 */
 		MybatisParam params = new MybatisParam()//
-				.put("old_skuStockQuantity", skuDomain.getSkuStockQuantity())//
-				.put("old_updateDate", skuDomain.getUpdateDate())//
+				.put("old_stockVersion", skuDomain.getStockVersion())//
 				.put("old_id", skuDomain.getId())//
-				.put("old_updateUserCode", skuDomain.getUpdateUserCode())//
 				.put("skuStockQuantity", skuDomain.getSkuStockQuantity() + delta)//
+				.put("stockVersion", skuDomain.getStockVersion()+1)//
 				.put("updateUserCode", userCode)//
 				.put("updateDate", now);
-		int updatedRowCount = skuMapper.updateDynamic(params);
+		int updatedRowCount = skuMapper.updateDynamicWithoutNull(params);
 		if (updatedRowCount != 1){
 			return false;
 		}
@@ -248,6 +246,8 @@ public class SkuService {
 		
 		skuDomain.setMarketPrice(createSkuParam.getMarketPrice());
 		skuDomain.setSalePrice(createSkuParam.getSalePrice());
+		skuDomain.setThumbnail(createSkuParam.getThumbnail());
+		
 		/**
 		 * TODO:修改币种 ,写死为RMB
 		 */
@@ -262,6 +262,7 @@ public class SkuService {
 		 * 新创建的产品SKU库存数量为0
 		 */
 		skuDomain.setSkuStockQuantity(0);
+		skuDomain.setStockVersion(1);
 		skuDomain.setStoreCode(productDomain.getStoreCode());
 		skuDomain.setUpdateDate(now);
 		skuDomain.setUpdateUserCode(userCode);
@@ -271,9 +272,13 @@ public class SkuService {
 		/**
 		 * 设置主键和版本号
 		 */
-		skuDomain.setSkuVersion(0);
+		skuDomain.setSkuVersion(1);
 		skuDomain.setProductVersion(productDomain.getProductVersion());
 		skuDomain.setId(pkGenService.genPk());
+		
+		if (StringTools.isNullOrEmpty(skuDomain.getSkuCode())){
+			skuDomain.setSkuCode(skuDomain.getId().toString());
+		}
 
 		try {
 			skuMapper.insert(skuDomain);

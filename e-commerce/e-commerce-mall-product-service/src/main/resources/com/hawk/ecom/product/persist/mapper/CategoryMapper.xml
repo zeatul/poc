@@ -52,25 +52,25 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND pid = #{old_pid}
-			AND id_path = #{old_idPath}
-			AND object_order = #{old_objectOrder}
-			AND depth = #{old_depth}
-			AND category_code = #{old_categoryCode}
-			AND category_name = #{old_categoryName}
-			AND category_status = #{old_categoryStatus}
-			AND category_desc = #{old_categoryDesc}
-			AND category_logo = #{old_categoryLogo}
-			AND category_home_page = #{old_categoryHomePage}
-			AND is_leaf = #{old_isLeaf}
-			AND category_variant_status = #{old_categoryVariantStatus}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="pid != null"> AND pid = #{old_pid}  </if>			
+			<if test="idPath != null"> AND id_path = #{old_idPath}  </if>			
+			<if test="objectOrder != null"> AND object_order = #{old_objectOrder}  </if>			
+			<if test="depth != null"> AND depth = #{old_depth}  </if>			
+			<if test="categoryCode != null"> AND category_code = #{old_categoryCode}  </if>			
+			<if test="categoryName != null"> AND category_name = #{old_categoryName}  </if>			
+			<if test="categoryStatus != null"> AND category_status = #{old_categoryStatus}  </if>			
+			<if test="categoryDesc != null"> AND category_desc = #{old_categoryDesc}  </if>			
+			<if test="categoryLogo != null"> AND category_logo = #{old_categoryLogo}  </if>			
+			<if test="categoryHomePage != null"> AND category_home_page = #{old_categoryHomePage}  </if>			
+			<if test="isLeaf != null"> AND is_leaf = #{old_isLeaf}  </if>			
+			<if test="categoryVariantStatus != null"> AND category_variant_status = #{old_categoryVariantStatus}  </if>			
+			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -222,9 +222,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_category	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	
