@@ -36,7 +36,6 @@ import com.hawk.ecom.product.request.UpdateCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryStatusParam;
 import com.hawk.ecom.product.request.UpdateCategoryVariantStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
@@ -132,7 +131,7 @@ public class CategoryService {
 		if (id != null){
 			categoryDomain = categoryMapper.load(id);
 		}else{
-			logger.error("loadCategory param id is null");
+			logger.error("loadCategory:id is null");
 		}
 		if (categoryDomain == null){
 			throw new CategoryNotFoundRuntimeException();

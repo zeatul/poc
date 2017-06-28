@@ -103,6 +103,9 @@ public class SkuService {
 		SkuDomain skuDomain = null;
 		if (id != null) {
 			skuDomain = skuMapper.load(id);
+		}else{
+			logger.error("loadSkuById: id is null");
+			
 		}
 		if (skuDomain == null) {
 			throw new SkuNotFoundRuntimeException();
@@ -543,20 +546,20 @@ public class SkuService {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
-		int status = updateSkuStatusParam.getSkuStatus();
+		int newStatus = updateSkuStatusParam.getSkuStatus();
 		Date now = new Date();
 		String userCode = AuthThreadLocal.getUserCode();
-		for (Integer id : updateSkuStatusParam.getIds()) {
-			SkuDomain skuDomain = loadSkuById(id);
+		for (Integer skuId : updateSkuStatusParam.getIds()) {
+			SkuDomain skuDomain = loadSkuById(skuId);
 			ProductDomain productDomain = productService.loadProduct(skuDomain.getProductId());
 
-			if (status != skuDomain.getSkuStatus()) {
-				if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getUserCode())) {
+			if (newStatus != skuDomain.getSkuStatus()) {
+				if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())) {
 					throw new UnMatchedStoreOperatorException();
 				}
 				SkuDomain updateDomain = new SkuDomain();
 
-				if (status == ConstProduct.SkuStatus.ON_SALE) {
+				if (newStatus == ConstProduct.SkuStatus.ON_SALE) {
 					/**
 					 * SKU上架时，销售价格要存在且>=0
 					 */
@@ -587,10 +590,11 @@ public class SkuService {
 				 * 产品版本号保持一致
 				 */
 				updateDomain.setProductVersion(productDomain.getProductVersion());
-				updateDomain.setSkuStatus(status);
+				updateDomain.setSkuStatus(newStatus);
 				updateDomain.setUpdateDate(now);
 				updateDomain.setUpdateUserCode(userCode);
-				skuMapper.update(updateDomain);
+				updateDomain.setId(skuId);
+				skuMapper.updateWithoutNull(updateDomain);
 			}
 		}
 	}
@@ -603,13 +607,20 @@ public class SkuService {
 	 */
 	private boolean compareSkuAttrOfProductAndSKu(ProductDomain productDomain , SkuDomain skuDomain){
 		String skuAttrValueIdsStr = skuDomain.getSkuAttrValueIds();
-		String productSkuAttrNameIds = productDomain.getProductSkuAttrNameIds();					
+		String productSkuAttrNameIds = productDomain.getProductSkuAttrNameIds();	
+		
+		if (StringTools.isNullOrEmpty(skuAttrValueIdsStr) && StringTools.isNullOrEmpty(productSkuAttrNameIds) ){
+			return true;
+		}
+		
 		if (StringTools.isNotNullOrEmpty(skuAttrValueIdsStr) && StringTools.isNullOrEmpty(productSkuAttrNameIds) ){
 			return false;
 		}
 		if (StringTools.isNullOrEmpty(skuAttrValueIdsStr) && StringTools.isNotNullOrEmpty(productSkuAttrNameIds) ){
 			return false;
 		}
+		
+		 
 		
 		String[] strs = skuAttrValueIdsStr.split(ProductService.ATTR_NAME_ID_SPLITTER);
 		List<Integer> skuAttrNameIdList = new ArrayList<Integer>();

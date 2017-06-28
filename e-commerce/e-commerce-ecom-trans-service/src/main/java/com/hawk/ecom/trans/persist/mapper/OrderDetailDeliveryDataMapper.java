@@ -14,10 +14,10 @@ public interface OrderDetailDeliveryDataMapper  {
 
 	/**
 	 * 根据主键加载记录
-	 * @param orderDetailId 订单明细主键
+	 * @param id 主键
 	 * @return 查询到的记录
 	 */
-	OrderDetailDeliveryDataDomain load(@Param("orderDetailId")Integer orderDetailId );
+	OrderDetailDeliveryDataDomain load(@Param("id")Integer id );
 	
 	/**
 	 * 动态条件加载记录
@@ -42,10 +42,10 @@ public interface OrderDetailDeliveryDataMapper  {
 	
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 * @param orderDetailId 订单明细主键
+	 * @param id 主键
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("orderDetailId")Integer orderDetailId );
+	int countByPK(@Param("id")Integer id );
 	
 	
 	/**
@@ -57,10 +57,10 @@ public interface OrderDetailDeliveryDataMapper  {
 	
 	/**
 	 * 根据主键删除记录
-	 * @param orderDetailId 订单明细主键
+	 * @param id 主键
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("orderDetailId")Integer orderDetailId );
+	int delete(@Param("id")Integer id );
 	
 	/**
 	 * 动态删除记录
@@ -88,7 +88,7 @@ public interface OrderDetailDeliveryDataMapper  {
 	 * @param params
 	 * @return 更新的记录数
 	 */
-	int updateDynamic(Map<String,Object> params);
+	int updateDynamicWithoutNull(Map<String,Object> params);
 	
 	
 

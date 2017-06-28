@@ -51,9 +51,9 @@ public class OrderOperationDomain implements Serializable {
 	private Integer orderNextStatus;
 	
 	/**
-	 * 操作描述 operation_dex
+	 * 操作描述 operation_desc
 	 */
-	private String operationDex;
+	private String operationDesc;
 	
 	/**
 	 * 操作备注 operation_memo
@@ -205,18 +205,18 @@ public class OrderOperationDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 操作描述 operation_dex
+	 * @return 操作描述 operation_desc
 	 */
-	public String getOperationDex(){
-		return operationDex;
+	public String getOperationDesc(){
+		return operationDesc;
 	}
 	
 	/**
 	 * 
-	 * @param operationDex 操作描述 operation_dex
+	 * @param operationDesc 操作描述 operation_desc
 	 */	
-	public void setOperationDex (String operationDex) {
-		this.operationDex = operationDex;
+	public void setOperationDesc (String operationDesc) {
+		this.operationDesc = operationDesc;
 	}
 	
 	/**

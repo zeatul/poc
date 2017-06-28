@@ -101,6 +101,7 @@ create unique index ui_tra_detail on t_tra_order_detail
 /*==============================================================*/
 create table t_tra_order_detail_delivery_data
 (
+   id                   integer unsigned not null comment '主键',
    order_detail_id      integer unsigned not null comment '订单明细主键',
    order_id             integer unsigned not null comment '订单主键',
    store_code           varchar(50) not null comment '商户编号',
@@ -131,7 +132,7 @@ create table t_tra_order_detail_delivery_data
    create_date          timestamp(3) null comment '创建日期',
    update_date          timestamp(3) null comment '更新日期',
    delete_date          timestamp(3) null comment '删除日期',
-   primary key (order_detail_id)
+   primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

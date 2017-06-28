@@ -16,6 +16,11 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	/**
+	 * 主键 id
+	 */
+	private Integer id;
+	
+	/**
 	 * 订单明细主键 order_detail_id
 	 */
 	private Integer orderDetailId;
@@ -165,6 +170,22 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */
 	private Date deleteDate;
 	
+	
+	/**
+	 * 
+	 * @return 主键 id
+	 */
+	public Integer getId(){
+		return id;
+	}
+	
+	/**
+	 * 
+	 * @param id 主键 id
+	 */	
+	public void setId (Integer id) {
+		this.id = id;
+	}
 	
 	/**
 	 * 

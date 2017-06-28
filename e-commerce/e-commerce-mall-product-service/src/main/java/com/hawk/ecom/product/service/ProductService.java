@@ -118,8 +118,10 @@ public class ProductService {
 	public ProductDomain loadProduct(Integer id) {
 		ProductDomain productDomain = null;
 		if (id != null) {
-			logger.error("product id is null");
 			productDomain = productMapper.load(id);
+		}else{
+			logger.error("loadProduct: id is null");
+			
 		}
 		if (productDomain == null) {
 			throw new ProductNotFoundRuntimeException();
@@ -234,7 +236,7 @@ public class ProductService {
 			 * 校验属性名ID必须存在，不能重复，必须有和创建的产品有相同的产品目录
 			 */
 			for (Integer attrNameId : skuAttrNameIds) {
-				AttrNameDomain attrNameDomain = attrNameService.loadById(attrNameId);
+				AttrNameDomain attrNameDomain = attrNameService.loadAttrNameById(attrNameId);
 				if (!categoryId.equals(attrNameDomain.getCategoryId())) {
 					throw new CategoryIsDifferentRuntimeException();
 				}
@@ -725,6 +727,7 @@ public class ProductService {
 				updateDomain.setProductStatus(status);
 				updateDomain.setUpdateDate(new Date());
 				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+				updateDomain.setId(productId);
 
 				if (status == ConstProduct.ProductStatus.ON_SALE) {
 					/**

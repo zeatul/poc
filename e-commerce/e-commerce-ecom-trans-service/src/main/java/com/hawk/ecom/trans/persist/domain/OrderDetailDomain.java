@@ -77,14 +77,14 @@ public class OrderDetailDomain implements Serializable {
 	private Integer discountQuantity;
 	
 	/**
-	 * 显示单价 unit_display_price
+	 * 显示单价 unit_original_price
 	 */
-	private BigDecimal unitDisplayPrice;
+	private BigDecimal unitOriginalPrice;
 	
 	/**
-	 * 单价 unit_price
+	 * 单价 unit_pay_price
 	 */
-	private BigDecimal unitPrice;
+	private BigDecimal unitPayPrice;
 	
 	/**
 	 * 订单明细减免 order_detail_deduction
@@ -92,9 +92,14 @@ public class OrderDetailDomain implements Serializable {
 	private BigDecimal orderDetailDeduction;
 	
 	/**
-	 * 支付价 pay_price
+	 * 订单明细支付总价 order_detail_total_pay_price
 	 */
-	private BigDecimal payPrice;
+	private BigDecimal orderDetailTotalPayPrice;
+	
+	/**
+	 * 币种 currency
+	 */
+	private Integer currency;
 	
 	/**
 	 * 备注 order_detail_memo
@@ -311,34 +316,34 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 显示单价 unit_display_price
+	 * @return 显示单价 unit_original_price
 	 */
-	public BigDecimal getUnitDisplayPrice(){
-		return unitDisplayPrice;
+	public BigDecimal getUnitOriginalPrice(){
+		return unitOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @param unitDisplayPrice 显示单价 unit_display_price
+	 * @param unitOriginalPrice 显示单价 unit_original_price
 	 */	
-	public void setUnitDisplayPrice (BigDecimal unitDisplayPrice) {
-		this.unitDisplayPrice = unitDisplayPrice;
+	public void setUnitOriginalPrice (BigDecimal unitOriginalPrice) {
+		this.unitOriginalPrice = unitOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @return 单价 unit_price
+	 * @return 单价 unit_pay_price
 	 */
-	public BigDecimal getUnitPrice(){
-		return unitPrice;
+	public BigDecimal getUnitPayPrice(){
+		return unitPayPrice;
 	}
 	
 	/**
 	 * 
-	 * @param unitPrice 单价 unit_price
+	 * @param unitPayPrice 单价 unit_pay_price
 	 */	
-	public void setUnitPrice (BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
+	public void setUnitPayPrice (BigDecimal unitPayPrice) {
+		this.unitPayPrice = unitPayPrice;
 	}
 	
 	/**
@@ -359,18 +364,34 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 支付价 pay_price
+	 * @return 订单明细支付总价 order_detail_total_pay_price
 	 */
-	public BigDecimal getPayPrice(){
-		return payPrice;
+	public BigDecimal getOrderDetailTotalPayPrice(){
+		return orderDetailTotalPayPrice;
 	}
 	
 	/**
 	 * 
-	 * @param payPrice 支付价 pay_price
+	 * @param orderDetailTotalPayPrice 订单明细支付总价 order_detail_total_pay_price
 	 */	
-	public void setPayPrice (BigDecimal payPrice) {
-		this.payPrice = payPrice;
+	public void setOrderDetailTotalPayPrice (BigDecimal orderDetailTotalPayPrice) {
+		this.orderDetailTotalPayPrice = orderDetailTotalPayPrice;
+	}
+	
+	/**
+	 * 
+	 * @return 币种 currency
+	 */
+	public Integer getCurrency(){
+		return currency;
+	}
+	
+	/**
+	 * 
+	 * @param currency 币种 currency
+	 */	
+	public void setCurrency (Integer currency) {
+		this.currency = currency;
 	}
 	
 	/**

@@ -34,16 +34,16 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND order_id = #{old_orderId}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND recipient_name = #{old_recipientName}
-			AND recipient_mobilephone = #{old_recipientMobilephone}
-			AND recipient_telephone = #{old_recipientTelephone}
-			AND recipient_address = #{old_recipientAddress}
-			AND recipient_post_code = #{old_recipientPostCode}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="recipientName != null"> AND recipient_name = #{old_recipientName}  </if>			
+			<if test="recipientMobilephone != null"> AND recipient_mobilephone = #{old_recipientMobilephone}  </if>			
+			<if test="recipientTelephone != null"> AND recipient_telephone = #{old_recipientTelephone}  </if>			
+			<if test="recipientAddress != null"> AND recipient_address = #{old_recipientAddress}  </if>			
+			<if test="recipientPostCode != null"> AND recipient_post_code = #{old_recipientPostCode}  </if>			
 		</trim>
 	</sql>
 	
@@ -159,9 +159,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order_recipient	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

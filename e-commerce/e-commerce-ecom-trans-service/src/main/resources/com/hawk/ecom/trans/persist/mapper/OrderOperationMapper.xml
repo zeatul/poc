@@ -12,7 +12,7 @@
 		user_code AS "userCode" ,
 		order_pre_status AS "orderPreStatus" ,
 		order_next_status AS "orderNextStatus" ,
-		operation_dex AS "operationDex" ,
+		operation_desc AS "operationDesc" ,
 		operation_memo AS "operationMemo" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -31,7 +31,7 @@
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="orderPreStatus != null"> AND order_pre_status = #{orderPreStatus}  </if>
 			<if test="orderNextStatus != null"> AND order_next_status = #{orderNextStatus}  </if>
-			<if test="operationDex != null"> AND operation_dex = #{operationDex}  </if>
+			<if test="operationDesc != null"> AND operation_desc = #{operationDesc}  </if>
 			<if test="operationMemo != null"> AND operation_memo = #{operationMemo}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -44,21 +44,21 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND order_id = #{old_orderId}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND order_pre_status = #{old_orderPreStatus}
-			AND order_next_status = #{old_orderNextStatus}
-			AND operation_dex = #{old_operationDex}
-			AND operation_memo = #{old_operationMemo}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="orderPreStatus != null"> AND order_pre_status = #{old_orderPreStatus}  </if>			
+			<if test="orderNextStatus != null"> AND order_next_status = #{old_orderNextStatus}  </if>			
+			<if test="operationDesc != null"> AND operation_desc = #{old_operationDesc}  </if>			
+			<if test="operationMemo != null"> AND operation_memo = #{old_operationMemo}  </if>			
+			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -71,7 +71,7 @@
 			user_code = #{userCode},
 			order_pre_status = #{orderPreStatus},
 			order_next_status = #{orderNextStatus},
-			operation_dex = #{operationDex},
+			operation_desc = #{operationDesc},
 			operation_memo = #{operationMemo},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -91,7 +91,7 @@
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="orderPreStatus != null">order_pre_status = #{orderPreStatus},</if>
 			<if test="orderNextStatus != null">order_next_status = #{orderNextStatus},</if>
-			<if test="operationDex != null">operation_dex = #{operationDex},</if>
+			<if test="operationDesc != null">operation_desc = #{operationDesc},</if>
 			<if test="operationMemo != null">operation_memo = #{operationMemo},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -144,7 +144,7 @@
 				user_code,				
 				order_pre_status,				
 				order_next_status,				
-				operation_dex,				
+				operation_desc,				
 				operation_memo,				
 				create_user_code,				
 				create_date,				
@@ -161,7 +161,7 @@
 			#{userCode},
 			#{orderPreStatus},
 			#{orderNextStatus},
-			#{operationDex},
+			#{operationDesc},
 			#{operationMemo},
 			#{createUserCode},
 			#{createDate},
@@ -194,9 +194,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order_operation	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

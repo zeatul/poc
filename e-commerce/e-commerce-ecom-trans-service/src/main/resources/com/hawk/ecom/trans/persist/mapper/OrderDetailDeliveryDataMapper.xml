@@ -5,7 +5,8 @@
 <mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper">
 
 	<sql id="columns">	
-				order_detail_id AS "orderDetailId" ,
+				id AS "id" ,
+		order_detail_id AS "orderDetailId" ,
 		order_id AS "orderId" ,
 		store_code AS "storeCode" ,
 		order_code AS "orderCode" ,
@@ -39,6 +40,7 @@
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
 			<if test="orderDetailId != null"> AND order_detail_id = #{orderDetailId}  </if>
 			<if test="orderId != null"> AND order_id = #{orderId}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
@@ -74,41 +76,43 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND order_detail_id = #{old_orderDetailId}
-			AND order_id = #{old_orderId}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND supplier_code = #{old_supplierCode}
-			AND outer_phone_model_id = #{old_outerPhoneModelId}
-			AND outer_product_id = #{old_outerProductId}
-			AND imei = #{old_imei}
-			AND benef_id_typ = #{old_benefIdTyp}
-			AND benef_id_number = #{old_benefIdNumber}
-			AND benef_birthday = #{old_benefBirthday}
-			AND benef_sex = #{old_benefSex}
-			AND benef_name = #{old_benefName}
-			AND benef_mobile_number = #{old_benefMobileNumber}
-			AND outer_order_code = #{old_outerOrderCode}
-			AND task_code = #{old_taskCode}
-			AND task_status = #{old_taskStatus}
-			AND schedule_exec_date = #{old_scheduleExecDate}
-			AND exec_times = #{old_execTimes}
-			AND max_exec_times = #{old_maxExecTimes}
-			AND last_exec_err_code = #{old_lastExecErrCode}
-			AND last_exec_err_msg = #{old_lastExecErrMsg}
-			AND last_exec_begin_time = #{old_lastExecBeginTime}
-			AND last_exec_end_time = #{old_lastExecEndTime}
-			AND last_exec_computer = #{old_lastExecComputer}
-			AND last_exec_process_id = #{old_lastExecProcessId}
-			AND create_date = #{old_createDate}
-			AND update_date = #{old_updateDate}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="orderDetailId != null"> AND order_detail_id = #{old_orderDetailId}  </if>			
+			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
+			<if test="outerPhoneModelId != null"> AND outer_phone_model_id = #{old_outerPhoneModelId}  </if>			
+			<if test="outerProductId != null"> AND outer_product_id = #{old_outerProductId}  </if>			
+			<if test="imei != null"> AND imei = #{old_imei}  </if>			
+			<if test="benefIdTyp != null"> AND benef_id_typ = #{old_benefIdTyp}  </if>			
+			<if test="benefIdNumber != null"> AND benef_id_number = #{old_benefIdNumber}  </if>			
+			<if test="benefBirthday != null"> AND benef_birthday = #{old_benefBirthday}  </if>			
+			<if test="benefSex != null"> AND benef_sex = #{old_benefSex}  </if>			
+			<if test="benefName != null"> AND benef_name = #{old_benefName}  </if>			
+			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
+			<if test="outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
+			<if test="taskCode != null"> AND task_code = #{old_taskCode}  </if>			
+			<if test="taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{old_scheduleExecDate}  </if>			
+			<if test="execTimes != null"> AND exec_times = #{old_execTimes}  </if>			
+			<if test="maxExecTimes != null"> AND max_exec_times = #{old_maxExecTimes}  </if>			
+			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{old_lastExecErrCode}  </if>			
+			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{old_lastExecErrMsg}  </if>			
+			<if test="lastExecBeginTime != null"> AND last_exec_begin_time = #{old_lastExecBeginTime}  </if>			
+			<if test="lastExecEndTime != null"> AND last_exec_end_time = #{old_lastExecEndTime}  </if>			
+			<if test="lastExecComputer != null"> AND last_exec_computer = #{old_lastExecComputer}  </if>			
+			<if test="lastExecProcessId != null"> AND last_exec_process_id = #{old_lastExecProcessId}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
+			id = #{id},
 			order_detail_id = #{orderDetailId},
 			order_id = #{orderId},
 			store_code = #{storeCode},
@@ -144,6 +148,7 @@
 	
 	<sql id="updateWithoutNull">
 		<set>
+			<if test="id != null">id = #{id},</if>
 			<if test="orderDetailId != null">order_detail_id = #{orderDetailId},</if>
 			<if test="orderId != null">order_id = #{orderId},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
@@ -179,7 +184,7 @@
 	
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-			AND order_detail_id = #{orderDetailId}
+			AND id = #{id}
 		</trim>
 	</sql>
 	
@@ -212,6 +217,7 @@
 	
 	<insert id="insert"  parameterType="OrderDetailDeliveryDataDomain">
 		INSERT INTO t_tra_order_detail_delivery_data (			
+				id,				
 				order_detail_id,				
 				order_id,				
 				store_code,				
@@ -244,6 +250,7 @@
 				delete_date				
 		)		
 		VALUES (	
+			#{id},
 			#{orderDetailId},
 			#{orderId},
 			#{storeCode},
@@ -299,9 +306,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order_detail_delivery_data	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

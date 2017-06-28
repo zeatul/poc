@@ -15,7 +15,7 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 		<#list fieldList as field>
-			<if test="${field.fieldName} != null"> AND ${field.columnCode} = ${r"#"}{old_${field.fieldName}}  </if>			
+			<if test="old_${field.fieldName} != null"> AND ${field.columnCode} = ${r"#"}{old_${field.fieldName}}  </if>			
 		</#list>
 		</trim>
 	</sql>

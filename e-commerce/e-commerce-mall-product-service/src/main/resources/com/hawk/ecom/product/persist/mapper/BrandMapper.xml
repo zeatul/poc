@@ -36,17 +36,17 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="brandCname != null"> AND brand_cname = #{old_brandCname}  </if>			
-			<if test="brandEname != null"> AND brand_ename = #{old_brandEname}  </if>			
-			<if test="brandHomePage != null"> AND brand_home_page = #{old_brandHomePage}  </if>			
-			<if test="brandHomeLogo != null"> AND brand_home_logo = #{old_brandHomeLogo}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_brandCname != null"> AND brand_cname = #{old_brandCname}  </if>			
+			<if test="old_brandEname != null"> AND brand_ename = #{old_brandEname}  </if>			
+			<if test="old_brandHomePage != null"> AND brand_home_page = #{old_brandHomePage}  </if>			
+			<if test="old_brandHomeLogo != null"> AND brand_home_logo = #{old_brandHomeLogo}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

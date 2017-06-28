@@ -52,25 +52,25 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="pid != null"> AND pid = #{old_pid}  </if>			
-			<if test="idPath != null"> AND id_path = #{old_idPath}  </if>			
-			<if test="objectOrder != null"> AND object_order = #{old_objectOrder}  </if>			
-			<if test="depth != null"> AND depth = #{old_depth}  </if>			
-			<if test="categoryCode != null"> AND category_code = #{old_categoryCode}  </if>			
-			<if test="categoryName != null"> AND category_name = #{old_categoryName}  </if>			
-			<if test="categoryStatus != null"> AND category_status = #{old_categoryStatus}  </if>			
-			<if test="categoryDesc != null"> AND category_desc = #{old_categoryDesc}  </if>			
-			<if test="categoryLogo != null"> AND category_logo = #{old_categoryLogo}  </if>			
-			<if test="categoryHomePage != null"> AND category_home_page = #{old_categoryHomePage}  </if>			
-			<if test="isLeaf != null"> AND is_leaf = #{old_isLeaf}  </if>			
-			<if test="categoryVariantStatus != null"> AND category_variant_status = #{old_categoryVariantStatus}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_pid != null"> AND pid = #{old_pid}  </if>			
+			<if test="old_idPath != null"> AND id_path = #{old_idPath}  </if>			
+			<if test="old_objectOrder != null"> AND object_order = #{old_objectOrder}  </if>			
+			<if test="old_depth != null"> AND depth = #{old_depth}  </if>			
+			<if test="old_categoryCode != null"> AND category_code = #{old_categoryCode}  </if>			
+			<if test="old_categoryName != null"> AND category_name = #{old_categoryName}  </if>			
+			<if test="old_categoryStatus != null"> AND category_status = #{old_categoryStatus}  </if>			
+			<if test="old_categoryDesc != null"> AND category_desc = #{old_categoryDesc}  </if>			
+			<if test="old_categoryLogo != null"> AND category_logo = #{old_categoryLogo}  </if>			
+			<if test="old_categoryHomePage != null"> AND category_home_page = #{old_categoryHomePage}  </if>			
+			<if test="old_isLeaf != null"> AND is_leaf = #{old_isLeaf}  </if>			
+			<if test="old_categoryVariantStatus != null"> AND category_variant_status = #{old_categoryVariantStatus}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

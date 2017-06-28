@@ -66,32 +66,32 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="categoryId != null"> AND category_id = #{old_categoryId}  </if>			
-			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
-			<if test="productCode != null"> AND product_code = #{old_productCode}  </if>			
-			<if test="productName != null"> AND product_name = #{old_productName}  </if>			
-			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}  </if>			
-			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{old_productKeyAttrValueValues}  </if>			
-			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}  </if>			
-			<if test="productStatus != null"> AND product_status = #{old_productStatus}  </if>			
-			<if test="productHomePage != null"> AND product_home_page = #{old_productHomePage}  </if>			
-			<if test="thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
-			<if test="productDesc != null"> AND product_desc = #{old_productDesc}  </if>			
-			<if test="productMemo != null"> AND product_memo = #{old_productMemo}  </if>			
-			<if test="productMinPrice != null"> AND product_min_price = #{old_productMinPrice}  </if>			
-			<if test="productMaxPrice != null"> AND product_max_price = #{old_productMaxPrice}  </if>			
-			<if test="onSaleStdt != null"> AND on_sale_stdt = #{old_onSaleStdt}  </if>			
-			<if test="onSaleEndt != null"> AND on_sale_endt = #{old_onSaleEndt}  </if>			
-			<if test="isVirtual != null"> AND is_virtual = #{old_isVirtual}  </if>			
-			<if test="deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
-			<if test="productVersion != null"> AND product_version = #{old_productVersion}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_categoryId != null"> AND category_id = #{old_categoryId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_productCode != null"> AND product_code = #{old_productCode}  </if>			
+			<if test="old_productName != null"> AND product_name = #{old_productName}  </if>			
+			<if test="old_productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}  </if>			
+			<if test="old_productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{old_productKeyAttrValueValues}  </if>			
+			<if test="old_productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}  </if>			
+			<if test="old_productStatus != null"> AND product_status = #{old_productStatus}  </if>			
+			<if test="old_productHomePage != null"> AND product_home_page = #{old_productHomePage}  </if>			
+			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
+			<if test="old_productDesc != null"> AND product_desc = #{old_productDesc}  </if>			
+			<if test="old_productMemo != null"> AND product_memo = #{old_productMemo}  </if>			
+			<if test="old_productMinPrice != null"> AND product_min_price = #{old_productMinPrice}  </if>			
+			<if test="old_productMaxPrice != null"> AND product_max_price = #{old_productMaxPrice}  </if>			
+			<if test="old_onSaleStdt != null"> AND on_sale_stdt = #{old_onSaleStdt}  </if>			
+			<if test="old_onSaleEndt != null"> AND on_sale_endt = #{old_onSaleEndt}  </if>			
+			<if test="old_isVirtual != null"> AND is_virtual = #{old_isVirtual}  </if>			
+			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
+			<if test="old_productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

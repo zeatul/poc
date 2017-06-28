@@ -17,10 +17,11 @@
 		unit_quantity AS "unitQuantity" ,
 		discount AS "discount" ,
 		discount_quantity AS "discountQuantity" ,
-		unit_display_price AS "unitDisplayPrice" ,
-		unit_price AS "unitPrice" ,
+		unit_original_price AS "unitOriginalPrice" ,
+		unit_pay_price AS "unitPayPrice" ,
 		order_detail_deduction AS "orderDetailDeduction" ,
-		pay_price AS "payPrice" ,
+		order_detail_total_pay_price AS "orderDetailTotalPayPrice" ,
+		currency AS "currency" ,
 		order_detail_memo AS "orderDetailMemo" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
@@ -41,10 +42,11 @@
 			<if test="unitQuantity != null"> AND unit_quantity = #{unitQuantity}  </if>
 			<if test="discount != null"> AND discount = #{discount}  </if>
 			<if test="discountQuantity != null"> AND discount_quantity = #{discountQuantity}  </if>
-			<if test="unitDisplayPrice != null"> AND unit_display_price = #{unitDisplayPrice}  </if>
-			<if test="unitPrice != null"> AND unit_price = #{unitPrice}  </if>
+			<if test="unitOriginalPrice != null"> AND unit_original_price = #{unitOriginalPrice}  </if>
+			<if test="unitPayPrice != null"> AND unit_pay_price = #{unitPayPrice}  </if>
 			<if test="orderDetailDeduction != null"> AND order_detail_deduction = #{orderDetailDeduction}  </if>
-			<if test="payPrice != null"> AND pay_price = #{payPrice}  </if>
+			<if test="orderDetailTotalPayPrice != null"> AND order_detail_total_pay_price = #{orderDetailTotalPayPrice}  </if>
+			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="orderDetailMemo != null"> AND order_detail_memo = #{orderDetailMemo}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
@@ -54,26 +56,27 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND order_id = #{old_orderId}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND product_id = #{old_productId}
-			AND sku_id = #{old_skuId}
-			AND order_detail_type = #{old_orderDetailType}
-			AND sku_quantity = #{old_skuQuantity}
-			AND unit_quantity = #{old_unitQuantity}
-			AND discount = #{old_discount}
-			AND discount_quantity = #{old_discountQuantity}
-			AND unit_display_price = #{old_unitDisplayPrice}
-			AND unit_price = #{old_unitPrice}
-			AND order_detail_deduction = #{old_orderDetailDeduction}
-			AND pay_price = #{old_payPrice}
-			AND order_detail_memo = #{old_orderDetailMemo}
-			AND create_date = #{old_createDate}
-			AND update_date = #{old_updateDate}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="productId != null"> AND product_id = #{old_productId}  </if>			
+			<if test="skuId != null"> AND sku_id = #{old_skuId}  </if>			
+			<if test="orderDetailType != null"> AND order_detail_type = #{old_orderDetailType}  </if>			
+			<if test="skuQuantity != null"> AND sku_quantity = #{old_skuQuantity}  </if>			
+			<if test="unitQuantity != null"> AND unit_quantity = #{old_unitQuantity}  </if>			
+			<if test="discount != null"> AND discount = #{old_discount}  </if>			
+			<if test="discountQuantity != null"> AND discount_quantity = #{old_discountQuantity}  </if>			
+			<if test="unitOriginalPrice != null"> AND unit_original_price = #{old_unitOriginalPrice}  </if>			
+			<if test="unitPayPrice != null"> AND unit_pay_price = #{old_unitPayPrice}  </if>			
+			<if test="orderDetailDeduction != null"> AND order_detail_deduction = #{old_orderDetailDeduction}  </if>			
+			<if test="orderDetailTotalPayPrice != null"> AND order_detail_total_pay_price = #{old_orderDetailTotalPayPrice}  </if>			
+			<if test="currency != null"> AND currency = #{old_currency}  </if>			
+			<if test="orderDetailMemo != null"> AND order_detail_memo = #{old_orderDetailMemo}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -91,10 +94,11 @@
 			unit_quantity = #{unitQuantity},
 			discount = #{discount},
 			discount_quantity = #{discountQuantity},
-			unit_display_price = #{unitDisplayPrice},
-			unit_price = #{unitPrice},
+			unit_original_price = #{unitOriginalPrice},
+			unit_pay_price = #{unitPayPrice},
 			order_detail_deduction = #{orderDetailDeduction},
-			pay_price = #{payPrice},
+			order_detail_total_pay_price = #{orderDetailTotalPayPrice},
+			currency = #{currency},
 			order_detail_memo = #{orderDetailMemo},
 			create_date = #{createDate},
 			update_date = #{updateDate},
@@ -116,10 +120,11 @@
 			<if test="unitQuantity != null">unit_quantity = #{unitQuantity},</if>
 			<if test="discount != null">discount = #{discount},</if>
 			<if test="discountQuantity != null">discount_quantity = #{discountQuantity},</if>
-			<if test="unitDisplayPrice != null">unit_display_price = #{unitDisplayPrice},</if>
-			<if test="unitPrice != null">unit_price = #{unitPrice},</if>
+			<if test="unitOriginalPrice != null">unit_original_price = #{unitOriginalPrice},</if>
+			<if test="unitPayPrice != null">unit_pay_price = #{unitPayPrice},</if>
 			<if test="orderDetailDeduction != null">order_detail_deduction = #{orderDetailDeduction},</if>
-			<if test="payPrice != null">pay_price = #{payPrice},</if>
+			<if test="orderDetailTotalPayPrice != null">order_detail_total_pay_price = #{orderDetailTotalPayPrice},</if>
+			<if test="currency != null">currency = #{currency},</if>
 			<if test="orderDetailMemo != null">order_detail_memo = #{orderDetailMemo},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
@@ -174,10 +179,11 @@
 				unit_quantity,				
 				discount,				
 				discount_quantity,				
-				unit_display_price,				
-				unit_price,				
+				unit_original_price,				
+				unit_pay_price,				
 				order_detail_deduction,				
-				pay_price,				
+				order_detail_total_pay_price,				
+				currency,				
 				order_detail_memo,				
 				create_date,				
 				update_date,				
@@ -196,10 +202,11 @@
 			#{unitQuantity},
 			#{discount},
 			#{discountQuantity},
-			#{unitDisplayPrice},
-			#{unitPrice},
+			#{unitOriginalPrice},
+			#{unitPayPrice},
 			#{orderDetailDeduction},
-			#{payPrice},
+			#{orderDetailTotalPayPrice},
+			#{currency},
 			#{orderDetailMemo},
 			#{createDate},
 			#{updateDate},
@@ -229,9 +236,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order_detail	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

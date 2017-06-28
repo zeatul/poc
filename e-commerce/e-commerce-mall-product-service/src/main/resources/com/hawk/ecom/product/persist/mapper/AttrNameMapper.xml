@@ -46,22 +46,22 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
-			<if test="categoryId != null"> AND category_id = #{old_categoryId}  </if>			
-			<if test="pid != null"> AND pid = #{old_pid}  </if>			
-			<if test="pvid != null"> AND pvid = #{old_pvid}  </if>			
-			<if test="attrNameBusinessType != null"> AND attr_name_business_type = #{old_attrNameBusinessType}  </if>			
-			<if test="attrValueType != null"> AND attr_value_type = #{old_attrValueType}  </if>			
-			<if test="attrName != null"> AND attr_name = #{old_attrName}  </if>			
-			<if test="attrNameStatus != null"> AND attr_name_status = #{old_attrNameStatus}  </if>			
-			<if test="isSearch != null"> AND is_search = #{old_isSearch}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_categoryId != null"> AND category_id = #{old_categoryId}  </if>			
+			<if test="old_pid != null"> AND pid = #{old_pid}  </if>			
+			<if test="old_pvid != null"> AND pvid = #{old_pvid}  </if>			
+			<if test="old_attrNameBusinessType != null"> AND attr_name_business_type = #{old_attrNameBusinessType}  </if>			
+			<if test="old_attrValueType != null"> AND attr_value_type = #{old_attrValueType}  </if>			
+			<if test="old_attrName != null"> AND attr_name = #{old_attrName}  </if>			
+			<if test="old_attrNameStatus != null"> AND attr_name_status = #{old_attrNameStatus}  </if>			
+			<if test="old_isSearch != null"> AND is_search = #{old_isSearch}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

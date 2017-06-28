@@ -18,8 +18,9 @@
 		order_pay_total_price AS "orderPayTotalPrice" ,
 		order_pay_expire_time AS "orderPayExpireTime" ,
 		freight_charge AS "freightCharge" ,
+		currency AS "currency" ,
 		order_desc AS "orderDesc" ,
-		支付方式 AS "支付方式" ,
+		pay_type AS "payType" ,
 		create_date AS "createDate" ,
 		update_date AS "updateDate" ,
 		delete_date AS "deleteDate" 
@@ -40,8 +41,9 @@
 			<if test="orderPayTotalPrice != null"> AND order_pay_total_price = #{orderPayTotalPrice}  </if>
 			<if test="orderPayExpireTime != null"> AND order_pay_expire_time = #{orderPayExpireTime}  </if>
 			<if test="freightCharge != null"> AND freight_charge = #{freightCharge}  </if>
+			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="orderDesc != null"> AND order_desc = #{orderDesc}  </if>
-			<if test="支付方式 != null"> AND 支付方式 = #{支付方式}  </if>
+			<if test="payType != null"> AND pay_type = #{payType}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
@@ -50,24 +52,25 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND order_type = #{old_orderType}
-			AND order_status = #{old_orderStatus}
-			AND order_customer_memo = #{old_orderCustomerMemo}
-			AND order_store_memo = #{old_orderStoreMemo}
-			AND order_original_total_price = #{old_orderOriginalTotalPrice}
-			AND order_deduction = #{old_orderDeduction}
-			AND order_pay_total_price = #{old_orderPayTotalPrice}
-			AND order_pay_expire_time = #{old_orderPayExpireTime}
-			AND freight_charge = #{old_freightCharge}
-			AND order_desc = #{old_orderDesc}
-			AND 支付方式 = #{old_支付方式}
-			AND create_date = #{old_createDate}
-			AND update_date = #{old_updateDate}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="orderType != null"> AND order_type = #{old_orderType}  </if>			
+			<if test="orderStatus != null"> AND order_status = #{old_orderStatus}  </if>			
+			<if test="orderCustomerMemo != null"> AND order_customer_memo = #{old_orderCustomerMemo}  </if>			
+			<if test="orderStoreMemo != null"> AND order_store_memo = #{old_orderStoreMemo}  </if>			
+			<if test="orderOriginalTotalPrice != null"> AND order_original_total_price = #{old_orderOriginalTotalPrice}  </if>			
+			<if test="orderDeduction != null"> AND order_deduction = #{old_orderDeduction}  </if>			
+			<if test="orderPayTotalPrice != null"> AND order_pay_total_price = #{old_orderPayTotalPrice}  </if>			
+			<if test="orderPayExpireTime != null"> AND order_pay_expire_time = #{old_orderPayExpireTime}  </if>			
+			<if test="freightCharge != null"> AND freight_charge = #{old_freightCharge}  </if>			
+			<if test="currency != null"> AND currency = #{old_currency}  </if>			
+			<if test="orderDesc != null"> AND order_desc = #{old_orderDesc}  </if>			
+			<if test="payType != null"> AND pay_type = #{old_payType}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -86,8 +89,9 @@
 			order_pay_total_price = #{orderPayTotalPrice},
 			order_pay_expire_time = #{orderPayExpireTime},
 			freight_charge = #{freightCharge},
+			currency = #{currency},
 			order_desc = #{orderDesc},
-			支付方式 = #{支付方式},
+			pay_type = #{payType},
 			create_date = #{createDate},
 			update_date = #{updateDate},
 			delete_date = #{deleteDate},
@@ -109,8 +113,9 @@
 			<if test="orderPayTotalPrice != null">order_pay_total_price = #{orderPayTotalPrice},</if>
 			<if test="orderPayExpireTime != null">order_pay_expire_time = #{orderPayExpireTime},</if>
 			<if test="freightCharge != null">freight_charge = #{freightCharge},</if>
+			<if test="currency != null">currency = #{currency},</if>
 			<if test="orderDesc != null">order_desc = #{orderDesc},</if>
-			<if test="支付方式 != null">支付方式 = #{支付方式},</if>
+			<if test="payType != null">pay_type = #{payType},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
@@ -165,8 +170,9 @@
 				order_pay_total_price,				
 				order_pay_expire_time,				
 				freight_charge,				
+				currency,				
 				order_desc,				
-				支付方式,				
+				pay_type,				
 				create_date,				
 				update_date,				
 				delete_date				
@@ -185,8 +191,9 @@
 			#{orderPayTotalPrice},
 			#{orderPayExpireTime},
 			#{freightCharge},
+			#{currency},
 			#{orderDesc},
-			#{支付方式},
+			#{payType},
 			#{createDate},
 			#{updateDate},
 			#{deleteDate}
@@ -215,9 +222,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

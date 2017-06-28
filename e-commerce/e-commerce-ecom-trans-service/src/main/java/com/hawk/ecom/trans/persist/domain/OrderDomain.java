@@ -82,14 +82,19 @@ public class OrderDomain implements Serializable {
 	private BigDecimal freightCharge;
 	
 	/**
+	 * 币种 currency
+	 */
+	private Integer currency;
+	
+	/**
 	 * 订单描述 order_desc
 	 */
 	private String orderDesc;
 	
 	/**
-	 * 支付方式 支付方式
+	 * 支付方式 pay_type
 	 */
-	private Integer 支付方式;
+	private Integer payType;
 	
 	/**
 	 * 创建日期 create_date
@@ -317,6 +322,22 @@ public class OrderDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 币种 currency
+	 */
+	public Integer getCurrency(){
+		return currency;
+	}
+	
+	/**
+	 * 
+	 * @param currency 币种 currency
+	 */	
+	public void setCurrency (Integer currency) {
+		this.currency = currency;
+	}
+	
+	/**
+	 * 
 	 * @return 订单描述 order_desc
 	 */
 	public String getOrderDesc(){
@@ -333,18 +354,18 @@ public class OrderDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 支付方式 支付方式
+	 * @return 支付方式 pay_type
 	 */
-	public Integer get支付方式(){
-		return 支付方式;
+	public Integer getPayType(){
+		return payType;
 	}
 	
 	/**
 	 * 
-	 * @param 支付方式 支付方式 支付方式
+	 * @param payType 支付方式 pay_type
 	 */	
-	public void set支付方式 (Integer 支付方式) {
-		this.支付方式 = 支付方式;
+	public void setPayType (Integer payType) {
+		this.payType = payType;
 	}
 	
 	/**

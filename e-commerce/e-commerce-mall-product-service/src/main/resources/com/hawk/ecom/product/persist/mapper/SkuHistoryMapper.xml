@@ -76,37 +76,37 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="productId != null"> AND product_id = #{old_productId}  </if>			
-			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
-			<if test="skuCode != null"> AND sku_code = #{old_skuCode}  </if>			
-			<if test="skuName != null"> AND sku_name = #{old_skuName}  </if>			
-			<if test="skuAttrValueIds != null"> AND sku_attr_value_ids = #{old_skuAttrValueIds}  </if>			
-			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{old_skuAttrValueValues}  </if>			
-			<if test="skuStatus != null"> AND sku_status = #{old_skuStatus}  </if>			
-			<if test="thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
-			<if test="marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
-			<if test="salePrice != null"> AND sale_price = #{old_salePrice}  </if>			
-			<if test="skuStockAmount != null"> AND sku_stock_amount = #{old_skuStockAmount}  </if>			
-			<if test="isSpecial != null"> AND is_special = #{old_isSpecial}  </if>			
-			<if test="width != null"> AND width = #{old_width}  </if>			
-			<if test="depth != null"> AND depth = #{old_depth}  </if>			
-			<if test="height != null"> AND height = #{old_height}  </if>			
-			<if test="lengthUnit != null"> AND length_unit = #{old_lengthUnit}  </if>			
-			<if test="weight != null"> AND weight = #{old_weight}  </if>			
-			<if test="weightUnit != null"> AND weight_unit = #{old_weightUnit}  </if>			
-			<if test="skuMemo != null"> AND sku_memo = #{old_skuMemo}  </if>			
-			<if test="skuSnapshootId != null"> AND sku_snapshoot_id = #{old_skuSnapshootId}  </if>			
-			<if test="productVersion != null"> AND product_version = #{old_productVersion}  </if>			
-			<if test="skuVersion != null"> AND sku_version = #{old_skuVersion}  </if>			
-			<if test="stockVersion != null"> AND stock_version = #{old_stockVersion}  </if>			
-			<if test="deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_skuCode != null"> AND sku_code = #{old_skuCode}  </if>			
+			<if test="old_skuName != null"> AND sku_name = #{old_skuName}  </if>			
+			<if test="old_skuAttrValueIds != null"> AND sku_attr_value_ids = #{old_skuAttrValueIds}  </if>			
+			<if test="old_skuAttrValueValues != null"> AND sku_attr_value_values = #{old_skuAttrValueValues}  </if>			
+			<if test="old_skuStatus != null"> AND sku_status = #{old_skuStatus}  </if>			
+			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
+			<if test="old_marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
+			<if test="old_salePrice != null"> AND sale_price = #{old_salePrice}  </if>			
+			<if test="old_skuStockAmount != null"> AND sku_stock_amount = #{old_skuStockAmount}  </if>			
+			<if test="old_isSpecial != null"> AND is_special = #{old_isSpecial}  </if>			
+			<if test="old_width != null"> AND width = #{old_width}  </if>			
+			<if test="old_depth != null"> AND depth = #{old_depth}  </if>			
+			<if test="old_height != null"> AND height = #{old_height}  </if>			
+			<if test="old_lengthUnit != null"> AND length_unit = #{old_lengthUnit}  </if>			
+			<if test="old_weight != null"> AND weight = #{old_weight}  </if>			
+			<if test="old_weightUnit != null"> AND weight_unit = #{old_weightUnit}  </if>			
+			<if test="old_skuMemo != null"> AND sku_memo = #{old_skuMemo}  </if>			
+			<if test="old_skuSnapshootId != null"> AND sku_snapshoot_id = #{old_skuSnapshootId}  </if>			
+			<if test="old_productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="old_skuVersion != null"> AND sku_version = #{old_skuVersion}  </if>			
+			<if test="old_stockVersion != null"> AND stock_version = #{old_stockVersion}  </if>			
+			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

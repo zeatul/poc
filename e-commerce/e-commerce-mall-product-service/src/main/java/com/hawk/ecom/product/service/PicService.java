@@ -23,7 +23,6 @@ import com.hawk.ecom.product.request.ListPicParam;
 import com.hawk.ecom.product.request.LoadPicParam;
 import com.hawk.ecom.product.request.RemovePicParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -57,9 +56,10 @@ public class PicService {
 
 	public PicDomain loadPic(Integer id) {
 		PicDomain picDomain = null;
-		if (id != null) {
-			logger.error("loadPic: id is null");
+		if (id != null) {			
 			picDomain = picMapper.load(id);
+		}else{
+			logger.error("loadPic: id is null");
 		}
 		if (picDomain == null) {
 			throw new PicNotFoundRuntimeException();

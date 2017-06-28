@@ -54,8 +54,9 @@ public class StockService {
 	public StockDomain loadStock(Integer id) {
 		StockDomain stockDomain = null;
 		if (id != null) {
-			logger.error("loadStock: id is null");
 			stockDomain = stockMapper.load(id);
+		}else{
+			logger.error("loadStock: id is null");			
 		}
 		if (stockDomain == null) {
 			throw new StockNotFoundRuntimeException();
@@ -96,8 +97,8 @@ public class StockService {
 			stockDomain.setCreateDate(now);
 			stockDomain.setCreateUserCode(userCode);
 			stockDomain.setId(pkGenService.genPk());
-			stockDomain.setProductId(stockDomain.getProductId());
-			stockDomain.setSkuId(stockDomain.getSkuId());
+			stockDomain.setProductId(skuDomain.getProductId());
+			stockDomain.setSkuId(skuDomain.getId());
 			stockDomain.setStockItemCode(createStockParam.getStockItemCode());
 			stockDomain.setStockMemo(createStockParam.getStockMemo());
 			stockDomain.setStockOperation(createStockParam.getStockOperation());

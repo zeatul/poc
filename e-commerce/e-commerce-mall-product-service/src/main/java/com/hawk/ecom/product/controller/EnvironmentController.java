@@ -11,8 +11,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,6 +70,8 @@ public class EnvironmentController {
 	private StockService stockService;
 	
 	private String userCode = "000002";
+	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@RequestMapping(value = "/init", method = { POST, GET })
 	public String init(HttpServletRequest request) throws Exception {
@@ -391,12 +394,17 @@ public class EnvironmentController {
 						updateProductStatusParam.setOnSaleEndt(onSaleEndt);
 						updateProductStatusParam.setOnSaleStdt(onSaleStdt);
 						updateProductStatusParam.setOperatorCode(userCode);
+						updateProductStatusParam.setProductStatus(ConstProduct.ProductStatus.ON_SALE);
 						productService.updateProductStatus(updateProductStatusParam);
+						
+						logger.info("Succeeded to generate product : {}" ,productDomain.getProductName());
 						
 					}
 				}
 			}
 		}
+		
+		logger.info("Succeeded to generate all products" );
 	}
 
 }

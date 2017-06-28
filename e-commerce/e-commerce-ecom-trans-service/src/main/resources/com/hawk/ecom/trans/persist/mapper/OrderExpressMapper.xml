@@ -42,20 +42,20 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND order_id = #{old_orderId}
-			AND store_code = #{old_storeCode}
-			AND order_code = #{old_orderCode}
-			AND user_code = #{old_userCode}
-			AND express_company_code = #{old_expressCompanyCode}
-			AND express_company_name = #{old_expressCompanyName}
-			AND express_order_code = #{old_expressOrderCode}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="expressCompanyCode != null"> AND express_company_code = #{old_expressCompanyCode}  </if>			
+			<if test="expressCompanyName != null"> AND express_company_name = #{old_expressCompanyName}  </if>			
+			<if test="expressOrderCode != null"> AND express_order_code = #{old_expressOrderCode}  </if>			
+			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -187,9 +187,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_tra_order_express	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	
