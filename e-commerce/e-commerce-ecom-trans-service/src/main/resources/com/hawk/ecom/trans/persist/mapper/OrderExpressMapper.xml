@@ -42,20 +42,20 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
-			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
-			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
-			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
-			<if test="expressCompanyCode != null"> AND express_company_code = #{old_expressCompanyCode}  </if>			
-			<if test="expressCompanyName != null"> AND express_company_name = #{old_expressCompanyName}  </if>			
-			<if test="expressOrderCode != null"> AND express_order_code = #{old_expressOrderCode}  </if>			
-			<if test="createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="old_expressCompanyCode != null"> AND express_company_code = #{old_expressCompanyCode}  </if>			
+			<if test="old_expressCompanyName != null"> AND express_company_name = #{old_expressCompanyName}  </if>			
+			<if test="old_expressOrderCode != null"> AND express_order_code = #{old_expressOrderCode}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	

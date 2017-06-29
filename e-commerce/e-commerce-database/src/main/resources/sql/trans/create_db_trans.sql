@@ -45,8 +45,11 @@ create table t_tra_order
    currency             smallint unsigned not null comment '币种',
    order_desc           varchar(200) not null comment '订单描述',
    pay_type             tinyint unsigned comment '支付方式',
+   create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
    update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
@@ -77,8 +80,11 @@ create table t_tra_order_detail
    order_detail_total_pay_price decimal(15,4) not null comment '订单明细支付总价',
    currency             smallint unsigned not null comment '币种',
    order_detail_memo    varchar(200) comment '备注',
+   create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
    update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
@@ -119,6 +125,9 @@ create table t_tra_order_detail_delivery_data
    benef_mobile_number  varchar(20) comment '受益人手机号',
    outer_order_code     varchar(50) comment '外部交易编号',
    task_code            varchar(200) comment '任务号',
+   task_name            varchar(200) comment '任务名称',
+   task_desc            varchar(200) comment '任务描述',
+   task_memo            varchar(200) comment '任务备注',
    task_status          tinyint unsigned comment '任务状态',
    schedule_exec_date   timestamp(3) null comment '计划执行时间',
    exec_times           tinyint unsigned comment '已经执行次数',
@@ -129,8 +138,11 @@ create table t_tra_order_detail_delivery_data
    last_exec_end_time   timestamp(3) null comment '最后一次执行完成时间',
    last_exec_computer   varchar(200) comment '最后一次执行机器',
    last_exec_process_id varchar(50) comment '最后一次执行进程ID',
+   create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
    update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
    delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
@@ -247,6 +259,12 @@ create table t_tra_order_recipient
    recipient_telephone  varchar(20) comment '收件人座机号',
    recipient_address    varchar(200) not null comment '收件人地址',
    recipient_post_code  varchar(50) comment '收件人地址邮编',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
    primary key (id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;

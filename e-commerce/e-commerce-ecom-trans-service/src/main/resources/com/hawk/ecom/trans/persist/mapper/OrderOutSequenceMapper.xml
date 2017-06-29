@@ -18,8 +18,8 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="stub != null"> AND stub = #{old_stub}  </if>			
-			<if test="id != null"> AND id = #{old_id}  </if>			
+			<if test="old_stub != null"> AND stub = #{old_stub}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
 		</trim>
 	</sql>
 	

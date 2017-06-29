@@ -23,6 +23,9 @@
 		benef_mobile_number AS "benefMobileNumber" ,
 		outer_order_code AS "outerOrderCode" ,
 		task_code AS "taskCode" ,
+		task_name AS "taskName" ,
+		task_desc AS "taskDesc" ,
+		task_memo AS "taskMemo" ,
 		task_status AS "taskStatus" ,
 		schedule_exec_date AS "scheduleExecDate" ,
 		exec_times AS "execTimes" ,
@@ -33,8 +36,11 @@
 		last_exec_end_time AS "lastExecEndTime" ,
 		last_exec_computer AS "lastExecComputer" ,
 		last_exec_process_id AS "lastExecProcessId" ,
+		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
 		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
 		delete_date AS "deleteDate" 
 	</sql>
 	
@@ -58,6 +64,9 @@
 			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{benefMobileNumber}  </if>
 			<if test="outerOrderCode != null"> AND outer_order_code = #{outerOrderCode}  </if>
 			<if test="taskCode != null"> AND task_code = #{taskCode}  </if>
+			<if test="taskName != null"> AND task_name = #{taskName}  </if>
+			<if test="taskDesc != null"> AND task_desc = #{taskDesc}  </if>
+			<if test="taskMemo != null"> AND task_memo = #{taskMemo}  </if>
 			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
 			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
@@ -68,45 +77,54 @@
 			<if test="lastExecEndTime != null"> AND last_exec_end_time = #{lastExecEndTime}  </if>
 			<if test="lastExecComputer != null"> AND last_exec_computer = #{lastExecComputer}  </if>
 			<if test="lastExecProcessId != null"> AND last_exec_process_id = #{lastExecProcessId}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
 			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
 			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="id != null"> AND id = #{old_id}  </if>			
-			<if test="orderDetailId != null"> AND order_detail_id = #{old_orderDetailId}  </if>			
-			<if test="orderId != null"> AND order_id = #{old_orderId}  </if>			
-			<if test="storeCode != null"> AND store_code = #{old_storeCode}  </if>			
-			<if test="orderCode != null"> AND order_code = #{old_orderCode}  </if>			
-			<if test="userCode != null"> AND user_code = #{old_userCode}  </if>			
-			<if test="supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
-			<if test="outerPhoneModelId != null"> AND outer_phone_model_id = #{old_outerPhoneModelId}  </if>			
-			<if test="outerProductId != null"> AND outer_product_id = #{old_outerProductId}  </if>			
-			<if test="imei != null"> AND imei = #{old_imei}  </if>			
-			<if test="benefIdTyp != null"> AND benef_id_typ = #{old_benefIdTyp}  </if>			
-			<if test="benefIdNumber != null"> AND benef_id_number = #{old_benefIdNumber}  </if>			
-			<if test="benefBirthday != null"> AND benef_birthday = #{old_benefBirthday}  </if>			
-			<if test="benefSex != null"> AND benef_sex = #{old_benefSex}  </if>			
-			<if test="benefName != null"> AND benef_name = #{old_benefName}  </if>			
-			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
-			<if test="outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
-			<if test="taskCode != null"> AND task_code = #{old_taskCode}  </if>			
-			<if test="taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
-			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{old_scheduleExecDate}  </if>			
-			<if test="execTimes != null"> AND exec_times = #{old_execTimes}  </if>			
-			<if test="maxExecTimes != null"> AND max_exec_times = #{old_maxExecTimes}  </if>			
-			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{old_lastExecErrCode}  </if>			
-			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{old_lastExecErrMsg}  </if>			
-			<if test="lastExecBeginTime != null"> AND last_exec_begin_time = #{old_lastExecBeginTime}  </if>			
-			<if test="lastExecEndTime != null"> AND last_exec_end_time = #{old_lastExecEndTime}  </if>			
-			<if test="lastExecComputer != null"> AND last_exec_computer = #{old_lastExecComputer}  </if>			
-			<if test="lastExecProcessId != null"> AND last_exec_process_id = #{old_lastExecProcessId}  </if>			
-			<if test="createDate != null"> AND create_date = #{old_createDate}  </if>			
-			<if test="updateDate != null"> AND update_date = #{old_updateDate}  </if>			
-			<if test="deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_orderDetailId != null"> AND order_detail_id = #{old_orderDetailId}  </if>			
+			<if test="old_orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="old_supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
+			<if test="old_outerPhoneModelId != null"> AND outer_phone_model_id = #{old_outerPhoneModelId}  </if>			
+			<if test="old_outerProductId != null"> AND outer_product_id = #{old_outerProductId}  </if>			
+			<if test="old_imei != null"> AND imei = #{old_imei}  </if>			
+			<if test="old_benefIdTyp != null"> AND benef_id_typ = #{old_benefIdTyp}  </if>			
+			<if test="old_benefIdNumber != null"> AND benef_id_number = #{old_benefIdNumber}  </if>			
+			<if test="old_benefBirthday != null"> AND benef_birthday = #{old_benefBirthday}  </if>			
+			<if test="old_benefSex != null"> AND benef_sex = #{old_benefSex}  </if>			
+			<if test="old_benefName != null"> AND benef_name = #{old_benefName}  </if>			
+			<if test="old_benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
+			<if test="old_outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
+			<if test="old_taskCode != null"> AND task_code = #{old_taskCode}  </if>			
+			<if test="old_taskName != null"> AND task_name = #{old_taskName}  </if>			
+			<if test="old_taskDesc != null"> AND task_desc = #{old_taskDesc}  </if>			
+			<if test="old_taskMemo != null"> AND task_memo = #{old_taskMemo}  </if>			
+			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
+			<if test="old_scheduleExecDate != null"> AND schedule_exec_date = #{old_scheduleExecDate}  </if>			
+			<if test="old_execTimes != null"> AND exec_times = #{old_execTimes}  </if>			
+			<if test="old_maxExecTimes != null"> AND max_exec_times = #{old_maxExecTimes}  </if>			
+			<if test="old_lastExecErrCode != null"> AND last_exec_err_code = #{old_lastExecErrCode}  </if>			
+			<if test="old_lastExecErrMsg != null"> AND last_exec_err_msg = #{old_lastExecErrMsg}  </if>			
+			<if test="old_lastExecBeginTime != null"> AND last_exec_begin_time = #{old_lastExecBeginTime}  </if>			
+			<if test="old_lastExecEndTime != null"> AND last_exec_end_time = #{old_lastExecEndTime}  </if>			
+			<if test="old_lastExecComputer != null"> AND last_exec_computer = #{old_lastExecComputer}  </if>			
+			<if test="old_lastExecProcessId != null"> AND last_exec_process_id = #{old_lastExecProcessId}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -130,6 +148,9 @@
 			benef_mobile_number = #{benefMobileNumber},
 			outer_order_code = #{outerOrderCode},
 			task_code = #{taskCode},
+			task_name = #{taskName},
+			task_desc = #{taskDesc},
+			task_memo = #{taskMemo},
 			task_status = #{taskStatus},
 			schedule_exec_date = #{scheduleExecDate},
 			exec_times = #{execTimes},
@@ -140,8 +161,11 @@
 			last_exec_end_time = #{lastExecEndTime},
 			last_exec_computer = #{lastExecComputer},
 			last_exec_process_id = #{lastExecProcessId},
+			create_user_code = #{createUserCode},
 			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
 			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
 			delete_date = #{deleteDate},
 		</set>
 	</sql>
@@ -166,6 +190,9 @@
 			<if test="benefMobileNumber != null">benef_mobile_number = #{benefMobileNumber},</if>
 			<if test="outerOrderCode != null">outer_order_code = #{outerOrderCode},</if>
 			<if test="taskCode != null">task_code = #{taskCode},</if>
+			<if test="taskName != null">task_name = #{taskName},</if>
+			<if test="taskDesc != null">task_desc = #{taskDesc},</if>
+			<if test="taskMemo != null">task_memo = #{taskMemo},</if>
 			<if test="taskStatus != null">task_status = #{taskStatus},</if>
 			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 			<if test="execTimes != null">exec_times = #{execTimes},</if>
@@ -176,8 +203,11 @@
 			<if test="lastExecEndTime != null">last_exec_end_time = #{lastExecEndTime},</if>
 			<if test="lastExecComputer != null">last_exec_computer = #{lastExecComputer},</if>
 			<if test="lastExecProcessId != null">last_exec_process_id = #{lastExecProcessId},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
 			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
 			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
@@ -235,6 +265,9 @@
 				benef_mobile_number,				
 				outer_order_code,				
 				task_code,				
+				task_name,				
+				task_desc,				
+				task_memo,				
 				task_status,				
 				schedule_exec_date,				
 				exec_times,				
@@ -245,8 +278,11 @@
 				last_exec_end_time,				
 				last_exec_computer,				
 				last_exec_process_id,				
+				create_user_code,				
 				create_date,				
+				update_user_code,				
 				update_date,				
+				delete_user_code,				
 				delete_date				
 		)		
 		VALUES (	
@@ -268,6 +304,9 @@
 			#{benefMobileNumber},
 			#{outerOrderCode},
 			#{taskCode},
+			#{taskName},
+			#{taskDesc},
+			#{taskMemo},
 			#{taskStatus},
 			#{scheduleExecDate},
 			#{execTimes},
@@ -278,8 +317,11 @@
 			#{lastExecEndTime},
 			#{lastExecComputer},
 			#{lastExecProcessId},
+			#{createUserCode},
 			#{createDate},
+			#{updateUserCode},
 			#{updateDate},
+			#{deleteUserCode},
 			#{deleteDate}
 		) 
 	</insert>
