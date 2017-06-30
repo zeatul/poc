@@ -1,9 +1,6 @@
 package com.hawk.ecom.trans.service;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -87,6 +84,28 @@ public class OrderService {
 			 * 构造订单明细
 			 */
 			OrderDetailDomain orderDetailDomain = new OrderDetailDomain();
+			orderDetailDomain.setCreateDate(createDate);
+			orderDetailDomain.setCreateUserCode(createUserCode);
+			orderDetailDomain.setCurrency(currency);
+			orderDetailDomain.setDiscount(discount);
+			orderDetailDomain.setDiscountQuantity(discountQuantity);
+			orderDetailDomain.setId(id);
+			orderDetailDomain.setOrderCode(orderCode);
+			orderDetailDomain.setOrderDetailDeduction(orderDetailDeduction);
+			orderDetailDomain.setOrderDetailMemo(orderDetailMemo);
+			orderDetailDomain.setOrderDetailTotalPayPrice(orderDetailTotalPayPrice);
+			orderDetailDomain.setOrderDetailType(orderDetailType);
+			orderDetailDomain.setOrderId(orderId);
+			orderDetailDomain.setProductId(productId);
+			orderDetailDomain.setSkuId(skuId);
+			orderDetailDomain.setSkuQuantity(skuQuantity);
+			orderDetailDomain.setStoreCode(storeCode);
+			orderDetailDomain.setUnitOriginalPrice(unitOriginalPrice);
+			orderDetailDomain.setUnitPayPrice(unitPayPrice);
+			orderDetailDomain.setUnitQuantity(unitQuantity);
+			orderDetailDomain.setUpdateDate(updateDate);
+			orderDetailDomain.setUpdateUserCode(updateUserCode);
+			orderDetailDomain.setUserCode(userCode);
 			
 			/**
 			 * 构造交付数据
