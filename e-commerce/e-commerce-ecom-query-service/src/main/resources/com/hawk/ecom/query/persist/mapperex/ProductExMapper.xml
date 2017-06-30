@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hawk.ecom.query.persist.mapperex.ProductExMapper">
-	<select id="queryCategory" resultType="ProductCategoryExDomain">
+	<select id="listCategory" resultType="ProductCategoryExDomain">
 		select id as "id",
 		pid as "pid",
 		category_name as "categoryName",
@@ -27,11 +27,23 @@
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>		
 	</select>
 	
+	<select id="countSku" parameterType="hashmap" resultType="integer">
+		select count(*)
+		from t_prd_sku a, t_prd_product b
+		where a.product_id = b.id 
+		and b.product_status = #{productStatus}
+		and a.sku_status = #{skuStatus}
+		and b.on_sale_stdt &lt;= now() 
+		and b.on_sale_endt &gt; now()
+		<if test="categoryId != null"> AND category_id = #{categoryId}</if>
+	</select>
+	
 	<select id="loadSku" parameterType="hashmap" resultType="ProductSkuExDomain">
 		select a.id as "skuId", 
 			b.id as "productId",
 			a.sku_name as "skuName",
 			a.sku_stock_quantity AS "skuStockQuantity" ,
+			a.thumbnail as "thumbnail",
 			a.sale_price AS "salePrice" 
 		from t_prd_sku a, t_prd_product b
 		where a.product_id = b.id 

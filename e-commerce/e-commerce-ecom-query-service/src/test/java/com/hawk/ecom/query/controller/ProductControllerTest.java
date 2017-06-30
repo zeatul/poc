@@ -11,7 +11,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class ProductControllerTest extends AbstractControllerTest{
 //	@Test
-	public void testQueryCategory(){
+	public void testListCategory(){
 		String url = getUrl("/ecom/query/product/category/list");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
@@ -25,6 +25,9 @@ public class ProductControllerTest extends AbstractControllerTest{
 		
 		ListSkuParam request = new ListSkuParam();
 		request.setCategoryId(10017);
+		request.setPageIndex(1);
+		request.setPageRowCount(2);
+		request.setOrder("a.create_date desc");
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
@@ -36,7 +39,7 @@ public class ProductControllerTest extends AbstractControllerTest{
 	
 //	@Test
 	public void testLoadSku(){
-		String url = getUrl("/ecom/query/product/sku/load/id/1000006");
+		String url = getUrl("/ecom/query/product/sku/load/id/1000422");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		String result = httpExecutor.get(url, params);
@@ -45,7 +48,7 @@ public class ProductControllerTest extends AbstractControllerTest{
 	
 	@Test
 	public void testLoadSkuPriceAndQuantity(){
-		String url = getUrl("/ecom/query/product/sku/loadTransdata/id/1000006");
+		String url = getUrl("/ecom/query/product/sku/loadSaleData/id/1000422");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		String result = httpExecutor.get(url, params);

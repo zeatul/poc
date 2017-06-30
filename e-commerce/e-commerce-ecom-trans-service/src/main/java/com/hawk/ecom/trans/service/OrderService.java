@@ -13,6 +13,7 @@ import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.domain.SkuDomain;
 import com.hawk.ecom.product.service.ProductService;
 import com.hawk.ecom.product.service.SkuService;
+import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDomain;
 import com.hawk.ecom.trans.request.CreateOrderParam;
 import com.hawk.ecom.trans.request.OrderDetailParam;
@@ -78,11 +79,29 @@ public class OrderService {
 				throw new RuntimeException();
 			}
 			
+			/**
+			 * 校验手机号和产品得匹配关系
+			 */
+			
+			/**
+			 * 构造订单明细
+			 */
 			OrderDetailDomain orderDetailDomain = new OrderDetailDomain();
+			
+			/**
+			 * 构造交付数据
+			 */
+			
 		}
 		
+		/**
+		 * 构造订单,插入订单
+		 */
 		
-		
+		/**
+		 * 插入订单明细
+		 */
+		return null;
 	}
 
 }
