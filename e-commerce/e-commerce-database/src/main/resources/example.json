@@ -1,5 +1,8 @@
 {
-	"ids": [
-		10006
-	]
+	"data": {
+		"skuId": 1000422,
+		"salePrice": 99.0000,
+		"skuStockQuantity": 999999
+	},
+	"code": 1
 }
