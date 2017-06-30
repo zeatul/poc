@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		order_detail_id AS "orderDetailId" ,
+		order_id AS "orderId" ,
+		store_code AS "storeCode" ,
+		order_code AS "orderCode" ,
+		user_code AS "userCode" ,
+		supplier_code AS "supplierCode" ,
+		outer_phone_model_id AS "outerPhoneModelId" ,
+		outer_product_id AS "outerProductId" ,
+		imei AS "imei" ,
+		benef_id_typ AS "benefIdTyp" ,
+		benef_id_number AS "benefIdNumber" ,
+		benef_birthday AS "benefBirthday" ,
+		benef_sex AS "benefSex" ,
+		benef_name AS "benefName" ,
+		benef_mobile_number AS "benefMobileNumber" ,
+		outer_order_code AS "outerOrderCode" ,
+		task_code AS "taskCode" ,
+		task_name AS "taskName" ,
+		task_desc AS "taskDesc" ,
+		task_memo AS "taskMemo" ,
+		task_status AS "taskStatus" ,
+		schedule_exec_date AS "scheduleExecDate" ,
+		exec_times AS "execTimes" ,
+		max_exec_times AS "maxExecTimes" ,
+		last_exec_err_code AS "lastExecErrCode" ,
+		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_begin_time AS "lastExecBeginTime" ,
+		last_exec_end_time AS "lastExecEndTime" ,
+		last_exec_computer AS "lastExecComputer" ,
+		last_exec_process_id AS "lastExecProcessId" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="orderDetailId != null"> AND order_detail_id = #{orderDetailId}  </if>
+			<if test="orderId != null"> AND order_id = #{orderId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
+			<if test="userCode != null"> AND user_code = #{userCode}  </if>
+			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
+			<if test="outerPhoneModelId != null"> AND outer_phone_model_id = #{outerPhoneModelId}  </if>
+			<if test="outerProductId != null"> AND outer_product_id = #{outerProductId}  </if>
+			<if test="imei != null"> AND imei = #{imei}  </if>
+			<if test="benefIdTyp != null"> AND benef_id_typ = #{benefIdTyp}  </if>
+			<if test="benefIdNumber != null"> AND benef_id_number = #{benefIdNumber}  </if>
+			<if test="benefBirthday != null"> AND benef_birthday = #{benefBirthday}  </if>
+			<if test="benefSex != null"> AND benef_sex = #{benefSex}  </if>
+			<if test="benefName != null"> AND benef_name = #{benefName}  </if>
+			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{benefMobileNumber}  </if>
+			<if test="outerOrderCode != null"> AND outer_order_code = #{outerOrderCode}  </if>
+			<if test="taskCode != null"> AND task_code = #{taskCode}  </if>
+			<if test="taskName != null"> AND task_name = #{taskName}  </if>
+			<if test="taskDesc != null"> AND task_desc = #{taskDesc}  </if>
+			<if test="taskMemo != null"> AND task_memo = #{taskMemo}  </if>
+			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
+			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
+			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
+			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
+			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
+			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecBeginTime != null"> AND last_exec_begin_time = #{lastExecBeginTime}  </if>
+			<if test="lastExecEndTime != null"> AND last_exec_end_time = #{lastExecEndTime}  </if>
+			<if test="lastExecComputer != null"> AND last_exec_computer = #{lastExecComputer}  </if>
+			<if test="lastExecProcessId != null"> AND last_exec_process_id = #{lastExecProcessId}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_orderDetailId != null"> AND order_detail_id = #{old_orderDetailId}  </if>			
+			<if test="old_orderId != null"> AND order_id = #{old_orderId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_orderCode != null"> AND order_code = #{old_orderCode}  </if>			
+			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
+			<if test="old_supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
+			<if test="old_outerPhoneModelId != null"> AND outer_phone_model_id = #{old_outerPhoneModelId}  </if>			
+			<if test="old_outerProductId != null"> AND outer_product_id = #{old_outerProductId}  </if>			
+			<if test="old_imei != null"> AND imei = #{old_imei}  </if>			
+			<if test="old_benefIdTyp != null"> AND benef_id_typ = #{old_benefIdTyp}  </if>			
+			<if test="old_benefIdNumber != null"> AND benef_id_number = #{old_benefIdNumber}  </if>			
+			<if test="old_benefBirthday != null"> AND benef_birthday = #{old_benefBirthday}  </if>			
+			<if test="old_benefSex != null"> AND benef_sex = #{old_benefSex}  </if>			
+			<if test="old_benefName != null"> AND benef_name = #{old_benefName}  </if>			
+			<if test="old_benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
+			<if test="old_outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
+			<if test="old_taskCode != null"> AND task_code = #{old_taskCode}  </if>			
+			<if test="old_taskName != null"> AND task_name = #{old_taskName}  </if>			
+			<if test="old_taskDesc != null"> AND task_desc = #{old_taskDesc}  </if>			
+			<if test="old_taskMemo != null"> AND task_memo = #{old_taskMemo}  </if>			
+			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
+			<if test="old_scheduleExecDate != null"> AND schedule_exec_date = #{old_scheduleExecDate}  </if>			
+			<if test="old_execTimes != null"> AND exec_times = #{old_execTimes}  </if>			
+			<if test="old_maxExecTimes != null"> AND max_exec_times = #{old_maxExecTimes}  </if>			
+			<if test="old_lastExecErrCode != null"> AND last_exec_err_code = #{old_lastExecErrCode}  </if>			
+			<if test="old_lastExecErrMsg != null"> AND last_exec_err_msg = #{old_lastExecErrMsg}  </if>			
+			<if test="old_lastExecBeginTime != null"> AND last_exec_begin_time = #{old_lastExecBeginTime}  </if>			
+			<if test="old_lastExecEndTime != null"> AND last_exec_end_time = #{old_lastExecEndTime}  </if>			
+			<if test="old_lastExecComputer != null"> AND last_exec_computer = #{old_lastExecComputer}  </if>			
+			<if test="old_lastExecProcessId != null"> AND last_exec_process_id = #{old_lastExecProcessId}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			order_detail_id = #{orderDetailId},
+			order_id = #{orderId},
+			store_code = #{storeCode},
+			order_code = #{orderCode},
+			user_code = #{userCode},
+			supplier_code = #{supplierCode},
+			outer_phone_model_id = #{outerPhoneModelId},
+			outer_product_id = #{outerProductId},
+			imei = #{imei},
+			benef_id_typ = #{benefIdTyp},
+			benef_id_number = #{benefIdNumber},
+			benef_birthday = #{benefBirthday},
+			benef_sex = #{benefSex},
+			benef_name = #{benefName},
+			benef_mobile_number = #{benefMobileNumber},
+			outer_order_code = #{outerOrderCode},
+			task_code = #{taskCode},
+			task_name = #{taskName},
+			task_desc = #{taskDesc},
+			task_memo = #{taskMemo},
+			task_status = #{taskStatus},
+			schedule_exec_date = #{scheduleExecDate},
+			exec_times = #{execTimes},
+			max_exec_times = #{maxExecTimes},
+			last_exec_err_code = #{lastExecErrCode},
+			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_begin_time = #{lastExecBeginTime},
+			last_exec_end_time = #{lastExecEndTime},
+			last_exec_computer = #{lastExecComputer},
+			last_exec_process_id = #{lastExecProcessId},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="orderDetailId != null">order_detail_id = #{orderDetailId},</if>
+			<if test="orderId != null">order_id = #{orderId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="orderCode != null">order_code = #{orderCode},</if>
+			<if test="userCode != null">user_code = #{userCode},</if>
+			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
+			<if test="outerPhoneModelId != null">outer_phone_model_id = #{outerPhoneModelId},</if>
+			<if test="outerProductId != null">outer_product_id = #{outerProductId},</if>
+			<if test="imei != null">imei = #{imei},</if>
+			<if test="benefIdTyp != null">benef_id_typ = #{benefIdTyp},</if>
+			<if test="benefIdNumber != null">benef_id_number = #{benefIdNumber},</if>
+			<if test="benefBirthday != null">benef_birthday = #{benefBirthday},</if>
+			<if test="benefSex != null">benef_sex = #{benefSex},</if>
+			<if test="benefName != null">benef_name = #{benefName},</if>
+			<if test="benefMobileNumber != null">benef_mobile_number = #{benefMobileNumber},</if>
+			<if test="outerOrderCode != null">outer_order_code = #{outerOrderCode},</if>
+			<if test="taskCode != null">task_code = #{taskCode},</if>
+			<if test="taskName != null">task_name = #{taskName},</if>
+			<if test="taskDesc != null">task_desc = #{taskDesc},</if>
+			<if test="taskMemo != null">task_memo = #{taskMemo},</if>
+			<if test="taskStatus != null">task_status = #{taskStatus},</if>
+			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
+			<if test="execTimes != null">exec_times = #{execTimes},</if>
+			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
+			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
+			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecBeginTime != null">last_exec_begin_time = #{lastExecBeginTime},</if>
+			<if test="lastExecEndTime != null">last_exec_end_time = #{lastExecEndTime},</if>
+			<if test="lastExecComputer != null">last_exec_computer = #{lastExecComputer},</if>
+			<if test="lastExecProcessId != null">last_exec_process_id = #{lastExecProcessId},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="OrderDetailDeliveryDataDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_tra_order_detail_delivery_data
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="OrderDetailDeliveryDataDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order_detail_delivery_data
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order_detail_delivery_data
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_tra_order_detail_delivery_data
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="OrderDetailDeliveryDataDomain">
+		INSERT INTO t_tra_order_detail_delivery_data (			
+				id,				
+				order_detail_id,				
+				order_id,				
+				store_code,				
+				order_code,				
+				user_code,				
+				supplier_code,				
+				outer_phone_model_id,				
+				outer_product_id,				
+				imei,				
+				benef_id_typ,				
+				benef_id_number,				
+				benef_birthday,				
+				benef_sex,				
+				benef_name,				
+				benef_mobile_number,				
+				outer_order_code,				
+				task_code,				
+				task_name,				
+				task_desc,				
+				task_memo,				
+				task_status,				
+				schedule_exec_date,				
+				exec_times,				
+				max_exec_times,				
+				last_exec_err_code,				
+				last_exec_err_msg,				
+				last_exec_begin_time,				
+				last_exec_end_time,				
+				last_exec_computer,				
+				last_exec_process_id,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{orderDetailId},
+			#{orderId},
+			#{storeCode},
+			#{orderCode},
+			#{userCode},
+			#{supplierCode},
+			#{outerPhoneModelId},
+			#{outerProductId},
+			#{imei},
+			#{benefIdTyp},
+			#{benefIdNumber},
+			#{benefBirthday},
+			#{benefSex},
+			#{benefName},
+			#{benefMobileNumber},
+			#{outerOrderCode},
+			#{taskCode},
+			#{taskName},
+			#{taskDesc},
+			#{taskMemo},
+			#{taskStatus},
+			#{scheduleExecDate},
+			#{execTimes},
+			#{maxExecTimes},
+			#{lastExecErrCode},
+			#{lastExecErrMsg},
+			#{lastExecBeginTime},
+			#{lastExecEndTime},
+			#{lastExecComputer},
+			#{lastExecProcessId},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_tra_order_detail_delivery_data
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_tra_order_detail_delivery_data
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="OrderDetailDeliveryDataDomain">
+		UPDATE t_tra_order_detail_delivery_data	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="OrderDetailDeliveryDataDomain">
+		UPDATE t_tra_order_detail_delivery_data
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_tra_order_detail_delivery_data	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="OrderDetailDeliveryDataDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_tra_order_detail_delivery_data
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

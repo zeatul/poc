@@ -6,10 +6,12 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		store_code AS "storeCode" ,
 		category_id AS "categoryId" ,
 		attr_name_id AS "attrNameId" ,
 		attr_value AS "attrValue" ,
 		attr_display_value AS "attrDisplayValue" ,
+		attr_display_en_value AS "attrDisplayEnValue" ,
 		attr_value_status AS "attrValueStatus" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
@@ -22,10 +24,12 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
 			<if test="attrNameId != null"> AND attr_name_id = #{attrNameId}  </if>
 			<if test="attrValue != null"> AND attr_value = #{attrValue}  </if>
 			<if test="attrDisplayValue != null"> AND attr_display_value = #{attrDisplayValue}  </if>
+			<if test="attrDisplayEnValue != null"> AND attr_display_en_value = #{attrDisplayEnValue}  </if>
 			<if test="attrValueStatus != null"> AND attr_value_status = #{attrValueStatus}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
@@ -38,28 +42,32 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND category_id = #{old_categoryId}
-			AND attr_name_id = #{old_attrNameId}
-			AND attr_value = #{old_attrValue}
-			AND attr_display_value = #{old_attrDisplayValue}
-			AND attr_value_status = #{old_attrValueStatus}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_categoryId != null"> AND category_id = #{old_categoryId}  </if>			
+			<if test="old_attrNameId != null"> AND attr_name_id = #{old_attrNameId}  </if>			
+			<if test="old_attrValue != null"> AND attr_value = #{old_attrValue}  </if>			
+			<if test="old_attrDisplayValue != null"> AND attr_display_value = #{old_attrDisplayValue}  </if>			
+			<if test="old_attrDisplayEnValue != null"> AND attr_display_en_value = #{old_attrDisplayEnValue}  </if>			
+			<if test="old_attrValueStatus != null"> AND attr_value_status = #{old_attrValueStatus}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			id = #{id},
+			store_code = #{storeCode},
 			category_id = #{categoryId},
 			attr_name_id = #{attrNameId},
 			attr_value = #{attrValue},
 			attr_display_value = #{attrDisplayValue},
+			attr_display_en_value = #{attrDisplayEnValue},
 			attr_value_status = #{attrValueStatus},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
@@ -73,10 +81,12 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="categoryId != null">category_id = #{categoryId},</if>
 			<if test="attrNameId != null">attr_name_id = #{attrNameId},</if>
 			<if test="attrValue != null">attr_value = #{attrValue},</if>
 			<if test="attrDisplayValue != null">attr_display_value = #{attrDisplayValue},</if>
+			<if test="attrDisplayEnValue != null">attr_display_en_value = #{attrDisplayEnValue},</if>
 			<if test="attrValueStatus != null">attr_value_status = #{attrValueStatus},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
@@ -123,10 +133,12 @@
 	<insert id="insert"  parameterType="AttrValueDomain">
 		INSERT INTO t_prd_attr_value (			
 				id,				
+				store_code,				
 				category_id,				
 				attr_name_id,				
 				attr_value,				
 				attr_display_value,				
+				attr_display_en_value,				
 				attr_value_status,				
 				create_user_code,				
 				create_date,				
@@ -137,10 +149,12 @@
 		)		
 		VALUES (	
 			#{id},
+			#{storeCode},
 			#{categoryId},
 			#{attrNameId},
 			#{attrValue},
 			#{attrDisplayValue},
+			#{attrDisplayEnValue},
 			#{attrValueStatus},
 			#{createUserCode},
 			#{createDate},
@@ -173,9 +187,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_attr_value	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

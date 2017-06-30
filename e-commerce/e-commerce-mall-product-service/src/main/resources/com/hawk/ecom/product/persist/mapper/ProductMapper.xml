@@ -10,15 +10,21 @@
 		store_code AS "storeCode" ,
 		product_code AS "productCode" ,
 		product_name AS "productName" ,
-		product_attr_id_comp AS "productAttrIdComp" ,
-		product_attr_value_comp AS "productAttrValueComp" ,
+		product_key_attr_value_ids AS "productKeyAttrValueIds" ,
+		product_key_attr_value_values AS "productKeyAttrValueValues" ,
+		product_sku_attr_name_ids AS "productSkuAttrNameIds" ,
 		product_status AS "productStatus" ,
 		product_home_page AS "productHomePage" ,
+		thumbnail AS "thumbnail" ,
 		product_desc AS "productDesc" ,
 		product_memo AS "productMemo" ,
+		product_min_price AS "productMinPrice" ,
+		product_max_price AS "productMaxPrice" ,
 		on_sale_stdt AS "onSaleStdt" ,
 		on_sale_endt AS "onSaleEndt" ,
 		is_virtual AS "isVirtual" ,
+		delivery_type AS "deliveryType" ,
+		product_version AS "productVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -34,15 +40,21 @@
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="productCode != null"> AND product_code = #{productCode}  </if>
 			<if test="productName != null"> AND product_name = #{productName}  </if>
-			<if test="productAttrIdComp != null"> AND product_attr_id_comp = #{productAttrIdComp}  </if>
-			<if test="productAttrValueComp != null"> AND product_attr_value_comp = #{productAttrValueComp}  </if>
+			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{productKeyAttrValueIds}  </if>
+			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{productKeyAttrValueValues}  </if>
+			<if test="productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{productSkuAttrNameIds}  </if>
 			<if test="productStatus != null"> AND product_status = #{productStatus}  </if>
 			<if test="productHomePage != null"> AND product_home_page = #{productHomePage}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="productDesc != null"> AND product_desc = #{productDesc}  </if>
 			<if test="productMemo != null"> AND product_memo = #{productMemo}  </if>
+			<if test="productMinPrice != null"> AND product_min_price = #{productMinPrice}  </if>
+			<if test="productMaxPrice != null"> AND product_max_price = #{productMaxPrice}  </if>
 			<if test="onSaleStdt != null"> AND on_sale_stdt = #{onSaleStdt}  </if>
 			<if test="onSaleEndt != null"> AND on_sale_endt = #{onSaleEndt}  </if>
 			<if test="isVirtual != null"> AND is_virtual = #{isVirtual}  </if>
+			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
+			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -54,26 +66,32 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND category_id = #{old_categoryId}
-			AND store_code = #{old_storeCode}
-			AND product_code = #{old_productCode}
-			AND product_name = #{old_productName}
-			AND product_attr_id_comp = #{old_productAttrIdComp}
-			AND product_attr_value_comp = #{old_productAttrValueComp}
-			AND product_status = #{old_productStatus}
-			AND product_home_page = #{old_productHomePage}
-			AND product_desc = #{old_productDesc}
-			AND product_memo = #{old_productMemo}
-			AND on_sale_stdt = #{old_onSaleStdt}
-			AND on_sale_endt = #{old_onSaleEndt}
-			AND is_virtual = #{old_isVirtual}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_categoryId != null"> AND category_id = #{old_categoryId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_productCode != null"> AND product_code = #{old_productCode}  </if>			
+			<if test="old_productName != null"> AND product_name = #{old_productName}  </if>			
+			<if test="old_productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}  </if>			
+			<if test="old_productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{old_productKeyAttrValueValues}  </if>			
+			<if test="old_productSkuAttrNameIds != null"> AND product_sku_attr_name_ids = #{old_productSkuAttrNameIds}  </if>			
+			<if test="old_productStatus != null"> AND product_status = #{old_productStatus}  </if>			
+			<if test="old_productHomePage != null"> AND product_home_page = #{old_productHomePage}  </if>			
+			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
+			<if test="old_productDesc != null"> AND product_desc = #{old_productDesc}  </if>			
+			<if test="old_productMemo != null"> AND product_memo = #{old_productMemo}  </if>			
+			<if test="old_productMinPrice != null"> AND product_min_price = #{old_productMinPrice}  </if>			
+			<if test="old_productMaxPrice != null"> AND product_max_price = #{old_productMaxPrice}  </if>			
+			<if test="old_onSaleStdt != null"> AND on_sale_stdt = #{old_onSaleStdt}  </if>			
+			<if test="old_onSaleEndt != null"> AND on_sale_endt = #{old_onSaleEndt}  </if>			
+			<if test="old_isVirtual != null"> AND is_virtual = #{old_isVirtual}  </if>			
+			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
+			<if test="old_productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -84,15 +102,21 @@
 			store_code = #{storeCode},
 			product_code = #{productCode},
 			product_name = #{productName},
-			product_attr_id_comp = #{productAttrIdComp},
-			product_attr_value_comp = #{productAttrValueComp},
+			product_key_attr_value_ids = #{productKeyAttrValueIds},
+			product_key_attr_value_values = #{productKeyAttrValueValues},
+			product_sku_attr_name_ids = #{productSkuAttrNameIds},
 			product_status = #{productStatus},
 			product_home_page = #{productHomePage},
+			thumbnail = #{thumbnail},
 			product_desc = #{productDesc},
 			product_memo = #{productMemo},
+			product_min_price = #{productMinPrice},
+			product_max_price = #{productMaxPrice},
 			on_sale_stdt = #{onSaleStdt},
 			on_sale_endt = #{onSaleEndt},
 			is_virtual = #{isVirtual},
+			delivery_type = #{deliveryType},
+			product_version = #{productVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -109,15 +133,21 @@
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="productCode != null">product_code = #{productCode},</if>
 			<if test="productName != null">product_name = #{productName},</if>
-			<if test="productAttrIdComp != null">product_attr_id_comp = #{productAttrIdComp},</if>
-			<if test="productAttrValueComp != null">product_attr_value_comp = #{productAttrValueComp},</if>
+			<if test="productKeyAttrValueIds != null">product_key_attr_value_ids = #{productKeyAttrValueIds},</if>
+			<if test="productKeyAttrValueValues != null">product_key_attr_value_values = #{productKeyAttrValueValues},</if>
+			<if test="productSkuAttrNameIds != null">product_sku_attr_name_ids = #{productSkuAttrNameIds},</if>
 			<if test="productStatus != null">product_status = #{productStatus},</if>
 			<if test="productHomePage != null">product_home_page = #{productHomePage},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="productDesc != null">product_desc = #{productDesc},</if>
 			<if test="productMemo != null">product_memo = #{productMemo},</if>
+			<if test="productMinPrice != null">product_min_price = #{productMinPrice},</if>
+			<if test="productMaxPrice != null">product_max_price = #{productMaxPrice},</if>
 			<if test="onSaleStdt != null">on_sale_stdt = #{onSaleStdt},</if>
 			<if test="onSaleEndt != null">on_sale_endt = #{onSaleEndt},</if>
 			<if test="isVirtual != null">is_virtual = #{isVirtual},</if>
+			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
+			<if test="productVersion != null">product_version = #{productVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -167,15 +197,21 @@
 				store_code,				
 				product_code,				
 				product_name,				
-				product_attr_id_comp,				
-				product_attr_value_comp,				
+				product_key_attr_value_ids,				
+				product_key_attr_value_values,				
+				product_sku_attr_name_ids,				
 				product_status,				
 				product_home_page,				
+				thumbnail,				
 				product_desc,				
 				product_memo,				
+				product_min_price,				
+				product_max_price,				
 				on_sale_stdt,				
 				on_sale_endt,				
 				is_virtual,				
+				delivery_type,				
+				product_version,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -189,15 +225,21 @@
 			#{storeCode},
 			#{productCode},
 			#{productName},
-			#{productAttrIdComp},
-			#{productAttrValueComp},
+			#{productKeyAttrValueIds},
+			#{productKeyAttrValueValues},
+			#{productSkuAttrNameIds},
 			#{productStatus},
 			#{productHomePage},
+			#{thumbnail},
 			#{productDesc},
 			#{productMemo},
+			#{productMinPrice},
+			#{productMaxPrice},
 			#{onSaleStdt},
 			#{onSaleEndt},
 			#{isVirtual},
+			#{deliveryType},
+			#{productVersion},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},
@@ -229,9 +271,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_product	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

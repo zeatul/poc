@@ -7,6 +7,48 @@ import com.hawk.framework.pub.web.ResponseData;
 public class SystemResourceInfoResponse implements ResponseData{
 	
 	
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+
+	public Integer getPid() {
+		return pid;
+	}
+
+
+
+
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
+
+
+
+
 	public Integer getNodeType() {
 		return nodeType;
 	}
@@ -204,5 +246,15 @@ public class SystemResourceInfoResponse implements ResponseData{
 	 * 更新日期 update_date;
 	 */
 	private Date updateDate;
+	
+	/**
+	 * 主键 id
+	 */
+	private Integer id;
+	
+	/**
+	 * 父ID pid
+	 */
+	private Integer pid;
 	
 }

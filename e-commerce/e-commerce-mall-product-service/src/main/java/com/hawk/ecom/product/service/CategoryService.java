@@ -3,8 +3,6 @@ package com.hawk.ecom.product.service;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale.Category;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +34,8 @@ import com.hawk.ecom.product.request.LoadCategoryParam;
 import com.hawk.ecom.product.request.RemoveCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryParam;
 import com.hawk.ecom.product.request.UpdateCategoryStatusParam;
-import com.hawk.ecom.product.request.UpdateCategoryTemplateStatusParam;
+import com.hawk.ecom.product.request.UpdateCategoryVariantStatusParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
-import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.constant.ConstBoolean;
@@ -134,7 +131,7 @@ public class CategoryService {
 		if (id != null){
 			categoryDomain = categoryMapper.load(id);
 		}else{
-			logger.error("loadCategory param id is null");
+			logger.error("loadCategory:id is null");
 		}
 		if (categoryDomain == null){
 			throw new CategoryNotFoundRuntimeException();
@@ -204,7 +201,7 @@ public class CategoryService {
 		categoryDomain.setPid(parent.getId());	
 		
 		categoryDomain.setCategoryStatus(ConstCategory.CategoryStatus.AVAILABLE);
-		categoryDomain.setCategoryTemplateStatus(ConstCategory.CategoryTemplateStatus.EDITING);
+		categoryDomain.setCategoryVariantStatus(ConstCategory.CategoryVariantStatus.EDITING);
 		
 		Integer objectOrder = createCategoryParam.getObjectOrder();
 		if (objectOrder == null) {
@@ -285,21 +282,21 @@ public class CategoryService {
 	
 	@Valid
 	@Transactional
-	public void updateCategoryTemplateStatus(@NotNull("参数") @Valid UpdateCategoryTemplateStatusParam updateCategoryTemplateStatusParam){
+	public void updateCategoryVariantStatus(@NotNull("参数") @Valid UpdateCategoryVariantStatusParam updateCategoryVariantStatusParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
 		
-		int status = updateCategoryTemplateStatusParam.getCategoryTemplateStatus();
-		for(Integer  id  : updateCategoryTemplateStatusParam.getIds()){
+		int status = updateCategoryVariantStatusParam.getCategoryVariantStatus();
+		for(Integer  id  : updateCategoryVariantStatusParam.getIds()){
 			CategoryDomain categoryDomain = loadCategory(id);
-			if (categoryDomain.getCategoryTemplateStatus() != status){
+			if (categoryDomain.getCategoryVariantStatus() != status){
 				/**
 				 * TODO:检测是否符合模板发布条件
 				 */
 				CategoryDomain updateDomain = new CategoryDomain();
 				updateDomain.setId(id);
-				updateDomain.setCategoryTemplateStatus(status);
+				updateDomain.setCategoryVariantStatus(status);
 				updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 				updateDomain.setUpdateDate(new Date());
 				categoryMapper.updateWithoutNull(updateDomain);
@@ -320,7 +317,7 @@ public class CategoryService {
 		MybatisParam params = new MybatisParam() ;
 		params.put("pid", listCategoryParam.getPid());
 		params.put("categoryStatus", listCategoryParam.getCategoryStatus());
-		params.put("categoryTemplateStatus", listCategoryParam.getCategoryTemplateStatus());
+		params.put("categoryVariantStatus", listCategoryParam.getCategoryVariantStatus());
 		params.put("isLeaf", listCategoryParam.getIsLeaf());
 		
 		params = MybatisTools.page(params, listCategoryParam);
@@ -328,7 +325,7 @@ public class CategoryService {
 	}
 	
 	@Valid
-	public CategoryDomain loadCategory(@NotEmpty("参数") @Valid LoadCategoryParam loadCategoryParam) {
+	public CategoryDomain loadCategory(@NotNull("参数") @Valid LoadCategoryParam loadCategoryParam) {
 		
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();

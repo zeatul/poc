@@ -6,6 +6,14 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 public class UpdateAttrValueParam {
 	
 
+	public String getAttrDisplayEnValue() {
+		return attrDisplayEnValue;
+	}
+
+	public void setAttrDisplayEnValue(String attrDisplayEnValue) {
+		this.attrDisplayEnValue = attrDisplayEnValue;
+	}
+
 	public String getOperatorCode() {
 		return operatorCode;
 	}
@@ -53,6 +61,11 @@ public class UpdateAttrValueParam {
 	 * 属性值显示名 attr_display_value
 	 */
 	private String attrDisplayValue;
+	
+	/**
+	 * 属性值显示英文名称 attr_display_en_value
+	 */
+	private String attrDisplayEnValue;
 	
 	/**
 	 * 操作员编号

@@ -16,6 +16,7 @@ import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
@@ -31,7 +32,7 @@ public class BsiAdminService {
 	private BsiAdminExMapper bsiAdminExMapper;
 	
 	@Valid
-	public List<HashMap<String,Object>> reportOrderDetail(@NotEmpty("参数") @Valid BsiOrderDetailReportParam bsiOrderDetailReportParam){
+	public List<HashMap<String,Object>> reportOrderDetail(@NotNull("参数") @Valid BsiOrderDetailReportParam bsiOrderDetailReportParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
@@ -46,7 +47,7 @@ public class BsiAdminService {
 	}
 	
 	@Valid
-	public  List<HashMap<String,Object>> statCoupon(@NotEmpty("参数") @Valid BsiStatCouponParam bsiStatCouponParam){
+	public  List<HashMap<String,Object>> statCoupon(@NotNull("参数") @Valid BsiStatCouponParam bsiStatCouponParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
@@ -59,7 +60,7 @@ public class BsiAdminService {
 	}
 	
 	@Valid
-	public  List<HashMap<String,Object>> statBsiOrderDetail(@NotEmpty("参数") @Valid BsiStatOrderDetailParam bsiStatOrderDetailParam){
+	public  List<HashMap<String,Object>> statBsiOrderDetail(@NotNull("参数") @Valid BsiStatOrderDetailParam bsiStatOrderDetailParam){
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}

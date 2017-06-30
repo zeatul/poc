@@ -24,7 +24,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+12, "产品SKU状态不符合当前操作的要求");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+13, "产品SKU不符合上架条件,Sku销售价格必须大于0");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+14, "产品不符合上架条件,必须有处于上架状态的产品SKU,上架开始时间不能小于上架结束时间，上架结束时间必须大于当前时间");
-		errorMap.put(ErrorCodeAllocation.PRODUCT+15, "产品目录模板状态不符合当前操作的要求,[新建商品时，模板状态应该为可用状态],[维护模板时，模板状态为编辑状态]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+15, "产品目录 变式状态不符合当前操作的要求,[新建商品时，变式状态应该为可用状态],[维护模板时，变式状态为编辑状态]");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+16, "属性名已经存在,[最终产品目录分类+属性名名称+父属性名ID+父属性值ID,唯一]");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+17, "属性名未找到");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+18, "属性名已经使用,不能删除,不能修改属性值类型和属性名业务类型");
@@ -36,8 +36,15 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+24, "操作的产品目录的父目录必须一致");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+25, "当前操作对象的关联对象的产品分类目录必须一致");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+26, "属性名的PID必须和属性值的属性名ID一致");
-//		errorMap.put(ErrorCodeAllocation.PRODUCT+110, "产品未找到");
-		
+		errorMap.put(ErrorCodeAllocation.PRODUCT+27, "产品定义关联的属性名ID必须唯一,[包括关键属性，非关键属性和sku属性]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+28, "属性未被产品引用");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+29, "SKU属性未被产品定义");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+30, "缺少SKU属性,[比产品定义里的少]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+31, "产品SKU用到的属性名和产品定义里的sku属性名不完全一致");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+32, "产品SKU更新库存量遇到并发冲突，请重试");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+33, "库存信息未找到");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+34, "图片未找到");
+	
 	}
 	
 

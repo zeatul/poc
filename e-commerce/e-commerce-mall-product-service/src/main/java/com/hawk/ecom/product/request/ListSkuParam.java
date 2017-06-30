@@ -6,6 +6,30 @@ import com.hawk.framework.pub.sql.PageParam;
 public class ListSkuParam implements PageParam{
 
 
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public Integer getSkuStatus() {
+		return skuStatus;
+	}
+
+	public void setSkuStatus(Integer skuStatus) {
+		this.skuStatus = skuStatus;
+	}
+
+	public Integer getIsSpecialPrice() {
+		return isSpecialPrice;
+	}
+
+	public void setIsSpecialPrice(Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
+	}
+
 	public Integer getPageIndex() {
 		return pageIndex;
 	}
@@ -37,7 +61,7 @@ public class ListSkuParam implements PageParam{
 	public void setOperatorCode(String operatorCode) {
 		this.operatorCode = operatorCode;
 	}
-
+	
 	/**
 	 * 页码
 	 */
@@ -52,6 +76,24 @@ public class ListSkuParam implements PageParam{
 	 * 每页数量
 	 */
 	private Integer pageRowCount;
+
+	
+	/**
+	 * 产品主键 product_id
+	 */
+	private Integer productId;	
+	
+	/**
+	 * SKU状态 sku_status
+	 */
+	private Integer skuStatus;	
+	
+	/**
+	 * 是否有特价 is_special_price
+	 */
+	private Integer isSpecialPrice;
+	
+	
 
 	/**
 	 * 操作员编号

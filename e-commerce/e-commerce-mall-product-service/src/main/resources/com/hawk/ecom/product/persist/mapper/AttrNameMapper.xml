@@ -6,6 +6,7 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		store_code AS "storeCode" ,
 		category_id AS "categoryId" ,
 		pid AS "pid" ,
 		pvid AS "pvid" ,
@@ -25,6 +26,7 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="categoryId != null"> AND category_id = #{categoryId}  </if>
 			<if test="pid != null"> AND pid = #{pid}  </if>
 			<if test="pvid != null"> AND pvid = #{pvid}  </if>
@@ -44,27 +46,29 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND category_id = #{old_categoryId}
-			AND pid = #{old_pid}
-			AND pvid = #{old_pvid}
-			AND attr_name_business_type = #{old_attrNameBusinessType}
-			AND attr_value_type = #{old_attrValueType}
-			AND attr_name = #{old_attrName}
-			AND attr_name_status = #{old_attrNameStatus}
-			AND is_search = #{old_isSearch}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_categoryId != null"> AND category_id = #{old_categoryId}  </if>			
+			<if test="old_pid != null"> AND pid = #{old_pid}  </if>			
+			<if test="old_pvid != null"> AND pvid = #{old_pvid}  </if>			
+			<if test="old_attrNameBusinessType != null"> AND attr_name_business_type = #{old_attrNameBusinessType}  </if>			
+			<if test="old_attrValueType != null"> AND attr_value_type = #{old_attrValueType}  </if>			
+			<if test="old_attrName != null"> AND attr_name = #{old_attrName}  </if>			
+			<if test="old_attrNameStatus != null"> AND attr_name_status = #{old_attrNameStatus}  </if>			
+			<if test="old_isSearch != null"> AND is_search = #{old_isSearch}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			id = #{id},
+			store_code = #{storeCode},
 			category_id = #{categoryId},
 			pid = #{pid},
 			pvid = #{pvid},
@@ -85,6 +89,7 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="categoryId != null">category_id = #{categoryId},</if>
 			<if test="pid != null">pid = #{pid},</if>
 			<if test="pvid != null">pvid = #{pvid},</if>
@@ -138,6 +143,7 @@
 	<insert id="insert"  parameterType="AttrNameDomain">
 		INSERT INTO t_prd_attr_name (			
 				id,				
+				store_code,				
 				category_id,				
 				pid,				
 				pvid,				
@@ -155,6 +161,7 @@
 		)		
 		VALUES (	
 			#{id},
+			#{storeCode},
 			#{categoryId},
 			#{pid},
 			#{pvid},
@@ -194,9 +201,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_attr_name	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.product.persist.mapper.SkuHistoryMapper">
+
+	<sql id="columns">	
+				id AS "id" ,
+		product_id AS "productId" ,
+		store_code AS "storeCode" ,
+		sku_code AS "skuCode" ,
+		sku_name AS "skuName" ,
+		sku_attr_value_ids AS "skuAttrValueIds" ,
+		sku_attr_value_values AS "skuAttrValueValues" ,
+		sku_status AS "skuStatus" ,
+		thumbnail AS "thumbnail" ,
+		market_price AS "marketPrice" ,
+		sale_price AS "salePrice" ,
+		sku_stock_amount AS "skuStockAmount" ,
+		is_special AS "isSpecial" ,
+		width AS "width" ,
+		depth AS "depth" ,
+		height AS "height" ,
+		length_unit AS "lengthUnit" ,
+		weight AS "weight" ,
+		weight_unit AS "weightUnit" ,
+		sku_memo AS "skuMemo" ,
+		sku_snapshoot_id AS "skuSnapshootId" ,
+		product_version AS "productVersion" ,
+		sku_version AS "skuVersion" ,
+		stock_version AS "stockVersion" ,
+		delivery_type AS "deliveryType" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="id != null"> AND id = #{id}  </if>
+			<if test="productId != null"> AND product_id = #{productId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="skuCode != null"> AND sku_code = #{skuCode}  </if>
+			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
+			<if test="skuAttrValueIds != null"> AND sku_attr_value_ids = #{skuAttrValueIds}  </if>
+			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{skuAttrValueValues}  </if>
+			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
+			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
+			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
+			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
+			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
+			<if test="width != null"> AND width = #{width}  </if>
+			<if test="depth != null"> AND depth = #{depth}  </if>
+			<if test="height != null"> AND height = #{height}  </if>
+			<if test="lengthUnit != null"> AND length_unit = #{lengthUnit}  </if>
+			<if test="weight != null"> AND weight = #{weight}  </if>
+			<if test="weightUnit != null"> AND weight_unit = #{weightUnit}  </if>
+			<if test="skuMemo != null"> AND sku_memo = #{skuMemo}  </if>
+			<if test="skuSnapshootId != null"> AND sku_snapshoot_id = #{skuSnapshootId}  </if>
+			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
+			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
+			<if test="stockVersion != null"> AND stock_version = #{stockVersion}  </if>
+			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_skuCode != null"> AND sku_code = #{old_skuCode}  </if>			
+			<if test="old_skuName != null"> AND sku_name = #{old_skuName}  </if>			
+			<if test="old_skuAttrValueIds != null"> AND sku_attr_value_ids = #{old_skuAttrValueIds}  </if>			
+			<if test="old_skuAttrValueValues != null"> AND sku_attr_value_values = #{old_skuAttrValueValues}  </if>			
+			<if test="old_skuStatus != null"> AND sku_status = #{old_skuStatus}  </if>			
+			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
+			<if test="old_marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
+			<if test="old_salePrice != null"> AND sale_price = #{old_salePrice}  </if>			
+			<if test="old_skuStockAmount != null"> AND sku_stock_amount = #{old_skuStockAmount}  </if>			
+			<if test="old_isSpecial != null"> AND is_special = #{old_isSpecial}  </if>			
+			<if test="old_width != null"> AND width = #{old_width}  </if>			
+			<if test="old_depth != null"> AND depth = #{old_depth}  </if>			
+			<if test="old_height != null"> AND height = #{old_height}  </if>			
+			<if test="old_lengthUnit != null"> AND length_unit = #{old_lengthUnit}  </if>			
+			<if test="old_weight != null"> AND weight = #{old_weight}  </if>			
+			<if test="old_weightUnit != null"> AND weight_unit = #{old_weightUnit}  </if>			
+			<if test="old_skuMemo != null"> AND sku_memo = #{old_skuMemo}  </if>			
+			<if test="old_skuSnapshootId != null"> AND sku_snapshoot_id = #{old_skuSnapshootId}  </if>			
+			<if test="old_productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="old_skuVersion != null"> AND sku_version = #{old_skuVersion}  </if>			
+			<if test="old_stockVersion != null"> AND stock_version = #{old_stockVersion}  </if>			
+			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			id = #{id},
+			product_id = #{productId},
+			store_code = #{storeCode},
+			sku_code = #{skuCode},
+			sku_name = #{skuName},
+			sku_attr_value_ids = #{skuAttrValueIds},
+			sku_attr_value_values = #{skuAttrValueValues},
+			sku_status = #{skuStatus},
+			thumbnail = #{thumbnail},
+			market_price = #{marketPrice},
+			sale_price = #{salePrice},
+			sku_stock_amount = #{skuStockAmount},
+			is_special = #{isSpecial},
+			width = #{width},
+			depth = #{depth},
+			height = #{height},
+			length_unit = #{lengthUnit},
+			weight = #{weight},
+			weight_unit = #{weightUnit},
+			sku_memo = #{skuMemo},
+			sku_snapshoot_id = #{skuSnapshootId},
+			product_version = #{productVersion},
+			sku_version = #{skuVersion},
+			stock_version = #{stockVersion},
+			delivery_type = #{deliveryType},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="productId != null">product_id = #{productId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="skuCode != null">sku_code = #{skuCode},</if>
+			<if test="skuName != null">sku_name = #{skuName},</if>
+			<if test="skuAttrValueIds != null">sku_attr_value_ids = #{skuAttrValueIds},</if>
+			<if test="skuAttrValueValues != null">sku_attr_value_values = #{skuAttrValueValues},</if>
+			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
+			<if test="marketPrice != null">market_price = #{marketPrice},</if>
+			<if test="salePrice != null">sale_price = #{salePrice},</if>
+			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
+			<if test="isSpecial != null">is_special = #{isSpecial},</if>
+			<if test="width != null">width = #{width},</if>
+			<if test="depth != null">depth = #{depth},</if>
+			<if test="height != null">height = #{height},</if>
+			<if test="lengthUnit != null">length_unit = #{lengthUnit},</if>
+			<if test="weight != null">weight = #{weight},</if>
+			<if test="weightUnit != null">weight_unit = #{weightUnit},</if>
+			<if test="skuMemo != null">sku_memo = #{skuMemo},</if>
+			<if test="skuSnapshootId != null">sku_snapshoot_id = #{skuSnapshootId},</if>
+			<if test="productVersion != null">product_version = #{productVersion},</if>
+			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
+			<if test="stockVersion != null">stock_version = #{stockVersion},</if>
+			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND id = #{id}
+			AND sku_version = #{skuVersion}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="SkuHistoryDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_prd_sku_history
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="SkuHistoryDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_sku_history
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_sku_history
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_prd_sku_history
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="SkuHistoryDomain">
+		INSERT INTO t_prd_sku_history (			
+				id,				
+				product_id,				
+				store_code,				
+				sku_code,				
+				sku_name,				
+				sku_attr_value_ids,				
+				sku_attr_value_values,				
+				sku_status,				
+				thumbnail,				
+				market_price,				
+				sale_price,				
+				sku_stock_amount,				
+				is_special,				
+				width,				
+				depth,				
+				height,				
+				length_unit,				
+				weight,				
+				weight_unit,				
+				sku_memo,				
+				sku_snapshoot_id,				
+				product_version,				
+				sku_version,				
+				stock_version,				
+				delivery_type,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{id},
+			#{productId},
+			#{storeCode},
+			#{skuCode},
+			#{skuName},
+			#{skuAttrValueIds},
+			#{skuAttrValueValues},
+			#{skuStatus},
+			#{thumbnail},
+			#{marketPrice},
+			#{salePrice},
+			#{skuStockAmount},
+			#{isSpecial},
+			#{width},
+			#{depth},
+			#{height},
+			#{lengthUnit},
+			#{weight},
+			#{weightUnit},
+			#{skuMemo},
+			#{skuSnapshootId},
+			#{productVersion},
+			#{skuVersion},
+			#{stockVersion},
+			#{deliveryType},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_prd_sku_history
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_prd_sku_history
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="SkuHistoryDomain">
+		UPDATE t_prd_sku_history	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="SkuHistoryDomain">
+		UPDATE t_prd_sku_history
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_prd_sku_history	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="SkuHistoryDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_prd_sku_history
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

@@ -21,7 +21,7 @@ import com.hawk.ecom.product.exception.AttrNameNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.AttrNamePidIsDifferentWithAttrNameIdOfAttrValueRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
-import com.hawk.ecom.product.exception.CategoryTemplateStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.CategoryVariantStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateAttrNameRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
@@ -88,10 +88,12 @@ public class AttrNameService {
 		return attrNameMapper.count(params) > 0;
 	}
 
-	public AttrNameDomain loadById(Integer id) {
+	public AttrNameDomain loadAttrNameById(Integer id) {
 		AttrNameDomain attrNameDomain = null;
 		if (id != null) {
 			attrNameDomain = attrNameMapper.load(id);
+		}else{
+			logger.error("loadAttrNameById:id is null");
 		}
 
 		if (attrNameDomain == null) {
@@ -123,8 +125,8 @@ public class AttrNameService {
 		if (!ConstBoolean.parse(categoryDomain.getIsLeaf())) {
 			throw new CategoryIsNotLeafRuntimeException();
 		}
-		if (categoryDomain.getCategoryTemplateStatus() != ConstCategory.CategoryTemplateStatus.EDITING) {
-			throw new CategoryTemplateStatusIsNotAcceptableRuntimeException();
+		if (categoryDomain.getCategoryVariantStatus() != ConstCategory.CategoryVariantStatus.EDITING) {
+			throw new CategoryVariantStatusIsNotAcceptableRuntimeException();
 		}
 
 		/**
@@ -145,7 +147,7 @@ public class AttrNameService {
 		 */
 		Integer pid = createAttrNameParam.getPid();
 		if (pid != 0) {
-			AttrNameDomain parent = loadById(pid);
+			AttrNameDomain parent = loadAttrNameById(pid);
 			if (!parent.getCategoryId().equals(createAttrNameParam.getCategoryId())) {
 				throw new CategoryIsDifferentRuntimeException();
 			}
@@ -242,7 +244,7 @@ public class AttrNameService {
 
 		int status = updateAttrNameStatusParam.getAttrNameStatus();
 		for (Integer id : updateAttrNameStatusParam.getIds()) {
-			AttrNameDomain attrNameDomain = loadById(id);
+			AttrNameDomain attrNameDomain = loadAttrNameById(id);
 			if (attrNameDomain.getAttrNameStatus() != status) {
 				AttrNameDomain updateDomain = new AttrNameDomain();
 				updateDomain.setAttrNameStatus(updateAttrNameStatusParam.getAttrNameStatus());
@@ -285,7 +287,7 @@ public class AttrNameService {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		return loadById(loadAttrNameParam.getId());
+		return loadAttrNameById(loadAttrNameParam.getId());
 	}
 
 	@Valid

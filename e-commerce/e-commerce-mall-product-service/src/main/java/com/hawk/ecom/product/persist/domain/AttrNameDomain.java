@@ -21,6 +21,11 @@ public class AttrNameDomain implements Serializable {
 	private Integer id;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * 产品目录主键 category_id
 	 */
 	private Integer categoryId;
@@ -105,6 +110,22 @@ public class AttrNameDomain implements Serializable {
 	 */	
 	public void setId (Integer id) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**

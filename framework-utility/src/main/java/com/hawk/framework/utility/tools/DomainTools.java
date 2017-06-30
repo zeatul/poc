@@ -65,6 +65,8 @@ public class DomainTools {
 		}
 	}
 	
+	
+	
 	/**
 	 * 集合复制(浅拷贝,简单对象)
 	 * @param sources 源对象集合

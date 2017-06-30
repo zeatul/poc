@@ -15,7 +15,7 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 		<#list fieldList as field>
-			AND ${field.columnCode} = ${r"#"}{old_${field.fieldName}}
+			<if test="old_${field.fieldName} != null"> AND ${field.columnCode} = ${r"#"}{old_${field.fieldName}}  </if>			
 		</#list>
 		</trim>
 	</sql>
@@ -118,9 +118,9 @@
 	</update>
 	</#if>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE ${tableCode}	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

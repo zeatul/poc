@@ -101,7 +101,7 @@ public class AttrValueService {
 		if (id != null) {
 			attrValueDomain = attrValueMapper.load(id);
 		} else {
-			logger.error("loadAttrValue id is null");
+			logger.error("loadAttrValue:id is null");
 		}
 
 		if (attrValueDomain == null) {
@@ -123,7 +123,7 @@ public class AttrValueService {
 		/**
 		 * 校验
 		 */
-		AttrNameDomain attrNameDomain = attrNameService.loadById(createAttrValueParam.getAttrNameId());
+		AttrNameDomain attrNameDomain = attrNameService.loadAttrNameById(createAttrValueParam.getAttrNameId());
 		if (attrNameDomain.getAttrNameStatus() != ConstAttr.AttrNameStatus.AVAIlABLE) {
 			throw new AttrNameStatusIsNotAcceptableRuntimeException();
 		}
@@ -135,6 +135,7 @@ public class AttrValueService {
 		attrValueDomain.setAttrDisplayValue(createAttrValueParam.getAttrDisplayValue());
 		attrValueDomain.setAttrNameId(attrNameDomain.getId());
 		attrValueDomain.setAttrValue(createAttrValueParam.getAttrValue());
+		attrValueDomain.setAttrDisplayEnValue(createAttrValueParam.getAttrDisplayEnValue());
 		
 //		if (StringTools.isNullOrEmpty(attrValueDomain.getAttrDisplayValue())) {
 //			attrValueDomain.setAttrDisplayValue(attrValueDomain.getAttrValue());

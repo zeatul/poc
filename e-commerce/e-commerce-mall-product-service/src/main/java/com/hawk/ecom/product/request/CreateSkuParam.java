@@ -1,15 +1,65 @@
 package com.hawk.ecom.product.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
-import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateSkuParam {
 	
 	
+	
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public Integer getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Integer currency) {
+		this.currency = currency;
+	}
+
+	public BigDecimal getMarketPrice() {
+		return marketPrice;
+	}
+
+	public void setMarketPrice(BigDecimal marketPrice) {
+		this.marketPrice = marketPrice;
+	}
+
+	public BigDecimal getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(BigDecimal salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public Integer getHeight() {
+		return height;
+	}
+
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
+	public List<Integer> getSkuAttrValueIds() {
+		return skuAttrValueIds;
+	}
+
+	public void setSkuAttrValueIds(List<Integer> skuAttrValueIds) {
+		this.skuAttrValueIds = skuAttrValueIds;
+	}
+
 	public String getSkuMemo() {
 		return skuMemo;
 	}
@@ -18,13 +68,7 @@ public class CreateSkuParam {
 		this.skuMemo = skuMemo;
 	}
 
-	public List<CreateProductAttrParam> getAttrs() {
-		return attrs;
-	}
-
-	public void setAttrs(List<CreateProductAttrParam> attrs) {
-		this.attrs = attrs;
-	}
+	
 
 	public Integer getProductId() {
 		return productId;
@@ -66,13 +110,7 @@ public class CreateSkuParam {
 		this.depth = depth;
 	}
 
-	public Integer getHeigh() {
-		return heigh;
-	}
-
-	public void setHeigh(Integer heigh) {
-		this.heigh = heigh;
-	}
+	
 
 	public Integer getLengthUnit() {
 		return lengthUnit;
@@ -117,7 +155,6 @@ public class CreateSkuParam {
 	/**
 	 * SKU编号 sku_code
 	 */
-	@NotEmpty
 	private String skuCode;
 	
 	/**
@@ -143,7 +180,7 @@ public class CreateSkuParam {
 	 * 高度 heigh
 	 */
 	@NotNull
-	private Integer heigh;
+	private Integer height;
 	
 	/**
 	 * 长度单位 length_unit
@@ -168,8 +205,31 @@ public class CreateSkuParam {
 	 */
 	private String skuMemo;	
 	
-	@ValidCollection
-	List<CreateProductAttrParam> attrs;
+	
+	/**
+	 * sku属性值集合
+	 */
+	List<Integer> skuAttrValueIds;
+	
+	/**
+	 * 市场价 market_price
+	 */
+	private BigDecimal marketPrice;
+	
+	/**
+	 * 销售价 sale_price
+	 */
+	private BigDecimal salePrice;
+	
+	/**
+	 * 币种 currency
+	 */
+	private Integer currency;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 	
 	
 	/**

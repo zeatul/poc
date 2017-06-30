@@ -5,12 +5,14 @@ import com.hawk.framework.pub.web.ResponseData;
 public class CategoryInfoResponse implements ResponseData{
 	
 	
-	public Integer getCategoryTemplateStatus() {
-		return categoryTemplateStatus;
+	
+
+	public Integer getCategoryVariantStatus() {
+		return categoryVariantStatus;
 	}
 
-	public void setCategoryTemplateStatus(Integer categoryTemplateStatus) {
-		this.categoryTemplateStatus = categoryTemplateStatus;
+	public void setCategoryVariantStatus(Integer categoryVariantStatus) {
+		this.categoryVariantStatus = categoryVariantStatus;
 	}
 
 	public Integer getId() {
@@ -145,9 +147,9 @@ public class CategoryInfoResponse implements ResponseData{
 	private Integer isLeaf;
 	
 	/**
-	 * 最终产品目录模板状态 category_template_status
+	 * 最终产品目录变式状态 category_variant_status
 	 */
-	private Integer categoryTemplateStatus;
+	private Integer categoryVariantStatus;
 	
 	
 }

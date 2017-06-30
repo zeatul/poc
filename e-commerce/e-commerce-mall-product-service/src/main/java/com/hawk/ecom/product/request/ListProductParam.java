@@ -6,6 +6,30 @@ import com.hawk.framework.pub.sql.PageParam;
 public class ListProductParam implements PageParam{
 
 
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Integer getProductStatus() {
+		return productStatus;
+	}
+
+	public void setProductStatus(Integer productStatus) {
+		this.productStatus = productStatus;
+	}
+
+	public Integer getIsVirtual() {
+		return isVirtual;
+	}
+
+	public void setIsVirtual(Integer isVirtual) {
+		this.isVirtual = isVirtual;
+	}
+
 	public Integer getPageIndex() {
 		return pageIndex;
 	}
@@ -37,7 +61,22 @@ public class ListProductParam implements PageParam{
 	public void setOperatorCode(String operatorCode) {
 		this.operatorCode = operatorCode;
 	}
-
+	
+	
+	/**
+	 * 产品目录主键 category_id
+	 */
+	private Integer categoryId;
+	
+	/**
+	 * 产品状态 product_status
+	 */
+	private Integer productStatus;
+	
+	/**
+	 * 是否为虚拟物品 is_virtual
+	 */
+	private Integer isVirtual;
 	/**
 	 * 页码
 	 */

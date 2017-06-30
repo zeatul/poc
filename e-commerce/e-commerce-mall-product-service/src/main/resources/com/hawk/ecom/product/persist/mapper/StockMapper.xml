@@ -6,7 +6,9 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		product_id AS "productId" ,
 		sku_id AS "skuId" ,
+		store_code AS "storeCode" ,
 		warehouse_code AS "warehouseCode" ,
 		stock_item_code AS "stockItemCode" ,
 		stock_quantity AS "stockQuantity" ,
@@ -23,7 +25,9 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="warehouseCode != null"> AND warehouse_code = #{warehouseCode}  </if>
 			<if test="stockItemCode != null"> AND stock_item_code = #{stockItemCode}  </if>
 			<if test="stockQuantity != null"> AND stock_quantity = #{stockQuantity}  </if>
@@ -40,26 +44,30 @@
 	
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			AND id = #{old_id}
-			AND sku_id = #{old_skuId}
-			AND warehouse_code = #{old_warehouseCode}
-			AND stock_item_code = #{old_stockItemCode}
-			AND stock_quantity = #{old_stockQuantity}
-			AND stock_memo = #{old_stockMemo}
-			AND stock_operation = #{old_stockOperation}
-			AND create_user_code = #{old_createUserCode}
-			AND create_date = #{old_createDate}
-			AND update_user_code = #{old_updateUserCode}
-			AND update_date = #{old_updateDate}
-			AND delete_user_code = #{old_deleteUserCode}
-			AND delete_date = #{old_deleteDate}
+			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
+			<if test="old_skuId != null"> AND sku_id = #{old_skuId}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_warehouseCode != null"> AND warehouse_code = #{old_warehouseCode}  </if>			
+			<if test="old_stockItemCode != null"> AND stock_item_code = #{old_stockItemCode}  </if>			
+			<if test="old_stockQuantity != null"> AND stock_quantity = #{old_stockQuantity}  </if>			
+			<if test="old_stockMemo != null"> AND stock_memo = #{old_stockMemo}  </if>			
+			<if test="old_stockOperation != null"> AND stock_operation = #{old_stockOperation}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
 	<sql id="update">
 		<set>
 			id = #{id},
+			product_id = #{productId},
 			sku_id = #{skuId},
+			store_code = #{storeCode},
 			warehouse_code = #{warehouseCode},
 			stock_item_code = #{stockItemCode},
 			stock_quantity = #{stockQuantity},
@@ -77,7 +85,9 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="warehouseCode != null">warehouse_code = #{warehouseCode},</if>
 			<if test="stockItemCode != null">stock_item_code = #{stockItemCode},</if>
 			<if test="stockQuantity != null">stock_quantity = #{stockQuantity},</if>
@@ -128,7 +138,9 @@
 	<insert id="insert"  parameterType="StockDomain">
 		INSERT INTO t_prd_stock (			
 				id,				
+				product_id,				
 				sku_id,				
+				store_code,				
 				warehouse_code,				
 				stock_item_code,				
 				stock_quantity,				
@@ -143,7 +155,9 @@
 		)		
 		VALUES (	
 			#{id},
+			#{productId},
 			#{skuId},
+			#{storeCode},
 			#{warehouseCode},
 			#{stockItemCode},
 			#{stockQuantity},
@@ -180,9 +194,9 @@
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateDynamic" parameterType="hashmap">
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
 		UPDATE t_prd_stock	
-		<include refid="update" />
+		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	

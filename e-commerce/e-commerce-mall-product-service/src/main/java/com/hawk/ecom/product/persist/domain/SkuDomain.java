@@ -42,19 +42,24 @@ public class SkuDomain implements Serializable {
 	private String skuName;
 	
 	/**
-	 * SKU属性ID和值ID组合 sku_attr_id_comp
+	 * SKU属性值ID集合 sku_attr_value_ids
 	 */
-	private String skuAttrIdComp;
+	private String skuAttrValueIds;
 	
 	/**
-	 * SKU属性值组合 sku_attr_value_comp
+	 * SKU属性值集合 sku_attr_value_values
 	 */
-	private String skuAttrValueComp;
+	private String skuAttrValueValues;
 	
 	/**
 	 * SKU状态 sku_status
 	 */
 	private Integer skuStatus;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 	
 	/**
 	 * 市场价 market_price
@@ -67,14 +72,19 @@ public class SkuDomain implements Serializable {
 	private BigDecimal salePrice;
 	
 	/**
-	 * SKU库存数量 sku_stock_amount
+	 * 币种 currency
 	 */
-	private Integer skuStockAmount;
+	private Integer currency;
 	
 	/**
-	 * 是否有特价 is_special
+	 * SKU库存数量 sku_stock_quantity
 	 */
-	private Integer isSpecial;
+	private Integer skuStockQuantity;
+	
+	/**
+	 * 是否有特价 is_special_price
+	 */
+	private Integer isSpecialPrice;
 	
 	/**
 	 * 宽度 width
@@ -87,9 +97,9 @@ public class SkuDomain implements Serializable {
 	private Integer depth;
 	
 	/**
-	 * 高度 heigh
+	 * 高度 height
 	 */
-	private Integer heigh;
+	private Integer height;
 	
 	/**
 	 * 长度单位 length_unit
@@ -110,6 +120,31 @@ public class SkuDomain implements Serializable {
 	 * SKU备注 sku_memo
 	 */
 	private String skuMemo;
+	
+	/**
+	 * SKU快照ID sku_snapshoot_id
+	 */
+	private Integer skuSnapshootId;
+	
+	/**
+	 * 产品版本号 product_version
+	 */
+	private Integer productVersion;
+	
+	/**
+	 * sku版本号 sku_version
+	 */
+	private Integer skuVersion;
+	
+	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
+	
+	/**
+	 * 库存版本号 stock_version
+	 */
+	private Integer stockVersion;
 	
 	/**
 	 * 创建者 create_user_code
@@ -224,34 +259,34 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU属性ID和值ID组合 sku_attr_id_comp
+	 * @return SKU属性值ID集合 sku_attr_value_ids
 	 */
-	public String getSkuAttrIdComp(){
-		return skuAttrIdComp;
+	public String getSkuAttrValueIds(){
+		return skuAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @param skuAttrIdComp SKU属性ID和值ID组合 sku_attr_id_comp
+	 * @param skuAttrValueIds SKU属性值ID集合 sku_attr_value_ids
 	 */	
-	public void setSkuAttrIdComp (String skuAttrIdComp) {
-		this.skuAttrIdComp = skuAttrIdComp;
+	public void setSkuAttrValueIds (String skuAttrValueIds) {
+		this.skuAttrValueIds = skuAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @return SKU属性值组合 sku_attr_value_comp
+	 * @return SKU属性值集合 sku_attr_value_values
 	 */
-	public String getSkuAttrValueComp(){
-		return skuAttrValueComp;
+	public String getSkuAttrValueValues(){
+		return skuAttrValueValues;
 	}
 	
 	/**
 	 * 
-	 * @param skuAttrValueComp SKU属性值组合 sku_attr_value_comp
+	 * @param skuAttrValueValues SKU属性值集合 sku_attr_value_values
 	 */	
-	public void setSkuAttrValueComp (String skuAttrValueComp) {
-		this.skuAttrValueComp = skuAttrValueComp;
+	public void setSkuAttrValueValues (String skuAttrValueValues) {
+		this.skuAttrValueValues = skuAttrValueValues;
 	}
 	
 	/**
@@ -268,6 +303,22 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSkuStatus (Integer skuStatus) {
 		this.skuStatus = skuStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	/**
@@ -304,34 +355,50 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU库存数量 sku_stock_amount
+	 * @return 币种 currency
 	 */
-	public Integer getSkuStockAmount(){
-		return skuStockAmount;
+	public Integer getCurrency(){
+		return currency;
 	}
 	
 	/**
 	 * 
-	 * @param skuStockAmount SKU库存数量 sku_stock_amount
+	 * @param currency 币种 currency
 	 */	
-	public void setSkuStockAmount (Integer skuStockAmount) {
-		this.skuStockAmount = skuStockAmount;
+	public void setCurrency (Integer currency) {
+		this.currency = currency;
 	}
 	
 	/**
 	 * 
-	 * @return 是否有特价 is_special
+	 * @return SKU库存数量 sku_stock_quantity
 	 */
-	public Integer getIsSpecial(){
-		return isSpecial;
+	public Integer getSkuStockQuantity(){
+		return skuStockQuantity;
 	}
 	
 	/**
 	 * 
-	 * @param isSpecial 是否有特价 is_special
+	 * @param skuStockQuantity SKU库存数量 sku_stock_quantity
 	 */	
-	public void setIsSpecial (Integer isSpecial) {
-		this.isSpecial = isSpecial;
+	public void setSkuStockQuantity (Integer skuStockQuantity) {
+		this.skuStockQuantity = skuStockQuantity;
+	}
+	
+	/**
+	 * 
+	 * @return 是否有特价 is_special_price
+	 */
+	public Integer getIsSpecialPrice(){
+		return isSpecialPrice;
+	}
+	
+	/**
+	 * 
+	 * @param isSpecialPrice 是否有特价 is_special_price
+	 */	
+	public void setIsSpecialPrice (Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
 	}
 	
 	/**
@@ -368,18 +435,18 @@ public class SkuDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 高度 heigh
+	 * @return 高度 height
 	 */
-	public Integer getHeigh(){
-		return heigh;
+	public Integer getHeight(){
+		return height;
 	}
 	
 	/**
 	 * 
-	 * @param heigh 高度 heigh
+	 * @param height 高度 height
 	 */	
-	public void setHeigh (Integer heigh) {
-		this.heigh = heigh;
+	public void setHeight (Integer height) {
+		this.height = height;
 	}
 	
 	/**
@@ -444,6 +511,86 @@ public class SkuDomain implements Serializable {
 	 */	
 	public void setSkuMemo (String skuMemo) {
 		this.skuMemo = skuMemo;
+	}
+	
+	/**
+	 * 
+	 * @return SKU快照ID sku_snapshoot_id
+	 */
+	public Integer getSkuSnapshootId(){
+		return skuSnapshootId;
+	}
+	
+	/**
+	 * 
+	 * @param skuSnapshootId SKU快照ID sku_snapshoot_id
+	 */	
+	public void setSkuSnapshootId (Integer skuSnapshootId) {
+		this.skuSnapshootId = skuSnapshootId;
+	}
+	
+	/**
+	 * 
+	 * @return 产品版本号 product_version
+	 */
+	public Integer getProductVersion(){
+		return productVersion;
+	}
+	
+	/**
+	 * 
+	 * @param productVersion 产品版本号 product_version
+	 */	
+	public void setProductVersion (Integer productVersion) {
+		this.productVersion = productVersion;
+	}
+	
+	/**
+	 * 
+	 * @return sku版本号 sku_version
+	 */
+	public Integer getSkuVersion(){
+		return skuVersion;
+	}
+	
+	/**
+	 * 
+	 * @param skuVersion sku版本号 sku_version
+	 */	
+	public void setSkuVersion (Integer skuVersion) {
+		this.skuVersion = skuVersion;
+	}
+	
+	/**
+	 * 
+	 * @return 交付方式 delivery_type
+	 */
+	public Integer getDeliveryType(){
+		return deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryType 交付方式 delivery_type
+	 */	
+	public void setDeliveryType (Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @return 库存版本号 stock_version
+	 */
+	public Integer getStockVersion(){
+		return stockVersion;
+	}
+	
+	/**
+	 * 
+	 * @param stockVersion 库存版本号 stock_version
+	 */	
+	public void setStockVersion (Integer stockVersion) {
+		this.stockVersion = stockVersion;
 	}
 	
 	/**

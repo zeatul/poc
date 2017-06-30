@@ -12,6 +12,20 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 public class CreateAttrValueParam {
 
 
+	public String getAttrDisplayEnValue() {
+		return attrDisplayEnValue;
+	}
+
+
+
+
+	public void setAttrDisplayEnValue(String attrDisplayEnValue) {
+		this.attrDisplayEnValue = attrDisplayEnValue;
+	}
+
+
+
+
 	public Integer getAttrNameId() {
 		return attrNameId;
 	}
@@ -86,6 +100,10 @@ public class CreateAttrValueParam {
 	private String attrDisplayValue;
 	
 
+	/**
+	 * 属性值显示英文名称 attr_display_en_value
+	 */
+	private String attrDisplayEnValue;
 
 	
 	/**

@@ -4,6 +4,14 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.pub.sql.PageParam;
 
 public class ListCategoryParam implements PageParam{
+	public Integer getCategoryVariantStatus() {
+		return categoryVariantStatus;
+	}
+
+	public void setCategoryVariantStatus(Integer categoryVariantStatus) {
+		this.categoryVariantStatus = categoryVariantStatus;
+	}
+
 	public Integer getCategoryStatus() {
 		return categoryStatus;
 	}
@@ -20,13 +28,7 @@ public class ListCategoryParam implements PageParam{
 		this.isLeaf = isLeaf;
 	}
 
-	public Integer getCategoryTemplateStatus() {
-		return categoryTemplateStatus;
-	}
-
-	public void setCategoryTemplateStatus(Integer categoryTemplateStatus) {
-		this.categoryTemplateStatus = categoryTemplateStatus;
-	}
+	
 
 	public Integer getPageIndex() {
 		return pageIndex;
@@ -100,9 +102,9 @@ public class ListCategoryParam implements PageParam{
 	private Integer isLeaf;
 	
 	/**
-	 * 最终产品目录模板状态 category_template_status
+	 * 最终产品目录变式状态 category_variant_status
 	 */
-	private Integer categoryTemplateStatus;
+	private Integer categoryVariantStatus;
 
 	/**
 	 * 操作员编号

@@ -21,6 +21,11 @@ public class AttrValueDomain implements Serializable {
 	private Integer id;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * 产品目录主键 category_id
 	 */
 	private Integer categoryId;
@@ -39,6 +44,11 @@ public class AttrValueDomain implements Serializable {
 	 * 属性值显示名称 attr_display_value
 	 */
 	private String attrDisplayValue;
+	
+	/**
+	 * 属性值显示英文名称 attr_display_en_value
+	 */
+	private String attrDisplayEnValue;
 	
 	/**
 	 * 属性值状态 attr_value_status
@@ -90,6 +100,22 @@ public class AttrValueDomain implements Serializable {
 	 */	
 	public void setId (Integer id) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**
@@ -154,6 +180,22 @@ public class AttrValueDomain implements Serializable {
 	 */	
 	public void setAttrDisplayValue (String attrDisplayValue) {
 		this.attrDisplayValue = attrDisplayValue;
+	}
+	
+	/**
+	 * 
+	 * @return 属性值显示英文名称 attr_display_en_value
+	 */
+	public String getAttrDisplayEnValue(){
+		return attrDisplayEnValue;
+	}
+	
+	/**
+	 * 
+	 * @param attrDisplayEnValue 属性值显示英文名称 attr_display_en_value
+	 */	
+	public void setAttrDisplayEnValue (String attrDisplayEnValue) {
+		this.attrDisplayEnValue = attrDisplayEnValue;
 	}
 	
 	/**

@@ -26,5 +26,48 @@ public class ConstProduct {
 	
 	public static interface SkuStatus extends ProductStatus{
 	}
+	
+	/**
+	 * 币种
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public static interface Currency{
+		public final int RMB = 156;
+	}
+	
+	public static interface StockOperation{
+		
+		/**
+		 * 进货
+		 */
+		public final int STOCK_IN = 1;
+	}
+	
+	/**
+	 * 
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public static interface PicType{
+		public final int NORMAL = 1;
+	}
+	
+	public static interface DeliveryType{
+		/**
+		 * 快递
+		 */
+		public final int EXPRESS = 1;
+		
+		/**
+		 * 充流量
+		 */
+		public final int CHARGE = 5000;
+		
+		/**
+		 * 碎屏险
+		 */
+		public final int BSI = 5001;
+	}
 
 }

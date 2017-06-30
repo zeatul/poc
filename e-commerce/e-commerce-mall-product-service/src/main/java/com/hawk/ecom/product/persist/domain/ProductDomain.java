@@ -1,5 +1,6 @@
 package com.hawk.ecom.product.persist.domain;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -41,14 +42,19 @@ public class ProductDomain implements Serializable {
 	private String productName;
 	
 	/**
-	 * 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * 产品关键属性值ID集合 product_key_attr_value_ids
 	 */
-	private String productAttrIdComp;
+	private String productKeyAttrValueIds;
 	
 	/**
-	 * 产品关键属性值集合 product_attr_value_comp
+	 * 产品关键属性值集合 product_key_attr_value_values
 	 */
-	private String productAttrValueComp;
+	private String productKeyAttrValueValues;
+	
+	/**
+	 * 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */
+	private String productSkuAttrNameIds;
 	
 	/**
 	 * 产品状态 product_status
@@ -61,6 +67,11 @@ public class ProductDomain implements Serializable {
 	private String productHomePage;
 	
 	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * 产品描述 product_desc
 	 */
 	private String productDesc;
@@ -69,6 +80,16 @@ public class ProductDomain implements Serializable {
 	 * 产品备注 product_memo
 	 */
 	private String productMemo;
+	
+	/**
+	 * 产品最低价格 product_min_price
+	 */
+	private BigDecimal productMinPrice;
+	
+	/**
+	 * 产品最高价格 product_max_price
+	 */
+	private BigDecimal productMaxPrice;
 	
 	/**
 	 * 上架开始时间 on_sale_stdt
@@ -84,6 +105,16 @@ public class ProductDomain implements Serializable {
 	 * 是否为虚拟物品 is_virtual
 	 */
 	private Integer isVirtual;
+	
+	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
+	
+	/**
+	 *  产品版本号 product_version
+	 */
+	private Integer productVersion;
 	
 	/**
 	 * 创建者 create_user_code
@@ -198,34 +229,50 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * @return 产品关键属性值ID集合 product_key_attr_value_ids
 	 */
-	public String getProductAttrIdComp(){
-		return productAttrIdComp;
+	public String getProductKeyAttrValueIds(){
+		return productKeyAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @param productAttrIdComp 产品关键属性名ID和属性值ID集合 product_attr_id_comp
+	 * @param productKeyAttrValueIds 产品关键属性值ID集合 product_key_attr_value_ids
 	 */	
-	public void setProductAttrIdComp (String productAttrIdComp) {
-		this.productAttrIdComp = productAttrIdComp;
+	public void setProductKeyAttrValueIds (String productKeyAttrValueIds) {
+		this.productKeyAttrValueIds = productKeyAttrValueIds;
 	}
 	
 	/**
 	 * 
-	 * @return 产品关键属性值集合 product_attr_value_comp
+	 * @return 产品关键属性值集合 product_key_attr_value_values
 	 */
-	public String getProductAttrValueComp(){
-		return productAttrValueComp;
+	public String getProductKeyAttrValueValues(){
+		return productKeyAttrValueValues;
 	}
 	
 	/**
 	 * 
-	 * @param productAttrValueComp 产品关键属性值集合 product_attr_value_comp
+	 * @param productKeyAttrValueValues 产品关键属性值集合 product_key_attr_value_values
 	 */	
-	public void setProductAttrValueComp (String productAttrValueComp) {
-		this.productAttrValueComp = productAttrValueComp;
+	public void setProductKeyAttrValueValues (String productKeyAttrValueValues) {
+		this.productKeyAttrValueValues = productKeyAttrValueValues;
+	}
+	
+	/**
+	 * 
+	 * @return 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */
+	public String getProductSkuAttrNameIds(){
+		return productSkuAttrNameIds;
+	}
+	
+	/**
+	 * 
+	 * @param productSkuAttrNameIds 产品SKU属性名ID集合 product_sku_attr_name_ids
+	 */	
+	public void setProductSkuAttrNameIds (String productSkuAttrNameIds) {
+		this.productSkuAttrNameIds = productSkuAttrNameIds;
 	}
 	
 	/**
@@ -262,6 +309,22 @@ public class ProductDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	/**
+	 * 
 	 * @return 产品描述 product_desc
 	 */
 	public String getProductDesc(){
@@ -290,6 +353,38 @@ public class ProductDomain implements Serializable {
 	 */	
 	public void setProductMemo (String productMemo) {
 		this.productMemo = productMemo;
+	}
+	
+	/**
+	 * 
+	 * @return 产品最低价格 product_min_price
+	 */
+	public BigDecimal getProductMinPrice(){
+		return productMinPrice;
+	}
+	
+	/**
+	 * 
+	 * @param productMinPrice 产品最低价格 product_min_price
+	 */	
+	public void setProductMinPrice (BigDecimal productMinPrice) {
+		this.productMinPrice = productMinPrice;
+	}
+	
+	/**
+	 * 
+	 * @return 产品最高价格 product_max_price
+	 */
+	public BigDecimal getProductMaxPrice(){
+		return productMaxPrice;
+	}
+	
+	/**
+	 * 
+	 * @param productMaxPrice 产品最高价格 product_max_price
+	 */	
+	public void setProductMaxPrice (BigDecimal productMaxPrice) {
+		this.productMaxPrice = productMaxPrice;
 	}
 	
 	/**
@@ -338,6 +433,38 @@ public class ProductDomain implements Serializable {
 	 */	
 	public void setIsVirtual (Integer isVirtual) {
 		this.isVirtual = isVirtual;
+	}
+	
+	/**
+	 * 
+	 * @return 交付方式 delivery_type
+	 */
+	public Integer getDeliveryType(){
+		return deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryType 交付方式 delivery_type
+	 */	
+	public void setDeliveryType (Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @return  产品版本号 product_version
+	 */
+	public Integer getProductVersion(){
+		return productVersion;
+	}
+	
+	/**
+	 * 
+	 * @param productVersion  产品版本号 product_version
+	 */	
+	public void setProductVersion (Integer productVersion) {
+		this.productVersion = productVersion;
 	}
 	
 	/**

@@ -2,6 +2,8 @@ package com.hawk.framework.pub.sql;
 
 import java.util.List;
 
+import com.hawk.framework.utility.tools.DomainTools;
+
 public class MybatisTools {
 
 	public static <T> T single(List<T> list){
@@ -43,7 +45,13 @@ public class MybatisTools {
 		mybatisParam.put("_offset", offset);
 		mybatisParam.put("_limit", limit);
 		mybatisParam.put("_orderby", pageParam.getOrder());
-		return mybatisParam;
-		
+		return mybatisParam;		
+	}
+	
+	public static <K,V> PagingQueryResultWrap<V> copy(PagingQueryResultWrap<K> source ,Class<V> clazz){
+		PagingQueryResultWrap<V> result = new PagingQueryResultWrap<V>();
+		result.setRecords(DomainTools.copy(source.getRecords(), clazz));
+		result.setDbCount(source.getDbCount());
+		return result;
 	}
 }

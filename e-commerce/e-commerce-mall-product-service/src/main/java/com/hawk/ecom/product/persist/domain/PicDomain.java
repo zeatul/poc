@@ -21,19 +21,34 @@ public class PicDomain implements Serializable {
 	private Integer id;
 	
 	/**
-	 * 所有者类型 owner_type
+	 * 产品SKU主键 sku_id
 	 */
-	private Integer ownerType;
+	private Integer skuId;
 	
 	/**
-	 * 所有者主键 ownert_id
+	 * 产品主键 product_id
 	 */
-	private Integer ownertId;
+	private Integer productId;
+	
+	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
 	
 	/**
 	 * 图片名称 pic_name
 	 */
 	private String picName;
+	
+	/**
+	 * 图片备注 pic_memo
+	 */
+	private String picMemo;
+	
+	/**
+	 * 图片外部主键 pic_outer_id
+	 */
+	private String picOuterId;
 	
 	/**
 	 * 图片地址 pic_url
@@ -44,6 +59,11 @@ public class PicDomain implements Serializable {
 	 * 图片类型 pic_type
 	 */
 	private Integer picType;
+	
+	/**
+	 * 图片序号 object_order
+	 */
+	private Integer objectOrder;
 	
 	/**
 	 * 创建者 create_user_code
@@ -94,34 +114,50 @@ public class PicDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 所有者类型 owner_type
+	 * @return 产品SKU主键 sku_id
 	 */
-	public Integer getOwnerType(){
-		return ownerType;
+	public Integer getSkuId(){
+		return skuId;
 	}
 	
 	/**
 	 * 
-	 * @param ownerType 所有者类型 owner_type
+	 * @param skuId 产品SKU主键 sku_id
 	 */	
-	public void setOwnerType (Integer ownerType) {
-		this.ownerType = ownerType;
+	public void setSkuId (Integer skuId) {
+		this.skuId = skuId;
 	}
 	
 	/**
 	 * 
-	 * @return 所有者主键 ownert_id
+	 * @return 产品主键 product_id
 	 */
-	public Integer getOwnertId(){
-		return ownertId;
+	public Integer getProductId(){
+		return productId;
 	}
 	
 	/**
 	 * 
-	 * @param ownertId 所有者主键 ownert_id
+	 * @param productId 产品主键 product_id
 	 */	
-	public void setOwnertId (Integer ownertId) {
-		this.ownertId = ownertId;
+	public void setProductId (Integer productId) {
+		this.productId = productId;
+	}
+	
+	/**
+	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
 	}
 	
 	/**
@@ -138,6 +174,38 @@ public class PicDomain implements Serializable {
 	 */	
 	public void setPicName (String picName) {
 		this.picName = picName;
+	}
+	
+	/**
+	 * 
+	 * @return 图片备注 pic_memo
+	 */
+	public String getPicMemo(){
+		return picMemo;
+	}
+	
+	/**
+	 * 
+	 * @param picMemo 图片备注 pic_memo
+	 */	
+	public void setPicMemo (String picMemo) {
+		this.picMemo = picMemo;
+	}
+	
+	/**
+	 * 
+	 * @return 图片外部主键 pic_outer_id
+	 */
+	public String getPicOuterId(){
+		return picOuterId;
+	}
+	
+	/**
+	 * 
+	 * @param picOuterId 图片外部主键 pic_outer_id
+	 */	
+	public void setPicOuterId (String picOuterId) {
+		this.picOuterId = picOuterId;
 	}
 	
 	/**
@@ -170,6 +238,22 @@ public class PicDomain implements Serializable {
 	 */	
 	public void setPicType (Integer picType) {
 		this.picType = picType;
+	}
+	
+	/**
+	 * 
+	 * @return 图片序号 object_order
+	 */
+	public Integer getObjectOrder(){
+		return objectOrder;
+	}
+	
+	/**
+	 * 
+	 * @param objectOrder 图片序号 object_order
+	 */	
+	public void setObjectOrder (Integer objectOrder) {
+		this.objectOrder = objectOrder;
 	}
 	
 	/**

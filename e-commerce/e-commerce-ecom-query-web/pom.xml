@@ -16,9 +16,24 @@
 
 	<dependencies>
 
+		<!--com.hawk.framework -->
+		
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-pub</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-dic</artifactId>
+		</dependency>
 
-		<!-- com.hawk.ecom -->	
+		<!-- com.hawk.ecom -->
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-query-service</artifactId>
+		</dependency>
 
 
 		<!-- mybatis -->
