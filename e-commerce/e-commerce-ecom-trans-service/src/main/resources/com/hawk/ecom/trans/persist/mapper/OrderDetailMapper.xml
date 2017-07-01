@@ -12,8 +12,10 @@
 		user_code AS "userCode" ,
 		product_id AS "productId" ,
 		sku_id AS "skuId" ,
+		order_detail_name AS "orderDetailName" ,
 		order_detail_type AS "orderDetailType" ,
-		sku_quantity AS "skuQuantity" ,
+		order_detail_status AS "orderDetailStatus" ,
+		order_detail_quantity AS "orderDetailQuantity" ,
 		original_unit_price AS "originalUnitPrice" ,
 		trans_unit_price AS "transUnitPrice" ,
 		orde_detail_original_price AS "ordeDetailOriginalPrice" ,
@@ -37,8 +39,10 @@
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="orderDetailName != null"> AND order_detail_name = #{orderDetailName}  </if>
 			<if test="orderDetailType != null"> AND order_detail_type = #{orderDetailType}  </if>
-			<if test="skuQuantity != null"> AND sku_quantity = #{skuQuantity}  </if>
+			<if test="orderDetailStatus != null"> AND order_detail_status = #{orderDetailStatus}  </if>
+			<if test="orderDetailQuantity != null"> AND order_detail_quantity = #{orderDetailQuantity}  </if>
 			<if test="originalUnitPrice != null"> AND original_unit_price = #{originalUnitPrice}  </if>
 			<if test="transUnitPrice != null"> AND trans_unit_price = #{transUnitPrice}  </if>
 			<if test="ordeDetailOriginalPrice != null"> AND orde_detail_original_price = #{ordeDetailOriginalPrice}  </if>
@@ -63,8 +67,10 @@
 			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
 			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
 			<if test="old_skuId != null"> AND sku_id = #{old_skuId}  </if>			
+			<if test="old_orderDetailName != null"> AND order_detail_name = #{old_orderDetailName}  </if>			
 			<if test="old_orderDetailType != null"> AND order_detail_type = #{old_orderDetailType}  </if>			
-			<if test="old_skuQuantity != null"> AND sku_quantity = #{old_skuQuantity}  </if>			
+			<if test="old_orderDetailStatus != null"> AND order_detail_status = #{old_orderDetailStatus}  </if>			
+			<if test="old_orderDetailQuantity != null"> AND order_detail_quantity = #{old_orderDetailQuantity}  </if>			
 			<if test="old_originalUnitPrice != null"> AND original_unit_price = #{old_originalUnitPrice}  </if>			
 			<if test="old_transUnitPrice != null"> AND trans_unit_price = #{old_transUnitPrice}  </if>			
 			<if test="old_ordeDetailOriginalPrice != null"> AND orde_detail_original_price = #{old_ordeDetailOriginalPrice}  </if>			
@@ -89,8 +95,10 @@
 			user_code = #{userCode},
 			product_id = #{productId},
 			sku_id = #{skuId},
+			order_detail_name = #{orderDetailName},
 			order_detail_type = #{orderDetailType},
-			sku_quantity = #{skuQuantity},
+			order_detail_status = #{orderDetailStatus},
+			order_detail_quantity = #{orderDetailQuantity},
 			original_unit_price = #{originalUnitPrice},
 			trans_unit_price = #{transUnitPrice},
 			orde_detail_original_price = #{ordeDetailOriginalPrice},
@@ -115,8 +123,10 @@
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="orderDetailName != null">order_detail_name = #{orderDetailName},</if>
 			<if test="orderDetailType != null">order_detail_type = #{orderDetailType},</if>
-			<if test="skuQuantity != null">sku_quantity = #{skuQuantity},</if>
+			<if test="orderDetailStatus != null">order_detail_status = #{orderDetailStatus},</if>
+			<if test="orderDetailQuantity != null">order_detail_quantity = #{orderDetailQuantity},</if>
 			<if test="originalUnitPrice != null">original_unit_price = #{originalUnitPrice},</if>
 			<if test="transUnitPrice != null">trans_unit_price = #{transUnitPrice},</if>
 			<if test="ordeDetailOriginalPrice != null">orde_detail_original_price = #{ordeDetailOriginalPrice},</if>
@@ -174,8 +184,10 @@
 				user_code,				
 				product_id,				
 				sku_id,				
+				order_detail_name,				
 				order_detail_type,				
-				sku_quantity,				
+				order_detail_status,				
+				order_detail_quantity,				
 				original_unit_price,				
 				trans_unit_price,				
 				orde_detail_original_price,				
@@ -197,8 +209,10 @@
 			#{userCode},
 			#{productId},
 			#{skuId},
+			#{orderDetailName},
 			#{orderDetailType},
-			#{skuQuantity},
+			#{orderDetailStatus},
+			#{orderDetailQuantity},
 			#{originalUnitPrice},
 			#{transUnitPrice},
 			#{ordeDetailOriginalPrice},

@@ -51,6 +51,11 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private String supplierCode;
 	
 	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
+	
+	/**
 	 * 手机型号ID outer_phone_model_id
 	 */
 	private String outerPhoneModelId;
@@ -311,6 +316,22 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */	
 	public void setSupplierCode (String supplierCode) {
 		this.supplierCode = supplierCode;
+	}
+	
+	/**
+	 * 
+	 * @return 交付方式 delivery_type
+	 */
+	public Integer getDeliveryType(){
+		return deliveryType;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryType 交付方式 delivery_type
+	 */	
+	public void setDeliveryType (Integer deliveryType) {
+		this.deliveryType = deliveryType;
 	}
 	
 	/**

@@ -52,27 +52,37 @@ public class OrderDetailDomain implements Serializable {
 	private Integer skuId;
 	
 	/**
+	 * 明细名称 order_detail_name
+	 */
+	private String orderDetailName;
+	
+	/**
 	 * 明细类型 order_detail_type
 	 */
 	private Integer orderDetailType;
 	
 	/**
-	 * 产品SKU数量 sku_quantity
+	 * 明细状态 order_detail_status
 	 */
-	private Integer skuQuantity;
+	private Integer orderDetailStatus;
 	
 	/**
-	 * 显示单价 original_unit_price
+	 * 明细数量 order_detail_quantity
+	 */
+	private Integer orderDetailQuantity;
+	
+	/**
+	 * 原单价 original_unit_price
 	 */
 	private BigDecimal originalUnitPrice;
 	
 	/**
-	 * 单价 trans_unit_price
+	 * 成交单价 trans_unit_price
 	 */
 	private BigDecimal transUnitPrice;
 	
 	/**
-	 * 订单明细支付原总价价 orde_detail_original_price
+	 * 订单明细支付原总价 orde_detail_original_price
 	 */
 	private BigDecimal ordeDetailOriginalPrice;
 	
@@ -236,6 +246,22 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 明细名称 order_detail_name
+	 */
+	public String getOrderDetailName(){
+		return orderDetailName;
+	}
+	
+	/**
+	 * 
+	 * @param orderDetailName 明细名称 order_detail_name
+	 */	
+	public void setOrderDetailName (String orderDetailName) {
+		this.orderDetailName = orderDetailName;
+	}
+	
+	/**
+	 * 
 	 * @return 明细类型 order_detail_type
 	 */
 	public Integer getOrderDetailType(){
@@ -252,23 +278,39 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品SKU数量 sku_quantity
+	 * @return 明细状态 order_detail_status
 	 */
-	public Integer getSkuQuantity(){
-		return skuQuantity;
+	public Integer getOrderDetailStatus(){
+		return orderDetailStatus;
 	}
 	
 	/**
 	 * 
-	 * @param skuQuantity 产品SKU数量 sku_quantity
+	 * @param orderDetailStatus 明细状态 order_detail_status
 	 */	
-	public void setSkuQuantity (Integer skuQuantity) {
-		this.skuQuantity = skuQuantity;
+	public void setOrderDetailStatus (Integer orderDetailStatus) {
+		this.orderDetailStatus = orderDetailStatus;
 	}
 	
 	/**
 	 * 
-	 * @return 显示单价 original_unit_price
+	 * @return 明细数量 order_detail_quantity
+	 */
+	public Integer getOrderDetailQuantity(){
+		return orderDetailQuantity;
+	}
+	
+	/**
+	 * 
+	 * @param orderDetailQuantity 明细数量 order_detail_quantity
+	 */	
+	public void setOrderDetailQuantity (Integer orderDetailQuantity) {
+		this.orderDetailQuantity = orderDetailQuantity;
+	}
+	
+	/**
+	 * 
+	 * @return 原单价 original_unit_price
 	 */
 	public BigDecimal getOriginalUnitPrice(){
 		return originalUnitPrice;
@@ -276,7 +318,7 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param originalUnitPrice 显示单价 original_unit_price
+	 * @param originalUnitPrice 原单价 original_unit_price
 	 */	
 	public void setOriginalUnitPrice (BigDecimal originalUnitPrice) {
 		this.originalUnitPrice = originalUnitPrice;
@@ -284,7 +326,7 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 单价 trans_unit_price
+	 * @return 成交单价 trans_unit_price
 	 */
 	public BigDecimal getTransUnitPrice(){
 		return transUnitPrice;
@@ -292,7 +334,7 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param transUnitPrice 单价 trans_unit_price
+	 * @param transUnitPrice 成交单价 trans_unit_price
 	 */	
 	public void setTransUnitPrice (BigDecimal transUnitPrice) {
 		this.transUnitPrice = transUnitPrice;
@@ -300,7 +342,7 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单明细支付原总价价 orde_detail_original_price
+	 * @return 订单明细支付原总价 orde_detail_original_price
 	 */
 	public BigDecimal getOrdeDetailOriginalPrice(){
 		return ordeDetailOriginalPrice;
@@ -308,7 +350,7 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param ordeDetailOriginalPrice 订单明细支付原总价价 orde_detail_original_price
+	 * @param ordeDetailOriginalPrice 订单明细支付原总价 orde_detail_original_price
 	 */	
 	public void setOrdeDetailOriginalPrice (BigDecimal ordeDetailOriginalPrice) {
 		this.ordeDetailOriginalPrice = ordeDetailOriginalPrice;

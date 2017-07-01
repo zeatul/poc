@@ -1,15 +1,22 @@
 package com.hawk.ecom.trans.request;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
+import com.hawk.ecom.user.annotation.NotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateOrderParam {
 	
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
 	public Integer getOrderType() {
 		return orderType;
 	}
@@ -64,7 +71,8 @@ public class CreateOrderParam {
 	@NotNull
 	private Integer payType;
 	
-	
+	@NotLogin
+	private String userCode;
 	
 
 }

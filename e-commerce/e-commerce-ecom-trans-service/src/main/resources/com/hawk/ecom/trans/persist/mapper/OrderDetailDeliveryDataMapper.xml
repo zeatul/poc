@@ -12,6 +12,7 @@
 		order_code AS "orderCode" ,
 		user_code AS "userCode" ,
 		supplier_code AS "supplierCode" ,
+		delivery_type AS "deliveryType" ,
 		outer_phone_model_id AS "outerPhoneModelId" ,
 		outer_product_id AS "outerProductId" ,
 		imei AS "imei" ,
@@ -53,6 +54,7 @@
 			<if test="orderCode != null"> AND order_code = #{orderCode}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
+			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
 			<if test="outerPhoneModelId != null"> AND outer_phone_model_id = #{outerPhoneModelId}  </if>
 			<if test="outerProductId != null"> AND outer_product_id = #{outerProductId}  </if>
 			<if test="imei != null"> AND imei = #{imei}  </if>
@@ -95,6 +97,7 @@
 			<if test="old_orderCode != null"> AND order_code = #{old_orderCode}  </if>			
 			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
 			<if test="old_supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
+			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
 			<if test="old_outerPhoneModelId != null"> AND outer_phone_model_id = #{old_outerPhoneModelId}  </if>			
 			<if test="old_outerProductId != null"> AND outer_product_id = #{old_outerProductId}  </if>			
 			<if test="old_imei != null"> AND imei = #{old_imei}  </if>			
@@ -137,6 +140,7 @@
 			order_code = #{orderCode},
 			user_code = #{userCode},
 			supplier_code = #{supplierCode},
+			delivery_type = #{deliveryType},
 			outer_phone_model_id = #{outerPhoneModelId},
 			outer_product_id = #{outerProductId},
 			imei = #{imei},
@@ -179,6 +183,7 @@
 			<if test="orderCode != null">order_code = #{orderCode},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
+			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
 			<if test="outerPhoneModelId != null">outer_phone_model_id = #{outerPhoneModelId},</if>
 			<if test="outerProductId != null">outer_product_id = #{outerProductId},</if>
 			<if test="imei != null">imei = #{imei},</if>
@@ -254,6 +259,7 @@
 				order_code,				
 				user_code,				
 				supplier_code,				
+				delivery_type,				
 				outer_phone_model_id,				
 				outer_product_id,				
 				imei,				
@@ -293,6 +299,7 @@
 			#{orderCode},
 			#{userCode},
 			#{supplierCode},
+			#{deliveryType},
 			#{outerPhoneModelId},
 			#{outerProductId},
 			#{imei},

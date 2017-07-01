@@ -8,6 +8,14 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 
 public class OrderDetailParam {
 
+	public Integer getOrderDetailQuantity() {
+		return orderDetailQuantity;
+	}
+
+	public void setOrderDetailQuantity(Integer orderDetailQuantity) {
+		this.orderDetailQuantity = orderDetailQuantity;
+	}
+
 	public Map<String, Object> getDeliveryData() {
 		return deliveryData;
 	}
@@ -24,20 +32,14 @@ public class OrderDetailParam {
 		this.skuId = skuId;
 	}
 
-	public Integer getSkuQuantity() {
-		return skuQuantity;
-	}
-
-	public void setSkuQuantity(Integer skuQuantity) {
-		this.skuQuantity = skuQuantity;
-	}
+	
 
 	@NotNull
 	private Integer skuId;
 	
 	@NotNull
 	@Min(minValue="0")
-	private Integer skuQuantity;
+	private Integer orderDetailQuantity;
 	
 	private Map<String,Object> deliveryData;
 	
