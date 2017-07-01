@@ -15,27 +15,36 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class UserControllerTest extends AbstractControllerTest {
 
-	// @Test
+//	 @Test
 	public void testHome() {
 		String url = getUrl("/user/home");
-		String result = httpExecutor.get(url, null);
+		
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));	
+		
+		String result = httpExecutor.get(url, params);
+		
+		
 		System.out.println("result=" + result);
 	}
 
-	// @Test
+//	 @Test
 	public void testRegister() {
-		String mobileNumber = "13916082481";
-		String veriCode = "8640";
+		String mobileNumber = "13800000000";
+		String veriCode = "1234";
 		RegisterUserParam registerUserParam = new RegisterUserParam();
 		registerUserParam.setMobileNumber(mobileNumber);
 		registerUserParam.setVeriCode(veriCode);
 		registerUserParam.setLoginPwd("123456");
 
 		String url = getUrl("/user/register");
+		
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));	
 
 		System.out.println(JsonTools.toJsonString(registerUserParam));
 
-		String result = httpExecutor.post(url, registerUserParam, null);
+		String result = httpExecutor.post(url, registerUserParam, params);
 		System.out.println("result=" + result);
 	}
 
@@ -73,7 +82,7 @@ public class UserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	@Test
+//	@Test
 	public void testSso() {
 		SsoParam ssoParam = new SsoParam();
 		String appid = "580fb1dcd2ee427387cc580d545a6405";

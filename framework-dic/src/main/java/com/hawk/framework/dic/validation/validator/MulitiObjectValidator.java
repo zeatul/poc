@@ -41,7 +41,7 @@ public class MulitiObjectValidator implements ConstraintValidator<ValidCollectio
 				i++;
 			}
 			
-
+			return;
 		}
 
 		if (value.getClass().isArray()) {
@@ -49,10 +49,10 @@ public class MulitiObjectValidator implements ConstraintValidator<ValidCollectio
 			for (int i = 0; i < o.length; i++) {
 				validObject(o, i,annotation,code);
 			}
-
+			return;
 		}
 
-		throw new RuntimeException("unsupport object type for empty checking");
+		throw new RuntimeException("unsupport object type for Muliti Object checking");
 
 	}
 

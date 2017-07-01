@@ -52,7 +52,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to user controller!!!" +", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+		return "Welcome to /user controller!!!" +", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 	
 	@Autowired

@@ -1,8 +1,15 @@
 {
 	"data": {
-		"skuId": 1000422,
-		"salePrice": 99.0000,
-		"skuStockQuantity": 999999
+		"id": 1000007,
+		"storeCode": "ST000001",
+		"orderCode": "20170701211010004",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 99.0000,
+		"orderPayExpireTime": "2017-07-01 21:58:54",
+		"currency": 156,
+		"orderDesc": "流量充值电信100M上海本地使用",
+		"payType": 1
 	},
 	"code": 1
 }

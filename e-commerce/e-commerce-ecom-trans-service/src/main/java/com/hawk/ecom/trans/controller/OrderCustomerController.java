@@ -73,7 +73,7 @@ public class OrderCustomerController {
 		return SuccessResponse.build(DomainTools.copy(orderService.loadOrder(param), OrderInfoResponse.class));
 	}
 	
-	@RequestMapping(value = "/list", method = POST)
+	@RequestMapping(value = "/detail/list", method = POST)
 	public WebResponse<MultiResponse<OrderDetailInfoResponse>> ListOrderDetail(HttpServletRequest request) throws Exception {
 		ListOrderDetailParam param = HttpRequestTools.parse(request, ListOrderDetailParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());

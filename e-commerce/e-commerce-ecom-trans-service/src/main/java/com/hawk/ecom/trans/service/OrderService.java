@@ -211,7 +211,7 @@ public class OrderService {
 		/**
 		 * 构造订单,插入订单
 		 */
-		OrderDomain orderDomain = buildOrderDomain(now,storeCode,createOrderParam,orderDesc,orderOriginalPrice,orderTransPrice);
+		OrderDomain orderDomain = buildOrderDomain(now,userCode,storeCode,createOrderParam,orderDesc,orderOriginalPrice,orderTransPrice);
 		orderMapper.insert(orderDomain);
 		
 		/**
@@ -236,7 +236,7 @@ public class OrderService {
 			}
 		}
 		
-		return null;
+		return orderDomain;
 	}
 	
 	private String generateTaskCode(Date now){
@@ -246,7 +246,7 @@ public class OrderService {
 		return StringTools.concat(head,tail);
 	}
 	
-	private OrderDomain buildOrderDomain(Date now,String storeCode,CreateOrderParam createOrderParam,String orderDesc,BigDecimal orderOriginalPrice ,
+	private OrderDomain buildOrderDomain(Date now,String userCode,String storeCode,CreateOrderParam createOrderParam,String orderDesc,BigDecimal orderOriginalPrice ,
 			BigDecimal orderTransPrice){
 		OrderDomain orderDomain = new OrderDomain();
 		orderDomain.setCreateDate(now);
@@ -254,7 +254,7 @@ public class OrderService {
 		orderDomain.setCurrency(ConstProduct.Currency.RMB);
 		orderDomain.setTotalFreightCharge(new BigDecimal(0));
 		
-		orderDomain.setOrderCustomerMemo(null);
+		orderDomain.setOrderCustomerMemo(createOrderParam.getOrderCustomerMemo());
 		orderDomain.setOrderDesc(orderDesc);
 		orderDomain.setOrderOriginalPrice(orderOriginalPrice);
 		orderDomain.setOrderPayExpireTime(DateTools.addMinutes(now,30));
@@ -264,9 +264,13 @@ public class OrderService {
 		orderDomain.setOrderVersion(1);
 		orderDomain.setPayType(createOrderParam.getPayType());
 		orderDomain.setStoreCode(storeCode);
+		orderDomain.setUserCode(userCode);
+		orderDomain.setUpdateDate(now);
+		orderDomain.setUpdateUserCode(null);
 		
 		orderDomain.setId(pkGenService.genPk());
 		orderDomain.setOrderCode(generateOrderCode(now));
+		
 		
 		return orderDomain;
 	}
@@ -324,6 +328,7 @@ public class OrderService {
 //		orderDetailDomain.setOrderDetailMemo(orderDetailMemo);
 		orderDetailDomain.setOrderDetailType(ConstOrder.OrderDetailType.NORMAL);
 		orderDetailDomain.setOrderDetailStatus(ConstOrder.OrderDetailStatus.PROCESSING);
+		orderDetailDomain.setOrderDetailName(skuDomain.getSkuName());
 //		orderDetailDomain.setOrderId(orderId);
 		orderDetailDomain.setOriginalUnitPrice(skuDomain.getSalePrice());
 		orderDetailDomain.setProductId(skuDomain.getProductId());
@@ -334,6 +339,7 @@ public class OrderService {
 		orderDetailDomain.setUpdateDate(now );
 		orderDetailDomain.setUpdateUserCode(null);
 		orderDetailDomain.setUserCode(userCode);
+		
 		return orderDetailDomain;
 	}
 

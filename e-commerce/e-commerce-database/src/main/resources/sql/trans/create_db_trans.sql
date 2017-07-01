@@ -341,7 +341,7 @@ alter table t_tra_order_operation comment '订单操作记录';
 create table t_tra_order_outer_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   integer unsigned not null comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
@@ -392,7 +392,7 @@ create index I_tra_recipient on t_tra_order_recipient
 create table t_tra_order_sequence
 (
    stub                 char(1) comment 'stub',
-   id                   integer unsigned not null comment '主键',
+   id                   integer not null auto_increment comment '主键',
    primary key (id)
 )
 engine=myisam default charset=utf8;
