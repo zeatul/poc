@@ -7,12 +7,12 @@ import java.util.Date;
 
 
 /**
- * 订单明细
- * The class is mapped to the table t_tra_order_detail 
+ * 订单减免
+ * The class is mapped to the table t_tra_order_decuction 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class OrderDetailDomain implements Serializable {
+public class OrderDecuctionDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -42,54 +42,34 @@ public class OrderDetailDomain implements Serializable {
 	private String userCode;
 	
 	/**
-	 * 产品主键 product_id
+	 * 订单减免 order_deduction
 	 */
-	private Integer productId;
+	private BigDecimal orderDeduction;
 	
 	/**
-	 * 产品sku主键 sku_id
+	 * 订单减免描述 order_deduction_desc
 	 */
-	private Integer skuId;
+	private String orderDeductionDesc;
 	
 	/**
-	 * 明细类型 order_detail_type
+	 * 订单减免类型 order_deduction_type
 	 */
-	private Integer orderDetailType;
+	private Integer orderDeductionType;
 	
 	/**
-	 * 产品SKU数量 sku_quantity
+	 * 订单减免备注 order_deduction_memo
 	 */
-	private Integer skuQuantity;
+	private String orderDeductionMemo;
 	
 	/**
-	 * 显示单价 original_unit_price
+	 * 订单减免来源主键 order_deduction_source_id
 	 */
-	private BigDecimal originalUnitPrice;
+	private Integer orderDeductionSourceId;
 	
 	/**
-	 * 单价 trans_unit_price
+	 * 订单减免来源券号 order_deduction_source_code
 	 */
-	private BigDecimal transUnitPrice;
-	
-	/**
-	 * 订单明细支付原总价价 orde_detail_original_price
-	 */
-	private BigDecimal ordeDetailOriginalPrice;
-	
-	/**
-	 * 订单明细支付总价 orde_detail_trans_price
-	 */
-	private BigDecimal ordeDetailTransPrice;
-	
-	/**
-	 * 币种 currency
-	 */
-	private Integer currency;
-	
-	/**
-	 * 备注 order_detail_memo
-	 */
-	private String orderDetailMemo;
+	private String orderDeductionSourceCode;
 	
 	/**
 	 * 创建者 create_user_code
@@ -204,162 +184,98 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品主键 product_id
+	 * @return 订单减免 order_deduction
 	 */
-	public Integer getProductId(){
-		return productId;
+	public BigDecimal getOrderDeduction(){
+		return orderDeduction;
 	}
 	
 	/**
 	 * 
-	 * @param productId 产品主键 product_id
+	 * @param orderDeduction 订单减免 order_deduction
 	 */	
-	public void setProductId (Integer productId) {
-		this.productId = productId;
+	public void setOrderDeduction (BigDecimal orderDeduction) {
+		this.orderDeduction = orderDeduction;
 	}
 	
 	/**
 	 * 
-	 * @return 产品sku主键 sku_id
+	 * @return 订单减免描述 order_deduction_desc
 	 */
-	public Integer getSkuId(){
-		return skuId;
+	public String getOrderDeductionDesc(){
+		return orderDeductionDesc;
 	}
 	
 	/**
 	 * 
-	 * @param skuId 产品sku主键 sku_id
+	 * @param orderDeductionDesc 订单减免描述 order_deduction_desc
 	 */	
-	public void setSkuId (Integer skuId) {
-		this.skuId = skuId;
+	public void setOrderDeductionDesc (String orderDeductionDesc) {
+		this.orderDeductionDesc = orderDeductionDesc;
 	}
 	
 	/**
 	 * 
-	 * @return 明细类型 order_detail_type
+	 * @return 订单减免类型 order_deduction_type
 	 */
-	public Integer getOrderDetailType(){
-		return orderDetailType;
+	public Integer getOrderDeductionType(){
+		return orderDeductionType;
 	}
 	
 	/**
 	 * 
-	 * @param orderDetailType 明细类型 order_detail_type
+	 * @param orderDeductionType 订单减免类型 order_deduction_type
 	 */	
-	public void setOrderDetailType (Integer orderDetailType) {
-		this.orderDetailType = orderDetailType;
+	public void setOrderDeductionType (Integer orderDeductionType) {
+		this.orderDeductionType = orderDeductionType;
 	}
 	
 	/**
 	 * 
-	 * @return 产品SKU数量 sku_quantity
+	 * @return 订单减免备注 order_deduction_memo
 	 */
-	public Integer getSkuQuantity(){
-		return skuQuantity;
+	public String getOrderDeductionMemo(){
+		return orderDeductionMemo;
 	}
 	
 	/**
 	 * 
-	 * @param skuQuantity 产品SKU数量 sku_quantity
+	 * @param orderDeductionMemo 订单减免备注 order_deduction_memo
 	 */	
-	public void setSkuQuantity (Integer skuQuantity) {
-		this.skuQuantity = skuQuantity;
+	public void setOrderDeductionMemo (String orderDeductionMemo) {
+		this.orderDeductionMemo = orderDeductionMemo;
 	}
 	
 	/**
 	 * 
-	 * @return 显示单价 original_unit_price
+	 * @return 订单减免来源主键 order_deduction_source_id
 	 */
-	public BigDecimal getOriginalUnitPrice(){
-		return originalUnitPrice;
+	public Integer getOrderDeductionSourceId(){
+		return orderDeductionSourceId;
 	}
 	
 	/**
 	 * 
-	 * @param originalUnitPrice 显示单价 original_unit_price
+	 * @param orderDeductionSourceId 订单减免来源主键 order_deduction_source_id
 	 */	
-	public void setOriginalUnitPrice (BigDecimal originalUnitPrice) {
-		this.originalUnitPrice = originalUnitPrice;
+	public void setOrderDeductionSourceId (Integer orderDeductionSourceId) {
+		this.orderDeductionSourceId = orderDeductionSourceId;
 	}
 	
 	/**
 	 * 
-	 * @return 单价 trans_unit_price
+	 * @return 订单减免来源券号 order_deduction_source_code
 	 */
-	public BigDecimal getTransUnitPrice(){
-		return transUnitPrice;
+	public String getOrderDeductionSourceCode(){
+		return orderDeductionSourceCode;
 	}
 	
 	/**
 	 * 
-	 * @param transUnitPrice 单价 trans_unit_price
+	 * @param orderDeductionSourceCode 订单减免来源券号 order_deduction_source_code
 	 */	
-	public void setTransUnitPrice (BigDecimal transUnitPrice) {
-		this.transUnitPrice = transUnitPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细支付原总价价 orde_detail_original_price
-	 */
-	public BigDecimal getOrdeDetailOriginalPrice(){
-		return ordeDetailOriginalPrice;
-	}
-	
-	/**
-	 * 
-	 * @param ordeDetailOriginalPrice 订单明细支付原总价价 orde_detail_original_price
-	 */	
-	public void setOrdeDetailOriginalPrice (BigDecimal ordeDetailOriginalPrice) {
-		this.ordeDetailOriginalPrice = ordeDetailOriginalPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细支付总价 orde_detail_trans_price
-	 */
-	public BigDecimal getOrdeDetailTransPrice(){
-		return ordeDetailTransPrice;
-	}
-	
-	/**
-	 * 
-	 * @param ordeDetailTransPrice 订单明细支付总价 orde_detail_trans_price
-	 */	
-	public void setOrdeDetailTransPrice (BigDecimal ordeDetailTransPrice) {
-		this.ordeDetailTransPrice = ordeDetailTransPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 币种 currency
-	 */
-	public Integer getCurrency(){
-		return currency;
-	}
-	
-	/**
-	 * 
-	 * @param currency 币种 currency
-	 */	
-	public void setCurrency (Integer currency) {
-		this.currency = currency;
-	}
-	
-	/**
-	 * 
-	 * @return 备注 order_detail_memo
-	 */
-	public String getOrderDetailMemo(){
-		return orderDetailMemo;
-	}
-	
-	/**
-	 * 
-	 * @param orderDetailMemo 备注 order_detail_memo
-	 */	
-	public void setOrderDetailMemo (String orderDetailMemo) {
-		this.orderDetailMemo = orderDetailMemo;
+	public void setOrderDeductionSourceCode (String orderDeductionSourceCode) {
+		this.orderDeductionSourceCode = orderDeductionSourceCode;
 	}
 	
 	/**

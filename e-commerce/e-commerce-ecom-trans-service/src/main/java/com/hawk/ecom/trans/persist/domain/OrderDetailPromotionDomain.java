@@ -1,18 +1,17 @@
 package com.hawk.ecom.trans.persist.domain;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 
 
 
 /**
- * 订单明细
- * The class is mapped to the table t_tra_order_detail 
+ * t_tra_order_detail
+ * The class is mapped to the table t_tra_order_detail_promotion 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class OrderDetailDomain implements Serializable {
+public class OrderDetailPromotionDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -52,44 +51,19 @@ public class OrderDetailDomain implements Serializable {
 	private Integer skuId;
 	
 	/**
-	 * 明细类型 order_detail_type
+	 * 订单明细主键 order_detail_id
 	 */
-	private Integer orderDetailType;
+	private Integer orderDetailId;
 	
 	/**
-	 * 产品SKU数量 sku_quantity
+	 * 促销活动主键 promotion_id
 	 */
-	private Integer skuQuantity;
+	private Integer promotionId;
 	
 	/**
-	 * 显示单价 original_unit_price
+	 * 促销活动描述 promotion_desc
 	 */
-	private BigDecimal originalUnitPrice;
-	
-	/**
-	 * 单价 trans_unit_price
-	 */
-	private BigDecimal transUnitPrice;
-	
-	/**
-	 * 订单明细支付原总价价 orde_detail_original_price
-	 */
-	private BigDecimal ordeDetailOriginalPrice;
-	
-	/**
-	 * 订单明细支付总价 orde_detail_trans_price
-	 */
-	private BigDecimal ordeDetailTransPrice;
-	
-	/**
-	 * 币种 currency
-	 */
-	private Integer currency;
-	
-	/**
-	 * 备注 order_detail_memo
-	 */
-	private String orderDetailMemo;
+	private String promotionDesc;
 	
 	/**
 	 * 创建者 create_user_code
@@ -236,130 +210,50 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 明细类型 order_detail_type
+	 * @return 订单明细主键 order_detail_id
 	 */
-	public Integer getOrderDetailType(){
-		return orderDetailType;
+	public Integer getOrderDetailId(){
+		return orderDetailId;
 	}
 	
 	/**
 	 * 
-	 * @param orderDetailType 明细类型 order_detail_type
+	 * @param orderDetailId 订单明细主键 order_detail_id
 	 */	
-	public void setOrderDetailType (Integer orderDetailType) {
-		this.orderDetailType = orderDetailType;
+	public void setOrderDetailId (Integer orderDetailId) {
+		this.orderDetailId = orderDetailId;
 	}
 	
 	/**
 	 * 
-	 * @return 产品SKU数量 sku_quantity
+	 * @return 促销活动主键 promotion_id
 	 */
-	public Integer getSkuQuantity(){
-		return skuQuantity;
+	public Integer getPromotionId(){
+		return promotionId;
 	}
 	
 	/**
 	 * 
-	 * @param skuQuantity 产品SKU数量 sku_quantity
+	 * @param promotionId 促销活动主键 promotion_id
 	 */	
-	public void setSkuQuantity (Integer skuQuantity) {
-		this.skuQuantity = skuQuantity;
+	public void setPromotionId (Integer promotionId) {
+		this.promotionId = promotionId;
 	}
 	
 	/**
 	 * 
-	 * @return 显示单价 original_unit_price
+	 * @return 促销活动描述 promotion_desc
 	 */
-	public BigDecimal getOriginalUnitPrice(){
-		return originalUnitPrice;
+	public String getPromotionDesc(){
+		return promotionDesc;
 	}
 	
 	/**
 	 * 
-	 * @param originalUnitPrice 显示单价 original_unit_price
+	 * @param promotionDesc 促销活动描述 promotion_desc
 	 */	
-	public void setOriginalUnitPrice (BigDecimal originalUnitPrice) {
-		this.originalUnitPrice = originalUnitPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 单价 trans_unit_price
-	 */
-	public BigDecimal getTransUnitPrice(){
-		return transUnitPrice;
-	}
-	
-	/**
-	 * 
-	 * @param transUnitPrice 单价 trans_unit_price
-	 */	
-	public void setTransUnitPrice (BigDecimal transUnitPrice) {
-		this.transUnitPrice = transUnitPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细支付原总价价 orde_detail_original_price
-	 */
-	public BigDecimal getOrdeDetailOriginalPrice(){
-		return ordeDetailOriginalPrice;
-	}
-	
-	/**
-	 * 
-	 * @param ordeDetailOriginalPrice 订单明细支付原总价价 orde_detail_original_price
-	 */	
-	public void setOrdeDetailOriginalPrice (BigDecimal ordeDetailOriginalPrice) {
-		this.ordeDetailOriginalPrice = ordeDetailOriginalPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细支付总价 orde_detail_trans_price
-	 */
-	public BigDecimal getOrdeDetailTransPrice(){
-		return ordeDetailTransPrice;
-	}
-	
-	/**
-	 * 
-	 * @param ordeDetailTransPrice 订单明细支付总价 orde_detail_trans_price
-	 */	
-	public void setOrdeDetailTransPrice (BigDecimal ordeDetailTransPrice) {
-		this.ordeDetailTransPrice = ordeDetailTransPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 币种 currency
-	 */
-	public Integer getCurrency(){
-		return currency;
-	}
-	
-	/**
-	 * 
-	 * @param currency 币种 currency
-	 */	
-	public void setCurrency (Integer currency) {
-		this.currency = currency;
-	}
-	
-	/**
-	 * 
-	 * @return 备注 order_detail_memo
-	 */
-	public String getOrderDetailMemo(){
-		return orderDetailMemo;
-	}
-	
-	/**
-	 * 
-	 * @param orderDetailMemo 备注 order_detail_memo
-	 */	
-	public void setOrderDetailMemo (String orderDetailMemo) {
-		this.orderDetailMemo = orderDetailMemo;
+	public void setPromotionDesc (String promotionDesc) {
+		this.promotionDesc = promotionDesc;
 	}
 	
 	/**

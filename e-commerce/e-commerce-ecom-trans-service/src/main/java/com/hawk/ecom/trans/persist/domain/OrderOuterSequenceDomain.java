@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 /**
  * 部订单号生成表
- * The class is mapped to the table t_tra_order_out_sequence 
+ * The class is mapped to the table t_tra_order_outer_sequence 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class OrderOutSequenceDomain implements Serializable {
+public class OrderOuterSequenceDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	

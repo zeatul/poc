@@ -1,10 +1,20 @@
 package com.hawk.ecom.trans.request;
 
+import java.util.Map;
+
 import com.hawk.framework.dic.validation.annotation.Min;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
 
 public class OrderDetailParam {
+
+	public Map<String, Object> getDeliveryData() {
+		return deliveryData;
+	}
+
+	public void setDeliveryData(Map<String, Object> deliveryData) {
+		this.deliveryData = deliveryData;
+	}
 
 	public Integer getSkuId() {
 		return skuId;
@@ -28,6 +38,8 @@ public class OrderDetailParam {
 	@NotNull
 	@Min(minValue="0")
 	private Integer skuQuantity;
+	
+	private Map<String,Object> deliveryData;
 	
 	
 }

@@ -59,6 +59,12 @@ public class ConstProduct {
 		 */
 		public final int EXPRESS = 1;
 		
+		
+	
+		/**
+		 * 5000以上的许要额外数据
+		 */
+		
 		/**
 		 * 充流量
 		 */

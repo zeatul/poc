@@ -57,19 +57,19 @@ public class OrderDomain implements Serializable {
 	private String orderStoreMemo;
 	
 	/**
-	 * 订单原价 order_original_total_price
+	 * 订单状态变更原因 order_status_change_memo
 	 */
-	private BigDecimal orderOriginalTotalPrice;
+	private String orderStatusChangeMemo;
 	
 	/**
-	 * 订单减免 order_deduction
+	 * 订单原价 order_original_price
 	 */
-	private BigDecimal orderDeduction;
+	private BigDecimal orderOriginalPrice;
 	
 	/**
-	 * 订单实价 order_pay_total_price
+	 * 订单成交价 order_trans_price
 	 */
-	private BigDecimal orderPayTotalPrice;
+	private BigDecimal orderTransPrice;
 	
 	/**
 	 * 订单支付失效时间 order_pay_expire_time
@@ -77,9 +77,9 @@ public class OrderDomain implements Serializable {
 	private Date orderPayExpireTime;
 	
 	/**
-	 * 运费 freight_charge
+	 * 总运费 total_freight_charge
 	 */
-	private BigDecimal freightCharge;
+	private BigDecimal totalFreightCharge;
 	
 	/**
 	 * 币种 currency
@@ -95,6 +95,11 @@ public class OrderDomain implements Serializable {
 	 * 支付方式 pay_type
 	 */
 	private Integer payType;
+	
+	/**
+	 * 订单版本号 order_version
+	 */
+	private Integer orderVersion;
 	
 	/**
 	 * 创建者 create_user_code
@@ -257,50 +262,50 @@ public class OrderDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单原价 order_original_total_price
+	 * @return 订单状态变更原因 order_status_change_memo
 	 */
-	public BigDecimal getOrderOriginalTotalPrice(){
-		return orderOriginalTotalPrice;
+	public String getOrderStatusChangeMemo(){
+		return orderStatusChangeMemo;
 	}
 	
 	/**
 	 * 
-	 * @param orderOriginalTotalPrice 订单原价 order_original_total_price
+	 * @param orderStatusChangeMemo 订单状态变更原因 order_status_change_memo
 	 */	
-	public void setOrderOriginalTotalPrice (BigDecimal orderOriginalTotalPrice) {
-		this.orderOriginalTotalPrice = orderOriginalTotalPrice;
+	public void setOrderStatusChangeMemo (String orderStatusChangeMemo) {
+		this.orderStatusChangeMemo = orderStatusChangeMemo;
 	}
 	
 	/**
 	 * 
-	 * @return 订单减免 order_deduction
+	 * @return 订单原价 order_original_price
 	 */
-	public BigDecimal getOrderDeduction(){
-		return orderDeduction;
+	public BigDecimal getOrderOriginalPrice(){
+		return orderOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @param orderDeduction 订单减免 order_deduction
+	 * @param orderOriginalPrice 订单原价 order_original_price
 	 */	
-	public void setOrderDeduction (BigDecimal orderDeduction) {
-		this.orderDeduction = orderDeduction;
+	public void setOrderOriginalPrice (BigDecimal orderOriginalPrice) {
+		this.orderOriginalPrice = orderOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @return 订单实价 order_pay_total_price
+	 * @return 订单成交价 order_trans_price
 	 */
-	public BigDecimal getOrderPayTotalPrice(){
-		return orderPayTotalPrice;
+	public BigDecimal getOrderTransPrice(){
+		return orderTransPrice;
 	}
 	
 	/**
 	 * 
-	 * @param orderPayTotalPrice 订单实价 order_pay_total_price
+	 * @param orderTransPrice 订单成交价 order_trans_price
 	 */	
-	public void setOrderPayTotalPrice (BigDecimal orderPayTotalPrice) {
-		this.orderPayTotalPrice = orderPayTotalPrice;
+	public void setOrderTransPrice (BigDecimal orderTransPrice) {
+		this.orderTransPrice = orderTransPrice;
 	}
 	
 	/**
@@ -321,18 +326,18 @@ public class OrderDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 运费 freight_charge
+	 * @return 总运费 total_freight_charge
 	 */
-	public BigDecimal getFreightCharge(){
-		return freightCharge;
+	public BigDecimal getTotalFreightCharge(){
+		return totalFreightCharge;
 	}
 	
 	/**
 	 * 
-	 * @param freightCharge 运费 freight_charge
+	 * @param totalFreightCharge 总运费 total_freight_charge
 	 */	
-	public void setFreightCharge (BigDecimal freightCharge) {
-		this.freightCharge = freightCharge;
+	public void setTotalFreightCharge (BigDecimal totalFreightCharge) {
+		this.totalFreightCharge = totalFreightCharge;
 	}
 	
 	/**
@@ -381,6 +386,22 @@ public class OrderDomain implements Serializable {
 	 */	
 	public void setPayType (Integer payType) {
 		this.payType = payType;
+	}
+	
+	/**
+	 * 
+	 * @return 订单版本号 order_version
+	 */
+	public Integer getOrderVersion(){
+		return orderVersion;
+	}
+	
+	/**
+	 * 
+	 * @param orderVersion 订单版本号 order_version
+	 */	
+	public void setOrderVersion (Integer orderVersion) {
+		this.orderVersion = orderVersion;
 	}
 	
 	/**

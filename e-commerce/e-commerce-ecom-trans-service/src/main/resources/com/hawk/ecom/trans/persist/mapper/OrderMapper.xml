@@ -13,14 +13,15 @@
 		order_status AS "orderStatus" ,
 		order_customer_memo AS "orderCustomerMemo" ,
 		order_store_memo AS "orderStoreMemo" ,
-		order_original_total_price AS "orderOriginalTotalPrice" ,
-		order_deduction AS "orderDeduction" ,
-		order_pay_total_price AS "orderPayTotalPrice" ,
+		order_status_change_memo AS "orderStatusChangeMemo" ,
+		order_original_price AS "orderOriginalPrice" ,
+		order_trans_price AS "orderTransPrice" ,
 		order_pay_expire_time AS "orderPayExpireTime" ,
-		freight_charge AS "freightCharge" ,
+		total_freight_charge AS "totalFreightCharge" ,
 		currency AS "currency" ,
 		order_desc AS "orderDesc" ,
 		pay_type AS "payType" ,
+		order_version AS "orderVersion" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -39,14 +40,15 @@
 			<if test="orderStatus != null"> AND order_status = #{orderStatus}  </if>
 			<if test="orderCustomerMemo != null"> AND order_customer_memo = #{orderCustomerMemo}  </if>
 			<if test="orderStoreMemo != null"> AND order_store_memo = #{orderStoreMemo}  </if>
-			<if test="orderOriginalTotalPrice != null"> AND order_original_total_price = #{orderOriginalTotalPrice}  </if>
-			<if test="orderDeduction != null"> AND order_deduction = #{orderDeduction}  </if>
-			<if test="orderPayTotalPrice != null"> AND order_pay_total_price = #{orderPayTotalPrice}  </if>
+			<if test="orderStatusChangeMemo != null"> AND order_status_change_memo = #{orderStatusChangeMemo}  </if>
+			<if test="orderOriginalPrice != null"> AND order_original_price = #{orderOriginalPrice}  </if>
+			<if test="orderTransPrice != null"> AND order_trans_price = #{orderTransPrice}  </if>
 			<if test="orderPayExpireTime != null"> AND order_pay_expire_time = #{orderPayExpireTime}  </if>
-			<if test="freightCharge != null"> AND freight_charge = #{freightCharge}  </if>
+			<if test="totalFreightCharge != null"> AND total_freight_charge = #{totalFreightCharge}  </if>
 			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="orderDesc != null"> AND order_desc = #{orderDesc}  </if>
 			<if test="payType != null"> AND pay_type = #{payType}  </if>
+			<if test="orderVersion != null"> AND order_version = #{orderVersion}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -66,14 +68,15 @@
 			<if test="old_orderStatus != null"> AND order_status = #{old_orderStatus}  </if>			
 			<if test="old_orderCustomerMemo != null"> AND order_customer_memo = #{old_orderCustomerMemo}  </if>			
 			<if test="old_orderStoreMemo != null"> AND order_store_memo = #{old_orderStoreMemo}  </if>			
-			<if test="old_orderOriginalTotalPrice != null"> AND order_original_total_price = #{old_orderOriginalTotalPrice}  </if>			
-			<if test="old_orderDeduction != null"> AND order_deduction = #{old_orderDeduction}  </if>			
-			<if test="old_orderPayTotalPrice != null"> AND order_pay_total_price = #{old_orderPayTotalPrice}  </if>			
+			<if test="old_orderStatusChangeMemo != null"> AND order_status_change_memo = #{old_orderStatusChangeMemo}  </if>			
+			<if test="old_orderOriginalPrice != null"> AND order_original_price = #{old_orderOriginalPrice}  </if>			
+			<if test="old_orderTransPrice != null"> AND order_trans_price = #{old_orderTransPrice}  </if>			
 			<if test="old_orderPayExpireTime != null"> AND order_pay_expire_time = #{old_orderPayExpireTime}  </if>			
-			<if test="old_freightCharge != null"> AND freight_charge = #{old_freightCharge}  </if>			
+			<if test="old_totalFreightCharge != null"> AND total_freight_charge = #{old_totalFreightCharge}  </if>			
 			<if test="old_currency != null"> AND currency = #{old_currency}  </if>			
 			<if test="old_orderDesc != null"> AND order_desc = #{old_orderDesc}  </if>			
 			<if test="old_payType != null"> AND pay_type = #{old_payType}  </if>			
+			<if test="old_orderVersion != null"> AND order_version = #{old_orderVersion}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -93,14 +96,15 @@
 			order_status = #{orderStatus},
 			order_customer_memo = #{orderCustomerMemo},
 			order_store_memo = #{orderStoreMemo},
-			order_original_total_price = #{orderOriginalTotalPrice},
-			order_deduction = #{orderDeduction},
-			order_pay_total_price = #{orderPayTotalPrice},
+			order_status_change_memo = #{orderStatusChangeMemo},
+			order_original_price = #{orderOriginalPrice},
+			order_trans_price = #{orderTransPrice},
 			order_pay_expire_time = #{orderPayExpireTime},
-			freight_charge = #{freightCharge},
+			total_freight_charge = #{totalFreightCharge},
 			currency = #{currency},
 			order_desc = #{orderDesc},
 			pay_type = #{payType},
+			order_version = #{orderVersion},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -120,14 +124,15 @@
 			<if test="orderStatus != null">order_status = #{orderStatus},</if>
 			<if test="orderCustomerMemo != null">order_customer_memo = #{orderCustomerMemo},</if>
 			<if test="orderStoreMemo != null">order_store_memo = #{orderStoreMemo},</if>
-			<if test="orderOriginalTotalPrice != null">order_original_total_price = #{orderOriginalTotalPrice},</if>
-			<if test="orderDeduction != null">order_deduction = #{orderDeduction},</if>
-			<if test="orderPayTotalPrice != null">order_pay_total_price = #{orderPayTotalPrice},</if>
+			<if test="orderStatusChangeMemo != null">order_status_change_memo = #{orderStatusChangeMemo},</if>
+			<if test="orderOriginalPrice != null">order_original_price = #{orderOriginalPrice},</if>
+			<if test="orderTransPrice != null">order_trans_price = #{orderTransPrice},</if>
 			<if test="orderPayExpireTime != null">order_pay_expire_time = #{orderPayExpireTime},</if>
-			<if test="freightCharge != null">freight_charge = #{freightCharge},</if>
+			<if test="totalFreightCharge != null">total_freight_charge = #{totalFreightCharge},</if>
 			<if test="currency != null">currency = #{currency},</if>
 			<if test="orderDesc != null">order_desc = #{orderDesc},</if>
 			<if test="payType != null">pay_type = #{payType},</if>
+			<if test="orderVersion != null">order_version = #{orderVersion},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -180,14 +185,15 @@
 				order_status,				
 				order_customer_memo,				
 				order_store_memo,				
-				order_original_total_price,				
-				order_deduction,				
-				order_pay_total_price,				
+				order_status_change_memo,				
+				order_original_price,				
+				order_trans_price,				
 				order_pay_expire_time,				
-				freight_charge,				
+				total_freight_charge,				
 				currency,				
 				order_desc,				
 				pay_type,				
+				order_version,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -204,14 +210,15 @@
 			#{orderStatus},
 			#{orderCustomerMemo},
 			#{orderStoreMemo},
-			#{orderOriginalTotalPrice},
-			#{orderDeduction},
-			#{orderPayTotalPrice},
+			#{orderStatusChangeMemo},
+			#{orderOriginalPrice},
+			#{orderTransPrice},
 			#{orderPayExpireTime},
-			#{freightCharge},
+			#{totalFreightCharge},
 			#{currency},
 			#{orderDesc},
 			#{payType},
+			#{orderVersion},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

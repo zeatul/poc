@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderDetailMapper">
+<mapper namespace="com.hawk.ecom.trans.persist.mapper.OrderDetailPromotionMapper">
 
 	<sql id="columns">	
 				id AS "id" ,
@@ -12,14 +12,9 @@
 		user_code AS "userCode" ,
 		product_id AS "productId" ,
 		sku_id AS "skuId" ,
-		order_detail_type AS "orderDetailType" ,
-		sku_quantity AS "skuQuantity" ,
-		original_unit_price AS "originalUnitPrice" ,
-		trans_unit_price AS "transUnitPrice" ,
-		orde_detail_original_price AS "ordeDetailOriginalPrice" ,
-		orde_detail_trans_price AS "ordeDetailTransPrice" ,
-		currency AS "currency" ,
-		order_detail_memo AS "orderDetailMemo" ,
+		order_detail_id AS "orderDetailId" ,
+		promotion_id AS "promotionId" ,
+		promotion_desc AS "promotionDesc" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -37,14 +32,9 @@
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
-			<if test="orderDetailType != null"> AND order_detail_type = #{orderDetailType}  </if>
-			<if test="skuQuantity != null"> AND sku_quantity = #{skuQuantity}  </if>
-			<if test="originalUnitPrice != null"> AND original_unit_price = #{originalUnitPrice}  </if>
-			<if test="transUnitPrice != null"> AND trans_unit_price = #{transUnitPrice}  </if>
-			<if test="ordeDetailOriginalPrice != null"> AND orde_detail_original_price = #{ordeDetailOriginalPrice}  </if>
-			<if test="ordeDetailTransPrice != null"> AND orde_detail_trans_price = #{ordeDetailTransPrice}  </if>
-			<if test="currency != null"> AND currency = #{currency}  </if>
-			<if test="orderDetailMemo != null"> AND order_detail_memo = #{orderDetailMemo}  </if>
+			<if test="orderDetailId != null"> AND order_detail_id = #{orderDetailId}  </if>
+			<if test="promotionId != null"> AND promotion_id = #{promotionId}  </if>
+			<if test="promotionDesc != null"> AND promotion_desc = #{promotionDesc}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -63,14 +53,9 @@
 			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
 			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
 			<if test="old_skuId != null"> AND sku_id = #{old_skuId}  </if>			
-			<if test="old_orderDetailType != null"> AND order_detail_type = #{old_orderDetailType}  </if>			
-			<if test="old_skuQuantity != null"> AND sku_quantity = #{old_skuQuantity}  </if>			
-			<if test="old_originalUnitPrice != null"> AND original_unit_price = #{old_originalUnitPrice}  </if>			
-			<if test="old_transUnitPrice != null"> AND trans_unit_price = #{old_transUnitPrice}  </if>			
-			<if test="old_ordeDetailOriginalPrice != null"> AND orde_detail_original_price = #{old_ordeDetailOriginalPrice}  </if>			
-			<if test="old_ordeDetailTransPrice != null"> AND orde_detail_trans_price = #{old_ordeDetailTransPrice}  </if>			
-			<if test="old_currency != null"> AND currency = #{old_currency}  </if>			
-			<if test="old_orderDetailMemo != null"> AND order_detail_memo = #{old_orderDetailMemo}  </if>			
+			<if test="old_orderDetailId != null"> AND order_detail_id = #{old_orderDetailId}  </if>			
+			<if test="old_promotionId != null"> AND promotion_id = #{old_promotionId}  </if>			
+			<if test="old_promotionDesc != null"> AND promotion_desc = #{old_promotionDesc}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -89,14 +74,9 @@
 			user_code = #{userCode},
 			product_id = #{productId},
 			sku_id = #{skuId},
-			order_detail_type = #{orderDetailType},
-			sku_quantity = #{skuQuantity},
-			original_unit_price = #{originalUnitPrice},
-			trans_unit_price = #{transUnitPrice},
-			orde_detail_original_price = #{ordeDetailOriginalPrice},
-			orde_detail_trans_price = #{ordeDetailTransPrice},
-			currency = #{currency},
-			order_detail_memo = #{orderDetailMemo},
+			order_detail_id = #{orderDetailId},
+			promotion_id = #{promotionId},
+			promotion_desc = #{promotionDesc},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -115,14 +95,9 @@
 			<if test="userCode != null">user_code = #{userCode},</if>
 			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
-			<if test="orderDetailType != null">order_detail_type = #{orderDetailType},</if>
-			<if test="skuQuantity != null">sku_quantity = #{skuQuantity},</if>
-			<if test="originalUnitPrice != null">original_unit_price = #{originalUnitPrice},</if>
-			<if test="transUnitPrice != null">trans_unit_price = #{transUnitPrice},</if>
-			<if test="ordeDetailOriginalPrice != null">orde_detail_original_price = #{ordeDetailOriginalPrice},</if>
-			<if test="ordeDetailTransPrice != null">orde_detail_trans_price = #{ordeDetailTransPrice},</if>
-			<if test="currency != null">currency = #{currency},</if>
-			<if test="orderDetailMemo != null">order_detail_memo = #{orderDetailMemo},</if>
+			<if test="orderDetailId != null">order_detail_id = #{orderDetailId},</if>
+			<if test="promotionId != null">promotion_id = #{promotionId},</if>
+			<if test="promotionDesc != null">promotion_desc = #{promotionDesc},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -132,41 +107,25 @@
 		</set>
 	</sql>
 	
-	<sql id="pkwhere">
-		<trim prefix="WHERE" prefixOverrides="AND">
-			AND id = #{id}
-		</trim>
-	</sql>
 	
-	<select id="load"  resultType="OrderDetailDomain">
-		SELECT 
-		<include refid="columns" />
-		FROM t_tra_order_detail
-		<include refid="pkwhere" />		
-	</select>
 	
-	<select id="loadDynamic" parameterType="hashmap" resultType="OrderDetailDomain">
+	<select id="loadDynamic" parameterType="hashmap" resultType="OrderDetailPromotionDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_tra_order_detail
+		FROM t_tra_order_detail_promotion
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM t_tra_order_detail
+		FROM t_tra_order_detail_promotion
 		<include refid="where" />
 	</select>
 	
-	<select id="countByPK"  resultType="integer">
-		SELECT count(1) 
-		FROM t_tra_order_detail
-		<include refid="pkwhere" />		
-	</select>
 	
-	<insert id="insert"  parameterType="OrderDetailDomain">
-		INSERT INTO t_tra_order_detail (			
+	<insert id="insert"  parameterType="OrderDetailPromotionDomain">
+		INSERT INTO t_tra_order_detail_promotion (			
 				id,				
 				order_id,				
 				store_code,				
@@ -174,14 +133,9 @@
 				user_code,				
 				product_id,				
 				sku_id,				
-				order_detail_type,				
-				sku_quantity,				
-				original_unit_price,				
-				trans_unit_price,				
-				orde_detail_original_price,				
-				orde_detail_trans_price,				
-				currency,				
-				order_detail_memo,				
+				order_detail_id,				
+				promotion_id,				
+				promotion_desc,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -197,14 +151,9 @@
 			#{userCode},
 			#{productId},
 			#{skuId},
-			#{orderDetailType},
-			#{skuQuantity},
-			#{originalUnitPrice},
-			#{transUnitPrice},
-			#{ordeDetailOriginalPrice},
-			#{ordeDetailTransPrice},
-			#{currency},
-			#{orderDetailMemo},
+			#{orderDetailId},
+			#{promotionId},
+			#{promotionDesc},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},
@@ -214,38 +163,24 @@
 		) 
 	</insert>
 	
-	<delete id="delete" >
-		DELETE FROM t_tra_order_detail
-		<include refid="pkwhere" />	
-	</delete>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM t_tra_order_detail
+		DELETE FROM t_tra_order_detail_promotion
 		<include refid="where" />
 	</delete>
 
-	<update id="update" parameterType="OrderDetailDomain">
-		UPDATE t_tra_order_detail	
-		<include refid="update" />
-		<include refid="pkwhere" />	
-	</update>
 	
-	<update id="updateWithoutNull" parameterType="OrderDetailDomain">
-		UPDATE t_tra_order_detail
-		<include refid="updateWithoutNull"/>
-		<include refid="pkwhere" />	
-	</update>
 	
 	<update id="updateDynamicWithoutNull" parameterType="hashmap">
-		UPDATE t_tra_order_detail	
+		UPDATE t_tra_order_detail_promotion	
 		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	
-	<select id="loadDynamicPaging" parameterType="hashmap" resultType="OrderDetailDomain">
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="OrderDetailPromotionDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_tra_order_detail
+		FROM t_tra_order_detail_promotion
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
