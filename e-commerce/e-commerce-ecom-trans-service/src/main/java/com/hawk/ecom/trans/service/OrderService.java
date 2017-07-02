@@ -333,6 +333,7 @@ public class OrderService {
 		orderDetailDomain.setOriginalUnitPrice(skuDomain.getSalePrice());
 		orderDetailDomain.setProductId(skuDomain.getProductId());
 		orderDetailDomain.setSkuId(skuDomain.getId());
+		orderDetailDomain.setThumbnail(skuDomain.getThumbnail());
 		orderDetailDomain.setOrderDetailQuantity(orderDetailQuantity);
 		orderDetailDomain.setStoreCode(skuDomain.getStoreCode());
 		orderDetailDomain.setTransUnitPrice(skuDomain.getSalePrice());

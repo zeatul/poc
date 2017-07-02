@@ -1,15 +1,19 @@
 {
 	"data": {
-		"id": 1000007,
+		"id": 1010010,
+		"productId": 1000021,
 		"storeCode": "ST000001",
-		"orderCode": "20170701211010004",
-		"orderType": 2,
-		"orderStatus": 0,
-		"orderTransPrice": 99.0000,
-		"orderPayExpireTime": "2017-07-01 21:58:54",
+		"skuCode": "fc1d6b7c-0422-4414-871c-0913941dc17a",
+		"skuName": "充流量 11111xxxx",
+		"skuAttrValueIds": "10029,10032",
+		"skuAttrValueValues": "广东 全国通用",
+		"skuStatus": 1,
+		"marketPrice": 100.0000,
+		"salePrice": 99.0000,
 		"currency": 156,
-		"orderDesc": "流量充值电信100M上海本地使用",
-		"payType": 1
+		"isSpecialPrice": 0,
+		"skuMemo": "备注",
+		"thumbnail": "xxxx.jpg"
 	},
 	"code": 1
 }

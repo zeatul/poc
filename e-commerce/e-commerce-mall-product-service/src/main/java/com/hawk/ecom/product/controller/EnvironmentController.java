@@ -315,7 +315,7 @@ public class EnvironmentController {
 						
 						createProductParam.setCategoryId(mobileDataChargeCategory.getId());
 						createProductParam.setIsVirtual(ConstBoolean.TRUE);
-						createProductParam.setDeliveryType(ConstProduct.DeliveryType.CHARGE);
+						createProductParam.setDeliveryType(ConstProduct.DeliveryType.CHARGE_FLOW_DATA);
 						createProductParam.setOperatorCode(userCode);
 						createProductParam.setProductCode(null);
 						createProductParam.setProductDesc(null);

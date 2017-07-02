@@ -862,6 +862,7 @@ public class ProductService {
 		params.put("categoryId", listProductParam.getCategoryId());
 		params.put("isVirtual", listProductParam.getIsVirtual());
 		params.put("productStatus", listProductParam.getProductStatus());
+		params.put("deliveryType", listProductParam.getDeliveryType());
 		
 		PagingQueryResultWrap<ProductDomain> wrap = new PagingQueryResultWrap<ProductDomain>();
 		wrap.setDbCount(productMapper.count(params));

@@ -59,6 +59,7 @@ import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.CollectionTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -684,7 +685,7 @@ public class SkuService {
 	
 
 	@Valid
-	public List<SkuDomain> listSku(@Valid @NotNull("参数") ListSkuParam listSkuParam) {
+	public PagingQueryResultWrap<SkuDomain> listSku(@Valid @NotNull("参数") ListSkuParam listSkuParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -699,7 +700,13 @@ public class SkuService {
 		params.put("productId",listSkuParam.getProductId());
 		params.put("skuStatus", listSkuParam.getSkuStatus());
 		
-		return skuMapper.loadDynamicPaging(params);
+		PagingQueryResultWrap<SkuDomain> wrap = new PagingQueryResultWrap<SkuDomain>();
+		wrap.setDbCount(skuMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(skuMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
 	}
 
 	@Valid
@@ -710,7 +717,7 @@ public class SkuService {
 
 		SkuDomain skuDomain = loadSkuById(loadSkuParam.getId());
 
-		if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getUserCode())) {
+		if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())) {
 			throw new UnMatchedStoreOperatorException();
 		}
 

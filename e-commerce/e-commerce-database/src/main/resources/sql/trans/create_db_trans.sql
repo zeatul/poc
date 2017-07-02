@@ -28,7 +28,7 @@ drop table if exists t_tra_order_operation;
 
 drop table if exists t_tra_order_outer_sequence;
 
-drop index I_tra_recipient on t_tra_order_recipient;
+drop index i_tra_recipient on t_tra_order_recipient;
 
 drop table if exists t_tra_order_recipient;
 
@@ -116,7 +116,8 @@ create table t_tra_order_detail
    user_code            varchar(50) not null comment '用户编号',
    product_id           integer unsigned not null comment '产品主键',
    sku_id               integer unsigned not null comment '产品sku主键',
-   order_detail_name    varchar(500) not null comment '明细名称',
+   order_detail_name    varchar(500) comment '明细名称',
+   thumbnail            varchar(200) comment '缩略图',
    order_detail_type    tinyint unsigned not null comment '明细类型',
    order_detail_status  tinyint unsigned not null comment '明细状态',
    order_detail_quantity integer unsigned not null comment '明细数量',
@@ -376,9 +377,9 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table t_tra_order_recipient comment '收货人信息';
 
 /*==============================================================*/
-/* Index: I_tra_recipient                                       */
+/* Index: i_tra_recipient                                       */
 /*==============================================================*/
-create index I_tra_recipient on t_tra_order_recipient
+create index i_tra_recipient on t_tra_order_recipient
 (
    order_id,
    store_code,

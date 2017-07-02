@@ -8,15 +8,17 @@ import org.junit.Test;
 
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.request.CreateOrderParam;
+import com.hawk.ecom.trans.request.ListOrderDetailParam;
+import com.hawk.ecom.trans.request.ListOrderParam;
 import com.hawk.ecom.trans.request.OrderDetailParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 	
-	private String token = "384657bd-bfb0-4fea-aa2b-f25a4e82a412";
+	private String token = "da6770f9-6a89-4ce7-98e3-e32d8022369d";
 
-	@Test
+//	@Test
 	public void testCreateChargeOrder(){
 		String url = getUrl("/ecom/trans/order/create");
 		CreateOrderParam request = new CreateOrderParam();
@@ -29,10 +31,53 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		deliveryData.put("mobileNumber", "13800000000");
 		orderDetailParam.setDeliveryData(deliveryData);
 		orderDetailParam.setOrderDetailQuantity(1);
-		orderDetailParam.setSkuId(1000022);
+		orderDetailParam.setSkuId(1000062);
 		orderDetails.add(orderDetailParam);
 		request.setOrderDetails(orderDetails);
 		
+
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+//	@Test
+	public void testListOrder(){
+		String url = getUrl("/ecom/trans/order/list");
+		ListOrderParam request = new ListOrderParam();
+//		request.setOrder("create_date desc");
+		request.setOrderStatus(ConstOrder.OrderStatus.UNPAIED);
+		request.setPageIndex(1);
+		request.setPageRowCount(100);		
+
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+//	@Test
+	public void testLoadOrder() {
+		String url = getUrl("/ecom/trans/order/load/id/1000013");
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		String result = httpExecutor.get(url, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testListOrderDetail(){
+		String url = getUrl("/ecom/trans/order/detail/list");
+		ListOrderDetailParam request = new ListOrderDetailParam();
+		request.setOrderId(1000013);
+		request.setPageIndex(1);
+		request.setPageRowCount(100);		
 
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));

@@ -13,6 +13,7 @@
 		product_id AS "productId" ,
 		sku_id AS "skuId" ,
 		order_detail_name AS "orderDetailName" ,
+		thumbnail AS "thumbnail" ,
 		order_detail_type AS "orderDetailType" ,
 		order_detail_status AS "orderDetailStatus" ,
 		order_detail_quantity AS "orderDetailQuantity" ,
@@ -40,6 +41,7 @@
 			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
 			<if test="orderDetailName != null"> AND order_detail_name = #{orderDetailName}  </if>
+			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="orderDetailType != null"> AND order_detail_type = #{orderDetailType}  </if>
 			<if test="orderDetailStatus != null"> AND order_detail_status = #{orderDetailStatus}  </if>
 			<if test="orderDetailQuantity != null"> AND order_detail_quantity = #{orderDetailQuantity}  </if>
@@ -68,6 +70,7 @@
 			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
 			<if test="old_skuId != null"> AND sku_id = #{old_skuId}  </if>			
 			<if test="old_orderDetailName != null"> AND order_detail_name = #{old_orderDetailName}  </if>			
+			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
 			<if test="old_orderDetailType != null"> AND order_detail_type = #{old_orderDetailType}  </if>			
 			<if test="old_orderDetailStatus != null"> AND order_detail_status = #{old_orderDetailStatus}  </if>			
 			<if test="old_orderDetailQuantity != null"> AND order_detail_quantity = #{old_orderDetailQuantity}  </if>			
@@ -96,6 +99,7 @@
 			product_id = #{productId},
 			sku_id = #{skuId},
 			order_detail_name = #{orderDetailName},
+			thumbnail = #{thumbnail},
 			order_detail_type = #{orderDetailType},
 			order_detail_status = #{orderDetailStatus},
 			order_detail_quantity = #{orderDetailQuantity},
@@ -124,6 +128,7 @@
 			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
 			<if test="orderDetailName != null">order_detail_name = #{orderDetailName},</if>
+			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="orderDetailType != null">order_detail_type = #{orderDetailType},</if>
 			<if test="orderDetailStatus != null">order_detail_status = #{orderDetailStatus},</if>
 			<if test="orderDetailQuantity != null">order_detail_quantity = #{orderDetailQuantity},</if>
@@ -185,6 +190,7 @@
 				product_id,				
 				sku_id,				
 				order_detail_name,				
+				thumbnail,				
 				order_detail_type,				
 				order_detail_status,				
 				order_detail_quantity,				
@@ -210,6 +216,7 @@
 			#{productId},
 			#{skuId},
 			#{orderDetailName},
+			#{thumbnail},
 			#{orderDetailType},
 			#{orderDetailStatus},
 			#{orderDetailQuantity},

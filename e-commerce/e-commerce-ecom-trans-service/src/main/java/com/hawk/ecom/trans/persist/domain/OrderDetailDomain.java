@@ -57,6 +57,11 @@ public class OrderDetailDomain implements Serializable {
 	private String orderDetailName;
 	
 	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * 明细类型 order_detail_type
 	 */
 	private Integer orderDetailType;
@@ -258,6 +263,22 @@ public class OrderDetailDomain implements Serializable {
 	 */	
 	public void setOrderDetailName (String orderDetailName) {
 		this.orderDetailName = orderDetailName;
+	}
+	
+	/**
+	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	/**

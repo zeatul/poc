@@ -2,6 +2,11 @@ package com.hawk.ecom.trans.constant;
 
 public class ConstOrder {
 	
+	/**
+	 * 支付方式
+	 * @author zhangpeng.hawk
+	 *
+	 */
 	public interface PayType{
 		/**
 		 * 在线支付
@@ -9,6 +14,11 @@ public class ConstOrder {
 		public final int ON_LINE = 1;
 	}
 	
+	/**
+	 * 订单类型
+	 * @author zhangpeng.hawk
+	 *
+	 */
 	public interface OrderType{
 		/**
 		 * 客户移动端订单
@@ -20,6 +30,11 @@ public class ConstOrder {
 		public final int CUSTOMER_ONLINE_PC = 2;
 	}
 	
+	/**
+	 * 订单状态
+	 * @author zhangpeng.hawk
+	 *
+	 */
 	public interface OrderStatus{
 		/**
 		 * 待付款
@@ -44,6 +59,11 @@ public class ConstOrder {
 		public final int SUCCESS = 100;
 	}
 	
+	/**
+	 * 订单明细类型
+	 * @author zhangpeng.hawk
+	 *
+	 */
 	public interface OrderDetailType{
 		/**
 		 * 普通
@@ -56,6 +76,11 @@ public class ConstOrder {
 		public final int GIFT = 2;
 	}
 	
+	/**
+	 * 订单明细处理状态
+	 * @author zhangpeng.hawk
+	 *
+	 */
 	public interface OrderDetailStatus{
 		/**
 		 * 处理中
@@ -76,7 +101,7 @@ public class ConstOrder {
 	}
 
 	/**
-	 * 任务状态
+	 *  交付作业任务状态
 	 * @author zhangpeng.hawk
 	 *
 	 */

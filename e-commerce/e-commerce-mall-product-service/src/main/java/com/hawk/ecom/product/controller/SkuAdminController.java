@@ -18,6 +18,8 @@ import com.hawk.ecom.product.response.SkuInfoResponse;
 import com.hawk.ecom.product.service.SkuService;
 import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
@@ -81,7 +83,9 @@ public class SkuAdminController {
 	public WebResponse<MultiResponse<SkuInfoResponse>> listSku(HttpServletRequest request) throws Exception {
 		ListSkuParam param = HttpRequestTools.parse(request, ListSkuParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		return SuccessResponse.build(new MultiResponse<SkuInfoResponse>(DomainTools.copy(skuService.listSku(param), SkuInfoResponse.class)));
+		PagingQueryResultWrap<SkuDomain> wrap = skuService.listSku(param);
+		MultiResponse<SkuInfoResponse> result = new MultiResponse<SkuInfoResponse>(MybatisTools.copy(wrap, SkuInfoResponse.class));
+		return SuccessResponse.build(result);
 	}
 	
 	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})

@@ -7,6 +7,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class OrderDetailInfoResponse implements ResponseData{
 	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -114,6 +122,9 @@ public class OrderDetailInfoResponse implements ResponseData{
 	private Integer currency;
 	
 	
-	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
 	
 }
