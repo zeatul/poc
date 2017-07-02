@@ -1,17 +1,9 @@
 {
-	"id": 1010007,
-	"skuCode": "9d10f539-ba7b-42ac-9e76-5d2612d52f58改",
-	"skuName": "流量充值SKU改",
-	"marketPrice": 101.400000000000005684341886080801486968994140625,
-	"salePrice": 98.5,
-	"skuMemo": "memo改",
-	"addSkuAttrValueIds": [
-		10024
+	"ids": [
+		1,
+		2
 	],
-	"removeSkuAttrValueIds": [
-		10027
-	],
-	"currency": 156,
-	"thumbnail": "xxxx改.jpg",
-	"isSpecialPrice": 0
+	"productStatus": 100,
+	"onSaleStdt": "2017-07-03 00:30:41.295",
+	"onSaleEndt": "2017-07-10 00:30:41.295"
 }
