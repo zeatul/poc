@@ -157,7 +157,7 @@ public class OrderService {
 			/**
 			 * 构造交付数据
 			 */
-			if (productDomain.getDeliveryType() >= ConstProduct.DeliveryType.CHARGE){
+			if (productDomain.getDeliveryType() >= ConstProduct.DeliveryType.CHARGE_FLOW_DATA){
 				
 				if (orderDetailQuantity != 1){
 					throw new UnSupportOrderDeatailQuantityRuntimeException();
@@ -169,7 +169,7 @@ public class OrderService {
 				
 				Map<String,Object> map = orderDetailParam.getDeliveryData();
 				
-				if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.CHARGE){
+				if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.CHARGE_FLOW_DATA){
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());

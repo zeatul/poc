@@ -1,19 +1,21 @@
 {
-	"data": {
-		"id": 1010010,
-		"productId": 1000021,
-		"storeCode": "ST000001",
-		"skuCode": "fc1d6b7c-0422-4414-871c-0913941dc17a",
-		"skuName": "充流量 11111xxxx",
-		"skuAttrValueIds": "10029,10032",
-		"skuAttrValueValues": "广东 全国通用",
-		"skuStatus": 1,
-		"marketPrice": 100.0000,
-		"salePrice": 99.0000,
-		"currency": 156,
-		"isSpecialPrice": 0,
-		"skuMemo": "备注",
-		"thumbnail": "xxxx.jpg"
-	},
-	"code": 1
+	"id": 1000021,
+	"productCode": "code改",
+	"productName": "流量充值改",
+	"productHomePage": "http://www.sina.com.cn",
+	"productDesc": "desc改",
+	"productMemo": "memo改",
+	"thumbnail": "xxx改.jpg",
+	"addKeyAttrValueIds": [
+		10028
+	],
+	"removeKeyAttrValueIds": [
+		10025
+	],
+	"addSkuAttrNameIds": [
+		10022
+	],
+	"removeSkuAttrNameIds": [
+		10026
+	]
 }

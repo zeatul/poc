@@ -4,6 +4,8 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 
 public class UpdateStockParam {
 
+	
+
 	public Integer getId() {
 		return id;
 	}
@@ -28,14 +30,6 @@ public class UpdateStockParam {
 		this.stockItemCode = stockItemCode;
 	}
 
-	public Integer getStockQuantity() {
-		return stockQuantity;
-	}
-
-	public void setStockQuantity(Integer stockQuantity) {
-		this.stockQuantity = stockQuantity;
-	}
-
 	public String getStockMemo() {
 		return stockMemo;
 	}
@@ -56,8 +50,6 @@ public class UpdateStockParam {
 	 * 主键 id
 	 */
 	private Integer id;
-
-	
 	
 	/**
 	 * 仓库编号 warehouse_code
@@ -68,11 +60,6 @@ public class UpdateStockParam {
 	 * 仓库货物编号 stock_item_code
 	 */
 	private String stockItemCode;
-	
-	/**
-	 * 库存数量 stock_quantity
-	 */
-	private Integer stockQuantity;
 	
 	/**
 	 * 备注 stock_memo
