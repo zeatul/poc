@@ -1,6 +1,8 @@
 package com.hawk.ecom.product.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import org.junit.Test;
 
@@ -8,7 +10,9 @@ import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.request.CreateProductParam;
 import com.hawk.ecom.product.request.ListProductParam;
 import com.hawk.ecom.product.request.UpdateProductParam;
+import com.hawk.ecom.product.request.UpdateProductStatusParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
+import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class ProductAdminControllerTest extends AbstractControllerTest {
@@ -79,7 +83,7 @@ public class ProductAdminControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testUpdateProduct() {
 		String url = getUrl("/mall/admin/product/product/update");
 		UpdateProductParam request = new UpdateProductParam();
@@ -102,6 +106,25 @@ public class ProductAdminControllerTest extends AbstractControllerTest {
 		removeSkuAttrNameIds.add(10026);
 		request.setRemoveSkuAttrNameIds(removeSkuAttrNameIds);
 		request.setThumbnail("xxx改.jpg");
+
+		
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testUpdateProductStatus(){
+		String url = getUrl("/mall/admin/product/product/status/update");
+		UpdateProductStatusParam request = new UpdateProductStatusParam();
+		request.setIds(Arrays.asList(1,2));
+		request.setProductStatus(ConstProduct.ProductStatus.ON_SALE);
+		request.setOnSaleStdt(new Date());
+		request.setOnSaleEndt(DateTools.addDays(new Date(), 7));
+		
 
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
