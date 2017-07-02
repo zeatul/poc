@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.request.CreateSkuParam;
 import com.hawk.ecom.product.request.ListSkuParam;
+import com.hawk.ecom.product.request.UpdateSkuParam;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 
@@ -45,7 +46,7 @@ public class SkuAdminControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testListSku() {
 
 		String url = getUrl("/mall/admin/product/sku/list");
@@ -68,13 +69,42 @@ public class SkuAdminControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testLoadSku() {
 		String url = getUrl("/mall/admin/product/sku/load/id/1010010");
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		params.add(new HttpParam("t", token));
 		String result = httpExecutor.get(url, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testUpdateSku() {
+		String url = getUrl("/mall/admin/product/sku/update");
+		UpdateSkuParam request = new UpdateSkuParam();
+
+		List<Integer> addSkuAttrValueIds = new ArrayList<Integer>();
+		addSkuAttrValueIds.add(10025);
+		request.setAddSkuAttrValueIds(addSkuAttrValueIds);
+		request.setCurrency(156);
+		request.setId(1010010);
+		request.setIsSpecialPrice(0);
+		request.setMarketPrice(new BigDecimal("101.4"));
+		List<Integer> removeSkuAttrValueIds = new ArrayList<Integer>();
+		removeSkuAttrValueIds.add(10027);
+		request.setRemoveSkuAttrValueIds(removeSkuAttrValueIds);
+		request.setSalePrice(new BigDecimal("98.3"));
+		request.setSkuCode(UUID.randomUUID().toString()+"改");
+		request.setSkuMemo("memo改2");
+		request.setSkuName("流量充值SKU改2");
+		request.setThumbnail("xxxx改2.jpg");
+
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		System.out.println("request=" + JsonTools.toJsonString(request));
+		String result = httpExecutor.post(url, request, params);
 		System.out.println("result=" + result);
 	}
 }

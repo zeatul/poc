@@ -16,8 +16,8 @@
 		thumbnail AS "thumbnail" ,
 		market_price AS "marketPrice" ,
 		sale_price AS "salePrice" ,
-		sku_stock_amount AS "skuStockAmount" ,
-		is_special AS "isSpecial" ,
+		sku_stock_quantity AS "skuStockQuantity" ,
+		is_special_price AS "isSpecialPrice" ,
 		width AS "width" ,
 		depth AS "depth" ,
 		height AS "height" ,
@@ -51,8 +51,8 @@
 			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
 			<if test="salePrice != null"> AND sale_price = #{salePrice}  </if>
-			<if test="skuStockAmount != null"> AND sku_stock_amount = #{skuStockAmount}  </if>
-			<if test="isSpecial != null"> AND is_special = #{isSpecial}  </if>
+			<if test="skuStockQuantity != null"> AND sku_stock_quantity = #{skuStockQuantity}  </if>
+			<if test="isSpecialPrice != null"> AND is_special_price = #{isSpecialPrice}  </if>
 			<if test="width != null"> AND width = #{width}  </if>
 			<if test="depth != null"> AND depth = #{depth}  </if>
 			<if test="height != null"> AND height = #{height}  </if>
@@ -87,8 +87,8 @@
 			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
 			<if test="old_marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
 			<if test="old_salePrice != null"> AND sale_price = #{old_salePrice}  </if>			
-			<if test="old_skuStockAmount != null"> AND sku_stock_amount = #{old_skuStockAmount}  </if>			
-			<if test="old_isSpecial != null"> AND is_special = #{old_isSpecial}  </if>			
+			<if test="old_skuStockQuantity != null"> AND sku_stock_quantity = #{old_skuStockQuantity}  </if>			
+			<if test="old_isSpecialPrice != null"> AND is_special_price = #{old_isSpecialPrice}  </if>			
 			<if test="old_width != null"> AND width = #{old_width}  </if>			
 			<if test="old_depth != null"> AND depth = #{old_depth}  </if>			
 			<if test="old_height != null"> AND height = #{old_height}  </if>			
@@ -123,8 +123,8 @@
 			thumbnail = #{thumbnail},
 			market_price = #{marketPrice},
 			sale_price = #{salePrice},
-			sku_stock_amount = #{skuStockAmount},
-			is_special = #{isSpecial},
+			sku_stock_quantity = #{skuStockQuantity},
+			is_special_price = #{isSpecialPrice},
 			width = #{width},
 			depth = #{depth},
 			height = #{height},
@@ -159,8 +159,8 @@
 			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
 			<if test="salePrice != null">sale_price = #{salePrice},</if>
-			<if test="skuStockAmount != null">sku_stock_amount = #{skuStockAmount},</if>
-			<if test="isSpecial != null">is_special = #{isSpecial},</if>
+			<if test="skuStockQuantity != null">sku_stock_quantity = #{skuStockQuantity},</if>
+			<if test="isSpecialPrice != null">is_special_price = #{isSpecialPrice},</if>
 			<if test="width != null">width = #{width},</if>
 			<if test="depth != null">depth = #{depth},</if>
 			<if test="height != null">height = #{height},</if>
@@ -229,8 +229,8 @@
 				thumbnail,				
 				market_price,				
 				sale_price,				
-				sku_stock_amount,				
-				is_special,				
+				sku_stock_quantity,				
+				is_special_price,				
 				width,				
 				depth,				
 				height,				
@@ -262,8 +262,8 @@
 			#{thumbnail},
 			#{marketPrice},
 			#{salePrice},
-			#{skuStockAmount},
-			#{isSpecial},
+			#{skuStockQuantity},
+			#{isSpecialPrice},
 			#{width},
 			#{depth},
 			#{height},

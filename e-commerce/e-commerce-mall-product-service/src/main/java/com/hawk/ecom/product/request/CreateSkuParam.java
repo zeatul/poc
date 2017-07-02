@@ -13,6 +13,14 @@ public class CreateSkuParam {
 	
 	
 
+	public Integer getIsSpecialPrice() {
+		return isSpecialPrice;
+	}
+
+	public void setIsSpecialPrice(Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -231,6 +239,12 @@ public class CreateSkuParam {
 	 * 缩略图 thumbnail
 	 */
 	private String thumbnail;
+	
+	/**
+	 * 是否有特价 is_special_price
+	 */
+	@NotNull
+	private Integer isSpecialPrice;
 	
 	
 	/**

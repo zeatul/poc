@@ -72,14 +72,14 @@ public class SkuHistoryDomain implements Serializable {
 	private BigDecimal salePrice;
 	
 	/**
-	 * SKU库存数量 sku_stock_amount
+	 * SKU库存数量 sku_stock_quantity
 	 */
-	private Integer skuStockAmount;
+	private Integer skuStockQuantity;
 	
 	/**
-	 * 是否有特价 is_special
+	 * 是否有特价 is_special_price
 	 */
-	private Integer isSpecial;
+	private Integer isSpecialPrice;
 	
 	/**
 	 * 宽度 width
@@ -350,34 +350,34 @@ public class SkuHistoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return SKU库存数量 sku_stock_amount
+	 * @return SKU库存数量 sku_stock_quantity
 	 */
-	public Integer getSkuStockAmount(){
-		return skuStockAmount;
+	public Integer getSkuStockQuantity(){
+		return skuStockQuantity;
 	}
 	
 	/**
 	 * 
-	 * @param skuStockAmount SKU库存数量 sku_stock_amount
+	 * @param skuStockQuantity SKU库存数量 sku_stock_quantity
 	 */	
-	public void setSkuStockAmount (Integer skuStockAmount) {
-		this.skuStockAmount = skuStockAmount;
+	public void setSkuStockQuantity (Integer skuStockQuantity) {
+		this.skuStockQuantity = skuStockQuantity;
 	}
 	
 	/**
 	 * 
-	 * @return 是否有特价 is_special
+	 * @return 是否有特价 is_special_price
 	 */
-	public Integer getIsSpecial(){
-		return isSpecial;
+	public Integer getIsSpecialPrice(){
+		return isSpecialPrice;
 	}
 	
 	/**
 	 * 
-	 * @param isSpecial 是否有特价 is_special
+	 * @param isSpecialPrice 是否有特价 is_special_price
 	 */	
-	public void setIsSpecial (Integer isSpecial) {
-		this.isSpecial = isSpecial;
+	public void setIsSpecialPrice (Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
 	}
 	
 	/**
