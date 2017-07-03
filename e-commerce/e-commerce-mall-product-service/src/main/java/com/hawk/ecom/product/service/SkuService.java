@@ -272,6 +272,8 @@ public class SkuService {
 		skuDomain.setSkuStockQuantity(0);
 		skuDomain.setStockVersion(1);
 		skuDomain.setStoreCode(productDomain.getStoreCode());
+		skuDomain.setProductKeyAttrValueIds(productDomain.getProductKeyAttrValueIds());
+		skuDomain.setProductKeyAttrValueValues(productDomain.getProductKeyAttrValueValues());
 		skuDomain.setUpdateDate(now);
 		skuDomain.setUpdateUserCode(userCode);
 		skuDomain.setCreateDate(now);
@@ -505,6 +507,8 @@ public class SkuService {
 		}
 		
 		updateDomain.setProductVersion(productDomain.getProductVersion());
+		updateDomain.setProductKeyAttrValueIds(productDomain.getProductKeyAttrValueIds());
+		updateDomain.setProductKeyAttrValueValues(productDomain.getProductKeyAttrValueValues());
 
 		try {
 			skuMapper.updateWithoutNull(updateDomain);
