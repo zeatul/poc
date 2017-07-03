@@ -9,9 +9,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.hawk.ecom.muser.persist.domain.MallUserDomain;
+import com.hawk.ecom.muser.persist.mapper.MallUserMapper;
+import com.hawk.ecom.muser.persist.mapperex.MallUserExMapper;
+import com.hawk.ecom.product.persist.domain.ProductDomain;
+import com.hawk.ecom.product.persist.mapper.ProductMapper;
+import com.hawk.ecom.product.persist.mapperex.ProductExMapper;
+import com.hawk.ecom.sms.persist.domain.TaskDomain;
+import com.hawk.ecom.sms.persist.mapper.TaskMapper;
+import com.hawk.ecom.sms.persist.mapperex.TaskExMapper;
 import com.hawk.ecom.trans.persist.domain.OrderDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
+import com.hawk.ecom.user.persist.domain.UserDomain;
+import com.hawk.ecom.user.persist.mapper.UserMapper;
+import com.hawk.ecom.user.persist.mapperex.UserExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.dic.persist.mapper.WordMapper;
 import com.hawk.framework.dic.persist.mapperex.WordExMapper;
@@ -19,10 +35,14 @@ import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@PropertySource("classpath:/com/hawk/ecom/query/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { OrderMapper.class,OrderExMapper.class//订单
-		,WordMapper.class, WordExMapper.class //数据字典
-		})
+@PropertySource("classpath:/com/hawk/ecom/trans/web/env/jdbc.properties")
+@MapperScan(basePackageClasses = { OrderMapper.class, OrderExMapper.class, // 订单
+		WordMapper.class, WordExMapper.class, // 数据字典
+		TaskMapper.class, TaskExMapper.class, // 短消息
+		ProductMapper.class, ProductExMapper.class, // 短消息
+		MallUserMapper.class,MallUserExMapper.class,//商城用户
+		UserMapper.class, UserExMapper.class // 客户
+})
 public class DataConfig {
 
 	@Autowired
@@ -125,37 +145,38 @@ public class DataConfig {
 
 	}
 
-	// @Bean
-	// public DataSourceTransactionManager transactionManager(DataSource
-	// dataSource) {
-	// DataSourceTransactionManager transactionManager = new
-	// DataSourceTransactionManager(dataSource);
-	// return transactionManager;
-	//
-	// }
+	
 
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String ecomTransPackageName = OrderDomain.class.getPackage().getName(); //ecom-trans-service
-		String dicPackageName = WordDomain.class.getPackage().getName(); //数据字典
-		String str = StringTools.concatWithSymbol(";", ecomTransPackageName,ecomTransPackageName+"ex",//
-				dicPackageName, dicPackageName + "ex"//
-				);
+		String ecomTransPackageName = OrderDomain.class.getPackage().getName(); // ecom-trans-service
+		String dicPackageName = WordDomain.class.getPackage().getName(); // 数据字典
+		String userPackageName = UserDomain.class.getPackage().getName(); // 用户
+		String smsPackageName = TaskDomain.class.getPackage().getName(); // 短信
+		String productPackageName = ProductDomain.class.getPackage().getName(); // 短信
+		String muserPackageName = MallUserDomain.class.getPackage().getName(); //商城用户
+		String str = StringTools.concatWithSymbol(";", ecomTransPackageName, ecomTransPackageName + "ex", //
+				dicPackageName, dicPackageName + "ex", //
+				smsPackageName, smsPackageName + "ex", //
+				productPackageName, productPackageName + "ex", //
+				muserPackageName, muserPackageName + "ex", //
+				userPackageName, userPackageName + "ex"//
+		);
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}
 
-//	@Configuration
-//	@EnableTransactionManagement
-//	public static class TransactionConfig {
-//		@Bean
-//		public PlatformTransactionManager transactionManager(DataSource dataSource) {
-//			DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-//			transactionManager.setDataSource(dataSource);
-//			return transactionManager;
-//		}
-//	}
+	@Configuration
+	@EnableTransactionManagement
+	public static class TransactionConfig {
+		@Bean
+		public PlatformTransactionManager transactionManager(DataSource dataSource) {
+			DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+			transactionManager.setDataSource(dataSource);
+			return transactionManager;
+		}
+	}
 
 }

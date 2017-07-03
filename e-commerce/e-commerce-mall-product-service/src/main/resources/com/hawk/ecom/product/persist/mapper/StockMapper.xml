@@ -8,6 +8,7 @@
 				id AS "id" ,
 		product_id AS "productId" ,
 		sku_id AS "skuId" ,
+		sku_name AS "skuName" ,
 		store_code AS "storeCode" ,
 		warehouse_code AS "warehouseCode" ,
 		stock_item_code AS "stockItemCode" ,
@@ -27,6 +28,7 @@
 			<if test="id != null"> AND id = #{id}  </if>
 			<if test="productId != null"> AND product_id = #{productId}  </if>
 			<if test="skuId != null"> AND sku_id = #{skuId}  </if>
+			<if test="skuName != null"> AND sku_name = #{skuName}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="warehouseCode != null"> AND warehouse_code = #{warehouseCode}  </if>
 			<if test="stockItemCode != null"> AND stock_item_code = #{stockItemCode}  </if>
@@ -47,6 +49,7 @@
 			<if test="old_id != null"> AND id = #{old_id}  </if>			
 			<if test="old_productId != null"> AND product_id = #{old_productId}  </if>			
 			<if test="old_skuId != null"> AND sku_id = #{old_skuId}  </if>			
+			<if test="old_skuName != null"> AND sku_name = #{old_skuName}  </if>			
 			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
 			<if test="old_warehouseCode != null"> AND warehouse_code = #{old_warehouseCode}  </if>			
 			<if test="old_stockItemCode != null"> AND stock_item_code = #{old_stockItemCode}  </if>			
@@ -67,6 +70,7 @@
 			id = #{id},
 			product_id = #{productId},
 			sku_id = #{skuId},
+			sku_name = #{skuName},
 			store_code = #{storeCode},
 			warehouse_code = #{warehouseCode},
 			stock_item_code = #{stockItemCode},
@@ -87,6 +91,7 @@
 			<if test="id != null">id = #{id},</if>
 			<if test="productId != null">product_id = #{productId},</if>
 			<if test="skuId != null">sku_id = #{skuId},</if>
+			<if test="skuName != null">sku_name = #{skuName},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="warehouseCode != null">warehouse_code = #{warehouseCode},</if>
 			<if test="stockItemCode != null">stock_item_code = #{stockItemCode},</if>
@@ -140,6 +145,7 @@
 				id,				
 				product_id,				
 				sku_id,				
+				sku_name,				
 				store_code,				
 				warehouse_code,				
 				stock_item_code,				
@@ -157,6 +163,7 @@
 			#{id},
 			#{productId},
 			#{skuId},
+			#{skuName},
 			#{storeCode},
 			#{warehouseCode},
 			#{stockItemCode},

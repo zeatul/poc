@@ -6,6 +6,14 @@ import com.hawk.framework.pub.sql.PageParam;
 public class ListProductParam implements PageParam{
 
 
+	public Integer getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
 	public Integer getCategoryId() {
 		return categoryId;
 	}
@@ -77,6 +85,12 @@ public class ListProductParam implements PageParam{
 	 * 是否为虚拟物品 is_virtual
 	 */
 	private Integer isVirtual;
+	
+	/**
+	 * 交付方式
+	 */
+	private Integer deliveryType;
+	
 	/**
 	 * 页码
 	 */

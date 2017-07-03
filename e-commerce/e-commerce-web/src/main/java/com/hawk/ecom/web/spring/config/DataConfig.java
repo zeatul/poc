@@ -137,14 +137,7 @@ public class DataConfig {
 
 	}
 
-	// @Bean
-	// public DataSourceTransactionManager transactionManager(DataSource
-	// dataSource) {
-	// DataSourceTransactionManager transactionManager = new
-	// DataSourceTransactionManager(dataSource);
-	// return transactionManager;
-	//
-	// }
+	
 
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {

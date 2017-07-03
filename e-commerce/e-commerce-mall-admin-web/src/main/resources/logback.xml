@@ -39,7 +39,7 @@
 	</appender>
 	
 	
-	<logger name="com.hawk" additivity="false" level="info">
+	<logger name="com.hawk" additivity="false" level="debug">
 		<appender-ref ref="rolling" />
 		<appender-ref ref="stdout" />
 	</logger>

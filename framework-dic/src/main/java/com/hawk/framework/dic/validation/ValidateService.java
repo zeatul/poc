@@ -5,16 +5,20 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.framework.dic.exception.EmptyParameterRuntimeException;
 import com.hawk.framework.dic.validation.annotation.Constraint;
 import com.hawk.framework.dic.validation.validator.ConstraintValidator;
+import com.hawk.framework.dic.validation.validator.SingleObjectValidator;
 import com.hawk.framework.pub.spring.FrameworkContext;
 
 @Service
 public class ValidateService  {
 
+	@Autowired
+	private SingleObjectValidator singleObjectValidator;
 	
 
 	/**
@@ -25,7 +29,7 @@ public class ValidateService  {
 	 * @throws BeansException 
 	 */
 	@SuppressWarnings("unchecked")
-	public void validMethodParameters (Method method ,Object[] values) throws EmptyParameterRuntimeException{
+	public void validMethodParameters (Method method ,Object[] values) {
 		if (values == null || values.length == 0)
 			return ;
 		
@@ -50,6 +54,10 @@ public class ValidateService  {
 				}
 			}
 		}
+	}
+	
+	public void validateObject(Object o){
+		singleObjectValidator.valid(null, o, null);
 	}
 
 }

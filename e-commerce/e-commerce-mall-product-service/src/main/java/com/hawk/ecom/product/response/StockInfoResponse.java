@@ -4,6 +4,22 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class StockInfoResponse implements ResponseData{
 	
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
+
+	public String getSkuName() {
+		return skuName;
+	}
+
+	public void setSkuName(String skuName) {
+		this.skuName = skuName;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -108,6 +124,14 @@ public class StockInfoResponse implements ResponseData{
 	 */
 	private Integer stockOperation;
 	
+	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
 	
+	/**
+	 * SKU名称 sku_name
+	 */
+	private String skuName;
 
 }

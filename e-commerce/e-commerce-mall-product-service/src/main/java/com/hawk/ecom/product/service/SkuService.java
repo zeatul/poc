@@ -22,6 +22,9 @@ import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.AttrNameIsNotUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.AttrNameIsUsedByProductRuntimeException;
+import com.hawk.ecom.product.exception.AttrValueIsNotReferencedRuntimeException;
+import com.hawk.ecom.product.exception.AttrValueIsReferencedRuntimeException;
+import com.hawk.ecom.product.exception.AttrValueIsUsedRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateSkuRuntimeException;
 import com.hawk.ecom.product.exception.LackOfSkuAttrNameOfProductRuntimeException;
@@ -59,6 +62,7 @@ import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.CollectionTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -239,7 +243,8 @@ public class SkuService {
 			skuDomain.setWeightUnit(createSkuParam.getWeightUnit());
 		}
 
-		skuDomain.setIsSpecialPrice(ConstBoolean.FALSE);
+		
+		skuDomain.setIsSpecialPrice(createSkuParam.getIsSpecialPrice());
 
 		skuDomain.setProductId(createSkuParam.getProductId());
 
@@ -267,6 +272,8 @@ public class SkuService {
 		skuDomain.setSkuStockQuantity(0);
 		skuDomain.setStockVersion(1);
 		skuDomain.setStoreCode(productDomain.getStoreCode());
+		skuDomain.setProductKeyAttrValueIds(productDomain.getProductKeyAttrValueIds());
+		skuDomain.setProductKeyAttrValueValues(productDomain.getProductKeyAttrValueValues());
 		skuDomain.setUpdateDate(now);
 		skuDomain.setUpdateUserCode(userCode);
 		skuDomain.setCreateDate(now);
@@ -380,8 +387,8 @@ public class SkuService {
 				/**
 				 * 要删除的SKU属性值ID，必须已经被引用
 				 */
-				if (!usedSkuAttrNameIdMap.containsKey(attrNameId)) {
-					throw new AttrNameIsNotUsedByProductRuntimeException();
+				if (!usedSkuAttrValueIdMap.containsKey(removeAttrValueId)) {
+					throw new AttrValueIsNotReferencedRuntimeException();
 				}
 
 				params = new MybatisParam().put("productId", productDomain.getId()).put("attrNameId", attrNameId).put("attrValueId", removeAttrValueId);
@@ -407,10 +414,10 @@ public class SkuService {
 				}
 
 				/**
-				 * 要新增的关键属性值对应的属性名ID，必须未被引用
-				 */
-				if (usedSkuAttrNameIdMap.containsKey(attrNameId)) {
-					throw new AttrNameIsUsedByProductRuntimeException();
+				 * 要新增的SKU属性名ID，必须未被引用
+				 */				
+				if (usedSkuAttrValueIdMap.containsKey(addAttrValueId)) {
+					throw new AttrValueIsReferencedRuntimeException();
 				}
 
 				/**
@@ -443,9 +450,14 @@ public class SkuService {
 			throw new LackOfSkuAttrNameOfProductRuntimeException();
 		}
 
+		
+		/**
+		 * 校验通过
+		 */
 		Date now = new Date();
 		String userCode = AuthThreadLocal.getUserCode();
 		SkuDomain updateDomain = new SkuDomain();
+		DomainTools.copy(updateSkuParam, updateDomain);
 
 		/**
 		 * 合并
@@ -472,7 +484,7 @@ public class SkuService {
 		updateDomain.setUpdateDate(now);
 		updateDomain.setUpdateUserCode(userCode);
 
-		DomainTools.copy(updateSkuParam, updateDomain);
+		
 		/**
 		 * 写死币种
 		 */
@@ -495,6 +507,8 @@ public class SkuService {
 		}
 		
 		updateDomain.setProductVersion(productDomain.getProductVersion());
+		updateDomain.setProductKeyAttrValueIds(productDomain.getProductKeyAttrValueIds());
+		updateDomain.setProductKeyAttrValueValues(productDomain.getProductKeyAttrValueValues());
 
 		try {
 			skuMapper.updateWithoutNull(updateDomain);
@@ -684,7 +698,7 @@ public class SkuService {
 	
 
 	@Valid
-	public List<SkuDomain> listSku(@Valid @NotNull("参数") ListSkuParam listSkuParam) {
+	public PagingQueryResultWrap<SkuDomain> listSku(@Valid @NotNull("参数") ListSkuParam listSkuParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))) {
 			throw new IllegalAccessRuntimeException();
 		}
@@ -699,7 +713,13 @@ public class SkuService {
 		params.put("productId",listSkuParam.getProductId());
 		params.put("skuStatus", listSkuParam.getSkuStatus());
 		
-		return skuMapper.loadDynamicPaging(params);
+		PagingQueryResultWrap<SkuDomain> wrap = new PagingQueryResultWrap<SkuDomain>();
+		wrap.setDbCount(skuMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(skuMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
 	}
 
 	@Valid
@@ -710,7 +730,7 @@ public class SkuService {
 
 		SkuDomain skuDomain = loadSkuById(loadSkuParam.getId());
 
-		if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getUserCode())) {
+		if (!skuDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())) {
 			throw new UnMatchedStoreOperatorException();
 		}
 

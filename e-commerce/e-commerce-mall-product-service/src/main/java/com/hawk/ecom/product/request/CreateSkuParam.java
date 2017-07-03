@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
+import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
@@ -11,6 +12,14 @@ public class CreateSkuParam {
 	
 	
 	
+
+	public Integer getIsSpecialPrice() {
+		return isSpecialPrice;
+	}
+
+	public void setIsSpecialPrice(Integer isSpecialPrice) {
+		this.isSpecialPrice = isSpecialPrice;
+	}
 
 	public String getThumbnail() {
 		return thumbnail;
@@ -168,37 +177,37 @@ public class CreateSkuParam {
 	 * 宽度 width
 	 */
 	@NotNull
-	private Integer width;
+	private Integer width = 0;
 	
 	/**
 	 * 深度 depth
 	 */
 	@NotNull
-	private Integer depth;
+	private Integer depth = 0;
 	
 	/**
 	 * 高度 heigh
 	 */
 	@NotNull
-	private Integer height;
+	private Integer height = 0;
 	
 	/**
 	 * 长度单位 length_unit
 	 */
 	@NotNull
-	private Integer lengthUnit;
+	private Integer lengthUnit = ConstProduct.LengthUnit.MILLIMETER;
 	
 	/**
 	 * 重量 weight
 	 */
 	@NotNull
-	private Integer weight;
+	private Integer weight = 0;
 	
 	/**
 	 * 重量单位 weight_unit
 	 */
 	@NotNull
-	private Integer weightUnit;
+	private Integer weightUnit = ConstProduct.WeightUnit.GRAM;
 	
 	/**
 	 * SKU备注 sku_memo
@@ -230,6 +239,12 @@ public class CreateSkuParam {
 	 * 缩略图 thumbnail
 	 */
 	private String thumbnail;
+	
+	/**
+	 * 是否有特价 is_special_price
+	 */
+	@NotNull
+	private Integer isSpecialPrice;
 	
 	
 	/**

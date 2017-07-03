@@ -107,6 +107,7 @@ public class StockService {
 			stockDomain.setUpdateUserCode(userCode);
 			stockDomain.setWarehouseCode(createStockParam.getWarehouseCode());
 			stockDomain.setStoreCode(skuDomain.getStoreCode());
+			stockDomain.setSkuName(skuDomain.getSkuName());
 			stockMapper.insert(stockDomain);
 			
 			return stockDomain;

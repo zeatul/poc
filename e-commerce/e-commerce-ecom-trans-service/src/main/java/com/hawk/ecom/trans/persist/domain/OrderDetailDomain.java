@@ -52,49 +52,49 @@ public class OrderDetailDomain implements Serializable {
 	private Integer skuId;
 	
 	/**
+	 * 明细名称 order_detail_name
+	 */
+	private String orderDetailName;
+	
+	/**
+	 * 缩略图 thumbnail
+	 */
+	private String thumbnail;
+	
+	/**
 	 * 明细类型 order_detail_type
 	 */
 	private Integer orderDetailType;
 	
 	/**
-	 * 产品SKU数量 sku_quantity
+	 * 明细状态 order_detail_status
 	 */
-	private Integer skuQuantity;
+	private Integer orderDetailStatus;
 	
 	/**
-	 * 计价个数 unit_quantity
+	 * 明细数量 order_detail_quantity
 	 */
-	private Integer unitQuantity;
+	private Integer orderDetailQuantity;
 	
 	/**
-	 * 折扣 discount
+	 * 原单价 original_unit_price
 	 */
-	private Integer discount;
+	private BigDecimal originalUnitPrice;
 	
 	/**
-	 * 折扣数量 discount_quantity
+	 * 成交单价 trans_unit_price
 	 */
-	private Integer discountQuantity;
+	private BigDecimal transUnitPrice;
 	
 	/**
-	 * 显示单价 unit_original_price
+	 * 订单明细支付原总价 orde_detail_original_price
 	 */
-	private BigDecimal unitOriginalPrice;
+	private BigDecimal ordeDetailOriginalPrice;
 	
 	/**
-	 * 单价 unit_pay_price
+	 * 订单明细支付总价 orde_detail_trans_price
 	 */
-	private BigDecimal unitPayPrice;
-	
-	/**
-	 * 订单明细减免 order_detail_deduction
-	 */
-	private BigDecimal orderDetailDeduction;
-	
-	/**
-	 * 订单明细支付总价 order_detail_total_pay_price
-	 */
-	private BigDecimal orderDetailTotalPayPrice;
+	private BigDecimal ordeDetailTransPrice;
 	
 	/**
 	 * 币种 currency
@@ -251,6 +251,38 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 明细名称 order_detail_name
+	 */
+	public String getOrderDetailName(){
+		return orderDetailName;
+	}
+	
+	/**
+	 * 
+	 * @param orderDetailName 明细名称 order_detail_name
+	 */	
+	public void setOrderDetailName (String orderDetailName) {
+		this.orderDetailName = orderDetailName;
+	}
+	
+	/**
+	 * 
+	 * @return 缩略图 thumbnail
+	 */
+	public String getThumbnail(){
+		return thumbnail;
+	}
+	
+	/**
+	 * 
+	 * @param thumbnail 缩略图 thumbnail
+	 */	
+	public void setThumbnail (String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	/**
+	 * 
 	 * @return 明细类型 order_detail_type
 	 */
 	public Integer getOrderDetailType(){
@@ -267,130 +299,98 @@ public class OrderDetailDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 产品SKU数量 sku_quantity
+	 * @return 明细状态 order_detail_status
 	 */
-	public Integer getSkuQuantity(){
-		return skuQuantity;
+	public Integer getOrderDetailStatus(){
+		return orderDetailStatus;
 	}
 	
 	/**
 	 * 
-	 * @param skuQuantity 产品SKU数量 sku_quantity
+	 * @param orderDetailStatus 明细状态 order_detail_status
 	 */	
-	public void setSkuQuantity (Integer skuQuantity) {
-		this.skuQuantity = skuQuantity;
+	public void setOrderDetailStatus (Integer orderDetailStatus) {
+		this.orderDetailStatus = orderDetailStatus;
 	}
 	
 	/**
 	 * 
-	 * @return 计价个数 unit_quantity
+	 * @return 明细数量 order_detail_quantity
 	 */
-	public Integer getUnitQuantity(){
-		return unitQuantity;
+	public Integer getOrderDetailQuantity(){
+		return orderDetailQuantity;
 	}
 	
 	/**
 	 * 
-	 * @param unitQuantity 计价个数 unit_quantity
+	 * @param orderDetailQuantity 明细数量 order_detail_quantity
 	 */	
-	public void setUnitQuantity (Integer unitQuantity) {
-		this.unitQuantity = unitQuantity;
+	public void setOrderDetailQuantity (Integer orderDetailQuantity) {
+		this.orderDetailQuantity = orderDetailQuantity;
 	}
 	
 	/**
 	 * 
-	 * @return 折扣 discount
+	 * @return 原单价 original_unit_price
 	 */
-	public Integer getDiscount(){
-		return discount;
+	public BigDecimal getOriginalUnitPrice(){
+		return originalUnitPrice;
 	}
 	
 	/**
 	 * 
-	 * @param discount 折扣 discount
+	 * @param originalUnitPrice 原单价 original_unit_price
 	 */	
-	public void setDiscount (Integer discount) {
-		this.discount = discount;
+	public void setOriginalUnitPrice (BigDecimal originalUnitPrice) {
+		this.originalUnitPrice = originalUnitPrice;
 	}
 	
 	/**
 	 * 
-	 * @return 折扣数量 discount_quantity
+	 * @return 成交单价 trans_unit_price
 	 */
-	public Integer getDiscountQuantity(){
-		return discountQuantity;
+	public BigDecimal getTransUnitPrice(){
+		return transUnitPrice;
 	}
 	
 	/**
 	 * 
-	 * @param discountQuantity 折扣数量 discount_quantity
+	 * @param transUnitPrice 成交单价 trans_unit_price
 	 */	
-	public void setDiscountQuantity (Integer discountQuantity) {
-		this.discountQuantity = discountQuantity;
+	public void setTransUnitPrice (BigDecimal transUnitPrice) {
+		this.transUnitPrice = transUnitPrice;
 	}
 	
 	/**
 	 * 
-	 * @return 显示单价 unit_original_price
+	 * @return 订单明细支付原总价 orde_detail_original_price
 	 */
-	public BigDecimal getUnitOriginalPrice(){
-		return unitOriginalPrice;
+	public BigDecimal getOrdeDetailOriginalPrice(){
+		return ordeDetailOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @param unitOriginalPrice 显示单价 unit_original_price
+	 * @param ordeDetailOriginalPrice 订单明细支付原总价 orde_detail_original_price
 	 */	
-	public void setUnitOriginalPrice (BigDecimal unitOriginalPrice) {
-		this.unitOriginalPrice = unitOriginalPrice;
+	public void setOrdeDetailOriginalPrice (BigDecimal ordeDetailOriginalPrice) {
+		this.ordeDetailOriginalPrice = ordeDetailOriginalPrice;
 	}
 	
 	/**
 	 * 
-	 * @return 单价 unit_pay_price
+	 * @return 订单明细支付总价 orde_detail_trans_price
 	 */
-	public BigDecimal getUnitPayPrice(){
-		return unitPayPrice;
+	public BigDecimal getOrdeDetailTransPrice(){
+		return ordeDetailTransPrice;
 	}
 	
 	/**
 	 * 
-	 * @param unitPayPrice 单价 unit_pay_price
+	 * @param ordeDetailTransPrice 订单明细支付总价 orde_detail_trans_price
 	 */	
-	public void setUnitPayPrice (BigDecimal unitPayPrice) {
-		this.unitPayPrice = unitPayPrice;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细减免 order_detail_deduction
-	 */
-	public BigDecimal getOrderDetailDeduction(){
-		return orderDetailDeduction;
-	}
-	
-	/**
-	 * 
-	 * @param orderDetailDeduction 订单明细减免 order_detail_deduction
-	 */	
-	public void setOrderDetailDeduction (BigDecimal orderDetailDeduction) {
-		this.orderDetailDeduction = orderDetailDeduction;
-	}
-	
-	/**
-	 * 
-	 * @return 订单明细支付总价 order_detail_total_pay_price
-	 */
-	public BigDecimal getOrderDetailTotalPayPrice(){
-		return orderDetailTotalPayPrice;
-	}
-	
-	/**
-	 * 
-	 * @param orderDetailTotalPayPrice 订单明细支付总价 order_detail_total_pay_price
-	 */	
-	public void setOrderDetailTotalPayPrice (BigDecimal orderDetailTotalPayPrice) {
-		this.orderDetailTotalPayPrice = orderDetailTotalPayPrice;
+	public void setOrdeDetailTransPrice (BigDecimal ordeDetailTransPrice) {
+		this.ordeDetailTransPrice = ordeDetailTransPrice;
 	}
 	
 	/**

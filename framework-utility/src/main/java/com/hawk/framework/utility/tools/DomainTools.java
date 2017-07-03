@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class DomainTools {
 	
@@ -23,6 +24,37 @@ public class DomainTools {
 		
 		return target;
 	}
+	
+	
+	public static <T> T copy (Map<String,Object> map , Class<T> clazz) throws Exception{
+		Field[] fields = clazz.getDeclaredFields(); 
+		
+		T t = clazz.newInstance();
+
+		for (Field field : fields){
+			String fieldName = field.getName();
+			try {
+				Object value = map.get(fieldName);
+				
+				if (value == null )
+					continue;
+				
+				PropertyDescriptor pd = new PropertyDescriptor(fieldName, clazz);
+				Method writer = pd.getWriteMethod();
+				if (writer == null)
+					continue;				
+				
+				writer.invoke(t, new Object[]{value});
+				
+			} catch (Exception e) {
+				
+			}
+		}
+		
+		return t;
+
+	}
+	
 	
 	/**
 	 * 将来源数据里的同名field拷贝给目标对象(浅拷贝,简单对象)

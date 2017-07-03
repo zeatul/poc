@@ -1,8 +1,9 @@
 {
-	"data": {
-		"skuId": 1000422,
-		"salePrice": 99.0000,
-		"skuStockQuantity": 999999
-	},
-	"code": 1
+	"ids": [
+		1,
+		2
+	],
+	"productStatus": 100,
+	"onSaleStdt": "2017-07-03 00:30:41.295",
+	"onSaleEndt": "2017-07-10 00:30:41.295"
 }

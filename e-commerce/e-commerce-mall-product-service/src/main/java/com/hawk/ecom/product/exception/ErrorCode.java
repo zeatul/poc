@@ -44,6 +44,8 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+32, "产品SKU更新库存量遇到并发冲突，请重试");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+33, "库存信息未找到");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+34, "图片未找到");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+35, "属性值未被引用");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+36, "属性值已经被引用");
 	
 	}
 	

@@ -8,6 +8,22 @@ public class UpdateProductParam {
 
 	
 
+	public Integer getIsVirtual() {
+		return isVirtual;
+	}
+
+	public void setIsVirtual(Integer isVirtual) {
+		this.isVirtual = isVirtual;
+	}
+
+	public Integer getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -159,6 +175,16 @@ public class UpdateProductParam {
 	 * 缩略图 humbnail
 	 */
 	private String thumbnail;
+	
+	/**
+	 * 是否为虚拟物品 is_virtual
+	 */
+	private Integer isVirtual;
+	
+	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
 
 	/**
 	 *  新增关键属性值

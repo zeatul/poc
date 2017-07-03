@@ -4,7 +4,15 @@ import java.util.Date;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class ProductInfoResponse implements ResponseData{
+public class ProductInfoResponse implements ResponseData {
+	public Integer getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(Integer deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -17,7 +25,7 @@ public class ProductInfoResponse implements ResponseData{
 		return id;
 	}
 
-	public void setId(Integer  id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -25,7 +33,7 @@ public class ProductInfoResponse implements ResponseData{
 		return categoryId;
 	}
 
-	public void setCategoryId(Integer  categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -105,61 +113,64 @@ public class ProductInfoResponse implements ResponseData{
 	 * 主键 id
 	 */
 	private Integer id;
-	
+
 	/**
 	 * 产品目录主键 category_id
 	 */
 	private Integer categoryId;
-	
+
 	/**
 	 * 商户编号 store_code
 	 */
 	private String storeCode;
-	
+
 	/**
 	 * 产品编号 product_code
 	 */
 	private String productCode;
-	
+
 	/**
 	 * 产品名称 product_name
 	 */
 	private String productName;
-	
+
 	/**
 	 * 产品状态 product_status
 	 */
 	private Integer productStatus;
-	
+
 	/**
 	 * 产品主页 product_home_page
 	 */
 	private String productHomePage;
-	
+
 	/**
 	 * 产品描述 product_desc
 	 */
 	private String productDesc;
-	
-	
-	
+
 	/**
 	 * 上架开始时间 on_sale_stdt
 	 */
 	private Date onSaleStdt;
-	
+
 	/**
 	 * 上架结束时间 on_sale_endt
 	 */
 	private Date onSaleEndt;
-	
+
 	/**
 	 * 是否为虚拟物品 is_virtual
 	 */
 	private Integer isVirtual;
-	
+
 	/**
 	 * 缩略图 thumbnail
 	 */
 	private String thumbnail;
+
+	/**
+	 * 交付方式 delivery_type
+	 */
+	private Integer deliveryType;
 }

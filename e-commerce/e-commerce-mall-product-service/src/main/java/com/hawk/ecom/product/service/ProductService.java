@@ -22,6 +22,8 @@ import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstCategory;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.exception.AttrNameIsUsedByProductRuntimeException;
+import com.hawk.ecom.product.exception.AttrValueIsNotReferencedRuntimeException;
+import com.hawk.ecom.product.exception.AttrValueIsReferencedRuntimeException;
 import com.hawk.ecom.product.exception.AttrNameIsNotUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsNotLeafRuntimeException;
@@ -402,6 +404,11 @@ public class ProductService {
 		updateDomain.setUpdateUserCode(userCode);
 		
 		/**
+		 * TODO:修改交付方式得修改产品SKU的交付方式和交付数据里的交付方式，
+		 * 不过，最好还是去掉产品SKU表的交付方式字段和交付数据里的交付方式字段
+		 */
+		
+		/**
 		 * 加载所有已经用到的属性名ID,
 		 * 先加载关键属性和非关键属性
 		 * 再加载SKU属性
@@ -409,11 +416,13 @@ public class ProductService {
 		MybatisParam params = new MybatisParam().put("productId", productDomain.getId()).put("skuId", 0);
 		List<ProductAttrDomain> productAttrDomainList = productAttrMapper.loadDynamic(params);
 		Map<Integer,Integer> usedAttrNameIdMap = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> usedAttrValueIdMap = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> usedKeyAttrNameIdMap = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> usedKeyAttrValueIdMap = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> usedSkuAttrNameIdMap = new HashMap<Integer,Integer>();
 		productAttrDomainList.forEach(e->{
 			usedAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
+			usedAttrValueIdMap.put(e.getAttrValueId(), e.getAttrValueId());
 			if (e.getAttrNameType().equals(ConstAttr.AttrNameType.KEY_ATTR)){
 				usedKeyAttrNameIdMap.put(e.getAttrNameId(), e.getAttrNameId());
 				usedKeyAttrValueIdMap.put(e.getAttrValueId(), e.getAttrValueId());
@@ -446,14 +455,15 @@ public class ProductService {
 				/**
 				 * 要删除的关键属性值ID，必须已经被引用
 				 */
-				if  (!usedKeyAttrNameIdMap.containsKey(attrNameId) || !usedAttrNameIdMap.containsKey(attrNameId)){
-					throw new AttrNameIsNotUsedByProductRuntimeException();
+				if  (!usedKeyAttrValueIdMap.containsKey(removeKeyAttrValueId)){
+					throw new AttrValueIsNotReferencedRuntimeException();
 				}
 				
 				params = new MybatisParam().put("productId", productDomain.getId()).put("attrNameId", attrNameId);
 				ProductAttrDomain productAttrDomain = MybatisTools.single(productAttrMapper.loadDynamic(params));
 				productAttrMapper.delete(productAttrDomain.getId());
 				usedAttrNameIdMap.remove(attrNameId);
+				usedAttrValueIdMap.remove(removeKeyAttrValueId);
 				usedKeyAttrNameIdMap.remove(attrNameId);
 				usedKeyAttrValueIdMap.remove(removeKeyAttrValueId);
 			}
@@ -469,13 +479,14 @@ public class ProductService {
 				/**
 				 * 要删除的非关键属性值ID，必须已经被引用
 				 */
-				if  (!usedAttrNameIdMap.containsKey(attrNameId)){
-					throw new AttrNameIsNotUsedByProductRuntimeException();
+				if  (!usedAttrValueIdMap.containsKey(removeNormalAttrValueId)){
+					throw new AttrValueIsNotReferencedRuntimeException();
 				}
 				params = new MybatisParam().put("productId", productDomain.getId()).put("attrNameId", attrNameId);
 				ProductAttrDomain productAttrDomain = MybatisTools.single(productAttrMapper.loadDynamic(params));
 				productAttrMapper.delete(productAttrDomain.getId());
 				usedAttrNameIdMap.remove(attrNameId);
+				usedAttrValueIdMap.remove(removeNormalAttrValueId);
 			}
 		}
 		/**
@@ -517,14 +528,15 @@ public class ProductService {
 				/**
 				 * 要新增的关键属性值对应的属性名ID，必须未被引用
 				 */
-				if  (usedKeyAttrNameIdMap.containsKey(attrNameId) || usedAttrNameIdMap.containsKey(attrNameId)){
-					throw new AttrNameIsUsedByProductRuntimeException();
+				if  (usedKeyAttrValueIdMap.containsKey(addAttrValueId) || usedAttrValueIdMap.containsKey(addAttrValueId)){
+					throw new AttrValueIsReferencedRuntimeException();
 				}
 				
 				/**
 				 * 维护map
 				 */
 				usedKeyAttrNameIdMap.put(attrNameId, attrNameId);
+				usedKeyAttrValueIdMap.put(addAttrValueId, addAttrValueId);
 				usedAttrNameIdMap.put(attrNameId, attrNameId);
 				usedKeyAttrValueIdMap.put(addAttrValueId, addAttrValueId);
 				
@@ -578,8 +590,8 @@ public class ProductService {
 				/**
 				 * 要新增的非关键属性值对应的属性名ID，必须未被引用
 				 */
-				if  (usedAttrNameIdMap.containsKey(attrNameId)){
-					throw new AttrNameIsUsedByProductRuntimeException();
+				if  (usedAttrValueIdMap.containsKey(addAttrValueId)){
+					throw new AttrValueIsReferencedRuntimeException();
 				}
 				
 				/**
@@ -862,6 +874,7 @@ public class ProductService {
 		params.put("categoryId", listProductParam.getCategoryId());
 		params.put("isVirtual", listProductParam.getIsVirtual());
 		params.put("productStatus", listProductParam.getProductStatus());
+		params.put("deliveryType", listProductParam.getDeliveryType());
 		
 		PagingQueryResultWrap<ProductDomain> wrap = new PagingQueryResultWrap<ProductDomain>();
 		wrap.setDbCount(productMapper.count(params));

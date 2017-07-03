@@ -5,13 +5,7 @@ import java.math.BigDecimal;
 import com.hawk.framework.pub.web.ResponseData;
 
 public class SkuInfoResponse implements ResponseData{
-	public String getThumbnail() {
-		return thumbnail;
-	}
 
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
 
 	public Integer getId() {
 		return id;
@@ -117,54 +111,6 @@ public class SkuInfoResponse implements ResponseData{
 		this.isSpecialPrice = isSpecialPrice;
 	}
 
-	public Integer getWidth() {
-		return width;
-	}
-
-	public void setWidth(Integer width) {
-		this.width = width;
-	}
-
-	public Integer getDepth() {
-		return depth;
-	}
-
-	public void setDepth(Integer depth) {
-		this.depth = depth;
-	}
-
-	public Integer getHeight() {
-		return height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
-	public Integer getLengthUnit() {
-		return lengthUnit;
-	}
-
-	public void setLengthUnit(Integer lengthUnit) {
-		this.lengthUnit = lengthUnit;
-	}
-
-	public Integer getWeight() {
-		return weight;
-	}
-
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	public Integer getWeightUnit() {
-		return weightUnit;
-	}
-
-	public void setWeightUnit(Integer weightUnit) {
-		this.weightUnit = weightUnit;
-	}
-
 	public String getSkuMemo() {
 		return skuMemo;
 	}
@@ -181,21 +127,14 @@ public class SkuInfoResponse implements ResponseData{
 		this.skuSnapshootId = skuSnapshootId;
 	}
 
-	public Integer getProductVersion() {
-		return productVersion;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setProductVersion(Integer productVersion) {
-		this.productVersion = productVersion;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
-
-	public Integer getSkuVersion() {
-		return skuVersion;
-	}
-
-	public void setSkuVersion(Integer skuVersion) {
-		this.skuVersion = skuVersion;
-	}
+	
 
 	/**
 	 * 主键 id
@@ -262,35 +201,35 @@ public class SkuInfoResponse implements ResponseData{
 	 */
 	private Integer isSpecialPrice;
 	
-	/**
-	 * 宽度 width
-	 */
-	private Integer width;
-	
-	/**
-	 * 深度 depth
-	 */
-	private Integer depth;
-	
-	/**
-	 * 高度 height
-	 */
-	private Integer height;
-	
-	/**
-	 * 长度单位 length_unit
-	 */
-	private Integer lengthUnit;
-	
-	/**
-	 * 重量 weight
-	 */
-	private Integer weight;
-	
-	/**
-	 * 重量单位 weight_unit
-	 */
-	private Integer weightUnit;
+//	/**
+//	 * 宽度 width
+//	 */
+//	private Integer width;
+//	
+//	/**
+//	 * 深度 depth
+//	 */
+//	private Integer depth;
+//	
+//	/**
+//	 * 高度 height
+//	 */
+//	private Integer height;
+//	
+//	/**
+//	 * 长度单位 length_unit
+//	 */
+//	private Integer lengthUnit;
+//	
+//	/**
+//	 * 重量 weight
+//	 */
+//	private Integer weight;
+//	
+//	/**
+//	 * 重量单位 weight_unit
+//	 */
+//	private Integer weightUnit;
 	
 	/**
 	 * SKU备注 sku_memo
@@ -302,19 +241,19 @@ public class SkuInfoResponse implements ResponseData{
 	 */
 	private Integer skuSnapshootId;
 	
-	/**
-	 * 产品版本号 product_version
-	 */
-	private Integer productVersion;
+//	/**
+//	 * 产品版本号 product_version
+//	 */
+//	private Integer productVersion;
 	
 	/**
 	 * 缩略图 thumbnail
 	 */
 	private String thumbnail;
 	
-	/**
-	 * sku版本号 sku_version
-	 */
-	private Integer skuVersion;
+//	/**
+//	 * sku版本号 sku_version
+//	 */
+//	private Integer skuVersion;
 	
 }
