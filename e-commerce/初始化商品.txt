@@ -1,0 +1,1 @@
+https://210.73.195.77/mall_admin_test/mall/admin/product/env/init?version=1.0
