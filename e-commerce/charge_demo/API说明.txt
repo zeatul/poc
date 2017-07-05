@@ -1,0 +1,7 @@
+﻿1、入口类：com.flow.client.OrderClient，提供order(下订单）、queryOrder（订单查询）方法，参数含义与接口文档相同 
+
+2、依赖 commons-codec-1.3,common-httpclient-3.0,commons-logging,jackson-core-asl-1.8.10,jackson-mapper-asl-1.8.10
+
+3、TestOrder类用于测试下订单，TestOrderQuery用于测试订单查询
+
+4、TestProductsQuery类测试推广页面产品查询及下单、订单查询
