@@ -15,6 +15,8 @@
 
 
 	<dependencies>
+
+		
 		<!--com.hawk.framework -->
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
@@ -24,14 +26,20 @@
 		<dependency>
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
-		</dependency> 
+		</dependency>
 
 		<!--com.hawk.e-commerce -->
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-pub</artifactId>
-		</dependency> 
+		</dependency>
 		
+		<!-- codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
 
 		<!-- mybatis -->
 		<dependency>
