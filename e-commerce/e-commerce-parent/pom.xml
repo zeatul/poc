@@ -94,7 +94,8 @@
 				<artifactId>framework-pub</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
+			
+			
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-pub</artifactId>

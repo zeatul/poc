@@ -1,11 +1,11 @@
 package com.hawk.framework.utility.tools;
 
-import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +30,12 @@ public class DomainTools {
 		return target;
 	}
 
+	/**
+	 * 对象转map
+	 * @param object
+	 * @return
+	 * @throws Exception
+	 */
 	public static Map<String, Object> toMap(Object object) throws Exception {
 		Class<?> clazz = object.getClass();
 		Field[] fields = clazz.getDeclaredFields();
@@ -50,7 +56,42 @@ public class DomainTools {
 		}
 		return map;
 	}
+	
+	/**
+	 * 构造签名用的字符串
+	 * 1.先将object转为map
+	 * 2.再按照key升序排序
+	 * 3.再按照key获取value并将key和value拼接：key1value1key2value2.。。。。。。。
+	 * @param object
+	 * @return 构造完成的签名字符串，按照key升序排列，key1value1key2value2.。。。。。。。keynvaluen
+	 * @throws Exception
+	 */
+	public static String buildSignString(Object object)throws Exception{
+		Map<String, Object> map = toMap(object);
+		List<String> keyList = new ArrayList<String>();
+		map.keySet().forEach(e->{
+			keyList.add(e);
+		});
+		Collections.sort(keyList);
+		List<String> list = new ArrayList<String>();
+		keyList.forEach(key->{
+			Object value = map.get(key);
+			if (value != null){
+				list.add(key);
+				list.add(value.toString());				
+			}
+		});
+		return StringTools.concat(list);
+	}
+	
 
+	/**
+	 * map转对象
+	 * @param map
+	 * @param clazz
+	 * @return
+	 * @throws Exception
+	 */
 	public static <T> T copy(Map<String, Object> map, Class<T> clazz) throws Exception {
 		Field[] fields = clazz.getDeclaredFields();
 

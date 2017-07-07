@@ -24,6 +24,10 @@
 			<groupId>com.hawk.framework</groupId>
 			<artifactId>framework-dic</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.hawk.framework</groupId>
+			<artifactId>framework-utility</artifactId>
+		</dependency>
 		<!-- spring modules -->
 		<dependency>
 			<groupId>org.springframework</groupId>
