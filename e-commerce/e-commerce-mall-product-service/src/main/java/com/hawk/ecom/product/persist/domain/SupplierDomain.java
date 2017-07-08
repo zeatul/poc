@@ -21,6 +21,11 @@ public class SupplierDomain implements Serializable {
 	private Integer id;
 	
 	/**
+	 * 商户编号 store_code
+	 */
+	private String storeCode;
+	
+	/**
 	 * 供应商编号 supplier_code
 	 */
 	private String supplierCode;
@@ -31,9 +36,24 @@ public class SupplierDomain implements Serializable {
 	private String supplierName;
 	
 	/**
-	 * 商户编号 store_code
+	 * 供应商主营业务 supplier_main_business
 	 */
-	private String storeCode;
+	private String supplierMainBusiness;
+	
+	/**
+	 * 供应商状态 supplier_status
+	 */
+	private Integer supplierStatus;
+	
+	/**
+	 * 供应商描述 supplier_desc
+	 */
+	private String supplierDesc;
+	
+	/**
+	 * 供应商备注 supplier_memo
+	 */
+	private String supplierMemo;
 	
 	/**
 	 * 创建者 create_user_code
@@ -84,6 +104,22 @@ public class SupplierDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 商户编号 store_code
+	 */
+	public String getStoreCode(){
+		return storeCode;
+	}
+	
+	/**
+	 * 
+	 * @param storeCode 商户编号 store_code
+	 */	
+	public void setStoreCode (String storeCode) {
+		this.storeCode = storeCode;
+	}
+	
+	/**
+	 * 
 	 * @return 供应商编号 supplier_code
 	 */
 	public String getSupplierCode(){
@@ -116,18 +152,66 @@ public class SupplierDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 商户编号 store_code
+	 * @return 供应商主营业务 supplier_main_business
 	 */
-	public String getStoreCode(){
-		return storeCode;
+	public String getSupplierMainBusiness(){
+		return supplierMainBusiness;
 	}
 	
 	/**
 	 * 
-	 * @param storeCode 商户编号 store_code
+	 * @param supplierMainBusiness 供应商主营业务 supplier_main_business
 	 */	
-	public void setStoreCode (String storeCode) {
-		this.storeCode = storeCode;
+	public void setSupplierMainBusiness (String supplierMainBusiness) {
+		this.supplierMainBusiness = supplierMainBusiness;
+	}
+	
+	/**
+	 * 
+	 * @return 供应商状态 supplier_status
+	 */
+	public Integer getSupplierStatus(){
+		return supplierStatus;
+	}
+	
+	/**
+	 * 
+	 * @param supplierStatus 供应商状态 supplier_status
+	 */	
+	public void setSupplierStatus (Integer supplierStatus) {
+		this.supplierStatus = supplierStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 供应商描述 supplier_desc
+	 */
+	public String getSupplierDesc(){
+		return supplierDesc;
+	}
+	
+	/**
+	 * 
+	 * @param supplierDesc 供应商描述 supplier_desc
+	 */	
+	public void setSupplierDesc (String supplierDesc) {
+		this.supplierDesc = supplierDesc;
+	}
+	
+	/**
+	 * 
+	 * @return 供应商备注 supplier_memo
+	 */
+	public String getSupplierMemo(){
+		return supplierMemo;
+	}
+	
+	/**
+	 * 
+	 * @param supplierMemo 供应商备注 supplier_memo
+	 */	
+	public void setSupplierMemo (String supplierMemo) {
+		this.supplierMemo = supplierMemo;
 	}
 	
 	/**

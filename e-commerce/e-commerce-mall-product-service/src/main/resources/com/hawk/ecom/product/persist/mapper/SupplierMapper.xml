@@ -6,9 +6,13 @@
 
 	<sql id="columns">	
 				id AS "id" ,
+		store_code AS "storeCode" ,
 		supplier_code AS "supplierCode" ,
 		supplier_name AS "supplierName" ,
-		store_code AS "storeCode" ,
+		supplier_main_business AS "supplierMainBusiness" ,
+		supplier_status AS "supplierStatus" ,
+		supplier_desc AS "supplierDesc" ,
+		supplier_memo AS "supplierMemo" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -20,9 +24,13 @@
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="id != null"> AND id = #{id}  </if>
+			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="supplierCode != null"> AND supplier_code = #{supplierCode}  </if>
 			<if test="supplierName != null"> AND supplier_name = #{supplierName}  </if>
-			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
+			<if test="supplierMainBusiness != null"> AND supplier_main_business = #{supplierMainBusiness}  </if>
+			<if test="supplierStatus != null"> AND supplier_status = #{supplierStatus}  </if>
+			<if test="supplierDesc != null"> AND supplier_desc = #{supplierDesc}  </if>
+			<if test="supplierMemo != null"> AND supplier_memo = #{supplierMemo}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -35,9 +43,13 @@
 	<sql id="where_old">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="old_id != null"> AND id = #{old_id}  </if>			
+			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
 			<if test="old_supplierCode != null"> AND supplier_code = #{old_supplierCode}  </if>			
 			<if test="old_supplierName != null"> AND supplier_name = #{old_supplierName}  </if>			
-			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
+			<if test="old_supplierMainBusiness != null"> AND supplier_main_business = #{old_supplierMainBusiness}  </if>			
+			<if test="old_supplierStatus != null"> AND supplier_status = #{old_supplierStatus}  </if>			
+			<if test="old_supplierDesc != null"> AND supplier_desc = #{old_supplierDesc}  </if>			
+			<if test="old_supplierMemo != null"> AND supplier_memo = #{old_supplierMemo}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -50,9 +62,13 @@
 	<sql id="update">
 		<set>
 			id = #{id},
+			store_code = #{storeCode},
 			supplier_code = #{supplierCode},
 			supplier_name = #{supplierName},
-			store_code = #{storeCode},
+			supplier_main_business = #{supplierMainBusiness},
+			supplier_status = #{supplierStatus},
+			supplier_desc = #{supplierDesc},
+			supplier_memo = #{supplierMemo},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -65,9 +81,13 @@
 	<sql id="updateWithoutNull">
 		<set>
 			<if test="id != null">id = #{id},</if>
+			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="supplierCode != null">supplier_code = #{supplierCode},</if>
 			<if test="supplierName != null">supplier_name = #{supplierName},</if>
-			<if test="storeCode != null">store_code = #{storeCode},</if>
+			<if test="supplierMainBusiness != null">supplier_main_business = #{supplierMainBusiness},</if>
+			<if test="supplierStatus != null">supplier_status = #{supplierStatus},</if>
+			<if test="supplierDesc != null">supplier_desc = #{supplierDesc},</if>
+			<if test="supplierMemo != null">supplier_memo = #{supplierMemo},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -113,9 +133,13 @@
 	<insert id="insert"  parameterType="SupplierDomain">
 		INSERT INTO t_prd_supplier (			
 				id,				
+				store_code,				
 				supplier_code,				
 				supplier_name,				
-				store_code,				
+				supplier_main_business,				
+				supplier_status,				
+				supplier_desc,				
+				supplier_memo,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -125,9 +149,13 @@
 		)		
 		VALUES (	
 			#{id},
+			#{storeCode},
 			#{supplierCode},
 			#{supplierName},
-			#{storeCode},
+			#{supplierMainBusiness},
+			#{supplierStatus},
+			#{supplierDesc},
+			#{supplierMemo},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

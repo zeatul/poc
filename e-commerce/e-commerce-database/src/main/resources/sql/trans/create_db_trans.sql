@@ -171,17 +171,20 @@ create table t_tra_order_detail_delivery_data
    benef_sex            varchar(50) comment '受益人性别',
    benef_name           varchar(50) comment '受益人姓名',
    benef_mobile_number  varchar(20) comment '受益人手机号',
-   outer_order_code     varchar(50) comment '外部交易编号',
-   task_code            varchar(200) comment '任务号',
+   outer_order_code     varchar(50) comment '外部交易编号(供应商返回的订单编号)',
+   outer_order_status   varchar(50) comment '外部交易状态',
+   outer_order_msg      varchar(200) comment '外部交易描述',
+   delivery_status      tinyint unsigned not null comment '交付状态',
+   task_code            varchar(200) not null comment '任务号',
    task_name            varchar(200) comment '任务名称',
+   task_status          tinyint unsigned not null comment '任务状态',
    task_desc            varchar(200) comment '任务描述',
    task_memo            varchar(200) comment '任务备注',
-   task_status          tinyint unsigned comment '任务状态',
    schedule_exec_date   timestamp(3) null comment '计划执行时间',
-   exec_times           tinyint unsigned comment '已经执行次数',
-   max_exec_times       tinyint unsigned comment '最大允许执行次数',
-   last_exec_err_code   varchar(50) comment '最后一次执行错误代码',
-   last_exec_err_msg    varchar(1000) comment '最后一次执行错误原因',
+   exec_times           tinyint unsigned not null comment '已经执行次数',
+   max_exec_times       tinyint unsigned not null comment '最大允许执行次数',
+   last_exec_rtn_code   varchar(50) comment '最后一次执行返回代码',
+   last_exec_rtn_msg    varchar(1000) comment '最后一次执行返回消息',
    last_exec_begin_time timestamp(3) null comment '最后一次执行开始时间',
    last_exec_end_time   timestamp(3) null comment '最后一次执行完成时间',
    last_exec_computer   varchar(200) comment '最后一次执行机器',
@@ -214,7 +217,9 @@ create index i_tra_delivery on t_tra_order_detail_delivery_data
    order_id,
    store_code,
    order_code,
-   user_code
+   user_code,
+   supplier_code,
+   outer_order_code
 );
 
 /*==============================================================*/

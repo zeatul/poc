@@ -23,16 +23,19 @@
 		benef_name AS "benefName" ,
 		benef_mobile_number AS "benefMobileNumber" ,
 		outer_order_code AS "outerOrderCode" ,
+		outer_order_status AS "outerOrderStatus" ,
+		outer_order_msg AS "outerOrderMsg" ,
+		delivery_status AS "deliveryStatus" ,
 		task_code AS "taskCode" ,
 		task_name AS "taskName" ,
+		task_status AS "taskStatus" ,
 		task_desc AS "taskDesc" ,
 		task_memo AS "taskMemo" ,
-		task_status AS "taskStatus" ,
 		schedule_exec_date AS "scheduleExecDate" ,
 		exec_times AS "execTimes" ,
 		max_exec_times AS "maxExecTimes" ,
-		last_exec_err_code AS "lastExecErrCode" ,
-		last_exec_err_msg AS "lastExecErrMsg" ,
+		last_exec_rtn_code AS "lastExecRtnCode" ,
+		last_exec_rtn_msg AS "lastExecRtnMsg" ,
 		last_exec_begin_time AS "lastExecBeginTime" ,
 		last_exec_end_time AS "lastExecEndTime" ,
 		last_exec_computer AS "lastExecComputer" ,
@@ -65,16 +68,19 @@
 			<if test="benefName != null"> AND benef_name = #{benefName}  </if>
 			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{benefMobileNumber}  </if>
 			<if test="outerOrderCode != null"> AND outer_order_code = #{outerOrderCode}  </if>
+			<if test="outerOrderStatus != null"> AND outer_order_status = #{outerOrderStatus}  </if>
+			<if test="outerOrderMsg != null"> AND outer_order_msg = #{outerOrderMsg}  </if>
+			<if test="deliveryStatus != null"> AND delivery_status = #{deliveryStatus}  </if>
 			<if test="taskCode != null"> AND task_code = #{taskCode}  </if>
 			<if test="taskName != null"> AND task_name = #{taskName}  </if>
+			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
 			<if test="taskDesc != null"> AND task_desc = #{taskDesc}  </if>
 			<if test="taskMemo != null"> AND task_memo = #{taskMemo}  </if>
-			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
 			<if test="scheduleExecDate != null"> AND schedule_exec_date = #{scheduleExecDate}  </if>
 			<if test="execTimes != null"> AND exec_times = #{execTimes}  </if>
 			<if test="maxExecTimes != null"> AND max_exec_times = #{maxExecTimes}  </if>
-			<if test="lastExecErrCode != null"> AND last_exec_err_code = #{lastExecErrCode}  </if>
-			<if test="lastExecErrMsg != null"> AND last_exec_err_msg = #{lastExecErrMsg}  </if>
+			<if test="lastExecRtnCode != null"> AND last_exec_rtn_code = #{lastExecRtnCode}  </if>
+			<if test="lastExecRtnMsg != null"> AND last_exec_rtn_msg = #{lastExecRtnMsg}  </if>
 			<if test="lastExecBeginTime != null"> AND last_exec_begin_time = #{lastExecBeginTime}  </if>
 			<if test="lastExecEndTime != null"> AND last_exec_end_time = #{lastExecEndTime}  </if>
 			<if test="lastExecComputer != null"> AND last_exec_computer = #{lastExecComputer}  </if>
@@ -108,16 +114,19 @@
 			<if test="old_benefName != null"> AND benef_name = #{old_benefName}  </if>			
 			<if test="old_benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
 			<if test="old_outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
+			<if test="old_outerOrderStatus != null"> AND outer_order_status = #{old_outerOrderStatus}  </if>			
+			<if test="old_outerOrderMsg != null"> AND outer_order_msg = #{old_outerOrderMsg}  </if>			
+			<if test="old_deliveryStatus != null"> AND delivery_status = #{old_deliveryStatus}  </if>			
 			<if test="old_taskCode != null"> AND task_code = #{old_taskCode}  </if>			
 			<if test="old_taskName != null"> AND task_name = #{old_taskName}  </if>			
+			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
 			<if test="old_taskDesc != null"> AND task_desc = #{old_taskDesc}  </if>			
 			<if test="old_taskMemo != null"> AND task_memo = #{old_taskMemo}  </if>			
-			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
 			<if test="old_scheduleExecDate != null"> AND schedule_exec_date = #{old_scheduleExecDate}  </if>			
 			<if test="old_execTimes != null"> AND exec_times = #{old_execTimes}  </if>			
 			<if test="old_maxExecTimes != null"> AND max_exec_times = #{old_maxExecTimes}  </if>			
-			<if test="old_lastExecErrCode != null"> AND last_exec_err_code = #{old_lastExecErrCode}  </if>			
-			<if test="old_lastExecErrMsg != null"> AND last_exec_err_msg = #{old_lastExecErrMsg}  </if>			
+			<if test="old_lastExecRtnCode != null"> AND last_exec_rtn_code = #{old_lastExecRtnCode}  </if>			
+			<if test="old_lastExecRtnMsg != null"> AND last_exec_rtn_msg = #{old_lastExecRtnMsg}  </if>			
 			<if test="old_lastExecBeginTime != null"> AND last_exec_begin_time = #{old_lastExecBeginTime}  </if>			
 			<if test="old_lastExecEndTime != null"> AND last_exec_end_time = #{old_lastExecEndTime}  </if>			
 			<if test="old_lastExecComputer != null"> AND last_exec_computer = #{old_lastExecComputer}  </if>			
@@ -151,16 +160,19 @@
 			benef_name = #{benefName},
 			benef_mobile_number = #{benefMobileNumber},
 			outer_order_code = #{outerOrderCode},
+			outer_order_status = #{outerOrderStatus},
+			outer_order_msg = #{outerOrderMsg},
+			delivery_status = #{deliveryStatus},
 			task_code = #{taskCode},
 			task_name = #{taskName},
+			task_status = #{taskStatus},
 			task_desc = #{taskDesc},
 			task_memo = #{taskMemo},
-			task_status = #{taskStatus},
 			schedule_exec_date = #{scheduleExecDate},
 			exec_times = #{execTimes},
 			max_exec_times = #{maxExecTimes},
-			last_exec_err_code = #{lastExecErrCode},
-			last_exec_err_msg = #{lastExecErrMsg},
+			last_exec_rtn_code = #{lastExecRtnCode},
+			last_exec_rtn_msg = #{lastExecRtnMsg},
 			last_exec_begin_time = #{lastExecBeginTime},
 			last_exec_end_time = #{lastExecEndTime},
 			last_exec_computer = #{lastExecComputer},
@@ -194,16 +206,19 @@
 			<if test="benefName != null">benef_name = #{benefName},</if>
 			<if test="benefMobileNumber != null">benef_mobile_number = #{benefMobileNumber},</if>
 			<if test="outerOrderCode != null">outer_order_code = #{outerOrderCode},</if>
+			<if test="outerOrderStatus != null">outer_order_status = #{outerOrderStatus},</if>
+			<if test="outerOrderMsg != null">outer_order_msg = #{outerOrderMsg},</if>
+			<if test="deliveryStatus != null">delivery_status = #{deliveryStatus},</if>
 			<if test="taskCode != null">task_code = #{taskCode},</if>
 			<if test="taskName != null">task_name = #{taskName},</if>
+			<if test="taskStatus != null">task_status = #{taskStatus},</if>
 			<if test="taskDesc != null">task_desc = #{taskDesc},</if>
 			<if test="taskMemo != null">task_memo = #{taskMemo},</if>
-			<if test="taskStatus != null">task_status = #{taskStatus},</if>
 			<if test="scheduleExecDate != null">schedule_exec_date = #{scheduleExecDate},</if>
 			<if test="execTimes != null">exec_times = #{execTimes},</if>
 			<if test="maxExecTimes != null">max_exec_times = #{maxExecTimes},</if>
-			<if test="lastExecErrCode != null">last_exec_err_code = #{lastExecErrCode},</if>
-			<if test="lastExecErrMsg != null">last_exec_err_msg = #{lastExecErrMsg},</if>
+			<if test="lastExecRtnCode != null">last_exec_rtn_code = #{lastExecRtnCode},</if>
+			<if test="lastExecRtnMsg != null">last_exec_rtn_msg = #{lastExecRtnMsg},</if>
 			<if test="lastExecBeginTime != null">last_exec_begin_time = #{lastExecBeginTime},</if>
 			<if test="lastExecEndTime != null">last_exec_end_time = #{lastExecEndTime},</if>
 			<if test="lastExecComputer != null">last_exec_computer = #{lastExecComputer},</if>
@@ -270,16 +285,19 @@
 				benef_name,				
 				benef_mobile_number,				
 				outer_order_code,				
+				outer_order_status,				
+				outer_order_msg,				
+				delivery_status,				
 				task_code,				
 				task_name,				
+				task_status,				
 				task_desc,				
 				task_memo,				
-				task_status,				
 				schedule_exec_date,				
 				exec_times,				
 				max_exec_times,				
-				last_exec_err_code,				
-				last_exec_err_msg,				
+				last_exec_rtn_code,				
+				last_exec_rtn_msg,				
 				last_exec_begin_time,				
 				last_exec_end_time,				
 				last_exec_computer,				
@@ -310,16 +328,19 @@
 			#{benefName},
 			#{benefMobileNumber},
 			#{outerOrderCode},
+			#{outerOrderStatus},
+			#{outerOrderMsg},
+			#{deliveryStatus},
 			#{taskCode},
 			#{taskName},
+			#{taskStatus},
 			#{taskDesc},
 			#{taskMemo},
-			#{taskStatus},
 			#{scheduleExecDate},
 			#{execTimes},
 			#{maxExecTimes},
-			#{lastExecErrCode},
-			#{lastExecErrMsg},
+			#{lastExecRtnCode},
+			#{lastExecRtnMsg},
 			#{lastExecBeginTime},
 			#{lastExecEndTime},
 			#{lastExecComputer},

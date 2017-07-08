@@ -1,6 +1,5 @@
 package com.hawk.ecom.outer.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -9,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.outer.request.ChargeDataNotifyRequest;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -53,6 +53,7 @@ public class ChargeDataService {
 		public String PROCESSING = "0009";
 	}
 
+	@SuppressWarnings("unused")
 	private static class ChargeRequest {
 		public String getApiKey() {
 			return apiKey;
@@ -120,6 +121,7 @@ public class ChargeDataService {
 		private String timeStamp;
 	}
 
+	@SuppressWarnings("unused")
 	private static class ChargeResponse{
 //		"code": "0000",
 //		"msg": "成功",
@@ -170,11 +172,13 @@ public class ChargeDataService {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private static class ChargeResponseData{
 		public String getOrderNo() {
 			return orderNo;
 		}
 
+		
 		public void setOrderNo(String orderNo) {
 			this.orderNo = orderNo;
 		}
@@ -276,6 +280,7 @@ public class ChargeDataService {
 		return chargeResult;
 	}
 
+	@SuppressWarnings("unused")
 	private static class QueryRequest{
 		public String getApiKey() {
 			return apiKey;
@@ -329,7 +334,20 @@ public class ChargeDataService {
 		return queryResult;
 	}
 	
-	public void notifyChargeResult(){
+	public void notify(ChargeDataNotifyRequest chargeDataNotifyRequest){
+		if (ConstChargeNotifyStatus.SUCCESS.equals(chargeDataNotifyRequest.getStatus())){
+			
+			return ;
+		}
 		
+		if (ConstChargeNotifyStatus.FAILURE.equals(chargeDataNotifyRequest.getStatus())){
+			
+			return ;
+		} 
+		
+		if (ConstChargeNotifyStatus.PROCESSING.equals(chargeDataNotifyRequest.getStatus())){
+			
+			return ;
+		} 
 	}
 }
