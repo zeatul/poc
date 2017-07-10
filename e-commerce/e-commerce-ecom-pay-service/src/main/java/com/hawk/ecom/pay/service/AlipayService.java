@@ -1,26 +1,24 @@
 package com.hawk.ecom.pay.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.hawk.ecom.pay.request.AlipayTradeWapParam;
+import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 
 @Service
 public class AlipayService {
 	
+	@Autowired
+	private OrderService orderService;
+	
 	@Valid
 	public String tradeWap(@NotNull("支付参数") @Valid AlipayTradeWapParam AlipayTradeWapParam){
-		/**
-		 * TODO:校验
-		 * 订单用户和当前用户一致
-		 * 订单状态为为支付，支付类型为在线支付
-		 * 订单subject
-		 * 订单body
-		 * 该笔订单的资金总额，单位为RMB-Yuan。取值范围为[0.01，100000000.00]，精确到小数点后两位
-		 */
+		
 		
 //		// 商户订单号，商户网站订单系统中唯一订单号，必填
 //	    String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
@@ -44,8 +42,7 @@ public class AlipayService {
 		alipayTradeWapPayModel.setSubject(subject);
 		alipayTradeWapPayModel.setTotalAmount(total_amount);
 		alipayTradeWapPayModel.setBody(body);
-		alipayTradeWapPayModel.setTimeoutExpress(timeout_express);
-		alipayTradeWapPayModel.setProductCode(product_code);
+		alipayTradeWapPayModel.setProductCode("QUICK_WAP_PAY");
 		alipayTradeWapPayModel.setBizModel(model);
 	    // 设置异步通知地址
 	    alipay_request.setNotifyUrl(AlipayConfig.notify_url);

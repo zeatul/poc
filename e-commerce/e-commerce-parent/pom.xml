@@ -175,6 +175,12 @@
 				<artifactId>e-commerce-ecom-query-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-ecom-trans-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 
 

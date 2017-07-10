@@ -41,6 +41,11 @@
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-user-service</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-trans-service</artifactId>
+		</dependency>
 
 
 		<!-- mybatis -->
