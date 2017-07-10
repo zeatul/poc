@@ -1,4 +1,4 @@
-package com.hawk.ecom.query.controller;
+package com.hawk.ecom.outer.controller;
 
 import org.junit.Before;
 

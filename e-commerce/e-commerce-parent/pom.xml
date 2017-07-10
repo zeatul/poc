@@ -9,13 +9,13 @@
 	<modules>
 		<module>../e-commerce-user-service</module>
 		<module>../e-commerce-sms-service</module>
-		<module>../e-commerce-code-gen</module>		
+		<module>../e-commerce-code-gen</module>
 		<module>../e-commerce-svp-service</module>
 		<module>../e-commerce-store-service</module>
 		<module>../e-commerce-pub</module>
 		<module>../e-commerce-web</module>
 		<module>../e-commerce-database</module>
-		<module>../e-commerce-mall-admin-service</module>		
+		<module>../e-commerce-mall-admin-service</module>
 		<module>../e-commerce-mall-user-service</module>
 		<module>../e-commerce-mall-product-service</module>
 		<module>../e-commerce-mall-admin-web</module>
@@ -25,7 +25,7 @@
 		<module>../e-commerce-ecom-query-web</module>
 		<module>../e-commerce-ecom-pay-service</module>
 		<module>../e-commerce-ecom-outer-service</module>
-		
+
 	</modules>
 
 	<profiles>
@@ -89,26 +89,33 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>com.hawk.framework</groupId>
-				<artifactId>framework-pub</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			
-			
-			<dependency>
-				<groupId>com.hawk.e-commerce</groupId>
-				<artifactId>e-commerce-pub</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>com.hawk.framework</groupId>
 				<artifactId>framework-dic</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.framework</groupId>
+				<artifactId>framework-pub</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.hawk.framework</groupId>
+				<artifactId>framework-utility</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- project -->
+
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-pub</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-user-service</artifactId>
@@ -126,46 +133,52 @@
 				<artifactId>e-commerce-sms-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-mall-admin-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-mall-user-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-mall-product-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-ecom-trans-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-ecom-pay-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-ecom-outer-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
-			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-ecom-query-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
-			
+
+
+
 
 			<!-- H2 inmemroy database -->
 			<dependency>
