@@ -450,7 +450,15 @@ public class OrderService {
 		} 
 		
 		
-		OrderPayInfo OrderPayInfo = new OrderPayInfo();
+		OrderPayInfo orderPayInfo = new OrderPayInfo();
+		orderPayInfo.setApplicationCode("SVP");
+		orderPayInfo.setBody(null);
+		orderPayInfo.setOrderCode(orderDomain.getOrderCode());
+		orderPayInfo.setOrderDesc(orderDomain.getOrderDesc());
+		orderPayInfo.setStoreCode(orderDomain.getStoreCode());
+		orderPayInfo.setTotalAmount(orderDomain.getOrderTransPrice());
+		orderPayInfo.setUserCode(orderDomain.getUserCode());
+		return orderPayInfo;
 	}
 	
 	public static void main(String[] args){

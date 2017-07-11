@@ -33,12 +33,12 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/mall/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { MallUserMapper.class, MallUserExMapper.class, //商场用户管理
-		SystemResourceMapper.class,SystemResourceExMapper.class,//商城管理 
-		WordMapper.class, WordExMapper.class , //数据字典
-		TaskMapper.class, TaskExMapper.class,//短信
-		ProductMapper.class, ProductExMapper.class,//短信
-		})
+@MapperScan(basePackageClasses = { MallUserMapper.class, MallUserExMapper.class, // 商场用户管理
+		SystemResourceMapper.class, SystemResourceExMapper.class, // 商城管理
+		WordMapper.class, WordExMapper.class, // 数据字典
+		TaskMapper.class, TaskExMapper.class, // 短信
+		ProductMapper.class, ProductExMapper.class,// 短信
+})
 public class DataConfig {
 
 	@Autowired
@@ -154,16 +154,16 @@ public class DataConfig {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
-		String mallPackageName = SystemResourceDomain.class.getPackage().getName();//商场管理
-		String mallUserPackageName = MallUserDomain.class.getPackage().getName();//商场用户管理
-		String smsPackageName = TaskDomain.class.getPackage().getName(); //消息管理
-		String dicPackageName = WordDomain.class.getPackage().getName(); //数据字典
-		String productPackageName = ProductDomain.class.getPackage().getName();//商品管理
+		String mallPackageName = SystemResourceDomain.class.getPackage().getName();// 商场管理
+		String mallUserPackageName = MallUserDomain.class.getPackage().getName();// 商场用户管理
+		String smsPackageName = TaskDomain.class.getPackage().getName(); // 消息管理
+		String dicPackageName = WordDomain.class.getPackage().getName(); // 数据字典
+		String productPackageName = ProductDomain.class.getPackage().getName();// 商品管理
 		String str = StringTools.concatWithSymbol(";", mallPackageName, mallPackageName + "ex", //
 				smsPackageName, smsPackageName + "ex", //
 				mallUserPackageName, mallUserPackageName + "ex", //
-				dicPackageName, dicPackageName + "ex",//
-				productPackageName,productPackageName+"ex");
+				dicPackageName, dicPackageName + "ex", //
+				productPackageName, productPackageName + "ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}

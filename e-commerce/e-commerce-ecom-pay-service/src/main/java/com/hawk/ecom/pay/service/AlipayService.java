@@ -13,8 +13,7 @@ import com.hawk.framework.dic.validation.annotation.Valid;
 @Service
 public class AlipayService {
 	
-	@Autowired
-	private OrderService orderService;
+	
 	
 	@Valid
 	public String tradeWap(@NotNull("支付参数") @Valid AlipayTradeWapParam AlipayTradeWapParam){
