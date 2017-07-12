@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.base.persist.mapper.DistrictMapper">
+
+	<sql id="columns">	
+				district_code AS "districtCode" ,
+		district AS "district" ,
+		parent_district_code AS "parentDistrictCode" ,
+		district_type AS "districtType" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="districtCode != null"> AND district_code = #{districtCode}  </if>
+			<if test="district != null"> AND district = #{district}  </if>
+			<if test="parentDistrictCode != null"> AND parent_district_code = #{parentDistrictCode}  </if>
+			<if test="districtType != null"> AND district_type = #{districtType}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_districtCode != null"> AND district_code = #{old_districtCode}  </if>			
+			<if test="old_district != null"> AND district = #{old_district}  </if>			
+			<if test="old_parentDistrictCode != null"> AND parent_district_code = #{old_parentDistrictCode}  </if>			
+			<if test="old_districtType != null"> AND district_type = #{old_districtType}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			district_code = #{districtCode},
+			district = #{district},
+			parent_district_code = #{parentDistrictCode},
+			district_type = #{districtType},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="districtCode != null">district_code = #{districtCode},</if>
+			<if test="district != null">district = #{district},</if>
+			<if test="parentDistrictCode != null">parent_district_code = #{parentDistrictCode},</if>
+			<if test="districtType != null">district_type = #{districtType},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND district_code = #{districtCode}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="DistrictDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_bas_district
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="DistrictDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_district
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_district
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_district
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="DistrictDomain">
+		INSERT INTO t_bas_district (			
+				district_code,				
+				district,				
+				parent_district_code,				
+				district_type				
+		)		
+		VALUES (	
+			#{districtCode},
+			#{district},
+			#{parentDistrictCode},
+			#{districtType}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_bas_district
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_bas_district
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="DistrictDomain">
+		UPDATE t_bas_district	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="DistrictDomain">
+		UPDATE t_bas_district
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_bas_district	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="DistrictDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_district
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

@@ -25,6 +25,7 @@
 		<module>../e-commerce-ecom-query-web</module>
 		<module>../e-commerce-ecom-pay-service</module>
 		<module>../e-commerce-ecom-outer-service</module>
+		<module>../e-commerce-ecom-base-service</module>
 
 	</modules>
 
@@ -179,6 +180,12 @@
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-ecom-trans-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-ecom-base-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

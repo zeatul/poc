@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.base.persist.mapper.MobileNumberSegmentMapper">
+
+	<sql id="columns">	
+				mobile_number_prefix AS "mobileNumberPrefix" ,
+		city_code AS "cityCode" ,
+		province_code AS "provinceCode" ,
+		mobile_operator_code AS "mobileOperatorCode" ,
+		isp AS "isp" ,
+		isp_type AS "ispType" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="mobileNumberPrefix != null"> AND mobile_number_prefix = #{mobileNumberPrefix}  </if>
+			<if test="cityCode != null"> AND city_code = #{cityCode}  </if>
+			<if test="provinceCode != null"> AND province_code = #{provinceCode}  </if>
+			<if test="mobileOperatorCode != null"> AND mobile_operator_code = #{mobileOperatorCode}  </if>
+			<if test="isp != null"> AND isp = #{isp}  </if>
+			<if test="ispType != null"> AND isp_type = #{ispType}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_mobileNumberPrefix != null"> AND mobile_number_prefix = #{old_mobileNumberPrefix}  </if>			
+			<if test="old_cityCode != null"> AND city_code = #{old_cityCode}  </if>			
+			<if test="old_provinceCode != null"> AND province_code = #{old_provinceCode}  </if>			
+			<if test="old_mobileOperatorCode != null"> AND mobile_operator_code = #{old_mobileOperatorCode}  </if>			
+			<if test="old_isp != null"> AND isp = #{old_isp}  </if>			
+			<if test="old_ispType != null"> AND isp_type = #{old_ispType}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			mobile_number_prefix = #{mobileNumberPrefix},
+			city_code = #{cityCode},
+			province_code = #{provinceCode},
+			mobile_operator_code = #{mobileOperatorCode},
+			isp = #{isp},
+			isp_type = #{ispType},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="mobileNumberPrefix != null">mobile_number_prefix = #{mobileNumberPrefix},</if>
+			<if test="cityCode != null">city_code = #{cityCode},</if>
+			<if test="provinceCode != null">province_code = #{provinceCode},</if>
+			<if test="mobileOperatorCode != null">mobile_operator_code = #{mobileOperatorCode},</if>
+			<if test="isp != null">isp = #{isp},</if>
+			<if test="ispType != null">isp_type = #{ispType},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND mobile_number_prefix = #{mobileNumberPrefix}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="MobileNumberSegmentDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_bas_mobile_number_segment
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="MobileNumberSegmentDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_mobile_number_segment
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_mobile_number_segment
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_mobile_number_segment
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="MobileNumberSegmentDomain">
+		INSERT INTO t_bas_mobile_number_segment (			
+				mobile_number_prefix,				
+				city_code,				
+				province_code,				
+				mobile_operator_code,				
+				isp,				
+				isp_type				
+		)		
+		VALUES (	
+			#{mobileNumberPrefix},
+			#{cityCode},
+			#{provinceCode},
+			#{mobileOperatorCode},
+			#{isp},
+			#{ispType}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_bas_mobile_number_segment
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_bas_mobile_number_segment
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="MobileNumberSegmentDomain">
+		UPDATE t_bas_mobile_number_segment	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="MobileNumberSegmentDomain">
+		UPDATE t_bas_mobile_number_segment
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_bas_mobile_number_segment	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="MobileNumberSegmentDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_mobile_number_segment
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>
