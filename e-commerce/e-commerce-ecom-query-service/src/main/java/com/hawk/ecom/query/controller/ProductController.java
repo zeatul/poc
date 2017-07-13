@@ -17,6 +17,7 @@ import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.request.ListSkuParam;
+import com.hawk.ecom.query.request.LoadChargeDataProductParam;
 import com.hawk.ecom.query.service.ProductService;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -65,6 +66,8 @@ public class ProductController {
 		return SuccessResponse.build(productService.loadSkuPriceAndQuantity(skuId));
 	}
 	
-	
+	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
+		LoadChargeDataProductParam loadChargeDataProductParam = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
+	}
 
 }

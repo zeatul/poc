@@ -9,6 +9,9 @@ import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.persist.mapperex.ProductExMapper;
 import com.hawk.ecom.query.request.ListSkuParam;
+import com.hawk.ecom.query.request.LoadChargeDataProductParam;
+import com.hawk.framework.dic.validation.annotation.NotNull;
+import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
@@ -23,7 +26,8 @@ public class ProductService {
 		return productExMapper.listCategory();
 	}
 	
-	public PagingQueryResultWrap<ProductSkuExDomain> querySku(ListSkuParam listSkuParam){
+	@Valid
+	public PagingQueryResultWrap<ProductSkuExDomain> querySku(@NotNull("参数") @Valid ListSkuParam listSkuParam){
 		MybatisParam params = MybatisTools.page(new MybatisParam(), listSkuParam);
 		params.put("productStatus", 100);
 		params.put("skuStatus", 100);
@@ -54,5 +58,10 @@ public class ProductService {
 		params.put("skuId", skuId);
 		return productExMapper.loadSkuPriceAndQuantity(params);
 	}
+	
+	@Valid
+	 public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam){
+		 
+	 }
 
 }

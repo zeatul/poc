@@ -175,8 +175,12 @@ public class AttrNameService {
 		attrNameDomain.setCreateUserCode(AuthThreadLocal.getUserCode());
 		attrNameDomain.setUpdateDate(now);
 		attrNameDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+		attrNameDomain.setAttrNameCode(createAttrNameParam.getAttrNameCode());
 
 		attrNameDomain.setId(pkGenService.genPk());
+		if (attrNameDomain.getAttrNameCode() == null){
+			attrNameDomain.setAttrNameCode(attrNameDomain.getId().toString());
+		}
 
 		try {
 			attrNameMapper.insert(attrNameDomain);

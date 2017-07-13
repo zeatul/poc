@@ -176,6 +176,7 @@ public class OrderService {
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());
+					
 				}else if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.BSI){
 					BsiParam bsiParam = DomainTools.copy(map, BsiParam.class);
 					validateService.validateObject(bsiParam);

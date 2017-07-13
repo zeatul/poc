@@ -243,8 +243,7 @@ public class CreateSkuParam {
 	/**
 	 * 是否有特价 is_special_price
 	 */
-	@NotNull
-	private Integer isSpecialPrice;
+	private Integer isSpecialPrice ;
 	
 	
 	/**

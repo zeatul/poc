@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.base.persist.mapperex.MobileNumberSegmentExMapper">
+
+	
+	
+	<select id="queryComposeMobileNumberSegment"  resultType="MobileNumberSegmentExDomain">
+		SELECT a.mobile_number_prefix AS "mobileNumberPrefix" ,
+				a.province_code AS "provinceCode" ,
+				b.district AS "province" ,
+				c.mobile_operator_code AS "mobileOperatorCode" ,
+				c.mobile_operator AS "mobileOperator" 
+		FROM t_bas_mobile_number_segment a , t_bas_district b , t_bas_mobile_operator c
+		WHERE a.province_code = b.district_code 
+		AND a.mobile_operator_code = c.mobile_operator_code	
+		AND a.mobileNumberPrefix = #{mobileNumberPrefix}
+	</select>
+</mapper>

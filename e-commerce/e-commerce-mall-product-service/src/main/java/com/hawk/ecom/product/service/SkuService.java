@@ -20,11 +20,8 @@ import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.product.constant.ConstAttr;
 import com.hawk.ecom.product.constant.ConstProduct;
-import com.hawk.ecom.product.exception.AttrNameIsNotUsedByProductRuntimeException;
-import com.hawk.ecom.product.exception.AttrNameIsUsedByProductRuntimeException;
 import com.hawk.ecom.product.exception.AttrValueIsNotReferencedRuntimeException;
 import com.hawk.ecom.product.exception.AttrValueIsReferencedRuntimeException;
-import com.hawk.ecom.product.exception.AttrValueIsUsedRuntimeException;
 import com.hawk.ecom.product.exception.CategoryIsDifferentRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateSkuRuntimeException;
 import com.hawk.ecom.product.exception.LackOfSkuAttrNameOfProductRuntimeException;
@@ -245,7 +242,9 @@ public class SkuService {
 
 		
 		skuDomain.setIsSpecialPrice(createSkuParam.getIsSpecialPrice());
-
+		if (createSkuParam.getIsSpecialPrice() == null){
+			skuDomain.setIsSpecialPrice(ConstBoolean.FALSE);
+		}
 		skuDomain.setProductId(createSkuParam.getProductId());
 
 		skuDomain.setSkuCode(createSkuParam.getSkuCode());

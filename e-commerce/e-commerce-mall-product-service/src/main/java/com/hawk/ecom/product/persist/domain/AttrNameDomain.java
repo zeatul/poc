@@ -51,6 +51,11 @@ public class AttrNameDomain implements Serializable {
 	private Integer attrValueType;
 	
 	/**
+	 * 属性名编号 attr_name_code
+	 */
+	private String attrNameCode;
+	
+	/**
 	 * 属性名名称 attr_name
 	 */
 	private String attrName;
@@ -206,6 +211,22 @@ public class AttrNameDomain implements Serializable {
 	 */	
 	public void setAttrValueType (Integer attrValueType) {
 		this.attrValueType = attrValueType;
+	}
+	
+	/**
+	 * 
+	 * @return 属性名编号 attr_name_code
+	 */
+	public String getAttrNameCode(){
+		return attrNameCode;
+	}
+	
+	/**
+	 * 
+	 * @param attrNameCode 属性名编号 attr_name_code
+	 */	
+	public void setAttrNameCode (String attrNameCode) {
+		this.attrNameCode = attrNameCode;
 	}
 	
 	/**

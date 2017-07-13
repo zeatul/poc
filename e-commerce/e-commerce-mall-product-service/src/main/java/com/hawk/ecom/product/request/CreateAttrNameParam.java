@@ -13,6 +13,14 @@ public class CreateAttrNameParam {
 
 
 
+	public String getAttrNameCode() {
+		return attrNameCode;
+	}
+
+	public void setAttrNameCode(String attrNameCode) {
+		this.attrNameCode = attrNameCode;
+	}
+
 	public Integer getCategoryId() {
 		return categoryId;
 	}
@@ -101,8 +109,6 @@ public class CreateAttrNameParam {
 	@NotNull
 	private Integer attrNameBusinessType;
 	
-	
-	
 	/**
 	 * 属性值类型 attr_value_type
 	 */
@@ -122,8 +128,15 @@ public class CreateAttrNameParam {
 	private Integer isSearch;	
 	
 	/**
+	 * 属性名编号
+	 */
+	private String attrNameCode;
+	
+	/**
 	 * 操作员编号
 	 */
 	@MallNotLogin
 	private String operatorCode;
+	
+	
 }

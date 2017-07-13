@@ -25,7 +25,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+13, "产品SKU不符合上架条件,Sku销售价格必须大于0");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+14, "产品不符合上架条件,必须有处于上架状态的产品SKU,上架开始时间不能小于上架结束时间，上架结束时间必须大于当前时间");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+15, "产品目录 变式状态不符合当前操作的要求,[新建商品时，变式状态应该为可用状态],[维护模板时，变式状态为编辑状态]");
-		errorMap.put(ErrorCodeAllocation.PRODUCT+16, "属性名已经存在,[最终产品目录分类+属性名名称+父属性名ID+父属性值ID,唯一]");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+16, "属性名已经存在,[最终产品目录分类+属性名名称+父属性名ID+父属性值ID,唯一],[属性名编号唯一]");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+17, "属性名未找到");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+18, "属性名已经使用,不能删除,不能修改属性值类型和属性名业务类型");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+19, "属性名状态不符合当前操作要求");
