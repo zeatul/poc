@@ -59,9 +59,9 @@ public class ProductService {
 		return productExMapper.loadSkuPriceAndQuantity(params);
 	}
 	
-	@Valid
-	 public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam){
-		 
-	 }
+//	@Valid
+//	 public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam){
+//		 
+//	 }
 
 }
