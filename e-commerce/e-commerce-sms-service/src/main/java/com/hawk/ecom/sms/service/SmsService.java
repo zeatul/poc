@@ -51,6 +51,24 @@ public class SmsService {
 		return StringTools.concatWithSymbol("_", "sms","veriCode",mobileNumber);
 	}
 	
+	public static class V {
+		public long getStdt() {
+			return stdt;
+		}
+		public void setStdt(long stdt) {
+			this.stdt = stdt;
+		}
+		public int getTimes() {
+			return times;
+		}
+		public void setTimes(int times) {
+			this.times = times;
+		}
+		
+		private int times;
+		private long stdt;
+	}
+	
 	
 	/**
 	 * 发送验证码
@@ -77,23 +95,7 @@ public class SmsService {
 		
 		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);
 		
-		class V {
-			public long getStdt() {
-				return stdt;
-			}
-			public void setStdt(long stdt) {
-				this.stdt = stdt;
-			}
-			public int getTimes() {
-				return times;
-			}
-			public void setTimes(int times) {
-				this.times = times;
-			}
-			
-			private int times;
-			private long stdt;
-		}
+		
 		
 		V v = cacheService.get(key2, V.class);
 		if (v!=null){
