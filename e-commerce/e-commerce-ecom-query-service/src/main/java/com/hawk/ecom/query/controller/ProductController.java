@@ -66,8 +66,8 @@ public class ProductController {
 		return SuccessResponse.build(productService.loadSkuPriceAndQuantity(skuId));
 	}
 	
-	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
-		LoadChargeDataProductParam loadChargeDataProductParam = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
-	}
+//	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
+//		LoadChargeDataProductParam loadChargeDataProductParam = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
+//	}
 
 }

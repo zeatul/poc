@@ -36,17 +36,19 @@ public class AlipayService {
 		AlipayTradeWapPayRequest alipayTradeWapPayRequest = new AlipayTradeWapPayRequest();
 		
 		AlipayTradeWapPayModel alipayTradeWapPayModel=new AlipayTradeWapPayModel();
+//		
+//		alipayTradeWapPayModel.setOutTradeNo(out_trade_no);
+//		alipayTradeWapPayModel.setSubject(subject);
+//		alipayTradeWapPayModel.setTotalAmount(total_amount);
+//		alipayTradeWapPayModel.setBody(body);
+//		alipayTradeWapPayModel.setProductCode("QUICK_WAP_PAY");
+//		alipayTradeWapPayModel.setBizModel(model);
+//	    // 设置异步通知地址
+//	    alipay_request.setNotifyUrl(AlipayConfig.notify_url);
+//	    // 设置同步地址
+//	    alipay_request.setReturnUrl(AlipayConfig.return_url);   
 		
-		alipayTradeWapPayModel.setOutTradeNo(out_trade_no);
-		alipayTradeWapPayModel.setSubject(subject);
-		alipayTradeWapPayModel.setTotalAmount(total_amount);
-		alipayTradeWapPayModel.setBody(body);
-		alipayTradeWapPayModel.setProductCode("QUICK_WAP_PAY");
-		alipayTradeWapPayModel.setBizModel(model);
-	    // 设置异步通知地址
-	    alipay_request.setNotifyUrl(AlipayConfig.notify_url);
-	    // 设置同步地址
-	    alipay_request.setReturnUrl(AlipayConfig.return_url);   
+		return null;
 		
 	}
 
