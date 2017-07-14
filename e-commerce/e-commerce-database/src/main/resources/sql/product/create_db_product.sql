@@ -512,7 +512,8 @@ create index I_prd_prd_id on t_prd_sku
 create unique index ui_prd_sku_st_sku_code on t_prd_sku
 (
    store_code,
-   sku_code
+   sku_code,
+   product_id
 );
 
 /*==============================================================*/

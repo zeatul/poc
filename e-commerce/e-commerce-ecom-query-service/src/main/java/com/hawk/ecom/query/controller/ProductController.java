@@ -56,18 +56,39 @@ public class ProductController {
 		return SuccessResponse.build(result);
 	}
 	
+	/**
+	 * 加载sku
+	 * @param skuId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/sku/load/id/{skuId}", method = {POST,GET})
 	public WebResponse<ProductSkuExDomain> loadSku(@PathVariable Integer skuId) throws Exception{
 		 return SuccessResponse.build(productService.loadSku(skuId));
 	}
 	
+	/**
+	 * 加载sku的价格和库存
+	 * @param skuId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/sku/loadSaleData/id/{skuId}", method = {POST,GET})
 	public WebResponse<ProductSkuExDomain> loadSkuPriceAndQuantity(@PathVariable Integer skuId) throws Exception{
 		return SuccessResponse.build(productService.loadSkuPriceAndQuantity(skuId));
 	}
 	
-//	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
-//		LoadChargeDataProductParam loadChargeDataProductParam = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
-//	}
+	
+	/**
+	 * 查询流量充值产品
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sku/loadChargeData", method = {POST})
+	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
+		LoadChargeDataProductParam param = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
+		return SuccessResponse.build(productService.loadChargeDataProduct(param));
+	}
 
 }

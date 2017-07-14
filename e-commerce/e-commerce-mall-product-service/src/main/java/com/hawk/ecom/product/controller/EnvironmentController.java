@@ -41,6 +41,7 @@ import com.hawk.ecom.product.service.CategoryService;
 import com.hawk.ecom.product.service.ProductService;
 import com.hawk.ecom.product.service.SkuService;
 import com.hawk.ecom.product.service.StockService;
+import com.hawk.ecom.pub.constant.ConstAttrNameCode;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.utility.tools.DateTools;
@@ -131,7 +132,7 @@ public class EnvironmentController {
 		 */
 		CreateAttrNameParam createAttrNameParam = new CreateAttrNameParam();
 		createAttrNameParam.setAttrName("移动服务商");
-		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.OPERATOR);
+		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Mobile.OPERATOR);
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);
 		createAttrNameParam.setCategoryId(mobileDataChargeCategory.getId());
@@ -174,7 +175,7 @@ public class EnvironmentController {
 		 * 创建产品分类流量充值的属性名和属性值   ,属性名：流量大小(100M,1000M,5000M)
 		 */
 		createAttrNameParam = new CreateAttrNameParam();
-		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.SIZE);
+		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Mobile.DATA_SIZE);
 		createAttrNameParam.setAttrName("流量大小");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.INTEGER);
@@ -219,7 +220,7 @@ public class EnvironmentController {
 		 */
 		
 		createAttrNameParam = new CreateAttrNameParam();
-		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.PROVINCE);
+		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Mobile.PROVINCE);
 		createAttrNameParam.setAttrName("地区");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);
@@ -263,7 +264,7 @@ public class EnvironmentController {
 		 * 创建产品分类流量充值的属性名和属性值 , 属性名：流量类型(本省,省漫)
 		 */
 		createAttrNameParam = new CreateAttrNameParam();
-		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.REGION_TYPE);
+		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Mobile.REGION_TYPE);
 		createAttrNameParam.setAttrName("流量类型");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);

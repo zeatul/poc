@@ -1,10 +1,15 @@
 package com.hawk.ecom.query.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.pub.constant.ConstAttrNameCode;
+import com.hawk.ecom.query.exception.AttrValueNotFoundRuntimeException;
+import com.hawk.ecom.query.exception.SkuNotFoundRuntimeException;
 import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.persist.mapperex.ProductExMapper;
@@ -18,40 +23,40 @@ import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 
 @Service
 public class ProductService {
-	
+
 	@Autowired
 	private ProductExMapper productExMapper;
-	
-	public List<ProductCategoryExDomain> listCategory(){
+
+	public List<ProductCategoryExDomain> listCategory() {
 		return productExMapper.listCategory();
 	}
-	
+
 	@Valid
-	public PagingQueryResultWrap<ProductSkuExDomain> querySku(@NotNull("参数") @Valid ListSkuParam listSkuParam){
+	public PagingQueryResultWrap<ProductSkuExDomain> querySku(@NotNull("参数") @Valid ListSkuParam listSkuParam) {
 		MybatisParam params = MybatisTools.page(new MybatisParam(), listSkuParam);
 		params.put("productStatus", 100);
 		params.put("skuStatus", 100);
 		params.put("categoryId", listSkuParam.getCategoryId());
-		
+
 		PagingQueryResultWrap<ProductSkuExDomain> wrap = new PagingQueryResultWrap<ProductSkuExDomain>();
 		wrap.setDbCount(productExMapper.countSku(params));
-		
-		if (wrap.getDbCount() > 0){
+
+		if (wrap.getDbCount() > 0) {
 			wrap.setRecords(productExMapper.querySku(params));
 		}
-		
+
 		return wrap;
 	}
-	
-	public ProductSkuExDomain loadSku(int skuId){
+
+	public ProductSkuExDomain loadSku(int skuId) {
 		MybatisParam params = new MybatisParam();
 		params.put("productStatus", 100);
 		params.put("skuStatus", 100);
 		params.put("skuId", skuId);
 		return productExMapper.loadSku(params);
 	}
-	
-	public ProductSkuExDomain loadSkuPriceAndQuantity(int skuId){
+
+	public ProductSkuExDomain loadSkuPriceAndQuantity(int skuId) {
 		MybatisParam params = new MybatisParam();
 		params.put("productStatus", 100);
 		params.put("skuStatus", 100);
@@ -59,9 +64,29 @@ public class ProductService {
 		return productExMapper.loadSkuPriceAndQuantity(params);
 	}
 	
-//	@Valid
-//	 public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam){
-//		 
-//	 }
+	private Integer findAttrValueId(String attrNameCode , String attrValue){
+		Integer attrValueId = productExMapper.findAttrValueId(attrNameCode, attrValue);
+		if (attrValueId == null)
+			throw new AttrValueNotFoundRuntimeException();
+		return attrValueId;
+	}
+
+	@Valid
+	public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam) {
+		List<Integer> attrValueIdList = new ArrayList<Integer>();
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.OPERATOR,	loadChargeDataProductParam.getOperator()));		
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.PROVINCE,	loadChargeDataProductParam.getProvince()));
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.REGION_TYPE,	loadChargeDataProductParam.getRegionType()));
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.DATA_SIZE,	loadChargeDataProductParam.getSize().toString()));
+		
+		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.findSkuByAttrValueIds(attrValueIdList, 4);
+		
+		if (productSkuExDomainList.size() == 0){
+			throw new SkuNotFoundRuntimeException();
+		}
+		
+		return productSkuExDomainList.get(ThreadLocalRandom.current().nextInt(productSkuExDomainList.size()));
+	
+	}
 
 }
