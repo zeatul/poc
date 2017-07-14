@@ -14,6 +14,8 @@
 		sku_attr_value_values AS "skuAttrValueValues" ,
 		product_key_attr_value_ids AS "productKeyAttrValueIds" ,
 		product_key_attr_value_values AS "productKeyAttrValueValues" ,
+		all_attr_value_ids AS "allAttrValueIds" ,
+		all_attr_value_values AS "allAttrValueValues" ,
 		sku_status AS "skuStatus" ,
 		thumbnail AS "thumbnail" ,
 		market_price AS "marketPrice" ,
@@ -52,6 +54,8 @@
 			<if test="skuAttrValueValues != null"> AND sku_attr_value_values = #{skuAttrValueValues}  </if>
 			<if test="productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{productKeyAttrValueIds}  </if>
 			<if test="productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{productKeyAttrValueValues}  </if>
+			<if test="allAttrValueIds != null"> AND all_attr_value_ids = #{allAttrValueIds}  </if>
+			<if test="allAttrValueValues != null"> AND all_attr_value_values = #{allAttrValueValues}  </if>
 			<if test="skuStatus != null"> AND sku_status = #{skuStatus}  </if>
 			<if test="thumbnail != null"> AND thumbnail = #{thumbnail}  </if>
 			<if test="marketPrice != null"> AND market_price = #{marketPrice}  </if>
@@ -91,6 +95,8 @@
 			<if test="old_skuAttrValueValues != null"> AND sku_attr_value_values = #{old_skuAttrValueValues}  </if>			
 			<if test="old_productKeyAttrValueIds != null"> AND product_key_attr_value_ids = #{old_productKeyAttrValueIds}  </if>			
 			<if test="old_productKeyAttrValueValues != null"> AND product_key_attr_value_values = #{old_productKeyAttrValueValues}  </if>			
+			<if test="old_allAttrValueIds != null"> AND all_attr_value_ids = #{old_allAttrValueIds}  </if>			
+			<if test="old_allAttrValueValues != null"> AND all_attr_value_values = #{old_allAttrValueValues}  </if>			
 			<if test="old_skuStatus != null"> AND sku_status = #{old_skuStatus}  </if>			
 			<if test="old_thumbnail != null"> AND thumbnail = #{old_thumbnail}  </if>			
 			<if test="old_marketPrice != null"> AND market_price = #{old_marketPrice}  </if>			
@@ -130,6 +136,8 @@
 			sku_attr_value_values = #{skuAttrValueValues},
 			product_key_attr_value_ids = #{productKeyAttrValueIds},
 			product_key_attr_value_values = #{productKeyAttrValueValues},
+			all_attr_value_ids = #{allAttrValueIds},
+			all_attr_value_values = #{allAttrValueValues},
 			sku_status = #{skuStatus},
 			thumbnail = #{thumbnail},
 			market_price = #{marketPrice},
@@ -169,6 +177,8 @@
 			<if test="skuAttrValueValues != null">sku_attr_value_values = #{skuAttrValueValues},</if>
 			<if test="productKeyAttrValueIds != null">product_key_attr_value_ids = #{productKeyAttrValueIds},</if>
 			<if test="productKeyAttrValueValues != null">product_key_attr_value_values = #{productKeyAttrValueValues},</if>
+			<if test="allAttrValueIds != null">all_attr_value_ids = #{allAttrValueIds},</if>
+			<if test="allAttrValueValues != null">all_attr_value_values = #{allAttrValueValues},</if>
 			<if test="skuStatus != null">sku_status = #{skuStatus},</if>
 			<if test="thumbnail != null">thumbnail = #{thumbnail},</if>
 			<if test="marketPrice != null">market_price = #{marketPrice},</if>
@@ -241,6 +251,8 @@
 				sku_attr_value_values,				
 				product_key_attr_value_ids,				
 				product_key_attr_value_values,				
+				all_attr_value_ids,				
+				all_attr_value_values,				
 				sku_status,				
 				thumbnail,				
 				market_price,				
@@ -277,6 +289,8 @@
 			#{skuAttrValueValues},
 			#{productKeyAttrValueIds},
 			#{productKeyAttrValueValues},
+			#{allAttrValueIds},
+			#{allAttrValueValues},
 			#{skuStatus},
 			#{thumbnail},
 			#{marketPrice},

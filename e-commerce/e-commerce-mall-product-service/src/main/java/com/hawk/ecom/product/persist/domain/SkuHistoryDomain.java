@@ -62,6 +62,16 @@ public class SkuHistoryDomain implements Serializable {
 	private String productKeyAttrValueValues;
 	
 	/**
+	 * SKU全部属性值ID集合(关键+SKU) all_attr_value_ids
+	 */
+	private String allAttrValueIds;
+	
+	/**
+	 * SKU全部属性值集合(关键+SKU) all_attr_value_values
+	 */
+	private String allAttrValueValues;
+	
+	/**
 	 * SKU状态 sku_status
 	 */
 	private Integer skuStatus;
@@ -324,6 +334,38 @@ public class SkuHistoryDomain implements Serializable {
 	 */	
 	public void setProductKeyAttrValueValues (String productKeyAttrValueValues) {
 		this.productKeyAttrValueValues = productKeyAttrValueValues;
+	}
+	
+	/**
+	 * 
+	 * @return SKU全部属性值ID集合(关键+SKU) all_attr_value_ids
+	 */
+	public String getAllAttrValueIds(){
+		return allAttrValueIds;
+	}
+	
+	/**
+	 * 
+	 * @param allAttrValueIds SKU全部属性值ID集合(关键+SKU) all_attr_value_ids
+	 */	
+	public void setAllAttrValueIds (String allAttrValueIds) {
+		this.allAttrValueIds = allAttrValueIds;
+	}
+	
+	/**
+	 * 
+	 * @return SKU全部属性值集合(关键+SKU) all_attr_value_values
+	 */
+	public String getAllAttrValueValues(){
+		return allAttrValueValues;
+	}
+	
+	/**
+	 * 
+	 * @param allAttrValueValues SKU全部属性值集合(关键+SKU) all_attr_value_values
+	 */	
+	public void setAllAttrValueValues (String allAttrValueValues) {
+		this.allAttrValueValues = allAttrValueValues;
 	}
 	
 	/**

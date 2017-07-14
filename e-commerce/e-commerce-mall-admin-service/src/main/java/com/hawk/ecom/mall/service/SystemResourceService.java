@@ -96,7 +96,7 @@ public class SystemResourceService {
 	}
 	
 	@Valid
-	public SystemResourceDomain loadSystemResource(@NotEmpty("参数") @Valid SystemLoadResourceParam systemLoadResourceParam) {
+	public SystemResourceDomain loadSystemResource(@NotNull("参数") @Valid SystemLoadResourceParam systemLoadResourceParam) {
 		
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
@@ -112,7 +112,7 @@ public class SystemResourceService {
 	}
 
 	@Valid
-	public SystemResourceDomain createResource(@NotEmpty("参数") @Valid SystemCreateResourceParam systemCreateResourceParam) {
+	public SystemResourceDomain createResource(@NotNull("参数") @Valid SystemCreateResourceParam systemCreateResourceParam) {
 		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
 			throw new IllegalAccessRuntimeException();
 		}
