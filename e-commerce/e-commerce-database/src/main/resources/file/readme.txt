@@ -38,6 +38,15 @@ source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/s
 #交易
 source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/trans/create_db_trans.sql;
 
+#支付
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/pay/create_db_pay.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/pay/init_data_pay.sql;
+
+#基础数据
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/create_db_base.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_district.sql;
+source /usr/local/source/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_mobile_number_segment.sql;
 
 #################local##########################
 
@@ -80,7 +89,15 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/
 #交易
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/trans/create_db_trans.sql;
 
+#支付
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/pay/create_db_pay.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/pay/init_data_pay.sql;
 
+#基础数据
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/create_db_base.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_district.sql;
+source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_mobile_number_segment.sql;
 
 
 
@@ -118,3 +135,13 @@ source /home/mysql/sql/init_data_muser.sql;
 #产品
 source /home/mysql/sql/create_db_product.sql;
 source /home/mysql/sql/init_data_product.sql;
+
+#交易
+source /home/mysql/sql/create_db_pay.sql;
+source /home/mysql/sql/init_data_pay.sql;
+
+#基础数据
+source /home/mysql/sql/create_db_base.sql;
+source /home/mysql/sql/init_data_base.sql;
+source /home/mysql/sql/init_data_base_district.sql;
+source /home/mysql/sql/init_data_base_mobile_number_segment.sql;

@@ -1,0 +1,2 @@
+insert into t_prd_supplier(id,store_code,supplier_code,supplier_name,supplier_main_business,supplier_status,supplier_desc,supplier_memo,create_user_code,create_date,update_user_code,update_date)
+value(1,'ST000001','VD000001','上海聪充网络科技有限公司','三网流量充值',100,'hello','hello','admin',now(),'admin',NOW());

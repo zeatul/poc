@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * table = t_prd_stock_history
- * desc = 
+ * desc = 库存
  * 
  * @author Gen
  */
@@ -50,7 +50,7 @@ public interface StockHistoryMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param StockHistoryDomain 
+	 * @param StockHistoryDomain 库存
 	 * @return 插入的记录数
 	 */
 	int insert(StockHistoryDomain stockHistoryDomain);
@@ -71,14 +71,14 @@ public interface StockHistoryMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param StockHistoryDomain 
+	 * @param StockHistoryDomain 库存
 	 * @return 更新的记录数
 	 */
 	int update(StockHistoryDomain stockHistoryDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param StockHistoryDomain 
+	 * @param StockHistoryDomain 库存
 	 * @return 更新的记录数
 	 */
 	int updateWithoutNull(StockHistoryDomain stockHistoryDomain);

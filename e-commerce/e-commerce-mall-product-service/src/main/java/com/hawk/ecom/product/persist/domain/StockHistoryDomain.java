@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 /**
- * 
+ * 库存
  * The class is mapped to the table t_prd_stock_history 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 

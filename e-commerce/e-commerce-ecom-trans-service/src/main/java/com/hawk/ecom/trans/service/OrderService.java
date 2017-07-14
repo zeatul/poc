@@ -22,6 +22,8 @@ import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.exception.DiffrentStoreProductInOneOrderRuntimeException;
 import com.hawk.ecom.trans.exception.OrderNotBelongToLoginUserRuntimeException;
 import com.hawk.ecom.trans.exception.OrderNotFoundRuntimeException;
+import com.hawk.ecom.trans.exception.OrderPayExpireRuntimeException;
+import com.hawk.ecom.trans.exception.OrderStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.trans.exception.ProductIsNotOnSaleRuntimeException;
 import com.hawk.ecom.trans.exception.StockQuantityIsNotEnoughException;
 import com.hawk.ecom.trans.exception.UnSupportOrderDeatailQuantityRuntimeException;
@@ -38,6 +40,7 @@ import com.hawk.ecom.trans.request.LoadOrderParam;
 import com.hawk.ecom.trans.request.BsiParam;
 import com.hawk.ecom.trans.request.ChargeMobileParam;
 import com.hawk.ecom.trans.request.OrderDetailParam;
+import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.framework.dic.validation.ValidateService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -173,6 +176,7 @@ public class OrderService {
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());
+					
 				}else if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.BSI){
 					BsiParam bsiParam = DomainTools.copy(map, BsiParam.class);
 					validateService.validateObject(bsiParam);
@@ -399,4 +403,67 @@ public class OrderService {
 		return orderDomain;
 	}
 
+	/**
+	 * 获取订单支付用的信息并校验订单
+	 * 订单用户和当前用户一致
+	 * 订单状态为未支付，支付类型为在线支付
+	 * 订单的支付截止日期未到
+	 * 该笔订单的资金总额，单位为RMB-Yuan。取值范围为[0.01，100000000.00]，精确到小数点后两位
+	 * 订单subject ，支付宝用,不可以为空
+	 * 订单body,支付宝用,可以为空
+	 * @param orderId
+	 * @return
+	 */
+	public OrderPayInfo computeOrderPayInfo(Integer orderId){
+		
+		/**
+		 * 加载订单
+		 */
+		OrderDomain orderDomain = loadOrder(orderId);
+		/**
+		 * 订单用户和当前用户一致
+		 */
+		if (!orderDomain.getUserCode().equals(AuthThreadLocal.getUserCode())){
+			throw new OrderNotBelongToLoginUserRuntimeException();
+		}
+		
+		/**
+		 * 订单状态为未支付，支付类型为在线支付
+		 * 订单的支付截止日期未到
+		 */
+		if (!orderDomain.getOrderStatus().equals(ConstOrder.OrderStatus.UNPAIED)){
+			throw new OrderStatusIsNotAcceptableRuntimeException();
+		}
+		
+		if (orderDomain.getOrderPayExpireTime().before(new Date())){
+			throw new OrderPayExpireRuntimeException();
+		}
+		
+		/**
+		 * 该笔订单的资金总额，单位为RMB-Yuan。取值范围为[0.01，100000000.00]，精确到小数点后两位
+		 */
+		BigDecimal transPrice = orderDomain.getOrderTransPrice();
+		if (transPrice.compareTo(new BigDecimal("0.01")) < 0){
+			throw new RuntimeException("支付价格不合法");
+		}
+		if (transPrice.compareTo(new BigDecimal("100000000.00")) > 0){
+			throw new RuntimeException();
+		} 
+		
+		
+		OrderPayInfo orderPayInfo = new OrderPayInfo();
+		orderPayInfo.setApplicationCode("SVP");
+		orderPayInfo.setBody(null);
+		orderPayInfo.setOrderCode(orderDomain.getOrderCode());
+		orderPayInfo.setOrderDesc(orderDomain.getOrderDesc());
+		orderPayInfo.setStoreCode(orderDomain.getStoreCode());
+		orderPayInfo.setTotalAmount(orderDomain.getOrderTransPrice());
+		orderPayInfo.setUserCode(orderDomain.getUserCode());
+		return orderPayInfo;
+	}
+	
+	public static void main(String[] args){
+		System.out.println(new BigDecimal("10.0100").scale());
+		System.out.println(new BigDecimal("10.01").toString());
+	}
 }

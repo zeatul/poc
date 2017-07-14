@@ -1,3 +1,5 @@
+drop index ui_prd_attr_name_code on t_prd_attr_name;
+
 drop index ui_prd_attr_name on t_prd_attr_name;
 
 drop index i_prd_attr_name_pvid on t_prd_attr_name;
@@ -78,6 +80,7 @@ create table t_prd_attr_name
    pvid                 integer unsigned not null comment '父属性值主键',
    attr_name_business_type smallint unsigned not null comment '属性名业务功能分类(品牌,供应商,其它)',
    attr_value_type      tinyint unsigned not null comment '属性值类型',
+   attr_name_code       varchar(50) not null comment '属性名编号',
    attr_name            varchar(200) not null comment '属性名名称',
    attr_name_status     tinyint unsigned not null comment '属性名状态',
    is_search            tinyint unsigned not null comment '是否搜索',
@@ -118,6 +121,14 @@ create unique index ui_prd_attr_name on t_prd_attr_name
    attr_name,
    pid,
    pvid
+);
+
+/*==============================================================*/
+/* Index: ui_prd_attr_name_code                                 */
+/*==============================================================*/
+create unique index ui_prd_attr_name_code on t_prd_attr_name
+(
+   attr_name_code
 );
 
 /*==============================================================*/
@@ -326,16 +337,16 @@ create table t_prd_product
    store_code           varchar(50) not null comment '商户编号',
    product_code         varchar(50) not null comment '产品编号',
    product_name         varchar(200) not null comment '产品名称',
-   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
-   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
-   product_sku_attr_name_ids varchar(200) comment '产品SKU属性名ID集合',
+   product_key_attr_value_ids varchar(250) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(1000) comment '产品关键属性值集合',
+   product_sku_attr_name_ids varchar(250) comment '产品SKU属性名ID集合',
    product_status       tinyint unsigned not null comment '产品状态',
    product_home_page    varchar(200) comment '产品主页',
    thumbnail            varchar(200) comment '缩略图',
    product_desc         varchar(1000) comment '产品描述',
    product_memo         varchar(200) comment '产品备注',
-   product_min_price    decimal(15,4) comment '产品最低价格',
-   product_max_price    decimal(15,4) comment '产品最高价格',
+   product_min_price    decimal(17,2) comment '产品最低价格',
+   product_max_price    decimal(17,2) comment '产品最高价格',
    on_sale_stdt         timestamp(3) null comment '上架开始时间',
    on_sale_endt         timestamp(3) null comment '上架结束时间',
    is_virtual           tinyint unsigned not null comment '是否为虚拟物品',
@@ -413,16 +424,16 @@ create table t_prd_product_history
    store_code           varchar(50) not null comment '商户编号',
    product_code         varchar(50) not null comment '产品编号',
    product_name         varchar(200) not null comment '产品名称',
-   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
-   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
-   product_sku_attr_name_ids varchar(200) comment '产品SKU属性名ID集合',
+   product_key_attr_value_ids varchar(250) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(1000) comment '产品关键属性值集合',
+   product_sku_attr_name_ids varchar(250) comment '产品SKU属性名ID集合',
    product_status       tinyint unsigned not null comment '产品状态',
    product_home_page    varchar(200) comment '产品主页',
    thumbnail            varchar(200) comment '缩略图',
    product_desc         varchar(1000) comment '产品描述',
    product_memo         varchar(200) comment '产品备注',
-   product_min_price    decimal(15,4) comment '产品最低价格',
-   product_max_price    decimal(15,4) comment '产品最高价格',
+   product_min_price    decimal(17,2) comment '产品最低价格',
+   product_max_price    decimal(17,2) comment '产品最高价格',
    on_sale_stdt         timestamp(3) null comment '上架开始时间',
    on_sale_endt         timestamp(3) null comment '上架结束时间',
    is_virtual           tinyint unsigned not null comment '是否为虚拟物品',
@@ -450,14 +461,16 @@ create table t_prd_sku
    store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
-   sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
+   sku_attr_value_ids   varchar(250) comment 'SKU属性值ID集合',
    sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
-   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
-   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
+   product_key_attr_value_ids varchar(250) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(1000) comment '产品关键属性值集合',
+   all_attr_value_ids   varchar(250) comment 'SKU全部属性值ID集合(关键+SKU)',
+   all_attr_value_values varchar(1000) comment 'SKU全部属性值集合(关键+SKU)',
    sku_status           tinyint unsigned not null comment 'SKU状态',
    thumbnail            varchar(200) comment '缩略图',
-   market_price         decimal(15,4) comment '市场价',
-   sale_price           decimal(15,4) comment '销售价',
+   market_price         decimal(17,2) comment '市场价',
+   sale_price           decimal(17,2) comment '销售价',
    currency             smallint unsigned comment '币种',
    sku_stock_quantity   integer not null comment 'SKU库存数量',
    is_special_price     tinyint unsigned not null comment '是否有特价',
@@ -521,14 +534,16 @@ create table t_prd_sku_history
    store_code           varchar(50) not null comment '商户编号',
    sku_code             varchar(50) not null comment 'SKU编号',
    sku_name             varchar(200) comment 'SKU名称',
-   sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
+   sku_attr_value_ids   varchar(250) comment 'SKU属性值ID集合',
    sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
-   product_key_attr_value_ids varchar(200) comment '产品关键属性值ID集合',
-   product_key_attr_value_values varchar(200) comment '产品关键属性值集合',
+   product_key_attr_value_ids varchar(250) comment '产品关键属性值ID集合',
+   product_key_attr_value_values varchar(1000) comment '产品关键属性值集合',
+   all_attr_value_ids   varchar(250) comment 'SKU全部属性值ID集合(关键+SKU)',
+   all_attr_value_values varchar(1000) comment 'SKU全部属性值集合(关键+SKU)',
    sku_status           tinyint unsigned not null comment 'SKU状态',
    thumbnail            varchar(200) comment '缩略图',
-   market_price         decimal(15,4) comment '市场价',
-   sale_price           decimal(15,4) comment '销售价',
+   market_price         decimal(17,2) comment '市场价',
+   sale_price           decimal(17,2) comment '销售价',
    sku_stock_quantity   integer not null comment 'SKU库存数量',
    is_special_price     tinyint unsigned not null comment '是否有特价',
    width                smallint unsigned comment '宽度',
@@ -574,8 +589,8 @@ create table t_prd_sku_snapshoot
    sku_name             varchar(200) comment 'SKU名称',
    sku_attr_value_ids   varchar(200) comment 'SKU属性值ID集合',
    sku_attr_value_values varchar(1000) comment 'SKU属性值集合',
-   market_price         decimal(15,4) comment '市场价',
-   sale_price           decimal(15,4) comment '销售价',
+   market_price         decimal(17,2) comment '市场价',
+   sale_price           decimal(17,2) comment '销售价',
    thumbnail            varchar(200) comment '缩略图',
    sku_memo             varchar(200) comment 'SKU备注',
    product_version      smallint unsigned not null comment '产品版本号',
@@ -673,9 +688,13 @@ alter table t_prd_stock_history comment '库存';
 create table t_prd_supplier
 (
    id                   integer unsigned not null comment '主键',
+   store_code           varchar(50) not null comment '商户编号',
    supplier_code        varchar(50) not null comment '供应商编号',
    supplier_name        varchar(200) not null comment '供应商名称',
-   store_code           varchar(50) not null comment '商户编号',
+   supplier_main_business varchar(200) not null comment '供应商主营业务',
+   supplier_status      tinyint unsigned not null comment '供应商状态',
+   supplier_desc        varchar(500) comment '供应商描述',
+   supplier_memo        varchar(200) comment '供应商备注',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -691,5 +710,6 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*==============================================================*/
 create unique index ui_svp_supplier_code on t_prd_supplier
 (
-   supplier_code
+   supplier_code,
+   store_code
 );

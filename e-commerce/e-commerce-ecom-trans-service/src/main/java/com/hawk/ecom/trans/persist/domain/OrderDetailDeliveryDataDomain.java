@@ -101,9 +101,24 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private String benefMobileNumber;
 	
 	/**
-	 * 外部交易编号 outer_order_code
+	 * 外部交易编号(供应商返回的订单编号) outer_order_code
 	 */
 	private String outerOrderCode;
+	
+	/**
+	 * 外部交易状态 outer_order_status
+	 */
+	private String outerOrderStatus;
+	
+	/**
+	 * 外部交易描述 outer_order_msg
+	 */
+	private String outerOrderMsg;
+	
+	/**
+	 * 交付状态 delivery_status
+	 */
+	private Integer deliveryStatus;
 	
 	/**
 	 * 任务号 task_code
@@ -116,6 +131,11 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private String taskName;
 	
 	/**
+	 * 任务状态 task_status
+	 */
+	private Integer taskStatus;
+	
+	/**
 	 * 任务描述 task_desc
 	 */
 	private String taskDesc;
@@ -124,11 +144,6 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 * 任务备注 task_memo
 	 */
 	private String taskMemo;
-	
-	/**
-	 * 任务状态 task_status
-	 */
-	private Integer taskStatus;
 	
 	/**
 	 * 计划执行时间 schedule_exec_date
@@ -146,14 +161,14 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private Integer maxExecTimes;
 	
 	/**
-	 * 最后一次执行错误代码 last_exec_err_code
+	 * 最后一次执行返回代码 last_exec_rtn_code
 	 */
-	private String lastExecErrCode;
+	private String lastExecRtnCode;
 	
 	/**
-	 * 最后一次执行错误原因 last_exec_err_msg
+	 * 最后一次执行返回消息 last_exec_rtn_msg
 	 */
-	private String lastExecErrMsg;
+	private String lastExecRtnMsg;
 	
 	/**
 	 * 最后一次执行开始时间 last_exec_begin_time
@@ -480,7 +495,7 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 外部交易编号 outer_order_code
+	 * @return 外部交易编号(供应商返回的订单编号) outer_order_code
 	 */
 	public String getOuterOrderCode(){
 		return outerOrderCode;
@@ -488,10 +503,58 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @param outerOrderCode 外部交易编号 outer_order_code
+	 * @param outerOrderCode 外部交易编号(供应商返回的订单编号) outer_order_code
 	 */	
 	public void setOuterOrderCode (String outerOrderCode) {
 		this.outerOrderCode = outerOrderCode;
+	}
+	
+	/**
+	 * 
+	 * @return 外部交易状态 outer_order_status
+	 */
+	public String getOuterOrderStatus(){
+		return outerOrderStatus;
+	}
+	
+	/**
+	 * 
+	 * @param outerOrderStatus 外部交易状态 outer_order_status
+	 */	
+	public void setOuterOrderStatus (String outerOrderStatus) {
+		this.outerOrderStatus = outerOrderStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 外部交易描述 outer_order_msg
+	 */
+	public String getOuterOrderMsg(){
+		return outerOrderMsg;
+	}
+	
+	/**
+	 * 
+	 * @param outerOrderMsg 外部交易描述 outer_order_msg
+	 */	
+	public void setOuterOrderMsg (String outerOrderMsg) {
+		this.outerOrderMsg = outerOrderMsg;
+	}
+	
+	/**
+	 * 
+	 * @return 交付状态 delivery_status
+	 */
+	public Integer getDeliveryStatus(){
+		return deliveryStatus;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryStatus 交付状态 delivery_status
+	 */	
+	public void setDeliveryStatus (Integer deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 	
 	/**
@@ -528,6 +591,22 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 任务状态 task_status
+	 */
+	public Integer getTaskStatus(){
+		return taskStatus;
+	}
+	
+	/**
+	 * 
+	 * @param taskStatus 任务状态 task_status
+	 */	
+	public void setTaskStatus (Integer taskStatus) {
+		this.taskStatus = taskStatus;
+	}
+	
+	/**
+	 * 
 	 * @return 任务描述 task_desc
 	 */
 	public String getTaskDesc(){
@@ -556,22 +635,6 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */	
 	public void setTaskMemo (String taskMemo) {
 		this.taskMemo = taskMemo;
-	}
-	
-	/**
-	 * 
-	 * @return 任务状态 task_status
-	 */
-	public Integer getTaskStatus(){
-		return taskStatus;
-	}
-	
-	/**
-	 * 
-	 * @param taskStatus 任务状态 task_status
-	 */	
-	public void setTaskStatus (Integer taskStatus) {
-		this.taskStatus = taskStatus;
 	}
 	
 	/**
@@ -624,34 +687,34 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 最后一次执行错误代码 last_exec_err_code
+	 * @return 最后一次执行返回代码 last_exec_rtn_code
 	 */
-	public String getLastExecErrCode(){
-		return lastExecErrCode;
+	public String getLastExecRtnCode(){
+		return lastExecRtnCode;
 	}
 	
 	/**
 	 * 
-	 * @param lastExecErrCode 最后一次执行错误代码 last_exec_err_code
+	 * @param lastExecRtnCode 最后一次执行返回代码 last_exec_rtn_code
 	 */	
-	public void setLastExecErrCode (String lastExecErrCode) {
-		this.lastExecErrCode = lastExecErrCode;
+	public void setLastExecRtnCode (String lastExecRtnCode) {
+		this.lastExecRtnCode = lastExecRtnCode;
 	}
 	
 	/**
 	 * 
-	 * @return 最后一次执行错误原因 last_exec_err_msg
+	 * @return 最后一次执行返回消息 last_exec_rtn_msg
 	 */
-	public String getLastExecErrMsg(){
-		return lastExecErrMsg;
+	public String getLastExecRtnMsg(){
+		return lastExecRtnMsg;
 	}
 	
 	/**
 	 * 
-	 * @param lastExecErrMsg 最后一次执行错误原因 last_exec_err_msg
+	 * @param lastExecRtnMsg 最后一次执行返回消息 last_exec_rtn_msg
 	 */	
-	public void setLastExecErrMsg (String lastExecErrMsg) {
-		this.lastExecErrMsg = lastExecErrMsg;
+	public void setLastExecRtnMsg (String lastExecRtnMsg) {
+		this.lastExecRtnMsg = lastExecRtnMsg;
 	}
 	
 	/**

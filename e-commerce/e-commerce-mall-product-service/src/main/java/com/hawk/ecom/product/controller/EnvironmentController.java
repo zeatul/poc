@@ -94,6 +94,7 @@ public class EnvironmentController {
 		CreateCategoryParam createCategorParam = new CreateCategoryParam();
 		createCategorParam.setCategoryName("虚拟商品");
 		createCategorParam.setIsLeaf(0);
+		createCategorParam.setCategoryCode("virtual_product");
 		createCategorParam.setOperatorCode(userCode);
 		createCategorParam.setPid(0);
 		
@@ -109,6 +110,7 @@ public class EnvironmentController {
 		
 		createCategorParam = new CreateCategoryParam();
 		createCategorParam.setCategoryName("流量充值");
+		createCategorParam.setCategoryCode("charge_data");
 		createCategorParam.setIsLeaf(1);
 		createCategorParam.setOperatorCode(userCode);
 		createCategorParam.setPid(virtualGoodsCategory.getId());		
@@ -129,6 +131,7 @@ public class EnvironmentController {
 		 */
 		CreateAttrNameParam createAttrNameParam = new CreateAttrNameParam();
 		createAttrNameParam.setAttrName("移动服务商");
+		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.OPERATOR);
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);
 		createAttrNameParam.setCategoryId(mobileDataChargeCategory.getId());
@@ -171,6 +174,7 @@ public class EnvironmentController {
 		 * 创建产品分类流量充值的属性名和属性值   ,属性名：流量大小(100M,1000M,5000M)
 		 */
 		createAttrNameParam = new CreateAttrNameParam();
+		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.SIZE);
 		createAttrNameParam.setAttrName("流量大小");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.INTEGER);
@@ -215,6 +219,7 @@ public class EnvironmentController {
 		 */
 		
 		createAttrNameParam = new CreateAttrNameParam();
+		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.PROVINCE);
 		createAttrNameParam.setAttrName("地区");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);
@@ -255,9 +260,10 @@ public class EnvironmentController {
 		districtDomainList.add(guangdongDistrictAttrValueDomain);
 		
 		/**
-		 * 创建产品分类流量充值的属性名和属性值 , 属性名：流量类型(全国,本地)
+		 * 创建产品分类流量充值的属性名和属性值 , 属性名：流量类型(本省,省漫)
 		 */
 		createAttrNameParam = new CreateAttrNameParam();
+		createAttrNameParam.setAttrNameCode(ConstAttr.AttrNameCodeForChargeData.REGION_TYPE);
 		createAttrNameParam.setAttrName("流量类型");
 		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
 		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.STRING);

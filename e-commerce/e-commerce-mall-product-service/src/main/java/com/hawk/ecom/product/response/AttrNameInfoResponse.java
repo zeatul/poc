@@ -4,6 +4,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class AttrNameInfoResponse implements ResponseData{
 
+	public String getAttrNameCode() {
+		return attrNameCode;
+	}
+
+	public void setAttrNameCode(String attrNameCode) {
+		this.attrNameCode = attrNameCode;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +108,11 @@ public class AttrNameInfoResponse implements ResponseData{
 	 * 属性名业务功能分类(品牌,供应商,其它) attr_name_business_type
 	 */
 	private Integer attrNameBusinessType;
+	
+	/**
+	 * 属性名编号 attr_name_code
+	 */
+	private String attrNameCode;
 	
 	
 	/**

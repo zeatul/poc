@@ -4,6 +4,14 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
 public class UpdateAttrNameParam {
+	public String getAttrNameCode() {
+		return attrNameCode;
+	}
+
+	public void setAttrNameCode(String attrNameCode) {
+		this.attrNameCode = attrNameCode;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -60,6 +68,11 @@ public class UpdateAttrNameParam {
 	@NotNull
 	private Integer id;
 	
+	
+	/**
+	 * 属性名编号 attr_name_code
+	 */
+	private String attrNameCode;
 		
 	/**
 	 * 属性名业务功能分类(品牌,供应商,其它) attr_name_business_type

@@ -18,9 +18,9 @@ import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
 
 public class SystemResourceControllerTest extends AbstractControllerTest {
 
-	private String token = "a0b93e35-09ca-41cc-9755-d7af10854844";
+	private String token = "d2b4872f-4842-4128-b387-fb63e5e7763c";
 
-//	 @Test
+	 @Test
 	public void testCreate() {
 		String url = getUrl("/mall/admin/resource/create");
 		SystemCreateResourceParam request = new SystemCreateResourceParam();

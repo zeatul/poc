@@ -31,7 +31,7 @@ public class SystemResourceController {
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to /query/system/resource controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+		return "Welcome to /ecom/query/system/resource controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 	
 	@RequestMapping(value = "/h5main", method = {POST,GET})

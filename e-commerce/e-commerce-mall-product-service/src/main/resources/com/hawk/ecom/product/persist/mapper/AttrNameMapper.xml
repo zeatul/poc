@@ -12,6 +12,7 @@
 		pvid AS "pvid" ,
 		attr_name_business_type AS "attrNameBusinessType" ,
 		attr_value_type AS "attrValueType" ,
+		attr_name_code AS "attrNameCode" ,
 		attr_name AS "attrName" ,
 		attr_name_status AS "attrNameStatus" ,
 		is_search AS "isSearch" ,
@@ -32,6 +33,7 @@
 			<if test="pvid != null"> AND pvid = #{pvid}  </if>
 			<if test="attrNameBusinessType != null"> AND attr_name_business_type = #{attrNameBusinessType}  </if>
 			<if test="attrValueType != null"> AND attr_value_type = #{attrValueType}  </if>
+			<if test="attrNameCode != null"> AND attr_name_code = #{attrNameCode}  </if>
 			<if test="attrName != null"> AND attr_name = #{attrName}  </if>
 			<if test="attrNameStatus != null"> AND attr_name_status = #{attrNameStatus}  </if>
 			<if test="isSearch != null"> AND is_search = #{isSearch}  </if>
@@ -53,6 +55,7 @@
 			<if test="old_pvid != null"> AND pvid = #{old_pvid}  </if>			
 			<if test="old_attrNameBusinessType != null"> AND attr_name_business_type = #{old_attrNameBusinessType}  </if>			
 			<if test="old_attrValueType != null"> AND attr_value_type = #{old_attrValueType}  </if>			
+			<if test="old_attrNameCode != null"> AND attr_name_code = #{old_attrNameCode}  </if>			
 			<if test="old_attrName != null"> AND attr_name = #{old_attrName}  </if>			
 			<if test="old_attrNameStatus != null"> AND attr_name_status = #{old_attrNameStatus}  </if>			
 			<if test="old_isSearch != null"> AND is_search = #{old_isSearch}  </if>			
@@ -74,6 +77,7 @@
 			pvid = #{pvid},
 			attr_name_business_type = #{attrNameBusinessType},
 			attr_value_type = #{attrValueType},
+			attr_name_code = #{attrNameCode},
 			attr_name = #{attrName},
 			attr_name_status = #{attrNameStatus},
 			is_search = #{isSearch},
@@ -95,6 +99,7 @@
 			<if test="pvid != null">pvid = #{pvid},</if>
 			<if test="attrNameBusinessType != null">attr_name_business_type = #{attrNameBusinessType},</if>
 			<if test="attrValueType != null">attr_value_type = #{attrValueType},</if>
+			<if test="attrNameCode != null">attr_name_code = #{attrNameCode},</if>
 			<if test="attrName != null">attr_name = #{attrName},</if>
 			<if test="attrNameStatus != null">attr_name_status = #{attrNameStatus},</if>
 			<if test="isSearch != null">is_search = #{isSearch},</if>
@@ -149,6 +154,7 @@
 				pvid,				
 				attr_name_business_type,				
 				attr_value_type,				
+				attr_name_code,				
 				attr_name,				
 				attr_name_status,				
 				is_search,				
@@ -167,6 +173,7 @@
 			#{pvid},
 			#{attrNameBusinessType},
 			#{attrValueType},
+			#{attrNameCode},
 			#{attrName},
 			#{attrNameStatus},
 			#{isSearch},
