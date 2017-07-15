@@ -32,7 +32,7 @@ public class ConstPay {
 		/**
 		 * 微信手机网页支付
 		 */
-		public final String  WEICHAT = "weichat";
+		public final String  WXPAY = "wxpay";
 	}
 
 }

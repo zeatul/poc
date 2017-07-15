@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.github.wxpay.sdk.WXPay;
+import com.github.wxpay.sdk.WXPayConfigImpl;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.spring.config.EcomPayRootConfig.WebPackage;
 import com.hawk.framework.pub.pk.MysqlPkGenerator;
@@ -35,6 +37,13 @@ public class EcomPayRootConfig {
 		AlipayClient client = new DefaultAlipayClient(AlipayConfig.TRADE_URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT,
 				AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 		return client;
+	}
+	
+	@Bean
+	public WXPay wxPay() throws Exception{
+		String certPath = null;
+		WXPayConfigImpl config = new WXPayConfigImpl(certPath);
+	    return new WXPay(config);
 	}
 	
 	@Bean("paymentBillCodeSequenceService")

@@ -13,4 +13,4 @@ INSERT INTO t_pay_payment_category(id,pid,depth,payment_category_code,payment_ca
 value(3,2,3,'alipay','支付宝',100,'alipay.jpg',1,'admin',now(),'admin',now());
 
 INSERT INTO t_pay_payment_category(id,pid,depth,payment_category_code,payment_category_name,payment_category_status,payment_category_logo,is_leaf,create_user_code,create_date,update_user_code,update_date)
-value(4,2,3,'weichat','微信支付',100,'weichat.jpg',1,'admin',now(),'admin',now());
+value(4,2,3,'wxpay','微信支付',100,'wxpay.jpg',1,'admin',now(),'admin',now());
