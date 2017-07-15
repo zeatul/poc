@@ -27,12 +27,12 @@ public class ConstPay {
 		/**
 		 * 支付宝手机网页支付
 		 */
-		public final String  ALIPAY_WAP = "alipay";
+		public final String  ALIPAY = "alipay";
 		
 		/**
 		 * 微信手机网页支付
 		 */
-		public final String  WEICHAT_WAP = "weichat";
+		public final String  WEICHAT = "weichat";
 	}
 
 }

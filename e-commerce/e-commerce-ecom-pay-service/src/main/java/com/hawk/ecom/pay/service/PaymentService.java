@@ -12,6 +12,8 @@ import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
 import com.hawk.ecom.pay.persist.domain.PaymentBillHistoryDomain;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillHistoryMapper;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
+import com.hawk.ecom.pay.request.AlipayTradeParam;
+import com.hawk.ecom.pay.request.NotifyParam;
 import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.trans.response.OrderPayInfo;
@@ -44,6 +46,9 @@ public class PaymentService {
 	@Autowired
 	private PaymentBillHistoryMapper paymentBillHistoryMapper;
 	
+	@Autowired
+	private AlipayService alipayService;
+	
 	/**
 	 * 
 	 * @param now
@@ -57,7 +62,12 @@ public class PaymentService {
 	}
 	
 	@Valid
-	public String trade(@Valid @NotNull("支付参数") PayParam payParam) throws Exception{
+	public void notify(@Valid @NotNull("通知参数") NotifyParam notifyParam){
+		
+	}
+	
+	@Valid
+	public String pay(@Valid @NotNull("支付参数") PayParam payParam) throws Exception{
 		/**
 		 * 获取支付信息
 		 */
@@ -135,7 +145,12 @@ public class PaymentService {
 		 */
 		String paymentCategoryCode = payParam.getPaymentCategoryCode();
 		if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.ALIPAY)){
-			
+			AlipayTradeParam alipayTradeParam = new AlipayTradeParam();
+			alipayTradeParam.setBody(orderPayInfo.getBody());
+			alipayTradeParam.setOutTradeNo(paymentBillDomain.getPaymentBillCode());
+			alipayTradeParam.setSubject(orderPayInfo.getOrderDesc());
+			alipayTradeParam.setTotalAmount(orderPayInfo.getTotalAmount());
+			return alipayService.tradeWap(alipayTradeParam);
 		}else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WEICHAT)){
 			throw new RuntimeException("暂不支持微信支付");
 		}else{

@@ -2,7 +2,7 @@ package com.hawk.ecom.pay.service;
 
 public class AlipayConfig {
 
-	public final static String URL = "https://openapi.alipay.com/gateway.do";
+	public final static String TRADE_URL = "https://openapi.alipay.com/gateway.do";
 	public final static String APPID = "";
 	public final static String RSA_PRIVATE_KEY = "";
 	// 编码
@@ -13,5 +13,9 @@ public class AlipayConfig {
 	public static String SIGNTYPE = "RSA2";
 
 	public static String ALIPAY_PUBLIC_KEY = "";
+	
+	public static String NOTIFY_URL = "";
+	
+	public static String RETURN_URL = "";
 
 }
