@@ -46,6 +46,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.PRODUCT+34, "图片未找到");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+35, "属性值未被引用");
 		errorMap.put(ErrorCodeAllocation.PRODUCT+36, "属性值已经被引用");
+		errorMap.put(ErrorCodeAllocation.PRODUCT+37, "Sku已经有出售记录，不能删除");
 	
 	}
 	

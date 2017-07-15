@@ -10,6 +10,10 @@ drop index ui_pay_order_code on t_pay_payment_bill;
 
 drop table if exists t_pay_payment_bill;
 
+drop index i_pay_payment_history on t_pay_payment_bill_history;
+
+drop table if exists t_pay_payment_bill_history;
+
 drop index ui_pay_category_code on t_pay_payment_category;
 
 drop table if exists t_pay_payment_category;
@@ -64,6 +68,7 @@ create table t_pay_payment_bill
    currency             smallint unsigned not null comment '币种',
    payment_bill_status  tinyint unsigned not null comment '支付单状态',
    payment_category_code varchar(50) not null comment '支付分类编号',
+   payment_bill_memo    varchar(200) comment '支付单备注',
    create_user_code     varchar(50) comment '创建者',
    create_date          timestamp(3) null comment '创建日期',
    update_user_code     varchar(50) comment '更新者',
@@ -100,6 +105,48 @@ create index i_pay_payment on t_pay_payment_bill
 (
    store_code,
    user_code
+);
+
+/*==============================================================*/
+/* Table: t_pay_payment_bill_history                            */
+/*==============================================================*/
+create table t_pay_payment_bill_history
+(
+   id                   integer unsigned not null comment '主键',
+   order_code           varchar(50) not null comment '订单编号',
+   order_desc           varchar(500) not null comment '订单描述',
+   order_body           varchar(500) comment '订单内容',
+   application_code     varchar(50) not null comment '应用编号',
+   payment_bill_code    varchar(50) not null comment '支付单编号',
+   store_code           varchar(50) not null comment '商户编号',
+   user_code            varchar(50) not null comment '用户编号',
+   order_trans_price    decimal(17,2) not null comment '订单成交价',
+   currency             smallint unsigned not null comment '币种',
+   payment_bill_status  tinyint unsigned not null comment '支付单状态',
+   payment_category_code varchar(50) not null comment '支付分类编号',
+   payment_bill_memo    varchar(200) comment '支付单备注',
+   create_user_code     varchar(50) comment '创建者',
+   create_date          timestamp(3) null comment '创建日期',
+   update_user_code     varchar(50) comment '更新者',
+   update_date          timestamp(3) null comment '更新日期',
+   delete_user_code     varchar(50) comment '删除者',
+   delete_date          timestamp(3) null comment '删除日期',
+   primary key (id)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table t_pay_payment_bill_history comment '支付单';
+
+/*==============================================================*/
+/* Index: i_pay_payment_history                                 */
+/*==============================================================*/
+create index i_pay_payment_history on t_pay_payment_bill_history
+(
+   store_code,
+   user_code,
+   order_code,
+   application_code,
+   payment_bill_code
 );
 
 /*==============================================================*/

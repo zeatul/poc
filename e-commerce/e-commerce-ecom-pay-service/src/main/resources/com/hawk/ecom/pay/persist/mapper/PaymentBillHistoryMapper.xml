@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.pay.persist.mapper.PaymentBillMapper">
+<mapper namespace="com.hawk.ecom.pay.persist.mapper.PaymentBillHistoryMapper">
 
 	<sql id="columns">	
 				id AS "id" ,
@@ -13,7 +13,7 @@
 		payment_bill_code AS "paymentBillCode" ,
 		store_code AS "storeCode" ,
 		user_code AS "userCode" ,
-		total_amount AS "totalAmount" ,
+		order_trans_price AS "orderTransPrice" ,
 		currency AS "currency" ,
 		payment_bill_status AS "paymentBillStatus" ,
 		payment_category_code AS "paymentCategoryCode" ,
@@ -36,7 +36,7 @@
 			<if test="paymentBillCode != null"> AND payment_bill_code = #{paymentBillCode}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
-			<if test="totalAmount != null"> AND total_amount = #{totalAmount}  </if>
+			<if test="orderTransPrice != null"> AND order_trans_price = #{orderTransPrice}  </if>
 			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="paymentBillStatus != null"> AND payment_bill_status = #{paymentBillStatus}  </if>
 			<if test="paymentCategoryCode != null"> AND payment_category_code = #{paymentCategoryCode}  </if>
@@ -60,7 +60,7 @@
 			<if test="old_paymentBillCode != null"> AND payment_bill_code = #{old_paymentBillCode}  </if>			
 			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
 			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
-			<if test="old_totalAmount != null"> AND total_amount = #{old_totalAmount}  </if>			
+			<if test="old_orderTransPrice != null"> AND order_trans_price = #{old_orderTransPrice}  </if>			
 			<if test="old_currency != null"> AND currency = #{old_currency}  </if>			
 			<if test="old_paymentBillStatus != null"> AND payment_bill_status = #{old_paymentBillStatus}  </if>			
 			<if test="old_paymentCategoryCode != null"> AND payment_category_code = #{old_paymentCategoryCode}  </if>			
@@ -84,7 +84,7 @@
 			payment_bill_code = #{paymentBillCode},
 			store_code = #{storeCode},
 			user_code = #{userCode},
-			total_amount = #{totalAmount},
+			order_trans_price = #{orderTransPrice},
 			currency = #{currency},
 			payment_bill_status = #{paymentBillStatus},
 			payment_category_code = #{paymentCategoryCode},
@@ -108,7 +108,7 @@
 			<if test="paymentBillCode != null">payment_bill_code = #{paymentBillCode},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
-			<if test="totalAmount != null">total_amount = #{totalAmount},</if>
+			<if test="orderTransPrice != null">order_trans_price = #{orderTransPrice},</if>
 			<if test="currency != null">currency = #{currency},</if>
 			<if test="paymentBillStatus != null">payment_bill_status = #{paymentBillStatus},</if>
 			<if test="paymentCategoryCode != null">payment_category_code = #{paymentCategoryCode},</if>
@@ -128,35 +128,35 @@
 		</trim>
 	</sql>
 	
-	<select id="load"  resultType="PaymentBillDomain">
+	<select id="load"  resultType="PaymentBillHistoryDomain">
 		SELECT 
 		<include refid="columns" />
-		FROM t_pay_payment_bill
+		FROM t_pay_payment_bill_history
 		<include refid="pkwhere" />		
 	</select>
 	
-	<select id="loadDynamic" parameterType="hashmap" resultType="PaymentBillDomain">
+	<select id="loadDynamic" parameterType="hashmap" resultType="PaymentBillHistoryDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_pay_payment_bill
+		FROM t_pay_payment_bill_history
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 	</select>
 
 	<select id="count"  parameterType="hashmap" resultType="integer">
 		SELECT count(1) 
-		FROM t_pay_payment_bill
+		FROM t_pay_payment_bill_history
 		<include refid="where" />
 	</select>
 	
 	<select id="countByPK"  resultType="integer">
 		SELECT count(1) 
-		FROM t_pay_payment_bill
+		FROM t_pay_payment_bill_history
 		<include refid="pkwhere" />		
 	</select>
 	
-	<insert id="insert"  parameterType="PaymentBillDomain">
-		INSERT INTO t_pay_payment_bill (			
+	<insert id="insert"  parameterType="PaymentBillHistoryDomain">
+		INSERT INTO t_pay_payment_bill_history (			
 				id,				
 				order_code,				
 				order_desc,				
@@ -165,7 +165,7 @@
 				payment_bill_code,				
 				store_code,				
 				user_code,				
-				total_amount,				
+				order_trans_price,				
 				currency,				
 				payment_bill_status,				
 				payment_category_code,				
@@ -186,7 +186,7 @@
 			#{paymentBillCode},
 			#{storeCode},
 			#{userCode},
-			#{totalAmount},
+			#{orderTransPrice},
 			#{currency},
 			#{paymentBillStatus},
 			#{paymentCategoryCode},
@@ -201,37 +201,37 @@
 	</insert>
 	
 	<delete id="delete" >
-		DELETE FROM t_pay_payment_bill
+		DELETE FROM t_pay_payment_bill_history
 		<include refid="pkwhere" />	
 	</delete>
 	
 	<delete id="deleteDynamic" parameterType="hashmap">
-		DELETE FROM t_pay_payment_bill
+		DELETE FROM t_pay_payment_bill_history
 		<include refid="where" />
 	</delete>
 
-	<update id="update" parameterType="PaymentBillDomain">
-		UPDATE t_pay_payment_bill	
+	<update id="update" parameterType="PaymentBillHistoryDomain">
+		UPDATE t_pay_payment_bill_history	
 		<include refid="update" />
 		<include refid="pkwhere" />	
 	</update>
 	
-	<update id="updateWithoutNull" parameterType="PaymentBillDomain">
-		UPDATE t_pay_payment_bill
+	<update id="updateWithoutNull" parameterType="PaymentBillHistoryDomain">
+		UPDATE t_pay_payment_bill_history
 		<include refid="updateWithoutNull"/>
 		<include refid="pkwhere" />	
 	</update>
 	
 	<update id="updateDynamicWithoutNull" parameterType="hashmap">
-		UPDATE t_pay_payment_bill	
+		UPDATE t_pay_payment_bill_history	
 		<include refid="updateWithoutNull" />
 		<include refid="where_old" />
 	</update>
 	
-	<select id="loadDynamicPaging" parameterType="hashmap" resultType="PaymentBillDomain">
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="PaymentBillHistoryDomain">
 		SELECT 		
 		<include refid="columns" />
-		FROM t_pay_payment_bill
+		FROM t_pay_payment_bill_history
 		<include refid="where" />
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
 		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	

@@ -8,11 +8,11 @@ import java.util.Date;
 
 /**
  * 支付单
- * The class is mapped to the table t_pay_payment_bill 
+ * The class is mapped to the table t_pay_payment_bill_history 
  * Don't modify this file as it will be regenerated frequently.
  * @author Code-Gen 
  */
-public class PaymentBillDomain implements Serializable {
+public class PaymentBillHistoryDomain implements Serializable {
 
 	private static final long serialVersionUID = -1L;
 	
@@ -57,9 +57,9 @@ public class PaymentBillDomain implements Serializable {
 	private String userCode;
 	
 	/**
-	 * 订单支付总价 total_amount
+	 * 订单成交价 order_trans_price
 	 */
-	private BigDecimal totalAmount;
+	private BigDecimal orderTransPrice;
 	
 	/**
 	 * 币种 currency
@@ -242,18 +242,18 @@ public class PaymentBillDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单支付总价 total_amount
+	 * @return 订单成交价 order_trans_price
 	 */
-	public BigDecimal getTotalAmount(){
-		return totalAmount;
+	public BigDecimal getOrderTransPrice(){
+		return orderTransPrice;
 	}
 	
 	/**
 	 * 
-	 * @param totalAmount 订单支付总价 total_amount
+	 * @param orderTransPrice 订单成交价 order_trans_price
 	 */	
-	public void setTotalAmount (BigDecimal totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setOrderTransPrice (BigDecimal orderTransPrice) {
+		this.orderTransPrice = orderTransPrice;
 	}
 	
 	/**

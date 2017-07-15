@@ -5,6 +5,14 @@ import com.hawk.framework.dic.validation.annotation.NotNull;
 
 public class PayParam {
 	
+	public boolean isWap() {
+		return isWap;
+	}
+
+	public void setWap(boolean isWap) {
+		this.isWap = isWap;
+	}
+
 	public String getPaymentCategoryCode() {
 		return paymentCategoryCode;
 	}
@@ -39,5 +47,7 @@ public class PayParam {
 	 * 支付分类，决定了系统调用哪个支付平台
 	 */
 	private String paymentCategoryCode ;
-
+	
+	private boolean isWap;
+	
 }

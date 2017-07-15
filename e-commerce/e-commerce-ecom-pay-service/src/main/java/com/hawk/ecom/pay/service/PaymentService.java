@@ -4,17 +4,24 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pay.constant.ConstPay;
 import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
+import com.hawk.ecom.pay.persist.domain.PaymentBillHistoryDomain;
+import com.hawk.ecom.pay.persist.mapper.PaymentBillHistoryMapper;
+import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
 import com.hawk.ecom.pay.request.PayParam;
+import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
+import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -31,6 +38,12 @@ public class PaymentService {
 	@Autowired
 	private OrderService orderService;
 	
+	@Autowired
+	private PaymentBillMapper paymentBillMapper;
+	
+	@Autowired
+	private PaymentBillHistoryMapper paymentBillHistoryMapper;
+	
 	/**
 	 * 
 	 * @param now
@@ -44,7 +57,7 @@ public class PaymentService {
 	}
 	
 	@Valid
-	public void trade(@Valid @NotNull PayParam payParam){
+	public String trade(@Valid @NotNull("支付参数") PayParam payParam) throws Exception{
 		/**
 		 * 获取支付信息
 		 */
@@ -73,13 +86,60 @@ public class PaymentService {
 		paymentBillDomain.setTotalAmount(orderPayInfo.getTotalAmount());
 		paymentBillDomain.setPaymentBillCode(generatePaymentBillCode(now));
 		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING);
+		paymentBillDomain.setPaymentCategoryCode(payParam.getPaymentCategoryCode());
 		paymentBillDomain.setStoreCode(orderPayInfo.getStoreCode());
 		paymentBillDomain.setUpdateDate(now);
 		paymentBillDomain.setUpdateUserCode(null);
 		paymentBillDomain.setUserCode(userCode);
 		
+		try{
+			paymentBillMapper.insert(paymentBillDomain);
+		}catch (DuplicateKeyException ex) {
+			
+			MybatisParam params = new MybatisParam().put("applicationCode", paymentBillDomain.getApplicationCode()).put("orderCode", paymentBillDomain.getOrderCode());
+			PaymentBillDomain olderPaymentBillDomain = paymentBillMapper.loadDynamic(params).get(0);
+			
+			if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.FAILURE){
+				/**
+				 * 支付失败，当前支付单转为历史记录，生成一张新的支付单
+				 */
+				
+				PaymentBillHistoryDomain paymentBillHistoryDomain = DomainTools.copy(olderPaymentBillDomain, PaymentBillHistoryDomain.class);
+				paymentBillHistoryDomain.setDeleteDate(now);
+				paymentBillHistoryMapper.insert(paymentBillHistoryDomain);	
+				
+				/**
+				 * 生成新的支付单，保留原始的支付单号
+				 */
+				paymentBillDomain.setPaymentBillCode(olderPaymentBillDomain.getPaymentBillCode());
+				paymentBillMapper.insert(paymentBillDomain);
+				
+				
+			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.SUCCESS){
+				/**
+				 * 支付成功，直接报错
+				 */
+				throw new RuntimeException("已经支付成功");
+			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING){
+				/**
+				 * 等待支付结果返回。
+				 * 调用对应的接口查询，根据查询结果再做处理，记录备注，修改状态，生成新的支付单，等等。
+				 * 如果支付目录不变，直接支付，反正是幂等的。
+				 */
+				throw new RuntimeException("请等待支付返回通知");
+			}
+		}
+		
 		/**
 		 * 调用支付接口，给前台返回支付界面
 		 */
+		String paymentCategoryCode = payParam.getPaymentCategoryCode();
+		if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.ALIPAY)){
+			
+		}else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WEICHAT)){
+			throw new RuntimeException("暂不支持微信支付");
+		}else{
+			throw new RuntimeException("未知的支付方式");
+		}
 	}
 }
