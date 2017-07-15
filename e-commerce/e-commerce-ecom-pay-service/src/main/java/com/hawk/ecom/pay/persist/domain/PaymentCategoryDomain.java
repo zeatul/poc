@@ -61,6 +61,11 @@ public class PaymentCategoryDomain implements Serializable {
 	private String paymentCategoryLogo;
 	
 	/**
+	 * 是否为叶子节点 is_leaf
+	 */
+	private Integer isLeaf;
+	
+	/**
 	 * 创建者 create_user_code
 	 */
 	private String createUserCode;
@@ -233,6 +238,22 @@ public class PaymentCategoryDomain implements Serializable {
 	 */	
 	public void setPaymentCategoryLogo (String paymentCategoryLogo) {
 		this.paymentCategoryLogo = paymentCategoryLogo;
+	}
+	
+	/**
+	 * 
+	 * @return 是否为叶子节点 is_leaf
+	 */
+	public Integer getIsLeaf(){
+		return isLeaf;
+	}
+	
+	/**
+	 * 
+	 * @param isLeaf 是否为叶子节点 is_leaf
+	 */	
+	public void setIsLeaf (Integer isLeaf) {
+		this.isLeaf = isLeaf;
 	}
 	
 	/**

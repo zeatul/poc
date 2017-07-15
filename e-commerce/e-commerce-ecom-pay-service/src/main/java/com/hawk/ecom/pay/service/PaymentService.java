@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.pay.constant.ConstPay;
+import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
 import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.ecom.trans.service.OrderService;
@@ -21,6 +23,10 @@ public class PaymentService {
 	@Autowired
 	@Qualifier("paymentBillCodeSequenceService")
 	private PkGenService paymentBillCodeSequenceService;
+	
+	@Autowired
+	@Qualifier("pkGenService")
+	private PkGenService pkGenService;
 	
 	@Autowired
 	private OrderService orderService;
@@ -53,6 +59,24 @@ public class PaymentService {
 		 *                                                     如果未查到，则更改支付类型，将原支付类型的记录复制到历史表里，并且在历史表里记录删除日期，再继续执行后续的支付逻辑。
 		 *                                                     如果等待支付结果返回，则直接报错
 		 */
+		Date now = new Date();
+		String userCode = orderPayInfo.getUserCode();
+		PaymentBillDomain paymentBillDomain = new PaymentBillDomain();
+		paymentBillDomain.setApplicationCode(orderPayInfo.getApplicationCode());
+		paymentBillDomain.setCreateDate(now);
+		paymentBillDomain.setCreateUserCode(null); /*客户生成的支付单*/
+		paymentBillDomain.setCurrency(orderPayInfo.getCurrency());
+		paymentBillDomain.setId(pkGenService.genPk());
+		paymentBillDomain.setOrderBody(orderPayInfo.getBody());
+		paymentBillDomain.setOrderCode(orderPayInfo.getOrderCode());
+		paymentBillDomain.setOrderDesc(orderPayInfo.getOrderDesc());
+		paymentBillDomain.setTotalAmount(orderPayInfo.getTotalAmount());
+		paymentBillDomain.setPaymentBillCode(generatePaymentBillCode(now));
+		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING);
+		paymentBillDomain.setStoreCode(orderPayInfo.getStoreCode());
+		paymentBillDomain.setUpdateDate(now);
+		paymentBillDomain.setUpdateUserCode(null);
+		paymentBillDomain.setUserCode(userCode);
 		
 		/**
 		 * 调用支付接口，给前台返回支付界面

@@ -460,6 +460,7 @@ public class OrderService {
 		orderPayInfo.setStoreCode(orderDomain.getStoreCode());
 		orderPayInfo.setTotalAmount(orderDomain.getOrderTransPrice());
 		orderPayInfo.setUserCode(orderDomain.getUserCode());
+		orderPayInfo.setCurrency(orderDomain.getCurrency());
 		return orderPayInfo;
 	}
 	
