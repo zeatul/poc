@@ -171,7 +171,7 @@ create table t_tra_order_detail_delivery_data
    benef_sex            varchar(50) comment '受益人性别',
    benef_name           varchar(50) comment '受益人姓名',
    benef_mobile_number  varchar(20) comment '受益人手机号',
-   outer_order_code     varchar(50) comment '外部交易编号(供应商返回的订单编号)',
+   outer_order_code     varchar(200) comment '外部交易编号(供应商返回的订单编号)',
    outer_order_status   varchar(50) comment '外部交易状态',
    outer_order_msg      varchar(200) comment '外部交易描述',
    delivery_status      tinyint unsigned not null comment '交付状态',

@@ -119,9 +119,13 @@ public class SmsService {
 		
 		final String veriCode = StringTools.randomNumberString(4);
 		logger.info("veriCode={}",veriCode);
+		
 		final String batchNo = new Long(batchCodeSequenceService.genPk()).toString();
 		final MessageFormat messageformat = new MessageFormat("【飞到家权益平台】尊敬的用户，您的动态验证码为:{0}。该验证码有效期为{1}分钟。");
 		final int validMinutes = 30;
+		
+		cacheService.put(buildVeriCodeCacheKey(mobileNumber), veriCode, validMinutes*60);
+		
 		final String message = messageformat.format(new Object[]{veriCode,validMinutes});
 		SendSmsResult sendSmsResult = smsOuterCallService.send(mobileNumber, message, batchNo);
 			
@@ -156,7 +160,7 @@ public class SmsService {
 		
 		taskService.insert(taskDomain);
 		
-		cacheService.put(buildVeriCodeCacheKey(mobileNumber), veriCode, validMinutes*60);
+		
 		
 		return sendSmsResult;
 	}

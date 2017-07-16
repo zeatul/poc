@@ -245,7 +245,9 @@ public class SkuService {
 				allAttrValueIds.add(Integer.parseInt(str));
 			}
 		}
-		allAttrValueIds.addAll(skuAttrValueIds);
+		if (CollectionTools.isNotNullOrEmpty(skuAttrValueIds)){
+			allAttrValueIds.addAll(skuAttrValueIds);
+		}
 		Collections.sort(allAttrValueIds);
 		if (allAttrValueIds.size() > 0){
 			skuDomain.setAllAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_VALUE_ID_SPLITTER, allAttrValueIds));
@@ -522,6 +524,9 @@ public class SkuService {
 			for (String str : strArray){
 				allAttrValueIds.add(Integer.parseInt(str));
 			}
+		}
+		if (CollectionTools.isNotNullOrEmpty(skuAttrValueIds)){
+			allAttrValueIds.addAll(skuAttrValueIds);
 		}
 		allAttrValueIds.addAll(skuAttrValueIds);
 		Collections.sort(allAttrValueIds);

@@ -79,16 +79,6 @@ public class ProductController {
 	}
 	
 	
-	/**
-	 * 查询流量充值产品
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/sku/loadChargeData", method = {POST})
-	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
-		LoadChargeDataProductParam param = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
-		return SuccessResponse.build(productService.loadChargeDataProduct(param));
-	}
+	
 
 }

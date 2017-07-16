@@ -208,10 +208,14 @@ public class OrderService {
 		BigDecimal orderTransPrice = orderOriginalPrice ;
 		
 		/**
-		 * 订单描述为商品的名称想连接
+		 * 订单描述为商品的名称相连接
 		 */
-		String orderDesc = sb.substring(1);
-		orderDesc = orderDesc.substring(0, orderDesc.length()>450?450:orderDesc.length());
+		String orderDesc = createOrderParam.getOrderDesc();
+		if (StringTools.isNullOrEmpty(orderDesc)){
+			orderDesc = sb.substring(1);
+			orderDesc = orderDesc.substring(0, orderDesc.length()>450?450:orderDesc.length());
+		}
+		
 		
 		/**
 		 * 构造订单,插入订单

@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
@@ -17,6 +16,7 @@ import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.utility.tools.JsonTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class AlipayService {
@@ -62,9 +62,24 @@ public class AlipayService {
 		AlipayTradeWapPayModel model = new AlipayTradeWapPayModel();
 
 		model.setOutTradeNo(alipayTradeWapParam.getOutTradeNo());
-		model.setSubject(alipayTradeWapParam.getSubject());
+		
+		String subject = alipayTradeWapParam.getSubject();
+		if (subject.length() > 256){
+			subject = subject.substring(0, 128);
+		}
+		model.setSubject(subject);
+		
+		
 		model.setTotalAmount(alipayTradeWapParam.getTotalAmount().toString());
-		model.setBody(alipayTradeWapParam.getBody());
+		
+		String body = alipayTradeWapParam.getBody();
+		if (StringTools.isNotNullOrEmpty(body)){
+			if (body.length() > 128){
+				body = body.substring(0, 128);
+			}
+		}
+		model.setBody(body);
+		
 		model.setProductCode("QUICK_WAP_PAY");
 
 		AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();

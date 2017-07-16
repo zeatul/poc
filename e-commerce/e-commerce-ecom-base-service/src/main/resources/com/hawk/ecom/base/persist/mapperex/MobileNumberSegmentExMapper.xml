@@ -15,6 +15,6 @@
 		FROM t_bas_mobile_number_segment a , t_bas_district b , t_bas_mobile_operator c
 		WHERE a.province_code = b.district_code 
 		AND a.mobile_operator_code = c.mobile_operator_code	
-		AND a.mobileNumberPrefix = #{mobileNumberPrefix}
+		AND a.mobile_number_prefix = #{mobileNumberPrefix}
 	</select>
 </mapper>

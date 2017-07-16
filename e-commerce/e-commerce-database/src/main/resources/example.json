@@ -1,9 +1,15 @@
 {
-	"ids": [
-		1,
-		2
-	],
-	"productStatus": 100,
-	"onSaleStdt": "2017-07-03 00:30:41.295",
-	"onSaleEndt": "2017-07-10 00:30:41.295"
+	"data": {
+		"id": 1001746,
+		"storeCode": "ST000001",
+		"orderCode": "20170716131010002",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 99.00,
+		"orderPayExpireTime": "2017-07-16 14:12:47",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
 }
