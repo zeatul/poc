@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.hawk.ecom.muser.persist.domain.MallUserDomain;
 import com.hawk.ecom.muser.persist.mapper.MallUserMapper;
 import com.hawk.ecom.muser.persist.mapperex.MallUserExMapper;
+import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
+import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.mapper.ProductMapper;
 import com.hawk.ecom.product.persist.mapperex.ProductExMapper;
@@ -41,7 +43,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 		TaskMapper.class, TaskExMapper.class, // 短消息
 		ProductMapper.class, ProductExMapper.class, // 短消息
 		MallUserMapper.class,MallUserExMapper.class,//商城用户
-		UserMapper.class, UserExMapper.class // 客户
+		UserMapper.class, UserExMapper.class ,// 客户
+		PaymentBillMapper.class //支付
 })
 public class DataConfig {
 
@@ -157,12 +160,14 @@ public class DataConfig {
 		String smsPackageName = TaskDomain.class.getPackage().getName(); // 短信
 		String productPackageName = ProductDomain.class.getPackage().getName(); // 短信
 		String muserPackageName = MallUserDomain.class.getPackage().getName(); //商城用户
+		String payPackageName = PaymentBillDomain.class.getPackage().getName(); //支付
 		String str = StringTools.concatWithSymbol(";", ecomTransPackageName, ecomTransPackageName + "ex", //
 				dicPackageName, dicPackageName + "ex", //
 				smsPackageName, smsPackageName + "ex", //
 				productPackageName, productPackageName + "ex", //
 				muserPackageName, muserPackageName + "ex", //
-				userPackageName, userPackageName + "ex"//
+				userPackageName, userPackageName + "ex",//
+				payPackageName,payPackageName+ "ex"//
 		);
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;

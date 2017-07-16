@@ -13,7 +13,7 @@ public class OrderNotBelongToLoginUserRuntimeException extends BasicRuntimeExcep
 	 * 
 	 */
 	private static final long serialVersionUID = -3875431958810060473L;
-	private final static int  code = ErrorCodeAllocation.PRODUCT+4;
+	private final static int  code = ErrorCodeAllocation.TRANSACTION+4;
 
 	public OrderNotBelongToLoginUserRuntimeException() {
 		super(code,ErrorCode.getErrMsg(code));

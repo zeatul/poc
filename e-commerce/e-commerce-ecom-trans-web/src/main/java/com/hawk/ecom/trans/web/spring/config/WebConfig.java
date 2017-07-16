@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hawk.ecom.pay.spring.config.EcomPayCustomerWebConfig;
 import com.hawk.ecom.sms.spring.config.SmsWebConfig;
 import com.hawk.ecom.trans.spring.config.EcomTransWebConfig;
 import com.hawk.ecom.trans.web.CommonExceptionResolver;
@@ -27,7 +28,7 @@ import com.hawk.ecom.trans.web.AccessInterceptor;
 
 @Configuration
 @EnableWebMvc
-@Import({ EcomTransWebConfig.class , UserWebConfig.class,SmsWebConfig.class})
+@Import({ EcomPayCustomerWebConfig.class,EcomTransWebConfig.class , UserWebConfig.class,SmsWebConfig.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

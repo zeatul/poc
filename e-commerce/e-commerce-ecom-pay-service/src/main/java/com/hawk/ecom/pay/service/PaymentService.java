@@ -15,7 +15,6 @@ import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
 import com.hawk.ecom.pay.request.AlipayTradeParam;
 import com.hawk.ecom.pay.request.NotifyParam;
 import com.hawk.ecom.pay.request.PayParam;
-import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
@@ -150,8 +149,8 @@ public class PaymentService {
 			alipayTradeParam.setOutTradeNo(paymentBillDomain.getPaymentBillCode());
 			alipayTradeParam.setSubject(orderPayInfo.getOrderDesc());
 			alipayTradeParam.setTotalAmount(orderPayInfo.getTotalAmount());
-			return alipayService.tradeWap(alipayTradeParam);
-		}else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WEICHAT)){
+			return alipayService.wapPay(alipayTradeParam);
+		}else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WXPAY)){
 			throw new RuntimeException("暂不支持微信支付");
 		}else{
 			throw new RuntimeException("未知的支付方式");
