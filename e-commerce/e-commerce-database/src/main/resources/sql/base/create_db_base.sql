@@ -44,7 +44,7 @@ create table t_bas_mobile_number_segment
    province_code        varchar(50) not null comment '省级行政区代码',
    mobile_operator_code varchar(50) not null comment '移动运营商代码',
    isp                  varchar(50) not null comment 'isp',
-   isp_type             varchar(50) not null comment 'isp_type',
+   isp_product          varchar(50) not null comment 'isp_product',
    primary key (mobile_number_prefix)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
