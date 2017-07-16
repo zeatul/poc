@@ -16,9 +16,9 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 	
-	private String token = "da6770f9-6a89-4ce7-98e3-e32d8022369d";
+	private String token = "64ae0773-5d4d-4a50-8e49-98f08b937cc4";
 
-//	@Test
+	@Test
 	public void testCreateChargeOrder(){
 		String url = getUrl("/ecom/trans/order/create");
 		CreateOrderParam request = new CreateOrderParam();
@@ -28,12 +28,13 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		List<OrderDetailParam> orderDetails = new ArrayList<OrderDetailParam>();
 		OrderDetailParam orderDetailParam = new OrderDetailParam();
 		Map<String,Object> deliveryData = new HashMap<String,Object>();
-		deliveryData.put("mobileNumber", "13800000000");
+		deliveryData.put("mobileNumber", "13910002481");
 		orderDetailParam.setDeliveryData(deliveryData);
 		orderDetailParam.setOrderDetailQuantity(1);
-		orderDetailParam.setSkuId(1000062);
+		orderDetailParam.setSkuId(1001312);
 		orderDetails.add(orderDetailParam);
 		request.setOrderDetails(orderDetails);
+		request.setOrderDesc("流量充值");
 		
 
 		List<HttpParam> params = new ArrayList<HttpParam>();
@@ -71,7 +72,7 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testListOrderDetail(){
 		String url = getUrl("/ecom/trans/order/detail/list");
 		ListOrderDetailParam request = new ListOrderDetailParam();

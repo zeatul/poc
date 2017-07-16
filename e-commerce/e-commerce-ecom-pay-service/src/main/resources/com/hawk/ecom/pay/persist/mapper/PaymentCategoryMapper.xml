@@ -14,6 +14,7 @@
 		payment_category_desc AS "paymentCategoryDesc" ,
 		payment_category_memo AS "paymentCategoryMemo" ,
 		payment_category_logo AS "paymentCategoryLogo" ,
+		is_leaf AS "isLeaf" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -33,6 +34,7 @@
 			<if test="paymentCategoryDesc != null"> AND payment_category_desc = #{paymentCategoryDesc}  </if>
 			<if test="paymentCategoryMemo != null"> AND payment_category_memo = #{paymentCategoryMemo}  </if>
 			<if test="paymentCategoryLogo != null"> AND payment_category_logo = #{paymentCategoryLogo}  </if>
+			<if test="isLeaf != null"> AND is_leaf = #{isLeaf}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -53,6 +55,7 @@
 			<if test="old_paymentCategoryDesc != null"> AND payment_category_desc = #{old_paymentCategoryDesc}  </if>			
 			<if test="old_paymentCategoryMemo != null"> AND payment_category_memo = #{old_paymentCategoryMemo}  </if>			
 			<if test="old_paymentCategoryLogo != null"> AND payment_category_logo = #{old_paymentCategoryLogo}  </if>			
+			<if test="old_isLeaf != null"> AND is_leaf = #{old_isLeaf}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -73,6 +76,7 @@
 			payment_category_desc = #{paymentCategoryDesc},
 			payment_category_memo = #{paymentCategoryMemo},
 			payment_category_logo = #{paymentCategoryLogo},
+			is_leaf = #{isLeaf},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -93,6 +97,7 @@
 			<if test="paymentCategoryDesc != null">payment_category_desc = #{paymentCategoryDesc},</if>
 			<if test="paymentCategoryMemo != null">payment_category_memo = #{paymentCategoryMemo},</if>
 			<if test="paymentCategoryLogo != null">payment_category_logo = #{paymentCategoryLogo},</if>
+			<if test="isLeaf != null">is_leaf = #{isLeaf},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -146,6 +151,7 @@
 				payment_category_desc,				
 				payment_category_memo,				
 				payment_category_logo,				
+				is_leaf,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -163,6 +169,7 @@
 			#{paymentCategoryDesc},
 			#{paymentCategoryMemo},
 			#{paymentCategoryLogo},
+			#{isLeaf},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

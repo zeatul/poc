@@ -176,6 +176,7 @@ public class OrderService {
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());
+					orderDetailDeliveryDataDomain.setOuterProductId(skuDomain.getSkuCode()); /*默认skucode存放产品编号*/
 					
 				}else if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.BSI){
 					BsiParam bsiParam = DomainTools.copy(map, BsiParam.class);
@@ -207,10 +208,14 @@ public class OrderService {
 		BigDecimal orderTransPrice = orderOriginalPrice ;
 		
 		/**
-		 * 订单描述为商品的名称想连接
+		 * 订单描述为商品的名称相连接
 		 */
-		String orderDesc = sb.substring(1);
-		orderDesc = orderDesc.substring(0, orderDesc.length()>450?450:orderDesc.length());
+		String orderDesc = createOrderParam.getOrderDesc();
+		if (StringTools.isNullOrEmpty(orderDesc)){
+			orderDesc = sb.substring(1);
+			orderDesc = orderDesc.substring(0, orderDesc.length()>450?450:orderDesc.length());
+		}
+		
 		
 		/**
 		 * 构造订单,插入订单
@@ -459,6 +464,7 @@ public class OrderService {
 		orderPayInfo.setStoreCode(orderDomain.getStoreCode());
 		orderPayInfo.setTotalAmount(orderDomain.getOrderTransPrice());
 		orderPayInfo.setUserCode(orderDomain.getUserCode());
+		orderPayInfo.setCurrency(orderDomain.getCurrency());
 		return orderPayInfo;
 	}
 	

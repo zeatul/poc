@@ -1,55 +1,99 @@
 package com.hawk.ecom.pay.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alipay.api.AlipayClient;
+import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
+import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
-import com.hawk.ecom.pay.request.AlipayTradeWapParam;
-import com.hawk.ecom.trans.service.OrderService;
+import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.hawk.ecom.pay.request.AlipayTradeParam;
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.utility.tools.JsonTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @Service
 public class AlipayService {
 	
-	
-	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
+	@Autowired
+	private AlipayClient alipayClient;
+
+	/**
+	 * 查询交易状态
+	 * 
+	 * @param outTradeCode
+	 * @throws Exception 
+	 */
 	@Valid
-	public String tradeWap(@NotNull("支付参数") @Valid AlipayTradeWapParam AlipayTradeWapParam){
+	public void query(@NotEmpty String outTradeCode) throws Exception {
+		AlipayTradeQueryRequest alipayRequest = new AlipayTradeQueryRequest();
+		AlipayTradeQueryModel model = new AlipayTradeQueryModel();
+		model.setOutTradeNo(outTradeCode);
+		alipayRequest.setBizModel(model);
+
+		AlipayTradeQueryResponse alipayResponse = alipayClient.execute(alipayRequest);
+		
+		logger.info("AlipayTradeQueryResponse = {}",JsonTools.toJsonString(alipayResponse));
+		
+		alipayResponse.getTradeStatus();
+		alipayResponse.getOutTradeNo();
+		alipayResponse.getTradeNo();
+//		交易状态：WAIT_BUYER_PAY（交易创建，等待买家付款）、TRADE_CLOSED（未付款交易超时关闭，或支付完成后全额退款）、TRADE_SUCCESS（交易支付成功）、TRADE_FINISHED（交易结束，不可退款
+	}
+
+	/**
+	 * wap支付
+	 * 
+	 * @param alipayTradeWapParam
+	 * @return
+	 * @throws Exception
+	 */
+	@Valid
+	public String wapPay(@NotNull("支付宝支付参数") @Valid AlipayTradeParam alipayTradeWapParam) throws Exception {
+
+		AlipayTradeWapPayModel model = new AlipayTradeWapPayModel();
+
+		model.setOutTradeNo(alipayTradeWapParam.getOutTradeNo());
+		
+		String subject = alipayTradeWapParam.getSubject();
+		if (subject.length() > 256){
+			subject = subject.substring(0, 128);
+		}
+		model.setSubject(subject);
 		
 		
-//		// 商户订单号，商户网站订单系统中唯一订单号，必填
-//	    String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-//		// 订单名称，必填
-//	    String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"UTF-8");
-//		System.out.println(subject);
-//	    // 付款金额，必填
-//	    String total_amount=new String(request.getParameter("WIDtotal_amount").getBytes("ISO-8859-1"),"UTF-8");
-//	    // 商品描述，可空
-//	    String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
-//	    // 超时时间 可空
-//	   String timeout_express="2m";
-//	    // 销售产品码 必填
-//	    String product_code="QUICK_WAP_PAY";
+		model.setTotalAmount(alipayTradeWapParam.getTotalAmount().toString());
 		
-		AlipayTradeWapPayRequest alipayTradeWapPayRequest = new AlipayTradeWapPayRequest();
+		String body = alipayTradeWapParam.getBody();
+		if (StringTools.isNotNullOrEmpty(body)){
+			if (body.length() > 128){
+				body = body.substring(0, 128);
+			}
+		}
+		model.setBody(body);
 		
-		AlipayTradeWapPayModel alipayTradeWapPayModel=new AlipayTradeWapPayModel();
-//		
-//		alipayTradeWapPayModel.setOutTradeNo(out_trade_no);
-//		alipayTradeWapPayModel.setSubject(subject);
-//		alipayTradeWapPayModel.setTotalAmount(total_amount);
-//		alipayTradeWapPayModel.setBody(body);
-//		alipayTradeWapPayModel.setProductCode("QUICK_WAP_PAY");
-//		alipayTradeWapPayModel.setBizModel(model);
-//	    // 设置异步通知地址
-//	    alipay_request.setNotifyUrl(AlipayConfig.notify_url);
-//	    // 设置同步地址
-//	    alipay_request.setReturnUrl(AlipayConfig.return_url);   
-		
-		return null;
-		
+		model.setProductCode("QUICK_WAP_PAY");
+
+		AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
+
+		alipayRequest.setBizModel(model);
+		// 设置异步通知地址
+		alipayRequest.setNotifyUrl(AlipayConfig.NOTIFY_URL);
+		// 设置同步地址
+		alipayRequest.setReturnUrl(AlipayConfig.RETURN_URL);
+
+		String form = alipayClient.pageExecute(alipayRequest).getBody();
+
+		return form;
+
 	}
 
 }

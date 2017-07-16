@@ -13,7 +13,7 @@ public class OrderStatusIsNotAcceptableRuntimeException extends BasicRuntimeExce
 	 * 
 	 */
 	private static final long serialVersionUID = -3875431958810060473L;
-	private final static int  code = ErrorCodeAllocation.PRODUCT+6;
+	private final static int  code = ErrorCodeAllocation.TRANSACTION+6;
 
 	public OrderStatusIsNotAcceptableRuntimeException() {
 		super(code,ErrorCode.getErrMsg(code));

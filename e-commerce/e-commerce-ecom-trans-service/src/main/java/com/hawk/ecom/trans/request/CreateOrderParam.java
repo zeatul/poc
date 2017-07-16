@@ -9,6 +9,14 @@ import com.hawk.framework.dic.validation.annotation.ValidCollection;
 
 public class CreateOrderParam {
 	
+	public String getOrderDesc() {
+		return orderDesc;
+	}
+
+	public void setOrderDesc(String orderDesc) {
+		this.orderDesc = orderDesc;
+	}
+
 	public String getUserCode() {
 		return userCode;
 	}
@@ -58,6 +66,11 @@ public class CreateOrderParam {
 	 */
 	@NotNull
 	private Integer orderType;
+	
+	/**
+	 * 订单描述
+	 */
+	private String orderDesc;
 	
 	/**
 	 * 订单客户备注 order_customer_memo

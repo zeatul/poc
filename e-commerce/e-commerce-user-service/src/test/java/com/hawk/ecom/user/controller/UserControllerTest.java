@@ -15,32 +15,31 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class UserControllerTest extends AbstractControllerTest {
 
-//	 @Test
+	// @Test
 	public void testHome() {
 		String url = getUrl("/user/home");
-		
+
 		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("version", "1.0"));	
-		
+		params.add(new HttpParam("version", "1.0"));
+
 		String result = httpExecutor.get(url, params);
-		
-		
+
 		System.out.println("result=" + result);
 	}
 
-//	 @Test
+	@Test
 	public void testRegister() {
 		String mobileNumber = "13800000000";
-		String veriCode = "1234";
+		String veriCode = "7332";
 		RegisterUserParam registerUserParam = new RegisterUserParam();
 		registerUserParam.setMobileNumber(mobileNumber);
 		registerUserParam.setVeriCode(veriCode);
 		registerUserParam.setLoginPwd("123456");
 
 		String url = getUrl("/user/register");
-		
+
 		List<HttpParam> params = new ArrayList<HttpParam>();
-		params.add(new HttpParam("version", "1.0"));	
+		params.add(new HttpParam("version", "1.0"));
 
 		System.out.println(JsonTools.toJsonString(registerUserParam));
 
@@ -65,7 +64,7 @@ public class UserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-//	@Test
+	// @Test
 	public void testResetPassword() {
 		ResetPasswordParam param = new ResetPasswordParam();
 		String mobileNumber = "13411082481";
@@ -82,7 +81,7 @@ public class UserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-//	@Test
+	// @Test
 	public void testSso() {
 		SsoParam ssoParam = new SsoParam();
 		String appid = "580fb1dcd2ee427387cc580d545a6405";
@@ -98,11 +97,11 @@ public class UserControllerTest extends AbstractControllerTest {
 		params.add(new HttpParam("appid", appid));
 		params.add(new HttpParam("version", version));
 		params.add(new HttpParam("timestamp", timestamp));
-		
-		String reqhash = JsonTools.toJsonString(ssoParam)+version + timestamp+appid + appkey;
-		reqhash =  DigestUtils.md5Hex(reqhash);
+
+		String reqhash = JsonTools.toJsonString(ssoParam) + version + timestamp + appid + appkey;
+		reqhash = DigestUtils.md5Hex(reqhash);
 		params.add(new HttpParam("reqhash", reqhash));
-		
+
 		System.out.println(JsonTools.toJsonString(ssoParam));
 
 		String result = httpExecutor.post(url, ssoParam, params);

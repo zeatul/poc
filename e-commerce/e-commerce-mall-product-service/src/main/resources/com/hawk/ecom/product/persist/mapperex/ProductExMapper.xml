@@ -4,4 +4,9 @@
 
 <mapper namespace="com.hawk.ecom.product.persist.mapperex.ProductExMapper">
 
+	<select id="orderDetailCount" resultType="integer">
+		select count(1) 
+		from t_tra_order_detail 
+		where sku_id = #{skuId}
+	</select>
 </mapper>

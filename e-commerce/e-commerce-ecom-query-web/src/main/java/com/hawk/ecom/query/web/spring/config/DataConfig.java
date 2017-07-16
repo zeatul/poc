@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+
+import com.hawk.ecom.base.persist.domain.MobileNumberSegmentDomain;
+import com.hawk.ecom.base.persist.mapper.MobileNumberSegmentMapper;
+import com.hawk.ecom.base.persist.mapperex.MobileNumberSegmentExMapper;
 import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
 import com.hawk.ecom.query.persist.mapperex.SystemResourceExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
@@ -19,8 +23,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/query/web/env/jdbc.properties")
-@MapperScan(basePackageClasses = { SystemResourceExMapper.class//
-		,WordMapper.class, WordExMapper.class //数据字典
+@MapperScan(basePackageClasses = { SystemResourceExMapper.class,//
+		WordMapper.class, WordExMapper.class ,//数据字典
+		MobileNumberSegmentMapper.class,MobileNumberSegmentExMapper.class
 		})
 public class DataConfig {
 
@@ -139,8 +144,10 @@ public class DataConfig {
 		sqlSessionFactory.setDataSource(dataSource);
 		String ecomQueryPackageName = SystemResourceExDomain.class.getPackage().getName(); //ecom-query-service
 		String dicPackageName = WordDomain.class.getPackage().getName(); //数据字典
+		String basePackageName = MobileNumberSegmentDomain.class.getPackage().getName();//基础数据
 		String str = StringTools.concatWithSymbol(";", ecomQueryPackageName,//
-				dicPackageName, dicPackageName + "ex"//
+				dicPackageName, dicPackageName + "ex",//
+				basePackageName,basePackageName+"ex"
 				);
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;

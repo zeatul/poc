@@ -26,6 +26,8 @@
 		<module>../e-commerce-ecom-pay-service</module>
 		<module>../e-commerce-ecom-outer-service</module>
 		<module>../e-commerce-ecom-base-service</module>
+		<module>../e-commerce-ecom-task-service</module>
+		<module>../e-commerce-ecom-task-web</module>
 
 	</modules>
 
@@ -162,6 +164,12 @@
 			<dependency>
 				<groupId>com.hawk.e-commerce</groupId>
 				<artifactId>e-commerce-ecom-pay-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.hawk.e-commerce</groupId>
+				<artifactId>e-commerce-ecom-task-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

@@ -13,7 +13,7 @@ public class SmsControllerTest extends AbstractControllerTest{
 	public void testVeriCode() {
 		String url = getUrl("/sms/veriCode");
 		SendVeriCodeParam sendVeriCodeParam = new SendVeriCodeParam();
-		sendVeriCodeParam.setMobileNumber("13916082481");
+		sendVeriCodeParam.setMobileNumber("13800000000");
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));		

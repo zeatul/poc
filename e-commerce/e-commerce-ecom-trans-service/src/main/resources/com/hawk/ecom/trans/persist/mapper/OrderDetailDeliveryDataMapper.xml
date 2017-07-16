@@ -25,7 +25,6 @@
 		outer_order_code AS "outerOrderCode" ,
 		outer_order_status AS "outerOrderStatus" ,
 		outer_order_msg AS "outerOrderMsg" ,
-		delivery_status AS "deliveryStatus" ,
 		task_code AS "taskCode" ,
 		task_name AS "taskName" ,
 		task_status AS "taskStatus" ,
@@ -70,7 +69,6 @@
 			<if test="outerOrderCode != null"> AND outer_order_code = #{outerOrderCode}  </if>
 			<if test="outerOrderStatus != null"> AND outer_order_status = #{outerOrderStatus}  </if>
 			<if test="outerOrderMsg != null"> AND outer_order_msg = #{outerOrderMsg}  </if>
-			<if test="deliveryStatus != null"> AND delivery_status = #{deliveryStatus}  </if>
 			<if test="taskCode != null"> AND task_code = #{taskCode}  </if>
 			<if test="taskName != null"> AND task_name = #{taskName}  </if>
 			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
@@ -116,7 +114,6 @@
 			<if test="old_outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
 			<if test="old_outerOrderStatus != null"> AND outer_order_status = #{old_outerOrderStatus}  </if>			
 			<if test="old_outerOrderMsg != null"> AND outer_order_msg = #{old_outerOrderMsg}  </if>			
-			<if test="old_deliveryStatus != null"> AND delivery_status = #{old_deliveryStatus}  </if>			
 			<if test="old_taskCode != null"> AND task_code = #{old_taskCode}  </if>			
 			<if test="old_taskName != null"> AND task_name = #{old_taskName}  </if>			
 			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
@@ -162,7 +159,6 @@
 			outer_order_code = #{outerOrderCode},
 			outer_order_status = #{outerOrderStatus},
 			outer_order_msg = #{outerOrderMsg},
-			delivery_status = #{deliveryStatus},
 			task_code = #{taskCode},
 			task_name = #{taskName},
 			task_status = #{taskStatus},
@@ -208,7 +204,6 @@
 			<if test="outerOrderCode != null">outer_order_code = #{outerOrderCode},</if>
 			<if test="outerOrderStatus != null">outer_order_status = #{outerOrderStatus},</if>
 			<if test="outerOrderMsg != null">outer_order_msg = #{outerOrderMsg},</if>
-			<if test="deliveryStatus != null">delivery_status = #{deliveryStatus},</if>
 			<if test="taskCode != null">task_code = #{taskCode},</if>
 			<if test="taskName != null">task_name = #{taskName},</if>
 			<if test="taskStatus != null">task_status = #{taskStatus},</if>
@@ -287,7 +282,6 @@
 				outer_order_code,				
 				outer_order_status,				
 				outer_order_msg,				
-				delivery_status,				
 				task_code,				
 				task_name,				
 				task_status,				
@@ -330,7 +324,6 @@
 			#{outerOrderCode},
 			#{outerOrderStatus},
 			#{outerOrderMsg},
-			#{deliveryStatus},
 			#{taskCode},
 			#{taskName},
 			#{taskStatus},

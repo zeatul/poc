@@ -57,9 +57,9 @@ public class PaymentBillDomain implements Serializable {
 	private String userCode;
 	
 	/**
-	 * 订单成交价 order_trans_price
+	 * 订单支付总价 total_amount
 	 */
-	private BigDecimal orderTransPrice;
+	private BigDecimal totalAmount;
 	
 	/**
 	 * 币种 currency
@@ -70,6 +70,16 @@ public class PaymentBillDomain implements Serializable {
 	 * 支付单状态 payment_bill_status
 	 */
 	private Integer paymentBillStatus;
+	
+	/**
+	 * 支付分类编号 payment_category_code
+	 */
+	private String paymentCategoryCode;
+	
+	/**
+	 * 支付单备注 payment_bill_memo
+	 */
+	private String paymentBillMemo;
 	
 	/**
 	 * 创建者 create_user_code
@@ -232,18 +242,18 @@ public class PaymentBillDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单成交价 order_trans_price
+	 * @return 订单支付总价 total_amount
 	 */
-	public BigDecimal getOrderTransPrice(){
-		return orderTransPrice;
+	public BigDecimal getTotalAmount(){
+		return totalAmount;
 	}
 	
 	/**
 	 * 
-	 * @param orderTransPrice 订单成交价 order_trans_price
+	 * @param totalAmount 订单支付总价 total_amount
 	 */	
-	public void setOrderTransPrice (BigDecimal orderTransPrice) {
-		this.orderTransPrice = orderTransPrice;
+	public void setTotalAmount (BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 	
 	/**
@@ -276,6 +286,38 @@ public class PaymentBillDomain implements Serializable {
 	 */	
 	public void setPaymentBillStatus (Integer paymentBillStatus) {
 		this.paymentBillStatus = paymentBillStatus;
+	}
+	
+	/**
+	 * 
+	 * @return 支付分类编号 payment_category_code
+	 */
+	public String getPaymentCategoryCode(){
+		return paymentCategoryCode;
+	}
+	
+	/**
+	 * 
+	 * @param paymentCategoryCode 支付分类编号 payment_category_code
+	 */	
+	public void setPaymentCategoryCode (String paymentCategoryCode) {
+		this.paymentCategoryCode = paymentCategoryCode;
+	}
+	
+	/**
+	 * 
+	 * @return 支付单备注 payment_bill_memo
+	 */
+	public String getPaymentBillMemo(){
+		return paymentBillMemo;
+	}
+	
+	/**
+	 * 
+	 * @param paymentBillMemo 支付单备注 payment_bill_memo
+	 */	
+	public void setPaymentBillMemo (String paymentBillMemo) {
+		this.paymentBillMemo = paymentBillMemo;
 	}
 	
 	/**

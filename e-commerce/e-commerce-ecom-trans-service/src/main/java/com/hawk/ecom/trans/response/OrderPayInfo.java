@@ -9,6 +9,12 @@ import java.math.BigDecimal;
  */
 public class OrderPayInfo {
 	
+	public Integer getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Integer currency) {
+		this.currency = currency;
+	}
 	public String getUserCode() {
 		return userCode;
 	}
@@ -58,5 +64,6 @@ public class OrderPayInfo {
 	private String applicationCode;
 	private String storeCode;
 	private String userCode;
+	private Integer currency;
 
 }

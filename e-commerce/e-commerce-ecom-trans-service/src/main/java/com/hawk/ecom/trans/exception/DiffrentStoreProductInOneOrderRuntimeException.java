@@ -13,7 +13,7 @@ public class DiffrentStoreProductInOneOrderRuntimeException extends BasicRuntime
 	 * 
 	 */
 	private static final long serialVersionUID = -3875431958810060473L;
-	private final static int  code = ErrorCodeAllocation.PRODUCT+1;
+	private final static int  code = ErrorCodeAllocation.TRANSACTION+1;
 
 	public DiffrentStoreProductInOneOrderRuntimeException() {
 		super(code,ErrorCode.getErrMsg(code));

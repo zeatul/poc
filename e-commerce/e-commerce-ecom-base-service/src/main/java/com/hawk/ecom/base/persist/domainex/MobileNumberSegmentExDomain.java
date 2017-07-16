@@ -2,7 +2,7 @@ package com.hawk.ecom.base.persist.domainex;
 
 import com.hawk.framework.pub.web.ResponseData;
 
-public class MobileNumberSegmentExDomain implements ResponseData{
+public class MobileNumberSegmentExDomain {
 	
 	public String getMobileNumberPrefix() {
 		return mobileNumberPrefix;

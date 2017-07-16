@@ -115,6 +115,7 @@ public class ProductService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	public final static String ATTR_NAME_ID_SPLITTER = ",";
+	public final static String ATTR_VALUE_ID_SPLITTER = ATTR_NAME_ID_SPLITTER;
 	public final static String ATTR_DISPLAY_VALUE_SPLITTER = " ";
 
 	public ProductDomain loadProduct(Integer id) {

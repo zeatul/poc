@@ -116,11 +116,6 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private String outerOrderMsg;
 	
 	/**
-	 * 交付状态 delivery_status
-	 */
-	private Integer deliveryStatus;
-	
-	/**
 	 * 任务号 task_code
 	 */
 	private String taskCode;
@@ -539,22 +534,6 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */	
 	public void setOuterOrderMsg (String outerOrderMsg) {
 		this.outerOrderMsg = outerOrderMsg;
-	}
-	
-	/**
-	 * 
-	 * @return 交付状态 delivery_status
-	 */
-	public Integer getDeliveryStatus(){
-		return deliveryStatus;
-	}
-	
-	/**
-	 * 
-	 * @param deliveryStatus 交付状态 delivery_status
-	 */	
-	public void setDeliveryStatus (Integer deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
 	}
 	
 	/**

@@ -8,62 +8,98 @@
 		pid as "pid",
 		category_name as "categoryName",
 		is_leaf as "isLeaf"
-		from t_prd_category order by depth asc , object_order asc
+		from t_prd_category order by
+		depth asc , object_order asc
 	</select>
 
 	<select id="querySku" parameterType="hashmap" resultType="ProductSkuExDomain">
-		select a.id as "skuId", 
-			b.id as "productId",
-			a.sku_name as "skuName",
-			a.thumbnail as "thumbnail"
+		select a.id as "skuId",
+		b.id as "productId",
+		a.sku_name as "skuName",
+		a.thumbnail as "thumbnail"
 		from t_prd_sku a, t_prd_product b
-		where a.product_id = b.id 
-		and b.product_status = #{productStatus}
+		where a.product_id = b.id
+		and
+		b.product_status = #{productStatus}
 		and a.sku_status = #{skuStatus}
-		and b.on_sale_stdt &lt;= now() 
+		and b.on_sale_stdt &lt;= now()
 		and b.on_sale_endt &gt; now()
-		<if test="categoryId != null"> AND category_id = #{categoryId}</if> 		
+		<if test="categoryId != null"> AND category_id = #{categoryId}</if>
 		<if test="_orderby != null">ORDER BY ${_orderby}</if>
-		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>		
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>
 	</select>
-	
+
 	<select id="countSku" parameterType="hashmap" resultType="integer">
 		select count(*)
 		from t_prd_sku a, t_prd_product b
-		where a.product_id = b.id 
+		where a.product_id = b.id
 		and b.product_status = #{productStatus}
 		and a.sku_status = #{skuStatus}
-		and b.on_sale_stdt &lt;= now() 
+		and
+		b.on_sale_stdt &lt;= now()
 		and b.on_sale_endt &gt; now()
 		<if test="categoryId != null"> AND category_id = #{categoryId}</if>
 	</select>
-	
+
 	<select id="loadSku" parameterType="hashmap" resultType="ProductSkuExDomain">
-		select a.id as "skuId", 
-			b.id as "productId",
-			a.sku_name as "skuName",
-			a.sku_stock_quantity AS "skuStockQuantity" ,
-			a.thumbnail as "thumbnail",
-			a.sale_price AS "salePrice" 
+		select a.id as "skuId",
+		b.id as "productId",
+		a.sku_name as "skuName",
+		a.sku_stock_quantity AS
+		"skuStockQuantity" ,
+		a.thumbnail as "thumbnail",
+		a.sale_price AS "salePrice"
 		from t_prd_sku a, t_prd_product b
-		where a.product_id = b.id 
-		and b.product_status = #{productStatus}
+		where a.product_id = b.id
+		and b.product_status =
+		#{productStatus}
 		and a.sku_status = #{skuStatus}
-		and b.on_sale_stdt &lt;= now() 
+		and b.on_sale_stdt &lt;= now()
 		and b.on_sale_endt &gt; now()
-		and a.id = #{skuId}	
+		and a.id = #{skuId}
 	</select>
-	
+
 	<select id="loadSkuPriceAndQuantity" parameterType="hashmap" resultType="ProductSkuExDomain">
 		select a.id as "skuId",
-			a.sku_stock_quantity AS "skuStockQuantity" ,
-			a.sale_price AS "salePrice" 
+		a.sku_stock_quantity AS "skuStockQuantity" ,
+		a.sale_price
+		AS "salePrice"
 		from t_prd_sku a, t_prd_product b
-		where a.product_id = b.id 
+		where a.product_id = b.id
 		and b.product_status = #{productStatus}
 		and a.sku_status = #{skuStatus}
-		and b.on_sale_stdt &lt;= now() 
+		and
+		b.on_sale_stdt &lt;= now()
 		and b.on_sale_endt &gt; now()
-		and a.id = #{skuId}	
+		and a.id = #{skuId}
 	</select>
+
+	<select id="findAttrValueId" resultType="Integer">
+		SELECT b.id
+		FROM t_prd_attr_name a ,t_prd_attr_value b
+		WHERE a.id = b.attr_name_id
+		AND a.attr_name_code =
+		#{attrNameCode}
+		AND b.attr_value = #{attrValue}
+	</select>
+
+	<select id="findSkuByAttrValueIds" resultType="ProductSkuExDomain">
+		SELECT t1.id AS "skuId",
+		t1.sku_name AS "skuName",
+		t1.sale_price AS "salePrice",
+		t1.sku_stock_quantity AS "skuStockQuantity"
+		FROM t_prd_sku t1 ,(
+			SELECT a.id,COUNT(b.attr_value_id) as count
+			FROM t_prd_sku a , t_prd_product_attr b
+			WHERE (a.product_id = b.product_id
+			or a.id = b.sku_id)
+			AND b.attr_value_id in 
+			<foreach item="item" index="index" collection="attrValueIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			GROUP BY a.id
+		) t2
+		WHERE t1.id = t2.id and t2.count = #{count}
+	</select>
+
 </mapper>

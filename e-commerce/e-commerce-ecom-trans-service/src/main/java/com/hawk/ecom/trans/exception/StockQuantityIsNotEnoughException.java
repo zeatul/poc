@@ -13,7 +13,7 @@ public class StockQuantityIsNotEnoughException extends BasicRuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = -3875431958810060473L;
-	private final static int  code = ErrorCodeAllocation.PRODUCT+2;
+	private final static int  code = ErrorCodeAllocation.TRANSACTION+2;
 
 	public StockQuantityIsNotEnoughException() {
 		super(code,ErrorCode.getErrMsg(code));

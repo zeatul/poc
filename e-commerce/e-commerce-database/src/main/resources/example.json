@@ -1,9 +1,7 @@
 {
-	"ids": [
-		1,
-		2
-	],
-	"productStatus": 100,
-	"onSaleStdt": "2017-07-03 00:30:41.295",
-	"onSaleEndt": "2017-07-10 00:30:41.295"
+	"data": {
+		"message": "RSAcontent = alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2088421800331408&biz_content={\"out_trade_no\":\"20170716161010001\",\"product_code\":\"QUICK_WAP_PAY\",\"subject\":\"流量充值\",\"total_amount\":\"99.00\"}&charset=UTF-8&format=json&method=alipay.trade.wap.pay&notify_url=https://210.73.195.77/ecom_trans_test/ecom/pay/notify/alipay&return_url=https://210.73.195.77/ecom_trans_test/ecom/pay/wap/return/alipay&sign_type=RSA2&timestamp=2017-07-16 16:24:13&version=1.0; charset = UTF-8",
+		"errCode": -1
+	},
+	"code": 0
 }

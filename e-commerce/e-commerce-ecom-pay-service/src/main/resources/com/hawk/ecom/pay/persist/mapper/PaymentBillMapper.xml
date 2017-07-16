@@ -13,9 +13,11 @@
 		payment_bill_code AS "paymentBillCode" ,
 		store_code AS "storeCode" ,
 		user_code AS "userCode" ,
-		order_trans_price AS "orderTransPrice" ,
+		total_amount AS "totalAmount" ,
 		currency AS "currency" ,
 		payment_bill_status AS "paymentBillStatus" ,
+		payment_category_code AS "paymentCategoryCode" ,
+		payment_bill_memo AS "paymentBillMemo" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -34,9 +36,11 @@
 			<if test="paymentBillCode != null"> AND payment_bill_code = #{paymentBillCode}  </if>
 			<if test="storeCode != null"> AND store_code = #{storeCode}  </if>
 			<if test="userCode != null"> AND user_code = #{userCode}  </if>
-			<if test="orderTransPrice != null"> AND order_trans_price = #{orderTransPrice}  </if>
+			<if test="totalAmount != null"> AND total_amount = #{totalAmount}  </if>
 			<if test="currency != null"> AND currency = #{currency}  </if>
 			<if test="paymentBillStatus != null"> AND payment_bill_status = #{paymentBillStatus}  </if>
+			<if test="paymentCategoryCode != null"> AND payment_category_code = #{paymentCategoryCode}  </if>
+			<if test="paymentBillMemo != null"> AND payment_bill_memo = #{paymentBillMemo}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -56,9 +60,11 @@
 			<if test="old_paymentBillCode != null"> AND payment_bill_code = #{old_paymentBillCode}  </if>			
 			<if test="old_storeCode != null"> AND store_code = #{old_storeCode}  </if>			
 			<if test="old_userCode != null"> AND user_code = #{old_userCode}  </if>			
-			<if test="old_orderTransPrice != null"> AND order_trans_price = #{old_orderTransPrice}  </if>			
+			<if test="old_totalAmount != null"> AND total_amount = #{old_totalAmount}  </if>			
 			<if test="old_currency != null"> AND currency = #{old_currency}  </if>			
 			<if test="old_paymentBillStatus != null"> AND payment_bill_status = #{old_paymentBillStatus}  </if>			
+			<if test="old_paymentCategoryCode != null"> AND payment_category_code = #{old_paymentCategoryCode}  </if>			
+			<if test="old_paymentBillMemo != null"> AND payment_bill_memo = #{old_paymentBillMemo}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -78,9 +84,11 @@
 			payment_bill_code = #{paymentBillCode},
 			store_code = #{storeCode},
 			user_code = #{userCode},
-			order_trans_price = #{orderTransPrice},
+			total_amount = #{totalAmount},
 			currency = #{currency},
 			payment_bill_status = #{paymentBillStatus},
+			payment_category_code = #{paymentCategoryCode},
+			payment_bill_memo = #{paymentBillMemo},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -100,9 +108,11 @@
 			<if test="paymentBillCode != null">payment_bill_code = #{paymentBillCode},</if>
 			<if test="storeCode != null">store_code = #{storeCode},</if>
 			<if test="userCode != null">user_code = #{userCode},</if>
-			<if test="orderTransPrice != null">order_trans_price = #{orderTransPrice},</if>
+			<if test="totalAmount != null">total_amount = #{totalAmount},</if>
 			<if test="currency != null">currency = #{currency},</if>
 			<if test="paymentBillStatus != null">payment_bill_status = #{paymentBillStatus},</if>
+			<if test="paymentCategoryCode != null">payment_category_code = #{paymentCategoryCode},</if>
+			<if test="paymentBillMemo != null">payment_bill_memo = #{paymentBillMemo},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -155,9 +165,11 @@
 				payment_bill_code,				
 				store_code,				
 				user_code,				
-				order_trans_price,				
+				total_amount,				
 				currency,				
 				payment_bill_status,				
+				payment_category_code,				
+				payment_bill_memo,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -174,9 +186,11 @@
 			#{paymentBillCode},
 			#{storeCode},
 			#{userCode},
-			#{orderTransPrice},
+			#{totalAmount},
 			#{currency},
 			#{paymentBillStatus},
+			#{paymentCategoryCode},
+			#{paymentBillMemo},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

@@ -31,6 +31,7 @@ import com.hawk.ecom.product.exception.SkuAttrNameIsNotDesignedByProductRuntimeE
 import com.hawk.ecom.product.exception.SkuIsNotAcceptableForSaleRuntimeException;
 import com.hawk.ecom.product.exception.SkuNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.SkuStatusIsNotAcceptableRuntimeException;
+import com.hawk.ecom.product.exception.SkuWasSoldRuntimeException;
 import com.hawk.ecom.product.exception.UnMatchedStoreOperatorException;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.ProductAttrDomain;
@@ -46,6 +47,7 @@ import com.hawk.ecom.product.persist.mapper.SkuMapper;
 import com.hawk.ecom.product.persist.mapper.SkuSnapshootMapper;
 import com.hawk.ecom.product.persist.mapper.StockHistoryMapper;
 import com.hawk.ecom.product.persist.mapper.StockMapper;
+import com.hawk.ecom.product.persist.mapperex.ProductExMapper;
 import com.hawk.ecom.product.request.CreateSkuParam;
 import com.hawk.ecom.product.request.ListSkuParam;
 import com.hawk.ecom.product.request.LoadSkuParam;
@@ -97,6 +99,9 @@ public class SkuService {
 	
 	@Autowired
 	private SkuHistoryMapper skuHistoryMapper;
+	
+	@Autowired
+	private ProductExMapper productExMapper;
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -194,13 +199,13 @@ public class SkuService {
 		 * TODO:SKU属性组合，一个属性都不能少，SKU属性组合不能重复出现 设置SkU的属性名Id集合和属性值Id集合 设置SKU的属性值集合
 		 */
 		List<ProductAttrDomain> productAttrDomainList = new ArrayList<ProductAttrDomain>(); // 要添加的属性记录
-		List<Integer> attrValueIds = createSkuParam.getSkuAttrValueIds();
-		if (CollectionTools.isNotNullOrEmpty(attrValueIds)) {
+		List<Integer> skuAttrValueIds = createSkuParam.getSkuAttrValueIds();
+		if (CollectionTools.isNotNullOrEmpty(skuAttrValueIds)) {
 			/* 记录实际值 */
 			List<String> attrValues = new ArrayList<String>();
 			/* 必须先排序 */
-			Collections.sort(attrValueIds);
-			for (Integer attrValueId : attrValueIds) {
+			Collections.sort(skuAttrValueIds);
+			for (Integer attrValueId : skuAttrValueIds) {
 				AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(attrValueId);
 				Integer attrNameId = attrValueDomain.getAttrNameId();
 				if (designedSkuAttrNameIdMap.containsKey(attrNameId)) {
@@ -224,9 +229,30 @@ public class SkuService {
 			/**
 			 * 合并
 			 */
-			skuDomain.setSkuAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_NAME_ID_SPLITTER, attrValueIds));
+			skuDomain.setSkuAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_VALUE_ID_SPLITTER, skuAttrValueIds));
 			skuDomain.setSkuAttrValueValues(StringTools.concatWithSymbol(ProductService.ATTR_DISPLAY_VALUE_SPLITTER, attrValues));
 		}
+		
+		
+		/**
+		 * 设置全部属性值组合
+		 */
+		List<Integer> allAttrValueIds = new ArrayList<Integer>();
+		String productKeyAttrValueIds = productDomain.getProductKeyAttrValueIds();
+		if (productKeyAttrValueIds != null){
+			String[] strArray = productKeyAttrValueIds.split(ProductService.ATTR_VALUE_ID_SPLITTER);
+			for (String str : strArray){
+				allAttrValueIds.add(Integer.parseInt(str));
+			}
+		}
+		if (CollectionTools.isNotNullOrEmpty(skuAttrValueIds)){
+			allAttrValueIds.addAll(skuAttrValueIds);
+		}
+		Collections.sort(allAttrValueIds);
+		if (allAttrValueIds.size() > 0){
+			skuDomain.setAllAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_VALUE_ID_SPLITTER, allAttrValueIds));
+		}
+		
 
 		if (ConstBoolean.parse(productDomain.getIsVirtual())) {
 			virtualSku(skuDomain);
@@ -299,6 +325,13 @@ public class SkuService {
 		 * 插入SKU属性
 		 */
 		insertSkuAttr(productAttrDomainList, now, userCode, productId, skuDomain.getId());
+		
+		/**
+		 * TODO:设置关键属性+SKU属性
+		 * 查出该SKU的所有属性值，排序 ，根据排序，取所有的对应的属性名，分别组合属性值Id，和属性值成字符串，放入 all_attr_value_ids ，all_attr_value_values
+		 */
+		
+		
 
 		return skuDomain;
 
@@ -461,11 +494,11 @@ public class SkuService {
 		/**
 		 * 合并
 		 */
+		final List<Integer> skuAttrValueIds = new ArrayList<Integer>();
 		if (usedSkuAttrNameIdMap.size() == 0) {
 			updateDomain.setSkuAttrValueIds("");
 			updateDomain.setSkuAttrValueValues("");
 		} else {
-			List<Integer> skuAttrValueIds = new ArrayList<Integer>();
 			usedSkuAttrValueIdMap.keySet().forEach(e -> {
 				skuAttrValueIds.add(e);
 			});
@@ -478,6 +511,27 @@ public class SkuService {
 
 			updateDomain.setSkuAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_NAME_ID_SPLITTER, skuAttrValueIds));
 			updateDomain.setSkuAttrValueValues(StringTools.concatWithSymbol(ProductService.ATTR_DISPLAY_VALUE_SPLITTER, skuAttrValues));
+		}
+		
+
+		/**
+		 * 设置全部属性值组合
+		 */
+		List<Integer> allAttrValueIds = new ArrayList<Integer>();
+		String productKeyAttrValueIds = productDomain.getProductKeyAttrValueIds();
+		if (productKeyAttrValueIds != null){
+			String[] strArray = productKeyAttrValueIds.split(ProductService.ATTR_VALUE_ID_SPLITTER);
+			for (String str : strArray){
+				allAttrValueIds.add(Integer.parseInt(str));
+			}
+		}
+		if (CollectionTools.isNotNullOrEmpty(skuAttrValueIds)){
+			allAttrValueIds.addAll(skuAttrValueIds);
+		}
+		allAttrValueIds.addAll(skuAttrValueIds);
+		Collections.sort(allAttrValueIds);
+		if (allAttrValueIds.size() > 0){
+			skuDomain.setAllAttrValueIds(StringTools.concatWithSymbol(ProductService.ATTR_VALUE_ID_SPLITTER, allAttrValueIds));
 		}
 
 		updateDomain.setUpdateDate(now);
@@ -773,19 +827,28 @@ public class SkuService {
 			}
 
 			/**
-			 * TODO:检测有没有销售记录,有不能删除
+			 * 检测有没有销售记录,有不能删除
 			 */
+			if (productExMapper.orderDetailCount(skuId)>0){
+				throw new SkuWasSoldRuntimeException();
+			}
 
 			
 			/**
-			 * TODO:删除属性,SKU属性,图片
+			 *删除SKU属性
 			 *
+			 */
+			MybatisParam params = new MybatisParam().put("skuId", skuId);
+			productAttrMapper.deleteDynamic(params);
+			
+			/**
+			 * TODO:删除SKU图片
 			 */
 			
 			/**
 			 * TODO:保留产品SkU库存历史记录，并删除产品SKU库存
 			 */
-			MybatisParam params = new MybatisParam().put("productId", productId).put("skuId",skuId);
+			params = new MybatisParam().put("productId", productId).put("skuId",skuId);
 			List<StockDomain> stockDomainList = stockMapper.loadDynamic(params);
 			for (StockDomain stockDomain : stockDomainList){
 				StockHistoryDomain stockHistoryDomain = DomainTools.copy(stockDomain, StockHistoryDomain.class);
