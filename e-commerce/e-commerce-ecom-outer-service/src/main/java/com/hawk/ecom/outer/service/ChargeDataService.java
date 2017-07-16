@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hawk.ecom.outer.request.ChargeDataNotifyRequest;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -28,8 +27,9 @@ public class ChargeDataService {
 	private final String QUERY_URL = "http://load.flow.shziyuan.cn:8001/open-api/rest/recharge/status";
 	
 	@Autowired
-	private HttpExecutor httpExecutor;
+	private HttpExecutor httpExecutor ;
 	
+
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	public interface ConstChargeResponseStatus{
@@ -53,8 +53,7 @@ public class ChargeDataService {
 		public String PROCESSING = "0009";
 	}
 
-	@SuppressWarnings("unused")
-	private static class ChargeRequest {
+	public static class ChargeRequest {
 		public String getApiKey() {
 			return apiKey;
 		}
@@ -121,8 +120,8 @@ public class ChargeDataService {
 		private String timeStamp;
 	}
 
-	@SuppressWarnings("unused")
-	private static class ChargeResponse{
+	
+	public static class ChargeResponse{
 //		"code": "0000",
 //		"msg": "成功",
 //		"data": {
@@ -172,8 +171,8 @@ public class ChargeDataService {
 		
 	}
 	
-	@SuppressWarnings("unused")
-	private static class ChargeResponseData{
+	
+	public static class ChargeResponseData{
 		public String getOrderNo() {
 			return orderNo;
 		}
@@ -334,20 +333,5 @@ public class ChargeDataService {
 		return queryResult;
 	}
 	
-	public void notify(ChargeDataNotifyRequest chargeDataNotifyRequest){
-		if (ConstChargeNotifyStatus.SUCCESS.equals(chargeDataNotifyRequest.getStatus())){
-			
-			return ;
-		}
-		
-		if (ConstChargeNotifyStatus.FAILURE.equals(chargeDataNotifyRequest.getStatus())){
-			
-			return ;
-		} 
-		
-		if (ConstChargeNotifyStatus.PROCESSING.equals(chargeDataNotifyRequest.getStatus())){
-			
-			return ;
-		} 
-	}
+	
 }
