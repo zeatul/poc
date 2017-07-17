@@ -5,7 +5,7 @@ public class AlipayConfig {
 	// 商户appid
 	public static String APPID = "2088421800331408";
 	// 私钥 pkcs8格式的
-	public static String RSA_PRIVATE_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKsiQTl8Vdw0iRNfjMMuhpgIK8cwzhHXnWt3SQMQ520OijY60M6JIaPq";
+	public static String RSA_PRIVATE_KEY = "q44kywe2kynmauzww4neimlcocnefh99";
 	// 服务器异步通知页面路径 需http://或者https://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
 	public static String NOTIFY_URL = "/ecom/pay/notify/alipay";
 	// 页面跳转同步通知页面路径 需http://或者https://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
@@ -18,7 +18,7 @@ public class AlipayConfig {
 	// 返回格式
 	public static String FORMAT = "json";
 	// 支付宝公钥
-	public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjrEVFMOSiNJXaRNKicQuQdsREraftDA9Tua3WNZwcpeXeh8Wrt+V9JilLqSa7N7sVqwpvv8zWChgXhX/A96hEg97Oxe6GKUmzaZRNh0cZZ88vpkn5tlgL4mH/dhSr3Ip00kvM4rHq9PwuT4k7z1DpZAf1eghK8Q5BgxL88d0X07m9X96Ijd0yMkXArzD7jg+noqfbztEKoH3kPMRJC2w4ByVdweWUT2PwrlATpZZtYLmtDvUKG/sOkNAIKEMg3Rut1oKWpjyYanzDgS7Cg3awr1KPTl9rHCazk15aNYowmYtVabKwbGVToCAGK+qQ1gT3ELhkGnf3+h53fukNqRH+wIDAQAB";
+	public static String ALIPAY_PUBLIC_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKsiQTl8Vdw0iRNfjMMuhpgIK8cwzhHXnWt3SQMQ520OijY60M6JIaPq/wLCSaHLFTQFg95xd25kvBRQRttLKENTfFkd2Oh1qG1PsUXfzsqBsm5vVxZMhLs/ElMNaIusTrQoAmSKHkO47m3yhSX8mndKkZuybSQOf7vtY+tSkMb1AgMBAAECgYAkOdcWxSQjvhc6O6K/emzRaAFkZAdrLXpMUm7pMD3dDxPg0Oh8n/i4Czm6KsiNcEDnxzcX8mr2umo53phxOWKnLR+GuZ539XSdlwjFadQ+NYJxQE+g5YF+rDp7q1MBFMzlOSqJotXLT3TqHKBXjHxsfgb6r2m2AYEqr5giYfVtTQJBANvGZ4Wt4a98aTdsXCtsG5Tfum1YWblC0RJWDVVM/7PmVMtOUD+6EhEPQwUCOi9aYRlYDKMexMN6G2T9csNHU5MCQQDHV2SN+nc11u2IedQC2r0QkrsLAJ1xPb21NjZepyfPeqi7BY2rE+bcVG08/8DPJsmyIStLh5/f/aIkhFQYOyBXAkAfNC9UmpiViuuBdAAuJh5QZ+eXSNkMZcE7gj5IYzNW/pgBebAJLEkOZQVV+7f5KzLoH0lEC8VSH88t6pJVyZXDAkB1Q+LiZrokEPiQ9WIT/8uC6V5g3Y7A5BoqdObNDbYsprKFuoGZZ07CxGOyo50v/1hdkoeemf0hzlnI85No4bdnAkEAhUHnhFAuhmMiMYaVvG6OPggdZOssWr5WfRHXcMxJesjxuX/qVZPEm3rq4ndwqujKk1l/zELaXvpUQ+kHr8TnhQ==";
 	// 日志记录目录
 	public static String log_path = "/log";
 	// RSA2
