@@ -25,9 +25,9 @@ import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.JsonTools;
 
 @RestController
-@RequestMapping("/ecom/task/chargeData")
+@RequestMapping("/ecom/task/notifiy/chargeData")
 @CrossOrigin
-public class ChargeDataController {
+public class ChargeDataNotifyController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -36,7 +36,7 @@ public class ChargeDataController {
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
-		return "Welcome to /ecom/outer/chargeData controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+		return "Welcome to /ecom/task/chargeData controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class ChargeDataController {
 	 * @param suplierCode
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/notify", method = POST)
+	@RequestMapping(value = "/storeCode/{storeCode}/supplierCode/{supplierCode}", method = POST)
 	public WebResponse<ChargeDataNotifyResponse> notify(@PathVariable String storeCode, @PathVariable String supplierCode, HttpServletRequest request) throws Exception {
 		
 		ChargeDataNotifyRequest param = HttpRequestTools.parse(request, ChargeDataNotifyRequest.class);

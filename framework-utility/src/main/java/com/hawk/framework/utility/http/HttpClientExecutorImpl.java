@@ -240,7 +240,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			checkResponse(response);
 
 			HttpEntity entity = response.getEntity();
-			return EntityUtils.toString(entity);
+//			return EntityUtils.toString(entity);
+			return EntityUtils.toString(entity,"utf-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -291,7 +292,7 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			checkResponse(response);
 			HttpEntity entity = response.getEntity();
 
-			return EntityUtils.toString(entity);
+			return EntityUtils.toString(entity,"utf-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -327,7 +328,9 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			checkResponse(response);
 			HttpEntity entity = response.getEntity();
 
-			return EntityUtils.toString(entity);
+//			return EntityUtils.toString(entity);
+			
+			return EntityUtils.toString(entity,"utf-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -386,7 +389,8 @@ public class HttpClientExecutorImpl implements HttpExecutor {
 			checkResponse(response);
 			HttpEntity entity = response.getEntity();
 
-			return EntityUtils.toString(entity);
+//			return EntityUtils.toString(entity);
+			return EntityUtils.toString(entity,"utf-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.framework.utility.http.HttpClientExecutorImpl;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -28,6 +29,10 @@ public class ChargeDataService {
 	
 	@Autowired
 	private HttpExecutor httpExecutor ;
+	
+	public ChargeDataService() throws Exception{
+		this.httpExecutor = new HttpClientExecutorImpl();
+	}
 	
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -279,8 +284,8 @@ public class ChargeDataService {
 		return chargeResult;
 	}
 
-	@SuppressWarnings("unused")
-	private static class QueryRequest{
+	public static class QueryRequest{
+		
 		public String getApiKey() {
 			return apiKey;
 		}
@@ -293,11 +298,11 @@ public class ChargeDataService {
 		public void setTimeStamp(String timeStamp) {
 			this.timeStamp = timeStamp;
 		}
-		public String getOrderNo() {
-			return orderNo;
+		public String getOrder_no() {
+			return order_no;
 		}
-		public void setOrderNo(String orderNo) {
-			this.orderNo = orderNo;
+		public void setOrder_no(String order_no) {
+			this.order_no = order_no;
 		}
 		public String getSign() {
 			return sign;
@@ -307,7 +312,7 @@ public class ChargeDataService {
 		}
 		private String apiKey;
 		private String timeStamp;
-		private String orderNo;
+		private String order_no;
 		private String sign;
 		
 	}
@@ -316,7 +321,7 @@ public class ChargeDataService {
 	private  QueryRequest buildQueryRequest(String orderNo) throws Exception{
 		QueryRequest queryRequest = new QueryRequest();
 		queryRequest.setApiKey(API_KEY);
-		queryRequest.setOrderNo(orderNo);
+		queryRequest.setOrder_no(orderNo);
 		queryRequest.setTimeStamp(DateTools.convert(new Date(), "yyyyMMddHHmmss"));
 		queryRequest.setSign(coumputeSign(queryRequest));
 		return queryRequest;
@@ -326,10 +331,22 @@ public class ChargeDataService {
 	
 	public QueryResult queryChargeResult(String outerOrderNo) throws Exception{
 		logger.info("Start queryChargeResult,outerOrderNo={}",outerOrderNo);
-		QueryRequest QueryRequest = buildQueryRequest(outerOrderNo);		
+		QueryRequest QueryRequest = buildQueryRequest(outerOrderNo);	
 		String jsonStr = httpExecutor.post(QUERY_URL, QueryRequest, null);
 		logger.info("queryChargeResult Response : outerOrderNo={},result = {}",outerOrderNo,jsonStr);
 		QueryResult queryResult = JsonTools.toObject(jsonStr, QueryResult.class);
+		
+		if (queryResult.getCode().equals(ConstChargeNotifyStatus.SUCCESS)){
+			queryResult.setSuccess(true);
+			queryResult.setProcessing(false);
+		}else if( queryResult.getCode().equals(ConstChargeNotifyStatus.FAILURE)){
+			queryResult.setSuccess(false);
+			queryResult.setProcessing(false);
+		}else {
+			queryResult.setSuccess(false);
+			queryResult.setProcessing(true);
+		}
+		
 		return queryResult;
 	}
 	

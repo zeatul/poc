@@ -2,6 +2,14 @@ package com.hawk.ecom.outer.service;
 
 public class QueryResult {
 	
+	public boolean isProcessing() {
+		return isProcessing;
+	}
+
+	public void setProcessing(boolean isProcessing) {
+		this.isProcessing = isProcessing;
+	}
+
 	public boolean isSuccess() {
 		return isSuccess;
 	}
@@ -27,6 +35,8 @@ public class QueryResult {
 	}
 
 	private boolean isSuccess;
+	
+	private boolean isProcessing;
 	
 	private String code;
 	
