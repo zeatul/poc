@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pay.request.PayParam;
+import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -46,6 +47,7 @@ public class PaymentController {
 	
 	@RequestMapping(value = "/wap2", method = GET)
 	public void wapPay2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("----------"+AlipayConfig.version+"--------------------hello World---------------------------------");
 		PayParam param = new PayParam();
 		Integer orderId = Integer.parseInt(request.getParameter("orderId"));
 		String paymentCategoryCode = request.getParameter("paymentCategoryCode");
