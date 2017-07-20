@@ -319,6 +319,7 @@ public class OrderService {
 		orderDetailDeliveryDtatDomain.setUpdateDate(now);
 		orderDetailDeliveryDtatDomain.setUpdateUserCode(null);
 		orderDetailDeliveryDtatDomain.setUserCode(userCode);
+		orderDetailDeliveryDtatDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.UN_EXECUTE);
 		
 		return orderDetailDeliveryDtatDomain;
 	}

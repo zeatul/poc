@@ -12,8 +12,10 @@ public class ChargeDataServiceTest {
 	public void testCharge() throws Exception{
 		ChargeDataService service = new ChargeDataService();
 		
-		ChargeResult chargeResult = service.charge("18616550187", "LC999U01020M", UUID.randomUUID().toString().replaceAll("-", ""));
+//		ChargeResult chargeResult = service.charge("18616550187", "LC020U21010M", UUID.randomUUID().toString().replaceAll("-", ""));
 	
+		ChargeResult chargeResult = service.charge("18666075617", "LC020U21010M", UUID.randomUUID().toString().replaceAll("-", ""));
+		
 		System.out.println("+++++++++++++ charge reulst=" +JsonTools.toJsonString(chargeResult	));
 
 		

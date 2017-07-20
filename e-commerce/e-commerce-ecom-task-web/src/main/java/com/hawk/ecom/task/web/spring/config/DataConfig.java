@@ -1,4 +1,4 @@
-package com.hawk.ecom.trans.web.spring.config;
+package com.hawk.ecom.task.web.spring.config;
 
 import javax.sql.DataSource;
 
@@ -35,7 +35,7 @@ import com.hawk.framework.utility.tools.StringTools;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@PropertySource("classpath:/com/hawk/ecom/trans/web/env/jdbc.properties")
+@PropertySource("classpath:/com/hawk/ecom/task/web/env/jdbc.properties")
 @MapperScan(basePackageClasses = { OrderMapper.class, OrderExMapper.class, // 订单
 		WordMapper.class, WordExMapper.class, // 数据字典
 		TaskMapper.class, TaskExMapper.class, // 短消息

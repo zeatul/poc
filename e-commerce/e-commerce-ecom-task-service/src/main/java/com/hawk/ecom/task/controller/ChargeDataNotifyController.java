@@ -47,8 +47,21 @@ public class ChargeDataNotifyController {
 	 */
 	@RequestMapping(value = "/storeCode/{storeCode}/supplierCode/{supplierCode}", method = POST)
 	public WebResponse<ChargeDataNotifyResponse> notify(@PathVariable String storeCode, @PathVariable String supplierCode, HttpServletRequest request) throws Exception {
+
+		logger.info("recieve chargeData notify , storeCode={},supplierCode={}",storeCode,supplierCode);
+		
+		if (!"VD000001".equals(supplierCode)){
+			throw new RuntimeException("supplierCode="+supplierCode+",is illegal");
+		}
+		if (!"ST000001".equals(storeCode)){
+			throw new RuntimeException("storeCode="+storeCode+",is illegal");
+		}
 		
 		ChargeDataNotifyRequest param = HttpRequestTools.parse(request, ChargeDataNotifyRequest.class);
+		param.setSupplierCode(supplierCode);
+		param.setStoreCode(storeCode);
+		logger.info("recieve chargeData notify , param{}",JsonTools.toJsonString(param));
+		
 		
 		logger.info("receive notification = {}" ,JsonTools.toJsonString(param));
 		

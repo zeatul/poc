@@ -7,12 +7,24 @@
 	<update id="closeUnpaiedOvertimeOrder" parameterType="hashmap">
 		update t_tra_order t
 		set t.order_status = #{nextOrderStatus},
-			t.update_date = now() ,
-			t.order_status_change_memo = #{orderStatusChangeMemo}
+		t.update_date = now() ,
+		t.order_status_change_memo = #{orderStatusChangeMemo}
 		where t.order_status = #{preOrderStatus}
 		and t.order_pay_expire_time < #{threashold}
-		and not exists (select * from t_pay_payment_bill b where t.order_code = b.order_code);
+		and not exists (select
+		* from t_pay_payment_bill
+		b where t.order_code = b.order_code);
 	</update>
-	
-	
+
+	<update id="updateOrderDeliveryDataForNotification" parameterType="hashmap">
+		UPDATE t_tra_order_detail_delivery_data
+		SET delivery_status = #{deliveryStatus},
+		<if test="outerOrderCode != null"> outer_order_code = #{outerOrderCode},  </if>
+		outer_order_status = #{outerOrderStatus} ,
+		outer_order_msg = #{outerOrderMsg},
+		update_date = now()
+		WHERE task_code = #{taskCode}
+	</update>
+
+
 </mapper>
