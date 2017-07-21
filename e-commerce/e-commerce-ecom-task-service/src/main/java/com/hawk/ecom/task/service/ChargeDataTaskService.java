@@ -49,5 +49,14 @@ public class ChargeDataTaskService {
 		 * 更新交付状态
 		 */
 		jobExMapper.updateOrderDeliveryDataForNotification(params);
+		
+		/**
+		 * 更新订单明细状态
+		 */
+		
+		/**
+		 * 更新订单状态
+		 */
+		1
 	}
 }
