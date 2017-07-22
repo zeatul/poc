@@ -9,9 +9,9 @@ public class AbstractControllerTest {
 
 	protected HttpExecutor httpExecutor;
 	
-	private String base = "http://localhost:8080";
+//	private String base = "http://localhost:8080";
 	
-//	private String base = "https://210.73.195.77/mall_admin_test/";
+	private String base = "https://210.73.195.77/mall_admin_test/";
 	
 	protected String getUrl(String path){
 //		下表中列出了一些URL特殊符号及编码 十六进制值 
