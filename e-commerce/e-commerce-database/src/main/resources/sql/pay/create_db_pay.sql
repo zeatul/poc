@@ -1,3 +1,7 @@
+drop index i_pay_alipay_info on t_pay_alipay_info;
+
+drop table if exists t_pay_alipay_info;
+
 drop index ui_pay_application_code on t_pay_payment_application;
 
 drop table if exists t_pay_payment_application;
@@ -19,6 +23,47 @@ drop index ui_pay_category_code on t_pay_payment_category;
 drop table if exists t_pay_payment_category;
 
 drop table if exists t_pay_payment_sequence;
+
+/*==============================================================*/
+/* Table: t_pay_alipay_info                                     */
+/*==============================================================*/
+create table t_pay_alipay_info
+(
+   notify_time          timestamp(3) null comment '通知时间',
+   app_id               varchar(200) comment '支付宝分配给开发者的应用Id',
+   trade_no             varchar(200) comment '支付宝交易凭证号',
+   out_trade_no         varchar(200) comment '原支付请求的商户订单号 ',
+   out_biz_no           varchar(200) comment '商户业务ID',
+   buyer_id             varchar(200) comment '买家支付宝账号对应的支付宝唯一用户号',
+   buyer_logon_id       varchar(50) comment ' 买家支付宝账号',
+   seller_id            varchar(50) comment '卖家支付宝用户号',
+   seller_email         varchar(50) comment '卖家支付宝账号',
+   trade_status         varchar(50) comment '交易状态',
+   total_amount         decimal(17,2) comment '本次交易支付的订单金额',
+   receipt_amount       decimal(17,2) comment '商家在交易中实际收到的款项',
+   invoice_amount       decimal(17,2) comment '用户在交易中支付的可开发票的金额',
+   buyer_pay_amount     decimal(17,2) comment '用户在交易中支付的金额',
+   point_amount         decimal(17,2) comment '使用集分宝支付的金额',
+   refund_fee           decimal(17,2) comment '总退款金额',
+   subject              varchar(500) comment '订单标题',
+   body                 varchar(500) comment '商品描述',
+   gmt_create           timestamp(3) null comment '交易创建时间',
+   gmt_payment          timestamp(3) null comment '交易付款时间',
+   gmt_refund           timestamp(3) null comment '交易退款时间',
+   gmt_close            timestamp(3) null comment '交易结束时间',
+   fund_bill_list       varchar(1000) comment '支付金额信息'
+);
+
+alter table t_pay_alipay_info comment '支付宝支付信息';
+
+/*==============================================================*/
+/* Index: i_pay_alipay_info                                     */
+/*==============================================================*/
+create index i_pay_alipay_info on t_pay_alipay_info
+(
+   trade_no,
+   out_trade_no
+);
 
 /*==============================================================*/
 /* Table: t_pay_payment_application                             */

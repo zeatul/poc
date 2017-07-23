@@ -182,6 +182,7 @@ public class OrderService {
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());
+					orderDetailDeliveryDataDomain.setMaxExecTimes(1); //充流量只可以执行一次
 					orderDetailDeliveryDataDomain.setOuterProductId(skuDomain.getSkuCode()); /*默认skucode存放产品编号*/
 					
 				}else if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.BSI){
@@ -406,6 +407,18 @@ public class OrderService {
 		return orderDomain;
 	}
 	
+	public OrderDomain loadOrder(String orderCode){
+		OrderDomain orderDomain = null;
+		if (StringTools.isNotNullOrEmpty(orderCode)){
+			MybatisParam params = new MybatisParam().put("orderCode", orderCode);
+			orderDomain = MybatisTools.single(orderMapper.loadDynamic(params));
+		}
+		if (orderDomain == null){
+			throw new OrderNotFoundRuntimeException();
+		}
+		return orderDomain;
+	}
+	
 	@Valid
 	public OrderDomain loadOrder (@Valid @NotNull("函数入参") LoadOrderParam loadOrderParam){
 		OrderDomain orderDomain = loadOrder(loadOrderParam.getOrderId());
@@ -477,10 +490,17 @@ public class OrderService {
 	
 	public  void updateOrderStatus(Integer orderId ,Integer orderStatus,String operationDesc,String operationMemo){
 		 OrderDomain orderDomain = loadOrder(orderId);
+		 updateOrderStatus(orderId,orderStatus,operationDesc,operationMemo);
+	}
+	
+	private  void updateOrderStatus(OrderDomain orderDomain ,Integer orderStatus,String operationDesc,String operationMemo){
 		 Date now = new Date();
 		 OrderDomain updateDomain = new OrderDomain();
-		 updateDomain.setId(orderId);
-		 updateDomain.setOrderStatus(ConstOrder.OrderStatus.FAILURE);
+		 if (orderDomain.getOrderStatus() == ConstOrder.OrderStatus.SUCCESS){
+			 throw new OrderStatusIsNotAcceptableRuntimeException();
+		 }
+		 updateDomain.setId(orderDomain.getCurrency());
+		 updateDomain.setOrderStatus(orderStatus);
 		 updateDomain.setUpdateDate(now);
 		 orderMapper.update(updateDomain);
 		 OrderOperationDomain operationDomain = new OrderOperationDomain();
@@ -498,6 +518,12 @@ public class OrderService {
 		 operationDomain.setUpdateUserCode(null);
 		 operationDomain.setUserCode(orderDomain.getUserCode());
 		 orderOperationMapper.insert(operationDomain);
+	}
+	
+	public  void updateOrderStatus(String orderCode ,Integer orderStatus,String operationDesc,String operationMemo){
+		 OrderDomain orderDomain = loadOrder(orderCode);
+		 updateOrderStatus(orderDomain,orderStatus,operationDesc,operationMemo);
+		
 	}
 	
 	/**

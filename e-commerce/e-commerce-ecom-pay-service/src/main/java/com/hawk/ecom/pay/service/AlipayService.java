@@ -11,10 +11,14 @@ import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.hawk.ecom.pay.persist.domain.AlipayInfoDomain;
+import com.hawk.ecom.pay.persist.mapper.AlipayInfoMapper;
+import com.hawk.ecom.pay.request.AlipayNotifyParam;
 import com.hawk.ecom.pay.request.AlipayTradeParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -25,6 +29,9 @@ public class AlipayService {
 
 	@Autowired
 	private AlipayClient alipayClient;
+	
+	@Autowired
+	private AlipayInfoMapper alipayInfoMapper;
 
 	/**
 	 * 查询交易状态
@@ -47,6 +54,12 @@ public class AlipayService {
 		alipayResponse.getOutTradeNo();
 		alipayResponse.getTradeNo();
 //		交易状态：WAIT_BUYER_PAY（交易创建，等待买家付款）、TRADE_CLOSED（未付款交易超时关闭，或支付完成后全额退款）、TRADE_SUCCESS（交易支付成功）、TRADE_FINISHED（交易结束，不可退款
+	}
+	
+	@Valid
+	public void notify(@NotNull("支付宝通知参数")AlipayNotifyParam alipayNotifyParam) throws Exception{
+		AlipayInfoDomain alipayInfoDomain = DomainTools.copy(alipayNotifyParam, AlipayInfoDomain.class);
+		alipayInfoMapper.insert(alipayInfoDomain);
 	}
 
 	/**
