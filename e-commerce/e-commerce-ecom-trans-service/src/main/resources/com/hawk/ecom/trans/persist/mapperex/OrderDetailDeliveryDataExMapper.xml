@@ -20,7 +20,7 @@
 		SELECT order_detail_id AS "orderDetailId" ,
 		order_detail_status AS "orderDetailStatus" ,
 		order_id AS "orderId"
-		FROM t_tra_order_detail_delivery_data
+		FROM t_tra_order_detail_delivery_data a
 		WHERE task_code = #{taskCode}
 	</select>
 

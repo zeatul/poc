@@ -16,6 +16,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+5, "订单不属于当前用户");
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+6, "订单状态不符合当前操作要求");
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+7, "申请支付订单已经超出支付截止日期");
+		errorMap.put(ErrorCodeAllocation.TRANSACTION+8, "商品交付信息未找到");
 	}
 	
 
