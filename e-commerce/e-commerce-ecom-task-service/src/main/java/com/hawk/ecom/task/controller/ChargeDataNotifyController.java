@@ -59,11 +59,7 @@ public class ChargeDataNotifyController {
 		
 		ChargeDataNotifyRequest param = HttpRequestTools.parse(request, ChargeDataNotifyRequest.class);
 		param.setSupplierCode(supplierCode);
-		param.setStoreCode(storeCode);
-		logger.info("recieve chargeData notify , param{}",JsonTools.toJsonString(param));
-		
-		
-		logger.info("receive notification = {}" ,JsonTools.toJsonString(param));
+		param.setStoreCode(storeCode);		
 		
 		chargeDataTaskService.notify(param);
 

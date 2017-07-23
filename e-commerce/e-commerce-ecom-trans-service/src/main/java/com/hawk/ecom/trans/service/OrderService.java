@@ -30,9 +30,11 @@ import com.hawk.ecom.trans.exception.UnSupportOrderDeatailQuantityRuntimeExcepti
 import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDomain;
+import com.hawk.ecom.trans.persist.domain.OrderOperationDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderMapper;
+import com.hawk.ecom.trans.persist.mapper.OrderOperationMapper;
 import com.hawk.ecom.trans.request.CreateOrderParam;
 import com.hawk.ecom.trans.request.ListOrderDetailParam;
 import com.hawk.ecom.trans.request.ListOrderParam;
@@ -48,6 +50,7 @@ import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
+import com.hawk.framework.utility.tools.CollectionTools;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -84,6 +87,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDetailDeliveryDataMapper  orderDetailDeliveryDataMapper;
+	
+	@Autowired
+	private OrderOperationMapper orderOperationMapper;
 	
 	@Valid
 	@Transactional
@@ -319,7 +325,7 @@ public class OrderService {
 		orderDetailDeliveryDtatDomain.setUpdateDate(now);
 		orderDetailDeliveryDtatDomain.setUpdateUserCode(null);
 		orderDetailDeliveryDtatDomain.setUserCode(userCode);
-		orderDetailDeliveryDtatDomain.setDeliveryStatus(com.hawk.ecom.pub.constant.ConstOrder.DeliveryStatus.UN_EXECUTE);
+		orderDetailDeliveryDtatDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.UN_EXECUTE);
 		
 		return orderDetailDeliveryDtatDomain;
 	}
@@ -467,6 +473,51 @@ public class OrderService {
 		orderPayInfo.setUserCode(orderDomain.getUserCode());
 		orderPayInfo.setCurrency(orderDomain.getCurrency());
 		return orderPayInfo;
+	}
+	
+	public  void updateOrderStatus(Integer orderId ,Integer orderStatus,String operationDesc,String operationMemo){
+		 OrderDomain orderDomain = loadOrder(orderId);
+		 Date now = new Date();
+		 OrderDomain updateDomain = new OrderDomain();
+		 updateDomain.setId(orderId);
+		 updateDomain.setOrderStatus(ConstOrder.OrderStatus.FAILURE);
+		 updateDomain.setUpdateDate(now);
+		 orderMapper.update(updateDomain);
+		 OrderOperationDomain operationDomain = new OrderOperationDomain();
+		 operationDomain.setCreateDate(now);
+		 operationDomain.setCreateUserCode(null);
+		 operationDomain.setId(pkGenService.genPk());
+		 operationDomain.setOperationDesc(operationDesc);
+		 operationDomain.setOperationMemo(operationMemo);
+		 operationDomain.setOrderCode(orderDomain.getOrderCode());
+		 operationDomain.setOrderId(orderDomain.getId());
+		 operationDomain.setOrderPreStatus(orderDomain.getOrderStatus());
+		 operationDomain.setOrderNextStatus(orderStatus);
+		 operationDomain.setStoreCode(orderDomain.getStoreCode());
+		 operationDomain.setUpdateDate(now);
+		 operationDomain.setUpdateUserCode(null);
+		 operationDomain.setUserCode(orderDomain.getUserCode());
+		 orderOperationMapper.insert(operationDomain);
+	}
+	
+	/**
+	 * 订单是否全部明细都成功完成
+	 * @param orderId
+	 * @return
+	 */
+	@Valid
+	public boolean isAllOrderDetailSuccess(@NotNull Integer orderId){
+		MybatisParam params = new MybatisParam().put("orderId", orderId);
+		List<OrderDetailDomain> list = orderDetailMapper.loadDynamic(params);
+		if (CollectionTools.isNullOrEmpty(list)){
+			throw new RuntimeException("Hadn't find any orderDetail of Order,orderId="+orderId);
+		}
+		for (OrderDetailDomain orderDetailDomain : list){
+			if (!orderDetailDomain.getOrderDetailStatus().equals(ConstOrder.OrderDetailStatus.SUCCESS)){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static void main(String[] args){

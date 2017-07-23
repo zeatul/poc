@@ -3,6 +3,59 @@ package com.hawk.ecom.trans.constant;
 public class ConstOrder {
 	
 	/**
+	 * 订单明细处理状态
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public interface OrderDetailStatus{
+		/**
+		 * 处理中
+		 */
+		public final int PROCESSING= 1; 
+		/**
+		 * 取消
+		 */
+		public final int CANCELED = 98; 
+		/**
+		 * 失败
+		 */
+		public final int FAILURE = 99;
+		/**
+		 * 成功
+		 */
+		public final int SUCCESS = 100;
+	}
+	
+	/**
+	 * 订单明细交付状态
+	 * @author zhangpeng.hawk
+	 *
+	 */
+	public interface DeliveryStatus{
+		/*
+		 * 未执行
+		 */
+		public final int UN_EXECUTE = 0;
+		
+		/**
+		 * 处理中
+		 */
+		public final int PROCESSING = 1;
+		/**
+		 * 取消
+		 */
+		public final int CANCELED = 98; 
+		/**
+		 * 失败
+		 */
+		public final int FAILURE = 99;
+		/**
+		 * 成功
+		 */
+		public final int SUCCESS = 100;
+	}
+	
+	/**
 	 * 支付方式
 	 * @author zhangpeng.hawk
 	 *
@@ -76,29 +129,7 @@ public class ConstOrder {
 		public final int GIFT = 2;
 	}
 	
-	/**
-	 * 订单明细处理状态
-	 * @author zhangpeng.hawk
-	 *
-	 */
-	public interface OrderDetailStatus{
-		/**
-		 * 处理中
-		 */
-		public final int PROCESSING= 1; 
-		/**
-		 * 取消
-		 */
-		public final int CANCELED = 98; 
-		/**
-		 * 失败
-		 */
-		public final int FAILURE = 99;
-		/**
-		 * 成功
-		 */
-		public final int SUCCESS = 100;
-	}
+	
 
 	/**
 	 *  交付作业任务状态

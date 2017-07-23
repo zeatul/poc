@@ -2,20 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hawk.ecom.task.persist.mapperex.JobExMapper">
+<mapper namespace="com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper">
 
-	<update id="closeUnpaiedOvertimeOrder" parameterType="hashmap">
-		update t_tra_order t
-		set t.order_status = #{nextOrderStatus},
-		t.update_date = now() ,
-		t.order_status_change_memo = #{orderStatusChangeMemo}
-		where t.order_status = #{preOrderStatus}
-		and t.order_pay_expire_time < #{threashold}
-		and not exists (select
-		* from t_pay_payment_bill
-		b where t.order_code = b.order_code);
-	</update>
 
+	
 	<update id="updateOrderDeliveryDataForNotification" parameterType="hashmap">
 		UPDATE t_tra_order_detail_delivery_data
 		SET delivery_status = #{deliveryStatus},
@@ -25,6 +15,12 @@
 		update_date = now()
 		WHERE task_code = #{taskCode}
 	</update>
-
-
+	
+	<select id="loadOrderDeliveryDataByTaskCode" resultType="OrderDetailDeliveryDataExDomain">
+		SELECT order_detail_id AS "orderDetailId" ,
+		order_detail_status AS "orderDetailStatus" ,
+		order_id AS "orderId" 
+		FROM t_tra_order_detail_delivery_data
+		WHERE task_code = #{taskCode}
+	</select>
 </mapper>
