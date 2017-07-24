@@ -277,6 +277,10 @@ public class AttrNameService {
 				.put("attrNameBusinessType", listAttrNameParam.getAttrNameBusinessType())//
 				.put("attrNameStatus", listAttrNameParam.getAttrNameStatus())//
 				.put("attrValueType", listAttrNameParam.getAttrValueType())//
+				
+				.put("pid", listAttrNameParam.getPid())//
+				.put("pvid", listAttrNameParam.getPvid())//
+				
 				.put("isSearch", listAttrNameParam.getIsSearch());
 		params = MybatisTools.page(params, listAttrNameParam);
 		return attrNameMapper.loadDynamicPaging(params);
