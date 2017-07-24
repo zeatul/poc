@@ -257,8 +257,8 @@ public class ChargeDataService {
 			chargeResult.setSuccess(true);
 		}else{
 			chargeResult.setSuccess(false);
-			chargeResult.setErrMsg(chargeResponse.getMsg());
-			chargeResult.setErrCode(chargeResponse.getCode());
+			chargeResult.setMsg(chargeResponse.getMsg());
+			chargeResult.setCode(chargeResponse.getCode());
 		}
 		ChargeResponseData chargeResponseData = chargeResponse.getData();
 		if (chargeResponseData != null){
@@ -267,13 +267,13 @@ public class ChargeDataService {
 			}else{
 				chargeResult.setSuccess(false);
 				
-				String errCode = chargeResult.getErrCode();
-				String errMsg = chargeResult.getErrMsg();
+				String errCode = chargeResult.getCode();
+				String errMsg = chargeResult.getMsg();
 				
 				errCode = errCode == null ? chargeResponseData.getStatus() : StringTools.concatWithSymbol(":", errCode,chargeResponseData.getStatus());
 				errMsg = errMsg == null ? chargeResponseData.getErrorDesc() : StringTools.concatWithSymbol(":", errMsg,chargeResponseData.getErrorDesc());
-				chargeResult.setErrMsg(errMsg);
-				chargeResult.setErrCode(errCode);
+				chargeResult.setMsg(errMsg);
+				chargeResult.setCode(errCode);
 			}
 		}
 		return chargeResult;

@@ -1,4 +1,4 @@
-package com.hawk.ecom.trans.web.spring.config;
+package com.hawk.ecom.task.web.spring.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

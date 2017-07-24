@@ -1,4 +1,4 @@
-package com.hawk.ecom.task.controller;
+package com.hawk.ecom.trans.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -14,25 +14,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hawk.ecom.task.request.ChargeDataNotifyRequest;
-import com.hawk.ecom.task.response.ChargeDataNotifyResponse;
-import com.hawk.ecom.task.service.ChargeDataTaskService;
+import com.hawk.ecom.trans.request.ChargeDataNotifyRequest;
+import com.hawk.ecom.trans.response.ChargeDataNotifyResponse;
+import com.hawk.ecom.trans.service.ChargeDataNotifyService;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
-import com.hawk.framework.utility.tools.DomainTools;
-import com.hawk.framework.utility.tools.JsonTools;
 
 @RestController
-@RequestMapping("/ecom/task/notifiy/chargeData")
+@RequestMapping("/ecom/trans/notifiy/chargeData")
 @CrossOrigin
 public class ChargeDataNotifyController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private ChargeDataTaskService chargeDataTaskService;
+	private ChargeDataNotifyService chargeDataTaskService;
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {

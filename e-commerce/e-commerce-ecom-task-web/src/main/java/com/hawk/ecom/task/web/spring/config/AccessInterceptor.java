@@ -1,4 +1,4 @@
-package com.hawk.ecom.task.web;
+package com.hawk.ecom.task.web.spring.config;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

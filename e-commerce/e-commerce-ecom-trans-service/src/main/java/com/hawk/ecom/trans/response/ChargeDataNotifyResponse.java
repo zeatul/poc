@@ -1,4 +1,4 @@
-package com.hawk.ecom.task.response;
+package com.hawk.ecom.trans.response;
 
 import com.hawk.framework.pub.web.ResponseData;
 

@@ -18,7 +18,7 @@ import com.hawk.framework.pub.pk.PkGenService;
 
 @Configuration
 @Import({})
-@ComponentScan(basePackages = { "com.hawk.ecom.mall" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
+@ComponentScan(basePackages = { "com.hawk.ecom.mall.service" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
 public class MallAdminRootConfig {
 
 	public static class WebPackage extends RegexPatternTypeFilter {

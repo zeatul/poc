@@ -27,7 +27,6 @@ import com.hawk.ecom.trans.persist.mapper.OrderMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
 import com.hawk.ecom.user.persist.domain.UserDomain;
 import com.hawk.ecom.user.persist.mapper.UserMapper;
-import com.hawk.ecom.user.persist.mapperex.UserExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.dic.persist.mapper.WordMapper;
 import com.hawk.framework.dic.persist.mapperex.WordExMapper;
@@ -37,11 +36,11 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @PropertySource("classpath:/com/hawk/ecom/task/web/env/jdbc.properties")
 @MapperScan(basePackageClasses = { OrderMapper.class, OrderExMapper.class, // 订单
+		ProductMapper.class,ProductExMapper.class,//产品
+		TaskMapper.class,TaskExMapper.class,//短信
 		WordMapper.class, WordExMapper.class, // 数据字典
-		TaskMapper.class, TaskExMapper.class, // 短消息
-		ProductMapper.class, ProductExMapper.class, // 短消息
-		MallUserMapper.class,MallUserExMapper.class,//商城用户
-		UserMapper.class, UserExMapper.class // 客户
+		UserMapper.class,UserMapper.class,//客户
+		MallUserMapper.class,MallUserExMapper.class//商城用户
 })
 public class DataConfig {
 
@@ -153,16 +152,16 @@ public class DataConfig {
 		sqlSessionFactory.setDataSource(dataSource);
 		String ecomTransPackageName = OrderDomain.class.getPackage().getName(); // ecom-trans-service
 		String dicPackageName = WordDomain.class.getPackage().getName(); // 数据字典
-		String userPackageName = UserDomain.class.getPackage().getName(); // 用户
-		String smsPackageName = TaskDomain.class.getPackage().getName(); // 短信
-		String productPackageName = ProductDomain.class.getPackage().getName(); // 短信
 		String muserPackageName = MallUserDomain.class.getPackage().getName(); //商城用户
+		String productPackageName = ProductDomain.class.getPackage().getName();//产品
+		String smsPackageName = TaskDomain.class.getPackage().getName();//短信
+		String userPackageName = UserDomain.class.getPackage().getName();//用户
 		String str = StringTools.concatWithSymbol(";", ecomTransPackageName, ecomTransPackageName + "ex", //
 				dicPackageName, dicPackageName + "ex", //
-				smsPackageName, smsPackageName + "ex", //
-				productPackageName, productPackageName + "ex", //
-				muserPackageName, muserPackageName + "ex", //
-				userPackageName, userPackageName + "ex"//
+				productPackageName,productPackageName+"ex",//
+				smsPackageName,smsPackageName+"ex",//
+				userPackageName,userPackageName = "ex",//
+				muserPackageName, muserPackageName + "ex" //
 		);
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;

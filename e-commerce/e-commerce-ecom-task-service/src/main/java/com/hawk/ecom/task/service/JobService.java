@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.product.constant.ConstProduct;
+import com.hawk.ecom.pub.job.TaskPool;
+import com.hawk.ecom.task.job.ChargeDataJob;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
@@ -18,6 +21,9 @@ public class JobService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private OrderDetailDeliveryDataExMapper orderDetailDeliveryDataExMapper;
+	
+	@Autowired
+	private TaskPool taskPool;
 
 	/**
 	 * 关闭超过支付时间仍然没有支付记录的订单
@@ -41,7 +47,8 @@ public class JobService {
 		logger.info("Found {} charge jobs",jobList.size());
 		
 		for (OrderDetailDeliveryDataExDomain orderDetailDeliveryDataExDomain : jobList){
-			
+			ChargeDataJob chargeDataJob = new ChargeDataJob(orderDetailDeliveryDataExDomain.getTaskCode());
+			taskPool.execute(chargeDataJob);
 		}
 
 		logger.info("Success to execute batchCharge");

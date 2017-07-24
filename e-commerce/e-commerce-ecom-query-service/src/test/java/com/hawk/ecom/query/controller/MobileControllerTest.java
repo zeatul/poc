@@ -11,7 +11,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class MobileControllerTest extends AbstractControllerTest {
 
-	// @Test
+//	 @Test
 	public void testLoadMobileNumberSegment() {
 		String url = getUrl("/ecom/query/mobile/segment/mobileNumber/13311658157");
 		List<HttpParam> params = new ArrayList<HttpParam>();
@@ -22,19 +22,14 @@ public class MobileControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void testLoadChargeDataProduct() {
-		String url = getUrl("/ecom/query/mobile/sku/chargeData");
+		String url = getUrl("/ecom/query/mobile/sku/chargeData/mobileNumber/13311658157/regionType/province");
 		
-		LoadChargeDataProductParam request = new LoadChargeDataProductParam();
-		request.setOperator("unicom");
-		request.setProvince("310000");
-		request.setRegionType("province");
-		request.setSize(100);
+		
 		
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		
-		System.out.println("request=" + JsonTools.toJsonString(request));
-		String result = httpExecutor.post(url, request, params);
+		String result = httpExecutor.get(url, params);
 		System.out.println("result=" + result);
 	}
 

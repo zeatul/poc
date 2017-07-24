@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.base.persist.domainex.MobileNumberSegmentExDomain;
 import com.hawk.ecom.base.service.MobileNumberSegmentService;
+import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.request.LoadChargeDataProductParam;
+import com.hawk.ecom.query.response.LoadChargeDataProductResponse;
 import com.hawk.ecom.query.response.MobileNumberSegmentResponse;
 import com.hawk.ecom.query.service.ProductService;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -53,9 +55,25 @@ public class MobileController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sku/chargeData", method = {POST})
-	public WebResponse<ProductSkuExDomain> loadChargeDataProduct(HttpServletRequest request) throws Exception{
-		LoadChargeDataProductParam param = HttpRequestTools.parse(request, LoadChargeDataProductParam.class);
-		return SuccessResponse.build(productService.loadChargeDataProduct(param));
+	@RequestMapping(value = "/sku/chargeData/mobileNumber/{mobileNumber}/regionType/{regionType}", method = {POST,GET})
+	public WebResponse<LoadChargeDataProductResponse> loadChargeDataProduct(@PathVariable String mobileNumber,@PathVariable String regionType) throws Exception{
+		LoadChargeDataProductParam param = new LoadChargeDataProductParam();
+		MobileNumberSegmentExDomain mobileNumberSegmentExDomain = mobileNumberSegmentService.queryMobileNumberSegment(mobileNumber);
+		if (mobileNumberSegmentExDomain == null){
+			throw new RuntimeException("未找到手机号对应的运营商与地区信息");
+		}
+		param.setRegionType(regionType);
+		param.setOperator(mobileNumberSegmentExDomain.getMobileOperatorCode());
+		param.setProvince(mobileNumberSegmentExDomain.getProvinceCode());
+		
+		LoadChargeDataProductResponse loadChargeDataProductResponse = new LoadChargeDataProductResponse();
+		loadChargeDataProductResponse.setMobileOperator(mobileNumberSegmentExDomain.getMobileOperator());
+		loadChargeDataProductResponse.setMobileOperatorCode(mobileNumberSegmentExDomain.getMobileOperatorCode());
+		loadChargeDataProductResponse.setProvince(mobileNumberSegmentExDomain.getProvince());
+		loadChargeDataProductResponse.setProvinceCode(mobileNumberSegmentExDomain.getProvinceCode());
+		loadChargeDataProductResponse.setRegionType(regionType);
+		loadChargeDataProductResponse.setSkus(productService.loadChargeDataProduct(param));
+		
+		return SuccessResponse.build(loadChargeDataProductResponse);
 	}
 }

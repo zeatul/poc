@@ -16,8 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
-import com.github.wxpay.sdk.WXPay;
-import com.github.wxpay.sdk.WXPayConfigImpl;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.spring.config.EcomPayRootConfig.WebPackage;
 import com.hawk.framework.pub.pk.MysqlPkGenerator;
@@ -27,7 +25,7 @@ import com.hawk.framework.pub.pk.PkGenService;
 @Configuration
 @Import({})
 @PropertySource("classpath:/com/hawk/ecom/pay/env/pay.properties")
-@ComponentScan(basePackages = { "com.hawk.ecom.pay" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
+@ComponentScan(basePackages = { "com.hawk.ecom.pay.service" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
 public class EcomPayRootConfig {
 	
 	@Autowired

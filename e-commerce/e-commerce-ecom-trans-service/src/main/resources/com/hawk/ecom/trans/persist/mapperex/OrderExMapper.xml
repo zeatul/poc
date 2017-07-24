@@ -9,7 +9,7 @@
 		t.update_date = now() ,
 		t.order_status_change_memo = #{orderStatusChangeMemo}
 		where t.order_status = #{preOrderStatus}
-		and t.order_pay_expire_time < #{threashold}
+		and t.order_pay_expire_time &lt; #{threashold}
 		and not exists (select
 		* from t_pay_payment_bill
 		b where t.order_code = b.order_code);

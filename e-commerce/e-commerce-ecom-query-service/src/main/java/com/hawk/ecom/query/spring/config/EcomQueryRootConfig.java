@@ -18,7 +18,7 @@ import com.hawk.ecom.query.spring.config.EcomQueryRootConfig.WebPackage;
 
 @Configuration
 @Import({})
-@ComponentScan(basePackages = { "com.hawk.ecom.query" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
+@ComponentScan(basePackages = { "com.hawk.ecom.query.service" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
 public class EcomQueryRootConfig {
 
 	public static class WebPackage extends RegexPatternTypeFilter {

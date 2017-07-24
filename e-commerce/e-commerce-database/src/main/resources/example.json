@@ -1,7 +1,33 @@
 {
 	"data": {
-		"message": "RSAcontent = alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2088421800331408&biz_content={\"out_trade_no\":\"20170716161010001\",\"product_code\":\"QUICK_WAP_PAY\",\"subject\":\"流量充值\",\"total_amount\":\"99.00\"}&charset=UTF-8&format=json&method=alipay.trade.wap.pay&notify_url=https://210.73.195.77/ecom_trans_test/ecom/pay/notify/alipay&return_url=https://210.73.195.77/ecom_trans_test/ecom/pay/wap/return/alipay&sign_type=RSA2&timestamp=2017-07-16 16:24:13&version=1.0; charset = UTF-8",
-		"errCode": -1
+		"province": "上海市",
+		"provinceCode": "310000",
+		"mobileOperatorCode": "telecom",
+		"mobileOperator": "电信",
+		"regionType": "province",
+		"skus": [
+			{
+				"skuId": 1001328,
+				"skuName": "流量充值电信100M上海本地使用",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"dataSize": 100
+			},
+			{
+				"skuId": 1001376,
+				"skuName": "流量充值电信1000M上海本地使用",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"dataSize": 1000
+			},
+			{
+				"skuId": 1001424,
+				"skuName": "流量充值电信5000M上海本地使用",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"dataSize": 5000
+			}
+		]
 	},
-	"code": 0
+	"code": 1
 }

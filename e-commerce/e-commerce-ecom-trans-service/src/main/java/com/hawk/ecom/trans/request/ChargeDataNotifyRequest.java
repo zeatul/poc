@@ -1,4 +1,4 @@
-package com.hawk.ecom.task.request;
+package com.hawk.ecom.trans.request;
 
 public class ChargeDataNotifyRequest {
 	// 请求报文：

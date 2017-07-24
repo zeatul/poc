@@ -138,7 +138,7 @@ public class PaymentService {
 		paymentBillDomain.setOrderDesc(orderPayInfo.getOrderDesc());
 		paymentBillDomain.setTotalAmount(orderPayInfo.getTotalAmount());
 		paymentBillDomain.setPaymentBillCode(generatePaymentBillCode(now));
-		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING);
+		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING_PAY);
 		paymentBillDomain.setPaymentCategoryCode(payParam.getPaymentCategoryCode());
 		paymentBillDomain.setStoreCode(orderPayInfo.getStoreCode());
 		paymentBillDomain.setUpdateDate(now);
@@ -173,7 +173,7 @@ public class PaymentService {
 				 * 支付成功，直接报错
 				 */
 				throw new RuntimeException("已经支付成功");
-			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING){
+			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING_PAY){
 				/**
 				 * 等待支付结果返回。
 				 * 调用对应的接口查询，根据查询结果再做处理，记录备注，修改状态，生成新的支付单，等等。
