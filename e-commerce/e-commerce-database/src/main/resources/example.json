@@ -1,33 +1,100 @@
-{
-	"data": {
-		"province": "上海市",
-		"provinceCode": "310000",
-		"mobileOperatorCode": "telecom",
-		"mobileOperator": "电信",
-		"regionType": "province",
-		"skus": [
-			{
-				"skuId": 1001328,
-				"skuName": "流量充值电信100M上海本地使用",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"dataSize": 100
-			},
-			{
-				"skuId": 1001376,
-				"skuName": "流量充值电信1000M上海本地使用",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"dataSize": 1000
-			},
-			{
-				"skuId": 1001424,
-				"skuName": "流量充值电信5000M上海本地使用",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"dataSize": 5000
-			}
-		]
-	},
-	"code": 1
-}
+data":{
+	"records": [
+		{
+			"bsiPhoneModelId": 597,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "Metal"
+		},
+		{
+			"bsiPhoneModelId": 273,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "MX3"
+		},
+		{
+			"bsiPhoneModelId": 209,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "MX4"
+		},
+		{
+			"bsiPhoneModelId": 105,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "MX4 Pro"
+		},
+		{
+			"bsiPhoneModelId": 104,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "MX5"
+		},
+		{
+			"bsiPhoneModelId": 622,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "Pro 6"
+		},
+		{
+			"bsiPhoneModelId": 103,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "Pro5"
+		},
+		{
+			"bsiPhoneModelId": 1006,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "pro6s"
+		},
+		{
+			"bsiPhoneModelId": 843,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "U20"
+		},
+		{
+			"bsiPhoneModelId": 106,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅族Note"
+		},
+		{
+			"bsiPhoneModelId": 300,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝"
+		},
+		{
+			"bsiPhoneModelId": 880,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝 Max"
+		},
+		{
+			"bsiPhoneModelId": 208,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝2"
+		},
+		{
+			"bsiPhoneModelId": 621,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝3"
+		},
+		{
+			"bsiPhoneModelId": 645,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝3S"
+		},
+		{
+			"bsiPhoneModelId": 760,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝E"
+		},
+		{
+			"bsiPhoneModelId": 107,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝note2"
+		},
+		{
+			"bsiPhoneModelId": 207,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝note3"
+		},
+		{
+			"bsiPhoneModelId": 1067,
+			"bsiPhoneBrand": "魅族",
+			"bsiPhoneModel": "魅蓝x"
+		}
+	],
+	"count": 19
+},"code":1}

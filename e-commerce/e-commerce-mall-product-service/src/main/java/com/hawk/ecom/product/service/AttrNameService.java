@@ -260,7 +260,7 @@ public class AttrNameService {
 	}
 
 	@Valid
-	public List<AttrNameDomain> listAttrName(@NotNull("参数") @Valid ListAttrNameParam listAttrNameParam) {
+	public List<AttrNameDomain> listAttrName(@NotNull("参数") @Valid ListAttrNameParam listAttrNameParam) { 
 		/**
 		 * 权限
 		 */

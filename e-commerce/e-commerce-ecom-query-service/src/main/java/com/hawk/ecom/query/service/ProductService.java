@@ -30,9 +30,6 @@ public class ProductService {
 	@Autowired
 	private ProductExMapper productExMapper;
 
-	@Autowired
-	private MobileNumberSegmentService mobileNumberSegmentService;
-
 	public List<ProductCategoryExDomain> listCategory() {
 		return productExMapper.listCategory();
 	}

@@ -10,7 +10,7 @@
 		province_code AS "provinceCode" ,
 		mobile_operator_code AS "mobileOperatorCode" ,
 		isp AS "isp" ,
-		isp_type AS "ispType" 
+		isp_product AS "ispProduct" 
 	</sql>
 	
 	<sql id="where">
@@ -20,7 +20,7 @@
 			<if test="provinceCode != null"> AND province_code = #{provinceCode}  </if>
 			<if test="mobileOperatorCode != null"> AND mobile_operator_code = #{mobileOperatorCode}  </if>
 			<if test="isp != null"> AND isp = #{isp}  </if>
-			<if test="ispType != null"> AND isp_type = #{ispType}  </if>
+			<if test="ispProduct != null"> AND isp_product = #{ispProduct}  </if>
 		</trim>	
 	</sql>
 	
@@ -31,7 +31,7 @@
 			<if test="old_provinceCode != null"> AND province_code = #{old_provinceCode}  </if>			
 			<if test="old_mobileOperatorCode != null"> AND mobile_operator_code = #{old_mobileOperatorCode}  </if>			
 			<if test="old_isp != null"> AND isp = #{old_isp}  </if>			
-			<if test="old_ispType != null"> AND isp_type = #{old_ispType}  </if>			
+			<if test="old_ispProduct != null"> AND isp_product = #{old_ispProduct}  </if>			
 		</trim>
 	</sql>
 	
@@ -42,7 +42,7 @@
 			province_code = #{provinceCode},
 			mobile_operator_code = #{mobileOperatorCode},
 			isp = #{isp},
-			isp_type = #{ispType},
+			isp_product = #{ispProduct},
 		</set>
 	</sql>
 	
@@ -53,7 +53,7 @@
 			<if test="provinceCode != null">province_code = #{provinceCode},</if>
 			<if test="mobileOperatorCode != null">mobile_operator_code = #{mobileOperatorCode},</if>
 			<if test="isp != null">isp = #{isp},</if>
-			<if test="ispType != null">isp_type = #{ispType},</if>
+			<if test="ispProduct != null">isp_product = #{ispProduct},</if>
 		</set>
 	</sql>
 	
@@ -97,7 +97,7 @@
 				province_code,				
 				mobile_operator_code,				
 				isp,				
-				isp_type				
+				isp_product				
 		)		
 		VALUES (	
 			#{mobileNumberPrefix},
@@ -105,7 +105,7 @@
 			#{provinceCode},
 			#{mobileOperatorCode},
 			#{isp},
-			#{ispType}
+			#{ispProduct}
 		) 
 	</insert>
 	

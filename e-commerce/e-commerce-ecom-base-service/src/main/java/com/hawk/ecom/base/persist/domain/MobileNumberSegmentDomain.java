@@ -40,9 +40,9 @@ public class MobileNumberSegmentDomain implements Serializable {
 	private String isp;
 	
 	/**
-	 * isp_type isp_type
+	 * isp_product isp_product
 	 */
-	private String ispType;
+	private String ispProduct;
 	
 	
 	/**
@@ -127,18 +127,18 @@ public class MobileNumberSegmentDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return isp_type isp_type
+	 * @return isp_product isp_product
 	 */
-	public String getIspType(){
-		return ispType;
+	public String getIspProduct(){
+		return ispProduct;
 	}
 	
 	/**
 	 * 
-	 * @param ispType isp_type isp_type
+	 * @param ispProduct isp_product isp_product
 	 */	
-	public void setIspType (String ispType) {
-		this.ispType = ispType;
+	public void setIspProduct (String ispProduct) {
+		this.ispProduct = ispProduct;
 	}
 	
 

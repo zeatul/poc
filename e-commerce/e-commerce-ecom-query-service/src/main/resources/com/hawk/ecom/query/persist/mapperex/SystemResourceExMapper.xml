@@ -9,10 +9,14 @@
 
 	<select id="h5main"   resultType="SystemResourceExDomain">
 		select node_name as "nodeName",
-			node_value as "nodeValue"
+			node_value as "nodeValue",
+			id as "id",
+			pid as "pid",
+			depth as "depth",
+			node_status as "nodeStatus"
 		from t_mal_system_resource 
-		WHERE pid = 1 and node_status = 100
-		order by object_order asc
+		WHERE id_path like '/0/1%' and node_status = 100
+		order by depth asc , object_order asc
 	</select>
 	
 	

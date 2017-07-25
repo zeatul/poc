@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.hawk.ecom.mall.constant.ConstSystemResource;
 import com.hawk.ecom.mall.request.SystemCreateResourceParam;
 import com.hawk.ecom.mall.request.SystemExchangeResourceOrderParam;
 import com.hawk.ecom.mall.request.SystemListResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
+import com.hawk.ecom.pub.constant.ConstSystemResource;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.ecom.mall.request.SystemRemoveResourceParam;
