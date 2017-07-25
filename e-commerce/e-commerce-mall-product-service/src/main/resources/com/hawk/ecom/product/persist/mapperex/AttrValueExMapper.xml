@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.product.persist.mapperex.AttrValueExMapper">
+
+	<sql id="columns">
+		a.id AS "id" ,
+		a.store_code AS "storeCode" ,
+		a.category_id AS "categoryId" ,
+		a.attr_name_id AS "attrNameId" ,
+		a.attr_value AS "attrValue" ,
+		a.attr_display_value AS
+		"attrDisplayValue" ,
+		a.attr_display_en_value AS "attrDisplayEnValue" ,
+		a.attr_value_status AS "attrValueStatus" ,
+		a.create_user_code AS "createUserCode" ,
+		a.create_date AS "createDate" ,
+		a.update_user_code AS "updateUserCode" ,
+		a.update_date AS "updateDate" ,
+		a.delete_user_code AS "deleteUserCode" ,
+		a.delete_date AS
+		"deleteDate"
+	</sql>
+
+	<sql id="where">
+		<if test="id != null"> AND a.id = #{id}  </if>
+		<if test="storeCode != null"> AND a.store_code = #{storeCode}  </if>
+		<if test="categoryId != null"> AND a.category_id = #{categoryId}  </if>
+		<if test="attrNameId != null"> AND a.attr_name_id = #{attrNameId}  </if>
+		<if test="attrValue != null"> AND a.attr_value = #{attrValue}  </if>
+		<if test="attrDisplayValue != null"> AND a.attr_display_value = #{attrDisplayValue}  </if>
+		<if test="attrDisplayEnValue != null"> AND a.attr_display_en_value = #{attrDisplayEnValue}  </if>
+		<if test="attrValueStatus != null"> AND a.attr_value_status = #{attrValueStatus}  </if>
+		<if test="createUserCode != null"> AND a.create_user_code = #{createUserCode}  </if>
+		<if test="createDate != null"> AND a.create_date = #{createDate}  </if>
+		<if test="updateUserCode != null"> AND a.update_user_code = #{updateUserCode}  </if>
+		<if test="updateDate != null"> AND a.update_date = #{updateDate}  </if>
+		<if test="deleteUserCode != null"> AND a.delete_user_code = #{deleteUserCode}  </if>
+		<if test="deleteDate != null"> AND a.delete_date = #{deleteDate}  </if>
+	</sql>
+	
+	<select id="load"  resultType="AttrValueExDomain">
+		SELECT 
+		<include refid="columns" />
+		,b.attr_name as "attrName"
+		,b.attr_name_code AS "attrNameCode"
+		FROM t_prd_attr_value a ,t_prd_attr_name b
+		WHERE a.attr_name_id = b.id
+		AND a.id = #{id}		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="AttrValueExDomain">
+		SELECT
+		<include refid="columns" />
+		,b.attr_name as "attrName"
+		,b.attr_name_code AS "attrNameCode"
+		FROM t_prd_attr_value a ,t_prd_attr_name b
+		WHERE a.attr_name_id = b.id
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="AttrValueExDomain">
+		SELECT
+		<include refid="columns" />
+		,b.attr_name as "attrName"
+		,b.attr_name_code AS "attrNameCode"
+		FROM t_prd_attr_value a ,t_prd_attr_name b
+		WHERE a.attr_name_id = b.id
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>
+	</select>
+</mapper>

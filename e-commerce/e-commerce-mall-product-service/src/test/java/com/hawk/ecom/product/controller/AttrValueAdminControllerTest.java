@@ -19,7 +19,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class AttrValueAdminControllerTest extends AbstractControllerTest{
 	
-	private String token = "1b07e6be-1a8a-4c61-9805-8b28a9ceacbd";
+	private String token = "94be6ed1-93c5-4fa7-afd8-ca704a2b5bed";
 	
 //	@Test
 	public void testCreateAttrValue(){
@@ -40,7 +40,7 @@ public class AttrValueAdminControllerTest extends AbstractControllerTest{
 		
 	}
 
-//	@Test
+	@Test
 	public void testListAttrValue(){
 		String url = getUrl("/mall/admin/product/attr/value/list");
 		ListAttrValueParam request = new ListAttrValueParam();
@@ -48,7 +48,7 @@ public class AttrValueAdminControllerTest extends AbstractControllerTest{
 		request.setAttrNameId(10005);
 		request.setAttrValueStatus(ConstAttr.AttrValueStatus.AVAIlABLE);
 		request.setCategoryId(10001);
-		request.setOrder("create_date desc");
+		request.setOrder("a.create_date desc");
 		request.setPageIndex(1);
 		request.setPageRowCount(100);
 
@@ -101,7 +101,7 @@ public class AttrValueAdminControllerTest extends AbstractControllerTest{
 		System.out.println("result=" + result);
 	}
 	
-	@Test
+//	@Test
 	public void testRemoveAttrValueStatus(){
 		String url = getUrl("/mall/admin/product/attr/value/remove");
 		RemoveAttrValueParam request = new RemoveAttrValueParam();

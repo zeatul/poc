@@ -21,7 +21,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class MallUserControllerTest extends AbstractControllerTest {
 	
-	private String token = "e8c23558-5ed2-42cd-873a-6bf63dfee155";
+	private String token = "94be6ed1-93c5-4fa7-afd8-ca704a2b5bed";
 
 	@Test
 	public void testMallLogin() {

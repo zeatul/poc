@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
+import com.hawk.ecom.product.persist.domainex.AttrValueExDomain;
 import com.hawk.ecom.product.request.CreateAttrValueParam;
 import com.hawk.ecom.product.request.ListAttrValueParam;
 import com.hawk.ecom.product.request.LoadAttrValueParam;
@@ -65,8 +66,8 @@ public class AttrValueAdminController {
 		LoadAttrValueParam param = new LoadAttrValueParam();
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
 		param.setId(id);
-		AttrValueDomain attrValueDomain = attrValueService.loadAttrValue(param);
-		return SuccessResponse.build(DomainTools.copy(attrValueDomain, AttrValueInfoResponse.class));
+		AttrValueExDomain attrValueExDomain = attrValueService.loadAttrValue(param);
+		return SuccessResponse.build(DomainTools.copy(attrValueExDomain, AttrValueInfoResponse.class));
 	}
 
 	@RequestMapping(value = "/update", method = POST)
