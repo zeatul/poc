@@ -24,4 +24,17 @@ public class ConstAttrNameCode {
 		 */
 		public static String REGION_TYPE = "mobile_region_type";
 	}
+
+	public static interface Bsi {
+
+		/**
+		 * 保险月数
+		 */
+		public static String INSURANCE_PERIOD_MONTH = "bsi_insurance_period_month";
+
+		/**
+		 * 保险档次
+		 */
+		public static String GRADE = "bsi_grade";
+	}
 }
