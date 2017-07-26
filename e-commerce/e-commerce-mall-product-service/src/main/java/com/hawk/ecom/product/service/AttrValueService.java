@@ -38,6 +38,7 @@ import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @Service
@@ -183,7 +184,7 @@ public class AttrValueService {
 	}
 
 	@Valid
-	public List<AttrValueExDomain> listAttrValue(@NotNull("参数") @Valid ListAttrValueParam listAttrValueParam) {
+	public PagingQueryResultWrap<AttrValueExDomain> listAttrValue(@NotNull("参数") @Valid ListAttrValueParam listAttrValueParam) {
 		/**
 		 * 权限
 		 */
@@ -197,8 +198,14 @@ public class AttrValueService {
 		params.put("attrValueStatus", listAttrValueParam.getAttrValueStatus());
 
 		params = MybatisTools.page(params, listAttrValueParam);
+		
+		PagingQueryResultWrap<AttrValueExDomain> wrap = new PagingQueryResultWrap<AttrValueExDomain>();
+		wrap.setDbCount(attrValueMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(attrValueExMapper.loadDynamicPaging(params));
+		}
 
-		return attrValueExMapper.loadDynamicPaging(params);
+		return wrap;
 	}
 
 	@Valid

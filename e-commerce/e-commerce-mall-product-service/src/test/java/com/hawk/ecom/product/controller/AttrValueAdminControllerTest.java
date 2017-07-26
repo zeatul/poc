@@ -19,7 +19,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class AttrValueAdminControllerTest extends AbstractControllerTest{
 	
-	private String token = "94be6ed1-93c5-4fa7-afd8-ca704a2b5bed";
+	private String token = "d7487173-367a-42d2-bdd3-0a143900d078";
 	
 //	@Test
 	public void testCreateAttrValue(){
@@ -45,9 +45,9 @@ public class AttrValueAdminControllerTest extends AbstractControllerTest{
 		String url = getUrl("/mall/admin/product/attr/value/list");
 		ListAttrValueParam request = new ListAttrValueParam();
 
-		request.setAttrNameId(10005);
-		request.setAttrValueStatus(ConstAttr.AttrValueStatus.AVAIlABLE);
-		request.setCategoryId(10001);
+//		request.setAttrNameId(10005);
+//		request.setAttrValueStatus(ConstAttr.AttrValueStatus.AVAIlABLE);
+//		request.setCategoryId(10001);
 		request.setOrder("a.create_date desc");
 		request.setPageIndex(1);
 		request.setPageRowCount(100);

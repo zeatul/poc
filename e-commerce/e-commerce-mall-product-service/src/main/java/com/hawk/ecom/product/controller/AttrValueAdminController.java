@@ -21,9 +21,11 @@ import com.hawk.ecom.product.request.LoadAttrValueParam;
 import com.hawk.ecom.product.request.RemoveAttrValueParam;
 import com.hawk.ecom.product.request.UpdateAttrValueParam;
 import com.hawk.ecom.product.request.UpdateAttrValueStatusParam;
+import com.hawk.ecom.product.response.AttrNameInfoResponse;
 import com.hawk.ecom.product.response.AttrValueInfoResponse;
 import com.hawk.ecom.product.service.AttrValueService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
@@ -57,8 +59,9 @@ public class AttrValueAdminController {
 	public WebResponse<MultiResponse<AttrValueInfoResponse>> listAttrValue(HttpServletRequest request) throws Exception {
 		ListAttrValueParam param = HttpRequestTools.parse(request, ListAttrValueParam.class);
 		param.setOperatorCode(AuthThreadLocal.getUserCode());
-		return SuccessResponse
-				.build(new MultiResponse<AttrValueInfoResponse>(DomainTools.copy(attrValueService.listAttrValue(param), AttrValueInfoResponse.class)));
+		MultiResponse<AttrValueInfoResponse> result = new MultiResponse<AttrValueInfoResponse>(MybatisTools.copy(attrValueService.listAttrValue(param), AttrValueInfoResponse.class));
+		return SuccessResponse.build(result);
+		
 	}
 
 	@RequestMapping(value = "/load/id/{id}", method = {GET,POST})

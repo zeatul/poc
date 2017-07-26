@@ -47,7 +47,6 @@ public class PaymentController {
 	
 	@RequestMapping(value = "/wap2", method = GET)
 	public void wapPay2(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("----------"+AlipayConfig.version+"--------------------hello World---------------------------------");
 		PayParam param = new PayParam();
 		Integer orderId = Integer.parseInt(request.getParameter("orderId"));
 		String paymentCategoryCode = request.getParameter("paymentCategoryCode");
