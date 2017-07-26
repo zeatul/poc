@@ -100,7 +100,9 @@ source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/create_db_base.sql;
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base.sql;
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_district.sql;
-source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_mobile_number_segment.sql;
+#source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_mobile_number_segment.sql;
+
+source C:/mydata/init_data_base_mobile_number_segment.sql;
 
 #source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_bsi_prod.sql;
 source C:/mydata/workspace/projects/poc/e-commerce/e-commerce-database/src/main/resources/sql/base/init_data_base_bsi_test.sql;
