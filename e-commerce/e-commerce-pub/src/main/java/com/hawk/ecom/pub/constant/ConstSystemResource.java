@@ -1,4 +1,4 @@
-package com.hawk.ecom.mall.constant;
+package com.hawk.ecom.pub.constant;
 
 public class ConstSystemResource {
 	

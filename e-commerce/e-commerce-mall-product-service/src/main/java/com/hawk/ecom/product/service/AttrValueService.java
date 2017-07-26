@@ -21,9 +21,11 @@ import com.hawk.ecom.product.exception.AttrValueNotFoundRuntimeException;
 import com.hawk.ecom.product.exception.DuplicateAttrValueRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
+import com.hawk.ecom.product.persist.domainex.AttrValueExDomain;
 import com.hawk.ecom.product.persist.mapper.AttrNameMapper;
 import com.hawk.ecom.product.persist.mapper.AttrValueMapper;
 import com.hawk.ecom.product.persist.mapper.ProductAttrMapper;
+import com.hawk.ecom.product.persist.mapperex.AttrValueExMapper;
 import com.hawk.ecom.product.request.CreateAttrValueParam;
 import com.hawk.ecom.product.request.ListAttrValueParam;
 import com.hawk.ecom.product.request.LoadAttrValueParam;
@@ -36,6 +38,7 @@ import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.DomainTools;
 
 @Service
@@ -46,6 +49,9 @@ public class AttrValueService {
 
 	@Autowired
 	private AttrValueMapper attrValueMapper;
+	
+	@Autowired
+	private AttrValueExMapper attrValueExMapper;
 	
 	@Autowired
 	private AttrNameMapper attrNameMapper;
@@ -110,6 +116,21 @@ public class AttrValueService {
 
 		return attrValueDomain;
 	}
+	
+	public AttrValueExDomain loadAttrValueEx(Integer id) {
+		AttrValueExDomain attrValueExDomain = null;
+		if (id != null) {
+			attrValueExDomain = attrValueExMapper.load(id);
+		} else {
+			logger.error("loadAttrValue:id is null");
+		}
+
+		if (attrValueExDomain == null) {
+			throw new AttrValueNotFoundRuntimeException();
+		}
+
+		return attrValueExDomain;
+	}
 
 	@Valid
 	public AttrValueDomain createAttrValue(@NotNull("参数") @Valid CreateAttrValueParam createAttrValueParam) {
@@ -163,7 +184,7 @@ public class AttrValueService {
 	}
 
 	@Valid
-	public List<AttrValueDomain> listAttrValue(@NotNull("参数") @Valid ListAttrValueParam listAttrValueParam) {
+	public PagingQueryResultWrap<AttrValueExDomain> listAttrValue(@NotNull("参数") @Valid ListAttrValueParam listAttrValueParam) {
 		/**
 		 * 权限
 		 */
@@ -177,12 +198,18 @@ public class AttrValueService {
 		params.put("attrValueStatus", listAttrValueParam.getAttrValueStatus());
 
 		params = MybatisTools.page(params, listAttrValueParam);
+		
+		PagingQueryResultWrap<AttrValueExDomain> wrap = new PagingQueryResultWrap<AttrValueExDomain>();
+		wrap.setDbCount(attrValueMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(attrValueExMapper.loadDynamicPaging(params));
+		}
 
-		return attrValueMapper.loadDynamicPaging(params);
+		return wrap;
 	}
 
 	@Valid
-	public AttrValueDomain loadAttrValue(@NotNull("参数") @Valid LoadAttrValueParam loadAttrValueParam) {
+	public AttrValueExDomain loadAttrValue(@NotNull("参数") @Valid LoadAttrValueParam loadAttrValueParam) {
 		/**
 		 * 权限
 		 */
@@ -190,7 +217,7 @@ public class AttrValueService {
 			throw new IllegalAccessRuntimeException();
 		}
 
-		return loadAttrValue(loadAttrValueParam.getId());
+		return loadAttrValueEx(loadAttrValueParam.getId());
 	}
 
 	@Valid

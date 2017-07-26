@@ -26,6 +26,7 @@ import com.hawk.ecom.product.exception.DuplicateAttrNameRuntimeException;
 import com.hawk.ecom.product.persist.domain.AttrNameDomain;
 import com.hawk.ecom.product.persist.domain.AttrValueDomain;
 import com.hawk.ecom.product.persist.domain.CategoryDomain;
+import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.mapper.AttrNameMapper;
 import com.hawk.ecom.product.persist.mapper.AttrValueMapper;
 import com.hawk.ecom.product.request.CreateAttrNameParam;
@@ -41,6 +42,7 @@ import com.hawk.framework.pub.constant.ConstBoolean;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -260,7 +262,7 @@ public class AttrNameService {
 	}
 
 	@Valid
-	public List<AttrNameDomain> listAttrName(@NotNull("参数") @Valid ListAttrNameParam listAttrNameParam) {
+	public PagingQueryResultWrap<AttrNameDomain> listAttrName(@NotNull("参数") @Valid ListAttrNameParam listAttrNameParam) { 
 		/**
 		 * 权限
 		 */
@@ -277,9 +279,21 @@ public class AttrNameService {
 				.put("attrNameBusinessType", listAttrNameParam.getAttrNameBusinessType())//
 				.put("attrNameStatus", listAttrNameParam.getAttrNameStatus())//
 				.put("attrValueType", listAttrNameParam.getAttrValueType())//
+				
+				.put("pid", listAttrNameParam.getPid())//
+				.put("pvid", listAttrNameParam.getPvid())//
+				
 				.put("isSearch", listAttrNameParam.getIsSearch());
 		params = MybatisTools.page(params, listAttrNameParam);
-		return attrNameMapper.loadDynamicPaging(params);
+		
+		PagingQueryResultWrap<AttrNameDomain> wrap = new PagingQueryResultWrap<AttrNameDomain>();
+		wrap.setDbCount(attrNameMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(attrNameMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;		
+		
 	}
 
 	@Valid

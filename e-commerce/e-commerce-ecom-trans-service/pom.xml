@@ -39,6 +39,11 @@
 		
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-outer-service</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-mall-product-service</artifactId>
 		</dependency>
 

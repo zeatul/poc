@@ -4,6 +4,22 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class AttrValueInfoResponse implements ResponseData{
 
+	public String getAttrNameCode() {
+		return attrNameCode;
+	}
+
+	public void setAttrNameCode(String attrNameCode) {
+		this.attrNameCode = attrNameCode;
+	}
+
+	public String getAttrName() {
+		return attrName;
+	}
+
+	public void setAttrName(String attrName) {
+		this.attrName = attrName;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -66,6 +82,16 @@ public class AttrValueInfoResponse implements ResponseData{
 	 * 属性名主键 attr_name_id
 	 */
 	private Integer attrNameId;
+	
+	/**
+	 * 属性名编号 attr_name_code
+	 */
+	private String attrNameCode;
+	
+	/**
+	 * 属性名名称 attr_name
+	 */
+	private String attrName;
 
 	/**
 	 * 属性值 attr_value

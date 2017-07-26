@@ -17,5 +17,6 @@ public class ErrorCodeAllocation {
 	public final static int PRODUCT = 420000;
 	public final static int TRANSACTION = 430000;
 	public final static int ECOM_QUERY = 440000;
+	public final static int PAY = 450000;
 
 }

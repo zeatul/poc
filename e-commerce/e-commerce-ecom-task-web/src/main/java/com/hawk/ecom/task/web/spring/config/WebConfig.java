@@ -1,4 +1,4 @@
-package com.hawk.ecom.trans.web.spring.config;
+package com.hawk.ecom.task.web.spring.config;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,10 +20,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hawk.ecom.sms.spring.config.SmsWebConfig;
+import com.hawk.ecom.task.web.CommonExceptionResolver;
 import com.hawk.ecom.trans.spring.config.EcomTransWebConfig;
-import com.hawk.ecom.trans.web.CommonExceptionResolver;
 import com.hawk.ecom.user.spring.config.UserWebConfig;
-import com.hawk.ecom.trans.web.AccessInterceptor;
+import com.hawk.ecom.task.web.AccessInterceptor;
 
 @Configuration
 @EnableWebMvc

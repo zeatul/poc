@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.framework.utility.http.HttpClientExecutorImpl;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -17,17 +18,16 @@ import com.hawk.framework.utility.tools.StringTools;
 @Service
 public class ChargeDataService {
 
-	private final static String API_KEY = "tiexie";
-
-	private final static String SECURITY_KEY = "hyzzyyz4p2";
-
-	private final String NOTIFY_URL = "https://www.sina.com.cn";
-	
-	private final String CHARGE_URL = "http://load.flow.shziyuan.cn:8080/dwi/open-api/rest/recharge";
-	private final String QUERY_URL = "http://load.flow.shziyuan.cn:8001/open-api/rest/recharge/status";
 	
 	@Autowired
 	private HttpExecutor httpExecutor ;
+	
+	@Autowired
+	private ChargeDataConfigure chargeDataConfigure;
+	
+	public ChargeDataService() throws Exception{
+		
+	}
 	
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -228,9 +228,9 @@ public class ChargeDataService {
 	
 	public ChargeRequest buildChargeRequest(String mobileNumber,String productCode, String taskCode) throws Exception{
 		ChargeRequest chargeRequest = new ChargeRequest();
-		chargeRequest.setApiKey(API_KEY);
+		chargeRequest.setApiKey(chargeDataConfigure.getApiKey());
 		chargeRequest.setCstmOrderNo(taskCode);
-		chargeRequest.setNotifyUrl(NOTIFY_URL);
+		chargeRequest.setNotifyUrl(chargeDataConfigure.getNotifyUrl());
 		chargeRequest.setPhone(mobileNumber);
 		chargeRequest.setProductCode(productCode);		
 		chargeRequest.setTimeStamp(DateTools.convert(new Date(), "yyyyMMddHHmmss"));
@@ -241,7 +241,7 @@ public class ChargeDataService {
 	
 	private String coumputeSign(Object object) throws Exception{
 		String sign = DomainTools.buildSignString(object);
-		sign = StringTools.concat(sign,SECURITY_KEY);
+		sign = StringTools.concat(sign,chargeDataConfigure.getSecurityKey());
 		sign = DigestUtils.sha1Hex(sign.getBytes("utf-8"));
 		return sign;
 	}
@@ -249,7 +249,7 @@ public class ChargeDataService {
 	public ChargeResult charge(String mobileNumber, String productCode, String taskCode) throws Exception {
 		logger.info("Start charge , mobileNumber={},productCode={},taskCode={}",mobileNumber,productCode,taskCode);
 		ChargeRequest chargeRequest = buildChargeRequest(mobileNumber,productCode,taskCode);		
-		String jsonStr = httpExecutor.post(CHARGE_URL, chargeRequest, null);
+		String jsonStr = httpExecutor.post(chargeDataConfigure.getChargeUrl(), chargeRequest, null);
 		ChargeResponse chargeResponse = JsonTools.toObject(jsonStr, ChargeResponse.class);
 		logger.info("Charge Response : taksCode={},result = {}",taskCode,jsonStr);
 		ChargeResult chargeResult = new ChargeResult();
@@ -257,8 +257,8 @@ public class ChargeDataService {
 			chargeResult.setSuccess(true);
 		}else{
 			chargeResult.setSuccess(false);
-			chargeResult.setErrMsg(chargeResponse.getMsg());
-			chargeResult.setErrCode(chargeResponse.getCode());
+			chargeResult.setMsg(chargeResponse.getMsg());
+			chargeResult.setCode(chargeResponse.getCode());
 		}
 		ChargeResponseData chargeResponseData = chargeResponse.getData();
 		if (chargeResponseData != null){
@@ -267,20 +267,20 @@ public class ChargeDataService {
 			}else{
 				chargeResult.setSuccess(false);
 				
-				String errCode = chargeResult.getErrCode();
-				String errMsg = chargeResult.getErrMsg();
+				String errCode = chargeResult.getCode();
+				String errMsg = chargeResult.getMsg();
 				
 				errCode = errCode == null ? chargeResponseData.getStatus() : StringTools.concatWithSymbol(":", errCode,chargeResponseData.getStatus());
 				errMsg = errMsg == null ? chargeResponseData.getErrorDesc() : StringTools.concatWithSymbol(":", errMsg,chargeResponseData.getErrorDesc());
-				chargeResult.setErrMsg(errMsg);
-				chargeResult.setErrCode(errCode);
+				chargeResult.setMsg(errMsg);
+				chargeResult.setCode(errCode);
 			}
 		}
 		return chargeResult;
 	}
 
-	@SuppressWarnings("unused")
-	private static class QueryRequest{
+	public static class QueryRequest{
+		
 		public String getApiKey() {
 			return apiKey;
 		}
@@ -293,11 +293,11 @@ public class ChargeDataService {
 		public void setTimeStamp(String timeStamp) {
 			this.timeStamp = timeStamp;
 		}
-		public String getOrderNo() {
-			return orderNo;
+		public String getOrder_no() {
+			return order_no;
 		}
-		public void setOrderNo(String orderNo) {
-			this.orderNo = orderNo;
+		public void setOrder_no(String order_no) {
+			this.order_no = order_no;
 		}
 		public String getSign() {
 			return sign;
@@ -307,7 +307,7 @@ public class ChargeDataService {
 		}
 		private String apiKey;
 		private String timeStamp;
-		private String orderNo;
+		private String order_no;
 		private String sign;
 		
 	}
@@ -315,8 +315,8 @@ public class ChargeDataService {
 
 	private  QueryRequest buildQueryRequest(String orderNo) throws Exception{
 		QueryRequest queryRequest = new QueryRequest();
-		queryRequest.setApiKey(API_KEY);
-		queryRequest.setOrderNo(orderNo);
+		queryRequest.setApiKey(chargeDataConfigure.getApiKey());
+		queryRequest.setOrder_no(orderNo);
 		queryRequest.setTimeStamp(DateTools.convert(new Date(), "yyyyMMddHHmmss"));
 		queryRequest.setSign(coumputeSign(queryRequest));
 		return queryRequest;
@@ -326,10 +326,22 @@ public class ChargeDataService {
 	
 	public QueryResult queryChargeResult(String outerOrderNo) throws Exception{
 		logger.info("Start queryChargeResult,outerOrderNo={}",outerOrderNo);
-		QueryRequest QueryRequest = buildQueryRequest(outerOrderNo);		
-		String jsonStr = httpExecutor.post(QUERY_URL, QueryRequest, null);
+		QueryRequest QueryRequest = buildQueryRequest(outerOrderNo);	
+		String jsonStr = httpExecutor.post(chargeDataConfigure.getQueryUrl(), QueryRequest, null);
 		logger.info("queryChargeResult Response : outerOrderNo={},result = {}",outerOrderNo,jsonStr);
 		QueryResult queryResult = JsonTools.toObject(jsonStr, QueryResult.class);
+		
+		if (queryResult.getCode().equals(ConstChargeNotifyStatus.SUCCESS)){
+			queryResult.setSuccess(true);
+			queryResult.setProcessing(false);
+		}else if( queryResult.getCode().equals(ConstChargeNotifyStatus.FAILURE)){
+			queryResult.setSuccess(false);
+			queryResult.setProcessing(false);
+		}else {
+			queryResult.setSuccess(false);
+			queryResult.setProcessing(true);
+		}
+		
 		return queryResult;
 	}
 	

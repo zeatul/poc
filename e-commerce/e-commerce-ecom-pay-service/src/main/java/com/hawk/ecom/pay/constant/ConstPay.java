@@ -7,7 +7,7 @@ public class ConstPay {
 		/**
 		 * 等待支付
 		 */
-		public final int WAITING = 0;
+		public final int WAITING_PAY = 0;
 		
 		
 		

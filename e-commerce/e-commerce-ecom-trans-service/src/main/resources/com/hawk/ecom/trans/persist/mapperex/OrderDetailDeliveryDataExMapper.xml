@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper">
+
+
+
+	<update id="updateOrderDeliveryDataForNotification" parameterType="hashmap">
+		UPDATE t_tra_order_detail_delivery_data
+		SET delivery_status = #{deliveryStatus},
+		<if test="outerOrderCode != null"> outer_order_code = #{outerOrderCode},  </if>
+		outer_order_status = #{outerOrderStatus} ,
+		outer_order_msg = #{outerOrderMsg},
+		update_date = now()
+		WHERE task_code = #{taskCode}
+	</update>
+
+	<select id="loadOrderDeliveryDataByTaskCode" resultType="OrderDetailDeliveryDataExDomain">
+		SELECT order_detail_id AS "orderDetailId" ,
+		order_detail_status AS "orderDetailStatus" ,
+		order_id AS "orderId"
+		FROM t_tra_order_detail_delivery_data a
+		WHERE task_code = #{taskCode}
+	</select>
+
+	<select id="loadOrderDeliveryDataForCharge" resultType="OrderDetailDeliveryDataExDomain">
+		SELECT id AS "id" ,
+			order_detail_id AS "orderDetailId",
+			order_id AS "orderId",
+			task_code AS "taskCode" ,
+			outer_product_id AS "outerProductId",
+			benef_mobile_number AS "benefMobileNumber"
+		FROM t_tra_order_detail_delivery_data a
+		WHERE a.task_status = #{taskStatus} AND a.exec_times = 0 AND delivery_type = #{deliveryType}
+		AND EXISTS (SELECT 1 FROM t_tra_order b WHERE a.order_id = b.id AND b.order_status = #{orderStatus})
+		ORDER BY a.schedule_exec_date asc LIMIT 0,3000
+	</select>
+</mapper>

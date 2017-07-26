@@ -12,7 +12,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hawk.ecom.mall.constant.ConstSystemResource;
 import com.hawk.ecom.mall.exception.DuplicateSystemResourceRuntimeException;
 import com.hawk.ecom.mall.exception.SystemResourceNotFoundRuntimeException;
 import com.hawk.ecom.mall.persist.domain.SystemResourceDomain;
@@ -27,6 +26,7 @@ import com.hawk.ecom.mall.request.SystemUpdateResourceParam;
 import com.hawk.ecom.mall.request.SystemUpdateResourceStatusParam;
 import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
+import com.hawk.ecom.pub.constant.ConstSystemResource;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;

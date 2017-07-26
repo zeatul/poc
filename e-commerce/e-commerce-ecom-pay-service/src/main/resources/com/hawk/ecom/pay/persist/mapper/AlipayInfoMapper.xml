@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.pay.persist.mapper.AlipayInfoMapper">
+
+	<sql id="columns">	
+				notify_time AS "notifyTime" ,
+		app_id AS "appId" ,
+		trade_no AS "tradeNo" ,
+		out_trade_no AS "outTradeNo" ,
+		out_biz_no AS "outBizNo" ,
+		buyer_id AS "buyerId" ,
+		buyer_logon_id AS "buyerLogonId" ,
+		seller_id AS "sellerId" ,
+		seller_email AS "sellerEmail" ,
+		trade_status AS "tradeStatus" ,
+		total_amount AS "totalAmount" ,
+		receipt_amount AS "receiptAmount" ,
+		invoice_amount AS "invoiceAmount" ,
+		buyer_pay_amount AS "buyerPayAmount" ,
+		point_amount AS "pointAmount" ,
+		refund_fee AS "refundFee" ,
+		subject AS "subject" ,
+		body AS "body" ,
+		gmt_create AS "gmtCreate" ,
+		gmt_payment AS "gmtPayment" ,
+		gmt_refund AS "gmtRefund" ,
+		gmt_close AS "gmtClose" ,
+		fund_bill_list AS "fundBillList" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="notifyTime != null"> AND notify_time = #{notifyTime}  </if>
+			<if test="appId != null"> AND app_id = #{appId}  </if>
+			<if test="tradeNo != null"> AND trade_no = #{tradeNo}  </if>
+			<if test="outTradeNo != null"> AND out_trade_no = #{outTradeNo}  </if>
+			<if test="outBizNo != null"> AND out_biz_no = #{outBizNo}  </if>
+			<if test="buyerId != null"> AND buyer_id = #{buyerId}  </if>
+			<if test="buyerLogonId != null"> AND buyer_logon_id = #{buyerLogonId}  </if>
+			<if test="sellerId != null"> AND seller_id = #{sellerId}  </if>
+			<if test="sellerEmail != null"> AND seller_email = #{sellerEmail}  </if>
+			<if test="tradeStatus != null"> AND trade_status = #{tradeStatus}  </if>
+			<if test="totalAmount != null"> AND total_amount = #{totalAmount}  </if>
+			<if test="receiptAmount != null"> AND receipt_amount = #{receiptAmount}  </if>
+			<if test="invoiceAmount != null"> AND invoice_amount = #{invoiceAmount}  </if>
+			<if test="buyerPayAmount != null"> AND buyer_pay_amount = #{buyerPayAmount}  </if>
+			<if test="pointAmount != null"> AND point_amount = #{pointAmount}  </if>
+			<if test="refundFee != null"> AND refund_fee = #{refundFee}  </if>
+			<if test="subject != null"> AND subject = #{subject}  </if>
+			<if test="body != null"> AND body = #{body}  </if>
+			<if test="gmtCreate != null"> AND gmt_create = #{gmtCreate}  </if>
+			<if test="gmtPayment != null"> AND gmt_payment = #{gmtPayment}  </if>
+			<if test="gmtRefund != null"> AND gmt_refund = #{gmtRefund}  </if>
+			<if test="gmtClose != null"> AND gmt_close = #{gmtClose}  </if>
+			<if test="fundBillList != null"> AND fund_bill_list = #{fundBillList}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_notifyTime != null"> AND notify_time = #{old_notifyTime}  </if>			
+			<if test="old_appId != null"> AND app_id = #{old_appId}  </if>			
+			<if test="old_tradeNo != null"> AND trade_no = #{old_tradeNo}  </if>			
+			<if test="old_outTradeNo != null"> AND out_trade_no = #{old_outTradeNo}  </if>			
+			<if test="old_outBizNo != null"> AND out_biz_no = #{old_outBizNo}  </if>			
+			<if test="old_buyerId != null"> AND buyer_id = #{old_buyerId}  </if>			
+			<if test="old_buyerLogonId != null"> AND buyer_logon_id = #{old_buyerLogonId}  </if>			
+			<if test="old_sellerId != null"> AND seller_id = #{old_sellerId}  </if>			
+			<if test="old_sellerEmail != null"> AND seller_email = #{old_sellerEmail}  </if>			
+			<if test="old_tradeStatus != null"> AND trade_status = #{old_tradeStatus}  </if>			
+			<if test="old_totalAmount != null"> AND total_amount = #{old_totalAmount}  </if>			
+			<if test="old_receiptAmount != null"> AND receipt_amount = #{old_receiptAmount}  </if>			
+			<if test="old_invoiceAmount != null"> AND invoice_amount = #{old_invoiceAmount}  </if>			
+			<if test="old_buyerPayAmount != null"> AND buyer_pay_amount = #{old_buyerPayAmount}  </if>			
+			<if test="old_pointAmount != null"> AND point_amount = #{old_pointAmount}  </if>			
+			<if test="old_refundFee != null"> AND refund_fee = #{old_refundFee}  </if>			
+			<if test="old_subject != null"> AND subject = #{old_subject}  </if>			
+			<if test="old_body != null"> AND body = #{old_body}  </if>			
+			<if test="old_gmtCreate != null"> AND gmt_create = #{old_gmtCreate}  </if>			
+			<if test="old_gmtPayment != null"> AND gmt_payment = #{old_gmtPayment}  </if>			
+			<if test="old_gmtRefund != null"> AND gmt_refund = #{old_gmtRefund}  </if>			
+			<if test="old_gmtClose != null"> AND gmt_close = #{old_gmtClose}  </if>			
+			<if test="old_fundBillList != null"> AND fund_bill_list = #{old_fundBillList}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			notify_time = #{notifyTime},
+			app_id = #{appId},
+			trade_no = #{tradeNo},
+			out_trade_no = #{outTradeNo},
+			out_biz_no = #{outBizNo},
+			buyer_id = #{buyerId},
+			buyer_logon_id = #{buyerLogonId},
+			seller_id = #{sellerId},
+			seller_email = #{sellerEmail},
+			trade_status = #{tradeStatus},
+			total_amount = #{totalAmount},
+			receipt_amount = #{receiptAmount},
+			invoice_amount = #{invoiceAmount},
+			buyer_pay_amount = #{buyerPayAmount},
+			point_amount = #{pointAmount},
+			refund_fee = #{refundFee},
+			subject = #{subject},
+			body = #{body},
+			gmt_create = #{gmtCreate},
+			gmt_payment = #{gmtPayment},
+			gmt_refund = #{gmtRefund},
+			gmt_close = #{gmtClose},
+			fund_bill_list = #{fundBillList},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="notifyTime != null">notify_time = #{notifyTime},</if>
+			<if test="appId != null">app_id = #{appId},</if>
+			<if test="tradeNo != null">trade_no = #{tradeNo},</if>
+			<if test="outTradeNo != null">out_trade_no = #{outTradeNo},</if>
+			<if test="outBizNo != null">out_biz_no = #{outBizNo},</if>
+			<if test="buyerId != null">buyer_id = #{buyerId},</if>
+			<if test="buyerLogonId != null">buyer_logon_id = #{buyerLogonId},</if>
+			<if test="sellerId != null">seller_id = #{sellerId},</if>
+			<if test="sellerEmail != null">seller_email = #{sellerEmail},</if>
+			<if test="tradeStatus != null">trade_status = #{tradeStatus},</if>
+			<if test="totalAmount != null">total_amount = #{totalAmount},</if>
+			<if test="receiptAmount != null">receipt_amount = #{receiptAmount},</if>
+			<if test="invoiceAmount != null">invoice_amount = #{invoiceAmount},</if>
+			<if test="buyerPayAmount != null">buyer_pay_amount = #{buyerPayAmount},</if>
+			<if test="pointAmount != null">point_amount = #{pointAmount},</if>
+			<if test="refundFee != null">refund_fee = #{refundFee},</if>
+			<if test="subject != null">subject = #{subject},</if>
+			<if test="body != null">body = #{body},</if>
+			<if test="gmtCreate != null">gmt_create = #{gmtCreate},</if>
+			<if test="gmtPayment != null">gmt_payment = #{gmtPayment},</if>
+			<if test="gmtRefund != null">gmt_refund = #{gmtRefund},</if>
+			<if test="gmtClose != null">gmt_close = #{gmtClose},</if>
+			<if test="fundBillList != null">fund_bill_list = #{fundBillList},</if>
+		</set>
+	</sql>
+	
+	
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="AlipayInfoDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_pay_alipay_info
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_pay_alipay_info
+		<include refid="where" />
+	</select>
+	
+	
+	<insert id="insert"  parameterType="AlipayInfoDomain">
+		INSERT INTO t_pay_alipay_info (			
+				notify_time,				
+				app_id,				
+				trade_no,				
+				out_trade_no,				
+				out_biz_no,				
+				buyer_id,				
+				buyer_logon_id,				
+				seller_id,				
+				seller_email,				
+				trade_status,				
+				total_amount,				
+				receipt_amount,				
+				invoice_amount,				
+				buyer_pay_amount,				
+				point_amount,				
+				refund_fee,				
+				subject,				
+				body,				
+				gmt_create,				
+				gmt_payment,				
+				gmt_refund,				
+				gmt_close,				
+				fund_bill_list				
+		)		
+		VALUES (	
+			#{notifyTime},
+			#{appId},
+			#{tradeNo},
+			#{outTradeNo},
+			#{outBizNo},
+			#{buyerId},
+			#{buyerLogonId},
+			#{sellerId},
+			#{sellerEmail},
+			#{tradeStatus},
+			#{totalAmount},
+			#{receiptAmount},
+			#{invoiceAmount},
+			#{buyerPayAmount},
+			#{pointAmount},
+			#{refundFee},
+			#{subject},
+			#{body},
+			#{gmtCreate},
+			#{gmtPayment},
+			#{gmtRefund},
+			#{gmtClose},
+			#{fundBillList}
+		) 
+	</insert>
+	
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_pay_alipay_info
+		<include refid="where" />
+	</delete>
+
+	
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_pay_alipay_info	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="AlipayInfoDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_pay_alipay_info
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

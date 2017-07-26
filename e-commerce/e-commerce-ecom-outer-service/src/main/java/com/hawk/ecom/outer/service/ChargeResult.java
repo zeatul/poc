@@ -1,6 +1,22 @@
 package com.hawk.ecom.outer.service;
 
 public class ChargeResult {
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
 	public boolean isSuccess() {
 		return isSuccess;
 	}
@@ -9,21 +25,7 @@ public class ChargeResult {
 		this.isSuccess = isSuccess;
 	}
 
-	public String getErrCode() {
-		return errCode;
-	}
-
-	public void setErrCode(String errCode) {
-		this.errCode = errCode;
-	}
-
-	public String getErrMsg() {
-		return errMsg;
-	}
-
-	public void setErrMsg(String errMsg) {
-		this.errMsg = errMsg;
-	}
+	
 
 	public String getOuterOrderCode() {
 		return outerOrderCode;
@@ -35,9 +37,9 @@ public class ChargeResult {
 
 	private boolean isSuccess;
 	
-	private String errCode;
+	private String code;
 	
-	private String errMsg;
+	private String msg;
 	
 	private String outerOrderCode;
 

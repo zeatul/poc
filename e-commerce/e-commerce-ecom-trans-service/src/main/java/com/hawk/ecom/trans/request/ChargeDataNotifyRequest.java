@@ -1,4 +1,4 @@
-package com.hawk.ecom.task.request;
+package com.hawk.ecom.trans.request;
 
 public class ChargeDataNotifyRequest {
 	// 请求报文：
@@ -9,6 +9,18 @@ public class ChargeDataNotifyRequest {
 	// "msg ": "订购成功"
 	// }
 	
+	public String getSupplierCode() {
+		return supplierCode;
+	}
+	public void setSupplierCode(String supplierCode) {
+		this.supplierCode = supplierCode;
+	}
+	public String getStoreCode() {
+		return storeCode;
+	}
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -37,4 +49,6 @@ public class ChargeDataNotifyRequest {
 	private String orderNo;
 	private String cstmOrderNo;
 	private String msg;
+	private String supplierCode;
+	private String storeCode;
 }

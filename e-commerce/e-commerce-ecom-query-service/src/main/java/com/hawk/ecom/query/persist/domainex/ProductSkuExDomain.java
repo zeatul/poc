@@ -6,6 +6,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductSkuExDomain implements ResponseData{
 	
+	public Integer getDataSize() {
+		return dataSize;
+	}
+
+	public void setDataSize(Integer dataSize) {
+		this.dataSize = dataSize;
+	}
+
 	public BigDecimal getSalePrice() {
 		return salePrice;
 	}
@@ -86,8 +94,10 @@ public class ProductSkuExDomain implements ResponseData{
 	 */
 	private Integer skuStockQuantity;
 	
-	
-	
+	/**
+	 * 流量大小
+	 */
+	private Integer dataSize;
 	
 	
 }

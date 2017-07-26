@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.base.persist.mapper.BsiProductMapper">
+
+	<sql id="columns">	
+				bsi_product_id AS "bsiProductId" ,
+		bsi_product_name AS "bsiProductName" ,
+		bsi_product_valid_period AS "bsiProductValidPeriod" ,
+		bsi_product_status AS "bsiProductStatus" ,
+		bsi_display_price AS "bsiDisplayPrice" ,
+		bsi_trade_price AS "bsiTradePrice" ,
+		bsi_retail_price AS "bsiRetailPrice" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
+			<if test="bsiProductName != null"> AND bsi_product_name = #{bsiProductName}  </if>
+			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
+			<if test="bsiProductStatus != null"> AND bsi_product_status = #{bsiProductStatus}  </if>
+			<if test="bsiDisplayPrice != null"> AND bsi_display_price = #{bsiDisplayPrice}  </if>
+			<if test="bsiTradePrice != null"> AND bsi_trade_price = #{bsiTradePrice}  </if>
+			<if test="bsiRetailPrice != null"> AND bsi_retail_price = #{bsiRetailPrice}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_bsiProductId != null"> AND bsi_product_id = #{old_bsiProductId}  </if>			
+			<if test="old_bsiProductName != null"> AND bsi_product_name = #{old_bsiProductName}  </if>			
+			<if test="old_bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{old_bsiProductValidPeriod}  </if>			
+			<if test="old_bsiProductStatus != null"> AND bsi_product_status = #{old_bsiProductStatus}  </if>			
+			<if test="old_bsiDisplayPrice != null"> AND bsi_display_price = #{old_bsiDisplayPrice}  </if>			
+			<if test="old_bsiTradePrice != null"> AND bsi_trade_price = #{old_bsiTradePrice}  </if>			
+			<if test="old_bsiRetailPrice != null"> AND bsi_retail_price = #{old_bsiRetailPrice}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			bsi_product_id = #{bsiProductId},
+			bsi_product_name = #{bsiProductName},
+			bsi_product_valid_period = #{bsiProductValidPeriod},
+			bsi_product_status = #{bsiProductStatus},
+			bsi_display_price = #{bsiDisplayPrice},
+			bsi_trade_price = #{bsiTradePrice},
+			bsi_retail_price = #{bsiRetailPrice},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
+			<if test="bsiProductName != null">bsi_product_name = #{bsiProductName},</if>
+			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
+			<if test="bsiProductStatus != null">bsi_product_status = #{bsiProductStatus},</if>
+			<if test="bsiDisplayPrice != null">bsi_display_price = #{bsiDisplayPrice},</if>
+			<if test="bsiTradePrice != null">bsi_trade_price = #{bsiTradePrice},</if>
+			<if test="bsiRetailPrice != null">bsi_retail_price = #{bsiRetailPrice},</if>
+		</set>
+	</sql>
+	
+	<sql id="pkwhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			AND bsi_product_id = #{bsiProductId}
+		</trim>
+	</sql>
+	
+	<select id="load"  resultType="BsiProductDomain">
+		SELECT 
+		<include refid="columns" />
+		FROM t_bas_bsi_product
+		<include refid="pkwhere" />		
+	</select>
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="BsiProductDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_bsi_product
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_bsi_product
+		<include refid="where" />
+	</select>
+	
+	<select id="countByPK"  resultType="integer">
+		SELECT count(1) 
+		FROM t_bas_bsi_product
+		<include refid="pkwhere" />		
+	</select>
+	
+	<insert id="insert"  parameterType="BsiProductDomain">
+		INSERT INTO t_bas_bsi_product (			
+				bsi_product_id,				
+				bsi_product_name,				
+				bsi_product_valid_period,				
+				bsi_product_status,				
+				bsi_display_price,				
+				bsi_trade_price,				
+				bsi_retail_price				
+		)		
+		VALUES (	
+			#{bsiProductId},
+			#{bsiProductName},
+			#{bsiProductValidPeriod},
+			#{bsiProductStatus},
+			#{bsiDisplayPrice},
+			#{bsiTradePrice},
+			#{bsiRetailPrice}
+		) 
+	</insert>
+	
+	<delete id="delete" >
+		DELETE FROM t_bas_bsi_product
+		<include refid="pkwhere" />	
+	</delete>
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_bas_bsi_product
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="BsiProductDomain">
+		UPDATE t_bas_bsi_product	
+		<include refid="update" />
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateWithoutNull" parameterType="BsiProductDomain">
+		UPDATE t_bas_bsi_product
+		<include refid="updateWithoutNull"/>
+		<include refid="pkwhere" />	
+	</update>
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_bas_bsi_product	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="BsiProductDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_bas_bsi_product
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

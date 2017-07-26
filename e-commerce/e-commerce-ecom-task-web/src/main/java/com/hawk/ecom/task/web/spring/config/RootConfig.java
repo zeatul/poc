@@ -1,7 +1,8 @@
-package com.hawk.ecom.trans.web.spring.config;
+package com.hawk.ecom.task.web.spring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
 
 import com.hawk.ecom.muser.spring.config.MuserRootConfig;
 import com.hawk.ecom.product.spring.config.ProductRootConfig;
@@ -12,7 +13,7 @@ import com.hawk.ecom.user.spring.config.UserRootConfig;
 
 
 @Configuration
-@Import({PubRootConfig.class,EcomTransRootConfig.class,UserRootConfig.class,SmsRootConfig.class,ProductRootConfig.class,MuserRootConfig.class})
+@Import({DataConfig.class,UserRootConfig.class,ProductRootConfig.class, SmsRootConfig.class,EcomTransRootConfig.class,PubRootConfig.class,EcomTransRootConfig.class,MuserRootConfig.class})
 public class RootConfig {
 
 	

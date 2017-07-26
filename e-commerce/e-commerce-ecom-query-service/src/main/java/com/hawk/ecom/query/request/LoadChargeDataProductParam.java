@@ -1,15 +1,9 @@
 package com.hawk.ecom.query.request;
 
-import com.hawk.framework.dic.validation.annotation.NotNull;
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
 
 public class LoadChargeDataProductParam {
 	
-	public Integer getSize() {
-		return size;
-	}
-	public void setSize(Integer size) {
-		this.size = size;
-	}
 	public String getOperator() {
 		return operator;
 	}
@@ -29,13 +23,13 @@ public class LoadChargeDataProductParam {
 	public void setRegionType(String regionType) {
 		this.regionType = regionType;
 	}
-	@NotNull
+	@NotEmpty("运营商")
 	private String operator;
-	@NotNull
-	private Integer size;
-	@NotNull
+//	@NotNull
+//	private Integer size;
+	@NotEmpty("省份")
 	private String province;
-	@NotNull
+	@NotEmpty("区域类型")
 	private String regionType;
 
 }

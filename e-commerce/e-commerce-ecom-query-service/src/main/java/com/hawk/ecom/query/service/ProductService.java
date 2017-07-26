@@ -7,7 +7,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.base.persist.domainex.MobileNumberSegmentExDomain;
+import com.hawk.ecom.base.service.MobileNumberSegmentService;
 import com.hawk.ecom.pub.constant.ConstAttrNameCode;
+import com.hawk.ecom.query.exception.AttrNameNotFoundRuntimeException;
 import com.hawk.ecom.query.exception.AttrValueNotFoundRuntimeException;
 import com.hawk.ecom.query.exception.SkuNotFoundRuntimeException;
 import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
@@ -63,30 +66,35 @@ public class ProductService {
 		params.put("skuId", skuId);
 		return productExMapper.loadSkuPriceAndQuantity(params);
 	}
-	
-	private Integer findAttrValueId(String attrNameCode , String attrValue){
+
+	private Integer findAttrValueId(String attrNameCode, String attrValue) {
 		Integer attrValueId = productExMapper.findAttrValueId(attrNameCode, attrValue);
 		if (attrValueId == null)
 			throw new AttrValueNotFoundRuntimeException();
 		return attrValueId;
 	}
 
+	private Integer findAttrNameId(String attrNameCode) {
+		Integer attrNameId = productExMapper.findAttrNameId(attrNameCode);
+		if (attrNameId == null)
+			throw new AttrNameNotFoundRuntimeException();
+		return attrNameId;
+	}
+
 	@Valid
-	public ProductSkuExDomain loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam) {
+	public List<ProductSkuExDomain> loadChargeDataProduct(@NotNull("参数") @Valid LoadChargeDataProductParam loadChargeDataProductParam) {
+
 		List<Integer> attrValueIdList = new ArrayList<Integer>();
-		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.OPERATOR,	loadChargeDataProductParam.getOperator()));		
-		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.PROVINCE,	loadChargeDataProductParam.getProvince()));
-		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.REGION_TYPE,	loadChargeDataProductParam.getRegionType()));
-		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.DATA_SIZE,	loadChargeDataProductParam.getSize().toString()));
-		
-		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.findSkuByAttrValueIds(attrValueIdList, 4);
-		
-		if (productSkuExDomainList.size() == 0){
-			throw new SkuNotFoundRuntimeException();
-		}
-		
-		return productSkuExDomainList.get(ThreadLocalRandom.current().nextInt(productSkuExDomainList.size()));
-	
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.OPERATOR, loadChargeDataProductParam.getOperator()));
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.PROVINCE, loadChargeDataProductParam.getProvince()));
+		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.REGION_TYPE, loadChargeDataProductParam.getRegionType()));
+
+		Integer attrNameId = findAttrNameId(ConstAttrNameCode.Mobile.DATA_SIZE);
+
+		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.loadChargeDataProduct(attrValueIdList, attrValueIdList.size(), attrNameId);
+
+		return productSkuExDomainList;
+
 	}
 
 }

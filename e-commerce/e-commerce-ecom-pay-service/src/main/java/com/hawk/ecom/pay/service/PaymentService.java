@@ -8,6 +8,9 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pay.constant.ConstPay;
+import com.hawk.ecom.pay.exception.IllegalNotificationRuntimeException;
+import com.hawk.ecom.pay.exception.PaymentBillNotFoundRuntimeException;
+import com.hawk.ecom.pay.exception.PaymentBillStatusIsNotAcceptableRuntimeException;
 import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
 import com.hawk.ecom.pay.persist.domain.PaymentBillHistoryDomain;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillHistoryMapper;
@@ -15,12 +18,14 @@ import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
 import com.hawk.ecom.pay.request.AlipayTradeParam;
 import com.hawk.ecom.pay.request.NotifyParam;
 import com.hawk.ecom.pay.request.PayParam;
+import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
 import com.hawk.framework.pub.sql.MybatisParam;
+import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -48,6 +53,8 @@ public class PaymentService {
 	@Autowired
 	private AlipayService alipayService;
 	
+	
+	
 	/**
 	 * 
 	 * @param now
@@ -60,8 +67,45 @@ public class PaymentService {
 		return StringTools.concat(head,tail);
 	}
 	
+	private PaymentBillDomain loadPaymentBill(String paymentBillCode){
+		PaymentBillDomain paymentBillDomain = null;
+		if (StringTools.isNotNullOrEmpty(paymentBillCode)){
+			MybatisParam params = new MybatisParam().put("paymentBillCode", paymentBillCode);
+			paymentBillDomain = MybatisTools.single( paymentBillMapper.loadDynamic(params));
+		}
+		if (paymentBillDomain == null){
+			throw new PaymentBillNotFoundRuntimeException();
+		}
+		
+		return paymentBillDomain;
+	}
+	
 	@Valid
-	public void notify(@Valid @NotNull("通知参数") NotifyParam notifyParam){
+	public void notifySuccess(@Valid @NotNull("通知参数") NotifyParam notifyParam){
+		PaymentBillDomain paymentBillDomain = loadPaymentBill(notifyParam.getPaymentBillCode());
+		if (!paymentBillDomain.getTotalAmount().equals(notifyParam.getTotalAmount())){
+			throw new IllegalNotificationRuntimeException();
+		}
+		
+		if (paymentBillDomain.getPaymentBillStatus() != ConstPay.PaymentBillStatus.WAITING_PAY){
+			throw new PaymentBillStatusIsNotAcceptableRuntimeException();
+		}
+		
+		/**
+		 * 更改支付单状态
+		 */
+		PaymentBillDomain updateDomain = new PaymentBillDomain();
+		updateDomain.setId(paymentBillDomain.getId());
+		updateDomain.setUpdateDate(new Date());
+		updateDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.SUCCESS);
+		paymentBillMapper.update(updateDomain);
+		
+		/**
+		 * 更改订单状态
+		 */
+		orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.SUCCESS, "支付成功","支付成功");
+		
+		
 		
 	}
 	
@@ -94,7 +138,7 @@ public class PaymentService {
 		paymentBillDomain.setOrderDesc(orderPayInfo.getOrderDesc());
 		paymentBillDomain.setTotalAmount(orderPayInfo.getTotalAmount());
 		paymentBillDomain.setPaymentBillCode(generatePaymentBillCode(now));
-		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING);
+		paymentBillDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.WAITING_PAY);
 		paymentBillDomain.setPaymentCategoryCode(payParam.getPaymentCategoryCode());
 		paymentBillDomain.setStoreCode(orderPayInfo.getStoreCode());
 		paymentBillDomain.setUpdateDate(now);
@@ -129,7 +173,7 @@ public class PaymentService {
 				 * 支付成功，直接报错
 				 */
 				throw new RuntimeException("已经支付成功");
-			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING){
+			}else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING_PAY){
 				/**
 				 * 等待支付结果返回。
 				 * 调用对应的接口查询，根据查询结果再做处理，记录备注，修改状态，生成新的支付单，等等。

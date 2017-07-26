@@ -1,5 +1,7 @@
 package com.hawk.ecom.task.spring.config;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.regex.Pattern;
 
 import org.springframework.context.annotation.Bean;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.task.spring.config.EcomTaskRootConfig.WebPackage;
 import com.hawk.framework.pub.pk.MysqlPkGenerator;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -27,19 +30,15 @@ public class EcomTaskRootConfig {
 		}
 	}
 	
-	@Bean("orderCodeSequenceService")
-	public PkGenService orderCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(10000);
-		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
-		mysqlPkGenerator.setSql( "replace into t_tra_order_sequence(stub) values('a')");
-		return mysqlPkGenerator;
-	}
 	
-	@Bean("orderOuterCodeSequenceService")
-	public PkGenService orderOuterCodeSequenceService(JdbcTemplate jdbcTemplate){
-		MysqlPkGenerator mysqlPkGenerator = new MysqlPkGenerator(10000);
-		mysqlPkGenerator.setJdbcTemplate(jdbcTemplate);
-		mysqlPkGenerator.setSql( "replace into t_tra_order_outer_sequence(stub) values('a')");
-		return mysqlPkGenerator;
+	@Bean
+	public TaskPool taskPool(){
+		int coreSize = 5;
+		int maxSize = 100;
+		int keepAliveSize = 3;
+		int capacity = 6000;
+		BlockingQueue<Runnable> queue = new LinkedBlockingDeque<Runnable>(capacity);
+		TaskPool taskPool = new TaskPool(coreSize, maxSize, keepAliveSize, queue);
+		return taskPool;
 	}
 }

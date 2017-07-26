@@ -21,6 +21,23 @@ public interface ProductExMapper {
 	
 	public Integer findAttrValueId(@Param("attrNameCode") String attrNameCode,@Param("attrValue") String attrValue);
 	
+	public Integer findAttrNameId(@Param("attrNameCode") String attrNameCode);
+	
+	/**
+	 * 查找拥有特定属性值组合的产品SKU
+	 * @param attrValueIds
+	 * @param count
+	 * @return
+	 */
 	public List<ProductSkuExDomain> findSkuByAttrValueIds(@Param("attrValueIds") List<Integer> attrValueIds,@Param("count") Integer count);
+	
+	/**
+	 * 查找流量充值产品，输出结果包含流量大小
+	 * @param attrValueIds
+	 * @param count
+	 * @param attrNameId
+	 * @return
+	 */
+	public List<ProductSkuExDomain> loadChargeDataProduct(@Param("attrValueIds") List<Integer> attrValueIds,@Param("count") Integer count,@Param("attrNameId") Integer attrNameId);
 }
 

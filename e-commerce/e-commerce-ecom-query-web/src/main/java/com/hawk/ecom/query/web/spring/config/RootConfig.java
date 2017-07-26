@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Import;
 
 import com.hawk.ecom.base.spring.config.EcomBaseRootConfig;
 import com.hawk.ecom.pub.srping.config.PubRootConfig;
+import com.hawk.ecom.pub.srping.config.ValidateConfig;
 import com.hawk.ecom.query.spring.config.EcomQueryRootConfig;
 
 
 @Configuration
-@Import({PubRootConfig.class,EcomQueryRootConfig.class,EcomBaseRootConfig.class})
+@Import({DataConfig.class,PubRootConfig.class,EcomQueryRootConfig.class,EcomBaseRootConfig.class})
 public class RootConfig {
 
 	
