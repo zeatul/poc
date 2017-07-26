@@ -15,7 +15,7 @@ import com.hawk.ecom.user.spring.config.UserRootConfig;
 
 
 @Configuration
-@Import({ValidateConfig.class,EcomOuterRootConfig.class,PubRootConfig.class,EcomTransRootConfig.class,UserRootConfig.class,
+@Import({DataConfig.class,ValidateConfig.class,EcomOuterRootConfig.class,PubRootConfig.class,EcomTransRootConfig.class,UserRootConfig.class,
 	SmsRootConfig.class,ProductRootConfig.class,MuserRootConfig.class,EcomPayRootConfig.class})
 public class RootConfig {
 
