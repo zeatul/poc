@@ -14,11 +14,11 @@ public interface BsiPhoneProductMapMapper  {
 
 	/**
 	 * 根据主键加载记录
-	 * @param bsiProductId 产品ID
 	 * @param bsiPhoneModelId 手机型号Id
+	 * @param bsiInsurancePeriodMonth 保险月数
 	 * @return 查询到的记录
 	 */
-	BsiPhoneProductMapDomain load(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
+	BsiPhoneProductMapDomain load(@Param("bsiPhoneModelId")Integer bsiPhoneModelId, @Param("bsiInsurancePeriodMonth")Integer bsiInsurancePeriodMonth );
 	
 	/**
 	 * 动态条件加载记录
@@ -43,11 +43,11 @@ public interface BsiPhoneProductMapMapper  {
 	
 	/**
 	 * 根据主键查询记录数,用来判断主键对应的记录是否存在
-	 * @param bsiProductId 产品ID
 	 * @param bsiPhoneModelId 手机型号Id
+	 * @param bsiInsurancePeriodMonth 保险月数
 	 * @return 查询到的记录数，0：表示记录不存在，1：表示记录存在
 	 */
-	int countByPK(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
+	int countByPK(@Param("bsiPhoneModelId")Integer bsiPhoneModelId, @Param("bsiInsurancePeriodMonth")Integer bsiInsurancePeriodMonth );
 	
 	
 	/**
@@ -59,11 +59,11 @@ public interface BsiPhoneProductMapMapper  {
 	
 	/**
 	 * 根据主键删除记录
-	 * @param bsiProductId 产品ID
 	 * @param bsiPhoneModelId 手机型号Id
+	 * @param bsiInsurancePeriodMonth 保险月数
 	 * @return 删除的记录数
 	 */
-	int delete(@Param("bsiProductId")Integer bsiProductId, @Param("bsiPhoneModelId")Integer bsiPhoneModelId );
+	int delete(@Param("bsiPhoneModelId")Integer bsiPhoneModelId, @Param("bsiInsurancePeriodMonth")Integer bsiInsurancePeriodMonth );
 	
 	/**
 	 * 动态删除记录

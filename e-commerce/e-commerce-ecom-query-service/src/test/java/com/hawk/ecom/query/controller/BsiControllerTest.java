@@ -20,9 +20,19 @@ public class BsiControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	@Test
+//	@Test
+	@SuppressWarnings("deprecation")
 	public void testModelOfBrand() throws UnsupportedEncodingException {
 		String url = getUrl("/ecom/query/bsi/phone/model/brand/"+URLEncoder.encode("魅族"));
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		String result = httpExecutor.get(url, params);
+		System.out.println("result=" + result);
+	}
+	
+	@Test
+	public void testLoadBsiProduct() throws UnsupportedEncodingException {
+		String url = getUrl("/ecom/query/bsi/sku/bsi/bsiPhoneModelId/"+ 51);
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("version", "1.0"));
 		String result = httpExecutor.get(url, params);

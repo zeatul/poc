@@ -7,14 +7,14 @@
 	<sql id="columns">	
 				bsi_product_id AS "bsiProductId" ,
 		bsi_phone_model_id AS "bsiPhoneModelId" ,
-		bsi_product_valid_period AS "bsiProductValidPeriod" 
+		bsi_insurance_period_month AS "bsiInsurancePeriodMonth" 
 	</sql>
 	
 	<sql id="where">
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="bsiPhoneModelId != null"> AND bsi_phone_model_id = #{bsiPhoneModelId}  </if>
-			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
+			<if test="bsiInsurancePeriodMonth != null"> AND bsi_insurance_period_month = #{bsiInsurancePeriodMonth}  </if>
 		</trim>	
 	</sql>
 	
@@ -22,7 +22,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="old_bsiProductId != null"> AND bsi_product_id = #{old_bsiProductId}  </if>			
 			<if test="old_bsiPhoneModelId != null"> AND bsi_phone_model_id = #{old_bsiPhoneModelId}  </if>			
-			<if test="old_bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{old_bsiProductValidPeriod}  </if>			
+			<if test="old_bsiInsurancePeriodMonth != null"> AND bsi_insurance_period_month = #{old_bsiInsurancePeriodMonth}  </if>			
 		</trim>
 	</sql>
 	
@@ -30,7 +30,7 @@
 		<set>
 			bsi_product_id = #{bsiProductId},
 			bsi_phone_model_id = #{bsiPhoneModelId},
-			bsi_product_valid_period = #{bsiProductValidPeriod},
+			bsi_insurance_period_month = #{bsiInsurancePeriodMonth},
 		</set>
 	</sql>
 	
@@ -38,14 +38,14 @@
 		<set>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="bsiPhoneModelId != null">bsi_phone_model_id = #{bsiPhoneModelId},</if>
-			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
+			<if test="bsiInsurancePeriodMonth != null">bsi_insurance_period_month = #{bsiInsurancePeriodMonth},</if>
 		</set>
 	</sql>
 	
 	<sql id="pkwhere">
 		<trim prefix="WHERE" prefixOverrides="AND">
-			AND bsi_product_id = #{bsiProductId}
 			AND bsi_phone_model_id = #{bsiPhoneModelId}
+			AND bsi_insurance_period_month = #{bsiInsurancePeriodMonth}
 		</trim>
 	</sql>
 	
@@ -80,12 +80,12 @@
 		INSERT INTO t_bas_bsi_phone_product_map (			
 				bsi_product_id,				
 				bsi_phone_model_id,				
-				bsi_product_valid_period				
+				bsi_insurance_period_month				
 		)		
 		VALUES (	
 			#{bsiProductId},
 			#{bsiPhoneModelId},
-			#{bsiProductValidPeriod}
+			#{bsiInsurancePeriodMonth}
 		) 
 	</insert>
 	

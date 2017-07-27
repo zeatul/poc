@@ -11,5 +11,16 @@
 		WHERE bsi_phone_brand_status = '1'
 		ORDER BY object_order asc
 	</select>
+	
+	<select id="queryProductByPhoneModelId" resultType="BsiProductExDomain">
+		SELECT bsi_insurance_period_month AS "bsiInsurancePeriodMonth" ,
+			bsi_grade AS "bsiGrade" ,
+			bsi_product_id AS "bsiProductId" 
+		FROM t_bas_bsi_product
+		WHERE bsi_product_status = 1 
+		AND bsi_product_id in (SELECT bsi_product_id 
+			FROM t_bas_bsi_phone_product_map 
+			WHERE bsi_phone_model_id = #{bsiPhoneModelId})
+	</select>
 
 </mapper>

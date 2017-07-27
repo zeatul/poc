@@ -2,28 +2,31 @@
 	"data": {
 		"records": [
 			{
-				"id": 10036,
-				"categoryId": 10021,
-				"attrNameId": 10034,
-				"attrNameCode": "mobile_region_type",
-				"attrName": "流量类型",
-				"attrValue": "country",
-				"attrDisplayValue": "全国通用",
-				"attrValueStatus": 1
+				"skuId": 1004372,
+				"skuName": "1个月碎屏保至尊+（联通）",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"bsiGrade": 3,
+				"bsiInsurancePeriodMonth": 1
 			},
 			{
-				"id": 10035,
-				"categoryId": 10021,
-				"attrNameId": 10034,
-				"attrNameCode": "mobile_region_type",
-				"attrName": "流量类型",
-				"attrValue": "province",
-				"attrDisplayValue": "本地使用",
-				"attrValueStatus": 1
+				"skuId": 1004390,
+				"skuName": "3个月碎屏保至尊+（联通）",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"bsiGrade": 3,
+				"bsiInsurancePeriodMonth": 3
+			},
+			{
+				"skuId": 1004408,
+				"skuName": "12个月碎屏保至尊+（联通）",
+				"salePrice": 99.00,
+				"skuStockQuantity": 999999,
+				"bsiGrade": 3,
+				"bsiInsurancePeriodMonth": 12
 			}
 		],
-		"count": 2,
-		"dbcount": 11
+		"count": 3
 	},
 	"code": 1
 }

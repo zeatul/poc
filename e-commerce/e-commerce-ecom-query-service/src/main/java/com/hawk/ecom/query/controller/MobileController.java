@@ -5,8 +5,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.base.persist.domainex.MobileNumberSegmentExDomain;
 import com.hawk.ecom.base.service.MobileNumberSegmentService;
-import com.hawk.ecom.pub.response.MultiResponse;
-import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.request.LoadChargeDataProductParam;
 import com.hawk.ecom.query.response.LoadChargeDataProductResponse;
 import com.hawk.ecom.query.response.MobileNumberSegmentResponse;
 import com.hawk.ecom.query.service.ProductService;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
-import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 

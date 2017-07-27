@@ -123,7 +123,8 @@ public class EnvironmentController {
 
 		logger.info("Succeeded to generate all products");
 	}
-
+	
+	
 	public void buildBsiProduct(CategoryDomain screenBrokenCategory) {
 		/**
 		 * 更新变式状态为编辑状态，以创建属性名和属性值
@@ -137,6 +138,7 @@ public class EnvironmentController {
 		/**
 		 * 创建产品分类碎屏险的属性名和属性值，属性名:(保险月数,保险档次)
 		 */
+		/*保险月数*/
 		CreateAttrNameParam createAttrNameParam = new CreateAttrNameParam();
 		createAttrNameParam.setAttrName("保险月数");
 		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Bsi.INSURANCE_PERIOD_MONTH);
@@ -150,6 +152,176 @@ public class EnvironmentController {
 		AttrNameDomain insurancePeriodMonthAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
 		
 		List<AttrValueDomain> insurancePeriodMonthDomainList = new ArrayList<AttrValueDomain>();
+		
+		CreateAttrValueParam createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("1个月");
+		createAttrValueParam.setAttrNameId(insurancePeriodMonthAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("1");
+		createAttrValueParam.setAttrDisplayEnValue("1 month");
+		AttrValueDomain insurePeriodMonthAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insurancePeriodMonthDomainList.add(insurePeriodMonthAttrValueDomain);
+		
+		createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("3个月");
+		createAttrValueParam.setAttrNameId(insurancePeriodMonthAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("3");
+		createAttrValueParam.setAttrDisplayEnValue("3 month");
+		insurePeriodMonthAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insurancePeriodMonthDomainList.add(insurePeriodMonthAttrValueDomain);
+		
+		createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("12个月");
+		createAttrValueParam.setAttrNameId(insurancePeriodMonthAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("12");
+		createAttrValueParam.setAttrDisplayEnValue("12 month");
+		insurePeriodMonthAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insurancePeriodMonthDomainList.add(insurePeriodMonthAttrValueDomain);
+		
+		/*保险档次*/
+		createAttrNameParam = new CreateAttrNameParam();
+		createAttrNameParam.setAttrName("保险档次");
+		createAttrNameParam.setAttrNameCode(ConstAttrNameCode.Bsi.GRADE);
+		createAttrNameParam.setAttrNameBusinessType(ConstAttr.AttrNameBusinessType.OTHERS);
+		createAttrNameParam.setAttrValueType(ConstAttr.AttrValueType.INTEGER);
+		createAttrNameParam.setCategoryId(screenBrokenCategory.getId());
+		createAttrNameParam.setIsSearch(ConstBoolean.TRUE);
+		createAttrNameParam.setPid(0);
+		createAttrNameParam.setPvid(0);
+		createAttrNameParam.setOperatorCode(userCode);
+		AttrNameDomain insuranceGradeAttrNameDomain = attrNameService.createAttrName(createAttrNameParam);
+		
+		List<AttrValueDomain> insuranceGradeDomainList = new ArrayList<AttrValueDomain>();
+		
+		createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("碎屏保A+（联通）");
+		createAttrValueParam.setAttrNameId(insuranceGradeAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("1");
+		createAttrValueParam.setAttrDisplayEnValue("碎屏保A+（联通）");
+		AttrValueDomain insureGradeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insuranceGradeDomainList.add(insureGradeAttrValueDomain);
+		
+		createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("碎屏保至尊（联通）");
+		createAttrValueParam.setAttrNameId(insuranceGradeAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("2");
+		createAttrValueParam.setAttrDisplayEnValue("碎屏保至尊（联通）");
+		insureGradeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insuranceGradeDomainList.add(insureGradeAttrValueDomain);
+		
+		createAttrValueParam = new CreateAttrValueParam();
+		createAttrValueParam.setAttrDisplayValue("碎屏保至尊+（联通）");
+		createAttrValueParam.setAttrNameId(insuranceGradeAttrNameDomain.getId());
+		createAttrValueParam.setOperatorCode(userCode);
+		createAttrValueParam.setAttrValue("3");
+		createAttrValueParam.setAttrDisplayEnValue("碎屏保至尊+（联通）");
+		insureGradeAttrValueDomain = attrValueService.createAttrValue(createAttrValueParam);
+		insuranceGradeDomainList.add(insureGradeAttrValueDomain);
+		
+		/**
+		 * 更新变式状态为可用状态，以创建产品
+		 */
+		updateCategoryVariantStatusParam = new UpdateCategoryVariantStatusParam();
+		updateCategoryVariantStatusParam.setOperatorCode(userCode);
+		updateCategoryVariantStatusParam.setCategoryVariantStatus(ConstCategory.CategoryVariantStatus.AVAILABLE);
+		updateCategoryVariantStatusParam.setIds(Arrays.asList(screenBrokenCategory.getId()));
+		categoryService.updateCategoryVariantStatus(updateCategoryVariantStatusParam);
+
+		
+		/*构造产品*/
+		for (AttrValueDomain insurancePeriodMonthDomain: insurancePeriodMonthDomainList ){
+			for (AttrValueDomain insuranceGradeDomain:insuranceGradeDomainList){
+				/**
+				 * 产品
+				 */
+				CreateProductParam createProductParam = new CreateProductParam();
+
+				createProductParam.setCategoryId(screenBrokenCategory.getId());
+				createProductParam.setIsVirtual(ConstBoolean.TRUE);
+				createProductParam.setDeliveryType(ConstProduct.DeliveryType.BSI);
+				createProductParam.setOperatorCode(userCode);
+				createProductParam.setProductCode(null);
+				createProductParam.setProductDesc(null);
+				createProductParam.setProductHomePage("http://www.baidu.com");
+				List<Integer> productKeyAttrValueIds = Arrays.asList(insurancePeriodMonthDomain.getId(), insuranceGradeDomain.getId());
+				createProductParam.setProductKeyAttrValueIds(productKeyAttrValueIds);
+				createProductParam.setProductMemo("测试");
+				String productName = StringTools.concat(insurancePeriodMonthDomain.getAttrDisplayValue(), insuranceGradeDomain.getAttrDisplayValue());
+				createProductParam.setProductName(productName);
+
+				createProductParam.setProductNormalAttrValueIds(null);
+				String thumbnailHead = StringTools.concatWithSymbol("-", insurancePeriodMonthDomain.getAttrDisplayEnValue(),insuranceGradeDomain.getAttrDisplayEnValue());
+				String thumbnail = StringTools.concatWithSymbol(".", thumbnailHead, "jpg");
+				createProductParam.setThumbnail(thumbnail);
+				createProductParam.setProductSkuAttrNameIds(null);
+				ProductDomain productDomain = productService.createProduct(createProductParam);
+
+				/**
+				 * 产品SKU
+				 */
+				CreateSkuParam createSkuParam = new CreateSkuParam();
+				createSkuParam.setCurrency(ConstProduct.Currency.RMB);
+				createSkuParam.setDepth(0);
+				createSkuParam.setWidth(0);
+				createSkuParam.setLengthUnit(ConstProduct.LengthUnit.MILLIMETER);
+				createSkuParam.setMarketPrice(new BigDecimal(100));
+				createSkuParam.setOperatorCode(userCode);
+				createSkuParam.setProductId(productDomain.getId());
+				createSkuParam.setSalePrice(new BigDecimal(99));
+				createSkuParam.setSkuAttrValueIds(null);
+				createSkuParam.setSkuCode(null);
+				createSkuParam.setSkuMemo(null);
+				createSkuParam.setSkuName(productDomain.getProductName());
+				createSkuParam.setThumbnail(productDomain.getThumbnail());
+				createSkuParam.setWeight(0);
+				createSkuParam.setWeightUnit(ConstProduct.WeightUnit.GRAM);
+				createSkuParam.setWidth(0);
+				createSkuParam.setHeight(0);
+				SkuDomain skuDomain = skuService.createSku(createSkuParam);
+
+				/**
+				 * 库存
+				 */
+				CreateStockParam createStockParam = new CreateStockParam();
+				createStockParam.setOperatorCode(userCode);
+				createStockParam.setSkuId(skuDomain.getId());
+				createStockParam.setStockItemCode(thumbnailHead);
+				createStockParam.setStockMemo("测试");
+				createStockParam.setStockOperation(ConstProduct.StockOperation.STOCK_IN);
+				createStockParam.setStockQuantity(999999);
+				createStockParam.setWarehouseCode("warehouse1");
+				stockService.createStock(createStockParam);
+
+				/**
+				 * sku上架
+				 */
+				UpdateSkuStatusParam updateSkuStatusParam = new UpdateSkuStatusParam();
+				updateSkuStatusParam.setIds(Arrays.asList(skuDomain.getId()));
+				updateSkuStatusParam.setOperatorCode(userCode);
+				updateSkuStatusParam.setSkuStatus(ConstProduct.SkuStatus.ON_SALE);
+				skuService.updateSkuStatus(updateSkuStatusParam);
+
+				/**
+				 * product上架
+				 */
+				UpdateProductStatusParam updateProductStatusParam = new UpdateProductStatusParam();
+				updateProductStatusParam.setIds(Arrays.asList(productDomain.getId()));
+				Date onSaleStdt = new Date();
+				Date onSaleEndt = DateTools.addDays(onSaleStdt, 365);
+				updateProductStatusParam.setOnSaleEndt(onSaleEndt);
+				updateProductStatusParam.setOnSaleStdt(onSaleStdt);
+				updateProductStatusParam.setOperatorCode(userCode);
+				updateProductStatusParam.setProductStatus(ConstProduct.ProductStatus.ON_SALE);
+				productService.updateProductStatus(updateProductStatusParam);
+
+				logger.info("Succeeded to generate product : {}", productDomain.getProductName());
+
+			}
+		}
 	}
 
 	public void buildChargeDataProduct(CategoryDomain mobileDataChargeCategory) {
