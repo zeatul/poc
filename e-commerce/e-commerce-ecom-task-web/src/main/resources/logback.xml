@@ -3,7 +3,7 @@
 
 	<contextName>e-commerce-mall</contextName>
 
-	<property name="LOG_HOME" value="${maven.ecom.query.loghome}"/>
+	<property name="LOG_HOME" value="${maven.ecom.task.loghome}"/>
 
 	<!-- <property resource="com/hante/weixin/cinema/env/configure.properties" /> -->
 
@@ -25,7 +25,7 @@
 		<!-- <file>mylog.txt</file> -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
 			<!-- rollover daily -->
-			<fileNamePattern>${LOG_HOME}/logs/e-commerce-ecom-query-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${LOG_HOME}/logs/e-commerce-ecom-task-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
 			<!-- or whenever the file size reaches 1MB -->
 				<maxFileSize>100MB</maxFileSize>
