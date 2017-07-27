@@ -7,7 +7,8 @@
 	<sql id="columns">	
 				bsi_product_id AS "bsiProductId" ,
 		bsi_product_name AS "bsiProductName" ,
-		bsi_product_valid_period AS "bsiProductValidPeriod" ,
+		bsi_insurance_period_month AS "bsiInsurancePeriodMonth" ,
+		bsi_grade AS "bsiGrade" ,
 		bsi_product_status AS "bsiProductStatus" ,
 		bsi_display_price AS "bsiDisplayPrice" ,
 		bsi_trade_price AS "bsiTradePrice" ,
@@ -18,7 +19,8 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
 			<if test="bsiProductId != null"> AND bsi_product_id = #{bsiProductId}  </if>
 			<if test="bsiProductName != null"> AND bsi_product_name = #{bsiProductName}  </if>
-			<if test="bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{bsiProductValidPeriod}  </if>
+			<if test="bsiInsurancePeriodMonth != null"> AND bsi_insurance_period_month = #{bsiInsurancePeriodMonth}  </if>
+			<if test="bsiGrade != null"> AND bsi_grade = #{bsiGrade}  </if>
 			<if test="bsiProductStatus != null"> AND bsi_product_status = #{bsiProductStatus}  </if>
 			<if test="bsiDisplayPrice != null"> AND bsi_display_price = #{bsiDisplayPrice}  </if>
 			<if test="bsiTradePrice != null"> AND bsi_trade_price = #{bsiTradePrice}  </if>
@@ -30,7 +32,8 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="old_bsiProductId != null"> AND bsi_product_id = #{old_bsiProductId}  </if>			
 			<if test="old_bsiProductName != null"> AND bsi_product_name = #{old_bsiProductName}  </if>			
-			<if test="old_bsiProductValidPeriod != null"> AND bsi_product_valid_period = #{old_bsiProductValidPeriod}  </if>			
+			<if test="old_bsiInsurancePeriodMonth != null"> AND bsi_insurance_period_month = #{old_bsiInsurancePeriodMonth}  </if>			
+			<if test="old_bsiGrade != null"> AND bsi_grade = #{old_bsiGrade}  </if>			
 			<if test="old_bsiProductStatus != null"> AND bsi_product_status = #{old_bsiProductStatus}  </if>			
 			<if test="old_bsiDisplayPrice != null"> AND bsi_display_price = #{old_bsiDisplayPrice}  </if>			
 			<if test="old_bsiTradePrice != null"> AND bsi_trade_price = #{old_bsiTradePrice}  </if>			
@@ -42,7 +45,8 @@
 		<set>
 			bsi_product_id = #{bsiProductId},
 			bsi_product_name = #{bsiProductName},
-			bsi_product_valid_period = #{bsiProductValidPeriod},
+			bsi_insurance_period_month = #{bsiInsurancePeriodMonth},
+			bsi_grade = #{bsiGrade},
 			bsi_product_status = #{bsiProductStatus},
 			bsi_display_price = #{bsiDisplayPrice},
 			bsi_trade_price = #{bsiTradePrice},
@@ -54,7 +58,8 @@
 		<set>
 			<if test="bsiProductId != null">bsi_product_id = #{bsiProductId},</if>
 			<if test="bsiProductName != null">bsi_product_name = #{bsiProductName},</if>
-			<if test="bsiProductValidPeriod != null">bsi_product_valid_period = #{bsiProductValidPeriod},</if>
+			<if test="bsiInsurancePeriodMonth != null">bsi_insurance_period_month = #{bsiInsurancePeriodMonth},</if>
+			<if test="bsiGrade != null">bsi_grade = #{bsiGrade},</if>
 			<if test="bsiProductStatus != null">bsi_product_status = #{bsiProductStatus},</if>
 			<if test="bsiDisplayPrice != null">bsi_display_price = #{bsiDisplayPrice},</if>
 			<if test="bsiTradePrice != null">bsi_trade_price = #{bsiTradePrice},</if>
@@ -99,7 +104,8 @@
 		INSERT INTO t_bas_bsi_product (			
 				bsi_product_id,				
 				bsi_product_name,				
-				bsi_product_valid_period,				
+				bsi_insurance_period_month,				
+				bsi_grade,				
 				bsi_product_status,				
 				bsi_display_price,				
 				bsi_trade_price,				
@@ -108,7 +114,8 @@
 		VALUES (	
 			#{bsiProductId},
 			#{bsiProductName},
-			#{bsiProductValidPeriod},
+			#{bsiInsurancePeriodMonth},
+			#{bsiGrade},
 			#{bsiProductStatus},
 			#{bsiDisplayPrice},
 			#{bsiTradePrice},

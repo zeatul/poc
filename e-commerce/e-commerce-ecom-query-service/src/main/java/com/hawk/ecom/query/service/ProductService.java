@@ -2,21 +2,19 @@ package com.hawk.ecom.query.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hawk.ecom.base.persist.domainex.MobileNumberSegmentExDomain;
-import com.hawk.ecom.base.service.MobileNumberSegmentService;
+import com.hawk.ecom.base.persist.domainex.BsiProductExDomain;
+import com.hawk.ecom.base.persist.mapperex.BsiExMapper;
 import com.hawk.ecom.pub.constant.ConstAttrNameCode;
 import com.hawk.ecom.query.exception.AttrNameNotFoundRuntimeException;
 import com.hawk.ecom.query.exception.AttrValueNotFoundRuntimeException;
-import com.hawk.ecom.query.exception.SkuNotFoundRuntimeException;
 import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.persist.mapperex.ProductExMapper;
 import com.hawk.ecom.query.request.ListSkuParam;
+import com.hawk.ecom.query.request.LoadBsiProductParam;
 import com.hawk.ecom.query.request.LoadChargeDataProductParam;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -29,6 +27,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductExMapper productExMapper;
+	
+	@Autowired
+	private BsiExMapper bsiExMapper;
 
 	public List<ProductCategoryExDomain> listCategory() {
 		return productExMapper.listCategory();
@@ -95,6 +96,31 @@ public class ProductService {
 
 		return productSkuExDomainList;
 
+	}
+	
+	@Valid
+	public List<ProductSkuExDomain> loadBsiProduct(@NotNull("参数") @Valid LoadBsiProductParam loadBsiProductParam){
+		List<BsiProductExDomain> bsiProductExDomainList = bsiExMapper.queryProductByPhoneModelId(loadBsiProductParam.getBsiPhoneModelId());
+	
+		List<ProductSkuExDomain> result = new ArrayList<ProductSkuExDomain>();
+		
+		for (BsiProductExDomain bsiProductExDomain : bsiProductExDomainList){
+			List<Integer> attrValueIdList = new ArrayList<Integer>();
+			attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Bsi.GRADE.toString(), bsiProductExDomain.getBsiGrade().toString()));
+			attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Bsi.INSURANCE_PERIOD_MONTH.toString(), bsiProductExDomain.getBsiInsurancePeriodMonth().toString()));
+			List<ProductSkuExDomain> productSkuExDomainList = productExMapper.findSkuByAttrValueIds(attrValueIdList, attrValueIdList.size());
+			
+			for ( ProductSkuExDomain productSkuExDomain : productSkuExDomainList){
+				productSkuExDomain.setBsiGrade(bsiProductExDomain.getBsiGrade());
+				productSkuExDomain.setBsiInsurancePeriodMonth(bsiProductExDomain.getBsiInsurancePeriodMonth());
+				result.add(productSkuExDomain);
+				
+			}
+		}
+		
+		return result;
+		
+		
 	}
 
 }

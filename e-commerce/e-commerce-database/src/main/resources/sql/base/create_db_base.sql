@@ -6,6 +6,8 @@ drop table if exists t_bas_bsi_phone_model;
 
 drop table if exists t_bas_bsi_phone_product_map;
 
+drop index ui_bas_bsi_product on t_bas_bsi_product;
+
 drop table if exists t_bas_bsi_product;
 
 drop table if exists t_bas_district;
@@ -61,8 +63,8 @@ create table t_bas_bsi_phone_product_map
 (
    bsi_product_id       integer unsigned not null comment '产品ID',
    bsi_phone_model_id   integer unsigned not null comment '手机型号Id',
-   bsi_product_valid_period tinyint unsigned comment '有效期(月)',
-   primary key (bsi_product_id, bsi_phone_model_id)
+   bsi_insurance_period_month tinyint unsigned not null comment '保险月数',
+   primary key (bsi_phone_model_id, bsi_insurance_period_month)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,16 +77,26 @@ create table t_bas_bsi_product
 (
    bsi_product_id       smallint unsigned not null comment '碎屏险产品ID',
    bsi_product_name     varchar(200) comment '产品名称',
-   bsi_product_valid_period tinyint unsigned comment '有效期(月)',
+   bsi_insurance_period_month tinyint unsigned not null comment '保险月数',
+   bsi_grade            tinyint unsigned not null comment '保险产品档次',
    bsi_product_status   tinyint unsigned comment '产品状态',
-   bsi_display_price    numeric(10,2) comment '显示价格',
-   bsi_trade_price      numeric(10,2) comment '批发价格',
-   bsi_retail_price     numeric(10,2) comment '销售价格',
+   bsi_display_price    decimal(17,2) comment '显示价格',
+   bsi_trade_price      decimal(17,2) comment '批发价格',
+   bsi_retail_price     decimal(17,2) comment '销售价格',
    primary key (bsi_product_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table t_bas_bsi_product comment '碎屏险产品';
+
+/*==============================================================*/
+/* Index: ui_bas_bsi_product                                    */
+/*==============================================================*/
+create unique index ui_bas_bsi_product on t_bas_bsi_product
+(
+   bsi_insurance_period_month,
+   bsi_grade
+);
 
 /*==============================================================*/
 /* Table: t_bas_district                                        */

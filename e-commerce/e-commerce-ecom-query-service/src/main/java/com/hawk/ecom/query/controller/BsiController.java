@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hawk.ecom.base.persist.domain.BsiPhoneModelDomain;
 import com.hawk.ecom.base.service.BsiService;
 import com.hawk.ecom.pub.response.MultiResponse;
+import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
+import com.hawk.ecom.query.request.LoadBsiProductParam;
 import com.hawk.ecom.query.response.PhoneModel;
+import com.hawk.ecom.query.service.ProductService;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -36,6 +39,9 @@ public class BsiController {
 
 	@Autowired
 	private BsiService bsiService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
@@ -61,6 +67,20 @@ public class BsiController {
 		WebResponse<MultiResponse<PhoneModel>> response = SuccessResponse.build(new MultiResponse<PhoneModel>(phoneModelList));
 		return response;
 		
+	}
+	
+	/**
+	 * 查询流量充值产品
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sku/bsi/bsiPhoneModelId/{bsiPhoneModelId}", method = {POST,GET})
+	public WebResponse<MultiResponse<ProductSkuExDomain>> loadBsiProduct(@PathVariable Integer bsiPhoneModelId) throws Exception{
+		LoadBsiProductParam param = new LoadBsiProductParam();
+		param.setBsiPhoneModelId(bsiPhoneModelId);
+		
+		return SuccessResponse.build(new MultiResponse<ProductSkuExDomain>(productService.loadBsiProduct(param)));
 	}
 
 }

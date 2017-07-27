@@ -37,7 +37,11 @@ public class GenerateSqlForInitBsiData {
 
 	public static void main(String[] args) {
 
+		System.out.println("##################Start##############################");
+		
 		generate();
+		
+		System.out.println("##################End##############################");
 
 	}
 	
@@ -58,6 +62,7 @@ public class GenerateSqlForInitBsiData {
 		List<BsiPhoneProductMapDomain> mapList = new ArrayList<BsiPhoneProductMapDomain>();
 		List<BsiProductDomain> productList = new ArrayList<BsiProductDomain>();
 		Map<String, BsiProductDomain> productFilter = new HashMap<String, BsiProductDomain>();
+		final int[] line = new int[]{0};
 		list.forEach(e -> {
 			String[] strArray = e.split(",");
 			
@@ -74,11 +79,29 @@ public class GenerateSqlForInitBsiData {
 			String phoneBrand = strArray[1].trim();	
 			String phoneModel = strArray[2].trim();					
 			String productName = strArray[3].trim();
+			Integer bsiGrade = 0;
+			if (productName.endsWith("碎屏保A+（联通）")){
+				bsiGrade = 1;
+			}else if (productName.endsWith("碎屏保至尊（联通）")){
+				bsiGrade = 2;
+			}else if (productName.endsWith("碎屏保至尊+（联通）")){
+				bsiGrade = 3;
+			}else{
+				throw new RuntimeException("未知产品名称");
+			}
+			
+			
 			Integer productId = Integer.parseInt(strArray[4]);
 			BigDecimal bsiTradePrice = new BigDecimal(strArray[5].trim());
 			Integer period = Integer.parseInt(strArray[6].trim().trim().replace("个月", ""));
 			BigDecimal bsiRetailPrice = new BigDecimal(strArray[7].trim());
 			BigDecimal bsiDisplayPrice = new BigDecimal(strArray[8].trim());
+			
+			
+			++line[0];
+			if (productName.equals("3个月碎屏保A+（联通）") && period == 12){
+				throw new RuntimeException("傻逼产品"+(line[0]));
+			}
 
 			String key = phoneModelId.toString();
 			BsiPhoneModelDomain phoneModelDomain = phoneFilter.get(key);
@@ -96,7 +119,7 @@ public class GenerateSqlForInitBsiData {
 			BsiPhoneProductMapDomain phoneProductMapDomain = new BsiPhoneProductMapDomain();
 			phoneProductMapDomain.setBsiPhoneModelId(phoneModelId);
 			phoneProductMapDomain.setBsiProductId(productId);
-			phoneProductMapDomain.setBsiProductValidPeriod(period);
+			phoneProductMapDomain.setBsiInsurancePeriodMonth(period);
 			mapList.add(phoneProductMapDomain);
 
 			key = productId.toString();
@@ -106,10 +129,12 @@ public class GenerateSqlForInitBsiData {
 				productDomain.setBsiProductId(productId);
 				productDomain.setBsiProductName(productName);
 				productDomain.setBsiProductStatus(1);
-				productDomain.setBsiProductValidPeriod(period);
+				productDomain.setBsiInsurancePeriodMonth(period);
 				productDomain.setBsiTradePrice(bsiTradePrice);
 				productDomain.setBsiDisplayPrice(bsiDisplayPrice);
 				productDomain.setBsiRetailPrice(bsiRetailPrice);
+				
+				productDomain.setBsiGrade(bsiGrade);
 				productFilter.put(key, productDomain);
 				productList.add(productDomain);
 			}
@@ -132,11 +157,12 @@ public class GenerateSqlForInitBsiData {
 		System.out.println("delete from t_bas_bsi_product;");
 		productList.forEach(productDomain -> {
 			StringBuilder sb = new StringBuilder();
-			sb.append("insert into t_bas_bsi_product(bsi_product_id,bsi_product_name,bsi_product_valid_period,bsi_product_status,bsi_trade_price,bsi_retail_price,bsi_display_price) ")//
+			sb.append("insert into t_bas_bsi_product(bsi_product_id,bsi_product_name,bsi_grade,bsi_insurance_period_month,bsi_product_status,bsi_trade_price,bsi_retail_price,bsi_display_price) ")//
 					.append("values(")//
 					.append(productDomain.getBsiProductId()).append(",")//
 					.append("'").append(productDomain.getBsiProductName()).append("'").append(",")//
-					.append(productDomain.getBsiProductValidPeriod()).append(",")//
+					.append(productDomain.getBsiGrade()).append(",")//
+					.append(productDomain.getBsiInsurancePeriodMonth()).append(",")//
 					.append(1).append(",")//
 					.append(productDomain.getBsiTradePrice()).append(",")//
 					.append(productDomain.getBsiRetailPrice()).append(",")//
@@ -148,11 +174,11 @@ public class GenerateSqlForInitBsiData {
 		System.out.println("delete from  t_bas_bsi_phone_product_map;");
 		mapList.forEach(phoneProdcutMapDomain -> {
 			StringBuilder sb = new StringBuilder();
-			sb.append("insert into t_bas_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_product_valid_period) ")//
+			sb.append("insert into t_bas_bsi_phone_product_map(bsi_product_id,bsi_phone_model_id,bsi_insurance_period_month) ")//
 					.append("values(")//
 					.append(phoneProdcutMapDomain.getBsiProductId()).append(",")//
 					.append(phoneProdcutMapDomain.getBsiPhoneModelId()).append(",")//
-					.append(phoneProdcutMapDomain.getBsiProductValidPeriod())//
+					.append(phoneProdcutMapDomain.getBsiInsurancePeriodMonth())//
 					.append(");");
 			System.out.println(sb.toString());
 		});
@@ -170,7 +196,7 @@ public class GenerateSqlForInitBsiData {
 		});
 		
 		
-		System.out.println("insert into t_bas_supplier(id,supplier_code,supplier_name) value (1,'0001' ,'小保');");
+	
 		
 	}
 

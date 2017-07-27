@@ -25,9 +25,9 @@ public class BsiPhoneProductMapDomain implements Serializable {
 	private Integer bsiPhoneModelId;
 	
 	/**
-	 * 有效期(月) bsi_product_valid_period
+	 * 保险月数 bsi_insurance_period_month
 	 */
-	private Integer bsiProductValidPeriod;
+	private Integer bsiInsurancePeriodMonth;
 	
 	
 	/**
@@ -64,18 +64,18 @@ public class BsiPhoneProductMapDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 有效期(月) bsi_product_valid_period
+	 * @return 保险月数 bsi_insurance_period_month
 	 */
-	public Integer getBsiProductValidPeriod(){
-		return bsiProductValidPeriod;
+	public Integer getBsiInsurancePeriodMonth(){
+		return bsiInsurancePeriodMonth;
 	}
 	
 	/**
 	 * 
-	 * @param bsiProductValidPeriod 有效期(月) bsi_product_valid_period
+	 * @param bsiInsurancePeriodMonth 保险月数 bsi_insurance_period_month
 	 */	
-	public void setBsiProductValidPeriod (Integer bsiProductValidPeriod) {
-		this.bsiProductValidPeriod = bsiProductValidPeriod;
+	public void setBsiInsurancePeriodMonth (Integer bsiInsurancePeriodMonth) {
+		this.bsiInsurancePeriodMonth = bsiInsurancePeriodMonth;
 	}
 	
 

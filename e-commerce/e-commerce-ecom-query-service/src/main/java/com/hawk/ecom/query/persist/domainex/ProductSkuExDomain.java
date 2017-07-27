@@ -6,6 +6,22 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductSkuExDomain implements ResponseData{
 	
+	public Integer getBsiGrade() {
+		return bsiGrade;
+	}
+
+	public void setBsiGrade(Integer bsiGrade) {
+		this.bsiGrade = bsiGrade;
+	}
+
+	public Integer getBsiInsurancePeriodMonth() {
+		return bsiInsurancePeriodMonth;
+	}
+
+	public void setBsiInsurancePeriodMonth(Integer bsiInsurancePeriodMonth) {
+		this.bsiInsurancePeriodMonth = bsiInsurancePeriodMonth;
+	}
+
 	public Integer getDataSize() {
 		return dataSize;
 	}
@@ -98,6 +114,16 @@ public class ProductSkuExDomain implements ResponseData{
 	 * 流量大小
 	 */
 	private Integer dataSize;
+	
+	/**
+	 * 碎屏险档次
+	 */
+	private Integer bsiGrade;
+	
+	/**
+	 * 碎屏险保修月数
+	 */
+	private Integer bsiInsurancePeriodMonth;
 	
 	
 }
