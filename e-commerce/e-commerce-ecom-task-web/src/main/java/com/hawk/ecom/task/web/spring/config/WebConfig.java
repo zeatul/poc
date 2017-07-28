@@ -19,15 +19,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hawk.ecom.sms.spring.config.SmsWebConfig;
 import com.hawk.ecom.task.web.CommonExceptionResolver;
-import com.hawk.ecom.trans.spring.config.EcomTransWebConfig;
-import com.hawk.ecom.user.spring.config.UserWebConfig;
+import com.hawk.ecom.task.spring.config.EcomTaskWebConfig;
 import com.hawk.ecom.task.web.AccessInterceptor;
 
 @Configuration
 @EnableWebMvc
-@Import({ EcomTransWebConfig.class , UserWebConfig.class,SmsWebConfig.class})
+@Import({ EcomTaskWebConfig.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

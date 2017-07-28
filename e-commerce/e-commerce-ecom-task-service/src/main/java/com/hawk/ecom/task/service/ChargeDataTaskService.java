@@ -33,18 +33,9 @@ public class ChargeDataTaskService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private OrderDetailDeliveryDataExMapper orderDetailDeliveryDataExMapper;
-	
-	@Autowired
 	private OrderDetailDeliveryDataMapper orderDetailDeliveryDataMapper;
 	
-	@Autowired
-	private OrderDetailExMapper orderDetailExMapper;
-	@Autowired
-	private OrderService orderService;
 	
-	@Autowired
-	private CacheService cacheService;
 	
 	@Autowired
 	private OrderDetailDeliveryDataService orderDetailDeliveryDataService;
@@ -52,22 +43,14 @@ public class ChargeDataTaskService {
 	@Autowired
 	private ChargeDataService chargeDataService;
 	
-	private String buildChargeTaskKey(String taskCode){
-		return StringTools.concatWithSymbol("_", ChargeDataTaskService.class.getSimpleName(),taskCode);
-	}
+	
 	
 	public void chargeData(String taskCode) {
 		if (StringTools.isNullOrEmpty(taskCode)){
 			logger.error("taskCode is empty");
 			return ;
 		}
-		/**
-		 * 取缓存锁
-		 */
-		if (!cacheService.setnx(buildChargeTaskKey(taskCode), taskCode, 600-5)){
-			logger.error("Failed to get the redis lock,taskCode={}",taskCode);
-			return ;
-		}
+		
 		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = orderDetailDeliveryDataService.loadByTaskCode(taskCode);
 		String mobileNumber = orderDetailDeliveryDataDomain.getBenefMobileNumber();
 		String productCode = orderDetailDeliveryDataDomain.getOuterProductId();

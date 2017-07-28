@@ -99,6 +99,11 @@ public class ConstOrder {
 		public final int PAIED = 1;
 		
 		/**
+		 * 关闭
+		 */
+		public final int CLOSED = 97;
+		
+		/**
 		 * 取消
 		 */
 		public final int CANCELED = 98;
@@ -107,9 +112,11 @@ public class ConstOrder {
 		 */
 		public final int FAILURE = 99;
 		/**
-		 * 已完成
+		 * 已成功完成
 		 */
 		public final int SUCCESS = 100;
+		
+		
 	}
 	
 	/**

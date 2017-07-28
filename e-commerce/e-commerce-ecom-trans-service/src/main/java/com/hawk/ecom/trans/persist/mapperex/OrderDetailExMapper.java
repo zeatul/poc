@@ -1,8 +1,5 @@
 package com.hawk.ecom.trans.persist.mapperex;
 
-import java.util.List;
-import java.util.Map;
-import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import org.apache.ibatis.annotations.Param;
 
 /**

@@ -14,25 +14,36 @@ import com.hawk.ecom.task.job.ChargeDataJob;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
+import com.hawk.ecom.trans.service.OrderService;
 
 @Service
 public class JobService {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
+	@Autowired
 	private OrderDetailDeliveryDataExMapper orderDetailDeliveryDataExMapper;
 	
 	@Autowired
 	private TaskPool taskPool;
+	
+	@Autowired
+	private OrderService orderService;
+	
+	
 
 	/**
 	 * 关闭超过支付时间仍然没有支付记录的订单
 	 */
-	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 5)
-	public void closeOrder() {
-		logger.info("Start to close expired orders which where not paied");
-
-		logger.info("Success to close expired orders which where not paied");
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 2)
+	public void closeUnpaiedOvertimeOrder() {
+		logger.info("++++Start to execute closeUnpaiedOvertimeOrder job");
+		List<Integer> orderIdList = orderService.queryUnpaidOvertimeOrder();
+		logger.info("Found {} unpaid expired order",orderIdList.size());
+		for (Integer orderId : orderIdList){
+			xxx
+		}
+		logger.info("++++Success to execute closeUnpaiedOvertimeOrder job");
 	}
 
 	/**
@@ -40,7 +51,7 @@ public class JobService {
 	 */
 	@Scheduled(initialDelay = 20000, fixedDelay = 1000 * 60 * 5)
 	public void batchCharge() {
-		logger.info("Start to execute batchCharge");
+		logger.info("-----Start to execute batchCharge");
 		List<OrderDetailDeliveryDataExDomain> jobList = orderDetailDeliveryDataExMapper.loadOrderDeliveryDataForCharge(ConstProduct.DeliveryType.CHARGE_FLOW_DATA, ConstOrder.TaskStatus.UN_EXECUTE,
 				ConstOrder.OrderStatus.PAIED);
 		

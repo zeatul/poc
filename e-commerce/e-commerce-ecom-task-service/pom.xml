@@ -39,6 +39,10 @@
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-ecom-trans-service</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-pay-service</artifactId>
+		</dependency>
 		
 
 

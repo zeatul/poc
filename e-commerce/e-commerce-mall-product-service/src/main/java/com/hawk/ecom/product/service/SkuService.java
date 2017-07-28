@@ -127,14 +127,14 @@ public class SkuService {
 	 * @param now
 	 * @return
 	 */
-	public boolean updateSkuSotckQuantity(SkuDomain skuDomain, int delta,String userCode,Date now){
+	private boolean updateSkuSotckQuantity(SkuDomain skuDomain, int quantity,String userCode,Date now){
 		/**
 		 * 乐观锁更新产品Sku的数量,成功后,增加库存条目
 		 */
 		MybatisParam params = new MybatisParam()//
 				.put("old_stockVersion", skuDomain.getStockVersion())//
 				.put("old_id", skuDomain.getId())//
-				.put("skuStockQuantity", skuDomain.getSkuStockQuantity() + delta)//
+				.put("skuStockQuantity", quantity)//
 				.put("stockVersion", skuDomain.getStockVersion()+1)//
 				.put("updateUserCode", userCode)//
 				.put("updateDate", now);
@@ -145,6 +145,62 @@ public class SkuService {
 		
 		return true;
 	}
+	
+	/**
+	 * 更新库存
+	 * @param skuDomain
+	 * @param delta
+	 * @param userCode
+	 * @param now
+	 * @param times 更新库存的最大重试次数
+	 * @return
+	 */
+	public boolean updateSkuSotckQuantity(SkuDomain skuDomain, int delta,String userCode,Date now,int times){
+		boolean isSuccess = false;
+		while (!isSuccess && times > 0){
+			Integer quantity = skuDomain.getSkuStockQuantity()+delta;
+			if (quantity < 0){
+				throw new RuntimeException("库存不足");
+			}
+			isSuccess = updateSkuSotckQuantity(skuDomain,quantity , null,null);
+			if (!isSuccess){
+				skuDomain = loadSkuById(skuDomain.getId());
+			}
+			times--;
+		}
+		
+		return isSuccess;
+	}
+	
+	/**
+	 * 更新库存
+	 * @param skuDomain
+	 * @param delta
+	 * @param userCode
+	 * @param now
+	 * @param times 更新库存的最大重试次数
+	 * @return
+	 */
+	public boolean updateSkuSotckQuantity(Integer skuId, int delta,String userCode,Date now,int times){
+		boolean isSuccess = false;
+		SkuDomain skuDomain = loadSkuById(skuId);
+		while (!isSuccess && times > 0){
+			Integer quantity = skuDomain.getSkuStockQuantity()+delta;
+			if (quantity < 0){
+				throw new RuntimeException("库存不足");
+			}
+			isSuccess = updateSkuSotckQuantity(skuDomain,quantity , null,null);
+			if (!isSuccess){
+				skuDomain = loadSkuById(skuDomain.getId());
+			}
+			times--;
+		}
+		
+		return isSuccess;
+	}
+	
+	
+	
 
 	/**
 	 * 产品主键必须存在,产品必须是编辑状态 非虚拟产品的尺寸重量不能为空 SKU属性组合，一个属性都不能少，SKU属性组合不能重复出现

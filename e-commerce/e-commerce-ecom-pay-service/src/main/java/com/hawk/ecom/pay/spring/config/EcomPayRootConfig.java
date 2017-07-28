@@ -1,23 +1,17 @@
 package com.hawk.ecom.pay.spring.config;
 
-import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.core.env.Environment;
-import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.hawk.ecom.pay.service.AlipayConfig;
-import com.hawk.ecom.pay.spring.config.EcomPayRootConfig.WebPackage;
 import com.hawk.framework.pub.pk.MysqlPkGenerator;
 import com.hawk.framework.pub.pk.PkGenService;
 
@@ -25,17 +19,11 @@ import com.hawk.framework.pub.pk.PkGenService;
 @Configuration
 @Import({})
 @PropertySource("classpath:/com/hawk/ecom/pay/env/pay.properties")
-@ComponentScan(basePackages = { "com.hawk.ecom.pay.service" }, excludeFilters = { @Filter(type = FilterType.CUSTOM, value = WebPackage.class) })
+@ComponentScan(basePackages = { "com.hawk.ecom.pay.service" })
 public class EcomPayRootConfig {
 	
 	@Autowired
 	private Environment env;
-
-	public static class WebPackage extends RegexPatternTypeFilter {
-		public WebPackage() {
-			super(Pattern.compile("com\\.hawk\\.ecom\\.pay\\.controller"));
-		}
-	}
 
 	@Bean
 	public AlipayClient alipayClient() {

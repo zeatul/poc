@@ -89,7 +89,7 @@ public class StockService {
 			/**
 			 * 乐观锁更新产品Sku的数量,成功后,增加库存条目
 			 */
-			if (!skuService.updateSkuSotckQuantity(skuDomain, delta, userCode, now)){
+			if (!skuService.updateSkuSotckQuantity(skuDomain, delta, userCode, now,20)){
 				throw new ConcurrentChangeStockRuntimeException();
 			}
 			

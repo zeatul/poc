@@ -3,15 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hawk.ecom.trans.persist.mapperex.OrderExMapper">
-	<update id="closeUnpaiedOvertimeOrder" parameterType="hashmap">
-		update t_tra_order t
-		set t.order_status = #{nextOrderStatus},
-		t.update_date = now() ,
-		t.order_status_change_memo = #{orderStatusChangeMemo}
-		where t.order_status = #{preOrderStatus}
-		and t.order_pay_expire_time &lt; #{threashold}
-		and not exists (select
-		* from t_pay_payment_bill
-		b where t.order_code = b.order_code);
-	</update>
+	
+	<select id="queryUnpaidOvertimeOrder" resultType="Integer">
+		SELECT id as "id"
+		FROM t_tra_order
+		WHERE order_status = #{orderStatus}
+		AND order_pay_expire_time &lt;  #{threashold}
+		ORDER BY order_pay_expire_time ASC
+		LIMIT 0 , #{limit} 
+	</select>
+	
 </mapper>

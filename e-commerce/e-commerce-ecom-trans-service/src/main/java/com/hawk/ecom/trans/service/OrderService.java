@@ -35,6 +35,7 @@ import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderOperationMapper;
+import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
 import com.hawk.ecom.trans.request.CreateOrderParam;
 import com.hawk.ecom.trans.request.ListOrderDetailParam;
 import com.hawk.ecom.trans.request.ListOrderParam;
@@ -83,6 +84,9 @@ public class OrderService {
 	private OrderMapper orderMapper;
 	
 	@Autowired
+	private OrderExMapper orderExMapper;
+	
+	@Autowired
 	private OrderDetailMapper orderDetailMapper;
 	
 	@Autowired
@@ -98,6 +102,8 @@ public class OrderService {
 		Date now = new Date();
 		String userCode = AuthThreadLocal.getUserCode();
 		String storeCode = null;
+		
+		Date payExpireTime = DateTools.addDays(now, 1);
 		
 		/**
 		 * 校验SkU和产品状态为上架状态,
@@ -138,20 +144,11 @@ public class OrderService {
 			/**
 			 * 是否需要采用死循环，抢占库存 ？？？？？
 			 */
-			boolean isSuccess = false;
-			int times = 5;
-			while (!isSuccess && times > 0){
-				isSuccess = skuService.updateSkuSotckQuantity(skuDomain, orderDetailQuantity*-1, null,null);
-				if (!isSuccess){
-					skuDomain = skuService.loadSkuById(skuId);
-					if (skuDomain.getSkuStockQuantity() < orderDetailQuantity){
-						throw new RuntimeException();
-					}
-				}
-				times--;
-			}
+			boolean isSuccess = skuService.updateSkuSotckQuantity(skuDomain, orderDetailQuantity*-1, userCode, now, 20);
+			
+			
 			if (!isSuccess){
-				throw new RuntimeException();
+				throw new RuntimeException("更新库存失败");
 			}
 			
 			orderOriginalPrice = orderOriginalPrice.add(skuDomain.getSalePrice().multiply(new BigDecimal(orderDetailQuantity)));
@@ -163,10 +160,16 @@ public class OrderService {
 			OrderDetailDomain orderDetailDomain = buildOrderDetailDomain(now, orderDetailParam, skuDomain, userCode); 
 			orderDetailDomainList.add(orderDetailDomain);
 			
+			
 			/**
 			 * 构造交付数据
 			 */
 			if (productDomain.getDeliveryType() >= ConstProduct.DeliveryType.CHARGE_FLOW_DATA){
+				
+				/**
+				 * 特殊交付的订单支付过期时间默认30分钟
+				 */
+				payExpireTime = computePayExpireTime(payExpireTime ,now,30);
 				
 				if (orderDetailQuantity != 1){
 					throw new UnSupportOrderDeatailQuantityRuntimeException();
@@ -179,6 +182,12 @@ public class OrderService {
 				Map<String,Object> map = orderDetailParam.getDeliveryData();
 				
 				if (productDomain.getDeliveryType()  == ConstProduct.DeliveryType.CHARGE_FLOW_DATA){
+					
+					/**
+					 * 充流量的订单支付过期时间默认15分钟
+					 */
+					payExpireTime = computePayExpireTime(payExpireTime ,now,15);
+					
 					ChargeMobileParam chargeMobileParam = DomainTools.copy(map, ChargeMobileParam.class);
 					validateService.validateObject(chargeMobileParam);
 					orderDetailDeliveryDataDomain.setBenefMobileNumber(chargeMobileParam.getMobileNumber());
@@ -227,7 +236,7 @@ public class OrderService {
 		/**
 		 * 构造订单,插入订单
 		 */
-		OrderDomain orderDomain = buildOrderDomain(now,userCode,storeCode,createOrderParam,orderDesc,orderOriginalPrice,orderTransPrice);
+		OrderDomain orderDomain = buildOrderDomain(now,payExpireTime,userCode,storeCode,createOrderParam,orderDesc,orderOriginalPrice,orderTransPrice);
 		orderMapper.insert(orderDomain);
 		
 		/**
@@ -255,6 +264,15 @@ public class OrderService {
 		return orderDomain;
 	}
 	
+	
+	private Date computePayExpireTime(Date payExpireTime ,Date now ,int offset){
+		Date date  = DateTools.addMinutes(now, 30);
+		if (payExpireTime.after(date)){
+			payExpireTime = date;
+		}
+		return payExpireTime;
+	}
+	
 	private String generateTaskCode(Date now){
 		String head = DateTools.convert(now, "yyyyMMddHH");
 		Integer tail = orderOuterCodeSequenceService.genPk()+1000000;
@@ -262,7 +280,7 @@ public class OrderService {
 		return StringTools.concat(head,tail);
 	}
 	
-	private OrderDomain buildOrderDomain(Date now,String userCode,String storeCode,CreateOrderParam createOrderParam,String orderDesc,BigDecimal orderOriginalPrice ,
+	private OrderDomain buildOrderDomain(Date now,Date payExpireTime,String userCode,String storeCode,CreateOrderParam createOrderParam,String orderDesc,BigDecimal orderOriginalPrice ,
 			BigDecimal orderTransPrice){
 		OrderDomain orderDomain = new OrderDomain();
 		orderDomain.setCreateDate(now);
@@ -272,8 +290,14 @@ public class OrderService {
 		
 		orderDomain.setOrderCustomerMemo(createOrderParam.getOrderCustomerMemo());
 		orderDomain.setOrderDesc(orderDesc);
-		orderDomain.setOrderOriginalPrice(orderOriginalPrice);
-		orderDomain.setOrderPayExpireTime(DateTools.addMinutes(now,30));
+		orderDomain.setOrderOriginalPrice(orderOriginalPrice);		
+		
+		/**
+		 * 支付过期时间
+		 */
+		orderDomain.setOrderPayExpireTime(payExpireTime);
+		
+		
 		orderDomain.setOrderStatus(ConstOrder.OrderStatus.UNPAIED);
 		orderDomain.setOrderTransPrice(orderTransPrice);
 		orderDomain.setOrderType(createOrderParam.getOrderType());
@@ -490,7 +514,7 @@ public class OrderService {
 	
 	public  void updateOrderStatus(Integer orderId ,Integer orderStatus,String operationDesc,String operationMemo){
 		 OrderDomain orderDomain = loadOrder(orderId);
-		 updateOrderStatus(orderId,orderStatus,operationDesc,operationMemo);
+		 updateOrderStatus(orderDomain,orderStatus,operationDesc,operationMemo);
 	}
 	
 	private  void updateOrderStatus(OrderDomain orderDomain ,Integer orderStatus,String operationDesc,String operationMemo){
@@ -526,6 +550,28 @@ public class OrderService {
 		
 	}
 	
+	@Valid
+	public List<OrderDetailDomain> loadOrderDetailByOrderId(@NotNull Integer orderId){
+		MybatisParam params = new MybatisParam().put("orderId", orderId);
+		return orderDetailMapper.loadDynamic(params);
+	}
+	
+	@Transactional
+	public void closeUnpaidOrder(OrderDomain orderDomain){
+		updateOrderStatus(orderDomain,ConstOrder.OrderStatus.CLOSED,"订单支付超时自动关闭","订单支付超时自动关闭");
+		/**
+		 * 回退库存量
+		 */
+		List<OrderDetailDomain> orderDetailDomainList =  loadOrderDetailByOrderId(orderDomain.getId());
+		
+		for (OrderDetailDomain orderDetailDomain : orderDetailDomainList){
+			Integer skuId = orderDetailDomain.getSkuId();
+			Integer quantity = orderDetailDomain.getOrderDetailQuantity();
+			
+			skuService.updateSkuSotckQuantity(skuId, quantity, null, new Date(), 20);
+		}
+	}
+	
 	/**
 	 * 订单是否全部明细都成功完成
 	 * @param orderId
@@ -545,6 +591,18 @@ public class OrderService {
 		}
 		return true;
 	}
+	
+	/**
+	 * 查询超过最后支付时间2分钟的数据，最大返回2000条
+	 * @return
+	 */
+	public List<Integer> queryUnpaidOvertimeOrder(){
+		Date threashold = DateTools.addMinutes(new Date(), -2);
+		return orderExMapper.queryUnpaidOvertimeOrder(ConstOrder.OrderStatus.UNPAIED, threashold, 2000);
+	}
+	
+	
+
 	
 	public static void main(String[] args){
 		System.out.println(new BigDecimal("10.0100").scale());

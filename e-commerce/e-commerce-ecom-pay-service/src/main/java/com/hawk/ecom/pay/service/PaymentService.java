@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.hawk.ecom.pay.constant.ConstPay;
 import com.hawk.ecom.pay.exception.IllegalNotificationRuntimeException;
 import com.hawk.ecom.pay.exception.PaymentBillNotFoundRuntimeException;
@@ -21,6 +22,7 @@ import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.response.OrderPayInfo;
 import com.hawk.ecom.trans.service.OrderService;
+import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -53,7 +55,22 @@ public class PaymentService {
 	@Autowired
 	private AlipayService alipayService;
 	
-	
+	public boolean hasPaidSuccessfully(PaymentBillDomain paymentBillDomain) throws Exception{
+		if (paymentBillDomain.getPaymentCategoryCode() == ConstPay.PayCategoryCode.ALIPAY){
+			AlipayTradeQueryResponse alipayTradeQueryResponse = alipayService.query(paymentBillDomain.getPaymentBillCode());
+			if (alipayTradeQueryResponse == null){
+				return false;
+			}
+			
+			if (alipayTradeQueryResponse.getTradeStatus() != ConstPay.AlipayTradeStatus.TRADE_SUCCESS){
+				return false;
+			}
+			
+			return true;
+		}
+		
+		throw new RuntimeException("unsupported pay category");
+	}
 	
 	/**
 	 * 
@@ -67,7 +84,7 @@ public class PaymentService {
 		return StringTools.concat(head,tail);
 	}
 	
-	private PaymentBillDomain loadPaymentBill(String paymentBillCode){
+	public PaymentBillDomain loadPaymentBill(String paymentBillCode){
 		PaymentBillDomain paymentBillDomain = null;
 		if (StringTools.isNotNullOrEmpty(paymentBillCode)){
 			MybatisParam params = new MybatisParam().put("paymentBillCode", paymentBillCode);
@@ -78,6 +95,15 @@ public class PaymentService {
 		}
 		
 		return paymentBillDomain;
+	}
+	
+	
+	@Valid
+	public PaymentBillDomain queryPaymentBill(@NotEmpty("orderCode") String orderCode ,@NotEmpty("applicationCode") String applicationCode){
+		
+		MybatisParam params = new MybatisParam().put("orderCode", orderCode).put("applicationCode", applicationCode);
+		
+		return MybatisTools.single(paymentBillMapper.loadDynamic(params));
 	}
 	
 	@Valid
