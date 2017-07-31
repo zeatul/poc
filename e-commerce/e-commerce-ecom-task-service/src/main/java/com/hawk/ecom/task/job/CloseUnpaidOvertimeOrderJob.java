@@ -3,6 +3,7 @@ package com.hawk.ecom.task.job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
@@ -27,6 +28,7 @@ public class CloseUnpaidOvertimeOrderJob implements Runnable{
 	@Override
 	public void run() {
 		logger.info("Start to execute close unpaid overtime job, orderId={}",orderId);
+		AuthThreadLocal.setUserCode("System");
 		/**
 		 * 取缓存锁
 		 */

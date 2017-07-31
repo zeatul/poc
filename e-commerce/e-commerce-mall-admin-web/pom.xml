@@ -22,17 +22,7 @@
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-mall-admin-service</artifactId>
-		</dependency> 
-		
-		<dependency>
-			<groupId>com.hawk.e-commerce</groupId>
-			<artifactId>e-commerce-mall-user-service</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.hawk.e-commerce</groupId>
-			<artifactId>e-commerce-mall-product-service</artifactId>
-		</dependency> 
 
 
 		<!-- mybatis -->

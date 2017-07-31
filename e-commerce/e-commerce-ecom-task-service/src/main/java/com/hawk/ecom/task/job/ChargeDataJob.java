@@ -2,6 +2,8 @@ package com.hawk.ecom.task.job;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.task.service.ChargeDataTaskService;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
@@ -29,6 +31,7 @@ public class ChargeDataJob implements Runnable{
 	@Override
 	public void run() {
 		logger.info("Start to execute charge data job, taskCode={}",taskCode);
+		AuthThreadLocal.setUserCode("system");
 		/**
 		 * 取缓存锁
 		 */

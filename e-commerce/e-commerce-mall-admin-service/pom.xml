@@ -36,10 +36,25 @@
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-sms-service</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.hawk.e-commerce</groupId>
 			<artifactId>e-commerce-mall-user-service</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-mall-product-service</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-trans-service</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.hawk.e-commerce</groupId>
+			<artifactId>e-commerce-ecom-pay-service</artifactId>
 		</dependency>
 
 		<!-- mybatis -->

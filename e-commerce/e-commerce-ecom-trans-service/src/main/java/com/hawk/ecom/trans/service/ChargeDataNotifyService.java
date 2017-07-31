@@ -31,9 +31,7 @@ public class ChargeDataNotifyService {
 	@Autowired
 	private OrderService orderService;
 	
-	private String buildChargeTaskKey(String taskCode){
-		return StringTools.concatWithSymbol("_", ChargeDataNotifyService.class.getSimpleName(),taskCode);
-	}
+	
 	
 	
 	public void notify(ChargeDataNotifyRequest chargeDataNotifyRequest) {

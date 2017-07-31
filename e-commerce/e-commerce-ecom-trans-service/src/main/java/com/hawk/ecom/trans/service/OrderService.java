@@ -529,7 +529,7 @@ public class OrderService {
 		 orderMapper.update(updateDomain);
 		 OrderOperationDomain operationDomain = new OrderOperationDomain();
 		 operationDomain.setCreateDate(now);
-		 operationDomain.setCreateUserCode(null);
+		 operationDomain.setCreateUserCode(AuthThreadLocal.getUserCode());
 		 operationDomain.setId(pkGenService.genPk());
 		 operationDomain.setOperationDesc(operationDesc);
 		 operationDomain.setOperationMemo(operationMemo);
@@ -539,7 +539,7 @@ public class OrderService {
 		 operationDomain.setOrderNextStatus(orderStatus);
 		 operationDomain.setStoreCode(orderDomain.getStoreCode());
 		 operationDomain.setUpdateDate(now);
-		 operationDomain.setUpdateUserCode(null);
+		 operationDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 		 operationDomain.setUserCode(orderDomain.getUserCode());
 		 orderOperationMapper.insert(operationDomain);
 	}
@@ -557,8 +557,13 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public void closeUnpaidOrder(OrderDomain orderDomain){
-		updateOrderStatus(orderDomain,ConstOrder.OrderStatus.CLOSED,"订单支付超时自动关闭","订单支付超时自动关闭");
+	public void closeUnpaidOrder(OrderDomain orderDomain,String adminCode){
+		String message = "订单支付超时自动关闭";
+		if (adminCode != null){
+			message = "管理员关闭订单";
+		}
+		
+		updateOrderStatus(orderDomain,ConstOrder.OrderStatus.CLOSED,message,message);
 		/**
 		 * 回退库存量
 		 */

@@ -17,8 +17,7 @@ import com.hawk.framework.utility.tools.DateTools;
 @CrossOrigin
 public class HomeController {
 	
-	@Autowired
-	private JobService jobService;
+	
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {

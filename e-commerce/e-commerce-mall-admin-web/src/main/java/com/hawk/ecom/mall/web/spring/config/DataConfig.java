@@ -19,12 +19,18 @@ import com.hawk.ecom.mall.persist.mapperex.SystemResourceExMapper;
 import com.hawk.ecom.muser.persist.domain.MallUserDomain;
 import com.hawk.ecom.muser.persist.mapper.MallUserMapper;
 import com.hawk.ecom.muser.persist.mapperex.MallUserExMapper;
+import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
+import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
+import com.hawk.ecom.pay.persist.mapperex.PaymentBillExMapper;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.mapper.ProductMapper;
 import com.hawk.ecom.product.persist.mapperex.ProductExMapper;
 import com.hawk.ecom.sms.persist.domain.TaskDomain;
 import com.hawk.ecom.sms.persist.mapper.TaskMapper;
 import com.hawk.ecom.sms.persist.mapperex.TaskExMapper;
+import com.hawk.ecom.trans.persist.domain.OrderDomain;
+import com.hawk.ecom.trans.persist.mapper.OrderMapper;
+import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
 import com.hawk.framework.dic.persist.domain.WordDomain;
 import com.hawk.framework.dic.persist.mapper.WordMapper;
 import com.hawk.framework.dic.persist.mapperex.WordExMapper;
@@ -37,6 +43,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 		SystemResourceMapper.class, SystemResourceExMapper.class, // 商城管理
 		WordMapper.class, WordExMapper.class, // 数据字典
 		TaskMapper.class, TaskExMapper.class, // 短信
+		OrderMapper.class,OrderExMapper.class,//交易
+		PaymentBillMapper.class,PaymentBillExMapper.class,//支付
 		ProductMapper.class, ProductExMapper.class,// 短信
 })
 public class DataConfig {
@@ -159,11 +167,15 @@ public class DataConfig {
 		String smsPackageName = TaskDomain.class.getPackage().getName(); // 消息管理
 		String dicPackageName = WordDomain.class.getPackage().getName(); // 数据字典
 		String productPackageName = ProductDomain.class.getPackage().getName();// 商品管理
+		String transPackageName = OrderDomain.class.getPackage().getName();//交易
+		String payPackageName = PaymentBillDomain.class.getPackage().getName();//支付
 		String str = StringTools.concatWithSymbol(";", mallPackageName, mallPackageName + "ex", //
 				smsPackageName, smsPackageName + "ex", //
 				mallUserPackageName, mallUserPackageName + "ex", //
 				dicPackageName, dicPackageName + "ex", //
-				productPackageName, productPackageName + "ex");
+				productPackageName, productPackageName + "ex",//
+				payPackageName,payPackageName+"ex",//
+				transPackageName,transPackageName+"ex");
 		sqlSessionFactory.setTypeAliasesPackage(str);
 		return sqlSessionFactory;
 	}

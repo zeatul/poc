@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.hawk.ecom.mall.service.OrderAdminService;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.task.job.ChargeDataJob;
+import com.hawk.ecom.task.job.CloseUnpaidOvertimeOrderJob;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
@@ -28,6 +30,9 @@ public class JobService {
 	private TaskPool taskPool;
 	
 	@Autowired
+	private OrderAdminService orderAdminService;
+	
+	@Autowired
 	private OrderService orderService;
 	
 	
@@ -41,7 +46,8 @@ public class JobService {
 		List<Integer> orderIdList = orderService.queryUnpaidOvertimeOrder();
 		logger.info("Found {} unpaid expired order",orderIdList.size());
 		for (Integer orderId : orderIdList){
-			xxx
+			CloseUnpaidOvertimeOrderJob job = new CloseUnpaidOvertimeOrderJob(orderId);
+			taskPool.execute(job);
 		}
 		logger.info("++++Success to execute closeUnpaiedOvertimeOrder job");
 	}
