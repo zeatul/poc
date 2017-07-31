@@ -30,7 +30,11 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		UserInfoResponse userInfoResponse = loginService.loginInfo(token);
 		
 		String version = request.getParameter("version");
-		if (version == null || !"1.0".equals(version)){
+		if (version == null ){			
+			version = "1.0";
+		}
+		
+		if (!"1.0".equals(version)){
 			throw new RuntimeException("version不对");
 		}
 		

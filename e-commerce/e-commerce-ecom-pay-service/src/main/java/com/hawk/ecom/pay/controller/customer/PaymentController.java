@@ -19,6 +19,7 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.HttpResponseHandler;
 import com.hawk.framework.utility.tools.DateTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 @RestController
 @RequestMapping("/ecom/pay")
@@ -40,8 +41,8 @@ public class PaymentController {
 		PayParam param = HttpRequestTools.parse(request, PayParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setWap(true);
-		String result = paymentService.pay(param);
-		HttpResponseHandler.printASAP(response, result);
+		String result = buildPayHtml(paymentService.pay(param));
+		HttpResponseHandler.printHtmlASAP(response, result);
 
 	}
 	
@@ -55,12 +56,25 @@ public class PaymentController {
 		
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setWap(true);
-		String result = paymentService.pay(param);
-		HttpResponseHandler.printASAP(response, result);
+		String result = buildPayHtml(paymentService.pay(param));
+		HttpResponseHandler.printHtmlASAP(response, result);
 
 	}
 
-	
+	private String buildPayHtml(String form){
+		StringBuilder sb= StringTools.getThreadSafeStringBuilder();
+		sb.append("<!DOCTYPE html>");
+		sb.append("<html>");
+		sb.append("<head>");
+		sb.append("<meta charset=\"UTF-8\">");
+		sb.append("<title>pay</title>");
+		sb.append("</head>");
+		sb.append("<body>");
+		sb.append(form);
+		sb.append("</body>");
+		sb.append("</html>");
+		return sb.toString();
+	}
 
 	
 

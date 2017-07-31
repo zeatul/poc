@@ -141,7 +141,6 @@ public class PaymentService {
 		 * 获取支付信息
 		 */
 		OrderPayInfo orderPayInfo = orderService.computeOrderPayInfo(payParam.getOrderId());
-		orderPayInfo.setApplicationCode("SVP");
 		/**
 		 * 生成支付单
 		 * 首先插入支付单，如果插入成功，则执行后续的支付逻辑

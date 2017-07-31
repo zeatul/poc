@@ -266,7 +266,7 @@ public class OrderService {
 	
 	
 	private Date computePayExpireTime(Date payExpireTime ,Date now ,int offset){
-		Date date  = DateTools.addMinutes(now, 30);
+		Date date  = DateTools.addMinutes(now, offset);
 		if (payExpireTime.after(date)){
 			payExpireTime = date;
 		}

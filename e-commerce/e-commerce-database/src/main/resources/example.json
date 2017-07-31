@@ -1,32 +1,15 @@
 {
 	"data": {
-		"records": [
-			{
-				"skuId": 1004372,
-				"skuName": "1个月碎屏保至尊+（联通）",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"bsiGrade": 3,
-				"bsiInsurancePeriodMonth": 1
-			},
-			{
-				"skuId": 1004390,
-				"skuName": "3个月碎屏保至尊+（联通）",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"bsiGrade": 3,
-				"bsiInsurancePeriodMonth": 3
-			},
-			{
-				"skuId": 1004408,
-				"skuName": "12个月碎屏保至尊+（联通）",
-				"salePrice": 99.00,
-				"skuStockQuantity": 999999,
-				"bsiGrade": 3,
-				"bsiInsurancePeriodMonth": 12
-			}
-		],
-		"count": 3
+		"id": 1004414,
+		"storeCode": "ST000001",
+		"orderCode": "20170731151010002",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 99.00,
+		"orderPayExpireTime": "2017-07-31 15:31:53",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
 	},
 	"code": 1
 }

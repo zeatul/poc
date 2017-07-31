@@ -27,10 +27,10 @@ public class EcomPayRootConfig {
 
 	@Bean
 	public AlipayClient alipayClient() {
-		String notifyBaseUrl = env.getProperty("pay.alipay.notify.baseUrl");
-		String returnBaseUrl = env.getProperty("pay.alipay.return.baseUrl");
-		AlipayConfig.NOTIFY_URL = notifyBaseUrl + AlipayConfig.NOTIFY_URL;
-		AlipayConfig.RETURN_URL = returnBaseUrl + AlipayConfig.RETURN_URL;
+		String notifyUrl = env.getProperty("pay.alipay.notify.url");
+		String returnUrl = env.getProperty("pay.alipay.return.url");
+		AlipayConfig.NOTIFY_URL = notifyUrl;
+		AlipayConfig.RETURN_URL = returnUrl;
 		AlipayClient client = new DefaultAlipayClient(AlipayConfig.TRADE_URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT,
 				AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
 		return client;

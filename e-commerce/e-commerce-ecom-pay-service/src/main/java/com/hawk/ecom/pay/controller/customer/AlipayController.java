@@ -81,14 +81,14 @@ public class AlipayController {
 			// 请在这里加上商户的业务逻辑程序代码
 			// 该页面可做页面美工编辑
 			String result = "支付成功:out_trade_no=" + out_trade_no + ",trade_no=" + trade_no;
-			HttpResponseHandler.printASAP(response, result);
+			HttpResponseHandler.printHtmlASAP(response, result);
 			// ——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 		} else {
 			// 该页面可做页面美工编辑
 			String result = "验证失败";
-			HttpResponseHandler.printASAP(response, result);
+			HttpResponseHandler.printHtmlASAP(response, result);
 		}
 
 	}
@@ -287,12 +287,12 @@ public class AlipayController {
 
 			// ——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
-			HttpResponseHandler.printASAP(response, "success");
+			HttpResponseHandler.printHtmlASAP(response, "success");
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 		} else {// 验证失败
 			logger.info("Failed to verify signature");
-			HttpResponseHandler.printASAP(response, "fail");
+			HttpResponseHandler.printHtmlASAP(response, "fail");
 		}
 	}
 

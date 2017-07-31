@@ -16,7 +16,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 	
-	private String token = "64ae0773-5d4d-4a50-8e49-98f08b937cc4";
+	private String token = "c01fdc3d-07b9-4026-b70f-91a6eeeb30f1";
 
 	@Test
 	public void testCreateChargeOrder(){
@@ -28,10 +28,10 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		List<OrderDetailParam> orderDetails = new ArrayList<OrderDetailParam>();
 		OrderDetailParam orderDetailParam = new OrderDetailParam();
 		Map<String,Object> deliveryData = new HashMap<String,Object>();
-		deliveryData.put("mobileNumber", "13910002481");
+		deliveryData.put("mobileNumber", "18666075617");
 		orderDetailParam.setDeliveryData(deliveryData);
 		orderDetailParam.setOrderDetailQuantity(1);
-		orderDetailParam.setSkuId(1001312);
+		orderDetailParam.setSkuId(1003962);
 		orderDetails.add(orderDetailParam);
 		request.setOrderDetails(orderDetails);
 		request.setOrderDesc("流量充值");
