@@ -29,10 +29,10 @@ rm -rf mall_admin_test
 cd /usr/local/tomcat/mall-admin-web/bin
 sh startup.sh
 
-cd /usr/local/tomcat/ecom-taks-web/bin
+cd /usr/local/tomcat/ecom-task-web/bin
 sh shutdown.sh
-cd /usr/local/tomcat/ecom-taks-web/webapps
+cd /usr/local/tomcat/ecom-task-web/webapps
 rm -rf ecom_task_test
 \cp /usr/local/source/poc/e-commerce/e-commerce-ecom-task-web/target/e-commerce-ecom-task-web-1.0.0-SNAPSHOT.war ./ecom_task_test.war 
-cd /usr/local/tomcat/ecom-taks-web/bin
+cd /usr/local/tomcat/ecom-task-web/bin
 sh startup.sh
