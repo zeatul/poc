@@ -22,7 +22,7 @@ public class MobileControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void testLoadChargeDataProduct() {
-		String url = getUrl("/ecom/query/mobile/sku/chargeData/mobileNumber/13311658157/regionType/province");
+		String url = getUrl("/ecom/query/mobile/sku/chargeData/mobileNumber/13311658157/regionType/all");
 		
 		
 		

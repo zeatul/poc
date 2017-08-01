@@ -35,9 +35,12 @@ public interface ProductExMapper {
 	 * 查找流量充值产品，输出结果包含流量大小
 	 * @param attrValueIds
 	 * @param count
-	 * @param attrNameId
+	 * @param dataSizeAttrNameId
+	 * @param regionTypeAttrNameId
 	 * @return
 	 */
-	public List<ProductSkuExDomain> loadChargeDataProduct(@Param("attrValueIds") List<Integer> attrValueIds,@Param("count") Integer count,@Param("attrNameId") Integer attrNameId);
+	public List<ProductSkuExDomain> loadChargeDataProduct(@Param("attrValueIds") List<Integer> attrValueIds,
+			@Param("count") Integer count,@Param("dataSizeAttrNameId") Integer dataSizeAttrNameId,
+			@Param("regionTypeAttrNameId") Integer regionTypeAttrNameId);
 }
 

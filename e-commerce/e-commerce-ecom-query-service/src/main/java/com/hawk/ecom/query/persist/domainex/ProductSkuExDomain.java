@@ -6,6 +6,22 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductSkuExDomain implements ResponseData{
 	
+	public String getRegionType() {
+		return regionType;
+	}
+
+	public void setRegionType(String regionType) {
+		this.regionType = regionType;
+	}
+
+	public String getRegionTypeName() {
+		return regionTypeName;
+	}
+
+	public void setRegionTypeName(String regionTypeName) {
+		this.regionTypeName = regionTypeName;
+	}
+
 	public Integer getBsiGrade() {
 		return bsiGrade;
 	}
@@ -114,6 +130,16 @@ public class ProductSkuExDomain implements ResponseData{
 	 * 流量大小
 	 */
 	private Integer dataSize;
+	
+	/**
+	 * 漫游类型
+	 */
+	private String regionType;
+	
+	/**
+	 * 漫游类型名称
+	 */
+	private String regionTypeName;
 	
 	/**
 	 * 碎屏险档次

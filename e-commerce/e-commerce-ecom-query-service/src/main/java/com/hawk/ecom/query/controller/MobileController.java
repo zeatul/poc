@@ -80,7 +80,6 @@ public class MobileController {
 		loadChargeDataProductResponse.setMobileOperatorCode(mobileNumberSegmentExDomain.getMobileOperatorCode());
 		loadChargeDataProductResponse.setProvince(mobileNumberSegmentExDomain.getProvince());
 		loadChargeDataProductResponse.setProvinceCode(mobileNumberSegmentExDomain.getProvinceCode());
-		loadChargeDataProductResponse.setRegionType(regionType);
 		loadChargeDataProductResponse.setSkus(productService.loadChargeDataProduct(param));
 		
 		return SuccessResponse.build(loadChargeDataProductResponse);

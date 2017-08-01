@@ -115,7 +115,13 @@
 		t1.sku_stock_quantity AS "skuStockQuantity",
 		(SELECT  a.attr_value 
 			FROM t_prd_attr_value a ,t_prd_product_attr b 
-			WHERE  b.attr_name_id = #{attrNameId} AND (t1.id = b.sku_id or t1.product_id = b.product_id) AND a.id = b.attr_value_id) as "dataSize"
+			WHERE  b.attr_name_id = #{dataSizeAttrNameId} AND (t1.id = b.sku_id or t1.product_id = b.product_id) AND a.id = b.attr_value_id) as "dataSize",
+		(SELECT  a.attr_value 
+			FROM t_prd_attr_value a ,t_prd_product_attr b 
+			WHERE  b.attr_name_id = #{regionTypeAttrNameId} AND (t1.id = b.sku_id or t1.product_id = b.product_id) AND a.id = b.attr_value_id) as "regionType",
+		(SELECT  a.attr_display_value 
+			FROM t_prd_attr_value a ,t_prd_product_attr b 
+			WHERE  b.attr_name_id = #{regionTypeAttrNameId} AND (t1.id = b.sku_id or t1.product_id = b.product_id) AND a.id = b.attr_value_id) as "regionTypeName"
 		FROM t_prd_sku t1 ,(
 			SELECT a.id,COUNT(b.attr_value_id) as count
 			FROM t_prd_sku a , t_prd_product_attr b

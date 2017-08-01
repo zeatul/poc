@@ -7,6 +7,8 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class LoadChargeDataProductResponse implements ResponseData{
 	
+	
+
 	public List<ProductSkuExDomain> getSkus() {
 		return skus;
 	}
@@ -14,16 +16,6 @@ public class LoadChargeDataProductResponse implements ResponseData{
 	public void setSkus(List<ProductSkuExDomain> skus) {
 		this.skus = skus;
 	}
-
-	public String getRegionType() {
-		return regionType;
-	}
-
-	public void setRegionType(String regionType) {
-		this.regionType = regionType;
-	}
-
-	
 
 	public String getProvince() {
 		return province;
@@ -76,8 +68,6 @@ public class LoadChargeDataProductResponse implements ResponseData{
 	 * 移动运营商 mobile_operator
 	 */
 	private String mobileOperator;
-	
-	private String regionType;
 	
 	/**
 	 * 流量产品Sku集合

@@ -88,11 +88,15 @@ public class ProductService {
 		List<Integer> attrValueIdList = new ArrayList<Integer>();
 		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.OPERATOR, loadChargeDataProductParam.getOperator()));
 		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.PROVINCE, loadChargeDataProductParam.getProvince()));
-		attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.REGION_TYPE, loadChargeDataProductParam.getRegionType()));
+		
+		if (!loadChargeDataProductParam.getRegionType().equals("all")){
+			attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Mobile.REGION_TYPE, loadChargeDataProductParam.getRegionType()));
+		}
 
-		Integer attrNameId = findAttrNameId(ConstAttrNameCode.Mobile.DATA_SIZE);
+		Integer dataSizeAttrNameId = findAttrNameId(ConstAttrNameCode.Mobile.DATA_SIZE);
+		Integer regionTypeAttrNameId = findAttrNameId(ConstAttrNameCode.Mobile.REGION_TYPE);
 
-		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.loadChargeDataProduct(attrValueIdList, attrValueIdList.size(), attrNameId);
+		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.loadChargeDataProduct(attrValueIdList, attrValueIdList.size(), dataSizeAttrNameId,regionTypeAttrNameId);
 
 		return productSkuExDomainList;
 

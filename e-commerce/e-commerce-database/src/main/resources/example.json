@@ -1,15 +1,4 @@
 {
-	"data": {
-		"id": 1004414,
-		"storeCode": "ST000001",
-		"orderCode": "20170731151010002",
-		"orderType": 2,
-		"orderStatus": 0,
-		"orderTransPrice": 99.00,
-		"orderPayExpireTime": "2017-07-31 15:31:53",
-		"currency": 156,
-		"orderDesc": "流量充值",
-		"payType": 1
-	},
-	"code": 1
+	"orderId": 11000,
+	"paymentCategoryCode": "alipay"
 }
