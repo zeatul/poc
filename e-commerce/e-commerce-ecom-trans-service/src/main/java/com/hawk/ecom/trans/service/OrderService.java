@@ -7,12 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.product.constant.ConstProduct;
+import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.domain.SkuDomain;
 import com.hawk.ecom.product.service.ProductService;
@@ -20,6 +24,7 @@ import com.hawk.ecom.product.service.SkuService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.exception.DiffrentStoreProductInOneOrderRuntimeException;
+import com.hawk.ecom.trans.exception.DuplicateOrderDetailRuntimeException;
 import com.hawk.ecom.trans.exception.OrderNotBelongToLoginUserRuntimeException;
 import com.hawk.ecom.trans.exception.OrderNotFoundRuntimeException;
 import com.hawk.ecom.trans.exception.OrderPayExpireRuntimeException;
@@ -94,6 +99,8 @@ public class OrderService {
 	
 	@Autowired
 	private OrderOperationMapper orderOperationMapper;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Valid
 	@Transactional
@@ -247,7 +254,12 @@ public class OrderService {
 			orderDetailDomain.setId(pkGenService.genPk());
 			orderDetailDomain.setOrderCode(orderDomain.getOrderCode());
 			orderDetailDomain.setOrderId(orderDomain.getId());
-			orderDetailMapper.insert(orderDetailDomain);
+			try {
+				orderDetailMapper.insert(orderDetailDomain);
+			}  catch (DuplicateKeyException ex) {
+				logger.error("DuplicatOrderDetailDomain,orderId={},skuId={},orderDetailType={}",orderDetailDomain.getOrderId(),orderDetailDomain.getSkuId(),orderDetailDomain.getOrderDetailType());
+				throw new DuplicateOrderDetailRuntimeException();
+			}
 			
 			OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = orderDetailMap.get(orderDetailDomain);
 			if (orderDetailDeliveryDataDomain != null){
