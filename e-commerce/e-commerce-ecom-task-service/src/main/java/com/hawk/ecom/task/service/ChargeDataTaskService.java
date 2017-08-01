@@ -81,7 +81,7 @@ public class ChargeDataTaskService {
 			logger.error("chargeDataService.charge() failed",e); 
 		}finally{
 			updateDomain.setLastExecEndTime(new Date());
-			orderDetailDeliveryDataMapper.update(updateDomain);
+			orderDetailDeliveryDataMapper.updateWithoutNull(updateDomain);
 		}
 	}
 

@@ -523,13 +523,16 @@ public class OrderService {
 		 if (orderDomain.getOrderStatus() == ConstOrder.OrderStatus.SUCCESS){
 			 throw new OrderStatusIsNotAcceptableRuntimeException();
 		 }
-		 updateDomain.setId(orderDomain.getCurrency());
+		 
+		 String userCode = AuthThreadLocal.getUserCode();
+		 updateDomain.setId(orderDomain.getId());
 		 updateDomain.setOrderStatus(orderStatus);
 		 updateDomain.setUpdateDate(now);
-		 orderMapper.update(updateDomain);
+		 updateDomain.setUpdateUserCode(userCode);
+		 orderMapper.updateWithoutNull(updateDomain);
 		 OrderOperationDomain operationDomain = new OrderOperationDomain();
 		 operationDomain.setCreateDate(now);
-		 operationDomain.setCreateUserCode(AuthThreadLocal.getUserCode());
+		 operationDomain.setCreateUserCode(userCode);
 		 operationDomain.setId(pkGenService.genPk());
 		 operationDomain.setOperationDesc(operationDesc);
 		 operationDomain.setOperationMemo(operationMemo);
@@ -539,7 +542,7 @@ public class OrderService {
 		 operationDomain.setOrderNextStatus(orderStatus);
 		 operationDomain.setStoreCode(orderDomain.getStoreCode());
 		 operationDomain.setUpdateDate(now);
-		 operationDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
+		 operationDomain.setUpdateUserCode(userCode);
 		 operationDomain.setUserCode(orderDomain.getUserCode());
 		 orderOperationMapper.insert(operationDomain);
 	}

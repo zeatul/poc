@@ -112,7 +112,7 @@ public class LoginService {
 		if (loginDomain.getLoginStatus() == ConstLoginStatus.NORMAL){
 			loginDomain.setLoginStatus(ConstLoginStatus.LOGOUT);
 			loginDomain.setUpdateDate(new Date());
-			loginMapper.update(loginDomain);
+			loginMapper.updateWithoutNull(loginDomain);
 		}
 	}
 	

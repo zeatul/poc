@@ -138,7 +138,7 @@ public class StockService {
 		updateDomain.setUpdateDate(now);
 		updateDomain.setUpdateUserCode(userCode);
 		
-		stockMapper.update(stockDomain);
+		stockMapper.updateWithoutNull(updateDomain);
 	}
 
 	@Valid

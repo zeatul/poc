@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.hawk.ecom.pay.constant.ConstPay;
@@ -107,9 +108,10 @@ public class PaymentService {
 	}
 	
 	@Valid
+	@Transactional
 	public void notifySuccess(@Valid @NotNull("通知参数") NotifyParam notifyParam){
 		PaymentBillDomain paymentBillDomain = loadPaymentBill(notifyParam.getPaymentBillCode());
-		if (!paymentBillDomain.getTotalAmount().equals(notifyParam.getTotalAmount())){
+		if (paymentBillDomain.getTotalAmount().compareTo(notifyParam.getTotalAmount())!=0){
 			throw new IllegalNotificationRuntimeException();
 		}
 		
@@ -124,12 +126,12 @@ public class PaymentService {
 		updateDomain.setId(paymentBillDomain.getId());
 		updateDomain.setUpdateDate(new Date());
 		updateDomain.setPaymentBillStatus(ConstPay.PaymentBillStatus.SUCCESS);
-		paymentBillMapper.update(updateDomain);
+		paymentBillMapper.updateWithoutNull(updateDomain);
 		
 		/**
 		 * 更改订单状态
 		 */
-		orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.SUCCESS, "支付成功","支付成功");
+		orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.PAIED, "支付成功","支付成功");
 		
 		
 		

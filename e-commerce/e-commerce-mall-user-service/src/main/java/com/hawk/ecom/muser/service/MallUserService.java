@@ -225,7 +225,7 @@ public class MallUserService {
 		if (mallLoginDomain.getLoginStatus() == ConstMallLoginStatus.NORMAL){
 			mallLoginDomain.setLoginStatus(ConstMallLoginStatus.LOGOUT);
 			mallLoginDomain.setUpdateDate(new Date());
-			mallLoginMapper.update(mallLoginDomain);
+			mallLoginMapper.updateWithoutNull(mallLoginDomain);
 		}
 	}
 	
