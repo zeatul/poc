@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -42,6 +43,12 @@ public class AlipayController {
 	private AlipayService alipayService;
 	@Autowired
 	private PaymentService paymentService;
+	
+	@RequestMapping(value = "/home", method = GET)
+	public String home() {
+		return "Welcome to /ecom/pay/alipay controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
+	}
+
 	
 	private String computeFromRequest(HttpServletRequest request ,String key) throws Exception{
 		/**
