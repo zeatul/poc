@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.pay.persist.mapperex.PaymentBillExMapper">
+
+
+
+	<select id="queryUnfinishedPaymentBill"  resultType="Integer">
+		SELECT id
+		FROM t_pay_payment_bill
+		WHERE payment_bill_status = 100
+		AND create_date &lt;  #{threashold}
+		ORDER BY create_date asc
+		LIMIT 0 , #{limit}
+	</select>
+</mapper>

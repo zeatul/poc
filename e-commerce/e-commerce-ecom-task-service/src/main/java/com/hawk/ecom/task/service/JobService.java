@@ -51,7 +51,7 @@ public class JobService {
 	 * 查询有支付单，但是状态是待支付，超过10分钟的数据，检测有没有因为没有收到回调通知造成，状态没有变化的已经支付成功的数据，修改状态。
 	 */
 	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 10)
-	public void job2(){
+	public void checkPayment(){
 		
 	}
 
