@@ -122,7 +122,7 @@ http {
         listen	80;
         
         #主机名
-        server_name  210.73.195.77 localhost 127.0.0.1;
+        server_name  210.73.195.77 localhost 127.0.0.1 vstst.fexie.com.cn;
 		
 		#字符集
         #charset utf-8;
@@ -168,6 +168,12 @@ http {
         	proxy_set_header X-FORWARDED-FOR $remote_addr;
 		rewrite ^(.*)$  https://$host$1 permanent;
         }
+        
+        location /ecom_trans_test/ecom/pay/alipay/ {
+            proxy_pass http://ecom_trans_pool;
+            proxy_set_header Host $host;
+            proxy_set_header X-FORWARDED-FOR $remote_addr;
+        }
 
 	
        
@@ -189,7 +195,7 @@ http {
      # HTTPS server    
     server {
        	listen       443 ssl;
-        server_name  localhost 210.73.195.77;
+        server_name  localhost 210.73.195.77 vstst.fexie.com.cn;
 
         ssl_certificate      /usr/local/nginx/ssl/api.bz.crt ;
         ssl_certificate_key  /usr/local/nginx/ssl/api.bz_nopass.key;
