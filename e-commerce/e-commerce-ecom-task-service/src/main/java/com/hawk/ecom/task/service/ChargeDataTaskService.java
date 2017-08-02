@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.outer.service.ChargeDataService;
 import com.hawk.ecom.outer.service.ChargeDataService.ConstChargeNotifyStatus;
-import com.hawk.ecom.outer.service.ChargeResult;
+import com.hawk.ecom.outer.service.chargeData.ChargeResult;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;

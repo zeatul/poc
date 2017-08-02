@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hawk.framework.utility.http.HttpClientExecutorImpl;
+import com.hawk.ecom.outer.service.chargeData.ChargeDataConfigure;
+import com.hawk.ecom.outer.service.chargeData.ChargeResult;
+import com.hawk.ecom.outer.service.chargeData.QueryResult;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;

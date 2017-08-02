@@ -30,12 +30,7 @@ public class JobService {
 	private TaskPool taskPool;
 	
 	@Autowired
-	private OrderAdminService orderAdminService;
-	
-	@Autowired
-	private OrderService orderService;
-	
-	
+	private OrderService orderService;	
 
 	/**
 	 * 关闭超过支付时间仍然没有支付记录的订单
@@ -50,6 +45,14 @@ public class JobService {
 			taskPool.execute(job);
 		}
 		logger.info("++++Success to execute closeUnpaiedOvertimeOrder job");
+	}
+	
+	/**
+	 * 查询有支付单，但是状态是待支付，超过10分钟的数据，检测有没有因为没有收到回调通知造成，状态没有变化的已经支付成功的数据，修改状态。
+	 */
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 10)
+	public void job2(){
+		
 	}
 
 	/**
@@ -69,6 +72,13 @@ public class JobService {
 		}
 
 		logger.info("Success to execute batchCharge");
+	}
+	
+	/**
+	 * 将支付已经完成，但是没有成功交付的小宝交付单,拿出来创建小宝订单
+	 */
+	public void batchOrderBsi(){
+		
 	}
 
 }

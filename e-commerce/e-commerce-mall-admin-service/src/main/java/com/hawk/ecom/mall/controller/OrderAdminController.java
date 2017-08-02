@@ -48,7 +48,7 @@ public class OrderAdminController {
 	
 	//订单列表
 	
-	//订单详情
+	//单个订单，订单明细
 	
 	//订单明细，交付详情
 }

@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import com.hawk.ecom.outer.service.ChargeDataConfigure;
+
+import com.hawk.ecom.outer.service.chargeData.ChargeDataConfigure;
 
 
 @Configuration

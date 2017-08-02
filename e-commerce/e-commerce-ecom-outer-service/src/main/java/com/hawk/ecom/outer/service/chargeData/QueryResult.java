@@ -1,4 +1,4 @@
-package com.hawk.ecom.outer.service;
+package com.hawk.ecom.outer.service.chargeData;
 
 public class QueryResult {
 	
