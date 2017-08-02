@@ -141,7 +141,9 @@ public class AlipayController {
 			params.put(name, valueStr);
 		}
 
-		logger.info("Alipay notify message = {}", JsonTools.toJsonString(params));
+		logger.info("Alipay notify message requestParams = {}", JsonTools.toJsonString(requestParams));
+		
+		logger.info("Alipay notify message params = {}", JsonTools.toJsonString(params));
 
 		AlipayNotifyParam alipayNotifyParam = new AlipayNotifyParam();
 
