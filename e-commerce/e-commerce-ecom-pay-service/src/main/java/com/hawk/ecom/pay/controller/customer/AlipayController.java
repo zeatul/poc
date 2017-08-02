@@ -43,31 +43,28 @@ public class AlipayController {
 	private AlipayService alipayService;
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
 		return "Welcome to /ecom/pay/alipay controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
 
-	
-	private String computeFromRequest(HttpServletRequest request ,String key) throws Exception{
+	private String computeFromRequest(HttpServletRequest request, String key) throws Exception {
 		/**
 		 * 生产环境使用
 		 */
 		return new String(request.getParameter(key).getBytes("ISO-8859-1"), "UTF-8");
-		
+
 		/**
 		 * 单元测试用
 		 */
-//		return URLDecoder.decode(request.getParameter(key));
+		// return URLDecoder.decode(request.getParameter(key));
 	}
-	
-	 
 
 	@RequestMapping(value = "/wap/return", method = { POST, GET })
 	public void wapReturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("+++++alipay wap return start!!!!");
-		
+
 		// 获取支付宝GET过来反馈信息
 		Map<String, String> params = new HashMap<String, String>();
 		Map<String, String[]> requestParams = request.getParameterMap();
@@ -79,7 +76,7 @@ public class AlipayController {
 				valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
 			}
 			// 乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
-//			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			// valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 			params.put(name, valueStr);
 		}
 
@@ -88,11 +85,11 @@ public class AlipayController {
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
 		// 商户订单号
 
-		String out_trade_no = computeFromRequest(request,"out_trade_no");
+		String out_trade_no = computeFromRequest(request, "out_trade_no");
 
 		// 支付宝交易号
 
-		String trade_no = computeFromRequest(request,"trade_no"); 
+		String trade_no = computeFromRequest(request, "trade_no");
 
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
 		// 计算得出通知验证结果
@@ -118,11 +115,11 @@ public class AlipayController {
 
 	}
 
-	@RequestMapping(value = "/notify", method = {POST,GET})
+	@RequestMapping(value = "/notify", method = { POST, GET })
 	public void alipayNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		logger.info("+++++alipay notify start!!!!");
-		
+
 		// 获取支付宝POST过来反馈信息
 		Map<String, String> params = new HashMap<String, String>();
 		Map<String, String[]> requestParams = request.getParameterMap();
@@ -134,15 +131,15 @@ public class AlipayController {
 				valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
 			}
 			// 乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
-//			 valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
-			
-//			valueStr = URLDecoder.decode(valueStr); //测试用
-			
+			// valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+
+			// valueStr = URLDecoder.decode(valueStr); //测试用
+
 			params.put(name, valueStr);
 		}
 
 		logger.info("Alipay notify message requestParams = {}", JsonTools.toJsonString(requestParams));
-		
+
 		logger.info("Alipay notify message params = {}", JsonTools.toJsonString(params));
 
 		AlipayNotifyParam alipayNotifyParam = new AlipayNotifyParam();
@@ -150,14 +147,15 @@ public class AlipayController {
 		// 异步通知参数
 		// 参数 参数名称 类型 必填 描述 范例
 
-		// notify_time 通知时间 Date 是 通知的发送时间。格式为yyyy-MM-dd HH:mm:ss 2015-14-27 15:45:58
-		String notify_time = computeFromRequest(request,"notify_time"); 
+		// notify_time 通知时间 Date 是 通知的发送时间。格式为yyyy-MM-dd HH:mm:ss 2015-14-27
+		// 15:45:58
+		String notify_time = computeFromRequest(request, "notify_time");
 		alipayNotifyParam.setNotifyTime(StringTools.isNullOrEmpty(notify_time) ? null : DateTools.parse(notify_time, DateTools.DATETIME_PATTERN));
 		// notify_type 通知类型 String(64) 是 通知的类型 trade_status_sync
 		// notify_id 通知校验ID String(128) 是 通知校验ID
 		// ac05099524730693a8b330c5ecf72da9786
 		// app_id 开发者的app_id String(32) 是 支付宝分配给开发者的应用Id 2014072300007148
-		String app_id = computeFromRequest(request,"app_id");  
+		String app_id = computeFromRequest(request, "app_id");
 		alipayNotifyParam.setAppId(app_id);
 
 		// charset 编码格式 String(10) 是 编码格式，如utf-8、gbk、gb2312等 utf-8
@@ -167,94 +165,94 @@ public class AlipayController {
 		// sign 签名 String(256) 是 请参考异步返回结果的验签 601510b7970e52cc63db0f44997cf70e
 
 		// trade_no 支付宝交易号 String(64) 是 支付宝交易凭证号 2013112011001004330000121536
-		String trade_no = computeFromRequest(request,"trade_no");  
+		String trade_no = computeFromRequest(request, "trade_no");
 		alipayNotifyParam.setTradeNo(trade_no);
 
 		// out_trade_no 商户订单号 String(64) 是 原支付请求的商户订单号 6823789339978248
-		String out_trade_no = computeFromRequest(request,"out_trade_no");  
+		String out_trade_no = computeFromRequest(request, "out_trade_no");
 		alipayNotifyParam.setOutTradeNo(out_trade_no);
 
 		// out_biz_no 商户业务号 String(64) 否 商户业务ID，主要是退款通知中返回退款申请的流水号 HZRF001
-		String out_biz_no = computeFromRequest(request,"out_biz_no");  
+		String out_biz_no = computeFromRequest(request, "out_biz_no");
 		alipayNotifyParam.setOutBizNo(out_biz_no);
 
 		// buyer_id 买家支付宝用户号 String(16) 否 买家支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字
 		// 2088102122524333
-		String buyer_id = computeFromRequest(request,"buyer_id");   
+		String buyer_id = computeFromRequest(request, "buyer_id");
 		alipayNotifyParam.setBuyerId(buyer_id);
 
 		// buyer_logon_id 买家支付宝账号 String(100) 否 买家支付宝账号 15901825620
-		String buyer_logon_id = computeFromRequest(request,"buyer_logon_id");  
+		String buyer_logon_id = computeFromRequest(request, "buyer_logon_id");
 		alipayNotifyParam.setBuyerLogonId(buyer_logon_id);
 
 		// seller_id 卖家支付宝用户号 String(30) 否 卖家支付宝用户号 2088101106499364
-		String seller_id = computeFromRequest(request,"seller_id");   
+		String seller_id = computeFromRequest(request, "seller_id");
 		alipayNotifyParam.setSellerId(seller_id);
 
 		// seller_email 卖家支付宝账号 String(100) 否 卖家支付宝账号 zhuzhanghu@alitest.com
-		String seller_email = computeFromRequest(request,"seller_email");   
+		String seller_email = computeFromRequest(request, "seller_email");
 		alipayNotifyParam.setSellerEmail(seller_email);
 
 		// trade_status 交易状态 String(32) 否 交易目前所处的状态，见交易状态说明 TRADE_CLOSED
-		String trade_status = computeFromRequest(request,"trade_status");    
+		String trade_status = computeFromRequest(request, "trade_status");
 		alipayNotifyParam.setTradeStatus(trade_status);
 
 		// total_amount 订单金额 Number(9,2) 否 本次交易支付的订单金额，单位为人民币（元） 20
-		String total_amount =  computeFromRequest(request,"total_amount");   
+		String total_amount = computeFromRequest(request, "total_amount");
 		alipayNotifyParam.setTotalAmount(StringTools.isNullOrEmpty(total_amount) ? null : new BigDecimal(total_amount));
 
 		// receipt_amount 实收金额 Number(9,2) 否 商家在交易中实际收到的款项，单位为元 15
-		String receipt_amount = computeFromRequest(request,"receipt_amount"); 
+		String receipt_amount = computeFromRequest(request, "receipt_amount");
 		alipayNotifyParam.setReceiptAmount(StringTools.isNullOrEmpty(receipt_amount) ? null : new BigDecimal(receipt_amount));
 
 		// invoice_amount 开票金额 Number(9,2) 否 用户在交易中支付的可开发票的金额 10.00
-		String invoice_amount = computeFromRequest(request,"invoice_amount");  
+		String invoice_amount = computeFromRequest(request, "invoice_amount");
 		alipayNotifyParam.setInvoiceAmount(StringTools.isNullOrEmpty(invoice_amount) ? null : new BigDecimal(invoice_amount));
 
 		// buyer_pay_amount 付款金额 Number(9,2) 否 用户在交易中支付的金额 13.88
-		String buyer_pay_amount = computeFromRequest(request,"buyer_pay_amount"); 
+		String buyer_pay_amount = computeFromRequest(request, "buyer_pay_amount");
 		alipayNotifyParam.setBuyerPayAmount(StringTools.isNullOrEmpty(buyer_pay_amount) ? null : new BigDecimal(buyer_pay_amount));
 
 		// point_amount 集分宝金额 Number(9,2) 否 使用集分宝支付的金额 12.00
-		String point_amount = computeFromRequest(request,"point_amount"); 
+		String point_amount = computeFromRequest(request, "point_amount");
 		alipayNotifyParam.setPointAmount(StringTools.isNullOrEmpty(point_amount) ? null : new BigDecimal(point_amount));
 
 		// refund_fee 总退款金额 Number(9,2) 否 退款通知中，返回总退款金额，单位为元，支持两位小数 2.58
-		String refund_fee = computeFromRequest(request,"refund_fee");  
+		String refund_fee = computeFromRequest(request, "refund_fee");
 		alipayNotifyParam.setRefundFee(StringTools.isNullOrEmpty(refund_fee) ? null : new BigDecimal(refund_fee));
 
 		// subject 订单标题 String(256) 否 商品的标题/交易标题/订单标题/订单关键字等，是请求时对应的参数，原样通知回来
 		// 当面付交易
-		String subject = computeFromRequest(request,"subject");  
+		String subject = computeFromRequest(request, "subject");
 		alipayNotifyParam.setSubject(subject);
 
 		// body 商品描述 String(400) 否 该订单的备注、描述、明细等。对应请求时的body参数，原样通知回来 当面付交易内容
-		String body = computeFromRequest(request,"body");   
+		String body = computeFromRequest(request, "body");
 		alipayNotifyParam.setBody(body);
 
 		// gmt_create 交易创建时间 Date 否 该笔交易创建的时间。格式为yyyy-MM-dd HH:mm:ss 2015-04-27
 		// 15:45:57
-		String gmt_create = computeFromRequest(request,"gmt_create");    
+		String gmt_create = computeFromRequest(request, "gmt_create");
 		alipayNotifyParam.setGmtCreate(StringTools.isNullOrEmpty(gmt_create) ? null : DateTools.parse(gmt_create, DateTools.DATETIME_PATTERN));
 
 		// gmt_payment 交易付款时间 Date 否 该笔交易的买家付款时间。格式为yyyy-MM-dd HH:mm:ss
 		// 2015-04-27 15:45:57
-		String gmt_payment = computeFromRequest(request,"gmt_payment"); 
+		String gmt_payment = computeFromRequest(request, "gmt_payment");
 		alipayNotifyParam.setGmtPayment(StringTools.isNullOrEmpty(gmt_payment) ? null : DateTools.parse(gmt_payment, DateTools.DATETIME_PATTERN));
 
 		// gmt_refund 交易退款时间 Date 否 该笔交易的退款时间。格式为yyyy-MM-dd HH:mm:ss.S
 		// 2015-04-28 15:45:57.320
-		String gmt_refund = computeFromRequest(request,"gmt_refund"); 
+		String gmt_refund = computeFromRequest(request, "gmt_refund");
 		alipayNotifyParam.setGmtRefund(StringTools.isNullOrEmpty(gmt_refund) ? null : DateTools.parse(gmt_refund, DateTools.DATETIME_PATTERN));
 
 		// gmt_close 交易结束时间 Date 否 该笔交易结束时间。格式为yyyy-MM-dd HH:mm:ss 2015-04-29
 		// 15:45:57
-		String gmt_close = computeFromRequest(request,"gmt_close");  
+		String gmt_close = computeFromRequest(request, "gmt_close");
 		alipayNotifyParam.setGmtClose(StringTools.isNullOrEmpty(gmt_close) ? null : DateTools.parse(gmt_close, DateTools.DATETIME_PATTERN));
 
 		// fund_bill_list 支付金额信息 String(512) 否 支付成功的各个渠道金额信息，详见资金明细信息说明
 		// [{"amount":"15.00","fundChannel":"ALIPAYACCOUNT"}]
-		String fund_bill_list = computeFromRequest(request,"fund_bill_list");  
+		String fund_bill_list = computeFromRequest(request, "fund_bill_list");
 		alipayNotifyParam.setFundBillList(fund_bill_list);
 
 		// passback_params 回传参数 String(512) 否
@@ -277,11 +275,10 @@ public class AlipayController {
 
 		// 获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
 		// 计算得出通知验证结果
-//		boolean verify_result = AlipaySignature.rsaCheckV1(params, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.CHARSET, "RSA2");
-		boolean verify_result = true;
+		boolean verify_result = AlipaySignature.rsaCheckV1(params, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.CHARSET, "RSA2");
 		if (verify_result) {
 			// 验证成功
-			logger.info("Succeeded to verify signature,trade_status={}", trade_status);
+			logger.info("Succeeded to verify signature,trade_no={},out_trade_no={},subject={},trade_status={}", trade_no, out_trade_no, subject, trade_status);
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// 请在这里加上商户的业务逻辑程序代码
 
@@ -315,7 +312,7 @@ public class AlipayController {
 				notifyParam.setTotalAmount(alipayNotifyParam.getTotalAmount());
 				paymentService.notifySuccess(notifyParam);
 			} else if (trade_status.equals("TRADE_CLOSED")) {
-				
+
 			}
 
 			// ——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
@@ -324,7 +321,8 @@ public class AlipayController {
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 		} else {// 验证失败
-			logger.info("Failed to verify signature");
+			// 验证成功
+			logger.info("Failed to verify signature,trade_no={},out_trade_no={},subject={},trade_status={}", trade_no, out_trade_no, subject, trade_status);
 			HttpResponseHandler.printHtmlASAP(response, "fail");
 		}
 	}

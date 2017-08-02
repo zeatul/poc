@@ -1,5 +1,7 @@
 package com.hawk.ecom.pay.spring.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,11 +18,15 @@ import com.hawk.framework.pub.pk.MysqlPkGenerator;
 import com.hawk.framework.pub.pk.PkGenService;
 
 
+
+
 @Configuration
 @Import({})
 @PropertySource("classpath:/com/hawk/ecom/pay/env/pay.properties")
 @ComponentScan(basePackages = { "com.hawk.ecom.pay.service" })
 public class EcomPayRootConfig {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private Environment env;
@@ -29,6 +35,10 @@ public class EcomPayRootConfig {
 	public AlipayClient alipayClient() {
 		String notifyUrl = env.getProperty("pay.alipay.notify.url").trim();
 		String returnUrl = env.getProperty("pay.alipay.return.url").trim();
+		
+		logger.info("+++++++notifyUrl={}",notifyUrl);
+		logger.info("+++++++returnUrl={}",returnUrl);
+		
 		AlipayConfig.NOTIFY_URL = notifyUrl;
 		AlipayConfig.RETURN_URL = returnUrl;
 		AlipayClient client = new DefaultAlipayClient(AlipayConfig.TRADE_URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT,
