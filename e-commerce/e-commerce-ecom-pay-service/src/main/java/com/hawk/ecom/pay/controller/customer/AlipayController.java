@@ -66,6 +66,8 @@ public class AlipayController {
 
 	@RequestMapping(value = "/wap/return", method = { POST, GET })
 	public void wapReturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("+++++alipay wap return start!!!!");
+		
 		// 获取支付宝GET过来反馈信息
 		Map<String, String> params = new HashMap<String, String>();
 		Map<String, String[]> requestParams = request.getParameterMap();
@@ -118,6 +120,9 @@ public class AlipayController {
 
 	@RequestMapping(value = "/notify", method = {POST,GET})
 	public void alipayNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		logger.info("+++++alipay notify start!!!!");
+		
 		// 获取支付宝POST过来反馈信息
 		Map<String, String> params = new HashMap<String, String>();
 		Map<String, String[]> requestParams = request.getParameterMap();
