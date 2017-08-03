@@ -9,7 +9,7 @@
 	<select id="queryUnfinishedPaymentBill"  resultType="Integer">
 		SELECT id
 		FROM t_pay_payment_bill
-		WHERE payment_bill_status = 100
+		WHERE payment_bill_status = #{paymentBillStatus}
 		AND create_date &lt;  #{threashold}
 		ORDER BY create_date asc
 		LIMIT 0 , #{limit}

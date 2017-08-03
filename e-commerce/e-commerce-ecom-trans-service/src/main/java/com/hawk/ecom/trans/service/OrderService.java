@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hawk.ecom.product.constant.ConstProduct;
-import com.hawk.ecom.product.exception.DuplicateProductRuntimeException;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.domain.SkuDomain;
 import com.hawk.ecom.product.service.ProductService;
@@ -534,6 +533,9 @@ public class OrderService {
 		 OrderDomain updateDomain = new OrderDomain();
 		 if (orderDomain.getOrderStatus() == ConstOrder.OrderStatus.SUCCESS){
 			 throw new OrderStatusIsNotAcceptableRuntimeException();
+		 }else if (orderDomain.getOrderStatus() == orderStatus){
+			 logger.error("orderDomain's current status is same as the new orderStatus,orderId={},orderStatus={}",orderDomain.getId(),orderStatus);
+			 return ;
 		 }
 		 
 		 String userCode = AuthThreadLocal.getUserCode();
@@ -572,10 +574,11 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public void closeUnpaidOrder(OrderDomain orderDomain,String adminCode){
-		String message = "订单支付超时自动关闭";
-		if (adminCode != null){
-			message = "管理员关闭订单";
+	public void closeUnpaidOrder(OrderDomain orderDomain){
+		String message = "管理员或用户关闭订单";
+		String userCode  =  AuthThreadLocal.getUserCode();
+		if (userCode == null || userCode.equalsIgnoreCase("system")){
+			message = "订单支付超时自动关闭";
 		}
 		
 		updateOrderStatus(orderDomain,ConstOrder.OrderStatus.CLOSED,message,message);

@@ -28,6 +28,8 @@ public class OrderAdminService {
 	
 	@Autowired
 	private MallAuthService authService;
+	
+	
 
 	/**
 	 * 关闭过期的未支付订单 订单状态必需是未支付 订单过期时间必需在当前时间之前 订单如果没有对应的支付单，则 关闭
@@ -66,15 +68,21 @@ public class OrderAdminService {
 			}
 			if (paymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING_PAY) {
 
-				if (paymentService.hasPaidSuccessfully(paymentBillDomain))
+				if (paymentService.hasPaidSuccessfully(paymentBillDomain)==1){
 					throw new RuntimeException("the order is paid successfully,orderId=" + orderId);
+				} else if (paymentService.hasPaidSuccessfully(paymentBillDomain)==0){
+					/**
+					 * 取消支付
+					 */
+					paymentService.close(paymentBillDomain);
+				}
 			}
 		}
 
 		/**
 		 * 未成功支付订单，已经超期，关闭，并且退回库存量
 		 */
-		orderService.closeUnpaidOrder(orderDomain,AuthThreadLocal.getUserCode());
+		orderService.closeUnpaidOrder(orderDomain);
 	}
 
 	@Valid

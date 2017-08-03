@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alipay.api.AlipayClient;
+import com.alipay.api.domain.AlipayTradeCloseModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
+import com.alipay.api.request.AlipayTradeCloseRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+import com.alipay.api.response.AlipayTradeCloseResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.hawk.ecom.pay.persist.domain.AlipayInfoDomain;
 import com.hawk.ecom.pay.persist.mapper.AlipayInfoMapper;
@@ -58,6 +61,24 @@ public class AlipayService {
 		return alipayResponse;
 	}
 	
+	/**
+	 * 关闭未支付的订单
+	 * @param outTradeCode
+	 * @throws Exception
+	 */
+	@Valid
+	public void close(@NotEmpty String outTradeCode) throws Exception {
+		AlipayTradeCloseRequest alipayRequest = new AlipayTradeCloseRequest();
+		AlipayTradeCloseModel model = new AlipayTradeCloseModel();
+		model.setOutTradeNo(outTradeCode);
+		alipayRequest.setBizModel(model);
+		AlipayTradeCloseResponse alipayResponse = alipayClient.execute(alipayRequest);
+		logger.info("AlipayTradeCloseResponse = {}",JsonTools.toJsonString(alipayResponse));
+		
+		if (!"10000".equals(alipayResponse.getCode()) ){
+			throw new RuntimeException("操作失败，"+alipayResponse.getMsg()+","+alipayResponse.getSubMsg());
+		}
+	}
 	
 	
 	@Valid

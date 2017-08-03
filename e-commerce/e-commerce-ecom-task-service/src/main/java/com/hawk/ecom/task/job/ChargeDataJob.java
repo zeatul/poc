@@ -24,8 +24,8 @@ public class ChargeDataJob implements Runnable{
 		this.taskCode = taskCode;
 	}
 	
-	private String buildChargeTaskKey(String taskCode){
-		return StringTools.concatWithSymbol("_", ChargeDataJob.class.getName(),taskCode);
+	private String buildChargeTaskKey(){
+		return StringTools.concatWithSymbol("_", getClass().getName(),taskCode);
 	}
 
 	@Override
@@ -35,13 +35,18 @@ public class ChargeDataJob implements Runnable{
 		/**
 		 * 取缓存锁
 		 */
-		String key = buildChargeTaskKey(taskCode);
+		String key = buildChargeTaskKey();
 		if (!cacheService.setnx(key, taskCode, 600-5)){
 			logger.error("Failed to get the redis lock,key={}",key);
 			return ;
 		}
-		service.chargeData(taskCode);
-		logger.info("Success to execute charge data job, taskCode={}",taskCode);
+		try {
+			service.chargeData(taskCode);
+			logger.info("Success to execute charge data job, taskCode={}",taskCode);
+		} catch (Exception e) {
+			logger.info("Success to execute charge data job, taskCode="+taskCode,e);
+		}
+		
 	}
 
 }
