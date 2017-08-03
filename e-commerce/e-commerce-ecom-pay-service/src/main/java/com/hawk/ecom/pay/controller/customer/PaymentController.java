@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,9 @@ import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.HttpResponseHandler;
+import com.hawk.framework.pub.web.ResponseData;
+import com.hawk.framework.pub.web.SuccessResponse;
+import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -44,6 +48,12 @@ public class PaymentController {
 		String result = buildPayHtml(paymentService.pay(param));
 		HttpResponseHandler.printHtmlASAP(response, result);
 
+	}
+	
+	@RequestMapping(value = "/checkUnfinishedPayment/paymentBillId/{paymentBillId}", method = {POST,GET})
+	public WebResponse<ResponseData> checkUnfinishedPayment(HttpServletRequest request, HttpServletResponse response,@PathVariable Integer paymentBillId) throws Exception{
+		paymentService.checkUnfinishedPayment(paymentBillId);
+		return SuccessResponse.build(null);
 	}
 	
 	@RequestMapping(value = "/wap2", method = GET)

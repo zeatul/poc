@@ -275,7 +275,7 @@ public class PaymentService {
 	}
 
 	/**
-	 * 查询支付的单的支付状态，如果已经支付去修改订单的状态 ，如果支付失败或未支付，修改支付单得状态，
+	 * 查询支付的单的支付状态，如果已经支付去修改订单的状态 ，如果支付失败或未支付，修改支付单的状态，
 	 * 
 	 * @param paymentBillId
 	 * @throws Exception
