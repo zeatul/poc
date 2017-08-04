@@ -80,9 +80,10 @@ public class PaymentService {
 				throw new RuntimeException("unknown alipay trade status = " + tradeStatus);
 			}
 
-		}
+		}else{
 
-		throw new RuntimeException("unsupported pay category");
+			throw new RuntimeException("unsupported pay category");
+		}
 	}
 
 	/**

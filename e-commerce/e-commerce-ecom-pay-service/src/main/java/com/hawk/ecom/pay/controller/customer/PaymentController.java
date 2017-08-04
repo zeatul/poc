@@ -50,11 +50,6 @@ public class PaymentController {
 
 	}
 	
-	@RequestMapping(value = "/checkUnfinishedPayment/paymentBillId/{paymentBillId}", method = {POST,GET})
-	public WebResponse<ResponseData> checkUnfinishedPayment(HttpServletRequest request, HttpServletResponse response,@PathVariable Integer paymentBillId) throws Exception{
-		paymentService.checkUnfinishedPayment(paymentBillId);
-		return SuccessResponse.build(null);
-	}
 	
 	@RequestMapping(value = "/wap2", method = GET)
 	public void wapPay2(HttpServletRequest request, HttpServletResponse response) throws Exception {

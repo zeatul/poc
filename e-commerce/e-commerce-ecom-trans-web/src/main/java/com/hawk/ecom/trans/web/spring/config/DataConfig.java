@@ -18,6 +18,7 @@ import com.hawk.ecom.muser.persist.mapper.MallUserMapper;
 import com.hawk.ecom.muser.persist.mapperex.MallUserExMapper;
 import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
+import com.hawk.ecom.pay.persist.mapperex.PaymentBillExMapper;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.mapper.ProductMapper;
 import com.hawk.ecom.product.persist.mapperex.ProductExMapper;
@@ -44,7 +45,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 		ProductMapper.class, ProductExMapper.class, // 短消息
 		MallUserMapper.class,MallUserExMapper.class,//商城用户
 		UserMapper.class, UserExMapper.class ,// 客户
-		PaymentBillMapper.class //支付
+		PaymentBillMapper.class,PaymentBillExMapper.class //支付
 })
 public class DataConfig {
 

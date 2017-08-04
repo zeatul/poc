@@ -1,6 +1,6 @@
 package com.hawk.ecom.mall.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.mall.request.CloseUnpaidOrderParam;
 import com.hawk.ecom.mall.service.OrderAdminService;
-import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.framework.pub.web.ResponseData;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 
@@ -33,8 +33,8 @@ public class OrderAdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/closeUnpaidOrder/order/{orderId}", method = POST)
-	public WebResponse<ProductInfoResponse> closeUnpaidOrder(HttpServletRequest request,@PathVariable Integer orderId) throws Exception {
+	@RequestMapping(value = "/closeUnpaidOrder/order/{orderId}", method = {POST,GET})
+	public WebResponse<ResponseData> closeUnpaidOrder(HttpServletRequest request,@PathVariable Integer orderId) throws Exception {
 		
 		CloseUnpaidOrderParam param = new CloseUnpaidOrderParam();
 		param.setOrderId(orderId);

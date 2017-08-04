@@ -13,6 +13,7 @@ import com.hawk.ecom.muser.service.MallUserService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.pub.web.HttpRequestInfo;
 import com.hawk.framework.utility.tools.JsonTools;
+import com.hawk.framework.utility.tools.StringTools;
 
 public class AccessInterceptor extends HandlerInterceptorAdapter {
 
@@ -29,7 +30,10 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		MallUserDomain mallUserDomain = mallUserService.loginInfo(token);
 		
 		String version = request.getParameter("version");
-		if (version == null || !"1.0".equals(version)){
+		if (StringTools.isNullOrEmpty(version)){
+			version = "1.0";
+		}
+		if (!"1.0".equals(version)){
 			throw new RuntimeException("version不对");
 		}
 		
