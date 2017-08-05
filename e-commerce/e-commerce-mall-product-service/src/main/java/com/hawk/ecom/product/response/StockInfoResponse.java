@@ -133,5 +133,7 @@ public class StockInfoResponse implements ResponseData{
 	 * SKU名称 sku_name
 	 */
 	private String skuName;
+	
+	
 
 }
