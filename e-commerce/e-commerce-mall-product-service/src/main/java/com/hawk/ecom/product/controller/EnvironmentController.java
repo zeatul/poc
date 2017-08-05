@@ -271,7 +271,7 @@ public class EnvironmentController {
 				createSkuParam.setMarketPrice(new BigDecimal(100));
 				createSkuParam.setOperatorCode(userCode);
 				createSkuParam.setProductId(productDomain.getId());
-				createSkuParam.setSalePrice(new BigDecimal(99));
+				createSkuParam.setSalePrice(new BigDecimal("0.01"));
 				createSkuParam.setSkuAttrValueIds(null);
 				createSkuParam.setSkuCode(null);
 				createSkuParam.setSkuMemo(null);
@@ -561,7 +561,7 @@ public class EnvironmentController {
 						createSkuParam.setMarketPrice(new BigDecimal(100));
 						createSkuParam.setOperatorCode(userCode);
 						createSkuParam.setProductId(productDomain.getId());
-						createSkuParam.setSalePrice(new BigDecimal(99));
+						createSkuParam.setSalePrice(new BigDecimal("0.01"));
 						createSkuParam.setSkuAttrValueIds(null);
 						createSkuParam.setSkuCode(null);
 						createSkuParam.setSkuMemo(null);

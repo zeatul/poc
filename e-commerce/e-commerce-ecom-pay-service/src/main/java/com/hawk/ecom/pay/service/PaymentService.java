@@ -63,7 +63,7 @@ public class PaymentService {
 	private AlipayService alipayService;
 
 	public int hasPaidSuccessfully(PaymentBillDomain paymentBillDomain) throws Exception {
-		if (paymentBillDomain.getPaymentCategoryCode() == ConstPay.PayCategoryCode.ALIPAY) {
+		if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)) {
 			AlipayTradeQueryResponse alipayTradeQueryResponse = alipayService.query(paymentBillDomain.getPaymentBillCode());
 			if (alipayTradeQueryResponse == null) {
 				return -1;

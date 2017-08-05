@@ -30,7 +30,7 @@ public class UserControllerTest extends AbstractControllerTest {
 	@Test
 	public void testRegister() {
 		String mobileNumber = "13800000000";
-		String veriCode = "7332";
+		String veriCode = "1066";
 		RegisterUserParam registerUserParam = new RegisterUserParam();
 		registerUserParam.setMobileNumber(mobileNumber);
 		registerUserParam.setVeriCode(veriCode);

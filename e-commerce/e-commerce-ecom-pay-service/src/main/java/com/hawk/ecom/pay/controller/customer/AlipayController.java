@@ -53,7 +53,10 @@ public class AlipayController {
 		/**
 		 * 生产环境使用
 		 */
-		return new String(request.getParameter(key).getBytes("ISO-8859-1"), "UTF-8");
+		String input = request.getParameter(key);
+		if (input == null)
+			return null;
+		return new String(input.getBytes("ISO-8859-1"), "UTF-8");
 
 		/**
 		 * 单元测试用
