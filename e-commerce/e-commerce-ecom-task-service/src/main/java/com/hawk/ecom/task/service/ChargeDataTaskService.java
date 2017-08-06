@@ -68,6 +68,11 @@ public class ChargeDataTaskService {
 			ChargeResult chargeResult = chargeDataService.charge(mobileNumber, productCode, taskCode);
 			
 			updateDomain.setTaskStatus(chargeResult.isSuccess()?ConstOrder.TaskStatus.SUCCESS_TASK:ConstOrder.TaskStatus.FAILURE_TASK);
+			if (updateDomain.getTaskStatus()  == ConstOrder.TaskStatus.SUCCESS_TASK ){
+				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.PROCESSING);
+			}else{
+				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
+			}
 			
 			updateDomain.setLastExecRtnCode(chargeResult.getCode());
 			updateDomain.setLastExecRtnMsg(chargeResult.getMsg());
@@ -78,6 +83,8 @@ public class ChargeDataTaskService {
 		} catch (Exception e) {
 			updateDomain.setLastExecRtnCode(e.getClass().getSimpleName());
 			updateDomain.setLastExecRtnMsg(e.getMessage());
+			updateDomain.setTaskStatus(ConstOrder.TaskStatus.EXECUTE_FAILED);
+			updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
 			logger.error("chargeDataService.charge() failed",e); 
 		}finally{
 			updateDomain.setLastExecEndTime(new Date());
