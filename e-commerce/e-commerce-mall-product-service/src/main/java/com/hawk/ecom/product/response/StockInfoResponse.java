@@ -1,9 +1,19 @@
 package com.hawk.ecom.product.response;
 
+import java.util.Date;
+
 import com.hawk.framework.pub.web.ResponseData;
 
 public class StockInfoResponse implements ResponseData{
 	
+	public Date getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
+	}
+
 	public String getStoreCode() {
 		return storeCode;
 	}
@@ -134,6 +144,10 @@ public class StockInfoResponse implements ResponseData{
 	 */
 	private String skuName;
 	
+	/**
+	 * 创建日期
+	 */
+	private Date create_date;
 	
 
 }

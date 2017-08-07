@@ -12,11 +12,14 @@ import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.task.job.ChargeDataJob;
+import com.hawk.ecom.task.job.CheckFailedOrderDetailJob;
+import com.hawk.ecom.task.job.CheckSuccessOrderDetailJob;
 import com.hawk.ecom.task.job.CheckUnfinishedPaymentJob;
 import com.hawk.ecom.task.job.CloseUnpaidOvertimeOrderJob;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
+import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 
 @Service
@@ -35,35 +38,98 @@ public class JobService {
 	
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
 
 	/**
 	 * 关闭超过支付时间仍然没有支付记录的订单
 	 */
 	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 2)
-	public void closeUnpaiedOvertimeOrder() {
-		logger.info("++++Start to execute closeUnpaiedOvertimeOrder job");
+	public void batchCloseUnpaiedOvertimeOrder() {
+		logger.info("++++Start to execute batchCloseUnpaiedOvertimeOrder job");
 		List<Integer> orderIdList = orderService.queryUnpaidOvertimeOrder();
 		logger.info("Found {} unpaid expired order",orderIdList.size());
 		for (Integer orderId : orderIdList){
 			CloseUnpaidOvertimeOrderJob job = new CloseUnpaidOvertimeOrderJob(orderId);
 			taskPool.execute(job);
 		}
-		logger.info("++++Success to execute closeUnpaiedOvertimeOrder job");
+		logger.info("++++Success to execute batchCloseUnpaiedOvertimeOrder job");
 	}
 	
 	/**
 	 * 查询有支付单，但是状态是待支付，超过10分钟的数据，检测有没有因为没有收到回调通知造成，状态没有变化的已经支付成功的数据，修改状态。
 	 */
 	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 5)
-	public void checkUnfinishedPayment(){
-		logger.info("++++Start to execute checkUnfinishedPayment job");
+	public void batchCheckUnfinishedPayment(){
+		logger.info("++++Start to execute batchCheckUnfinishedPayment job");
 		List<Integer> paymentBillIds = paymentService.queryUnfinishedPaymentBill();
 		logger.info("Found {} unfinishedPayment",paymentBillIds.size());
 		for (Integer paymentBillId : paymentBillIds){
 			CheckUnfinishedPaymentJob job = new CheckUnfinishedPaymentJob(paymentBillId);
 			taskPool.execute(job);
 		}
-		logger.info("++++Success to execute checkUnfinishedPayment job");
+		logger.info("++++Success to execute batchCheckUnfinishedPayment job");
+	}
+	
+	/**
+	 * 查询交付状态存在失败记录的数据，修改对应的订单明细状态
+	 */
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 6)
+	public void batchCheckFailedOrderDeatail(){
+		logger.info("++++Start to execute batchCheckFailedOrderDeatail job");
+		List<Integer> orderDetailIdList = orderDetailService.queryUncheckedFailedOrderDetail();
+		logger.info("Found {} unchecked failed orderDetail",orderDetailIdList.size());
+		for (Integer orderDetailId : orderDetailIdList){
+			CheckFailedOrderDetailJob job = new CheckFailedOrderDetailJob(orderDetailId);
+			taskPool.execute(job);
+		}
+		logger.info("++++Success to execute batchCheckFailedOrderDeatail job");
+	}
+	
+	/**
+	 * 查询交付状态全部成功的数据，修改对应的订单明细状态
+	 */
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 60 * 6)
+	public void batchCheckSuccessOrderDeatail(){
+		logger.info("++++Start to execute batchCheckSuccessOrderDeatail job");
+		List<Integer> orderDetailIdList = orderDetailService.queryUncheckedSuccessOrderDetail();
+		logger.info("Found {} unchecked success orderDetail",orderDetailIdList.size());
+		for (Integer orderDetailId : orderDetailIdList){
+			CheckSuccessOrderDetailJob job = new CheckSuccessOrderDetailJob(orderDetailId);
+			taskPool.execute(job);
+		}
+		logger.info("++++Success to execute batchCheckSuccessOrderDeatail job");
+	}
+	
+	/**
+	 * 查询订单明细全部成功的数据，修改对应的订单状态
+	 */
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 45 * 6)
+	public void batchCheckSuccessOrder(){
+		logger.info("++++Start to execute batchCheckSuccessOrder job");
+		List<Integer> orderIdList = orderService.queryUncheckedSuccessOrder();
+		logger.info("Found {} unchecked success order",orderIdList.size());
+		for (Integer orderId : orderIdList){
+			1
+		}
+		logger.info("++++Success to execute batchCheckSuccessOrder job");
+	}
+	
+	
+	
+	/**
+	 * 查询订单明细存在失败的数据，修改对应的订单状态
+	 */
+	@Scheduled(initialDelay = 5000, fixedDelay = 1000 * 45 * 6)
+	public void batchCheckFailedOrder(){
+		logger.info("++++Start to execute batchCheckFailedOrder job");
+		List<Integer> orderIdList = orderService.queryUncheckedFailedOrder();
+		logger.info("Found {} unchecked failed order",orderIdList.size());
+		for (Integer orderId : orderIdList){
+			1
+		}
+		logger.info("++++Success to execute batchCheckFailedOrder job");
 	}
 
 	/**

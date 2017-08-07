@@ -8,20 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.outer.service.ChargeDataService;
-import com.hawk.ecom.outer.service.ChargeDataService.ConstChargeNotifyStatus;
 import com.hawk.ecom.outer.service.chargeData.ChargeResult;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
-import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
-import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
-import com.hawk.ecom.trans.persist.mapperex.OrderDetailExMapper;
-import com.hawk.ecom.trans.request.ChargeDataNotifyRequest;
 import com.hawk.ecom.trans.service.OrderDetailDeliveryDataService;
-import com.hawk.ecom.trans.service.OrderService;
-import com.hawk.framework.pub.cache.CacheService;
-import com.hawk.framework.pub.sql.MybatisParam;
-import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 import com.hawk.framework.utility.tools.SystemTools;
 

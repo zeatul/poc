@@ -16,11 +16,11 @@ public interface PaymentBillExMapper  {
 	/**
 	 * 查询超时未被处理的支付单
 	 * @param paymentBillStatus
-	 * @param threashold
+	 * @param threshold
 	 * @param limit
 	 * @return
 	 */
-	public List<Integer> queryUnfinishedPaymentBill(@Param("paymentBillStatus") Integer paymentBillStatus,@Param("threashold") Date threashold,
+	public List<Integer> queryUnfinishedPaymentBill(@Param("paymentBillStatus") Integer paymentBillStatus,@Param("threshold") Date threshold,
 			@Param("limit") Integer limit);
 
 }

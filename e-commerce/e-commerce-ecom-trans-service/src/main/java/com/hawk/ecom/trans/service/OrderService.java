@@ -2,6 +2,7 @@ package com.hawk.ecom.trans.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -620,10 +621,41 @@ public class OrderService {
 	 * @return
 	 */
 	public List<Integer> queryUnpaidOvertimeOrder(){
-		Date threashold = DateTools.addMinutes(new Date(), -2);
-		return orderExMapper.queryUnpaidOvertimeOrder(ConstOrder.OrderStatus.UNPAIED, threashold, 2000);
+		Date threshold = DateTools.addMinutes(new Date(), -2);
+		return orderExMapper.queryUnpaidOvertimeOrder(ConstOrder.OrderStatus.UNPAIED, threshold, 2000);
 	}
 	
+	/**
+	 * 查询订单明细状态都是已经成功的，超过10分钟未处理的数据
+	 * @return
+	 */
+	public List<Integer> queryUncheckedSuccessOrder(){
+		final Integer orderStatus = ConstOrder.OrderStatus.PAIED;
+		final Integer limit = 3000;
+		final List<Integer> orderDetailStatusList = Arrays.asList(ConstOrder.OrderDetailStatus.CANCELED,ConstOrder.OrderDetailStatus.FAILURE,ConstOrder.OrderDetailStatus.PROCESSING);
+		Date threshold = DateTools.addMinutes(new Date(), -10);
+		return orderExMapper.queryUncheckedSuccessOrder(orderStatus, threshold, orderDetailStatusList, limit);
+	}
+	
+	/**
+	 * 查询订单明细状态都是已经成功的，超过10分钟未处理的数据
+	 * @return
+	 */
+	public List<Integer> queryUncheckedFailedOrder(){
+		final Integer orderStatus = ConstOrder.OrderStatus.PAIED;
+		final Integer limit = 3000;
+		final List<Integer> orderDetailStatusList = Arrays.asList(ConstOrder.OrderDetailStatus.FAILURE);
+		Date threshold = DateTools.addMinutes(new Date(), -10);
+		return orderExMapper.queryUncheckedFailedOrder(orderStatus, threshold, orderDetailStatusList, limit);
+	}
+	
+	public void checkSuccessOrder(Integer orderId){
+		1
+	}
+	
+	public void checkFailedOrder(Integer orderId){
+		2
+	}
 	
 
 	

@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface OrderExMapper {
 	
-	public List<Integer> queryUnpaidOvertimeOrder(@Param("orderStatus") Integer orderStatus, @Param("threashold") Date threashold ,@Param("limit") Integer limit);
+	public List<Integer> queryUnpaidOvertimeOrder(@Param("orderStatus") Integer orderStatus, @Param("threshold") Date threshold ,@Param("limit") Integer limit);
 
+	public List<Integer> queryUncheckedSuccessOrder(@Param("orderStatus") Integer orderStatus, @Param("threshold") Date threshold ,
+			@Param("orderDetailStatusList") List<Integer> orderDetailStatusList,@Param("limit") Integer limit);
+	
+	public List<Integer> queryUncheckedFailedOrder(@Param("orderStatus") Integer orderStatus, @Param("threshold") Date threshold ,
+			@Param("orderDetailStatusList") List<Integer> orderDetailStatusList,@Param("limit") Integer limit);
 }

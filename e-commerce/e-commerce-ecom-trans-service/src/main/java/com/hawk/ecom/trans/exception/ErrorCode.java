@@ -18,6 +18,7 @@ public class ErrorCode {
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+7, "申请支付订单已经超出支付截止日期");
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+8, "商品交付信息未找到");
 		errorMap.put(ErrorCodeAllocation.TRANSACTION+9, "同一个订单的订单明细不能重复");
+		errorMap.put(ErrorCodeAllocation.TRANSACTION+10, "订单明细不存在");
 	}
 	
 
