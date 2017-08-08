@@ -13,12 +13,15 @@ import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.task.job.ChargeDataJob;
 import com.hawk.ecom.task.job.CheckFailedOrderDetailJob;
+import com.hawk.ecom.task.job.CheckFailedOrderJob;
 import com.hawk.ecom.task.job.CheckSuccessOrderDetailJob;
+import com.hawk.ecom.task.job.CheckSuccessOrderJob;
 import com.hawk.ecom.task.job.CheckUnfinishedPaymentJob;
 import com.hawk.ecom.task.job.CloseUnpaidOvertimeOrderJob;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
+import com.hawk.ecom.trans.service.OrderDetailDeliveryDataService;
 import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 
@@ -28,7 +31,7 @@ public class JobService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private OrderDetailDeliveryDataExMapper orderDetailDeliveryDataExMapper;
+	private OrderDetailDeliveryDataService orderDetailDeliveryDataService;
 	
 	@Autowired
 	private TaskPool taskPool;
@@ -111,7 +114,8 @@ public class JobService {
 		List<Integer> orderIdList = orderService.queryUncheckedSuccessOrder();
 		logger.info("Found {} unchecked success order",orderIdList.size());
 		for (Integer orderId : orderIdList){
-			1
+			CheckSuccessOrderJob job = new CheckSuccessOrderJob(orderId);
+			taskPool.execute(job);
 		}
 		logger.info("++++Success to execute batchCheckSuccessOrder job");
 	}
@@ -127,7 +131,8 @@ public class JobService {
 		List<Integer> orderIdList = orderService.queryUncheckedFailedOrder();
 		logger.info("Found {} unchecked failed order",orderIdList.size());
 		for (Integer orderId : orderIdList){
-			1
+			CheckFailedOrderJob job = new CheckFailedOrderJob(orderId);
+			taskPool.execute(job);
 		}
 		logger.info("++++Success to execute batchCheckFailedOrder job");
 	}
@@ -138,12 +143,11 @@ public class JobService {
 	@Scheduled(initialDelay = 20000, fixedDelay = 1000 * 60 * 5)
 	public void batchCharge() {
 		logger.info("-----Start to execute batchCharge");
-		List<OrderDetailDeliveryDataExDomain> jobList = orderDetailDeliveryDataExMapper.loadOrderDeliveryDataForCharge(ConstProduct.DeliveryType.CHARGE_FLOW_DATA, ConstOrder.TaskStatus.UN_EXECUTE,
-				ConstOrder.OrderStatus.PAIED);
+		List<OrderDetailDeliveryDataExDomain> orderDetailDeliveryDataExDomainList = orderDetailDeliveryDataService.loadOrderDeliveryDataForCharge();
 		
-		logger.info("Found {} charge jobs",jobList.size());
+		logger.info("Found {} charge jobs",orderDetailDeliveryDataExDomainList.size());
 		
-		for (OrderDetailDeliveryDataExDomain orderDetailDeliveryDataExDomain : jobList){
+		for (OrderDetailDeliveryDataExDomain orderDetailDeliveryDataExDomain : orderDetailDeliveryDataExDomainList){
 			ChargeDataJob chargeDataJob = new ChargeDataJob(orderDetailDeliveryDataExDomain.getTaskCode());
 			taskPool.execute(chargeDataJob);
 		}
@@ -154,8 +158,18 @@ public class JobService {
 	/**
 	 * 将支付已经完成，但是没有成功交付的小宝交付单,拿出来创建小宝订单
 	 */
-	public void batchOrderBsi(){
+	public void batchBsi(){
+		logger.info("-----Start to execute batchBsi");
+		List<OrderDetailDeliveryDataExDomain> orderDetailDeliveryDataExDomainList = orderDetailDeliveryDataService.loadOrderDeliveryDataForBsi();
 		
+		logger.info("Found {} bsi jobs",orderDetailDeliveryDataExDomainList.size());
+		
+		for (OrderDetailDeliveryDataExDomain orderDetailDeliveryDataExDomain : orderDetailDeliveryDataExDomainList){
+			BsiJob job = new BsiJob(orderDetailDeliveryDataExDomain.getTaskCode());
+			taskPool.execute(job);
+		}
+
+		logger.info("Success to execute batchCharge");
 	}
 
 }

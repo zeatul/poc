@@ -20,10 +20,24 @@ public interface OrderDetailDeliveryDataExMapper {
 	public OrderDetailDeliveryDataExDomain loadOrderDeliveryDataByTaskCode(@Param("taskCode") String taskCode);
 	
 	/**
-	 * 查询已经支付，但是从未执行过的作业
+	 * 查询已经支付，但是从未执行过的充值交付数据
 	 * @param taskStatus
 	 * @param orderStatus
 	 * @return
 	 */
-	public List<OrderDetailDeliveryDataExDomain> loadOrderDeliveryDataForCharge(@Param("deliveryType") Integer deliveryType, @Param("taskStatus") Integer taskStatus,@Param("orderStatus") Integer orderStatus);
+	public List<OrderDetailDeliveryDataExDomain> loadOrderDeliveryDataForCharge(@Param("deliveryType") Integer deliveryType, 
+			@Param("taskStatus") Integer taskStatus,@Param("orderStatus") Integer orderStatus
+			,@Param("limit") Integer limit);
+
+	/**
+	 * 查询已经支付，但是还未成功购买碎屏险的交付数据
+	 * @param deliveryType
+	 * @param taskStatusList
+	 * @param orderStatus
+	 * @return
+	 */
+	public List<OrderDetailDeliveryDataExDomain> loadOrderDeliveryDataForBsi(@Param("deliveryType") Integer deliveryType, 
+			@Param("taskStatusList") List<Integer> taskStatusList,@Param("orderStatus") Integer orderStatus
+			,@Param("limit") Integer limit);
+
 }

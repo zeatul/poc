@@ -38,16 +38,14 @@ public class ChargeDataTaskService {
 	
 	public void chargeData(String taskCode) {
 		if (StringTools.isNullOrEmpty(taskCode)){
-			logger.error("taskCode is empty");
-			return ;
+			throw new RuntimeException("taskCode is null");
 		}
 		
 		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = orderDetailDeliveryDataService.loadByTaskCode(taskCode);
 		String mobileNumber = orderDetailDeliveryDataDomain.getBenefMobileNumber();
 		String productCode = orderDetailDeliveryDataDomain.getOuterProductId();
 		if (orderDetailDeliveryDataDomain.getExecTimes() != 0){
-			logger.error("The task({}) has been executed before. The charge data task only allow execute once!!!",taskCode);
-			return ;
+			throw new RuntimeException("The task has been executed before. The charge data task only allow execute once,taksCode="+taskCode);
 		}
 		OrderDetailDeliveryDataDomain updateDomain = new OrderDetailDeliveryDataDomain();
 		try {			

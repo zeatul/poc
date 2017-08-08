@@ -14,6 +14,12 @@ import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailExMapper;
+import com.hawk.ecom.trans.request.ListOrderDetailParam;
+import com.hawk.framework.dic.validation.annotation.NotNull;
+import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.sql.MybatisParam;
+import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.utility.tools.DateTools;
 
 @Service
@@ -27,6 +33,30 @@ public class OrderDetailService {
 
 	@Autowired
 	private OrderDetailDeliveryDataService orderDetailDeliveryDataService;
+
+	@Valid
+	public PagingQueryResultWrap<OrderDetailDomain> listOrderDetail(@Valid @NotNull("函数入参") ListOrderDetailParam listOrderDetailParam) {
+
+		listOrderDetailParam.setOrder("sku_id asc");
+
+		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderDetailParam);
+		params.put("orderId", listOrderDetailParam.getOrderId());
+		params.put("userCode", AuthThreadLocal.getUserCode());
+
+		PagingQueryResultWrap<OrderDetailDomain> wrap = new PagingQueryResultWrap<OrderDetailDomain>();
+		wrap.setDbCount(orderDetailMapper.count(params));
+		if (wrap.getDbCount() > 0) {
+			wrap.setRecords(orderDetailMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
+	}
+	
+	@Valid
+	public List<OrderDetailDomain> queryOrderDetailByOrderId(@NotNull Integer orderId){
+		MybatisParam params = new MybatisParam().put("orderId", orderId);
+		return orderDetailMapper.loadDynamic(params);
+	}
 
 	/**
 	 * 

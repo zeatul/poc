@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hawk.ecom.outer.exception.OuterCallException;
+import com.hawk.ecom.outer.response.CreateBsiOrderResponse;
 import com.hawk.framework.utility.http.HttpClientExecutorImpl;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.http.HttpExecutor.HttpParam;
@@ -52,7 +53,7 @@ public class BsiOuterService {
 	 * @param order
 	 * @return 小宝内部订单编号
 	 */
-	public String outCreateOrder(Order order) {
+	public CreateBsiOrderResponse outCreateOrder(Order order) {
 		String req = JsonTools.toJsonString(order);
 		
 		logger.info("outCreateOrder_request={}",req);
@@ -78,11 +79,16 @@ public class BsiOuterService {
 		
 		logger.info("outCreateOrder_response={}",result);
 		
-		if ("0".equals(result)){
-			throw new OuterCallException(-1,(String)map.get("notice"));
+		CreateBsiOrderResponse createBsiOrderResponse = new CreateBsiOrderResponse();
+		createBsiOrderResponse.setRtnMsg((String)map.get("notice"));
+		createBsiOrderResponse.setRtnCode(result);
+		
+		if ("0".equals(result)){			
+			createBsiOrderResponse.setSuccess(false);
 		}else if ("1".equals(result)){			
 			String orderid =  (String)map.get("orderid");
-			return orderid;			
+			createBsiOrderResponse.setSuccess(true);	
+			createBsiOrderResponse.setOuterOrderCode(orderid);
 		}else{
 			throw new RuntimeException("result code is illegal");
 		}

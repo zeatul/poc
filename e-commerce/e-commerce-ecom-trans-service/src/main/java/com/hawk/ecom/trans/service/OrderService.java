@@ -42,7 +42,6 @@ import com.hawk.ecom.trans.persist.mapper.OrderMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderOperationMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderExMapper;
 import com.hawk.ecom.trans.request.CreateOrderParam;
-import com.hawk.ecom.trans.request.ListOrderDetailParam;
 import com.hawk.ecom.trans.request.ListOrderParam;
 import com.hawk.ecom.trans.request.LoadOrderParam;
 import com.hawk.ecom.trans.request.BsiParam;
@@ -99,6 +98,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderOperationMapper orderOperationMapper;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -414,23 +416,7 @@ public class OrderService {
 		return wrap;
 	}
 	
-	@Valid
-	public PagingQueryResultWrap<OrderDetailDomain> listOrderDetail(@Valid @NotNull("函数入参") ListOrderDetailParam listOrderDetailParam){
-		
-		listOrderDetailParam.setOrder("sku_id asc");
-		
-		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderDetailParam);
-		params.put("orderId", listOrderDetailParam.getOrderId());
-		params.put("userCode", AuthThreadLocal.getUserCode());
-		
-		PagingQueryResultWrap<OrderDetailDomain> wrap = new PagingQueryResultWrap<OrderDetailDomain>();
-		wrap.setDbCount(orderDetailMapper.count(params));
-		if (wrap.getDbCount() > 0){
-			wrap.setRecords(orderDetailMapper.loadDynamicPaging(params));
-		}
-
-		return wrap;
-	}
+	
 	
 	public OrderDomain loadOrder (Integer orderId){
 		OrderDomain orderDomain = null;
@@ -649,12 +635,63 @@ public class OrderService {
 		return orderExMapper.queryUncheckedFailedOrder(orderStatus, threshold, orderDetailStatusList, limit);
 	}
 	
+	/**
+	 * 状态为已支付，所有明细都成功交付了，则订单状态变为成功
+	 * @param orderId
+	 */
 	public void checkSuccessOrder(Integer orderId){
-		1
+		/**
+		 * 校验订单状态
+		 */
+		OrderDomain orderDomain = loadOrder(orderId);
+		if (!(orderDomain.getOrderStatus() == ConstOrder.OrderStatus.PAIED)){
+			throw new RuntimeException("订单状态不是已支付");
+		}
+		/**
+		 * 校验明细
+		 */
+		List<OrderDetailDomain> orderDetailDomainList = orderDetailService.queryOrderDetailByOrderId(orderId);
+		if (orderDetailDomainList.size() == 0){
+			throw new RuntimeException("未发现任何明细，orderId="+orderId);
+		}
+		
+		for (OrderDetailDomain orderDetailDomain : orderDetailDomainList){
+			if (!(orderDetailDomain.getOrderDetailStatus()== ConstOrder.OrderDetailStatus.SUCCESS)){
+				throw new RuntimeException("发现未完成的订单明细，orderId="+orderId+",orderDeailId="+orderDetailDomain.getId());
+			}
+		}
+		
+		updateOrderStatus(orderId, ConstOrder.OrderStatus.SUCCESS, "订单执行完成，明细全部交付", "订单执行完成，明细全部交付");
 	}
 	
 	public void checkFailedOrder(Integer orderId){
-		2
+		/**
+		 * 校验订单状态
+		 */
+		OrderDomain orderDomain = loadOrder(orderId);
+		if (!(orderDomain.getOrderStatus() == ConstOrder.OrderStatus.PAIED)){
+			throw new RuntimeException("订单状态不是已支付");
+		}
+		
+		/**
+		 * 校验明细
+		 */
+		List<OrderDetailDomain> orderDetailDomainList = orderDetailService.queryOrderDetailByOrderId(orderId);
+		if (orderDetailDomainList.size() == 0){
+			throw new RuntimeException("未发现任何明细，orderId="+orderId);
+		}
+		boolean hasFailure = false;
+		for (OrderDetailDomain orderDetailDomain : orderDetailDomainList){
+			if (orderDetailDomain.getOrderDetailStatus()== ConstOrder.OrderDetailStatus.FAILURE){
+				hasFailure = true;
+				break;
+			}
+		}
+		if (!hasFailure){
+			throw new RuntimeException("未发现处理失败的订单明细，orderId="+orderId);
+		}
+		
+		updateOrderStatus(orderId, ConstOrder.OrderStatus.FAILURE, "订单执行失败，有明细未能成功处理", "订单执行失败，有明细未能成功处理");
 	}
 	
 
