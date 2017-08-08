@@ -215,6 +215,8 @@ public class OrderService {
 					orderDetailDeliveryDataDomain.setOuterPhoneModelId(bsiParam.getOuterPhoneModelId().toString());
 					orderDetailDeliveryDataDomain.setOuterProductId(bsiParam.getOuterProductId().toString());
 					
+					大数据校验imei是否为新机
+					
 				}
 				
 				

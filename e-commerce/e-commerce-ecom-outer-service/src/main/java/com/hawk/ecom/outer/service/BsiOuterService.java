@@ -53,8 +53,8 @@ public class BsiOuterService {
 	 * @param order
 	 * @return 小宝内部订单编号
 	 */
-	public CreateBsiOrderResponse outCreateOrder(Order order) {
-		String req = JsonTools.toJsonString(order);
+	public CreateBsiOrderResponse createBsiOrder(BsiOrder bsiOrder) {
+		String req = JsonTools.toJsonString(bsiOrder);
 		
 		logger.info("outCreateOrder_request={}",req);
 		
@@ -70,7 +70,7 @@ public class BsiOuterService {
 		
 		String response = httpExecutor.postParamInBody(url,"", params) ;
 		
-		logger.info("outCreateOrder response={} , outOrderId={}",response,order.getOutOrderID());
+		logger.info("outCreateOrder response={} , outOrderId={}",response,bsiOrder.getOutOrderID());
 		
 		@SuppressWarnings("rawtypes")
 		Map map = JsonTools.toObject(response, HashMap.class);
@@ -92,7 +92,8 @@ public class BsiOuterService {
 		}else{
 			throw new RuntimeException("result code is illegal");
 		}
-
+		
+		return createBsiOrderResponse;
 		
 //		result={
 //				  "outorderid": "",
@@ -172,7 +173,7 @@ public class BsiOuterService {
 		int goodId = 120;
 		int productId = 11248;
 		
-		Order order = new Order();
+		BsiOrder order = new BsiOrder();
 //		order.setBirthday("1988-01-01");
 		order.setCertiType(1);
 		order.setGoodId(goodId);
@@ -184,7 +185,7 @@ public class BsiOuterService {
 //		order.setSex(1);
 		order.setUsername("隔壁老王");
 		
-		service.outCreateOrder(order);
+		service.createBsiOrder(order);
 	}
 
 	
@@ -220,7 +221,7 @@ public class BsiOuterService {
 	}
 	
 	
-	public static class Order{
+	public static class BsiOrder{
 
 		public String getOutOrderID() {
 			return outOrderID;
