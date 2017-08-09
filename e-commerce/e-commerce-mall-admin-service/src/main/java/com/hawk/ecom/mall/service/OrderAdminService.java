@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.mall.request.CloseUnpaidOrderParam;
+import com.hawk.ecom.mall.request.ListOrderDetailDeliveryDataParam;
+import com.hawk.ecom.mall.request.ListOrderDetailParam;
+import com.hawk.ecom.mall.request.ListOrderParam;
+import com.hawk.ecom.mall.request.LoadOrderParam;
 import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.pay.constant.ConstPay;
@@ -14,9 +18,19 @@ import com.hawk.ecom.pay.persist.domain.PaymentBillDomain;
 import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.trans.constant.ConstOrder;
+import com.hawk.ecom.trans.exception.OrderNotBelongToLoginUserRuntimeException;
+import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
+import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDomain;
+import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
+import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
+import com.hawk.ecom.trans.persist.mapper.OrderMapper;
 import com.hawk.ecom.trans.service.OrderService;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.pub.sql.MybatisParam;
+import com.hawk.framework.pub.sql.MybatisTools;
+import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 
 @Service
 public class OrderAdminService {
@@ -28,6 +42,15 @@ public class OrderAdminService {
 	
 	@Autowired
 	private MallAuthService authService;
+	
+	@Autowired
+	private OrderMapper orderMapper;
+	
+	@Autowired
+	private OrderDetailMapper orderDetailMapper;
+	
+	@Autowired
+	private OrderDetailDeliveryDataMapper orderDetailDeliveryDataMapper;
 	
 	
 
@@ -102,5 +125,68 @@ public class OrderAdminService {
 		}
 		
 		closeUnpaidOrder(orderDomain,true);
+	}
+
+	@Valid
+	public PagingQueryResultWrap<OrderDomain> listOrder(@Valid @NotNull("函数入参") ListOrderParam listOrderParam){
+		listOrderParam.setOrder("create_date desc");
+
+		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderParam);
+		params.put("orderStatus", listOrderParam.getOrderStatus());
+		params.put("storeCode", AuthThreadLocal.getStoreCode());
+		
+		PagingQueryResultWrap<OrderDomain> wrap = new PagingQueryResultWrap<OrderDomain>();
+		wrap.setDbCount(orderMapper.count(params));
+		if (wrap.getDbCount() > 0){
+			wrap.setRecords(orderMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
+	}
+
+	@Valid
+	public OrderDomain loadOrder (@Valid @NotNull("函数入参") LoadOrderParam loadOrderParam){
+		OrderDomain orderDomain = orderService.loadOrder(loadOrderParam.getOrderId());
+		if (!orderDomain.getUserCode().equals(AuthThreadLocal.getUserCode())){
+			throw new OrderNotBelongToLoginUserRuntimeException();
+		}
+		if (!orderDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+			throw new RuntimeException("订单不属于当前登陆用户所属商铺");
+		}
+		return orderDomain;
+	}
+	
+	@Valid
+	public PagingQueryResultWrap<OrderDetailDomain> listOrderDetail(@Valid @NotNull("函数入参") ListOrderDetailParam listOrderDetailParam) {
+
+		listOrderDetailParam.setOrder("sku_id asc");
+
+		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderDetailParam);
+		params.put("orderId", listOrderDetailParam.getOrderId());
+		params.put("storeCode", AuthThreadLocal.getStoreCode());
+
+		PagingQueryResultWrap<OrderDetailDomain> wrap = new PagingQueryResultWrap<OrderDetailDomain>();
+		wrap.setDbCount(orderDetailMapper.count(params));
+		if (wrap.getDbCount() > 0) {
+			wrap.setRecords(orderDetailMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
+	}
+	
+	@Valid
+	public PagingQueryResultWrap<OrderDetailDeliveryDataDomain> listOrderDetailDeliveryData(@Valid @NotNull("函数入参") ListOrderDetailDeliveryDataParam listOrderDetailDeliveryDataParam){
+		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderDetailDeliveryDataParam);
+		params.put("orderId", listOrderDetailDeliveryDataParam.getOrderId());
+		params.put("orderDetailId", listOrderDetailDeliveryDataParam.getOrderDetailId());
+		params.put("storeCode", AuthThreadLocal.getStoreCode());
+		
+		PagingQueryResultWrap<OrderDetailDeliveryDataDomain> wrap = new PagingQueryResultWrap<OrderDetailDeliveryDataDomain>();
+		wrap.setDbCount(orderDetailDeliveryDataMapper.count(params));
+		if (wrap.getDbCount() > 0) {
+			wrap.setRecords(orderDetailDeliveryDataMapper.loadDynamicPaging(params));
+		}
+
+		return wrap;
 	}
 }

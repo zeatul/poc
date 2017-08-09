@@ -54,18 +54,18 @@ public class ChargeDataTaskService {
 			updateDomain.setLastExecBeginTime(new Date());
 			updateDomain.setLastExecComputer(SystemTools.hostname());
 			updateDomain.setLastExecProcessId(SystemTools.processId());
-			ChargeResult chargeResult = chargeDataService.charge(mobileNumber, productCode, taskCode);
+			ChargeResult chargeResult = chargeDataService.charge(mobileNumber, productCode, taskCode);			
+			updateDomain.setLastExecRtnCode(chargeResult.getCode());
+			updateDomain.setLastExecRtnMsg(chargeResult.getMsg());			
+			updateDomain.setDeliveryStatusMemo(chargeResult.getMsg());
 			
 			updateDomain.setTaskStatus(chargeResult.isSuccess()?ConstOrder.TaskStatus.SUCCESS_TASK:ConstOrder.TaskStatus.FAILURE_TASK);
 			if (updateDomain.getTaskStatus()  == ConstOrder.TaskStatus.SUCCESS_TASK ){
 				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.PROCESSING);
 			}else{
 				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
+				
 			}
-			
-			updateDomain.setLastExecRtnCode(chargeResult.getCode());
-			updateDomain.setLastExecRtnMsg(chargeResult.getMsg());
-
 			
 			
 			

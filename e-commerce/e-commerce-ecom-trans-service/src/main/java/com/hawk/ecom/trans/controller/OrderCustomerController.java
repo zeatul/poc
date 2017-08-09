@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.ecom.trans.persist.domain.OrderDetailDeliveryDataDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.domain.OrderDomain;
 import com.hawk.ecom.trans.request.CreateOrderParam;
+import com.hawk.ecom.trans.request.ListOrderDetailDeliveryDataParam;
 import com.hawk.ecom.trans.request.ListOrderDetailParam;
 import com.hawk.ecom.trans.request.ListOrderParam;
 import com.hawk.ecom.trans.request.LoadOrderParam;
+import com.hawk.ecom.trans.response.OrderDetailDeliveryDataInfoResponse;
 import com.hawk.ecom.trans.response.OrderDetailInfoResponse;
 import com.hawk.ecom.trans.response.OrderInfoResponse;
+import com.hawk.ecom.trans.service.OrderDetailDeliveryDataService;
 import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.pub.sql.MybatisTools;
@@ -39,17 +43,20 @@ import com.hawk.framework.utility.tools.DomainTools;
 @CrossOrigin
 @Service
 public class OrderCustomerController {
-	
+
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
 		return "Welcome to /ecom/trans/order controller!!!" + ", current time = " + DateTools.convert(new Date(), DateTools.DATETIME_SSS_PATTERN);
 	}
-	
+
 	@Autowired
 	private OrderService orderService;
-	
+
 	@Autowired
 	private OrderDetailService orderDetailService;
+	
+	@Autowired
+	private OrderDetailDeliveryDataService orderDetailDeliveryDataService;
 
 	@RequestMapping(value = "/create", method = POST)
 	public WebResponse<OrderInfoResponse> createOrder(HttpServletRequest request) throws Exception {
@@ -58,7 +65,7 @@ public class OrderCustomerController {
 		OrderDomain orderDomain = orderService.createOrder(param);
 		return SuccessResponse.build(DomainTools.copy(orderDomain, OrderInfoResponse.class));
 	}
-	
+
 	@RequestMapping(value = "/list", method = POST)
 	public WebResponse<MultiResponse<OrderInfoResponse>> ListOrder(HttpServletRequest request) throws Exception {
 		ListOrderParam param = HttpRequestTools.parse(request, ListOrderParam.class);
@@ -68,15 +75,15 @@ public class OrderCustomerController {
 		MultiResponse<OrderInfoResponse> result = new MultiResponse<OrderInfoResponse>(MybatisTools.copy(wrap, OrderInfoResponse.class));
 		return SuccessResponse.build(result);
 	}
-	
-	@RequestMapping(value = "/load/id/{orderId}", method = {GET,POST})
-	public WebResponse<OrderInfoResponse> loadOrder (@PathVariable Integer orderId) throws Exception{
-		LoadOrderParam param = new  LoadOrderParam();
+
+	@RequestMapping(value = "/load/id/{orderId}", method = { GET, POST })
+	public WebResponse<OrderInfoResponse> loadOrder(@PathVariable Integer orderId) throws Exception {
+		LoadOrderParam param = new LoadOrderParam();
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setOrderId(orderId);
 		return SuccessResponse.build(DomainTools.copy(orderService.loadOrder(param), OrderInfoResponse.class));
 	}
-	
+
 	@RequestMapping(value = "/detail/list", method = POST)
 	public WebResponse<MultiResponse<OrderDetailInfoResponse>> ListOrderDetail(HttpServletRequest request) throws Exception {
 		ListOrderDetailParam param = HttpRequestTools.parse(request, ListOrderDetailParam.class);
@@ -85,5 +92,17 @@ public class OrderCustomerController {
 
 		MultiResponse<OrderDetailInfoResponse> result = new MultiResponse<OrderDetailInfoResponse>(MybatisTools.copy(wrap, OrderDetailInfoResponse.class));
 		return SuccessResponse.build(result);
-	} 
+	}
+
+	// 订单明细，交付详情
+	@RequestMapping(value = "/detail/delivery/list", method = { POST })
+	public WebResponse<MultiResponse<OrderDetailDeliveryDataInfoResponse>> ListOrderDetailDeliveryData(HttpServletRequest request) throws Exception {
+		ListOrderDetailDeliveryDataParam param = HttpRequestTools.parse(request, ListOrderDetailDeliveryDataParam.class);
+		param.setUserCode(AuthThreadLocal.getUserCode());
+		PagingQueryResultWrap<OrderDetailDeliveryDataDomain> wrap = orderDetailDeliveryDataService.listOrderDetailDeliveryData(param);
+
+		MultiResponse<OrderDetailDeliveryDataInfoResponse> result = new MultiResponse<OrderDetailDeliveryDataInfoResponse>(
+				MybatisTools.copy(wrap, OrderDetailDeliveryDataInfoResponse.class));
+		return SuccessResponse.build(result);
+	}
 }

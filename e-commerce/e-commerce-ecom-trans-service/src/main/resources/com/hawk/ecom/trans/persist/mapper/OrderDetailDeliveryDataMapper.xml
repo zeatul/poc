@@ -23,11 +23,12 @@
 		benef_name AS "benefName" ,
 		benef_mobile_number AS "benefMobileNumber" ,
 		delivery_status AS "deliveryStatus" ,
+		delivery_status_memo AS "deliveryStatusMemo" ,
 		outer_order_code AS "outerOrderCode" ,
-		outer_order_status2 AS "outerOrderStatus2" ,
-		outer_order_msg2 AS "outerOrderMsg2" ,
 		outer_order_status AS "outerOrderStatus" ,
 		outer_order_msg AS "outerOrderMsg" ,
+		outer_order_msg2 AS "outerOrderMsg2" ,
+		outer_order_status2 AS "outerOrderStatus2" ,
 		task_code AS "taskCode" ,
 		task_name AS "taskName" ,
 		task_status AS "taskStatus" ,
@@ -70,11 +71,12 @@
 			<if test="benefName != null"> AND benef_name = #{benefName}  </if>
 			<if test="benefMobileNumber != null"> AND benef_mobile_number = #{benefMobileNumber}  </if>
 			<if test="deliveryStatus != null"> AND delivery_status = #{deliveryStatus}  </if>
+			<if test="deliveryStatusMemo != null"> AND delivery_status_memo = #{deliveryStatusMemo}  </if>
 			<if test="outerOrderCode != null"> AND outer_order_code = #{outerOrderCode}  </if>
-			<if test="outerOrderStatus2 != null"> AND outer_order_status2 = #{outerOrderStatus2}  </if>
-			<if test="outerOrderMsg2 != null"> AND outer_order_msg2 = #{outerOrderMsg2}  </if>
 			<if test="outerOrderStatus != null"> AND outer_order_status = #{outerOrderStatus}  </if>
 			<if test="outerOrderMsg != null"> AND outer_order_msg = #{outerOrderMsg}  </if>
+			<if test="outerOrderMsg2 != null"> AND outer_order_msg2 = #{outerOrderMsg2}  </if>
+			<if test="outerOrderStatus2 != null"> AND outer_order_status2 = #{outerOrderStatus2}  </if>
 			<if test="taskCode != null"> AND task_code = #{taskCode}  </if>
 			<if test="taskName != null"> AND task_name = #{taskName}  </if>
 			<if test="taskStatus != null"> AND task_status = #{taskStatus}  </if>
@@ -118,11 +120,12 @@
 			<if test="old_benefName != null"> AND benef_name = #{old_benefName}  </if>			
 			<if test="old_benefMobileNumber != null"> AND benef_mobile_number = #{old_benefMobileNumber}  </if>			
 			<if test="old_deliveryStatus != null"> AND delivery_status = #{old_deliveryStatus}  </if>			
+			<if test="old_deliveryStatusMemo != null"> AND delivery_status_memo = #{old_deliveryStatusMemo}  </if>			
 			<if test="old_outerOrderCode != null"> AND outer_order_code = #{old_outerOrderCode}  </if>			
-			<if test="old_outerOrderStatus2 != null"> AND outer_order_status2 = #{old_outerOrderStatus2}  </if>			
-			<if test="old_outerOrderMsg2 != null"> AND outer_order_msg2 = #{old_outerOrderMsg2}  </if>			
 			<if test="old_outerOrderStatus != null"> AND outer_order_status = #{old_outerOrderStatus}  </if>			
 			<if test="old_outerOrderMsg != null"> AND outer_order_msg = #{old_outerOrderMsg}  </if>			
+			<if test="old_outerOrderMsg2 != null"> AND outer_order_msg2 = #{old_outerOrderMsg2}  </if>			
+			<if test="old_outerOrderStatus2 != null"> AND outer_order_status2 = #{old_outerOrderStatus2}  </if>			
 			<if test="old_taskCode != null"> AND task_code = #{old_taskCode}  </if>			
 			<if test="old_taskName != null"> AND task_name = #{old_taskName}  </if>			
 			<if test="old_taskStatus != null"> AND task_status = #{old_taskStatus}  </if>			
@@ -166,11 +169,12 @@
 			benef_name = #{benefName},
 			benef_mobile_number = #{benefMobileNumber},
 			delivery_status = #{deliveryStatus},
+			delivery_status_memo = #{deliveryStatusMemo},
 			outer_order_code = #{outerOrderCode},
-			outer_order_status2 = #{outerOrderStatus2},
-			outer_order_msg2 = #{outerOrderMsg2},
 			outer_order_status = #{outerOrderStatus},
 			outer_order_msg = #{outerOrderMsg},
+			outer_order_msg2 = #{outerOrderMsg2},
+			outer_order_status2 = #{outerOrderStatus2},
 			task_code = #{taskCode},
 			task_name = #{taskName},
 			task_status = #{taskStatus},
@@ -214,11 +218,12 @@
 			<if test="benefName != null">benef_name = #{benefName},</if>
 			<if test="benefMobileNumber != null">benef_mobile_number = #{benefMobileNumber},</if>
 			<if test="deliveryStatus != null">delivery_status = #{deliveryStatus},</if>
+			<if test="deliveryStatusMemo != null">delivery_status_memo = #{deliveryStatusMemo},</if>
 			<if test="outerOrderCode != null">outer_order_code = #{outerOrderCode},</if>
-			<if test="outerOrderStatus2 != null">outer_order_status2 = #{outerOrderStatus2},</if>
-			<if test="outerOrderMsg2 != null">outer_order_msg2 = #{outerOrderMsg2},</if>
 			<if test="outerOrderStatus != null">outer_order_status = #{outerOrderStatus},</if>
 			<if test="outerOrderMsg != null">outer_order_msg = #{outerOrderMsg},</if>
+			<if test="outerOrderMsg2 != null">outer_order_msg2 = #{outerOrderMsg2},</if>
+			<if test="outerOrderStatus2 != null">outer_order_status2 = #{outerOrderStatus2},</if>
 			<if test="taskCode != null">task_code = #{taskCode},</if>
 			<if test="taskName != null">task_name = #{taskName},</if>
 			<if test="taskStatus != null">task_status = #{taskStatus},</if>
@@ -295,11 +300,12 @@
 				benef_name,				
 				benef_mobile_number,				
 				delivery_status,				
+				delivery_status_memo,				
 				outer_order_code,				
-				outer_order_status2,				
-				outer_order_msg2,				
 				outer_order_status,				
 				outer_order_msg,				
+				outer_order_msg2,				
+				outer_order_status2,				
 				task_code,				
 				task_name,				
 				task_status,				
@@ -340,11 +346,12 @@
 			#{benefName},
 			#{benefMobileNumber},
 			#{deliveryStatus},
+			#{deliveryStatusMemo},
 			#{outerOrderCode},
-			#{outerOrderStatus2},
-			#{outerOrderMsg2},
 			#{outerOrderStatus},
 			#{outerOrderMsg},
+			#{outerOrderMsg2},
+			#{outerOrderStatus2},
 			#{taskCode},
 			#{taskName},
 			#{taskStatus},

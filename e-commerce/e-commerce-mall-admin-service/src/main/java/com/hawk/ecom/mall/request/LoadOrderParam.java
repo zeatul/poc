@@ -4,15 +4,7 @@ import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.ecom.user.annotation.NotLogin;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
-public class CloseUnpaidOrderParam {
-	
-	public String getStoreCode() {
-		return storeCode;
-	}
-
-	public void setStoreCode(String storeCode) {
-		this.storeCode = storeCode;
-	}
+public class LoadOrderParam {
 
 	public Integer getOrderId() {
 		return orderId;
@@ -30,8 +22,16 @@ public class CloseUnpaidOrderParam {
 		this.userCode = userCode;
 	}
 
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
+
 	/**
-	 * 订单编号
+	 * 订单主键 order_id
 	 */
 	@NotNull
 	private Integer orderId;
@@ -41,5 +41,4 @@ public class CloseUnpaidOrderParam {
 	
 	@MallNotLogin
 	private String storeCode;
-
 }

@@ -106,19 +106,14 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	private Integer deliveryStatus;
 	
 	/**
+	 * 交付状态备注 delivery_status_memo
+	 */
+	private String deliveryStatusMemo;
+	
+	/**
 	 * 外部交易编号(供应商返回的订单编号) outer_order_code
 	 */
 	private String outerOrderCode;
-	
-	/**
-	 * 外部交易状态2(后续状态) outer_order_status2
-	 */
-	private String outerOrderStatus2;
-	
-	/**
-	 * 外部交易描述2(后续描述) outer_order_msg2
-	 */
-	private String outerOrderMsg2;
 	
 	/**
 	 * 外部交易状态 outer_order_status
@@ -129,6 +124,16 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 * 外部交易描述 outer_order_msg
 	 */
 	private String outerOrderMsg;
+	
+	/**
+	 * 外部交易描述2(后续描述) outer_order_msg2
+	 */
+	private String outerOrderMsg2;
+	
+	/**
+	 * 外部交易状态2(后续状态) outer_order_status2
+	 */
+	private String outerOrderStatus2;
 	
 	/**
 	 * 任务号 task_code
@@ -521,6 +526,22 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	
 	/**
 	 * 
+	 * @return 交付状态备注 delivery_status_memo
+	 */
+	public String getDeliveryStatusMemo(){
+		return deliveryStatusMemo;
+	}
+	
+	/**
+	 * 
+	 * @param deliveryStatusMemo 交付状态备注 delivery_status_memo
+	 */	
+	public void setDeliveryStatusMemo (String deliveryStatusMemo) {
+		this.deliveryStatusMemo = deliveryStatusMemo;
+	}
+	
+	/**
+	 * 
 	 * @return 外部交易编号(供应商返回的订单编号) outer_order_code
 	 */
 	public String getOuterOrderCode(){
@@ -533,38 +554,6 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */	
 	public void setOuterOrderCode (String outerOrderCode) {
 		this.outerOrderCode = outerOrderCode;
-	}
-	
-	/**
-	 * 
-	 * @return 外部交易状态2(后续状态) outer_order_status2
-	 */
-	public String getOuterOrderStatus2(){
-		return outerOrderStatus2;
-	}
-	
-	/**
-	 * 
-	 * @param outerOrderStatus2 外部交易状态2(后续状态) outer_order_status2
-	 */	
-	public void setOuterOrderStatus2 (String outerOrderStatus2) {
-		this.outerOrderStatus2 = outerOrderStatus2;
-	}
-	
-	/**
-	 * 
-	 * @return 外部交易描述2(后续描述) outer_order_msg2
-	 */
-	public String getOuterOrderMsg2(){
-		return outerOrderMsg2;
-	}
-	
-	/**
-	 * 
-	 * @param outerOrderMsg2 外部交易描述2(后续描述) outer_order_msg2
-	 */	
-	public void setOuterOrderMsg2 (String outerOrderMsg2) {
-		this.outerOrderMsg2 = outerOrderMsg2;
 	}
 	
 	/**
@@ -597,6 +586,38 @@ public class OrderDetailDeliveryDataDomain implements Serializable {
 	 */	
 	public void setOuterOrderMsg (String outerOrderMsg) {
 		this.outerOrderMsg = outerOrderMsg;
+	}
+	
+	/**
+	 * 
+	 * @return 外部交易描述2(后续描述) outer_order_msg2
+	 */
+	public String getOuterOrderMsg2(){
+		return outerOrderMsg2;
+	}
+	
+	/**
+	 * 
+	 * @param outerOrderMsg2 外部交易描述2(后续描述) outer_order_msg2
+	 */	
+	public void setOuterOrderMsg2 (String outerOrderMsg2) {
+		this.outerOrderMsg2 = outerOrderMsg2;
+	}
+	
+	/**
+	 * 
+	 * @return 外部交易状态2(后续状态) outer_order_status2
+	 */
+	public String getOuterOrderStatus2(){
+		return outerOrderStatus2;
+	}
+	
+	/**
+	 * 
+	 * @param outerOrderStatus2 外部交易状态2(后续状态) outer_order_status2
+	 */	
+	public void setOuterOrderStatus2 (String outerOrderStatus2) {
+		this.outerOrderStatus2 = outerOrderStatus2;
 	}
 	
 	/**

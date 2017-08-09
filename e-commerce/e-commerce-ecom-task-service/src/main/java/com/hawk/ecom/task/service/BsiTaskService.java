@@ -81,6 +81,7 @@ public class BsiTaskService {
 			updateDomain.setUpdateDate(new Date());
 			updateDomain.setLastExecRtnCode(createBsiOrderResponse.getRtnCode());
 			updateDomain.setLastExecRtnMsg(createBsiOrderResponse.getRtnMsg());
+			updateDomain.setDeliveryStatusMemo(createBsiOrderResponse.getRtnMsg());
 
 			if (createBsiOrderResponse.isSuccess()) {
 				updateDomain.setTaskStatus(ConstOrder.TaskStatus.SUCCESS_TASK);
@@ -88,7 +89,7 @@ public class BsiTaskService {
 				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.SUCCESS);
 			}else{
 				updateDomain.setTaskStatus(ConstOrder.TaskStatus.FAILURE_TASK);
-				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
+				updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);				
 			}
 		} catch (Exception ex) {
 			logger.error("Failed to execute BsiTaskService.buyBsi(),taskCode="+taskCode,ex);
