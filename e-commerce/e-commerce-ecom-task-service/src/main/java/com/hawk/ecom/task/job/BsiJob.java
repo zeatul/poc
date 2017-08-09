@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
+import com.hawk.ecom.task.service.BsiTaskService;
 import com.hawk.ecom.task.service.ChargeDataTaskService;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
@@ -15,7 +16,7 @@ public class BsiJob implements Runnable{
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	1private ChargeDataTaskService service = FrameworkContext.getBean(ChargeDataTaskService.class);
+	private BsiTaskService service = FrameworkContext.getBean(BsiTaskService.class);
 	
 	private CacheService cacheService = FrameworkContext.getBean(CacheService.class);
 	
@@ -41,7 +42,7 @@ public class BsiJob implements Runnable{
 			return ;
 		}
 		try {
-			service.chargeData(taskCode);
+			service.buyBsi(taskCode);
 			logger.info("Success to execute bsi job, taskCode={}",taskCode);
 		} catch (Exception e) {
 			logger.info("Success to execute bsi job, taskCode="+taskCode,e);

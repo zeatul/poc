@@ -53,8 +53,9 @@
 		</foreach>
 		AND a.exec_times &lt; a.max_exec_times
 		AND delivery_type = #{deliveryType}
+		AND a.schedule_exec_date &lt; now()
 		AND EXISTS (SELECT 1 FROM t_tra_order b WHERE a.order_id = b.id AND b.order_status = #{orderStatus})
-		ORDER BY
-		a.schedule_exec_date asc LIMIT 0,#{limit}
+		ORDER BY a.schedule_exec_date asc 
+		LIMIT 0,#{limit}
 	</select>
 </mapper>

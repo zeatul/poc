@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.pub.job.TaskPool;
+import com.hawk.ecom.task.job.BsiJob;
 import com.hawk.ecom.task.job.ChargeDataJob;
 import com.hawk.ecom.task.job.CheckFailedOrderDetailJob;
 import com.hawk.ecom.task.job.CheckFailedOrderJob;

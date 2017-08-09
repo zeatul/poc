@@ -24,6 +24,7 @@ import com.hawk.ecom.trans.request.ListOrderParam;
 import com.hawk.ecom.trans.request.LoadOrderParam;
 import com.hawk.ecom.trans.response.OrderDetailInfoResponse;
 import com.hawk.ecom.trans.response.OrderInfoResponse;
+import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
@@ -46,6 +47,9 @@ public class OrderCustomerController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
 
 	@RequestMapping(value = "/create", method = POST)
 	public WebResponse<OrderInfoResponse> createOrder(HttpServletRequest request) throws Exception {
@@ -77,7 +81,7 @@ public class OrderCustomerController {
 	public WebResponse<MultiResponse<OrderDetailInfoResponse>> ListOrderDetail(HttpServletRequest request) throws Exception {
 		ListOrderDetailParam param = HttpRequestTools.parse(request, ListOrderDetailParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
-		PagingQueryResultWrap<OrderDetailDomain> wrap = orderService.listOrderDetail(param);
+		PagingQueryResultWrap<OrderDetailDomain> wrap = orderDetailService.listOrderDetail(param);
 
 		MultiResponse<OrderDetailInfoResponse> result = new MultiResponse<OrderDetailInfoResponse>(MybatisTools.copy(wrap, OrderDetailInfoResponse.class));
 		return SuccessResponse.build(result);

@@ -50,7 +50,7 @@ public class ChargeDataTaskService {
 		OrderDetailDeliveryDataDomain updateDomain = new OrderDetailDeliveryDataDomain();
 		try {			
 			updateDomain.setId(orderDetailDeliveryDataDomain.getId());
-			updateDomain.setExecTimes(1);
+			updateDomain.setExecTimes(orderDetailDeliveryDataDomain.getExecTimes()+1);
 			updateDomain.setLastExecBeginTime(new Date());
 			updateDomain.setLastExecComputer(SystemTools.hostname());
 			updateDomain.setLastExecProcessId(SystemTools.processId());
@@ -70,11 +70,12 @@ public class ChargeDataTaskService {
 			
 			
 		} catch (Exception e) {
+			logger.error("Failed to execute ChargeDataTaskService.charge(),taskCode="+taskCode,e); 
 			updateDomain.setLastExecRtnCode(e.getClass().getSimpleName());
 			updateDomain.setLastExecRtnMsg(e.getMessage());
 			updateDomain.setTaskStatus(ConstOrder.TaskStatus.EXECUTE_FAILED);
 			updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
-			logger.error("chargeDataService.charge() failed",e); 
+			
 		}finally{
 			updateDomain.setLastExecEndTime(new Date());
 			orderDetailDeliveryDataMapper.updateWithoutNull(updateDomain);

@@ -16,6 +16,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hawk.ecom.outer.service.BsiTalkingDataService;
 import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.product.persist.domain.ProductDomain;
 import com.hawk.ecom.product.persist.domain.SkuDomain;
@@ -101,6 +102,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDetailService orderDetailService;
+	
+	@Autowired
+	private BsiTalkingDataService bsiTalkingDataService;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -215,8 +219,17 @@ public class OrderService {
 					orderDetailDeliveryDataDomain.setOuterPhoneModelId(bsiParam.getOuterPhoneModelId().toString());
 					orderDetailDeliveryDataDomain.setOuterProductId(bsiParam.getOuterProductId().toString());
 					
-					大数据校验imei是否为新机
 					
+					/**
+					 * 检查手机是否是新机
+					 */
+					Date first = bsiTalkingDataService.first(bsiParam.getImei());
+					if (first != null){
+						Date curDate = new Date();
+						if (DateTools.addDays(first, 10).before(curDate)){
+							throw new RuntimeException("当前手机购买超过10天，不符合投保条件");
+						}
+					}
 				}
 				
 				
