@@ -68,7 +68,7 @@ public class OrderDetailService {
 				ConstOrder.DeliveryStatus.PROCESSING, ConstOrder.DeliveryStatus.UN_EXECUTE);
 		final Integer limit = 3000;
 		Date threshold = DateTools.addMinutes(new Date(), -10);
-		return orderDetailExMapper.queryUncheckedSuccessOrderDetail(orderDetailStatus, deliveryStatusList, threshold, limit);
+		return orderDetailExMapper.queryUncheckedSuccessOrderDetail(orderDetailStatus, deliveryStatusList,threshold, limit);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class OrderDetailService {
 		final List<Integer> deliveryStatusList = Arrays.asList(ConstOrder.DeliveryStatus.FAILURE);
 		final Integer limit = 3000;
 		Date threshold = DateTools.addMinutes(new Date(), -10);
-		return orderDetailExMapper.queryUncheckedFailedOrderDetail(orderDetailStatus, deliveryStatusList, threshold, limit);
+		return orderDetailExMapper.queryUncheckedFailedOrderDetail(orderDetailStatus, deliveryStatusList,threshold, limit);
 	}
 
 	public OrderDetailDomain load(Integer orderDetailId) {

@@ -17,25 +17,28 @@
 	<select id="queryUncheckedSuccessOrder" resultType="Integer">
 		SELECT a.id
 		FROM t_tra_order a
-		WHERE a.order_status = #{orderStatus}
-		AND a.update_data &lt; #{threshold}
+		WHERE  a.update_date  <![CDATA[ < ]]> #{maxDate}
+		AND a.order_status = #{orderStatus}
 		AND NOT EXISTS (SELECT 1
-		FROM t_tra_order_detail b
-		WHERE a.id = b.order_id
-		AND b.order_detail_status IN
-		<foreach item="item" index="index" collection="orderDetailStatusList" open="(" separator="," close=")">
-			#{item}
-		</foreach>
+			FROM t_tra_order_detail b
+			WHERE a.id = b.order_id
+			AND b.order_detail_status IN
+			<foreach item="item" index="index" collection="orderDetailStatusList" open="(" separator="," close=")">
+				#{item}
+			</foreach>
 		)
+		
+		
 		ORDER BY update_date ASC
 		LIMIT 0 , #{limit}
+
 	</select>
-	
+
 	<select id="queryUncheckedFailedOrder" resultType="Integer">
 		SELECT a.id
 		FROM t_tra_order a
 		WHERE a.order_status = #{orderStatus}
-		AND a.update_data &lt; #{threshold}
+		AND a.update_date <![CDATA[ < ]]> #{maxDate}
 		AND EXISTS (SELECT 1
 		FROM t_tra_order_detail b
 		WHERE a.id = b.order_id

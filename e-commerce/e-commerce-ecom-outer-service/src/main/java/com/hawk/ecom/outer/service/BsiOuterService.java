@@ -14,6 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.outer.exception.OuterCallException;
 import com.hawk.ecom.outer.response.CreateBsiOrderResponse;

@@ -13,7 +13,7 @@
 		SELECT id
 		FROM t_tra_order_detail a
 		WHERE a.order_detail_status = #{orderDetailStatus}
-		AND a.update_data &lt;  #{threshold}
+		AND a.update_date &lt; #{maxDate}
 		AND NOT EXISTS (SELECT 1 
 				FROM t_tra_order_detail_delivery_data b 
 				WHERE a.id = b.order_detail_id 
@@ -29,7 +29,7 @@
 		SELECT id
 		FROM t_tra_order_detail a
 		WHERE a.order_detail_status = #{orderDetailStatus}
-		AND a.update_data &lt;  #{threshold}
+		AND a.update_date &lt; #{maxDate} 
 		AND EXISTS (SELECT 1 
 				FROM t_tra_order_detail_delivery_data b 
 				WHERE a.id = b.order_detail_id 

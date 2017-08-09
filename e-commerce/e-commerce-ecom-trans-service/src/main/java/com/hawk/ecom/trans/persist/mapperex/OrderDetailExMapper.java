@@ -24,7 +24,7 @@ public interface OrderDetailExMapper {
 	 */
 	public List<Integer> queryUncheckedSuccessOrderDetail(@Param("orderDetailStatus") Integer orderDetailStatus,
 			@Param("deliveryStatusList") List<Integer> deliveryStatusList,
-			@Param("threshold") Date threshold,
+			@Param("maxDate") Date threshold,
 			@Param("limit") Integer limit);
 	
 	/**
@@ -37,6 +37,6 @@ public interface OrderDetailExMapper {
 	 */
 	public List<Integer> queryUncheckedFailedOrderDetail(@Param("orderDetailStatus") Integer orderDetailStatus,
 			@Param("deliveryStatusList") List<Integer> deliveryStatusList,
-			@Param("threshold") Date threshold,
+			@Param("maxDate") Date threshold,
 			@Param("limit") Integer limit);
 }
