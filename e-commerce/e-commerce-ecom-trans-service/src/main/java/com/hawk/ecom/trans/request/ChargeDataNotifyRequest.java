@@ -9,6 +9,12 @@ public class ChargeDataNotifyRequest {
 	// "msg ": "订购成功"
 	// }
 	
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
 	public String getSupplierCode() {
 		return supplierCode;
 	}
@@ -51,4 +57,5 @@ public class ChargeDataNotifyRequest {
 	private String msg;
 	private String supplierCode;
 	private String storeCode;
+	private String timeStamp;
 }

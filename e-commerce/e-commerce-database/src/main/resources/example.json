@@ -1,17 +1,7 @@
 {
-	"code": "40004",
-	"msg": "Business Failed",
-	"subCode": "ACQ.TRADE_NOT_EXIST",
-	"subMsg": "交易不存在",
-	"body": "{\"alipay_trade_query_response\":{\"code\":\"40004\",\"msg\":\"Business Failed\",\"sub_code\":\"ACQ.TRADE_NOT_EXIST\",\"sub_msg\":\"交易不存在\",\"buyer_pay_amount\":\"0.00\",\"invoice_amount\":\"0.00\",\"out_trade_no\":\"20170802151010009\",\"point_amount\":\"0.00\",\"receipt_amount\":\"0.00\"},\"sign\":\"JPL64dNvW4bQjGdQst+6E4RMFgCV2wggf6yJA5Taw0Q9kzCg/hfx740Lt8TDgMosF8VCyRGHahg8BCsC4skWaHo5FFsQBqrCrrEDCX+Wfe3a1Ja+zwPYn0K8kc60Fkk3AuvPRrg674tg75HiLDq404tegd8A9zR03t0sYb3nEtidiTn37/ZnYWHM0LTh1d1kBv3117flwsKGsX40vnBq3QIyPpMvAB0EaXI+GpRKKGLXLzAKyFytSjpAFXvimjVgz5snaj1zca7Igv899Q9BISvOxcNMeAM9p6HNNIRWI7BdBU5xQPyEEEs4ODa0KuEYJhvfYKe5CYqt7sAysD0h2A==\"}",
-	"params": {
-		"biz_content": "{\"out_trade_no\":\"20170802151010009\"}"
-	},
-	"buyerPayAmount": "0.00",
-	"invoiceAmount": "0.00",
-	"outTradeNo": "20170802151010009",
-	"pointAmount": "0.00",
-	"receiptAmount": "0.00",
-	"errorCode": "40004",
-	"success": false
+	"orderNo": "11502348808753147653",
+	"cstmOrderNo": "e66361ade35c4510871f3d7e135f8106",
+	"status": "0007",
+	"msg": "开通成功",
+	"timeStamp": "20170810150700"
 }
