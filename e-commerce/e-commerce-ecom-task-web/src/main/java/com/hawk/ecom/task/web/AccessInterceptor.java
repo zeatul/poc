@@ -29,7 +29,12 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		MallUserDomain mallUserDomain = mallUserService.loginInfo(token);
 		
 		String version = request.getParameter("version");
-		if (version == null || !"1.0".equals(version)){
+		if (version == null){
+			version = "1.0";
+		}else{
+			version = version.trim();
+		}
+		if (!"1.0".equals(version)){
 			throw new RuntimeException("version不对");
 		}
 		

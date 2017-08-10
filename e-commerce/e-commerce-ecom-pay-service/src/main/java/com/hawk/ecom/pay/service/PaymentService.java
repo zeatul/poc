@@ -3,6 +3,8 @@ package com.hawk.ecom.pay.service;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
@@ -34,6 +36,7 @@ import com.hawk.framework.pub.sql.MybatisParam;
 import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
+import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -61,12 +64,16 @@ public class PaymentService {
 
 	@Autowired
 	private AlipayService alipayService;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public int hasPaidSuccessfully(PaymentBillDomain paymentBillDomain) throws Exception {
 		if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)) {
 			AlipayTradeQueryResponse alipayTradeQueryResponse = alipayService.query(paymentBillDomain.getPaymentBillCode());
 			if (alipayTradeQueryResponse == null) {
 				return -1;
+			}else{
+				logger.info("alipayTradeQueryResponse = {}"+JsonTools.toJsonString(alipayTradeQueryResponse));
 			}
 			String tradeStatus = alipayTradeQueryResponse.getTradeStatus();
 			if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_SUCCESS)
