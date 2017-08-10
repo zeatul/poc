@@ -45,7 +45,7 @@ public class BsiJob implements Runnable{
 			service.buyBsi(taskCode);
 			logger.info("Success to execute bsi job, taskCode={}",taskCode);
 		} catch (Exception e) {
-			logger.info("Success to execute bsi job, taskCode="+taskCode,e);
+			logger.error("Failed to execute bsi job, taskCode="+taskCode,e);
 		}
 		
 	}

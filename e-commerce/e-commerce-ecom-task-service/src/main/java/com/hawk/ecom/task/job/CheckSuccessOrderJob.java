@@ -44,7 +44,7 @@ public class CheckSuccessOrderJob implements Runnable {
 			orderService.checkSuccessOrder(orderId);
 			logger.info("Success to execute check success order job, orderId={}",orderId);
 		} catch (Exception e) {
-			logger.info("Failed to execute check success order job, orderId={}",orderId);
+			logger.error("Failed to execute check success order job, orderId="+orderId,e);
 		}
 		
 	}

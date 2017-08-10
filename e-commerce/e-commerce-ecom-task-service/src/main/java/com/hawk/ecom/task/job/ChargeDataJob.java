@@ -44,7 +44,7 @@ public class ChargeDataJob implements Runnable{
 			service.chargeData(taskCode);
 			logger.info("Success to execute charge data job, taskCode={}",taskCode);
 		} catch (Exception e) {
-			logger.info("Success to execute charge data job, taskCode="+taskCode,e);
+			logger.error("Failed to execute charge data job, taskCode="+taskCode,e);
 		}
 		
 	}

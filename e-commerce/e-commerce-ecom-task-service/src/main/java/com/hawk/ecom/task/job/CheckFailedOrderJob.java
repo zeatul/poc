@@ -43,7 +43,7 @@ public class CheckFailedOrderJob implements Runnable {
 			orderService.checkFailedOrder(orderId);
 			logger.info("Success to execute check failed order job, orderId={}",orderId);
 		} catch (Exception e) {
-			logger.info("Failed to execute check failed order job, orderId={}",orderId);
+			logger.error("Failed to execute check failed order job, orderId="+orderId,e);
 		}
 		
 	}
