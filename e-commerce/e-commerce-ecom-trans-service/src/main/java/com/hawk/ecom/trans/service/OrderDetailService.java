@@ -135,6 +135,8 @@ public class OrderDetailService {
 		updateDomain.setUpdateDate(new Date());
 		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 		updateDomain.setOrderDetailStatus(ConstOrder.OrderDetailStatus.FAILURE);
+		
+		orderDetailMapper.updateWithoutNull(updateDomain);
 	}
 
 	/**
@@ -178,5 +180,7 @@ public class OrderDetailService {
 		updateDomain.setUpdateDate(new Date());
 		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
 		updateDomain.setOrderDetailStatus(ConstOrder.OrderDetailStatus.SUCCESS);
+		
+		orderDetailMapper.updateWithoutNull(updateDomain);
 	}
 }

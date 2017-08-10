@@ -198,6 +198,9 @@ public class PaymentService {
 		 */
 		orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.PAIED, "支付成功", "支付成功");
 
+		/**
+		 * TODO:通知开始交付作业
+		 */
 	}
 
 	@Valid

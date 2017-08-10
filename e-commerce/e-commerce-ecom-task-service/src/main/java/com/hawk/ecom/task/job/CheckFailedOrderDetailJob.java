@@ -3,6 +3,7 @@ package com.hawk.ecom.task.job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
@@ -15,6 +16,8 @@ public class CheckFailedOrderDetailJob implements Runnable {
 	private CacheService cacheService = FrameworkContext.getBean(CacheService.class);
 	
 	private OrderDetailService orderDetailService= FrameworkContext.getBean(OrderDetailService.class);
+	
+	private TaskPool taskPool = FrameworkContext.getBean(TaskPool.class);
 	
 	private Integer orderDetailId;
 	
@@ -42,6 +45,9 @@ public class CheckFailedOrderDetailJob implements Runnable {
 		try {
 			orderDetailService.checkFailedOrderDetail(orderDetailId);
 			logger.info("Success to execute check failed order detail job, orderDetailId={}",orderDetailId);
+			Integer orderId = orderDetailService.load(orderDetailId).getOrderId();
+			CheckFailedOrderJob job = new CheckFailedOrderJob(orderId);
+			taskPool.submit(job);
 		} catch (Exception e) {
 			logger.error("Failed to execute check failed order detail job, orderDetailId="+orderDetailId,e);
 		}

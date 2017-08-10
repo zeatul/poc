@@ -141,7 +141,7 @@ public class JobService {
 	/**
 	 * 将已经支付完成，但是充值次数为0的交付单，拿出来充流量
 	 */
-	@Scheduled(initialDelay = 20000, fixedDelay = 1000 * 60 * 5)
+	@Scheduled(initialDelay = 20000, fixedDelay = 1000 * 60 * 2)
 	public void batchCharge() {
 		logger.info("-----Start to execute batchCharge");
 		List<OrderDetailDeliveryDataExDomain> orderDetailDeliveryDataExDomainList = orderDetailDeliveryDataService.loadOrderDeliveryDataForCharge();
@@ -159,6 +159,7 @@ public class JobService {
 	/**
 	 * 将支付已经完成，但是没有成功交付的小宝交付单,拿出来创建小宝订单
 	 */
+	@Scheduled(initialDelay = 20000, fixedDelay = 1000 * 60 * 5)
 	public void batchBsi(){
 		logger.info("-----Start to execute batchBsi");
 		List<OrderDetailDeliveryDataExDomain> orderDetailDeliveryDataExDomainList = orderDetailDeliveryDataService.loadOrderDeliveryDataForBsi();
