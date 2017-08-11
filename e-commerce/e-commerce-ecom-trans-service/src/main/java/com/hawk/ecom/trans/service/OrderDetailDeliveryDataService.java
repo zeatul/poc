@@ -15,6 +15,7 @@ import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
 import com.hawk.ecom.trans.request.ListOrderDetailDeliveryDataParam;
+import com.hawk.ecom.trans.request.LoadOrderDetailDeliveryDataParam;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -36,6 +37,18 @@ public class OrderDetailDeliveryDataService {
 		if (StringTools.isNotNullOrEmpty(taskCode)){
 			MybatisParam params = new MybatisParam().put("taskCode", taskCode);
 			orderDetailDeliveryDataDomain = MybatisTools.single(orderDetailDeliveryDataMapper.loadDynamic(params));
+		}
+		if (orderDetailDeliveryDataDomain == null){
+			throw new OrderDetailDeliveryDataNotFoundRuntimeException();
+		}
+		return orderDetailDeliveryDataDomain;
+	}
+	
+	public OrderDetailDeliveryDataDomain loadById(Integer orderDetailDeliveryDataId){
+		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = null;
+		if (orderDetailDeliveryDataId != null){
+			orderDetailDeliveryDataDomain = orderDetailDeliveryDataMapper.load(orderDetailDeliveryDataId);
+					
 		}
 		if (orderDetailDeliveryDataDomain == null){
 			throw new OrderDetailDeliveryDataNotFoundRuntimeException();
@@ -77,5 +90,14 @@ public class OrderDetailDeliveryDataService {
 		}
 
 		return wrap;
+	}
+	
+	@Valid
+	public OrderDetailDeliveryDataDomain loadOrderDetailDeliveryData(@Valid @NotNull("函数入参") LoadOrderDetailDeliveryDataParam loadOrderDetailDeliveryDataParam){
+		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = loadById(loadOrderDetailDeliveryDataParam.getOrderDetailDeliveryDataId());
+		if (!loadOrderDetailDeliveryDataParam.getUserCode().equals(AuthThreadLocal.getUserCode())){
+			throw new RuntimeException("交付信息不属于当前登陆用户");
+		}
+		return orderDetailDeliveryDataDomain;
 	}
 }

@@ -14,6 +14,8 @@ import com.hawk.ecom.mall.request.CloseUnpaidOrderParam;
 import com.hawk.ecom.mall.request.ListOrderDetailDeliveryDataParam;
 import com.hawk.ecom.mall.request.ListOrderDetailParam;
 import com.hawk.ecom.mall.request.ListOrderParam;
+import com.hawk.ecom.mall.request.LoadOrderDetailDeliveryDataParam;
+import com.hawk.ecom.mall.request.LoadOrderDetailParam;
 import com.hawk.ecom.mall.request.LoadOrderParam;
 import com.hawk.ecom.mall.response.OrderDetailDeliveryDataInfoResponse;
 import com.hawk.ecom.mall.response.OrderInfoResponse;
@@ -62,8 +64,14 @@ public class OrderAdminController {
 		return SuccessResponse.build(null);
 	}
 	
-	@RequestMapping(value = "/list", method = POST)
-	public WebResponse<MultiResponse<OrderInfoResponse>> ListOrder(HttpServletRequest request) throws Exception {
+	/**
+	 * 订单列表
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/order/list", method = POST)
+	public WebResponse<MultiResponse<OrderInfoResponse>> listOrder(HttpServletRequest request) throws Exception {
 		ListOrderParam param = HttpRequestTools.parse(request, ListOrderParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setStoreCode(AuthThreadLocal.getStoreCode());
@@ -73,6 +81,12 @@ public class OrderAdminController {
 		return SuccessResponse.build(result);
 	}
 	
+	/**
+	 * 单个订单
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/load/id/{orderId}", method = {GET,POST})
 	public WebResponse<OrderInfoResponse> loadOrder (@PathVariable Integer orderId) throws Exception{
 		LoadOrderParam param = new  LoadOrderParam();
@@ -82,19 +96,41 @@ public class OrderAdminController {
 		return SuccessResponse.build(DomainTools.copy(orderAdminService.loadOrder(param), OrderInfoResponse.class));
 	}
 	
+	/**
+	 * 订单明细列表
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/detail/list", method = {POST})
-	public WebResponse<MultiResponse<OrderDetailInfoResponse>> ListOrderDetail(HttpServletRequest request) throws Exception {
+	public WebResponse<MultiResponse<OrderDetailInfoResponse>> listOrderDetail(HttpServletRequest request) throws Exception {
 		ListOrderDetailParam param = HttpRequestTools.parse(request, ListOrderDetailParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
+		param.setStoreCode(AuthThreadLocal.getStoreCode());
 		PagingQueryResultWrap<OrderDetailDomain> wrap = orderAdminService.listOrderDetail(param);
 
 		MultiResponse<OrderDetailInfoResponse> result = new MultiResponse<OrderDetailInfoResponse>(MybatisTools.copy(wrap, OrderDetailInfoResponse.class));
 		return SuccessResponse.build(result);
 	} 
 	
-	//订单明细，交付详情
-	@RequestMapping(value = "/detail/delivery/list", method = {POST})
-	public WebResponse<MultiResponse<OrderDetailDeliveryDataInfoResponse>> ListOrderDetailDeliveryData(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/detail/load/id/{orderDetailId}", method = {GET,POST})
+	public WebResponse<OrderDetailInfoResponse> loadOrderDetail(@PathVariable Integer orderDetailId)throws Exception {
+		LoadOrderDetailParam param = new LoadOrderDetailParam();
+		param.setOrderDetailId(orderDetailId);
+		param.setUserCode(AuthThreadLocal.getUserCode());
+		param.setStoreCode(AuthThreadLocal.getStoreCode());
+		OrderDetailDomain OrderDetailDomain = orderAdminService.loadOrderDetail(param);
+		return SuccessResponse.build(DomainTools.copy(OrderDetailDomain, OrderDetailInfoResponse.class));
+	}
+	
+	/**
+	 * 订单明细交付详情列表
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/detail/deliveryData/list", method = {POST})
+	public WebResponse<MultiResponse<OrderDetailDeliveryDataInfoResponse>> listOrderDetailDeliveryData(HttpServletRequest request) throws Exception {
 		ListOrderDetailDeliveryDataParam param = HttpRequestTools.parse(request, ListOrderDetailDeliveryDataParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setStoreCode(AuthThreadLocal.getStoreCode());
@@ -102,5 +138,16 @@ public class OrderAdminController {
 
 		MultiResponse<OrderDetailDeliveryDataInfoResponse> result = new MultiResponse<OrderDetailDeliveryDataInfoResponse>(MybatisTools.copy(wrap, OrderDetailDeliveryDataInfoResponse.class));
 		return SuccessResponse.build(result);
+	} 
+	
+	@RequestMapping(value = "/detail/deliveryData/load/id/{deliveryDataId}", method = {POST,GET})
+	public WebResponse<OrderDetailDeliveryDataInfoResponse> loadOrderDetailDeliveryData(@PathVariable Integer deliveryDataId) throws Exception {
+		LoadOrderDetailDeliveryDataParam param = new LoadOrderDetailDeliveryDataParam();
+		param.setOrderDetailDeliveryDataId(deliveryDataId);
+		param.setUserCode(AuthThreadLocal.getUserCode());
+		param.setStoreCode(AuthThreadLocal.getStoreCode());
+		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain = orderAdminService.loadOrderDetailDeliveryData(param);
+
+		return SuccessResponse.build(DomainTools.copy(orderDetailDeliveryDataDomain, OrderDetailDeliveryDataInfoResponse.class));
 	} 
 }

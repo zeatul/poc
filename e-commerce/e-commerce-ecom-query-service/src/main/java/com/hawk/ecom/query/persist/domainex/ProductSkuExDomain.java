@@ -6,6 +6,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductSkuExDomain implements ResponseData{
 	
+	public String getSkuExtra1() {
+		return skuExtra1;
+	}
+
+	public void setSkuExtra1(String skuExtra1) {
+		this.skuExtra1 = skuExtra1;
+	}
+
 	public String getRegionType() {
 		return regionType;
 	}
@@ -150,6 +158,11 @@ public class ProductSkuExDomain implements ResponseData{
 	 * 碎屏险保修月数
 	 */
 	private Integer bsiInsurancePeriodMonth;
+	
+	/**
+	 * 产品Sku扩展属性1 sku_extra1
+	 */
+	private String skuExtra1;
 	
 	
 }

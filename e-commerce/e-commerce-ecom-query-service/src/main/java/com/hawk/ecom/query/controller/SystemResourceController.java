@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
-import com.hawk.ecom.query.service.SystemResourceService;
+import com.hawk.ecom.query.service.SystemResourceQueryService;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -27,7 +27,7 @@ import com.hawk.framework.utility.tools.DateTools;
 public class SystemResourceController {
 	
 	@Autowired
-	private SystemResourceService systemResourceService;
+	private SystemResourceQueryService systemResourceService;
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {

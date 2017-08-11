@@ -93,6 +93,11 @@
 		SELECT t1.id AS "skuId",
 		t1.sku_name AS "skuName",
 		t1.sale_price AS "salePrice",
+		t1.sku_extra1 AS "skuExtra1" ,
+		t1.sku_extra2 AS "skuExtra2" ,
+		t1.sku_extra3 AS "skuExtra3" ,
+		t1.sku_extra4 AS "skuExtra4" ,
+		t1.sku_extra5 AS "skuExtra5" ,
 		t1.sku_stock_quantity AS "skuStockQuantity"
 		FROM t_prd_sku t1 ,(
 			SELECT a.id,COUNT(b.attr_value_id) as count

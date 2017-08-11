@@ -11,6 +11,46 @@ public class CreateProductParam {
 
 	
 
+	public String getProductExtra1() {
+		return productExtra1;
+	}
+
+	public void setProductExtra1(String productExtra1) {
+		this.productExtra1 = productExtra1;
+	}
+
+	public String getProductExtra2() {
+		return productExtra2;
+	}
+
+	public void setProductExtra2(String productExtra2) {
+		this.productExtra2 = productExtra2;
+	}
+
+	public String getProductExtra3() {
+		return productExtra3;
+	}
+
+	public void setProductExtra3(String productExtra3) {
+		this.productExtra3 = productExtra3;
+	}
+
+	public String getProductExtra4() {
+		return productExtra4;
+	}
+
+	public void setProductExtra4(String productExtra4) {
+		this.productExtra4 = productExtra4;
+	}
+
+	public String getProductExtra5() {
+		return productExtra5;
+	}
+
+	public void setProductExtra5(String productExtra5) {
+		this.productExtra5 = productExtra5;
+	}
+
 	public Integer getDeliveryType() {
 		return deliveryType;
 	}
@@ -188,7 +228,31 @@ public class CreateProductParam {
 	private List<Integer> productSkuAttrNameIds;
 	
 	
+
+	/**
+	 * 产品扩展属性1 product_extra1
+	 */
+	private String productExtra1;
 	
+	/**
+	 * 产品扩展属性2 product_extra2
+	 */
+	private String productExtra2;
+	
+	/**
+	 * 产品扩展属性3 product_extra3
+	 */
+	private String productExtra3;
+	
+	/**
+	 * 产品扩展属性4 product_extra4
+	 */
+	private String productExtra4;
+	
+	/**
+	 * 产品扩展属性5 product_extra5
+	 */
+	private String productExtra5;
 	
 	
 	

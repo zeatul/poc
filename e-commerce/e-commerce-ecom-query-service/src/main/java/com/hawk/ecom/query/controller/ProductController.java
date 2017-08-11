@@ -18,7 +18,7 @@ import com.hawk.ecom.query.persist.domainex.ProductCategoryExDomain;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.request.ListSkuParam;
 import com.hawk.ecom.query.request.LoadChargeDataProductParam;
-import com.hawk.ecom.query.service.ProductService;
+import com.hawk.ecom.query.service.ProductQueryService;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.SuccessResponse;
@@ -32,7 +32,7 @@ import com.hawk.framework.pub.web.WebResponse;
 public class ProductController {
 	
 	@Autowired
-	private ProductService productService;
+	private ProductQueryService productService;
 
 	
 	/**

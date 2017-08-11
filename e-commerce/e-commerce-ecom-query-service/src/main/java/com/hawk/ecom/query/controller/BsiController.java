@@ -19,7 +19,7 @@ import com.hawk.ecom.pub.response.MultiResponse;
 import com.hawk.ecom.query.persist.domainex.ProductSkuExDomain;
 import com.hawk.ecom.query.request.LoadBsiProductParam;
 import com.hawk.ecom.query.response.PhoneModel;
-import com.hawk.ecom.query.service.ProductService;
+import com.hawk.ecom.query.service.ProductQueryService;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -41,7 +41,7 @@ public class BsiController {
 	private BsiService bsiService;
 	
 	@Autowired
-	private ProductService productService;
+	private ProductQueryService productService;
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
@@ -70,7 +70,7 @@ public class BsiController {
 	}
 	
 	/**
-	 * 查询流量充值产品
+	 * 查询小宝产品
 	 * @param request
 	 * @return
 	 * @throws Exception

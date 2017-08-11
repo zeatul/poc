@@ -25,6 +25,11 @@
 		is_virtual AS "isVirtual" ,
 		delivery_type AS "deliveryType" ,
 		product_version AS "productVersion" ,
+		product_extra1 AS "productExtra1" ,
+		product_extra2 AS "productExtra2" ,
+		product_extra3 AS "productExtra3" ,
+		product_extra4 AS "productExtra4" ,
+		product_extra5 AS "productExtra5" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -55,6 +60,11 @@
 			<if test="isVirtual != null"> AND is_virtual = #{isVirtual}  </if>
 			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
 			<if test="productVersion != null"> AND product_version = #{productVersion}  </if>
+			<if test="productExtra1 != null"> AND product_extra1 = #{productExtra1}  </if>
+			<if test="productExtra2 != null"> AND product_extra2 = #{productExtra2}  </if>
+			<if test="productExtra3 != null"> AND product_extra3 = #{productExtra3}  </if>
+			<if test="productExtra4 != null"> AND product_extra4 = #{productExtra4}  </if>
+			<if test="productExtra5 != null"> AND product_extra5 = #{productExtra5}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -86,6 +96,11 @@
 			<if test="old_isVirtual != null"> AND is_virtual = #{old_isVirtual}  </if>			
 			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
 			<if test="old_productVersion != null"> AND product_version = #{old_productVersion}  </if>			
+			<if test="old_productExtra1 != null"> AND product_extra1 = #{old_productExtra1}  </if>			
+			<if test="old_productExtra2 != null"> AND product_extra2 = #{old_productExtra2}  </if>			
+			<if test="old_productExtra3 != null"> AND product_extra3 = #{old_productExtra3}  </if>			
+			<if test="old_productExtra4 != null"> AND product_extra4 = #{old_productExtra4}  </if>			
+			<if test="old_productExtra5 != null"> AND product_extra5 = #{old_productExtra5}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -117,6 +132,11 @@
 			is_virtual = #{isVirtual},
 			delivery_type = #{deliveryType},
 			product_version = #{productVersion},
+			product_extra1 = #{productExtra1},
+			product_extra2 = #{productExtra2},
+			product_extra3 = #{productExtra3},
+			product_extra4 = #{productExtra4},
+			product_extra5 = #{productExtra5},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -148,6 +168,11 @@
 			<if test="isVirtual != null">is_virtual = #{isVirtual},</if>
 			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
 			<if test="productVersion != null">product_version = #{productVersion},</if>
+			<if test="productExtra1 != null">product_extra1 = #{productExtra1},</if>
+			<if test="productExtra2 != null">product_extra2 = #{productExtra2},</if>
+			<if test="productExtra3 != null">product_extra3 = #{productExtra3},</if>
+			<if test="productExtra4 != null">product_extra4 = #{productExtra4},</if>
+			<if test="productExtra5 != null">product_extra5 = #{productExtra5},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -213,6 +238,11 @@
 				is_virtual,				
 				delivery_type,				
 				product_version,				
+				product_extra1,				
+				product_extra2,				
+				product_extra3,				
+				product_extra4,				
+				product_extra5,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -241,6 +271,11 @@
 			#{isVirtual},
 			#{deliveryType},
 			#{productVersion},
+			#{productExtra1},
+			#{productExtra2},
+			#{productExtra3},
+			#{productExtra4},
+			#{productExtra5},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

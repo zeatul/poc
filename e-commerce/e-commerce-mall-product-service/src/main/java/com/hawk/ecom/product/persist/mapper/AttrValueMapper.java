@@ -50,7 +50,7 @@ public interface AttrValueMapper  {
 	
 	/**
 	 * 插入记录
-	 * @param AttrValueExDomain 属性值表
+	 * @param AttrValueDomain 属性值表
 	 * @return 插入的记录数
 	 */
 	int insert(AttrValueDomain attrValueDomain);
@@ -71,14 +71,14 @@ public interface AttrValueMapper  {
 	
 	/**
 	 * 更新,全字段更新,空值被更新成null
-	 * @param AttrValueExDomain 属性值表
+	 * @param AttrValueDomain 属性值表
 	 * @return 更新的记录数
 	 */
 	int update(AttrValueDomain attrValueDomain);
 	
 	/**
 	 * 更新,只更新不为空的值，适合根据主键更新特定字段
-	 * @param AttrValueExDomain 属性值表
+	 * @param AttrValueDomain 属性值表
 	 * @return 更新的记录数
 	 */
 	int updateWithoutNull(AttrValueDomain attrValueDomain);

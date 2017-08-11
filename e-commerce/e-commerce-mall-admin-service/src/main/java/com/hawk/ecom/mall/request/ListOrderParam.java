@@ -1,7 +1,6 @@
 package com.hawk.ecom.mall.request;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
-import com.hawk.ecom.user.annotation.NotLogin;
 import com.hawk.framework.pub.sql.PageParam;
 
 public class ListOrderParam implements PageParam{

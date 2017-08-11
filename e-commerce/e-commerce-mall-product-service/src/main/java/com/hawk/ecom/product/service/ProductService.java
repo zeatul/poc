@@ -205,6 +205,12 @@ public class ProductService {
 
 		productDomain.setProductCode(createProductParam.getProductCode());
 		
+		productDomain.setProductExtra1(createProductParam.getProductExtra1());
+		productDomain.setProductExtra2(createProductParam.getProductExtra2());
+		productDomain.setProductExtra3(createProductParam.getProductExtra3());
+		productDomain.setProductExtra4(createProductParam.getProductExtra4());
+		productDomain.setProductExtra5(createProductParam.getProductExtra5());
+		
 		
 		productDomain.setProductDesc(createProductParam.getProductDesc());
 		productDomain.setProductHomePage(createProductParam.getProductHomePage());

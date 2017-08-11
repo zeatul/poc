@@ -10,6 +10,8 @@ import com.hawk.ecom.mall.request.CloseUnpaidOrderParam;
 import com.hawk.ecom.mall.request.ListOrderDetailDeliveryDataParam;
 import com.hawk.ecom.mall.request.ListOrderDetailParam;
 import com.hawk.ecom.mall.request.ListOrderParam;
+import com.hawk.ecom.mall.request.LoadOrderDetailDeliveryDataParam;
+import com.hawk.ecom.mall.request.LoadOrderDetailParam;
 import com.hawk.ecom.mall.request.LoadOrderParam;
 import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
 import com.hawk.ecom.muser.service.MallAuthService;
@@ -25,6 +27,8 @@ import com.hawk.ecom.trans.persist.domain.OrderDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailDeliveryDataMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
 import com.hawk.ecom.trans.persist.mapper.OrderMapper;
+import com.hawk.ecom.trans.service.OrderDetailDeliveryDataService;
+import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -36,6 +40,12 @@ import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 public class OrderAdminService {
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
+	
+	@Autowired
+	private OrderDetailDeliveryDataService orderDetailDeliveryDataService;
 
 	@Autowired
 	private PaymentService paymentService;
@@ -175,6 +185,17 @@ public class OrderAdminService {
 	}
 	
 	@Valid
+	public OrderDetailDomain loadOrderDetail (@Valid @NotNull("函数入参") LoadOrderDetailParam loadOrderDetailParam){
+		OrderDetailDomain orderDetailDomain = orderDetailService.load(loadOrderDetailParam.getOrderDetailId());
+		
+		if (!orderDetailDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+			throw new RuntimeException("订单明细不属于当前用户所属商铺");
+		}
+		
+		return orderDetailDomain;
+	}
+	
+	@Valid
 	public PagingQueryResultWrap<OrderDetailDeliveryDataDomain> listOrderDetailDeliveryData(@Valid @NotNull("函数入参") ListOrderDetailDeliveryDataParam listOrderDetailDeliveryDataParam){
 		MybatisParam params = MybatisTools.page(new MybatisParam(), listOrderDetailDeliveryDataParam);
 		params.put("orderId", listOrderDetailDeliveryDataParam.getOrderId());
@@ -188,5 +209,14 @@ public class OrderAdminService {
 		}
 
 		return wrap;
+	}
+	
+	@Valid
+	public OrderDetailDeliveryDataDomain loadOrderDetailDeliveryData(@Valid @NotNull("函数入参") LoadOrderDetailDeliveryDataParam loadOrderDetailDeliveryDataParam){
+		OrderDetailDeliveryDataDomain orderDetailDeliveryDataDomain =orderDetailDeliveryDataService.loadById(loadOrderDetailDeliveryDataParam.getOrderDetailDeliveryDataId());
+		if (!orderDetailDeliveryDataDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
+			throw new RuntimeException("订单明细不属于当前用户所属商铺");
+		}
+		return orderDetailDeliveryDataDomain;
 	}
 }

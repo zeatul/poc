@@ -13,7 +13,7 @@ import com.hawk.ecom.query.persist.domainex.SystemResourceExDomain;
 import com.hawk.ecom.query.persist.mapperex.SystemResourceExMapper;
 
 @Service
-public class SystemResourceService {
+public class SystemResourceQueryService {
 
 	@Autowired
 	private SystemResourceExMapper systemResourceExMapper;

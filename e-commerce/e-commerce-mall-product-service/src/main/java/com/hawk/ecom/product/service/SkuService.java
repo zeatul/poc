@@ -337,6 +337,14 @@ public class SkuService {
 		skuDomain.setSalePrice(createSkuParam.getSalePrice());
 		skuDomain.setThumbnail(createSkuParam.getThumbnail());
 		
+		skuDomain.setSkuExtra1(createSkuParam.getSkuExtra1());
+		skuDomain.setSkuExtra2(createSkuParam.getSkuExtra2());
+		skuDomain.setSkuExtra3(createSkuParam.getSkuExtra3());
+		skuDomain.setSkuExtra4(createSkuParam.getSkuExtra4());
+		skuDomain.setSkuExtra5(createSkuParam.getSkuExtra5());
+		
+		
+		
 		/**
 		 * TODO:修改币种 ,写死为RMB
 		 */

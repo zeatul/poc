@@ -7,6 +7,46 @@ import com.hawk.framework.pub.web.ResponseData;
 public class SkuInfoResponse implements ResponseData{
 
 
+	public String getSkuExtra1() {
+		return skuExtra1;
+	}
+
+	public void setSkuExtra1(String skuExtra1) {
+		this.skuExtra1 = skuExtra1;
+	}
+
+	public String getSkuExtra2() {
+		return skuExtra2;
+	}
+
+	public void setSkuExtra2(String skuExtra2) {
+		this.skuExtra2 = skuExtra2;
+	}
+
+	public String getSkuExtra3() {
+		return skuExtra3;
+	}
+
+	public void setSkuExtra3(String skuExtra3) {
+		this.skuExtra3 = skuExtra3;
+	}
+
+	public String getSkuExtra4() {
+		return skuExtra4;
+	}
+
+	public void setSkuExtra4(String skuExtra4) {
+		this.skuExtra4 = skuExtra4;
+	}
+
+	public String getSkuExtra5() {
+		return skuExtra5;
+	}
+
+	public void setSkuExtra5(String skuExtra5) {
+		this.skuExtra5 = skuExtra5;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -255,5 +295,30 @@ public class SkuInfoResponse implements ResponseData{
 //	 * sku版本号 sku_version
 //	 */
 //	private Integer skuVersion;
+	
+	/**
+	 * 产品Sku扩展属性1 sku_extra1
+	 */
+	private String skuExtra1;
+	
+	/**
+	 * 产品Sku扩展属性2 sku_extra2
+	 */
+	private String skuExtra2;
+	
+	/**
+	 * 产品Sku扩展属性3 sku_extra3
+	 */
+	private String skuExtra3;
+	
+	/**
+	 * 产品Sku扩展属性4 sku_extra4
+	 */
+	private String skuExtra4;
+	
+	/**
+	 * 产品Sku扩展属性5 sku_extra5
+	 */
+	private String skuExtra5;
 	
 }

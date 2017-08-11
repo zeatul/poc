@@ -281,6 +281,7 @@ public class EnvironmentController {
 				createSkuParam.setWeightUnit(ConstProduct.WeightUnit.GRAM);
 				createSkuParam.setWidth(0);
 				createSkuParam.setHeight(0);
+				createSkuParam.setSkuExtra1("1200");
 				SkuDomain skuDomain = skuService.createSku(createSkuParam);
 
 				/**

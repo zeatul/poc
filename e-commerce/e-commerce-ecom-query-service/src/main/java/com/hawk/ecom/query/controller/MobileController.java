@@ -16,7 +16,7 @@ import com.hawk.ecom.base.service.MobileNumberSegmentService;
 import com.hawk.ecom.query.request.LoadChargeDataProductParam;
 import com.hawk.ecom.query.response.LoadChargeDataProductResponse;
 import com.hawk.ecom.query.response.MobileNumberSegmentResponse;
-import com.hawk.ecom.query.service.ProductService;
+import com.hawk.ecom.query.service.ProductQueryService;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
 import com.hawk.framework.pub.web.SuccessResponse;
@@ -36,7 +36,7 @@ public class MobileController {
 	private MobileNumberSegmentService mobileNumberSegmentService;
 	
 	@Autowired
-	private ProductService productService;
+	private ProductQueryService productService;
 	
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {

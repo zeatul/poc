@@ -41,7 +41,6 @@ import com.hawk.ecom.muser.request.MallResetPasswordParam;
 import com.hawk.ecom.muser.request.MallUpdatePasswordParam;
 import com.hawk.ecom.muser.request.MallUpdateUserParam;
 import com.hawk.ecom.muser.request.MallUpdateUserStatusParam;
-import com.hawk.ecom.muser.response.MallUserInfoResponse;
 import com.hawk.ecom.sms.exception.UnMatchedVeriCodeRuntimeException;
 import com.hawk.ecom.sms.service.SmsService;
 import com.hawk.framework.dic.validation.annotation.NotNull;

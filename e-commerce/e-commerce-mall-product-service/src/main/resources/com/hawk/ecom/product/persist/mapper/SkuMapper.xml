@@ -35,6 +35,11 @@
 		sku_version AS "skuVersion" ,
 		delivery_type AS "deliveryType" ,
 		stock_version AS "stockVersion" ,
+		sku_extra1 AS "skuExtra1" ,
+		sku_extra2 AS "skuExtra2" ,
+		sku_extra3 AS "skuExtra3" ,
+		sku_extra4 AS "skuExtra4" ,
+		sku_extra5 AS "skuExtra5" ,
 		create_user_code AS "createUserCode" ,
 		create_date AS "createDate" ,
 		update_user_code AS "updateUserCode" ,
@@ -75,6 +80,11 @@
 			<if test="skuVersion != null"> AND sku_version = #{skuVersion}  </if>
 			<if test="deliveryType != null"> AND delivery_type = #{deliveryType}  </if>
 			<if test="stockVersion != null"> AND stock_version = #{stockVersion}  </if>
+			<if test="skuExtra1 != null"> AND sku_extra1 = #{skuExtra1}  </if>
+			<if test="skuExtra2 != null"> AND sku_extra2 = #{skuExtra2}  </if>
+			<if test="skuExtra3 != null"> AND sku_extra3 = #{skuExtra3}  </if>
+			<if test="skuExtra4 != null"> AND sku_extra4 = #{skuExtra4}  </if>
+			<if test="skuExtra5 != null"> AND sku_extra5 = #{skuExtra5}  </if>
 			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
 			<if test="createDate != null"> AND create_date = #{createDate}  </if>
 			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
@@ -116,6 +126,11 @@
 			<if test="old_skuVersion != null"> AND sku_version = #{old_skuVersion}  </if>			
 			<if test="old_deliveryType != null"> AND delivery_type = #{old_deliveryType}  </if>			
 			<if test="old_stockVersion != null"> AND stock_version = #{old_stockVersion}  </if>			
+			<if test="old_skuExtra1 != null"> AND sku_extra1 = #{old_skuExtra1}  </if>			
+			<if test="old_skuExtra2 != null"> AND sku_extra2 = #{old_skuExtra2}  </if>			
+			<if test="old_skuExtra3 != null"> AND sku_extra3 = #{old_skuExtra3}  </if>			
+			<if test="old_skuExtra4 != null"> AND sku_extra4 = #{old_skuExtra4}  </if>			
+			<if test="old_skuExtra5 != null"> AND sku_extra5 = #{old_skuExtra5}  </if>			
 			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
 			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
 			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
@@ -157,6 +172,11 @@
 			sku_version = #{skuVersion},
 			delivery_type = #{deliveryType},
 			stock_version = #{stockVersion},
+			sku_extra1 = #{skuExtra1},
+			sku_extra2 = #{skuExtra2},
+			sku_extra3 = #{skuExtra3},
+			sku_extra4 = #{skuExtra4},
+			sku_extra5 = #{skuExtra5},
 			create_user_code = #{createUserCode},
 			create_date = #{createDate},
 			update_user_code = #{updateUserCode},
@@ -198,6 +218,11 @@
 			<if test="skuVersion != null">sku_version = #{skuVersion},</if>
 			<if test="deliveryType != null">delivery_type = #{deliveryType},</if>
 			<if test="stockVersion != null">stock_version = #{stockVersion},</if>
+			<if test="skuExtra1 != null">sku_extra1 = #{skuExtra1},</if>
+			<if test="skuExtra2 != null">sku_extra2 = #{skuExtra2},</if>
+			<if test="skuExtra3 != null">sku_extra3 = #{skuExtra3},</if>
+			<if test="skuExtra4 != null">sku_extra4 = #{skuExtra4},</if>
+			<if test="skuExtra5 != null">sku_extra5 = #{skuExtra5},</if>
 			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
 			<if test="createDate != null">create_date = #{createDate},</if>
 			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
@@ -272,6 +297,11 @@
 				sku_version,				
 				delivery_type,				
 				stock_version,				
+				sku_extra1,				
+				sku_extra2,				
+				sku_extra3,				
+				sku_extra4,				
+				sku_extra5,				
 				create_user_code,				
 				create_date,				
 				update_user_code,				
@@ -310,6 +340,11 @@
 			#{skuVersion},
 			#{deliveryType},
 			#{stockVersion},
+			#{skuExtra1},
+			#{skuExtra2},
+			#{skuExtra3},
+			#{skuExtra4},
+			#{skuExtra5},
 			#{createUserCode},
 			#{createDate},
 			#{updateUserCode},

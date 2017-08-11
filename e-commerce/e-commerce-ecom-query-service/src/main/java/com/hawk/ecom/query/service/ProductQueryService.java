@@ -23,7 +23,7 @@ import com.hawk.framework.pub.sql.MybatisTools;
 import com.hawk.framework.pub.sql.PagingQueryResultWrap;
 
 @Service
-public class ProductService {
+public class ProductQueryService {
 
 	@Autowired
 	private ProductExMapper productExMapper;

@@ -15,6 +15,7 @@ import com.hawk.ecom.trans.persist.domain.OrderDetailDomain;
 import com.hawk.ecom.trans.persist.mapper.OrderDetailMapper;
 import com.hawk.ecom.trans.persist.mapperex.OrderDetailExMapper;
 import com.hawk.ecom.trans.request.ListOrderDetailParam;
+import com.hawk.ecom.trans.request.LoadOrderDetailParam;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
 import com.hawk.framework.pub.sql.MybatisParam;
@@ -50,6 +51,15 @@ public class OrderDetailService {
 		}
 
 		return wrap;
+	}
+	
+	@Valid 
+	public OrderDetailDomain loadOrderDetail(@Valid @NotNull("函数入参") LoadOrderDetailParam loadOrderDetailParam ){
+		OrderDetailDomain orderDetailDomain = load(loadOrderDetailParam.getOrderDetailId());
+		if (!orderDetailDomain.getUserCode().equals(AuthThreadLocal.getUserCode())){
+			throw new RuntimeException("订单明细不属于当前登陆用户");
+		}
+		return orderDetailDomain;
 	}
 	
 	@Valid
