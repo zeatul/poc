@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.outer.service.chargeData.ChargeDataConfigure;
 import com.hawk.ecom.outer.service.chargeData.ChargeResult;
-import com.hawk.ecom.outer.service.chargeData.QueryResult;
+import com.hawk.ecom.outer.service.chargeData.ChargeQueryResult;
 import com.hawk.framework.utility.http.HttpExecutor;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.DomainTools;
@@ -326,12 +326,12 @@ public class ChargeDataService {
 	
 	
 	
-	public QueryResult queryChargeResult(String outerOrderNo) throws Exception{
+	public ChargeQueryResult queryChargeResult(String outerOrderNo) throws Exception{
 		logger.info("Start queryChargeResult,outerOrderNo={}",outerOrderNo);
 		QueryRequest QueryRequest = buildQueryRequest(outerOrderNo);	
 		String jsonStr = httpExecutor.post(chargeDataConfigure.getQueryUrl(), QueryRequest, null);
 		logger.info("queryChargeResult Response : outerOrderNo={},result = {}",outerOrderNo,jsonStr);
-		QueryResult queryResult = JsonTools.toObject(jsonStr, QueryResult.class);
+		ChargeQueryResult queryResult = JsonTools.toObject(jsonStr, ChargeQueryResult.class);
 		
 		if (queryResult.getCode().equals(ConstChargeNotifyStatus.SUCCESS)){
 			queryResult.setSuccess(true);

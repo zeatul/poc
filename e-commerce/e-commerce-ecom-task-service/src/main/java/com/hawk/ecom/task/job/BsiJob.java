@@ -5,11 +5,15 @@ import org.slf4j.LoggerFactory;
 
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.task.service.BsiTaskService;
-import com.hawk.ecom.task.service.ChargeDataTaskService;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
+/**
+ * 处理已经支付，还未购买小宝的订单
+ * @author zhp
+ *
+ */
 public class BsiJob implements Runnable{
 	
 	private String taskCode;

@@ -9,6 +9,11 @@ import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
+/**
+ * 处理超期没有支付的订单
+ * @author zhp
+ *
+ */
 public class CloseUnpaidOvertimeOrderJob implements Runnable{
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());

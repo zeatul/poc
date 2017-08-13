@@ -9,19 +9,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.pay.service.PaymentService;
-import com.hawk.ecom.product.constant.ConstProduct;
 import com.hawk.ecom.pub.job.TaskPool;
 import com.hawk.ecom.task.job.BsiJob;
 import com.hawk.ecom.task.job.ChargeDataJob;
+import com.hawk.ecom.task.job.CheckChargeResultJob;
 import com.hawk.ecom.task.job.CheckFailedOrderDetailJob;
 import com.hawk.ecom.task.job.CheckFailedOrderJob;
 import com.hawk.ecom.task.job.CheckSuccessOrderDetailJob;
 import com.hawk.ecom.task.job.CheckSuccessOrderJob;
 import com.hawk.ecom.task.job.CheckUnfinishedPaymentJob;
 import com.hawk.ecom.task.job.CloseUnpaidOvertimeOrderJob;
-import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.persist.domainex.OrderDetailDeliveryDataExDomain;
-import com.hawk.ecom.trans.persist.mapperex.OrderDetailDeliveryDataExMapper;
 import com.hawk.ecom.trans.service.OrderDetailDeliveryDataService;
 import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
@@ -136,6 +134,22 @@ public class JobService {
 			taskPool.execute(job);
 		}
 		logger.info("++++Success to execute batchCheckFailedOrder job");
+	}
+	
+	
+	/**
+	 * 查询作业状态超过10分钟为未完成的，外部订单号不为空的充值交付明细，调用对应的查询接口
+	 */
+	@Scheduled(initialDelay = 15000, fixedDelay = 1000 * 60 * 6)
+	public void batchCheckChargeResult(){
+		logger.info("++++Start to execute batchCheckChargeResult job");
+		List<Integer> orderDetailDeliveryDataIdList = orderDetailDeliveryDataService.loadOrderDeliveryDataForCheckChargeResult();
+		logger.info("Found {} unchecked chargeResult delivery data",orderDetailDeliveryDataIdList.size());
+		for (Integer orderDetailDeliveryDataId : orderDetailDeliveryDataIdList){
+			CheckChargeResultJob job = new CheckChargeResultJob(orderDetailDeliveryDataId);
+			taskPool.execute(job);
+		}
+		logger.info("++++Success to execute batchCheckChargeResult job");
 	}
 
 	/**

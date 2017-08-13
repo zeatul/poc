@@ -243,7 +243,42 @@ public class PaymentService {
 					paymentBillDomain.getOrderCode());
 			PaymentBillDomain olderPaymentBillDomain = paymentBillMapper.loadDynamic(params).get(0);
 
+			boolean hasPaidFailure = false;
 			if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.FAILURE) {
+				logger.info("支付失败,paymentBillCode={}",olderPaymentBillDomain.getPaymentBillCode());
+				hasPaidFailure = true;				
+
+			} else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.SUCCESS) {
+				hasPaidFailure = false;
+				/**
+				 * 支付成功，，直接报错
+				 */
+				orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.PAIED, "支付成功", "支付成功");
+
+				throw new RuntimeException("已经支付成功,paymentBillCode="+olderPaymentBillDomain.getPaymentBillCode());
+			} else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING_PAY) {
+				/**
+				 * 等待支付结果返回。 调用对应的接口查询，根据查询结果再做处理，记录备注，修改状态，生成新的支付单，等等。
+				 * 如果支付目录不变，直接支付，反正是幂等的。
+				 */
+				int hasPaid = hasPaidSuccessfully(olderPaymentBillDomain);
+				if (hasPaid == 1){
+					throw new RuntimeException("已经支付成功,paymentBillCode="+olderPaymentBillDomain.getPaymentBillCode());
+				}else if (hasPaid == -1){
+					hasPaidFailure = true;
+					logger.info("查询，发现支付失败,paymentBillCode={}",olderPaymentBillDomain.getPaymentBillCode());
+				}else{					/**
+					 * 首先关闭支付
+					 */
+					close(olderPaymentBillDomain);
+					logger.info("关闭支付成功,paymentBillCode={}",olderPaymentBillDomain.getPaymentBillCode());
+					hasPaidFailure = true;
+				}
+				
+			}
+			
+			if (hasPaidFailure){
+				logger.info("支付失败,重新生成支付单，使用原paymentBillCode={}",olderPaymentBillDomain.getPaymentBillCode());
 				/**
 				 * 支付失败，当前支付单转为历史记录，生成一张新的支付单
 				 */
@@ -257,20 +292,6 @@ public class PaymentService {
 				 */
 				paymentBillDomain.setPaymentBillCode(olderPaymentBillDomain.getPaymentBillCode());
 				paymentBillMapper.insert(paymentBillDomain);
-
-			} else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.SUCCESS) {
-				/**
-				 * 支付成功，，直接报错
-				 */
-				orderService.updateOrderStatus(paymentBillDomain.getOrderCode(), ConstOrder.OrderStatus.PAIED, "支付成功", "支付成功");
-
-				throw new RuntimeException("已经支付成功");
-			} else if (olderPaymentBillDomain.getPaymentBillStatus() == ConstPay.PaymentBillStatus.WAITING_PAY) {
-				/**
-				 * 等待支付结果返回。 调用对应的接口查询，根据查询结果再做处理，记录备注，修改状态，生成新的支付单，等等。
-				 * 如果支付目录不变，直接支付，反正是幂等的。
-				 */
-				throw new RuntimeException("请等待支付返回通知");
 			}
 		}
 
@@ -291,6 +312,8 @@ public class PaymentService {
 			throw new RuntimeException("未知的支付方式");
 		}
 	}
+	
+	
 
 	/**
 	 * 查询等待超过10分钟的支付单

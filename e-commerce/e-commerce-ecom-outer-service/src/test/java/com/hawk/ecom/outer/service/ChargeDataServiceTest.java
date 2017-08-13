@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.junit.Test;
 
 import com.hawk.ecom.outer.service.chargeData.ChargeResult;
-import com.hawk.ecom.outer.service.chargeData.QueryResult;
+import com.hawk.ecom.outer.service.chargeData.ChargeQueryResult;
 import com.hawk.framework.utility.tools.JsonTools;
 
 public class ChargeDataServiceTest {
@@ -22,7 +22,7 @@ public class ChargeDataServiceTest {
 
 		
 		
-		QueryResult queryResult = service.queryChargeResult("21500360624408322496");
+		ChargeQueryResult queryResult = service.queryChargeResult("21500360624408322496");
 		
 		System.out.println("+++++++++++++ query reulst=" +JsonTools.toJsonString(queryResult	));
 	}

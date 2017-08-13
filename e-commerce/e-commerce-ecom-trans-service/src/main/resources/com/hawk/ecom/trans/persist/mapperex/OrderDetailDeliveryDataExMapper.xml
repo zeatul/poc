@@ -29,13 +29,16 @@
 		SELECT id AS "id" ,
 		order_detail_id AS "orderDetailId",
 		order_id AS "orderId",
-		task_code AS "taskCode" ,
+		task_code AS
+		"taskCode" ,
 		outer_product_id AS "outerProductId",
 		benef_mobile_number AS "benefMobileNumber"
 		FROM t_tra_order_detail_delivery_data a
-		WHERE a.task_status = #{taskStatus} AND a.exec_times = 0 AND delivery_type = #{deliveryType}
+		WHERE a.task_status =
+		#{taskStatus} AND a.exec_times = 0 AND delivery_type = #{deliveryType}
 		AND
-		EXISTS (SELECT 1 FROM t_tra_order b WHERE a.order_id = b.id AND b.order_status = #{orderStatus})
+		EXISTS (SELECT 1 FROM t_tra_order b WHERE a.order_id = b.id AND b.order_status =
+		#{orderStatus})
 		ORDER BY a.schedule_exec_date asc LIMIT 0,#{limit}
 	</select>
 
@@ -45,7 +48,8 @@
 		order_id AS "orderId",
 		task_code AS "taskCode" ,
 		outer_product_id AS "outerProductId",
-		benef_mobile_number AS "benefMobileNumber"
+		benef_mobile_number
+		AS "benefMobileNumber"
 		FROM t_tra_order_detail_delivery_data a
 		WHERE a.task_status in
 		<foreach item="item" index="index" collection="taskStatusList" open="(" separator="," close=")">
@@ -54,8 +58,17 @@
 		AND a.exec_times &lt; a.max_exec_times
 		AND delivery_type = #{deliveryType}
 		AND a.schedule_exec_date &lt; now()
-		AND EXISTS (SELECT 1 FROM t_tra_order b WHERE a.order_id = b.id AND b.order_status = #{orderStatus})
-		ORDER BY a.schedule_exec_date asc 
+		AND EXISTS (SELECT 1 FROM t_tra_order b WHERE
+		a.order_id = b.id AND b.order_status = #{orderStatus})
+		ORDER BY a.schedule_exec_date asc
 		LIMIT 0,#{limit}
+	</select>
+
+	<select id="loadOrderDeliveryDataForCheckChargeResult" resultType="Integer">
+		SELECT id as "id"
+		FROM t_tra_order_detail_delivery_data
+		WHERE delivery_type = #{deliveryType}
+		AND update_date <![CDATA[ < ]]> #{maxDate}
+		AND delivery_status = #{deliveryStatus}
 	</select>
 </mapper>

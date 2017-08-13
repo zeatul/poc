@@ -9,6 +9,11 @@ import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
+/**
+ * 处理交付失败的订单明细
+ * @author zhp
+ *
+ */
 public class CheckFailedOrderDetailJob implements Runnable {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());

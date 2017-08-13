@@ -1,6 +1,6 @@
 package com.hawk.ecom.outer.service.chargeData;
 
-public class QueryResult {
+public class ChargeQueryResult {
 	
 	public boolean isProcessing() {
 		return isProcessing;

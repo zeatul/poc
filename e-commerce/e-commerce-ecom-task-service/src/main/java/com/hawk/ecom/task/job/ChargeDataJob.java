@@ -9,6 +9,11 @@ import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
+/**
+ * 处理已经支付，还未充值的订单
+ * @author zhp
+ *
+ */
 public class ChargeDataJob implements Runnable{
 	
 	private String taskCode;

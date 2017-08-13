@@ -80,14 +80,17 @@ public class ChargeDataNotifyService {
 
 		if (ConstChargeNotifyStatus.SUCCESS.equals(outerOrderStatus)) {
 			updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.SUCCESS);
+			updateDomain.setDeliveryStatusMemo("通知返回成功");
 			rtnCode = 1;
 			job = new CheckSuccessOrderDetailJob(orderDetailId);
 		} else if (ConstChargeNotifyStatus.FAILURE.equals(outerOrderStatus)) {
 			updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.FAILURE);
+			updateDomain.setDeliveryStatusMemo("通知返回失败");
 			rtnCode = -1;
 			job = new CheckFailedOrderDetailJob(orderDetailId);
 		} else if (ConstChargeNotifyStatus.PROCESSING.equals(outerOrderStatus)) {
 			updateDomain.setDeliveryStatus(ConstOrder.DeliveryStatus.PROCESSING);
+			updateDomain.setDeliveryStatusMemo("通知返回处理中");
 			rtnCode = 0;
 		}else{
 			throw new RuntimeException("unknown outerOrderStatus="+outerOrderStatus);

@@ -3,12 +3,16 @@ package com.hawk.ecom.task.job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hawk.ecom.trans.service.OrderDetailService;
 import com.hawk.ecom.trans.service.OrderService;
 import com.hawk.framework.pub.cache.CacheService;
 import com.hawk.framework.pub.spring.FrameworkContext;
 import com.hawk.framework.utility.tools.StringTools;
 
+/**
+ * 处理明细已经完成的订单
+ * @author zhp
+ *
+ */
 public class CheckSuccessOrderJob implements Runnable {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
