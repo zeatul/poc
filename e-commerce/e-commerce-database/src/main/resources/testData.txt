@@ -1,0 +1,73 @@
+对,已经支付，可以充流量
+{
+	"data": {
+		"id": 1002697,
+		"storeCode": "ST000001",
+		"orderCode": "20170814001010002",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-08-14 00:23:17",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
+}
+https://vstst.fexie.com.cn/ecom_trans_test/ecom/pay/wap2?orderId=1002697&paymentCategoryCode=alipay&t=7e5c0dcb-76ec-487a-9270-a5ddfaa03405
+
+支付成功:out_trade_no=20170814001010001,trade_no=2017081421001004580223071483
+
+错，已经支付，不可以充流量
+{
+	"data": {
+		"id": 1002700,
+		"storeCode": "ST000001",
+		"orderCode": "20170814001010003",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-08-14 00:25:22",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
+}
+https://vstst.fexie.com.cn/ecom_trans_test/ecom/pay/wap2?orderId=1002700&paymentCategoryCode=alipay&t=7e5c0dcb-76ec-487a-9270-a5ddfaa03405
+支付成功:out_trade_no=20170814001010002,trade_no=2017081421001004580223046285
+
+錯，未生成支付单
+{
+	"data": {
+		"id": 1002707,
+		"storeCode": "ST000001",
+		"orderCode": "20170814001010004",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-08-14 00:33:11",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
+}
+
+錯，生成支付单
+{
+	"data": {
+		"id": 1002711,
+		"storeCode": "ST000001",
+		"orderCode": "20170814001010005",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-08-14 00:34:54",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
+}
+https://vstst.fexie.com.cn/ecom_trans_test/ecom/pay/wap2?orderId=1002711&paymentCategoryCode=alipay&t=7e5c0dcb-76ec-487a-9270-a5ddfaa03405

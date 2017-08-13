@@ -1,7 +1,15 @@
 {
-	"orderNo": "11502348808753147653",
-	"cstmOrderNo": "e66361ade35c4510871f3d7e135f8106",
-	"status": "0007",
-	"msg": "开通成功",
-	"timeStamp": "20170810150700"
+	"data": {
+		"id": 1002711,
+		"storeCode": "ST000001",
+		"orderCode": "20170814001010005",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-08-14 00:34:54",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
 }

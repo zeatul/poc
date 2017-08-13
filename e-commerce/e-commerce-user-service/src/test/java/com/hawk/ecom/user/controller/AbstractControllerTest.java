@@ -11,6 +11,8 @@ public class AbstractControllerTest {
 	
 	private String base = "http://localhost:8080";
 	
+//	private String base = "https://vstst.fexie.com.cn/ecom_trans_test";
+	
 	protected String getUrl(String path){
 //		下表中列出了一些URL特殊符号及编码 十六进制值 
 //		1.+ URL 中+号表示空格 %2B 
