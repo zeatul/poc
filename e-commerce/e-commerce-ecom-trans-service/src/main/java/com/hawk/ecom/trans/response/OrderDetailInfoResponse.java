@@ -7,6 +7,14 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class OrderDetailInfoResponse implements ResponseData{
 	
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -83,6 +91,11 @@ public class OrderDetailInfoResponse implements ResponseData{
 	 * 主键 id
 	 */
 	private Integer id;
+	
+	/**
+	 * 订单主键 order_id
+	 */
+	private Integer orderId;
 
 	/**
 	 * 商户编号 store_code

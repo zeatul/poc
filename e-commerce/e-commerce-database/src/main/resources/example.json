@@ -1,15 +1,21 @@
 {
 	"data": {
-		"id": 1002711,
-		"storeCode": "ST000001",
-		"orderCode": "20170814001010005",
-		"orderType": 2,
-		"orderStatus": 0,
-		"orderTransPrice": 0.01,
-		"orderPayExpireTime": "2017-08-14 00:34:54",
-		"currency": 156,
-		"orderDesc": "流量充值",
-		"payType": 1
+		"records": [
+			{
+				"id": 1004922,
+				"orderDetailId": 1004921,
+				"orderId": 1004920,
+				"storeCode": "ST000001",
+				"orderCode": "20170814161010003",
+				"deliveryType": 5000,
+				"outerProductId": "1004641",
+				"benefMobileNumber": "18666075617",
+				"deliveryStatus": 0,
+				"createDate": "2017-08-14 16:24:56"
+			}
+		],
+		"count": 1,
+		"dbcount": 1
 	},
 	"code": 1
 }
