@@ -66,7 +66,7 @@ public class MinValidator implements ConstraintValidator<Min, Object>{
 		
 		
 		
-		throw new RuntimeException("unsupport object type for empty checking");
+		throw new RuntimeException("unsupport object type for min value checking");
 	}
 
 	

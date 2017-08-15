@@ -2,6 +2,7 @@ package com.hawk.ecom.muser.request;
 
 import com.hawk.ecom.muser.annotation.MallNotLogin;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
+import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.ValidWord;
 
 public class MallCreateUserParam {
@@ -105,14 +106,14 @@ public class MallCreateUserParam {
 	 * 证件类型 id_type
 	 */
 	@ValidWord
-	@NotEmpty
+	@NotNull
 	private Integer idType = 1;
 	
 	/**
 	 * 证件号码 id_number
 	 */
 	@ValidWord
-	@NotEmpty
+	@NotNull
 	private String idNumber;
 	
 

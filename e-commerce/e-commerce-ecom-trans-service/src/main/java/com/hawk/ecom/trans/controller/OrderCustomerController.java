@@ -116,7 +116,7 @@ public class OrderCustomerController {
 		return SuccessResponse.build(result);
 	}
 	
-	@RequestMapping(value = "/detail/deliveryData/load/id/{deliveryDataId}", method = { POST })
+	@RequestMapping(value = "/detail/deliveryData/load/id/{deliveryDataId}", method = { POST,GET })
 	public WebResponse<OrderDetailDeliveryDataInfoResponse> loadOrderDetailDeliveryData(@PathVariable Integer deliveryDataId) throws Exception {
 		LoadOrderDetailDeliveryDataParam param = new LoadOrderDetailDeliveryDataParam();
 		param.setUserCode(AuthThreadLocal.getUserCode());

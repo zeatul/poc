@@ -17,7 +17,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 
-	private String token = "8549fc85-2057-41dd-ac54-ebfa275d5565";
+	private String token = "3f7a5f55-b1c3-4901-8505-339803b491a1";
 
 	// @Test
 	public void testCreateChargeOrder() {
@@ -98,7 +98,7 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	@Test
+//	@Test
 	public void testListOrderDetailDeliveryData() {
 		String url = getUrl("/ecom/trans/order/detail/deliveryData/list");
 		ListOrderDetailDeliveryDataParam request = new ListOrderDetailDeliveryDataParam();
@@ -113,6 +113,16 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		params.add(new HttpParam("t", token));
 		System.out.println("request=" + JsonTools.toJsonString(request));
 		String result = httpExecutor.post(url, request, params);
+		System.out.println("result=" + result);
+	}
+
+	@Test
+	public void testLoadOrderDetailDeliveryData() {
+		String url = getUrl("/ecom/trans/order/detail/deliveryData/load/id/1004922");
+		List<HttpParam> params = new ArrayList<HttpParam>();
+		params.add(new HttpParam("version", "1.0"));
+		params.add(new HttpParam("t", token));
+		String result = httpExecutor.get(url, params);
 		System.out.println("result=" + result);
 	}
 }
