@@ -57,9 +57,9 @@ public class PaymentBillHistoryDomain implements Serializable {
 	private String userCode;
 	
 	/**
-	 * 订单成交价 order_trans_price
+	 * 订单成交价 total_amount
 	 */
-	private BigDecimal orderTransPrice;
+	private BigDecimal totalAmount;
 	
 	/**
 	 * 币种 currency
@@ -242,18 +242,18 @@ public class PaymentBillHistoryDomain implements Serializable {
 	
 	/**
 	 * 
-	 * @return 订单成交价 order_trans_price
+	 * @return 订单成交价 total_amount
 	 */
-	public BigDecimal getOrderTransPrice(){
-		return orderTransPrice;
+	public BigDecimal getTotalAmount(){
+		return totalAmount;
 	}
 	
 	/**
 	 * 
-	 * @param orderTransPrice 订单成交价 order_trans_price
+	 * @param totalAmount 订单成交价 total_amount
 	 */	
-	public void setOrderTransPrice (BigDecimal orderTransPrice) {
-		this.orderTransPrice = orderTransPrice;
+	public void setTotalAmount (BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 	
 	/**

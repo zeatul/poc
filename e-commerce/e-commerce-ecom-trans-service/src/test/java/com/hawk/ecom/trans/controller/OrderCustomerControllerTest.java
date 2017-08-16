@@ -17,9 +17,9 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 
-	private String token = "3f7a5f55-b1c3-4901-8505-339803b491a1";
+	private String token = "efa28ee4-6af1-442d-af2c-e4fb44e281b3";
 
-	// @Test
+	@Test
 	public void testCreateChargeOrder() {
 		String url = getUrl("/ecom/trans/order/create");
 		CreateOrderParam request = new CreateOrderParam();
@@ -98,7 +98,7 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-//	@Test
+	// @Test
 	public void testListOrderDetailDeliveryData() {
 		String url = getUrl("/ecom/trans/order/detail/deliveryData/list");
 		ListOrderDetailDeliveryDataParam request = new ListOrderDetailDeliveryDataParam();
@@ -116,7 +116,7 @@ public class OrderCustomerControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	@Test
+	// @Test
 	public void testLoadOrderDetailDeliveryData() {
 		String url = getUrl("/ecom/trans/order/detail/deliveryData/load/id/1004922");
 		List<HttpParam> params = new ArrayList<HttpParam>();

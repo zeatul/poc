@@ -279,13 +279,19 @@ public class PaymentService {
 			
 			if (hasPaidFailure){
 				logger.info("支付失败,重新生成支付单，使用原paymentBillCode={}",olderPaymentBillDomain.getPaymentBillCode());
+				
+				paymentBillMapper.delete(olderPaymentBillDomain.getId());
+				
 				/**
 				 * 支付失败，当前支付单转为历史记录，生成一张新的支付单
 				 */
 
 				PaymentBillHistoryDomain paymentBillHistoryDomain = DomainTools.copy(olderPaymentBillDomain, PaymentBillHistoryDomain.class);
 				paymentBillHistoryDomain.setDeleteDate(now);
+				paymentBillHistoryDomain.setDeleteUserCode(AuthThreadLocal.getUserCode());
 				paymentBillHistoryMapper.insert(paymentBillHistoryDomain);
+				
+				
 
 				/**
 				 * 生成新的支付单，保留原始的支付单号
