@@ -1,15 +1,23 @@
 {
 	"data": {
-		"id": 1004935,
+		"id": 1004922,
+		"orderDetailId": 1004921,
+		"orderId": 1004920,
 		"storeCode": "ST000001",
-		"orderCode": "20170816101010007",
-		"orderType": 2,
-		"orderStatus": 0,
-		"orderTransPrice": 0.01,
-		"orderPayExpireTime": "2017-08-16 11:12:11",
-		"currency": 156,
-		"orderDesc": "流量充值",
-		"payType": 1
+		"orderCode": "20170814161010003",
+		"userCode": "usr100001",
+		"deliveryType": 5000,
+		"outerProductId": "1004641",
+		"benefMobileNumber": "18666075617",
+		"deliveryStatus": 0,
+		"taskCode": "20170814161010003",
+		"taskName": "流量充值联通1000M上海本地使用",
+		"taskStatus": 0,
+		"scheduleExecDate": "2017-08-14 16:24:56",
+		"execTimes": 0,
+		"maxExecTimes": 1,
+		"createDate": "2017-08-14 16:24:56",
+		"updateDate": "2017-08-14 16:24:56"
 	},
 	"code": 1
 }

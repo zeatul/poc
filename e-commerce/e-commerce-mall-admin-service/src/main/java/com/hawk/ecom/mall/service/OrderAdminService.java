@@ -157,9 +157,7 @@ public class OrderAdminService {
 	@Valid
 	public OrderDomain loadOrder (@Valid @NotNull("函数入参") LoadOrderParam loadOrderParam){
 		OrderDomain orderDomain = orderService.loadOrder(loadOrderParam.getOrderId());
-		if (!orderDomain.getUserCode().equals(AuthThreadLocal.getUserCode())){
-			throw new OrderNotBelongToLoginUserRuntimeException();
-		}
+		
 		if (!orderDomain.getStoreCode().equals(AuthThreadLocal.getStoreCode())){
 			throw new RuntimeException("订单不属于当前登陆用户所属商铺");
 		}

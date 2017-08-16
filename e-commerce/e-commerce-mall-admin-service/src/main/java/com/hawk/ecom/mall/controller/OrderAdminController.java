@@ -50,7 +50,7 @@ public class OrderAdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/closeUnpaidOrder/order/{orderId}", method = {POST,GET})
+	@RequestMapping(value = "/closeUnpaidOrder/orderId/{orderId}", method = {POST,GET})
 	public WebResponse<ResponseData> closeUnpaidOrder(HttpServletRequest request,@PathVariable Integer orderId) throws Exception {
 		
 		CloseUnpaidOrderParam param = new CloseUnpaidOrderParam();
@@ -70,7 +70,7 @@ public class OrderAdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/order/list", method = POST)
+	@RequestMapping(value = "/list", method = POST)
 	public WebResponse<MultiResponse<OrderInfoResponse>> listOrder(HttpServletRequest request) throws Exception {
 		ListOrderParam param = HttpRequestTools.parse(request, ListOrderParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
@@ -87,7 +87,7 @@ public class OrderAdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/load/id/{orderId}", method = {GET,POST})
+	@RequestMapping(value = "/load/orderId/{orderId}", method = {GET,POST})
 	public WebResponse<OrderInfoResponse> loadOrder (@PathVariable Integer orderId) throws Exception{
 		LoadOrderParam param = new  LoadOrderParam();
 		param.setUserCode(AuthThreadLocal.getUserCode());
@@ -113,7 +113,7 @@ public class OrderAdminController {
 		return SuccessResponse.build(result);
 	} 
 	
-	@RequestMapping(value = "/detail/load/id/{orderDetailId}", method = {GET,POST})
+	@RequestMapping(value = "/detail/load/orderDetailId/{orderDetailId}", method = {GET,POST})
 	public WebResponse<OrderDetailInfoResponse> loadOrderDetail(@PathVariable Integer orderDetailId)throws Exception {
 		LoadOrderDetailParam param = new LoadOrderDetailParam();
 		param.setOrderDetailId(orderDetailId);
@@ -140,7 +140,7 @@ public class OrderAdminController {
 		return SuccessResponse.build(result);
 	} 
 	
-	@RequestMapping(value = "/detail/deliveryData/load/id/{deliveryDataId}", method = {POST,GET})
+	@RequestMapping(value = "/detail/deliveryData/load/deliveryDataId/{deliveryDataId}", method = {POST,GET})
 	public WebResponse<OrderDetailDeliveryDataInfoResponse> loadOrderDetailDeliveryData(@PathVariable Integer deliveryDataId) throws Exception {
 		LoadOrderDetailDeliveryDataParam param = new LoadOrderDetailDeliveryDataParam();
 		param.setOrderDetailDeliveryDataId(deliveryDataId);

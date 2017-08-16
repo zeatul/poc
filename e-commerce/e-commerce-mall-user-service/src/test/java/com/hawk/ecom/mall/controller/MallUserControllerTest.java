@@ -23,7 +23,7 @@ public class MallUserControllerTest extends AbstractControllerTest {
 	
 	private String token = "15c7ff73-9859-49e3-8d81-33ee9d93533e";
 
-//	@Test
+	@Test
 	public void testMallLogin() {
 		String url = getUrl("/mall/admin/user/login");
 		List<HttpParam> params = new ArrayList<HttpParam>();
@@ -87,7 +87,7 @@ public class MallUserControllerTest extends AbstractControllerTest {
 		System.out.println("result=" + result);
 	}
 
-	 @Test
+//	 @Test
 	public void testCreate() {
 		String url = getUrl("/mall/admin/user/create");
 		MallCreateUserParam request = new MallCreateUserParam();
