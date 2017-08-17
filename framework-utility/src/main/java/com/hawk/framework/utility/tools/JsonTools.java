@@ -6,12 +6,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonTools {
+	
+	private static Logger logger = LoggerFactory.getLogger(JsonTools.class);
 
 	protected final static ObjectMapper objectMapper;
 
@@ -37,6 +43,7 @@ public class JsonTools {
 		try {
 			return objectMapper.readValue(jsonStr, clazz);
 		} catch (Exception e) {
+			logger.error("Failed to convert jsonStr to object,jsonStr={},clazz={}",jsonStr,clazz.getName());
 			throw new RuntimeException(e);
 		}
 	}
