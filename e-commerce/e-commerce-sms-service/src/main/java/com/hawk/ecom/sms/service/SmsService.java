@@ -93,9 +93,7 @@ public class SmsService {
 		 */
 
 		
-		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);
-		
-		
+		String key2 = StringTools.concatWithSymbol("_", "sms","veriCode","timesperday",mobileNumber);		
 		
 		V v = cacheService.get(key2, V.class);
 		if (v!=null){

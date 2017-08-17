@@ -24,10 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.hawk.ecom.pay.request.AlipayNotifyParam;
 import com.hawk.ecom.pay.request.NotifyParam;
+import com.hawk.ecom.pay.response.AlipayReturnResponse;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.service.AlipayService;
 import com.hawk.ecom.pay.service.PaymentService;
+import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.framework.pub.web.HttpResponseHandler;
+import com.hawk.framework.pub.web.SuccessResponse;
+import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
@@ -65,7 +69,7 @@ public class AlipayController {
 	}
 
 	@RequestMapping(value = "/wap/return", method = { POST, GET })
-	public void wapReturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public WebResponse<AlipayReturnResponse> wapReturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("+++++alipay wap return start!!!!");
 
 		// 获取支付宝GET过来反馈信息
@@ -106,14 +110,24 @@ public class AlipayController {
 			// 请在这里加上商户的业务逻辑程序代码
 			// 该页面可做页面美工编辑
 			String result = "支付成功:out_trade_no=" + out_trade_no + ",trade_no=" + trade_no;
-			HttpResponseHandler.printHtmlASAP(response, result);
+			logger.info(result);
+			
+			AlipayReturnResponse alipayReturnResponse = new AlipayReturnResponse();
+			alipayReturnResponse.setOutTradeNo(out_trade_no);
+			alipayReturnResponse.setTradeNo(trade_no);
+			
+			return SuccessResponse.build(alipayReturnResponse);
+			
+//			HttpResponseHandler.printHtmlASAP(response, result);
 			// ——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 		} else {
 			// 该页面可做页面美工编辑
 			String result = "验证失败";
-			HttpResponseHandler.printHtmlASAP(response, result);
+			logger.info(result);
+//			HttpResponseHandler.printHtmlASAP(response, result);
+			throw new RuntimeException(result);
 		}
 
 	}
