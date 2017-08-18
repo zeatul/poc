@@ -53,7 +53,7 @@ public class BsiTaskService {
 		updateDomain.setLastExecBeginTime(new Date());
 		updateDomain.setId(orderDetailDeliveryDataDomain.getId());
 		updateDomain.setUpdateUserCode(AuthThreadLocal.getUserCode());
-		updateDomain.setExecTimes(updateDomain.getExecTimes() + 1);
+		updateDomain.setExecTimes(orderDetailDeliveryDataDomain.getExecTimes() + 1);
 		updateDomain.setLastExecComputer(SystemTools.hostname());
 		updateDomain.setLastExecProcessId(SystemTools.processId());
 

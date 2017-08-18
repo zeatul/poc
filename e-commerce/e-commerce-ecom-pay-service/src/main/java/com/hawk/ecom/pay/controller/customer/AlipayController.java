@@ -3,9 +3,7 @@ package com.hawk.ecom.pay.controller.customer;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,7 +26,6 @@ import com.hawk.ecom.pay.response.AlipayReturnResponse;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.service.AlipayService;
 import com.hawk.ecom.pay.service.PaymentService;
-import com.hawk.ecom.product.response.ProductInfoResponse;
 import com.hawk.framework.pub.web.HttpResponseHandler;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
