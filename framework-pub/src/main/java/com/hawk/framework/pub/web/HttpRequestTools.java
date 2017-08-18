@@ -6,11 +6,15 @@ import java.io.InputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 public class HttpRequestTools {
+	
+	private static Logger logger = LoggerFactory.getLogger(HttpRequestTools.class);
 
 	/**
 	 * 解析输入的请求参数
@@ -35,6 +39,8 @@ public class HttpRequestTools {
 		}
 
 		T t = JsonTools.toObject(input, clazz);
+		
+		logger.info("requestParams={}",JsonTools.toJsonString(t));
 
 		return t;
 
