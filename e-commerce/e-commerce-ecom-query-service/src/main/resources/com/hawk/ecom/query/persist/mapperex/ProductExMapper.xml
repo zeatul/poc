@@ -109,8 +109,12 @@
 				#{item}
 			</foreach>
 			GROUP BY a.id
-		) t2
-		WHERE t1.id = t2.id and t2.count = #{count}
+		) t2,t_prd_product t3
+		WHERE t1.id = t2.id 
+		and t2.count = #{count}
+		and t1.sku_status = #{skuStatus} 
+		and t1.product_id = t3.id 
+		and t3.product_status = #{productStatuss}
 	</select>
 	
 	<select id="loadChargeDataProduct" resultType="ProductSkuExDomain">
@@ -137,8 +141,12 @@
 				#{item}
 			</foreach>
 			GROUP BY a.id
-		) t2
-		WHERE t1.id = t2.id and t2.count = #{count}
+		) t2,t_prd_product t3
+		WHERE t1.id = t2.id 
+		and t2.count = #{count} 
+		and t1.sku_status = #{skuStatus} 
+		and t1.product_id = t3.id 
+		and t3.product_status = #{productStatuss}
 	</select>
 
 </mapper>

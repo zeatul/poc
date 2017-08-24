@@ -96,7 +96,7 @@ public class ProductQueryService {
 		Integer dataSizeAttrNameId = findAttrNameId(ConstAttrNameCode.Mobile.DATA_SIZE);
 		Integer regionTypeAttrNameId = findAttrNameId(ConstAttrNameCode.Mobile.REGION_TYPE);
 
-		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.loadChargeDataProduct(attrValueIdList, attrValueIdList.size(), dataSizeAttrNameId,regionTypeAttrNameId);
+		List<ProductSkuExDomain> productSkuExDomainList = productExMapper.loadChargeDataProduct(attrValueIdList, attrValueIdList.size(), dataSizeAttrNameId,regionTypeAttrNameId,100,100);
 
 		return productSkuExDomainList;
 
@@ -112,7 +112,7 @@ public class ProductQueryService {
 			List<Integer> attrValueIdList = new ArrayList<Integer>();
 			attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Bsi.GRADE.toString(), bsiProductExDomain.getBsiGrade().toString()));
 			attrValueIdList.add(findAttrValueId(ConstAttrNameCode.Bsi.INSURANCE_PERIOD_MONTH.toString(), bsiProductExDomain.getBsiInsurancePeriodMonth().toString()));
-			List<ProductSkuExDomain> productSkuExDomainList = productExMapper.findSkuByAttrValueIds(attrValueIdList, attrValueIdList.size());
+			List<ProductSkuExDomain> productSkuExDomainList = productExMapper.findSkuByAttrValueIds(attrValueIdList, attrValueIdList.size(),100,100);
 			
 			for ( ProductSkuExDomain productSkuExDomain : productSkuExDomainList){
 				productSkuExDomain.setBsiGrade(bsiProductExDomain.getBsiGrade());
