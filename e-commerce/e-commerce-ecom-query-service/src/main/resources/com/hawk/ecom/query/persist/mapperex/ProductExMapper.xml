@@ -114,7 +114,7 @@
 		and t2.count = #{count}
 		and t1.sku_status = #{skuStatus} 
 		and t1.product_id = t3.id 
-		and t3.product_status = #{productStatuss}
+		and t3.product_status = #{productStatus}
 	</select>
 	
 	<select id="loadChargeDataProduct" resultType="ProductSkuExDomain">
@@ -146,7 +146,7 @@
 		and t2.count = #{count} 
 		and t1.sku_status = #{skuStatus} 
 		and t1.product_id = t3.id 
-		and t3.product_status = #{productStatuss}
+		and t3.product_status = #{productStatus}
 	</select>
 
 </mapper>
