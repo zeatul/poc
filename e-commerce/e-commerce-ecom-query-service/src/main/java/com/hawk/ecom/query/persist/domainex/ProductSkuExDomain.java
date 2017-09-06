@@ -6,6 +6,24 @@ import com.hawk.framework.pub.web.ResponseData;
 
 public class ProductSkuExDomain implements ResponseData{
 	
+	
+
+	public Integer getOuterProductId() {
+		return outerProductId;
+	}
+
+	public void setOuterProductId(Integer outerProductId) {
+		this.outerProductId = outerProductId;
+	}
+
+	public Integer getOuterPhoneModelId() {
+		return outerPhoneModelId;
+	}
+
+	public void setOuterPhoneModelId(Integer outerPhoneModelId) {
+		this.outerPhoneModelId = outerPhoneModelId;
+	}
+
 	public String getSkuExtra1() {
 		return skuExtra1;
 	}
@@ -163,6 +181,16 @@ public class ProductSkuExDomain implements ResponseData{
 	 * 产品Sku扩展属性1 sku_extra1
 	 */
 	private String skuExtra1;
+	
+	/**
+	 * 外部产品ID
+	 */
+	private Integer outerProductId;
+	
+	/**
+	 * 外部手机型号Id
+	 */
+	private Integer outerPhoneModelId;
 	
 	
 }

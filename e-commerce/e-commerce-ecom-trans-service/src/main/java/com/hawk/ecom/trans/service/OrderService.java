@@ -217,6 +217,7 @@ public class OrderService {
 					orderDetailDeliveryDataDomain.setBenefName(bsiParam.getBenefName());
 					orderDetailDeliveryDataDomain.setImei(bsiParam.getImei());
 					orderDetailDeliveryDataDomain.setOuterPhoneModelId(bsiParam.getOuterPhoneModelId().toString());
+					
 					orderDetailDeliveryDataDomain.setOuterProductId(bsiParam.getOuterProductId().toString());
 					
 					

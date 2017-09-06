@@ -22,4 +22,5 @@ public interface BsiExMapper {
 	 */
 	List<BsiProductExDomain> queryProductByPhoneModelId(@Param("bsiPhoneModelId") Integer bsiPhoneModelId);
 
+	
 }

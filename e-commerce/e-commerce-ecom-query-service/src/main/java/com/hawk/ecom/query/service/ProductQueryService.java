@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hawk.ecom.base.persist.domainex.BsiProductExDomain;
+import com.hawk.ecom.base.persist.mapper.BsiProductMapper;
 import com.hawk.ecom.base.persist.mapperex.BsiExMapper;
 import com.hawk.ecom.pub.constant.ConstAttrNameCode;
 import com.hawk.ecom.query.exception.AttrNameNotFoundRuntimeException;
@@ -30,6 +31,9 @@ public class ProductQueryService {
 	
 	@Autowired
 	private BsiExMapper bsiExMapper;
+	
+	@Autowired
+	private BsiProductMapper bsiProductMapper;
 
 	public List<ProductCategoryExDomain> listCategory() {
 		return productExMapper.listCategory();
@@ -117,6 +121,14 @@ public class ProductQueryService {
 			for ( ProductSkuExDomain productSkuExDomain : productSkuExDomainList){
 				productSkuExDomain.setBsiGrade(bsiProductExDomain.getBsiGrade());
 				productSkuExDomain.setBsiInsurancePeriodMonth(bsiProductExDomain.getBsiInsurancePeriodMonth());
+				productSkuExDomain.setOuterPhoneModelId(loadBsiProductParam.getBsiPhoneModelId());
+				
+				
+				MybatisParam params = new MybatisParam().put("bsiGrade", bsiProductExDomain.getBsiGrade()).put("bsiInsurancePeriodMonth",bsiProductExDomain.getBsiInsurancePeriodMonth());
+				;
+				
+				productSkuExDomain.setOuterProductId(MybatisTools.single(bsiProductMapper.loadDynamic(params)).getBsiProductId());
+				
 				result.add(productSkuExDomain);
 				
 			}
