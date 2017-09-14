@@ -17,6 +17,10 @@ public class WXPayConfigImpl extends WXPayConfig{
         certStream.read(this.certData);
         certStream.close();
     }
+    
+    public WXPayConfigImpl(InputStream certStrem , String appId, String mchId,String key)throws Exception{
+    	
+    }
 
     
 

@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.github.wxpay.sdk.WXPay;
+import com.github.wxpay.sdk.WXPayConfigImpl;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.framework.pub.pk.MysqlPkGenerator;
 import com.hawk.framework.pub.pk.PkGenService;
@@ -46,12 +48,12 @@ public class EcomPayRootConfig {
 		return client;
 	}
 	
-//	@Bean
-//	public WXPay wxPay() throws Exception{
-//		String certPath = null;
-//		WXPayConfigImpl config = new WXPayConfigImpl(certPath);
-//	    return new WXPay(config);
-//	}
+	@Bean
+	public WXPay wxPay() throws Exception{
+		String certPath = null;
+		WXPayConfigImpl config = new WXPayConfigImpl(certPath);
+	    return new WXPay(config);
+	}
 	
 	@Bean("paymentBillCodeSequenceService")
 	public PkGenService orderCodeSequenceService(JdbcTemplate jdbcTemplate){
