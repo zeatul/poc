@@ -636,7 +636,7 @@ public class SkuService {
 		/**
 		 * 插入Sku属性
 		 */
-		insertSkuAttr(productAttrDomainList, now, userCode, productId, skuDomain.getId());
+		insertSkuAttr(addProductAttrDomainList, now, userCode, productId, skuDomain.getId());
 
 	}
 	
