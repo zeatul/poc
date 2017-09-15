@@ -99,5 +99,7 @@ public abstract class WXPayConfig {
     public int getReportBatchSize() {
         return 10;
     }
+    
+    public abstract String getNotifyUrl();
 
 }

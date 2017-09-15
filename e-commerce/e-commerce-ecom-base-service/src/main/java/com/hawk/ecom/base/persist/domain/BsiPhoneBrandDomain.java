@@ -1,5 +1,6 @@
 package com.hawk.ecom.base.persist.domain;
 import java.io.Serializable;
+import java.util.UUID;
 
 
 
@@ -100,5 +101,8 @@ public class BsiPhoneBrandDomain implements Serializable {
 	}
 	
 
+	public static void main(String[] args){
+		System.out.println(UUID.randomUUID().toString().replace("-", ""));
+	}
 
 }

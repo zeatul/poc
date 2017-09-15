@@ -17,7 +17,7 @@ import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.hawk.ecom.pay.persist.domain.AlipayInfoDomain;
 import com.hawk.ecom.pay.persist.mapper.AlipayInfoMapper;
 import com.hawk.ecom.pay.request.AlipayNotifyParam;
-import com.hawk.ecom.pay.request.AlipayTradeParam;
+import com.hawk.ecom.pay.request.TradeParam;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
@@ -95,7 +95,7 @@ public class AlipayService {
 	 * @throws Exception
 	 */
 	@Valid
-	public String wapPay(@NotNull("支付宝支付参数") @Valid AlipayTradeParam alipayTradeWapParam) throws Exception {
+	public String wapPay(@NotNull("支付宝支付参数") @Valid TradeParam alipayTradeWapParam) throws Exception {
 
 		AlipayTradeWapPayModel model = new AlipayTradeWapPayModel();
 

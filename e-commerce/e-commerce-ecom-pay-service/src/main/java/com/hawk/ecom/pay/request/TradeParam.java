@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import com.hawk.framework.dic.validation.annotation.NotEmpty;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 
-public class AlipayTradeParam {
+public class TradeParam {
 	
 
 	

@@ -1,5 +1,7 @@
 package com.hawk.ecom.pay.constant;
 
+import java.util.UUID;
+
 public class ConstPay {
 	
 	public static interface PaymentBillStatus {
@@ -41,6 +43,10 @@ public class ConstPay {
 		public final String TRADE_CLOSED = "TRADE_CLOSED";
 		public final String TRADE_SUCCESS = "TRADE_SUCCESS";
 		public final String TRADE_FINISHED = "TRADE_FINISHED";
+	}
+	
+	public static void main(String[] args){
+		System.out.println(UUID.randomUUID().toString().replace("-", ""));
 	}
 
 }

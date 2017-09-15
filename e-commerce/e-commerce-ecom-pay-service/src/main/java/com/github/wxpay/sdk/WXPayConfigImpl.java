@@ -1,39 +1,56 @@
 package com.github.wxpay.sdk;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
+
+import com.hawk.framework.utility.tools.CodecTools;
 
 public class WXPayConfigImpl extends WXPayConfig{
 
-    private byte[] certData;
-   
-    public WXPayConfigImpl(String certPath) throws Exception{
-//        String certPath = "D://CERT/common/apiclient_cert.p12";
-        File file = new File(certPath);
-        InputStream certStream = new FileInputStream(file);
-        this.certData = new byte[(int) file.length()];
-        certStream.read(this.certData);
-        certStream.close();
-    }
+    public String getNotifyUrl() {
+		return notifyUrl;
+	}
+
+	private byte[] certData;
     
-    public WXPayConfigImpl(InputStream certStrem , String appId, String mchId,String key)throws Exception{
-    	
+    private String appId;
+    
+    private String mchId;
+    
+    private String key;
+    
+    private String notifyUrl;
+   
+//    public WXPayConfigImpl(String certPath) throws Exception{
+////        String certPath = "D://CERT/common/apiclient_cert.p12";
+//        File file = new File(certPath);
+//        InputStream certStream = new FileInputStream(file);
+//        this.certData = new byte[(int) file.length()];
+//        certStream.read(this.certData);
+//        certStream.close();
+//    }
+    
+    public WXPayConfigImpl(String cert , String appId, String mchId,String key ,String notifyUrl)throws Exception{
+    	this.certData = CodecTools.toByteFronHexString(cert);
+    	this.appId = appId;
+    	this.mchId = mchId;
+    	this.key = key;
+    	this.notifyUrl = notifyUrl;
     }
 
     
 
     public String getAppID() {
-        return "wx52e1d4017759e59e";
+    	return this.appId;
     }
 
     public String getMchID() {
-        return "1385225702";
+    	return this.mchId;
     }
 
     public String getKey() {
-        return "qscwdvefb0987okmijn123456zxcvbnm";
+
+    	return this.key;
     }
 
     public InputStream getCertStream() {

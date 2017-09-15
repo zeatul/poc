@@ -24,6 +24,8 @@ import com.hawk.ecom.pay.persist.mapperex.PaymentBillExMapper;
 import com.hawk.ecom.pay.request.AlipayTradeParam;
 import com.hawk.ecom.pay.request.NotifyParam;
 import com.hawk.ecom.pay.request.PayParam;
+import com.hawk.ecom.pay.request.TradeParam;
+import com.hawk.ecom.pay.request.WXPayTradeParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.response.OrderPayInfo;
@@ -63,6 +65,9 @@ public class PaymentService {
 
 	@Autowired
 	private AlipayService alipayService;
+	
+	@Autowired
+	private WXPayService wxpayService;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -300,20 +305,23 @@ public class PaymentService {
 				paymentBillMapper.insert(paymentBillDomain);
 			}
 		}
+		
+		TradeParam tradeParam = new TradeParam();
+		tradeParam.setBody(orderPayInfo.getBody());
+		tradeParam.setOutTradeNo(paymentBillDomain.getPaymentBillCode());
+		tradeParam.setSubject(orderPayInfo.getOrderDesc());
+		tradeParam.setTotalAmount(orderPayInfo.getTotalAmount());
 
 		/**
 		 * 调用支付接口，给前台返回支付界面
 		 */
 		String paymentCategoryCode = payParam.getPaymentCategoryCode();
 		if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.ALIPAY)) {
-			AlipayTradeParam alipayTradeParam = new AlipayTradeParam();
-			alipayTradeParam.setBody(orderPayInfo.getBody());
-			alipayTradeParam.setOutTradeNo(paymentBillDomain.getPaymentBillCode());
-			alipayTradeParam.setSubject(orderPayInfo.getOrderDesc());
-			alipayTradeParam.setTotalAmount(orderPayInfo.getTotalAmount());
-			return alipayService.wapPay(alipayTradeParam);
+			
+			return alipayService.wapPay(tradeParam);
 		} else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WXPAY)) {
-			throw new RuntimeException("暂不支持微信支付");
+			
+			return wxpayService.pay(tradeParam, WXPayService.WXPayType.H5, null);
 		} else {
 			throw new RuntimeException("未知的支付方式");
 		}

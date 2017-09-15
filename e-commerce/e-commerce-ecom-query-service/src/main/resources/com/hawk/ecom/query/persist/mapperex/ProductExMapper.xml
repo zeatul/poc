@@ -134,7 +134,7 @@
 		FROM t_prd_sku t1 ,(
 			SELECT a.id,COUNT(b.attr_value_id) as count
 			FROM t_prd_sku a , t_prd_product_attr b
-			WHERE (a.product_id = b.product_id
+			WHERE ((a.product_id = b.product_id and b.sku_id=0)
 			or a.id = b.sku_id)
 			AND b.attr_value_id in 
 			<foreach item="item" index="index" collection="attrValueIds" open="(" separator="," close=")">
