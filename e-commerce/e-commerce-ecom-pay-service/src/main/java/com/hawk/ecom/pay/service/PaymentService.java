@@ -21,11 +21,9 @@ import com.hawk.ecom.pay.persist.domain.PaymentBillHistoryDomain;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillHistoryMapper;
 import com.hawk.ecom.pay.persist.mapper.PaymentBillMapper;
 import com.hawk.ecom.pay.persist.mapperex.PaymentBillExMapper;
-import com.hawk.ecom.pay.request.AlipayTradeParam;
 import com.hawk.ecom.pay.request.NotifyParam;
 import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.pay.request.TradeParam;
-import com.hawk.ecom.pay.request.WXPayTradeParam;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.ecom.trans.constant.ConstOrder;
 import com.hawk.ecom.trans.response.OrderPayInfo;
@@ -320,8 +318,7 @@ public class PaymentService {
 			
 			return alipayService.wapPay(tradeParam);
 		} else if (paymentCategoryCode.equals(ConstPay.PayCategoryCode.WXPAY)) {
-			
-			return wxpayService.pay(tradeParam, WXPayService.WXPayType.H5, null);
+			return wxpayService.pay(tradeParam, WXPayService.WXPayType.H5, payParam.getOpenid(),payParam.getIp());
 		} else {
 			throw new RuntimeException("未知的支付方式");
 		}

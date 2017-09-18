@@ -13,6 +13,7 @@ import com.github.wxpay.sdk.WXPayConfig;
 import com.hawk.ecom.pay.request.TradeParam;
 import com.hawk.framework.dic.validation.annotation.NotNull;
 import com.hawk.framework.dic.validation.annotation.Valid;
+import com.hawk.framework.utility.tools.JsonTools;
 import com.hawk.framework.utility.tools.StringTools;
 
 @Service
@@ -37,7 +38,7 @@ public class WXPayService {
 	private WXPayConfig wxpayConfig;
 	
 	@Valid
-	public String pay(@NotNull("微信支付参数") @Valid TradeParam tradeWapParam , String wxPayType,String openid,String ip) throws Exception {
+	public String pay(@NotNull("微信支付参数") @Valid TradeParam tradeParam , String wxPayType,String openid,String ip) throws Exception {
 		Map<String,String> reqData = new HashMap<String,String>();
 //		reqData.put("appid", wxpayConfig.get);
 //		reqData.put("mch_id", value);
@@ -45,11 +46,11 @@ public class WXPayService {
 //		reqData.put("sign", value);
 //		reqData.put("sign_type", "MD5");
 		
-		reqData.put("body", tradeWapParam.getBody());
-		reqData.put("out_trade_no", tradeWapParam.getOutTradeNo());
+		reqData.put("body", tradeParam.getBody());
+		reqData.put("out_trade_no", tradeParam.getOutTradeNo());
 		reqData.put("device_info", "WEB");
 		reqData.put("fee_type", "CNY");
-		reqData.put("total_fee", tradeWapParam.getTotalAmount().multiply(new BigDecimal("100")).longValueExact() + "");
+		reqData.put("total_fee", tradeParam.getTotalAmount().multiply(new BigDecimal("100")).longValueExact() + "");
 		reqData.put("spbill_create_ip", ip);
 		reqData.put("notify_url", wxpayConfig.getNotifyUrl());		
    
@@ -65,7 +66,9 @@ public class WXPayService {
 				
 		Map<String,String> rtn = wxpay.unifiedOrder(reqData);
 		
-		return x;
+		System.out.println(JsonTools.toJsonString(rtn));
+		
+		return null;
 	}
 
 }

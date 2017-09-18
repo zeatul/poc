@@ -56,6 +56,7 @@ public class EcomPayRootConfig {
 		return new WXPay(wxpayConfig);
 	}
 
+	@Bean
 	public WXPayConfigImpl WXPayConfigImpl() throws Exception {
 		String key = env.getProperty("pay.wxpay.key").trim();
 		String appid = env.getProperty("pay.wxpay.appid").trim();

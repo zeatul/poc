@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hawk.ecom.pay.request.PayParam;
+import com.hawk.ecom.pay.request.TradeParam;
 import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.service.PaymentService;
+import com.hawk.ecom.pay.service.WXPayService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.HttpResponseHandler;
@@ -34,6 +36,9 @@ public class PaymentController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private WXPayService wxpayService;
 
 	@RequestMapping(value = "/home", method = GET)
 	public String home() {
@@ -48,6 +53,19 @@ public class PaymentController {
 		String result = buildPayHtml(paymentService.pay(param));
 		HttpResponseHandler.printHtmlASAP(response, result);
 
+	}
+	
+	@RequestMapping(value = "/wxpay/test", method = GET)
+	public void testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String ip = HttpRequestTools.getIp(request);
+		String openid = null;
+		String wxPayType = WXPayService.WXPayType.H5;
+		TradeParam tradeParam = new TradeParam();
+		tradeParam.setBody("辣条一包");
+		tradeParam.setOutTradeNo("20170918001");
+		tradeParam.setSubject("");
+		
+		wxpayService.pay(tradeParam, wxPayType, openid,ip );
 	}
 	
 	
