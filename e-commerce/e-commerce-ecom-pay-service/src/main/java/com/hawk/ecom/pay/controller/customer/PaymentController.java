@@ -9,20 +9,24 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.pay.request.TradeParam;
+import com.hawk.ecom.pay.service.AlipayConfig;
 import com.hawk.ecom.pay.service.PaymentService;
 import com.hawk.ecom.pay.service.WXPayService;
 import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.HttpRequestTools;
 import com.hawk.framework.pub.web.HttpResponseHandler;
+import com.hawk.framework.pub.web.ResponseData;
+import com.hawk.framework.pub.web.SuccessResponse;
+import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
 import com.hawk.framework.utility.tools.StringTools;
 
@@ -54,10 +58,11 @@ public class PaymentController {
 
 	}
 	
-	static int index = 10000;
+	private static int index = 10000;
 	@RequestMapping(value = "/wxpay/test", method = GET)
 	public ModelAndView testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String ip = HttpRequestTools.getIp(request);
+		String ip = "101.90.253.43";
+//		String ip = HttpRequestTools.getIp(request);
 		String openid = null;
 		String wxPayType = WXPayService.WXPayType.H5;
 		TradeParam tradeParam = new TradeParam();
