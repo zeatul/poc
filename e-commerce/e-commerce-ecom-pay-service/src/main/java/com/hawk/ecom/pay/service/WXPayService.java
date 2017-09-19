@@ -46,14 +46,14 @@ public class WXPayService {
 //		reqData.put("sign", value);
 //		reqData.put("sign_type", "MD5");
 		
-		reqData.put("body", tradeParam.getSubject());
+		reqData.put("body", StringTools.concatWithSymbol("-","飞到家", tradeParam.getSubject()));
 		reqData.put("out_trade_no", tradeParam.getOutTradeNo());
 		reqData.put("device_info", "WEB");
 		reqData.put("fee_type", "CNY");
+		reqData.put("nonce_str", UUID.randomUUID().toString().replace("-", ""));
 		reqData.put("total_fee", tradeParam.getTotalAmount().multiply(new BigDecimal("100")).longValueExact() + "");
 		reqData.put("spbill_create_ip", ip);
-		reqData.put("notify_url", wxpayConfig.getNotifyUrl());		
-   
+		reqData.put("notify_url", wxpayConfig.getNotifyUrl());	
 		
 		reqData.put("trade_type", wxPayType);		
 		if (WXPayType.WPA.equals(wxPayType)){
@@ -68,7 +68,7 @@ public class WXPayService {
 		
 		System.out.println(JsonTools.toJsonString(rtn));
 		
-		return null;
+		return rtn.get("mweb_url");
 	}
 
 }
