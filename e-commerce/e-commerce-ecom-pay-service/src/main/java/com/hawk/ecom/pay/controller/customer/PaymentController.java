@@ -3,6 +3,7 @@ package com.hawk.ecom.pay.controller.customer;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,7 +64,8 @@ public class PaymentController {
 		TradeParam tradeParam = new TradeParam();
 		tradeParam.setBody("辣条一包");
 		tradeParam.setOutTradeNo("20170918001");
-		tradeParam.setSubject("");
+		tradeParam.setSubject("辣条一包");
+		tradeParam.setTotalAmount(new BigDecimal("0.01"));
 		
 		wxpayService.pay(tradeParam, wxPayType, openid,ip );
 	}

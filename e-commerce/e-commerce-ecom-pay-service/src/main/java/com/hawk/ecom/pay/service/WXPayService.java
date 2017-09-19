@@ -46,7 +46,7 @@ public class WXPayService {
 //		reqData.put("sign", value);
 //		reqData.put("sign_type", "MD5");
 		
-		reqData.put("body", tradeParam.getBody());
+		reqData.put("body", tradeParam.getSubject());
 		reqData.put("out_trade_no", tradeParam.getOutTradeNo());
 		reqData.put("device_info", "WEB");
 		reqData.put("fee_type", "CNY");
