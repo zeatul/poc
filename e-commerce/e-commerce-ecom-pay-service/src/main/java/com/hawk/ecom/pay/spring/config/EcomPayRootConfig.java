@@ -60,7 +60,7 @@ public class EcomPayRootConfig {
 	public WXPayConfigImpl WXPayConfigImpl() throws Exception {
 		String key = env.getProperty("pay.wxpay.key").trim();
 		String appid = env.getProperty("pay.wxpay.appid").trim();
-		String mchid = env.getProperty("pay.wxpay.appid").trim();
+		String mchid = env.getProperty("pay.wxpay.mchid").trim();
 		String cert = env.getProperty("pay.wxpay.cert").trim();
 		String notifyUrl = env.getProperty("pay.wxpay.notifyUrl").trim();
 		WXPayConfigImpl config = new WXPayConfigImpl(cert, appid, mchid, key,notifyUrl);
