@@ -61,8 +61,9 @@ public class PaymentController {
 	private static int index = 10000;
 	@RequestMapping(value = "/wxpay/test", method = GET)
 	public ModelAndView testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String ip = "101.90.253.43";
-//		String ip = HttpRequestTools.getIp(request);
+		response.setHeader("Referer", "http://vstst.fexie.com.cn");
+//		String ip = "101.90.253.43";
+		String ip = HttpRequestTools.getIp(request);
 		String openid = null;
 		String wxPayType = WXPayService.WXPayType.H5;
 		TradeParam tradeParam = new TradeParam();

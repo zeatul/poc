@@ -11,3 +11,10 @@
 	"return_code": "SUCCESS",
 	"prepay_id": "wx20170919150631b8943183fb0224652847"
 }
+ https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx20161110163838f231619da20804912345&package=1037687096
+
+weixin://wap/pay
+?prepayid%3Dwx20170920095453f4ada534260457322915&
+package=2409793957&
+noncestr=1505872497&
+sign=24ed430bd26b5eee62df4f865156d754

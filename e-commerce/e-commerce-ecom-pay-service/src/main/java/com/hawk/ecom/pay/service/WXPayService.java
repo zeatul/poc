@@ -1,10 +1,13 @@
 package com.hawk.ecom.pay.service;
 
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +71,27 @@ public class WXPayService {
 		
 		System.out.println(JsonTools.toJsonString(rtn));
 		
-		return rtn.get("mweb_url");
+		return rtn.get("mweb_url");	
+		
+//		StringBuilder sb =rtn.get("mweb_url");	 StringTools.getThreadSafeStringBuilder();
+//		
+//		sb.append("weixin://wap/pay?prepayid=");
+//		sb.append(rtn.get("prepay_id"));
+//		sb.append("&package=");		
+//		String meeb_url = rtn.get("mweb_url");		
+//		for (NameValuePair nameValuePair :URLEncodedUtils.parse(meeb_url, Charset.forName("UTF-8"))){
+//			String name = nameValuePair.getName();			
+//			if (name.equals("package")){
+//				String value = nameValuePair.getValue();
+//				sb.append(value);
+//				break;
+//			}
+//		}
+//		sb.append("&noncestr=");	
+//		sb.append(rtn.get("nonce_str"));
+//		sb.append("&sign=");
+//		sb.append(rtn.get("sign"));
+//		return sb.toString();
 	}
 
 }
