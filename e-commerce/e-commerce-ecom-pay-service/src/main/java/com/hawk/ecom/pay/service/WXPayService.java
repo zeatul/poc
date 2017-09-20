@@ -71,27 +71,27 @@ public class WXPayService {
 		
 		System.out.println(JsonTools.toJsonString(rtn));
 		
-//		return rtn.get("mweb_url");	
+		return rtn.get("mweb_url");	
 		
-		StringBuilder sb =StringTools.getThreadSafeStringBuilder();
-		
-		sb.append("weixin://wap/pay?prepayid=");
-		sb.append(rtn.get("prepay_id"));
-		sb.append("&package=");		
-		String meeb_url = rtn.get("mweb_url");		
-		for (NameValuePair nameValuePair :URLEncodedUtils.parse(meeb_url, Charset.forName("UTF-8"))){
-			String name = nameValuePair.getName();			
-			if (name.equals("package")){
-				String value = nameValuePair.getValue();
-				sb.append(value);
-				break;
-			}
-		}
-		sb.append("&noncestr=");	
-		sb.append(rtn.get("nonce_str"));
-		sb.append("&sign=");
-		sb.append(rtn.get("sign"));
-		return sb.toString();
+//		StringBuilder sb =StringTools.getThreadSafeStringBuilder();
+//		
+//		sb.append("weixin://wap/pay?prepayid=");
+//		sb.append(rtn.get("prepay_id"));
+//		sb.append("&package=");		
+//		String meeb_url = rtn.get("mweb_url");		
+//		for (NameValuePair nameValuePair :URLEncodedUtils.parse(meeb_url, Charset.forName("UTF-8"))){
+//			String name = nameValuePair.getName();			
+//			if (name.equals("package")){
+//				String value = nameValuePair.getValue();
+//				sb.append(value);
+//				break;
+//			}
+//		}
+//		sb.append("&noncestr=");	
+//		sb.append(rtn.get("nonce_str"));
+//		sb.append("&sign=");
+//		sb.append(rtn.get("sign"));
+//		return sb.toString();
 	}
 
 }

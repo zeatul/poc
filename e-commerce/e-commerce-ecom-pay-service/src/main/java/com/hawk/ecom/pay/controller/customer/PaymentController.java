@@ -60,8 +60,8 @@ public class PaymentController {
 	
 	private static int index = 10000;
 	@RequestMapping(value = "/wxpay/test", method = GET)
-	public ModelAndView testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		response.setHeader("Referer", "https://vstst.fexie.com.cn");
+	public String testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setHeader("Referer", "https://vstst.fexie.com.cn");
 //		String ip = "101.90.253.43";
 		String ip = HttpRequestTools.getIp(request);
 		String openid = null;
@@ -82,7 +82,8 @@ public class PaymentController {
 //		}
 		
 		
-		return new ModelAndView("redirect:" + url);
+//		return new ModelAndView("redirect:" + url);
+		return url;
 	}
 	
 	
