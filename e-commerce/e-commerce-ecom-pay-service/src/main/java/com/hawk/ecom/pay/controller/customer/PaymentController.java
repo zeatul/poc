@@ -61,7 +61,7 @@ public class PaymentController {
 	private static int index = 10000;
 	@RequestMapping(value = "/wxpay/test", method = GET)
 	public ModelAndView testWxPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setHeader("Referer", "http://vstst.fexie.com.cn");
+//		response.setHeader("Referer", "https://vstst.fexie.com.cn");
 //		String ip = "101.90.253.43";
 		String ip = HttpRequestTools.getIp(request);
 		String openid = null;
@@ -74,12 +74,14 @@ public class PaymentController {
 		
 		String url = wxpayService.pay(tradeParam, wxPayType, openid,ip );
 		
-		String redirect_url = request.getParameter("redirect_url");
-		if (StringTools.isNotNullOrEmpty(redirect_url)){
-			url = url + "&redirect_url=" + URLEncoder.encode(redirect_url, "utf-8");
-		}else{
-			url = url + "&redirect_url=" + URLEncoder.encode("https://vstst.fexie.com.cn","utf-8");
-		}
+//		String redirect_url = request.getParameter("redirect_url");
+//		if (StringTools.isNotNullOrEmpty(redirect_url)){
+//			url = url + "&redirect_url=" + URLEncoder.encode(redirect_url, "utf-8");
+//		}else{
+//			url = url + "&redirect_url=" + URLEncoder.encode("https://vstst.fexie.com.cn","utf-8");
+//		}
+		
+		
 		return new ModelAndView("redirect:" + url);
 	}
 	
