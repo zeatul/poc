@@ -1,5 +1,7 @@
 package com.hawk.ecom.pay.service;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.alipay.api.response.AlipayTradeCloseResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.hawk.ecom.pay.constant.ConstPay;
 import com.hawk.ecom.pay.persist.domain.AlipayInfoDomain;
 import com.hawk.ecom.pay.persist.mapper.AlipayInfoMapper;
 import com.hawk.ecom.pay.request.AlipayNotifyParam;
@@ -61,6 +64,30 @@ public class AlipayService {
 		return alipayResponse;
 	}
 	
+	@Valid
+	public int hasPaidSuccessfully(@NotEmpty String outTradeCode) throws Exception {
+		AlipayTradeQueryResponse alipayTradeQueryResponse = query(outTradeCode);
+		if (alipayTradeQueryResponse == null) {
+			return -1;
+		}else{
+			if (alipayTradeQueryResponse.getCode().equals("40004") && alipayTradeQueryResponse.getSubCode().equals("ACQ.TRADE_NOT_EXIST")){
+				return -1;
+			}
+		}
+			
+		String tradeStatus = alipayTradeQueryResponse.getTradeStatus();
+		if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_SUCCESS)
+				|| tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_FINISHED)) {
+			return 1;
+		} else if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.WAIT_BUYER_PAY)) {
+			return 0;
+		} else if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_CLOSED)) {
+			return -1;
+		} else {
+			throw new RuntimeException("unknown alipay trade status = " + tradeStatus);
+		}
+	}
+	
 	/**
 	 * 关闭未支付的订单
 	 * @param outTradeCode
@@ -84,6 +111,8 @@ public class AlipayService {
 	@Valid
 	public void notify(@NotNull("支付宝通知参数")AlipayNotifyParam alipayNotifyParam) throws Exception{
 		AlipayInfoDomain alipayInfoDomain = DomainTools.copy(alipayNotifyParam, AlipayInfoDomain.class);
+		alipayInfoDomain.setCreateDate(new Date());
+		alipayInfoDomain.setUpdateDate(alipayInfoDomain.getCreateDate());
 		alipayInfoMapper.insert(alipayInfoDomain);
 	}
 

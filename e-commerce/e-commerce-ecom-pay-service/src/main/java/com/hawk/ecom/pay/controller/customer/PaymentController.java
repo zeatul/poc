@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hawk.ecom.pay.constant.ConstPay;
 import com.hawk.ecom.pay.request.PayParam;
 import com.hawk.ecom.pay.request.TradeParam;
 import com.hawk.ecom.pay.service.AlipayConfig;
@@ -53,7 +54,11 @@ public class PaymentController {
 		PayParam param = HttpRequestTools.parse(request, PayParam.class);
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setWap(true);
-		String result = buildPayHtml(paymentService.pay(param));
+		String result = paymentService.pay(param);
+		if (param.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)){
+			result = buildPayHtml(result);
+		}
+		
 		HttpResponseHandler.printHtmlASAP(response, result);
 
 	}
@@ -72,17 +77,8 @@ public class PaymentController {
 		tradeParam.setSubject("辣条一包");
 		tradeParam.setTotalAmount(new BigDecimal("0.01"));
 		
-		String url = wxpayService.pay(tradeParam, wxPayType, openid,ip );
-		
-//		String redirect_url = request.getParameter("redirect_url");
-//		if (StringTools.isNotNullOrEmpty(redirect_url)){
-//			url = url + "&redirect_url=" + URLEncoder.encode(redirect_url, "utf-8");
-//		}else{
-//			url = url + "&redirect_url=" + URLEncoder.encode("https://vstst.fexie.com.cn","utf-8");
-//		}
-		
-		
-//		return new ModelAndView("redirect:" + url);
+		String url = wxpayService.pay(tradeParam, wxPayType, openid,ip );		
+
 		return url;
 	}
 	

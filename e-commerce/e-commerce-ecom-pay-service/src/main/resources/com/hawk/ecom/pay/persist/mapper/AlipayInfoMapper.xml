@@ -27,7 +27,13 @@
 		gmt_payment AS "gmtPayment" ,
 		gmt_refund AS "gmtRefund" ,
 		gmt_close AS "gmtClose" ,
-		fund_bill_list AS "fundBillList" 
+		fund_bill_list AS "fundBillList" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
 	</sql>
 	
 	<sql id="where">
@@ -55,6 +61,12 @@
 			<if test="gmtRefund != null"> AND gmt_refund = #{gmtRefund}  </if>
 			<if test="gmtClose != null"> AND gmt_close = #{gmtClose}  </if>
 			<if test="fundBillList != null"> AND fund_bill_list = #{fundBillList}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
 		</trim>	
 	</sql>
 	
@@ -83,6 +95,12 @@
 			<if test="old_gmtRefund != null"> AND gmt_refund = #{old_gmtRefund}  </if>			
 			<if test="old_gmtClose != null"> AND gmt_close = #{old_gmtClose}  </if>			
 			<if test="old_fundBillList != null"> AND fund_bill_list = #{old_fundBillList}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
 		</trim>
 	</sql>
 	
@@ -111,6 +129,12 @@
 			gmt_refund = #{gmtRefund},
 			gmt_close = #{gmtClose},
 			fund_bill_list = #{fundBillList},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
 		</set>
 	</sql>
 	
@@ -139,6 +163,12 @@
 			<if test="gmtRefund != null">gmt_refund = #{gmtRefund},</if>
 			<if test="gmtClose != null">gmt_close = #{gmtClose},</if>
 			<if test="fundBillList != null">fund_bill_list = #{fundBillList},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
 		</set>
 	</sql>
 	
@@ -183,7 +213,13 @@
 				gmt_payment,				
 				gmt_refund,				
 				gmt_close,				
-				fund_bill_list				
+				fund_bill_list,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
 		)		
 		VALUES (	
 			#{notifyTime},
@@ -208,7 +244,13 @@
 			#{gmtPayment},
 			#{gmtRefund},
 			#{gmtClose},
-			#{fundBillList}
+			#{fundBillList},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
 		) 
 	</insert>
 	

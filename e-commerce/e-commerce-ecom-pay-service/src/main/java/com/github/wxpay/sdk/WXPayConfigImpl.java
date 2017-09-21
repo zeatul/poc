@@ -7,7 +7,13 @@ import com.hawk.framework.utility.tools.CodecTools;
 
 public class WXPayConfigImpl extends WXPayConfig{
 
-    public String getNotifyUrl() {
+    public String getReturnUrl() {
+		return returnUrl;
+	}
+
+
+
+	public String getNotifyUrl() {
 		return notifyUrl;
 	}
 
@@ -20,6 +26,8 @@ public class WXPayConfigImpl extends WXPayConfig{
     private String key;
     
     private String notifyUrl;
+    
+    private String returnUrl;
    
 //    public WXPayConfigImpl(String certPath) throws Exception{
 ////        String certPath = "D://CERT/common/apiclient_cert.p12";
@@ -30,12 +38,13 @@ public class WXPayConfigImpl extends WXPayConfig{
 //        certStream.close();
 //    }
     
-    public WXPayConfigImpl(String cert , String appId, String mchId,String key ,String notifyUrl)throws Exception{
+    public WXPayConfigImpl(String cert , String appId, String mchId,String key ,String notifyUrl,String returnUrl)throws Exception{
     	this.certData = CodecTools.toByteFronHexString(cert);
     	this.appId = appId;
     	this.mchId = mchId;
     	this.key = key;
     	this.notifyUrl = notifyUrl;
+    	this.returnUrl = returnUrl;
     }
 
     

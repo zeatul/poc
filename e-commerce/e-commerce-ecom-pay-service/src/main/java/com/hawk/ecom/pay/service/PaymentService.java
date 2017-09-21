@@ -77,45 +77,12 @@ public class PaymentService {
 	 */
 	public int hasPaidSuccessfully(PaymentBillDomain paymentBillDomain) throws Exception {
 		if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)) {
-			AlipayTradeQueryResponse alipayTradeQueryResponse = alipayService.query(paymentBillDomain.getPaymentBillCode());
-			if (alipayTradeQueryResponse == null) {
-				return -1;
-			}else{
-//				{
-//					"code": "40004",
-//					"msg": "Business Failed",
-//					"subCode": "ACQ.TRADE_NOT_EXIST",
-//					"subMsg": "交易不存在",
-//					"body": "{\"alipay_trade_query_response\":{\"code\":\"40004\",\"msg\":\"Business Failed\",\"sub_code\":\"ACQ.TRADE_NOT_EXIST\",\"sub_msg\":\"交易不存在\",\"buyer_pay_amount\":\"0.00\",\"invoice_amount\":\"0.00\",\"out_trade_no\":\"20170802151010009\",\"point_amount\":\"0.00\",\"receipt_amount\":\"0.00\"},\"sign\":\"JPL64dNvW4bQjGdQst+6E4RMFgCV2wggf6yJA5Taw0Q9kzCg/hfx740Lt8TDgMosF8VCyRGHahg8BCsC4skWaHo5FFsQBqrCrrEDCX+Wfe3a1Ja+zwPYn0K8kc60Fkk3AuvPRrg674tg75HiLDq404tegd8A9zR03t0sYb3nEtidiTn37/ZnYWHM0LTh1d1kBv3117flwsKGsX40vnBq3QIyPpMvAB0EaXI+GpRKKGLXLzAKyFytSjpAFXvimjVgz5snaj1zca7Igv899Q9BISvOxcNMeAM9p6HNNIRWI7BdBU5xQPyEEEs4ODa0KuEYJhvfYKe5CYqt7sAysD0h2A==\"}",
-//					"params": {
-//						"biz_content": "{\"out_trade_no\":\"20170802151010009\"}"
-//					},
-//					"buyerPayAmount": "0.00",
-//					"invoiceAmount": "0.00",
-//					"outTradeNo": "20170802151010009",
-//					"pointAmount": "0.00",
-//					"receiptAmount": "0.00",
-//					"errorCode": "40004",
-//					"success": false
-//				}
-				if (alipayTradeQueryResponse.getCode().equals("40004") && alipayTradeQueryResponse.getSubCode().equals("ACQ.TRADE_NOT_EXIST")){
-					return -1;
-				}
-			}
-				
-			String tradeStatus = alipayTradeQueryResponse.getTradeStatus();
-			if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_SUCCESS)
-					|| tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_FINISHED)) {
-				return 1;
-			} else if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.WAIT_BUYER_PAY)) {
-				return 0;
-			} else if (tradeStatus.equalsIgnoreCase(ConstPay.AlipayTradeStatus.TRADE_CLOSED)) {
-				return -1;
-			} else {
-				throw new RuntimeException("unknown alipay trade status = " + tradeStatus);
-			}
+			return alipayService.hasPaidSuccessfully(paymentBillDomain.getPaymentBillCode());
 
-		}else{
+		}else if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.WXPAY)){
+			return wxpayService.hasPaidSuccessfully(paymentBillDomain.getPaymentBillCode());
+		}
+		else {
 
 			throw new RuntimeException("unsupported pay category");
 		}
@@ -339,7 +306,10 @@ public class PaymentService {
 	public void close(@NotNull PaymentBillDomain paymentBillDomain) throws Exception{
 		if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)){
 			alipayService.close(paymentBillDomain.getPaymentBillCode());
-		}else{
+		} if (paymentBillDomain.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.WXPAY)){
+			wxpayService.close(paymentBillDomain.getPaymentBillCode());
+		}
+		else{
 			throw new RuntimeException("unsupported paymentCategoryCode="+paymentBillDomain.getPaymentCategoryCode());
 		}
 	}

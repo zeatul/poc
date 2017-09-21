@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hawk.ecom.pay.persist.mapper.WxpayInfoMapper">
+
+	<sql id="columns">	
+				appid AS "appid" ,
+		mch_id AS "mchId" ,
+		device_info AS "deviceInfo" ,
+		result_code AS "resultCode" ,
+		err_code AS "errCode" ,
+		err_code_des AS "errCodeDes" ,
+		openid AS "openid" ,
+		trade_type AS "tradeType" ,
+		bank_type AS "bankType" ,
+		total_fee AS "totalFee" ,
+		settlement_total_fee AS "settlementTotalFee" ,
+		fee_type AS "feeType" ,
+		cash_fee AS "cashFee" ,
+		cash_fee_type AS "cashFeeType" ,
+		coupon_fee AS "couponFee" ,
+		coupon_count AS "couponCount" ,
+		transaction_id AS "transactionId" ,
+		out_trade_no AS "outTradeNo" ,
+		time_end AS "timeEnd" ,
+		create_user_code AS "createUserCode" ,
+		create_date AS "createDate" ,
+		update_user_code AS "updateUserCode" ,
+		update_date AS "updateDate" ,
+		delete_user_code AS "deleteUserCode" ,
+		delete_date AS "deleteDate" 
+	</sql>
+	
+	<sql id="where">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			<if test="appid != null"> AND appid = #{appid}  </if>
+			<if test="mchId != null"> AND mch_id = #{mchId}  </if>
+			<if test="deviceInfo != null"> AND device_info = #{deviceInfo}  </if>
+			<if test="resultCode != null"> AND result_code = #{resultCode}  </if>
+			<if test="errCode != null"> AND err_code = #{errCode}  </if>
+			<if test="errCodeDes != null"> AND err_code_des = #{errCodeDes}  </if>
+			<if test="openid != null"> AND openid = #{openid}  </if>
+			<if test="tradeType != null"> AND trade_type = #{tradeType}  </if>
+			<if test="bankType != null"> AND bank_type = #{bankType}  </if>
+			<if test="totalFee != null"> AND total_fee = #{totalFee}  </if>
+			<if test="settlementTotalFee != null"> AND settlement_total_fee = #{settlementTotalFee}  </if>
+			<if test="feeType != null"> AND fee_type = #{feeType}  </if>
+			<if test="cashFee != null"> AND cash_fee = #{cashFee}  </if>
+			<if test="cashFeeType != null"> AND cash_fee_type = #{cashFeeType}  </if>
+			<if test="couponFee != null"> AND coupon_fee = #{couponFee}  </if>
+			<if test="couponCount != null"> AND coupon_count = #{couponCount}  </if>
+			<if test="transactionId != null"> AND transaction_id = #{transactionId}  </if>
+			<if test="outTradeNo != null"> AND out_trade_no = #{outTradeNo}  </if>
+			<if test="timeEnd != null"> AND time_end = #{timeEnd}  </if>
+			<if test="createUserCode != null"> AND create_user_code = #{createUserCode}  </if>
+			<if test="createDate != null"> AND create_date = #{createDate}  </if>
+			<if test="updateUserCode != null"> AND update_user_code = #{updateUserCode}  </if>
+			<if test="updateDate != null"> AND update_date = #{updateDate}  </if>
+			<if test="deleteUserCode != null"> AND delete_user_code = #{deleteUserCode}  </if>
+			<if test="deleteDate != null"> AND delete_date = #{deleteDate}  </if>
+		</trim>	
+	</sql>
+	
+	<sql id="where_old">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="old_appid != null"> AND appid = #{old_appid}  </if>			
+			<if test="old_mchId != null"> AND mch_id = #{old_mchId}  </if>			
+			<if test="old_deviceInfo != null"> AND device_info = #{old_deviceInfo}  </if>			
+			<if test="old_resultCode != null"> AND result_code = #{old_resultCode}  </if>			
+			<if test="old_errCode != null"> AND err_code = #{old_errCode}  </if>			
+			<if test="old_errCodeDes != null"> AND err_code_des = #{old_errCodeDes}  </if>			
+			<if test="old_openid != null"> AND openid = #{old_openid}  </if>			
+			<if test="old_tradeType != null"> AND trade_type = #{old_tradeType}  </if>			
+			<if test="old_bankType != null"> AND bank_type = #{old_bankType}  </if>			
+			<if test="old_totalFee != null"> AND total_fee = #{old_totalFee}  </if>			
+			<if test="old_settlementTotalFee != null"> AND settlement_total_fee = #{old_settlementTotalFee}  </if>			
+			<if test="old_feeType != null"> AND fee_type = #{old_feeType}  </if>			
+			<if test="old_cashFee != null"> AND cash_fee = #{old_cashFee}  </if>			
+			<if test="old_cashFeeType != null"> AND cash_fee_type = #{old_cashFeeType}  </if>			
+			<if test="old_couponFee != null"> AND coupon_fee = #{old_couponFee}  </if>			
+			<if test="old_couponCount != null"> AND coupon_count = #{old_couponCount}  </if>			
+			<if test="old_transactionId != null"> AND transaction_id = #{old_transactionId}  </if>			
+			<if test="old_outTradeNo != null"> AND out_trade_no = #{old_outTradeNo}  </if>			
+			<if test="old_timeEnd != null"> AND time_end = #{old_timeEnd}  </if>			
+			<if test="old_createUserCode != null"> AND create_user_code = #{old_createUserCode}  </if>			
+			<if test="old_createDate != null"> AND create_date = #{old_createDate}  </if>			
+			<if test="old_updateUserCode != null"> AND update_user_code = #{old_updateUserCode}  </if>			
+			<if test="old_updateDate != null"> AND update_date = #{old_updateDate}  </if>			
+			<if test="old_deleteUserCode != null"> AND delete_user_code = #{old_deleteUserCode}  </if>			
+			<if test="old_deleteDate != null"> AND delete_date = #{old_deleteDate}  </if>			
+		</trim>
+	</sql>
+	
+	<sql id="update">
+		<set>
+			appid = #{appid},
+			mch_id = #{mchId},
+			device_info = #{deviceInfo},
+			result_code = #{resultCode},
+			err_code = #{errCode},
+			err_code_des = #{errCodeDes},
+			openid = #{openid},
+			trade_type = #{tradeType},
+			bank_type = #{bankType},
+			total_fee = #{totalFee},
+			settlement_total_fee = #{settlementTotalFee},
+			fee_type = #{feeType},
+			cash_fee = #{cashFee},
+			cash_fee_type = #{cashFeeType},
+			coupon_fee = #{couponFee},
+			coupon_count = #{couponCount},
+			transaction_id = #{transactionId},
+			out_trade_no = #{outTradeNo},
+			time_end = #{timeEnd},
+			create_user_code = #{createUserCode},
+			create_date = #{createDate},
+			update_user_code = #{updateUserCode},
+			update_date = #{updateDate},
+			delete_user_code = #{deleteUserCode},
+			delete_date = #{deleteDate},
+		</set>
+	</sql>
+	
+	<sql id="updateWithoutNull">
+		<set>
+			<if test="appid != null">appid = #{appid},</if>
+			<if test="mchId != null">mch_id = #{mchId},</if>
+			<if test="deviceInfo != null">device_info = #{deviceInfo},</if>
+			<if test="resultCode != null">result_code = #{resultCode},</if>
+			<if test="errCode != null">err_code = #{errCode},</if>
+			<if test="errCodeDes != null">err_code_des = #{errCodeDes},</if>
+			<if test="openid != null">openid = #{openid},</if>
+			<if test="tradeType != null">trade_type = #{tradeType},</if>
+			<if test="bankType != null">bank_type = #{bankType},</if>
+			<if test="totalFee != null">total_fee = #{totalFee},</if>
+			<if test="settlementTotalFee != null">settlement_total_fee = #{settlementTotalFee},</if>
+			<if test="feeType != null">fee_type = #{feeType},</if>
+			<if test="cashFee != null">cash_fee = #{cashFee},</if>
+			<if test="cashFeeType != null">cash_fee_type = #{cashFeeType},</if>
+			<if test="couponFee != null">coupon_fee = #{couponFee},</if>
+			<if test="couponCount != null">coupon_count = #{couponCount},</if>
+			<if test="transactionId != null">transaction_id = #{transactionId},</if>
+			<if test="outTradeNo != null">out_trade_no = #{outTradeNo},</if>
+			<if test="timeEnd != null">time_end = #{timeEnd},</if>
+			<if test="createUserCode != null">create_user_code = #{createUserCode},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="updateUserCode != null">update_user_code = #{updateUserCode},</if>
+			<if test="updateDate != null">update_date = #{updateDate},</if>
+			<if test="deleteUserCode != null">delete_user_code = #{deleteUserCode},</if>
+			<if test="deleteDate != null">delete_date = #{deleteDate},</if>
+		</set>
+	</sql>
+	
+	
+	
+	<select id="loadDynamic" parameterType="hashmap" resultType="WxpayInfoDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_pay_wxpay_info
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+	</select>
+
+	<select id="count"  parameterType="hashmap" resultType="integer">
+		SELECT count(1) 
+		FROM t_pay_wxpay_info
+		<include refid="where" />
+	</select>
+	
+	
+	<insert id="insert"  parameterType="WxpayInfoDomain">
+		INSERT INTO t_pay_wxpay_info (			
+				appid,				
+				mch_id,				
+				device_info,				
+				result_code,				
+				err_code,				
+				err_code_des,				
+				openid,				
+				trade_type,				
+				bank_type,				
+				total_fee,				
+				settlement_total_fee,				
+				fee_type,				
+				cash_fee,				
+				cash_fee_type,				
+				coupon_fee,				
+				coupon_count,				
+				transaction_id,				
+				out_trade_no,				
+				time_end,				
+				create_user_code,				
+				create_date,				
+				update_user_code,				
+				update_date,				
+				delete_user_code,				
+				delete_date				
+		)		
+		VALUES (	
+			#{appid},
+			#{mchId},
+			#{deviceInfo},
+			#{resultCode},
+			#{errCode},
+			#{errCodeDes},
+			#{openid},
+			#{tradeType},
+			#{bankType},
+			#{totalFee},
+			#{settlementTotalFee},
+			#{feeType},
+			#{cashFee},
+			#{cashFeeType},
+			#{couponFee},
+			#{couponCount},
+			#{transactionId},
+			#{outTradeNo},
+			#{timeEnd},
+			#{createUserCode},
+			#{createDate},
+			#{updateUserCode},
+			#{updateDate},
+			#{deleteUserCode},
+			#{deleteDate}
+		) 
+	</insert>
+	
+	
+	<delete id="deleteDynamic" parameterType="hashmap">
+		DELETE FROM t_pay_wxpay_info
+		<include refid="where" />
+	</delete>
+
+	
+	
+	<update id="updateDynamicWithoutNull" parameterType="hashmap">
+		UPDATE t_pay_wxpay_info	
+		<include refid="updateWithoutNull" />
+		<include refid="where_old" />
+	</update>
+	
+	<select id="loadDynamicPaging" parameterType="hashmap" resultType="WxpayInfoDomain">
+		SELECT 		
+		<include refid="columns" />
+		FROM t_pay_wxpay_info
+		<include refid="where" />
+		<if test="_orderby != null">ORDER BY ${_orderby}</if>
+		<if test="_offset != null">LIMIT #{_offset},#{_limit}</if>	
+	</select>
+</mapper>

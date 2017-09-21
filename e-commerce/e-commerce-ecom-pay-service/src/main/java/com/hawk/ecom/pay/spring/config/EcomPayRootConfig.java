@@ -41,8 +41,8 @@ public class EcomPayRootConfig {
 		String notifyUrl = env.getProperty("pay.alipay.notify.url").trim();
 		String returnUrl = env.getProperty("pay.alipay.return.url").trim();
 
-		logger.info("+++++++notifyUrl={}", notifyUrl);
-		logger.info("+++++++returnUrl={}", returnUrl);
+		logger.info("+++++++alipay notifyUrl={}", notifyUrl);
+		logger.info("+++++++alipay returnUrl={}", returnUrl);
 
 		AlipayConfig.NOTIFY_URL = notifyUrl;
 		AlipayConfig.RETURN_URL = returnUrl;
@@ -62,8 +62,13 @@ public class EcomPayRootConfig {
 		String appid = env.getProperty("pay.wxpay.appid").trim();
 		String mchid = env.getProperty("pay.wxpay.mchid").trim();
 		String cert = env.getProperty("pay.wxpay.cert").trim();
-		String notifyUrl = env.getProperty("pay.wxpay.notifyUrl").trim();
-		WXPayConfigImpl config = new WXPayConfigImpl(cert, appid, mchid, key,notifyUrl);
+		String notifyUrl = env.getProperty("pay.wxpay.notify.url").trim();
+		String returnUrl = env.getProperty("pay.wxpay.return.url").trim();
+
+		logger.info("+++++++wxpay notifyUrl={}", notifyUrl);
+		logger.info("+++++++wxpay returnUrl={}", returnUrl);
+		
+		WXPayConfigImpl config = new WXPayConfigImpl(cert, appid, mchid, key,notifyUrl,returnUrl);
 		return config;
 	}
 
