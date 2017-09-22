@@ -101,5 +101,7 @@ public abstract class WXPayConfig {
     }
     
     public abstract String getNotifyUrl();
+    
+    public abstract String getReturnUrl();
 
 }
