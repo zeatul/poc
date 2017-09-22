@@ -93,7 +93,7 @@ public class WXPayService {
 		}
 
 		String url = r.get("mweb_url");
-		return StringTools.concat(url,"&redirect_url=",URLEncoder.encode(wxpayConfig.getReturnUrl(), "utf-8"));
+		return StringTools.concat(url,"&redirect_url=",URLEncoder.encode(StringTools.concat(wxpayConfig.getReturnUrl(),"?random="+tradeParam.getOutTradeNo()), "utf-8"));
 
 	}
 

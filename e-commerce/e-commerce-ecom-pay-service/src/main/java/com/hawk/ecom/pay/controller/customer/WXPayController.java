@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hawk.ecom.pay.response.AlipayReturnResponse;
 import com.hawk.ecom.pay.response.WXPayReturnResponse;
 import com.hawk.ecom.pay.service.WXPayService;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -52,6 +50,7 @@ public class WXPayController {
 	public WebResponse<WXPayReturnResponse> wapReturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("+++++wxpay wap return start!!!!");
 		WXPayReturnResponse wxpayReturnResponse = new WXPayReturnResponse();
+		wxpayReturnResponse.setRandom(request.getParameter("random"));
 		return SuccessResponse.build(wxpayReturnResponse);
 	}
 }
