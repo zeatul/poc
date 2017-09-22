@@ -17,7 +17,7 @@ import com.hawk.framework.utility.tools.JsonTools;
 
 public class OrderCustomerControllerTest extends AbstractControllerTest {
 
-	private String token = "efa28ee4-6af1-442d-af2c-e4fb44e281b3";
+	private String token = "ec22081f-d337-49db-9828-963e1d0a5a90";
 
 	@Test
 	public void testCreateChargeOrder() {

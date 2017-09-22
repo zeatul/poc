@@ -1,12 +1,15 @@
 {
-	"nonce_str": "4iOj9zFA72ptZCLz",
-	"device_info": "WEB",
-	"mweb_url": "https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx20170919150631b8943183fb0224652847&package=118677895",
-	"appid": "wx024c5a495697bfc6",
-	"sign": "108FC7A6A8177439C791D6AE09BA5DFDE7120643E968BC5099F22F96C9F91DFD",
-	"trade_type": "MWEB",
-	"return_msg": "OK",
-	"result_code": "SUCCESS",
-	"mch_id": "1488434012",
-	"return_code": "SUCCESS",
-	"prepay_id": "wx20170919150631b8943183fb0224652847"}
+	"data": {
+		"id": 1004945,
+		"storeCode": "ST000001",
+		"orderCode": "20170922111010008",
+		"orderType": 2,
+		"orderStatus": 0,
+		"orderTransPrice": 0.01,
+		"orderPayExpireTime": "2017-09-22 11:33:41",
+		"currency": 156,
+		"orderDesc": "流量充值",
+		"payType": 1
+	},
+	"code": 1
+}

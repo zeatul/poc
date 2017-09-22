@@ -52,8 +52,16 @@ public class PaymentController {
 	@RequestMapping(value = "/wap", method = POST)
 	public void wapPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PayParam param = HttpRequestTools.parse(request, PayParam.class);
-		param.setUserCode(AuthThreadLocal.getUserCode());
+		param.setUserCode(AuthThreadLocal.getUserCode());		
 		param.setWap(true);
+		
+		/**
+		 * 微信支付需要openid(公众号支付）和客户端ip
+		 */
+		param.setOpenid(null);
+		param.setIp(HttpRequestTools.getIp(request));
+		
+		
 		String result = paymentService.pay(param);
 		if (param.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)){
 			result = buildPayHtml(result);
@@ -69,6 +77,7 @@ public class PaymentController {
 		response.setHeader("Referer", "https://vstst.fexie.com.cn");
 //		String ip = "101.90.253.43";
 		String ip = HttpRequestTools.getIp(request);
+		
 		String openid = null;
 		String wxPayType = WXPayService.WXPayType.H5;
 		TradeParam tradeParam = new TradeParam();
@@ -91,9 +100,16 @@ public class PaymentController {
 		param.setOrderId(orderId);
 		param.setPaymentCategoryCode(paymentCategoryCode);
 		
+		param.setOpenid(null);
+		param.setIp(HttpRequestTools.getIp(request));
+		
 		param.setUserCode(AuthThreadLocal.getUserCode());
 		param.setWap(true);
-		String result = buildPayHtml(paymentService.pay(param));
+		String result = paymentService.pay(param);
+		if (param.getPaymentCategoryCode().equalsIgnoreCase(ConstPay.PayCategoryCode.ALIPAY)){
+			result = buildPayHtml(result);
+		}
+		
 		HttpResponseHandler.printHtmlASAP(response, result);
 
 	}

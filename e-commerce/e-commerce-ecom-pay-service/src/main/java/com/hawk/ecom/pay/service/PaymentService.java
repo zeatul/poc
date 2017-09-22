@@ -265,6 +265,7 @@ public class PaymentService {
 
 				/**
 				 * 生成新的支付单，保留原始的支付单号
+				 * ？？？是否用新的支付单号
 				 */
 				paymentBillDomain.setPaymentBillCode(olderPaymentBillDomain.getPaymentBillCode());
 				paymentBillMapper.insert(paymentBillDomain);
