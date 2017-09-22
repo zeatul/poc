@@ -93,7 +93,7 @@ public class WXPayService {
 		}
 
 		String url = r.get("mweb_url");
-		return StringTools.concat(url,"&redirect_url=",URLEncoder.encode(StringTools.concat(wxpayConfig.getReturnUrl(),"?random="+tradeParam.getOutTradeNo()), "utf-8"));
+		return StringTools.concat(url,"&redirect_url=",URLEncoder.encode(StringTools.concat(wxpayConfig.getReturnUrl(),"?outTradeNo="+tradeParam.getOutTradeNo()), "utf-8"));
 
 	}
 
@@ -157,6 +157,14 @@ public class WXPayService {
 
 		WXPayQueryResponse response = new WXPayQueryResponse();
 		response.setTradeState(trade_state);
+		
+		if ("SUCCESS".equalsIgnoreCase(trade_state)){
+			response.setTradeStateDesc("支付成功");
+		}else if ("USERPAYING".equalsIgnoreCase(trade_state)){
+			response.setTradeStateDesc("用户支付中");
+		}else{
+			response.setTradeStateDesc("支付失败");
+		}
 		
 		return response;
 		

@@ -12,9 +12,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hawk.ecom.pay.response.WXPayQueryResponse;
 import com.hawk.ecom.pay.response.WXPayReturnResponse;
 import com.hawk.ecom.pay.service.WXPayService;
 import com.hawk.framework.pub.web.HttpRequestTools;
@@ -52,5 +54,11 @@ public class WXPayController {
 		WXPayReturnResponse wxpayReturnResponse = new WXPayReturnResponse();
 		wxpayReturnResponse.setRandom(request.getParameter("random"));
 		return SuccessResponse.build(wxpayReturnResponse);
+	}
+	
+	@RequestMapping(value = "/query/outTradeNo/{outTradeNo}", method = { POST, GET })
+	public WebResponse<WXPayQueryResponse> query(HttpServletRequest request, HttpServletResponse response,@PathVariable String outTradeNo) throws Exception {
+		
+		return SuccessResponse.build(wxpayService.query(outTradeNo));
 	}
 }

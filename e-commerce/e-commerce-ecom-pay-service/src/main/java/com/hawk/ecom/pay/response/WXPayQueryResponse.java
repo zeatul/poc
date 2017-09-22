@@ -1,7 +1,17 @@
 package com.hawk.ecom.pay.response;
 
-public class WXPayQueryResponse {
+import com.hawk.framework.pub.web.ResponseData;
+
+public class WXPayQueryResponse implements ResponseData{
 	
+	public String getTradeStateDesc() {
+		return tradeStateDesc;
+	}
+
+	public void setTradeStateDesc(String tradeStateDesc) {
+		this.tradeStateDesc = tradeStateDesc;
+	}
+
 	public String getTradeState() {
 		return tradeState;
 	}
@@ -21,5 +31,9 @@ public class WXPayQueryResponse {
 	 * PAYERROR--支付失败(其他原因，如银行返回失败)
 	 */
 	private String tradeState;
+	
+	private String tradeStateDesc;
+	
+//	private String 
 
 }
