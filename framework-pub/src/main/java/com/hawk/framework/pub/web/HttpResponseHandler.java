@@ -39,5 +39,10 @@ public class HttpResponseHandler {
         writer.write(result);  
         writer.flush();
 	}
+	
+	public static void printBytesASAP(HttpServletResponse response,byte[] b) throws IOException{
+		response.getOutputStream().write(b);
+		response.flushBuffer();
+	}
 
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>file upload test</title>
+
+</head>
+<body>
+	<div id="header">
+		<h1>Upload File Demo</h1>
+	</div>
+
+	<div id="content">
+		<h1>Welcome to File Upload Test</h1>
+
+		<div id="syncSingle">
+			<h1>单文件同步上传</h1>
+			<form method="POST" enctype="multipart/form-data" action="upload1">
+				<input type="file" name="file"></input><br /> <input type="submit"></input>
+			</form>
+		</div>
+
+		<div id="syncMultiple">
+			<h1>多文件同步上传</h1>
+			<form method="POST" enctype="multipart/form-data" action="upload2">
+				<input type="file" name="file" multiple="multiple" accept="image/jpeg,image/png,image/gif"></input><br /> <input type="submit"></input>
+			</form>
+		</div>
+
+		
+	</div>
+	<div id="footer">
+		<h1>Upload File Demo Finished</h1>
+	</div>
+
+	
+
+</body>
+</html>
