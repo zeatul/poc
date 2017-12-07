@@ -176,7 +176,7 @@
 
 	<build>
 		
-		<finalName>ecom-picture-test</finalName>
+		<finalName>ecom_picture_test</finalName>
 		
 		<!-- 资源过滤 -->
 		<resources>
