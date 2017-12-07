@@ -1,17 +1,12 @@
 package com.hawk.ecom.picture.response;
 
 public class UploadFileInfo {
-	public String getGroup() {
-		return group;
+
+	public String getFullPath() {
+		return fullPath;
 	}
-	public void setGroup(String group) {
-		this.group = group;
-	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
+	public void setFullPath(String fullPath) {
+		this.fullPath = fullPath;
 	}
 	public String getFilename() {
 		return filename;
@@ -25,8 +20,7 @@ public class UploadFileInfo {
 	public void setFilesize(Long filesize) {
 		this.filesize = filesize;
 	}
-	private String group;
-	private String path;
+	private String fullPath;
 	private String filename;
 	private Long filesize;
 

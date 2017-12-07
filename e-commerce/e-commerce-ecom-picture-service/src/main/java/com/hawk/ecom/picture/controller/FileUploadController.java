@@ -95,9 +95,7 @@ public class FileUploadController {
 			String fileExtName = filename.substring(index);
 			StorePath storePath = fastFileStorageClient.uploadFile(null,file.getInputStream(), file.getSize(), fileExtName);
 			UploadFileInfo uploadFileInfo = new UploadFileInfo();
-			uploadFileInfo.setFilename(filename);
-			uploadFileInfo.setGroup(storePath.getGroup());
-			uploadFileInfo.setPath(storePath.getPath());
+			uploadFileInfo.setFullPath(storePath.getFullPath());
 			uploadFileInfo.setFilesize(file.getSize());
 			uploadFileInfoList.add(uploadFileInfo);
 		}
