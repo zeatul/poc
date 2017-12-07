@@ -1,0 +1,5 @@
+10005 10080 10443 ecom-query-web
+12005 12080 12443 ecom-task-web
+11005 11080 11443 ecom-trans-web
+9005  9080  9443  mall-admin-web
+13005 13080 13443 ecom-picture-web
