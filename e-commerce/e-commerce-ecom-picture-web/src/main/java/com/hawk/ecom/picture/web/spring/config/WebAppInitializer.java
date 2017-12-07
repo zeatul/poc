@@ -26,7 +26,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
-		registration.setMultipartConfig(new MultipartConfigElement("c:/temp/uploads", 2097152, 4194304, 0));
+		registration.setMultipartConfig(new MultipartConfigElement("/usr/local/tomcat/uploads", 2097152, 4194304, 0));
 	}
 	
 	 

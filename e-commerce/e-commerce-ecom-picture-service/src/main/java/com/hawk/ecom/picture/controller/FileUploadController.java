@@ -3,7 +3,9 @@ package com.hawk.ecom.picture.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.hawk.ecom.picture.response.UploadFileInfo;
 import com.hawk.ecom.picture.response.UploadResponse;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
@@ -59,16 +62,24 @@ public class FileUploadController {
 	@RequestMapping(value = "/upload2", method = POST)
 	public WebResponse<UploadResponse> upload2(HttpServletRequest request,@RequestPart("file") MultipartFile[] files) throws Exception{
 		UploadResponse uploadResponse = new UploadResponse();
+		List<UploadFileInfo> uploadFileInfoList = new ArrayList<UploadFileInfo>();
+		uploadResponse.setFiles(uploadFileInfoList);
 		long size = 0;
 		for (MultipartFile file : files ){
 			size+=file.getSize();
-			String fileName = file.getOriginalFilename();
-			int index = fileName.lastIndexOf(".");
+			String filename = file.getOriginalFilename();
+			int index = filename.lastIndexOf(".");
 			if (index == -1){
 				throw new RuntimeException("文件名没有后缀的扩展名");
 			}
-			String fileExtName = fileName.substring(index);
+			String fileExtName = filename.substring(index);
 			StorePath storePath = fastFileStorageClient.uploadFile(null,file.getInputStream(), file.getSize(), fileExtName);
+			UploadFileInfo uploadFileInfo = new UploadFileInfo();
+			uploadFileInfo.setFilename(filename);
+			uploadFileInfo.setGroup(storePath.getGroup());
+			uploadFileInfo.setPath(storePath.getPath());
+			uploadFileInfo.setFilesize(file.getSize());
+			uploadFileInfoList.add(uploadFileInfo);
 		}
 		
 		uploadResponse.setSize(size);

@@ -38,7 +38,7 @@ public class EcomPictureRootConfig {
 	@Bean
 	public TrackerConnectionManager fdfsTrackerConnectionManager(FdfsConnectionPool fdfsConnectionPool){
 		
-		List<String> trackerList = Arrays.asList("192.168.24.39:22122");
+		List<String> trackerList = Arrays.asList("210.73.195.77:22122");
 		
 		TrackerConnectionManager trackerConnectionManager =new TrackerConnectionManager(fdfsConnectionPool);
 		
