@@ -25,7 +25,7 @@
 		<!-- <file>mylog.txt</file> -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
 			<!-- rollover daily -->
-			<fileNamePattern>${LOG_HOME}/logs/e-commerce-ecom-trans-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${LOG_HOME}/logs/e-commerce-ecom-picture-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
 			<!-- or whenever the file size reaches 1MB -->
 				<maxFileSize>100MB</maxFileSize>
