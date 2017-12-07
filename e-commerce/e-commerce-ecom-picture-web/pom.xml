@@ -175,6 +175,9 @@
 	</dependencies>
 
 	<build>
+		
+		<finalName>ecom-picture-test</finalName>
+		
 		<!-- 资源过滤 -->
 		<resources>
 			<resource>
