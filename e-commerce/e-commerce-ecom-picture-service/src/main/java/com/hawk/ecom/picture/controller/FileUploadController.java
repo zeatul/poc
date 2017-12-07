@@ -50,16 +50,36 @@ public class FileUploadController {
 		return "uploadForm";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/upload1", method = POST)
-	public WebResponse<UploadResponse> upload1(HttpServletRequest request,@RequestPart("file") MultipartFile file) throws Exception{
-		UploadResponse uploadResponse = new UploadResponse();
-		uploadResponse.setSize(file.getSize());
-		return SuccessResponse.build(uploadResponse);
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/upload1", method = POST)
+//	public WebResponse<UploadResponse> upload1(HttpServletRequest request,@RequestPart("file") MultipartFile file[]) throws Exception{
+//		UploadResponse uploadResponse = new UploadResponse();
+//		List<UploadFileInfo> uploadFileInfoList = new ArrayList<UploadFileInfo>();
+//		uploadResponse.setFiles(uploadFileInfoList);
+//		long size = 0;
+//		for (MultipartFile file : files ){
+//			size+=file.getSize();
+//			String filename = file.getOriginalFilename();
+//			int index = filename.lastIndexOf(".");
+//			if (index == -1){
+//				throw new RuntimeException("文件名没有后缀的扩展名");
+//			}
+//			String fileExtName = filename.substring(index);
+//			StorePath storePath = fastFileStorageClient.uploadFile(null,file.getInputStream(), file.getSize(), fileExtName);
+//			UploadFileInfo uploadFileInfo = new UploadFileInfo();
+//			uploadFileInfo.setFilename(filename);
+//			uploadFileInfo.setGroup(storePath.getGroup());
+//			uploadFileInfo.setPath(storePath.getPath());
+//			uploadFileInfo.setFilesize(file.getSize());
+//			uploadFileInfoList.add(uploadFileInfo);
+//		}
+//		
+//		uploadResponse.setSize(size);
+//		return SuccessResponse.build(uploadResponse);
+//	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/upload2", method = POST)
+	@RequestMapping(value = "/upload", method = POST)
 	public WebResponse<UploadResponse> upload2(HttpServletRequest request,@RequestPart("file") MultipartFile[] files) throws Exception{
 		UploadResponse uploadResponse = new UploadResponse();
 		List<UploadFileInfo> uploadFileInfoList = new ArrayList<UploadFileInfo>();

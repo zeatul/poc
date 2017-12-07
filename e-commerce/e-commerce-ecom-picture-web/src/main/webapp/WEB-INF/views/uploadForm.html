@@ -15,25 +15,29 @@
 
 		<div id="syncSingle">
 			<h1>单文件同步上传</h1>
-			<form method="POST" enctype="multipart/form-data" action="upload1">
-				<input type="file" name="file"></input><br /> <input type="submit"></input>
+			<form method="POST" enctype="multipart/form-data" action="upload" accept="image/jpeg,image/png,image/gif">
+				<input type="file" name="file">提交</input>
+				<br /> 
+				<input type="submit"></input>
 			</form>
 		</div>
 
 		<div id="syncMultiple">
 			<h1>多文件同步上传</h1>
-			<form method="POST" enctype="multipart/form-data" action="upload2">
-				<input type="file" name="file" multiple="multiple" accept="image/jpeg,image/png,image/gif"></input><br /> <input type="submit"></input>
+			<form method="POST" enctype="multipart/form-data" action="upload">
+				<input type="file" name="file" multiple="multiple" accept="image/jpeg,image/png,image/gif"></input>
+				<br /> 
+				<input type="submit">提交</input>
 			</form>
 		</div>
 
-		
+
 	</div>
 	<div id="footer">
 		<h1>Upload File Demo Finished</h1>
 	</div>
 
-	
+
 
 </body>
 </html>
