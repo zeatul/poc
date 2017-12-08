@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import com.github.tobato.fastdfs.conn.ConnectionPoolConfig;
 import com.github.tobato.fastdfs.conn.FdfsConnectionPool;
@@ -16,6 +17,7 @@ import com.github.tobato.fastdfs.conn.TrackerConnectionManager;
 
 @Configuration
 @Import({})
+@PropertySource({"classpath:/com/hawk/ecom/outer/env/chargeDataConfigure.properties"})
 @ComponentScan(basePackages = { "com.hawk.ecom.picture.service" ,"com.github.tobato.fastdfs.service,com.github.tobato.fastdfs.domain"})
 public class EcomPictureRootConfig {
 	

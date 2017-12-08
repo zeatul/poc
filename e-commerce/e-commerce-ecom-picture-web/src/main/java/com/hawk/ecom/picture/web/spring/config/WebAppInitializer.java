@@ -3,9 +3,14 @@ package com.hawk.ecom.picture.web.spring.config;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+	
+	@Autowired
+	private Environment evn;
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {

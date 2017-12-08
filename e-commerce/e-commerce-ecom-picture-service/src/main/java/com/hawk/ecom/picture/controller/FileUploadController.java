@@ -4,6 +4,7 @@ package com.hawk.ecom.picture.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.hawk.ecom.muser.exception.IllegalAccessRuntimeException;
+import com.hawk.ecom.muser.service.MallAuthService;
 import com.hawk.ecom.picture.response.UploadFileInfo;
 import com.hawk.ecom.picture.response.UploadResponse;
+import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
@@ -31,6 +35,10 @@ import com.hawk.framework.utility.tools.DateTools;
 @CrossOrigin
 @Controller
 public class FileUploadController {
+	
+	@Autowired
+	private MallAuthService authService;
+	
 	
 	@Autowired
     FastFileStorageClient fastFileStorageClient;
@@ -81,6 +89,11 @@ public class FileUploadController {
 	@ResponseBody
 	@RequestMapping(value = "/upload", method = POST)
 	public WebResponse<UploadResponse> upload2(HttpServletRequest request,@RequestPart("file") MultipartFile[] files) throws Exception{
+	//需要验证权限，把代码放开	
+//		if (!authService.hasAnyRole(AuthThreadLocal.getUserCode(), Arrays.asList("admin"))){
+//			throw new IllegalAccessRuntimeException();
+//		}
+		
 		UploadResponse uploadResponse = new UploadResponse();
 		List<UploadFileInfo> uploadFileInfoList = new ArrayList<UploadFileInfo>();
 		uploadResponse.setFiles(uploadFileInfoList);
@@ -105,16 +118,16 @@ public class FileUploadController {
 	}
 	
 
-	@ResponseBody
-	@RequestMapping(value = "/upload3", method = POST)
-	public WebResponse<UploadResponse> upload3(MultipartHttpServletRequest request) throws Exception{
-		UploadResponse uploadResponse = new UploadResponse();
-		long size = 0;
-		
-		
-		uploadResponse.setSize(size);
-		return SuccessResponse.build(uploadResponse);
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/upload3", method = POST)
+//	public WebResponse<UploadResponse> upload3(MultipartHttpServletRequest request) throws Exception{
+//		UploadResponse uploadResponse = new UploadResponse();
+//		long size = 0;
+//		
+//		
+//		uploadResponse.setSize(size);
+//		return SuccessResponse.build(uploadResponse);
+//	}
 	
 	
 	
