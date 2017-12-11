@@ -110,6 +110,7 @@ public class FileUploadController {
 			UploadFileInfo uploadFileInfo = new UploadFileInfo();
 			uploadFileInfo.setFullPath(storePath.getFullPath());
 			uploadFileInfo.setFilesize(file.getSize());
+			uploadFileInfo.setFilename(filename);
 			uploadFileInfoList.add(uploadFileInfo);
 		}
 		
