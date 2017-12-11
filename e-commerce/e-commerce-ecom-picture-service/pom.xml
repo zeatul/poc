@@ -165,4 +165,27 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<!-- 资源过滤 -->
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/sql</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<!-- test资源过滤 -->
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+
+	</build>
 </project>

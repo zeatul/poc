@@ -36,6 +36,12 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+
+
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -175,9 +181,9 @@
 	</dependencies>
 
 	<build>
-		
+
 		<finalName>ecom_picture_test</finalName>
-		
+
 		<!-- 资源过滤 -->
 		<resources>
 			<resource>
