@@ -105,7 +105,7 @@ public class FileUploadController {
 			if (index == -1){
 				throw new RuntimeException("文件名没有后缀的扩展名");
 			}
-			String fileExtName = filename.substring(index);
+			String fileExtName = filename.substring(index+1);
 			StorePath storePath = fastFileStorageClient.uploadFile(null,file.getInputStream(), file.getSize(), fileExtName);
 			UploadFileInfo uploadFileInfo = new UploadFileInfo();
 			uploadFileInfo.setFullPath(storePath.getFullPath());
