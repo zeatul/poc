@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ibatis.employee">
+	<typeAlias alias="Employee" type="com.ccb.acten.ibatis.data.po.EmployeePo" />	
+	<sql id="columns">
+		id as "id",
+		name as "name",
+		company as "company",
+		main_skill as "mainSkill"
+	</sql>
+
+	<sql id="where">
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="id">id = #id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">name = #name#</isNotEmpty>
+			<isNotEmpty prepend="and" property="company">company = #company#</isNotEmpty>
+			<isNotEmpty prepend="and" property="id">main_skill = #mainSkill#</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<sql id="updateColumns">
+		<dynamic prepend=" ">
+			<isNotEmpty prepend=", " property="id">id = #id#</isNotEmpty>
+			<isNotEmpty prepend=", " property="name">name = #name#</isNotEmpty>
+			<isNotEmpty prepend=", " property="company">company = #company#</isNotEmpty>
+			<isNotEmpty prepend=", " property="id">main_skill = #mainSkill#</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	
+
+	<select id="list" parameterClass="hashmap" resultClass="Employee">
+		select
+		<include refid="columns" />
+		from t_example_employee
+		<include refid="where" />
+		<isNotEmpty prepend=" " property="orderBy">order by $orderBy$</isNotEmpty>
+	</select>
+	
+	<select id="count" parameterClass="hashmap" resultClass="integer">
+		select count(*) as "count"
+		from t_example_employee
+		where company=#company#
+	</select>
+
+	<insert id="insert" parameterClass="Employee">
+		insert into t_example_employee(
+		<dynamic prepend=" ">
+			<isNotNull prepend=", " property="id">id</isNotNull>
+			<isNotNull prepend=", " property="name">name</isNotNull>
+			<isNotNull prepend=", " property="company">company</isNotNull>
+			<isNotNull prepend=", " property="mainSkill">main_skill</isNotNull>
+		</dynamic>
+		)
+		values(
+		<dynamic prepend=" ">
+			<isNotNull prepend=", " property="id">#id#</isNotNull>
+			<isNotNull prepend=", " property="name">#name#</isNotNull>
+			<isNotNull prepend=", " property="company">#company#</isNotNull>
+			<isNotNull prepend=", " property="mainSkill">#mainSkill#</isNotNull>
+		</dynamic>
+		)
+	</insert>
+	
+	<delete id="delete" parameterClass="integer">
+		delete from t_example_employee where id = #id#
+	</delete>
+	
+	<update id="update" parameterClass="Employee">
+		update t_example_employee
+		set <include refid="updateColumns"/>
+		where id = #id#
+	</update>
+</sqlMap>

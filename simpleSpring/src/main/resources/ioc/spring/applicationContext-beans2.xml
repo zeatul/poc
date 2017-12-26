@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="phone1" class="com.ccb.acten.Phone"/>
+	
+	<bean id="phone2" class="com.ccb.acten.Phone">
+		<constructor-arg name="brand" value="Huawei" />
+		<constructor-arg name="type" value="P10"/>
+	</bean>
+	
+	<bean id="phoneFactory1" class="com.ccb.acten.PhoneFactory">
+		<constructor-arg ref="phone1"/>
+	</bean>
+	
+	<bean id="phoneFactory2" class="com.ccb.acten.PhoneFactory">
+		<property ref="phone2"/>
+	</bean>
+	
+	<bean id="phoneFactory2" class="com.ccb.acten.PhoneFactory">
+		<property ref="phone2"/>
+	</bean>
+
+</beans>

@@ -300,6 +300,12 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>${jackson-version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-xml</artifactId>
+				<version>${jackson-version}</version>
+			</dependency>
 
 			<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> <version>${org.codehaus.jackson-version}</version> </dependency> 
 				<dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-core-asl</artifactId> <version>${org.codehaus.jackson-version}</version> </dependency> -->

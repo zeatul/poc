@@ -3,6 +3,7 @@ package com.hawk.ecom.picture.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,6 +31,8 @@ import com.hawk.ecom.pub.web.AuthThreadLocal;
 import com.hawk.framework.pub.web.SuccessResponse;
 import com.hawk.framework.pub.web.WebResponse;
 import com.hawk.framework.utility.tools.DateTools;
+
+import ch.qos.logback.classic.Logger;
 
 
 @RequestMapping("/ecom/fileUpload")
@@ -50,6 +54,30 @@ public class FileUploadController {
 	}
 	
 
+	public void test(Object o) throws FileNotFoundException{
+		
+		Logger logger = LoggerFactory.getLogger("com.ccb.acten");
+		
+		logger
+		
+		if (o == null){
+			throw new Exception("参数为空");
+		}
+		throw new FileNotFoundException();
+	}
+	
+	public void test2() {
+		try {
+			logger.info(); file
+			                stdout.
+			                 jms 
+			Logger.debug();
+			if （） 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 
 	@RequestMapping(value = "/", method = GET)

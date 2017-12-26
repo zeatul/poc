@@ -191,6 +191,12 @@
 				<version>${jackson-version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-xml</artifactId>
+				<version>${jackson-version}</version>
+			</dependency>
+
 			<!-- aspectj -->
 			<dependency>
 				<groupId>org.aspectj</groupId>
